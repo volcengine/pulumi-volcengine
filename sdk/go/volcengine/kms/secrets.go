@@ -69,6 +69,8 @@ type SecretsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The cloud service that owns the secret.
+	OwningServices []string `pulumi:"owningServices"`
 	// The name of the project to which the secret belongs.
 	ProjectName *string `pulumi:"projectName"`
 	// The state of the rotation.
@@ -95,6 +97,8 @@ type SecretsResult struct {
 	ManagedStates []string `pulumi:"managedStates"`
 	NameRegex     *string  `pulumi:"nameRegex"`
 	OutputFile    *string  `pulumi:"outputFile"`
+	// The cloud service that owns the secret.
+	OwningServices []string `pulumi:"owningServices"`
 	// The project name of the secret.
 	ProjectName *string `pulumi:"projectName"`
 	// The rotation state of the secret.
@@ -139,6 +143,8 @@ type SecretsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The cloud service that owns the secret.
+	OwningServices pulumi.StringArrayInput `pulumi:"owningServices"`
 	// The name of the project to which the secret belongs.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The state of the rotation.
@@ -198,6 +204,11 @@ func (o SecretsResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o SecretsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The cloud service that owns the secret.
+func (o SecretsResultOutput) OwningServices() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsResult) []string { return v.OwningServices }).(pulumi.StringArrayOutput)
 }
 
 // The project name of the secret.

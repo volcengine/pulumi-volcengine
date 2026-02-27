@@ -21,19 +21,25 @@ class SecretArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  encryption_key: Optional[pulumi.Input[str]] = None,
                  extended_config: Optional[pulumi.Input[str]] = None,
+                 force_delete: Optional[pulumi.Input[bool]] = None,
+                 pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
-                 rotation_interval: Optional[pulumi.Input[str]] = None):
+                 rotation_interval: Optional[pulumi.Input[str]] = None,
+                 version_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Secret resource.
         :param pulumi.Input[str] secret_name: The name of the secret.
-        :param pulumi.Input[str] secret_type: The type of the secret.
-        :param pulumi.Input[str] secret_value: The value of the secret.
-        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret.
+        :param pulumi.Input[str] secret_type: The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
+        :param pulumi.Input[str] secret_value: The value of the secret. Only Generic type secret support modifying secret_value.
+        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         :param pulumi.Input[str] description: The description of the secret.
         :param pulumi.Input[str] encryption_key: The TRN of the KMS key used to encrypt the secret value.
         :param pulumi.Input[str] extended_config: The extended configurations of the secret.
+        :param pulumi.Input[bool] force_delete: Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        :param pulumi.Input[int] pending_window_in_days: The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
         :param pulumi.Input[str] project_name: The project name of the secret.
-        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed.
+        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
+        :param pulumi.Input[str] version_name: The version alias of the secret. Only Generic type secret support modifying version_name.
         """
         pulumi.set(__self__, "secret_name", secret_name)
         pulumi.set(__self__, "secret_type", secret_type)
@@ -46,10 +52,16 @@ class SecretArgs:
             pulumi.set(__self__, "encryption_key", encryption_key)
         if extended_config is not None:
             pulumi.set(__self__, "extended_config", extended_config)
+        if force_delete is not None:
+            pulumi.set(__self__, "force_delete", force_delete)
+        if pending_window_in_days is not None:
+            pulumi.set(__self__, "pending_window_in_days", pending_window_in_days)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if rotation_interval is not None:
             pulumi.set(__self__, "rotation_interval", rotation_interval)
+        if version_name is not None:
+            pulumi.set(__self__, "version_name", version_name)
 
     @property
     @pulumi.getter(name="secretName")
@@ -67,7 +79,7 @@ class SecretArgs:
     @pulumi.getter(name="secretType")
     def secret_type(self) -> pulumi.Input[str]:
         """
-        The type of the secret.
+        The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
         """
         return pulumi.get(self, "secret_type")
 
@@ -79,7 +91,7 @@ class SecretArgs:
     @pulumi.getter(name="secretValue")
     def secret_value(self) -> pulumi.Input[str]:
         """
-        The value of the secret.
+        The value of the secret. Only Generic type secret support modifying secret_value.
         """
         return pulumi.get(self, "secret_value")
 
@@ -91,7 +103,7 @@ class SecretArgs:
     @pulumi.getter(name="automaticRotation")
     def automatic_rotation(self) -> Optional[pulumi.Input[bool]]:
         """
-        The rotation state of the secret.
+        The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         """
         return pulumi.get(self, "automatic_rotation")
 
@@ -136,6 +148,30 @@ class SecretArgs:
         pulumi.set(self, "extended_config", value)
 
     @property
+    @pulumi.getter(name="forceDelete")
+    def force_delete(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        """
+        return pulumi.get(self, "force_delete")
+
+    @force_delete.setter
+    def force_delete(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_delete", value)
+
+    @property
+    @pulumi.getter(name="pendingWindowInDays")
+    def pending_window_in_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
+        """
+        return pulumi.get(self, "pending_window_in_days")
+
+    @pending_window_in_days.setter
+    def pending_window_in_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pending_window_in_days", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -151,13 +187,25 @@ class SecretArgs:
     @pulumi.getter(name="rotationInterval")
     def rotation_interval(self) -> Optional[pulumi.Input[str]]:
         """
-        The interval at which automatic rotation is performed.
+        The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         """
         return pulumi.get(self, "rotation_interval")
 
     @rotation_interval.setter
     def rotation_interval(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "rotation_interval", value)
+
+    @property
+    @pulumi.getter(name="versionName")
+    def version_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The version alias of the secret. Only Generic type secret support modifying version_name.
+        """
+        return pulumi.get(self, "version_name")
+
+    @version_name.setter
+    def version_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version_name", value)
 
 
 @pulumi.input_type
@@ -168,8 +216,11 @@ class _SecretState:
                  description: Optional[pulumi.Input[str]] = None,
                  encryption_key: Optional[pulumi.Input[str]] = None,
                  extended_config: Optional[pulumi.Input[str]] = None,
+                 force_delete: Optional[pulumi.Input[bool]] = None,
                  last_rotation_time: Optional[pulumi.Input[str]] = None,
                  managed: Optional[pulumi.Input[bool]] = None,
+                 owning_service: Optional[pulumi.Input[str]] = None,
+                 pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  rotation_interval: Optional[pulumi.Input[str]] = None,
                  rotation_interval_second: Optional[pulumi.Input[int]] = None,
@@ -183,30 +234,35 @@ class _SecretState:
                  trn: Optional[pulumi.Input[str]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  update_date: Optional[pulumi.Input[int]] = None,
-                 uuid: Optional[pulumi.Input[str]] = None):
+                 uuid: Optional[pulumi.Input[str]] = None,
+                 version_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
-        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret.
+        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         :param pulumi.Input[int] creation_date: The date when the secret was created.
         :param pulumi.Input[str] description: The description of the secret.
         :param pulumi.Input[str] encryption_key: The TRN of the KMS key used to encrypt the secret value.
         :param pulumi.Input[str] extended_config: The extended configurations of the secret.
+        :param pulumi.Input[bool] force_delete: Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
         :param pulumi.Input[str] last_rotation_time: The last time the secret was rotated.
         :param pulumi.Input[bool] managed: Indicates whether the secret is hosted.
+        :param pulumi.Input[str] owning_service: The cloud service that owns the secret.
+        :param pulumi.Input[int] pending_window_in_days: The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
         :param pulumi.Input[str] project_name: The project name of the secret.
-        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed.
+        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         :param pulumi.Input[int] rotation_interval_second: Rotation interval second.
         :param pulumi.Input[str] rotation_state: The rotation state of the secret.
         :param pulumi.Input[str] schedule_delete_time: The time when the secret will be deleted.
         :param pulumi.Input[str] schedule_rotation_time: The next time the secret will be rotated.
         :param pulumi.Input[str] secret_name: The name of the secret.
-        :param pulumi.Input[str] secret_type: The type of the secret.
-        :param pulumi.Input[str] secret_value: The value of the secret.
+        :param pulumi.Input[str] secret_type: The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
+        :param pulumi.Input[str] secret_value: The value of the secret. Only Generic type secret support modifying secret_value.
         :param pulumi.Input[str] state: The state of secret.
         :param pulumi.Input[str] trn: The information about the tenant resource name (TRN).
         :param pulumi.Input[str] uid: The tenant ID of the secret.
         :param pulumi.Input[int] update_date: The date when the secret was updated.
         :param pulumi.Input[str] uuid: The ID of secret.
+        :param pulumi.Input[str] version_name: The version alias of the secret. Only Generic type secret support modifying version_name.
         """
         if automatic_rotation is not None:
             pulumi.set(__self__, "automatic_rotation", automatic_rotation)
@@ -218,10 +274,16 @@ class _SecretState:
             pulumi.set(__self__, "encryption_key", encryption_key)
         if extended_config is not None:
             pulumi.set(__self__, "extended_config", extended_config)
+        if force_delete is not None:
+            pulumi.set(__self__, "force_delete", force_delete)
         if last_rotation_time is not None:
             pulumi.set(__self__, "last_rotation_time", last_rotation_time)
         if managed is not None:
             pulumi.set(__self__, "managed", managed)
+        if owning_service is not None:
+            pulumi.set(__self__, "owning_service", owning_service)
+        if pending_window_in_days is not None:
+            pulumi.set(__self__, "pending_window_in_days", pending_window_in_days)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if rotation_interval is not None:
@@ -250,12 +312,14 @@ class _SecretState:
             pulumi.set(__self__, "update_date", update_date)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
+        if version_name is not None:
+            pulumi.set(__self__, "version_name", version_name)
 
     @property
     @pulumi.getter(name="automaticRotation")
     def automatic_rotation(self) -> Optional[pulumi.Input[bool]]:
         """
-        The rotation state of the secret.
+        The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         """
         return pulumi.get(self, "automatic_rotation")
 
@@ -312,6 +376,18 @@ class _SecretState:
         pulumi.set(self, "extended_config", value)
 
     @property
+    @pulumi.getter(name="forceDelete")
+    def force_delete(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        """
+        return pulumi.get(self, "force_delete")
+
+    @force_delete.setter
+    def force_delete(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_delete", value)
+
+    @property
     @pulumi.getter(name="lastRotationTime")
     def last_rotation_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -336,6 +412,30 @@ class _SecretState:
         pulumi.set(self, "managed", value)
 
     @property
+    @pulumi.getter(name="owningService")
+    def owning_service(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cloud service that owns the secret.
+        """
+        return pulumi.get(self, "owning_service")
+
+    @owning_service.setter
+    def owning_service(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "owning_service", value)
+
+    @property
+    @pulumi.getter(name="pendingWindowInDays")
+    def pending_window_in_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
+        """
+        return pulumi.get(self, "pending_window_in_days")
+
+    @pending_window_in_days.setter
+    def pending_window_in_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pending_window_in_days", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -351,7 +451,7 @@ class _SecretState:
     @pulumi.getter(name="rotationInterval")
     def rotation_interval(self) -> Optional[pulumi.Input[str]]:
         """
-        The interval at which automatic rotation is performed.
+        The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         """
         return pulumi.get(self, "rotation_interval")
 
@@ -423,7 +523,7 @@ class _SecretState:
     @pulumi.getter(name="secretType")
     def secret_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the secret.
+        The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
         """
         return pulumi.get(self, "secret_type")
 
@@ -435,7 +535,7 @@ class _SecretState:
     @pulumi.getter(name="secretValue")
     def secret_value(self) -> Optional[pulumi.Input[str]]:
         """
-        The value of the secret.
+        The value of the secret. Only Generic type secret support modifying secret_value.
         """
         return pulumi.get(self, "secret_value")
 
@@ -503,6 +603,18 @@ class _SecretState:
     def uuid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "uuid", value)
 
+    @property
+    @pulumi.getter(name="versionName")
+    def version_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The version alias of the secret. Only Generic type secret support modifying version_name.
+        """
+        return pulumi.get(self, "version_name")
+
+    @version_name.setter
+    def version_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version_name", value)
+
 
 class Secret(pulumi.CustomResource):
     @overload
@@ -513,11 +625,14 @@ class Secret(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  encryption_key: Optional[pulumi.Input[str]] = None,
                  extended_config: Optional[pulumi.Input[str]] = None,
+                 force_delete: Optional[pulumi.Input[bool]] = None,
+                 pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  rotation_interval: Optional[pulumi.Input[str]] = None,
                  secret_name: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
                  secret_value: Optional[pulumi.Input[str]] = None,
+                 version_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage kms secret
@@ -531,7 +646,20 @@ class Secret(pulumi.CustomResource):
             description="tf-test",
             secret_name="tf-test1",
             secret_type="Generic",
-            secret_value="{\\"dasdasd\\":\\"dasdasd\\"}")
+            secret_value="{\\"dasdasd\\":\\"dasdasd\\"}",
+            version_name="v1.0")
+        foo_ecs = volcengine.kms.Secret("fooEcs",
+            automatic_rotation=False,
+            description="tf-test ecs",
+            encryption_key="trn:kms:cn-beijing:21000******:keyrings/Tf-test/keys/Test-key1",
+            extended_config="{\\"InstanceId\\":\\"i-yeehzz2tc0ygp2******\\",\\"SecretSubType\\":\\"Password\\",\\"CustomData\\":{\\"desc\\":\\"test\\"}}",
+            force_delete=False,
+            pending_window_in_days=7,
+            project_name="default",
+            secret_name="tf-test2",
+            secret_type="ECS",
+            secret_value="{\\"UserName\\":\\"root\\",\\"Password\\":\\"********\\"}",
+            version_name="v2.0")
         ```
 
         ## Import
@@ -544,15 +672,18 @@ class Secret(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret.
+        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         :param pulumi.Input[str] description: The description of the secret.
         :param pulumi.Input[str] encryption_key: The TRN of the KMS key used to encrypt the secret value.
         :param pulumi.Input[str] extended_config: The extended configurations of the secret.
+        :param pulumi.Input[bool] force_delete: Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        :param pulumi.Input[int] pending_window_in_days: The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
         :param pulumi.Input[str] project_name: The project name of the secret.
-        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed.
+        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         :param pulumi.Input[str] secret_name: The name of the secret.
-        :param pulumi.Input[str] secret_type: The type of the secret.
-        :param pulumi.Input[str] secret_value: The value of the secret.
+        :param pulumi.Input[str] secret_type: The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
+        :param pulumi.Input[str] secret_value: The value of the secret. Only Generic type secret support modifying secret_value.
+        :param pulumi.Input[str] version_name: The version alias of the secret. Only Generic type secret support modifying version_name.
         """
         ...
     @overload
@@ -572,7 +703,20 @@ class Secret(pulumi.CustomResource):
             description="tf-test",
             secret_name="tf-test1",
             secret_type="Generic",
-            secret_value="{\\"dasdasd\\":\\"dasdasd\\"}")
+            secret_value="{\\"dasdasd\\":\\"dasdasd\\"}",
+            version_name="v1.0")
+        foo_ecs = volcengine.kms.Secret("fooEcs",
+            automatic_rotation=False,
+            description="tf-test ecs",
+            encryption_key="trn:kms:cn-beijing:21000******:keyrings/Tf-test/keys/Test-key1",
+            extended_config="{\\"InstanceId\\":\\"i-yeehzz2tc0ygp2******\\",\\"SecretSubType\\":\\"Password\\",\\"CustomData\\":{\\"desc\\":\\"test\\"}}",
+            force_delete=False,
+            pending_window_in_days=7,
+            project_name="default",
+            secret_name="tf-test2",
+            secret_type="ECS",
+            secret_value="{\\"UserName\\":\\"root\\",\\"Password\\":\\"********\\"}",
+            version_name="v2.0")
         ```
 
         ## Import
@@ -602,11 +746,14 @@ class Secret(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  encryption_key: Optional[pulumi.Input[str]] = None,
                  extended_config: Optional[pulumi.Input[str]] = None,
+                 force_delete: Optional[pulumi.Input[bool]] = None,
+                 pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  rotation_interval: Optional[pulumi.Input[str]] = None,
                  secret_name: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
                  secret_value: Optional[pulumi.Input[str]] = None,
+                 version_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -620,6 +767,8 @@ class Secret(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["encryption_key"] = encryption_key
             __props__.__dict__["extended_config"] = extended_config
+            __props__.__dict__["force_delete"] = force_delete
+            __props__.__dict__["pending_window_in_days"] = pending_window_in_days
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["rotation_interval"] = rotation_interval
             if secret_name is None and not opts.urn:
@@ -631,9 +780,11 @@ class Secret(pulumi.CustomResource):
             if secret_value is None and not opts.urn:
                 raise TypeError("Missing required property 'secret_value'")
             __props__.__dict__["secret_value"] = secret_value
+            __props__.__dict__["version_name"] = version_name
             __props__.__dict__["creation_date"] = None
             __props__.__dict__["last_rotation_time"] = None
             __props__.__dict__["managed"] = None
+            __props__.__dict__["owning_service"] = None
             __props__.__dict__["rotation_interval_second"] = None
             __props__.__dict__["rotation_state"] = None
             __props__.__dict__["schedule_delete_time"] = None
@@ -658,8 +809,11 @@ class Secret(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             encryption_key: Optional[pulumi.Input[str]] = None,
             extended_config: Optional[pulumi.Input[str]] = None,
+            force_delete: Optional[pulumi.Input[bool]] = None,
             last_rotation_time: Optional[pulumi.Input[str]] = None,
             managed: Optional[pulumi.Input[bool]] = None,
+            owning_service: Optional[pulumi.Input[str]] = None,
+            pending_window_in_days: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             rotation_interval: Optional[pulumi.Input[str]] = None,
             rotation_interval_second: Optional[pulumi.Input[int]] = None,
@@ -673,7 +827,8 @@ class Secret(pulumi.CustomResource):
             trn: Optional[pulumi.Input[str]] = None,
             uid: Optional[pulumi.Input[str]] = None,
             update_date: Optional[pulumi.Input[int]] = None,
-            uuid: Optional[pulumi.Input[str]] = None) -> 'Secret':
+            uuid: Optional[pulumi.Input[str]] = None,
+            version_name: Optional[pulumi.Input[str]] = None) -> 'Secret':
         """
         Get an existing Secret resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -681,27 +836,31 @@ class Secret(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret.
+        :param pulumi.Input[bool] automatic_rotation: The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         :param pulumi.Input[int] creation_date: The date when the secret was created.
         :param pulumi.Input[str] description: The description of the secret.
         :param pulumi.Input[str] encryption_key: The TRN of the KMS key used to encrypt the secret value.
         :param pulumi.Input[str] extended_config: The extended configurations of the secret.
+        :param pulumi.Input[bool] force_delete: Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
         :param pulumi.Input[str] last_rotation_time: The last time the secret was rotated.
         :param pulumi.Input[bool] managed: Indicates whether the secret is hosted.
+        :param pulumi.Input[str] owning_service: The cloud service that owns the secret.
+        :param pulumi.Input[int] pending_window_in_days: The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
         :param pulumi.Input[str] project_name: The project name of the secret.
-        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed.
+        :param pulumi.Input[str] rotation_interval: The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         :param pulumi.Input[int] rotation_interval_second: Rotation interval second.
         :param pulumi.Input[str] rotation_state: The rotation state of the secret.
         :param pulumi.Input[str] schedule_delete_time: The time when the secret will be deleted.
         :param pulumi.Input[str] schedule_rotation_time: The next time the secret will be rotated.
         :param pulumi.Input[str] secret_name: The name of the secret.
-        :param pulumi.Input[str] secret_type: The type of the secret.
-        :param pulumi.Input[str] secret_value: The value of the secret.
+        :param pulumi.Input[str] secret_type: The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
+        :param pulumi.Input[str] secret_value: The value of the secret. Only Generic type secret support modifying secret_value.
         :param pulumi.Input[str] state: The state of secret.
         :param pulumi.Input[str] trn: The information about the tenant resource name (TRN).
         :param pulumi.Input[str] uid: The tenant ID of the secret.
         :param pulumi.Input[int] update_date: The date when the secret was updated.
         :param pulumi.Input[str] uuid: The ID of secret.
+        :param pulumi.Input[str] version_name: The version alias of the secret. Only Generic type secret support modifying version_name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -712,8 +871,11 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["encryption_key"] = encryption_key
         __props__.__dict__["extended_config"] = extended_config
+        __props__.__dict__["force_delete"] = force_delete
         __props__.__dict__["last_rotation_time"] = last_rotation_time
         __props__.__dict__["managed"] = managed
+        __props__.__dict__["owning_service"] = owning_service
+        __props__.__dict__["pending_window_in_days"] = pending_window_in_days
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["rotation_interval"] = rotation_interval
         __props__.__dict__["rotation_interval_second"] = rotation_interval_second
@@ -728,13 +890,14 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["uid"] = uid
         __props__.__dict__["update_date"] = update_date
         __props__.__dict__["uuid"] = uuid
+        __props__.__dict__["version_name"] = version_name
         return Secret(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="automaticRotation")
     def automatic_rotation(self) -> pulumi.Output[Optional[bool]]:
         """
-        The rotation state of the secret.
+        The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         """
         return pulumi.get(self, "automatic_rotation")
 
@@ -771,6 +934,14 @@ class Secret(pulumi.CustomResource):
         return pulumi.get(self, "extended_config")
 
     @property
+    @pulumi.getter(name="forceDelete")
+    def force_delete(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        """
+        return pulumi.get(self, "force_delete")
+
+    @property
     @pulumi.getter(name="lastRotationTime")
     def last_rotation_time(self) -> pulumi.Output[str]:
         """
@@ -787,6 +958,22 @@ class Secret(pulumi.CustomResource):
         return pulumi.get(self, "managed")
 
     @property
+    @pulumi.getter(name="owningService")
+    def owning_service(self) -> pulumi.Output[str]:
+        """
+        The cloud service that owns the secret.
+        """
+        return pulumi.get(self, "owning_service")
+
+    @property
+    @pulumi.getter(name="pendingWindowInDays")
+    def pending_window_in_days(self) -> pulumi.Output[Optional[int]]:
+        """
+        The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
+        """
+        return pulumi.get(self, "pending_window_in_days")
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Output[str]:
         """
@@ -798,7 +985,7 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter(name="rotationInterval")
     def rotation_interval(self) -> pulumi.Output[str]:
         """
-        The interval at which automatic rotation is performed.
+        The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         """
         return pulumi.get(self, "rotation_interval")
 
@@ -846,7 +1033,7 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter(name="secretType")
     def secret_type(self) -> pulumi.Output[str]:
         """
-        The type of the secret.
+        The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
         """
         return pulumi.get(self, "secret_type")
 
@@ -854,7 +1041,7 @@ class Secret(pulumi.CustomResource):
     @pulumi.getter(name="secretValue")
     def secret_value(self) -> pulumi.Output[str]:
         """
-        The value of the secret.
+        The value of the secret. Only Generic type secret support modifying secret_value.
         """
         return pulumi.get(self, "secret_value")
 
@@ -897,4 +1084,12 @@ class Secret(pulumi.CustomResource):
         The ID of secret.
         """
         return pulumi.get(self, "uuid")
+
+    @property
+    @pulumi.getter(name="versionName")
+    def version_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The version alias of the secret. Only Generic type secret support modifying version_name.
+        """
+        return pulumi.get(self, "version_name")
 

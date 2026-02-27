@@ -20,7 +20,7 @@ class KeyringArgs:
                  project_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Keyring resource.
-        :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[str] keyring_name: The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         :param pulumi.Input[str] description: The description of the keyring.
         :param pulumi.Input[str] keyring_type: The type of the keyring.
         :param pulumi.Input[str] project_name: The name of the project.
@@ -37,7 +37,7 @@ class KeyringArgs:
     @pulumi.getter(name="keyringName")
     def keyring_name(self) -> pulumi.Input[str]:
         """
-        The name of the keyring.
+        The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         """
         return pulumi.get(self, "keyring_name")
 
@@ -97,7 +97,7 @@ class _KeyringState:
         Input properties used for looking up and filtering Keyring resources.
         :param pulumi.Input[int] creation_date: The date when the keyring was created.
         :param pulumi.Input[str] description: The description of the keyring.
-        :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[str] keyring_name: The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         :param pulumi.Input[str] keyring_type: The type of the keyring.
         :param pulumi.Input[str] project_name: The name of the project.
         :param pulumi.Input[str] trn: The information about the tenant resource name (TRN).
@@ -149,7 +149,7 @@ class _KeyringState:
     @pulumi.getter(name="keyringName")
     def keyring_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the keyring.
+        The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         """
         return pulumi.get(self, "keyring_name")
 
@@ -253,7 +253,7 @@ class Keyring(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the keyring.
-        :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[str] keyring_name: The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         :param pulumi.Input[str] keyring_type: The type of the keyring.
         :param pulumi.Input[str] project_name: The name of the project.
         """
@@ -350,7 +350,7 @@ class Keyring(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] creation_date: The date when the keyring was created.
         :param pulumi.Input[str] description: The description of the keyring.
-        :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[str] keyring_name: The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         :param pulumi.Input[str] keyring_type: The type of the keyring.
         :param pulumi.Input[str] project_name: The name of the project.
         :param pulumi.Input[str] trn: The information about the tenant resource name (TRN).
@@ -391,7 +391,7 @@ class Keyring(pulumi.CustomResource):
     @pulumi.getter(name="keyringName")
     def keyring_name(self) -> pulumi.Output[str]:
         """
-        The name of the keyring.
+        The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         """
         return pulumi.get(self, "keyring_name")
 

@@ -28,6 +28,44 @@ import * as utilities from "../utilities";
  *         value: "tfvalue3",
  *     }],
  * });
+ * const foo1 = new volcengine.kms.Key("foo1", {
+ *     keyringName: fooKeyring.keyringName,
+ *     keyName: "Tf-test-key-1",
+ *     rotateState: "Enable",
+ *     rotateInterval: 90,
+ *     keySpec: "SYMMETRIC_128",
+ *     description: "Tf test key with SYMMETRIC_128",
+ *     keyUsage: "ENCRYPT_DECRYPT",
+ *     protectionLevel: "SOFTWARE",
+ *     origin: "CloudKMS",
+ *     multiRegion: false,
+ *     pendingWindowInDays: 30,
+ *     tags: [
+ *         {
+ *             key: "tfk1",
+ *             value: "tfv1",
+ *         },
+ *         {
+ *             key: "tfk2",
+ *             value: "tfv2",
+ *         },
+ *     ],
+ * });
+ * const foo2 = new volcengine.kms.Key("foo2", {
+ *     keyringName: fooKeyring.keyringName,
+ *     keyName: "mrk-Tf-test-key-2",
+ *     keyUsage: "ENCRYPT_DECRYPT",
+ *     origin: "External",
+ *     multiRegion: true,
+ * });
+ * const _default = new volcengine.kms.KeyMaterial("default", {
+ *     keyringName: fooKeyring.keyringName,
+ *     keyName: foo2.keyName,
+ *     encryptedKeyMaterial: "***",
+ *     importToken: "***",
+ *     expirationModel: "KEY_MATERIAL_EXPIRES",
+ *     validTo: 1770999621,
+ * });
  * ```
  *
  * ## Import
@@ -71,6 +109,10 @@ export class Key extends pulumi.CustomResource {
      */
     public /*out*/ readonly creationDate!: pulumi.Output<number>;
     /**
+     * The ID of the custom key store.
+     */
+    public readonly customKeyStoreId!: pulumi.Output<string | undefined>;
+    /**
      * The description of the key.
      */
     public readonly description!: pulumi.Output<string>;
@@ -79,15 +121,15 @@ export class Key extends pulumi.CustomResource {
      */
     public /*out*/ readonly keyMaterialExpireTime!: pulumi.Output<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     public readonly keyName!: pulumi.Output<string>;
     /**
-     * The type of the keys.
+     * The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
      */
     public readonly keySpec!: pulumi.Output<string>;
     /**
-     * The usage of the key.
+     * The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
      */
     public readonly keyUsage!: pulumi.Output<string>;
     /**
@@ -99,7 +141,7 @@ export class Key extends pulumi.CustomResource {
      */
     public /*out*/ readonly lastRotationTime!: pulumi.Output<string>;
     /**
-     * Whether it is the master key of the Multi-region type.
+     * Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
      */
     public readonly multiRegion!: pulumi.Output<boolean>;
     /**
@@ -107,19 +149,23 @@ export class Key extends pulumi.CustomResource {
      */
     public /*out*/ readonly multiRegionConfiguration!: pulumi.Output<outputs.kms.KeyMultiRegionConfiguration>;
     /**
-     * The origin of the key.
+     * The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
      */
     public readonly origin!: pulumi.Output<string>;
     /**
-     * The pre-deletion cycle of the key.
+     * The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
      */
     public readonly pendingWindowInDays!: pulumi.Output<number | undefined>;
     /**
-     * The protection level of the key.
+     * The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
      */
     public readonly protectionLevel!: pulumi.Output<string>;
     /**
-     * The rotation state of the key.
+     * Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+     */
+    public readonly rotateInterval!: pulumi.Output<number | undefined>;
+    /**
+     * The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
      */
     public readonly rotateState!: pulumi.Output<string | undefined>;
     /**
@@ -150,6 +196,10 @@ export class Key extends pulumi.CustomResource {
      * The date when the keyring was updated.
      */
     public /*out*/ readonly updateDate!: pulumi.Output<number>;
+    /**
+     * The ID of the external key store.
+     */
+    public readonly xksKeyId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Key resource with the given unique name, arguments, and options.
@@ -165,6 +215,7 @@ export class Key extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as KeyState | undefined;
             resourceInputs["creationDate"] = state ? state.creationDate : undefined;
+            resourceInputs["customKeyStoreId"] = state ? state.customKeyStoreId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["keyMaterialExpireTime"] = state ? state.keyMaterialExpireTime : undefined;
             resourceInputs["keyName"] = state ? state.keyName : undefined;
@@ -177,6 +228,7 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["origin"] = state ? state.origin : undefined;
             resourceInputs["pendingWindowInDays"] = state ? state.pendingWindowInDays : undefined;
             resourceInputs["protectionLevel"] = state ? state.protectionLevel : undefined;
+            resourceInputs["rotateInterval"] = state ? state.rotateInterval : undefined;
             resourceInputs["rotateState"] = state ? state.rotateState : undefined;
             resourceInputs["rotationState"] = state ? state.rotationState : undefined;
             resourceInputs["scheduleDeleteTime"] = state ? state.scheduleDeleteTime : undefined;
@@ -185,6 +237,7 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["trn"] = state ? state.trn : undefined;
             resourceInputs["updateDate"] = state ? state.updateDate : undefined;
+            resourceInputs["xksKeyId"] = state ? state.xksKeyId : undefined;
         } else {
             const args = argsOrState as KeyArgs | undefined;
             if ((!args || args.keyName === undefined) && !opts.urn) {
@@ -193,6 +246,7 @@ export class Key extends pulumi.CustomResource {
             if ((!args || args.keyringName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'keyringName'");
             }
+            resourceInputs["customKeyStoreId"] = args ? args.customKeyStoreId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["keyName"] = args ? args.keyName : undefined;
             resourceInputs["keySpec"] = args ? args.keySpec : undefined;
@@ -202,8 +256,10 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["origin"] = args ? args.origin : undefined;
             resourceInputs["pendingWindowInDays"] = args ? args.pendingWindowInDays : undefined;
             resourceInputs["protectionLevel"] = args ? args.protectionLevel : undefined;
+            resourceInputs["rotateInterval"] = args ? args.rotateInterval : undefined;
             resourceInputs["rotateState"] = args ? args.rotateState : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["xksKeyId"] = args ? args.xksKeyId : undefined;
             resourceInputs["creationDate"] = undefined /*out*/;
             resourceInputs["keyMaterialExpireTime"] = undefined /*out*/;
             resourceInputs["lastRotationTime"] = undefined /*out*/;
@@ -229,6 +285,10 @@ export interface KeyState {
      */
     creationDate?: pulumi.Input<number>;
     /**
+     * The ID of the custom key store.
+     */
+    customKeyStoreId?: pulumi.Input<string>;
+    /**
      * The description of the key.
      */
     description?: pulumi.Input<string>;
@@ -237,15 +297,15 @@ export interface KeyState {
      */
     keyMaterialExpireTime?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName?: pulumi.Input<string>;
     /**
-     * The type of the keys.
+     * The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
      */
     keySpec?: pulumi.Input<string>;
     /**
-     * The usage of the key.
+     * The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
      */
     keyUsage?: pulumi.Input<string>;
     /**
@@ -257,7 +317,7 @@ export interface KeyState {
      */
     lastRotationTime?: pulumi.Input<string>;
     /**
-     * Whether it is the master key of the Multi-region type.
+     * Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
      */
     multiRegion?: pulumi.Input<boolean>;
     /**
@@ -265,19 +325,23 @@ export interface KeyState {
      */
     multiRegionConfiguration?: pulumi.Input<inputs.kms.KeyMultiRegionConfiguration>;
     /**
-     * The origin of the key.
+     * The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
      */
     origin?: pulumi.Input<string>;
     /**
-     * The pre-deletion cycle of the key.
+     * The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
      */
     pendingWindowInDays?: pulumi.Input<number>;
     /**
-     * The protection level of the key.
+     * The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
      */
     protectionLevel?: pulumi.Input<string>;
     /**
-     * The rotation state of the key.
+     * Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+     */
+    rotateInterval?: pulumi.Input<number>;
+    /**
+     * The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
      */
     rotateState?: pulumi.Input<string>;
     /**
@@ -308,6 +372,10 @@ export interface KeyState {
      * The date when the keyring was updated.
      */
     updateDate?: pulumi.Input<number>;
+    /**
+     * The ID of the external key store.
+     */
+    xksKeyId?: pulumi.Input<string>;
 }
 
 /**
@@ -315,19 +383,23 @@ export interface KeyState {
  */
 export interface KeyArgs {
     /**
+     * The ID of the custom key store.
+     */
+    customKeyStoreId?: pulumi.Input<string>;
+    /**
      * The description of the key.
      */
     description?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName: pulumi.Input<string>;
     /**
-     * The type of the keys.
+     * The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
      */
     keySpec?: pulumi.Input<string>;
     /**
-     * The usage of the key.
+     * The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
      */
     keyUsage?: pulumi.Input<string>;
     /**
@@ -335,27 +407,35 @@ export interface KeyArgs {
      */
     keyringName: pulumi.Input<string>;
     /**
-     * Whether it is the master key of the Multi-region type.
+     * Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
      */
     multiRegion?: pulumi.Input<boolean>;
     /**
-     * The origin of the key.
+     * The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
      */
     origin?: pulumi.Input<string>;
     /**
-     * The pre-deletion cycle of the key.
+     * The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
      */
     pendingWindowInDays?: pulumi.Input<number>;
     /**
-     * The protection level of the key.
+     * The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
      */
     protectionLevel?: pulumi.Input<string>;
     /**
-     * The rotation state of the key.
+     * Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+     */
+    rotateInterval?: pulumi.Input<number>;
+    /**
+     * The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
      */
     rotateState?: pulumi.Input<string>;
     /**
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.kms.KeyTag>[]>;
+    /**
+     * The ID of the external key store.
+     */
+    xksKeyId?: pulumi.Input<string>;
 }

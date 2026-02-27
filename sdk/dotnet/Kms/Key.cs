@@ -43,6 +43,53 @@ namespace Pulumi.Volcengine.Kms
     ///         },
     ///     });
     /// 
+    ///     var foo1 = new Volcengine.Kms.Key("foo1", new()
+    ///     {
+    ///         KeyringName = fooKeyring.KeyringName,
+    ///         KeyName = "Tf-test-key-1",
+    ///         RotateState = "Enable",
+    ///         RotateInterval = 90,
+    ///         KeySpec = "SYMMETRIC_128",
+    ///         Description = "Tf test key with SYMMETRIC_128",
+    ///         KeyUsage = "ENCRYPT_DECRYPT",
+    ///         ProtectionLevel = "SOFTWARE",
+    ///         Origin = "CloudKMS",
+    ///         MultiRegion = false,
+    ///         PendingWindowInDays = 30,
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Kms.Inputs.KeyTagArgs
+    ///             {
+    ///                 Key = "tfk1",
+    ///                 Value = "tfv1",
+    ///             },
+    ///             new Volcengine.Kms.Inputs.KeyTagArgs
+    ///             {
+    ///                 Key = "tfk2",
+    ///                 Value = "tfv2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var foo2 = new Volcengine.Kms.Key("foo2", new()
+    ///     {
+    ///         KeyringName = fooKeyring.KeyringName,
+    ///         KeyName = "mrk-Tf-test-key-2",
+    ///         KeyUsage = "ENCRYPT_DECRYPT",
+    ///         Origin = "External",
+    ///         MultiRegion = true,
+    ///     });
+    /// 
+    ///     var @default = new Volcengine.Kms.KeyMaterial("default", new()
+    ///     {
+    ///         KeyringName = fooKeyring.KeyringName,
+    ///         KeyName = foo2.KeyName,
+    ///         EncryptedKeyMaterial = "***",
+    ///         ImportToken = "***",
+    ///         ExpirationModel = "KEY_MATERIAL_EXPIRES",
+    ///         ValidTo = 1770999621,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -64,6 +111,12 @@ namespace Pulumi.Volcengine.Kms
         public Output<int> CreationDate { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the custom key store.
+        /// </summary>
+        [Output("customKeyStoreId")]
+        public Output<string?> CustomKeyStoreId { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the key.
         /// </summary>
         [Output("description")]
@@ -76,19 +129,19 @@ namespace Pulumi.Volcengine.Kms
         public Output<string> KeyMaterialExpireTime { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Output("keyName")]
         public Output<string> KeyName { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the keys.
+        /// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
         /// </summary>
         [Output("keySpec")]
         public Output<string> KeySpec { get; private set; } = null!;
 
         /// <summary>
-        /// The usage of the key.
+        /// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         /// </summary>
         [Output("keyUsage")]
         public Output<string> KeyUsage { get; private set; } = null!;
@@ -106,7 +159,7 @@ namespace Pulumi.Volcengine.Kms
         public Output<string> LastRotationTime { get; private set; } = null!;
 
         /// <summary>
-        /// Whether it is the master key of the Multi-region type.
+        /// Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         /// </summary>
         [Output("multiRegion")]
         public Output<bool> MultiRegion { get; private set; } = null!;
@@ -118,25 +171,31 @@ namespace Pulumi.Volcengine.Kms
         public Output<Outputs.KeyMultiRegionConfiguration> MultiRegionConfiguration { get; private set; } = null!;
 
         /// <summary>
-        /// The origin of the key.
+        /// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
         /// </summary>
         [Output("origin")]
         public Output<string> Origin { get; private set; } = null!;
 
         /// <summary>
-        /// The pre-deletion cycle of the key.
+        /// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
         /// </summary>
         [Output("pendingWindowInDays")]
         public Output<int?> PendingWindowInDays { get; private set; } = null!;
 
         /// <summary>
-        /// The protection level of the key.
+        /// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
         /// </summary>
         [Output("protectionLevel")]
         public Output<string> ProtectionLevel { get; private set; } = null!;
 
         /// <summary>
-        /// The rotation state of the key.
+        /// Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        /// </summary>
+        [Output("rotateInterval")]
+        public Output<int?> RotateInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         /// </summary>
         [Output("rotateState")]
         public Output<string?> RotateState { get; private set; } = null!;
@@ -182,6 +241,12 @@ namespace Pulumi.Volcengine.Kms
         /// </summary>
         [Output("updateDate")]
         public Output<int> UpdateDate { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the external key store.
+        /// </summary>
+        [Output("xksKeyId")]
+        public Output<string?> XksKeyId { get; private set; } = null!;
 
 
         /// <summary>
@@ -231,25 +296,31 @@ namespace Pulumi.Volcengine.Kms
     public sealed class KeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID of the custom key store.
+        /// </summary>
+        [Input("customKeyStoreId")]
+        public Input<string>? CustomKeyStoreId { get; set; }
+
+        /// <summary>
         /// The description of the key.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Input("keyName", required: true)]
         public Input<string> KeyName { get; set; } = null!;
 
         /// <summary>
-        /// The type of the keys.
+        /// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
         /// </summary>
         [Input("keySpec")]
         public Input<string>? KeySpec { get; set; }
 
         /// <summary>
-        /// The usage of the key.
+        /// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         /// </summary>
         [Input("keyUsage")]
         public Input<string>? KeyUsage { get; set; }
@@ -261,31 +332,37 @@ namespace Pulumi.Volcengine.Kms
         public Input<string> KeyringName { get; set; } = null!;
 
         /// <summary>
-        /// Whether it is the master key of the Multi-region type.
+        /// Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         /// </summary>
         [Input("multiRegion")]
         public Input<bool>? MultiRegion { get; set; }
 
         /// <summary>
-        /// The origin of the key.
+        /// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
         /// </summary>
         [Input("origin")]
         public Input<string>? Origin { get; set; }
 
         /// <summary>
-        /// The pre-deletion cycle of the key.
+        /// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
         /// </summary>
         [Input("pendingWindowInDays")]
         public Input<int>? PendingWindowInDays { get; set; }
 
         /// <summary>
-        /// The protection level of the key.
+        /// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
         /// </summary>
         [Input("protectionLevel")]
         public Input<string>? ProtectionLevel { get; set; }
 
         /// <summary>
-        /// The rotation state of the key.
+        /// Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        /// </summary>
+        [Input("rotateInterval")]
+        public Input<int>? RotateInterval { get; set; }
+
+        /// <summary>
+        /// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         /// </summary>
         [Input("rotateState")]
         public Input<string>? RotateState { get; set; }
@@ -302,6 +379,12 @@ namespace Pulumi.Volcengine.Kms
             set => _tags = value;
         }
 
+        /// <summary>
+        /// The ID of the external key store.
+        /// </summary>
+        [Input("xksKeyId")]
+        public Input<string>? XksKeyId { get; set; }
+
         public KeyArgs()
         {
         }
@@ -317,6 +400,12 @@ namespace Pulumi.Volcengine.Kms
         public Input<int>? CreationDate { get; set; }
 
         /// <summary>
+        /// The ID of the custom key store.
+        /// </summary>
+        [Input("customKeyStoreId")]
+        public Input<string>? CustomKeyStoreId { get; set; }
+
+        /// <summary>
         /// The description of the key.
         /// </summary>
         [Input("description")]
@@ -329,19 +418,19 @@ namespace Pulumi.Volcengine.Kms
         public Input<string>? KeyMaterialExpireTime { get; set; }
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
 
         /// <summary>
-        /// The type of the keys.
+        /// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
         /// </summary>
         [Input("keySpec")]
         public Input<string>? KeySpec { get; set; }
 
         /// <summary>
-        /// The usage of the key.
+        /// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         /// </summary>
         [Input("keyUsage")]
         public Input<string>? KeyUsage { get; set; }
@@ -359,7 +448,7 @@ namespace Pulumi.Volcengine.Kms
         public Input<string>? LastRotationTime { get; set; }
 
         /// <summary>
-        /// Whether it is the master key of the Multi-region type.
+        /// Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         /// </summary>
         [Input("multiRegion")]
         public Input<bool>? MultiRegion { get; set; }
@@ -371,25 +460,31 @@ namespace Pulumi.Volcengine.Kms
         public Input<Inputs.KeyMultiRegionConfigurationGetArgs>? MultiRegionConfiguration { get; set; }
 
         /// <summary>
-        /// The origin of the key.
+        /// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
         /// </summary>
         [Input("origin")]
         public Input<string>? Origin { get; set; }
 
         /// <summary>
-        /// The pre-deletion cycle of the key.
+        /// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
         /// </summary>
         [Input("pendingWindowInDays")]
         public Input<int>? PendingWindowInDays { get; set; }
 
         /// <summary>
-        /// The protection level of the key.
+        /// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
         /// </summary>
         [Input("protectionLevel")]
         public Input<string>? ProtectionLevel { get; set; }
 
         /// <summary>
-        /// The rotation state of the key.
+        /// Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        /// </summary>
+        [Input("rotateInterval")]
+        public Input<int>? RotateInterval { get; set; }
+
+        /// <summary>
+        /// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         /// </summary>
         [Input("rotateState")]
         public Input<string>? RotateState { get; set; }
@@ -441,6 +536,12 @@ namespace Pulumi.Volcengine.Kms
         /// </summary>
         [Input("updateDate")]
         public Input<int>? UpdateDate { get; set; }
+
+        /// <summary>
+        /// The ID of the external key store.
+        /// </summary>
+        [Input("xksKeyId")]
+        public Input<string>? XksKeyId { get; set; }
 
         public KeyState()
         {

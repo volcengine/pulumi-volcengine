@@ -5,6 +5,96 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AsymmetricCiphertextArgs, AsymmetricCiphertextState } from "./asymmetricCiphertext";
+export type AsymmetricCiphertext = import("./asymmetricCiphertext").AsymmetricCiphertext;
+export const AsymmetricCiphertext: typeof import("./asymmetricCiphertext").AsymmetricCiphertext = null as any;
+utilities.lazyLoad(exports, ["AsymmetricCiphertext"], () => require("./asymmetricCiphertext"));
+
+export { AsymmetricCiphertextsArgs, AsymmetricCiphertextsResult, AsymmetricCiphertextsOutputArgs } from "./asymmetricCiphertexts";
+export const asymmetricCiphertexts: typeof import("./asymmetricCiphertexts").asymmetricCiphertexts = null as any;
+export const asymmetricCiphertextsOutput: typeof import("./asymmetricCiphertexts").asymmetricCiphertextsOutput = null as any;
+utilities.lazyLoad(exports, ["asymmetricCiphertexts","asymmetricCiphertextsOutput"], () => require("./asymmetricCiphertexts"));
+
+export { AsymmetricPlaintextsArgs, AsymmetricPlaintextsResult, AsymmetricPlaintextsOutputArgs } from "./asymmetricPlaintexts";
+export const asymmetricPlaintexts: typeof import("./asymmetricPlaintexts").asymmetricPlaintexts = null as any;
+export const asymmetricPlaintextsOutput: typeof import("./asymmetricPlaintexts").asymmetricPlaintextsOutput = null as any;
+utilities.lazyLoad(exports, ["asymmetricPlaintexts","asymmetricPlaintextsOutput"], () => require("./asymmetricPlaintexts"));
+
+export { AsymmetricSignatureArgs, AsymmetricSignatureState } from "./asymmetricSignature";
+export type AsymmetricSignature = import("./asymmetricSignature").AsymmetricSignature;
+export const AsymmetricSignature: typeof import("./asymmetricSignature").AsymmetricSignature = null as any;
+utilities.lazyLoad(exports, ["AsymmetricSignature"], () => require("./asymmetricSignature"));
+
+export { AsymmetricSignaturesArgs, AsymmetricSignaturesResult, AsymmetricSignaturesOutputArgs } from "./asymmetricSignatures";
+export const asymmetricSignatures: typeof import("./asymmetricSignatures").asymmetricSignatures = null as any;
+export const asymmetricSignaturesOutput: typeof import("./asymmetricSignatures").asymmetricSignaturesOutput = null as any;
+utilities.lazyLoad(exports, ["asymmetricSignatures","asymmetricSignaturesOutput"], () => require("./asymmetricSignatures"));
+
+export { AsymmetricVerificationsArgs, AsymmetricVerificationsResult, AsymmetricVerificationsOutputArgs } from "./asymmetricVerifications";
+export const asymmetricVerifications: typeof import("./asymmetricVerifications").asymmetricVerifications = null as any;
+export const asymmetricVerificationsOutput: typeof import("./asymmetricVerifications").asymmetricVerificationsOutput = null as any;
+utilities.lazyLoad(exports, ["asymmetricVerifications","asymmetricVerificationsOutput"], () => require("./asymmetricVerifications"));
+
+export { CancelKeyDeletionArgs, CancelKeyDeletionState } from "./cancelKeyDeletion";
+export type CancelKeyDeletion = import("./cancelKeyDeletion").CancelKeyDeletion;
+export const CancelKeyDeletion: typeof import("./cancelKeyDeletion").CancelKeyDeletion = null as any;
+utilities.lazyLoad(exports, ["CancelKeyDeletion"], () => require("./cancelKeyDeletion"));
+
+export { CancelSecretDeletionArgs, CancelSecretDeletionState } from "./cancelSecretDeletion";
+export type CancelSecretDeletion = import("./cancelSecretDeletion").CancelSecretDeletion;
+export const CancelSecretDeletion: typeof import("./cancelSecretDeletion").CancelSecretDeletion = null as any;
+utilities.lazyLoad(exports, ["CancelSecretDeletion"], () => require("./cancelSecretDeletion"));
+
+export { CiphertextArgs, CiphertextState } from "./ciphertext";
+export type Ciphertext = import("./ciphertext").Ciphertext;
+export const Ciphertext: typeof import("./ciphertext").Ciphertext = null as any;
+utilities.lazyLoad(exports, ["Ciphertext"], () => require("./ciphertext"));
+
+export { CiphertextsArgs, CiphertextsResult, CiphertextsOutputArgs } from "./ciphertexts";
+export const ciphertexts: typeof import("./ciphertexts").ciphertexts = null as any;
+export const ciphertextsOutput: typeof import("./ciphertexts").ciphertextsOutput = null as any;
+utilities.lazyLoad(exports, ["ciphertexts","ciphertextsOutput"], () => require("./ciphertexts"));
+
+export { DataKeysArgs, DataKeysResult, DataKeysOutputArgs } from "./dataKeys";
+export const dataKeys: typeof import("./dataKeys").dataKeys = null as any;
+export const dataKeysOutput: typeof import("./dataKeys").dataKeysOutput = null as any;
+utilities.lazyLoad(exports, ["dataKeys","dataKeysOutput"], () => require("./dataKeys"));
+
+export { GetAsymmetricCiphertextsArgs, GetAsymmetricCiphertextsResult, GetAsymmetricCiphertextsOutputArgs } from "./getAsymmetricCiphertexts";
+export const getAsymmetricCiphertexts: typeof import("./getAsymmetricCiphertexts").getAsymmetricCiphertexts = null as any;
+export const getAsymmetricCiphertextsOutput: typeof import("./getAsymmetricCiphertexts").getAsymmetricCiphertextsOutput = null as any;
+utilities.lazyLoad(exports, ["getAsymmetricCiphertexts","getAsymmetricCiphertextsOutput"], () => require("./getAsymmetricCiphertexts"));
+
+export { GetAsymmetricPlaintextsArgs, GetAsymmetricPlaintextsResult, GetAsymmetricPlaintextsOutputArgs } from "./getAsymmetricPlaintexts";
+export const getAsymmetricPlaintexts: typeof import("./getAsymmetricPlaintexts").getAsymmetricPlaintexts = null as any;
+export const getAsymmetricPlaintextsOutput: typeof import("./getAsymmetricPlaintexts").getAsymmetricPlaintextsOutput = null as any;
+utilities.lazyLoad(exports, ["getAsymmetricPlaintexts","getAsymmetricPlaintextsOutput"], () => require("./getAsymmetricPlaintexts"));
+
+export { GetAsymmetricSignaturesArgs, GetAsymmetricSignaturesResult, GetAsymmetricSignaturesOutputArgs } from "./getAsymmetricSignatures";
+export const getAsymmetricSignatures: typeof import("./getAsymmetricSignatures").getAsymmetricSignatures = null as any;
+export const getAsymmetricSignaturesOutput: typeof import("./getAsymmetricSignatures").getAsymmetricSignaturesOutput = null as any;
+utilities.lazyLoad(exports, ["getAsymmetricSignatures","getAsymmetricSignaturesOutput"], () => require("./getAsymmetricSignatures"));
+
+export { GetAsymmetricVerificationsArgs, GetAsymmetricVerificationsResult, GetAsymmetricVerificationsOutputArgs } from "./getAsymmetricVerifications";
+export const getAsymmetricVerifications: typeof import("./getAsymmetricVerifications").getAsymmetricVerifications = null as any;
+export const getAsymmetricVerificationsOutput: typeof import("./getAsymmetricVerifications").getAsymmetricVerificationsOutput = null as any;
+utilities.lazyLoad(exports, ["getAsymmetricVerifications","getAsymmetricVerificationsOutput"], () => require("./getAsymmetricVerifications"));
+
+export { GetCiphertextsArgs, GetCiphertextsResult, GetCiphertextsOutputArgs } from "./getCiphertexts";
+export const getCiphertexts: typeof import("./getCiphertexts").getCiphertexts = null as any;
+export const getCiphertextsOutput: typeof import("./getCiphertexts").getCiphertextsOutput = null as any;
+utilities.lazyLoad(exports, ["getCiphertexts","getCiphertextsOutput"], () => require("./getCiphertexts"));
+
+export { GetDataKeysArgs, GetDataKeysResult, GetDataKeysOutputArgs } from "./getDataKeys";
+export const getDataKeys: typeof import("./getDataKeys").getDataKeys = null as any;
+export const getDataKeysOutput: typeof import("./getDataKeys").getDataKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getDataKeys","getDataKeysOutput"], () => require("./getDataKeys"));
+
+export { GetKeyMaterialsArgs, GetKeyMaterialsResult, GetKeyMaterialsOutputArgs } from "./getKeyMaterials";
+export const getKeyMaterials: typeof import("./getKeyMaterials").getKeyMaterials = null as any;
+export const getKeyMaterialsOutput: typeof import("./getKeyMaterials").getKeyMaterialsOutput = null as any;
+utilities.lazyLoad(exports, ["getKeyMaterials","getKeyMaterialsOutput"], () => require("./getKeyMaterials"));
+
 export { GetKeyringsArgs, GetKeyringsResult, GetKeyringsOutputArgs } from "./getKeyrings";
 export const getKeyrings: typeof import("./getKeyrings").getKeyrings = null as any;
 export const getKeyringsOutput: typeof import("./getKeyrings").getKeyringsOutput = null as any;
@@ -14,6 +104,41 @@ export { GetKeysArgs, GetKeysResult, GetKeysOutputArgs } from "./getKeys";
 export const getKeys: typeof import("./getKeys").getKeys = null as any;
 export const getKeysOutput: typeof import("./getKeys").getKeysOutput = null as any;
 utilities.lazyLoad(exports, ["getKeys","getKeysOutput"], () => require("./getKeys"));
+
+export { GetMacVerificationsArgs, GetMacVerificationsResult, GetMacVerificationsOutputArgs } from "./getMacVerifications";
+export const getMacVerifications: typeof import("./getMacVerifications").getMacVerifications = null as any;
+export const getMacVerificationsOutput: typeof import("./getMacVerifications").getMacVerificationsOutput = null as any;
+utilities.lazyLoad(exports, ["getMacVerifications","getMacVerificationsOutput"], () => require("./getMacVerifications"));
+
+export { GetMacsArgs, GetMacsResult, GetMacsOutputArgs } from "./getMacs";
+export const getMacs: typeof import("./getMacs").getMacs = null as any;
+export const getMacsOutput: typeof import("./getMacs").getMacsOutput = null as any;
+utilities.lazyLoad(exports, ["getMacs","getMacsOutput"], () => require("./getMacs"));
+
+export { GetPlaintextsArgs, GetPlaintextsResult, GetPlaintextsOutputArgs } from "./getPlaintexts";
+export const getPlaintexts: typeof import("./getPlaintexts").getPlaintexts = null as any;
+export const getPlaintextsOutput: typeof import("./getPlaintexts").getPlaintextsOutput = null as any;
+utilities.lazyLoad(exports, ["getPlaintexts","getPlaintextsOutput"], () => require("./getPlaintexts"));
+
+export { GetPublicKeysArgs, GetPublicKeysResult, GetPublicKeysOutputArgs } from "./getPublicKeys";
+export const getPublicKeys: typeof import("./getPublicKeys").getPublicKeys = null as any;
+export const getPublicKeysOutput: typeof import("./getPublicKeys").getPublicKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getPublicKeys","getPublicKeysOutput"], () => require("./getPublicKeys"));
+
+export { GetReEncryptsArgs, GetReEncryptsResult, GetReEncryptsOutputArgs } from "./getReEncrypts";
+export const getReEncrypts: typeof import("./getReEncrypts").getReEncrypts = null as any;
+export const getReEncryptsOutput: typeof import("./getReEncrypts").getReEncryptsOutput = null as any;
+utilities.lazyLoad(exports, ["getReEncrypts","getReEncryptsOutput"], () => require("./getReEncrypts"));
+
+export { GetRegionsArgs, GetRegionsResult, GetRegionsOutputArgs } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
+
+export { GetSecretVersionsArgs, GetSecretVersionsResult, GetSecretVersionsOutputArgs } from "./getSecretVersions";
+export const getSecretVersions: typeof import("./getSecretVersions").getSecretVersions = null as any;
+export const getSecretVersionsOutput: typeof import("./getSecretVersions").getSecretVersionsOutput = null as any;
+utilities.lazyLoad(exports, ["getSecretVersions","getSecretVersionsOutput"], () => require("./getSecretVersions"));
 
 export { GetSecretsArgs, GetSecretsResult, GetSecretsOutputArgs } from "./getSecrets";
 export const getSecrets: typeof import("./getSecrets").getSecrets = null as any;
@@ -35,6 +160,21 @@ export type KeyEnable = import("./keyEnable").KeyEnable;
 export const KeyEnable: typeof import("./keyEnable").KeyEnable = null as any;
 utilities.lazyLoad(exports, ["KeyEnable"], () => require("./keyEnable"));
 
+export { KeyMaterialArgs, KeyMaterialState } from "./keyMaterial";
+export type KeyMaterial = import("./keyMaterial").KeyMaterial;
+export const KeyMaterial: typeof import("./keyMaterial").KeyMaterial = null as any;
+utilities.lazyLoad(exports, ["KeyMaterial"], () => require("./keyMaterial"));
+
+export { KeyMaterialsArgs, KeyMaterialsResult, KeyMaterialsOutputArgs } from "./keyMaterials";
+export const keyMaterials: typeof import("./keyMaterials").keyMaterials = null as any;
+export const keyMaterialsOutput: typeof import("./keyMaterials").keyMaterialsOutput = null as any;
+utilities.lazyLoad(exports, ["keyMaterials","keyMaterialsOutput"], () => require("./keyMaterials"));
+
+export { KeyPrimaryRegionArgs, KeyPrimaryRegionState } from "./keyPrimaryRegion";
+export type KeyPrimaryRegion = import("./keyPrimaryRegion").KeyPrimaryRegion;
+export const KeyPrimaryRegion: typeof import("./keyPrimaryRegion").KeyPrimaryRegion = null as any;
+utilities.lazyLoad(exports, ["KeyPrimaryRegion"], () => require("./keyPrimaryRegion"));
+
 export { KeyRotationArgs, KeyRotationState } from "./keyRotation";
 export type KeyRotation = import("./keyRotation").KeyRotation;
 export const KeyRotation: typeof import("./keyRotation").KeyRotation = null as any;
@@ -55,10 +195,70 @@ export const keys: typeof import("./keys").keys = null as any;
 export const keysOutput: typeof import("./keys").keysOutput = null as any;
 utilities.lazyLoad(exports, ["keys","keysOutput"], () => require("./keys"));
 
+export { MacVerificationsArgs, MacVerificationsResult, MacVerificationsOutputArgs } from "./macVerifications";
+export const macVerifications: typeof import("./macVerifications").macVerifications = null as any;
+export const macVerificationsOutput: typeof import("./macVerifications").macVerificationsOutput = null as any;
+utilities.lazyLoad(exports, ["macVerifications","macVerificationsOutput"], () => require("./macVerifications"));
+
+export { MacsArgs, MacsResult, MacsOutputArgs } from "./macs";
+export const macs: typeof import("./macs").macs = null as any;
+export const macsOutput: typeof import("./macs").macsOutput = null as any;
+utilities.lazyLoad(exports, ["macs","macsOutput"], () => require("./macs"));
+
+export { PlaintextsArgs, PlaintextsResult, PlaintextsOutputArgs } from "./plaintexts";
+export const plaintexts: typeof import("./plaintexts").plaintexts = null as any;
+export const plaintextsOutput: typeof import("./plaintexts").plaintextsOutput = null as any;
+utilities.lazyLoad(exports, ["plaintexts","plaintextsOutput"], () => require("./plaintexts"));
+
+export { PublicKeysArgs, PublicKeysResult, PublicKeysOutputArgs } from "./publicKeys";
+export const publicKeys: typeof import("./publicKeys").publicKeys = null as any;
+export const publicKeysOutput: typeof import("./publicKeys").publicKeysOutput = null as any;
+utilities.lazyLoad(exports, ["publicKeys","publicKeysOutput"], () => require("./publicKeys"));
+
+export { ReEncryptArgs, ReEncryptState } from "./reEncrypt";
+export type ReEncrypt = import("./reEncrypt").ReEncrypt;
+export const ReEncrypt: typeof import("./reEncrypt").ReEncrypt = null as any;
+utilities.lazyLoad(exports, ["ReEncrypt"], () => require("./reEncrypt"));
+
+export { ReEncryptsArgs, ReEncryptsResult, ReEncryptsOutputArgs } from "./reEncrypts";
+export const reEncrypts: typeof import("./reEncrypts").reEncrypts = null as any;
+export const reEncryptsOutput: typeof import("./reEncrypts").reEncryptsOutput = null as any;
+utilities.lazyLoad(exports, ["reEncrypts","reEncryptsOutput"], () => require("./reEncrypts"));
+
+export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
+export const regions: typeof import("./regions").regions = null as any;
+export const regionsOutput: typeof import("./regions").regionsOutput = null as any;
+utilities.lazyLoad(exports, ["regions","regionsOutput"], () => require("./regions"));
+
+export { ReplicateKeyArgs, ReplicateKeyState } from "./replicateKey";
+export type ReplicateKey = import("./replicateKey").ReplicateKey;
+export const ReplicateKey: typeof import("./replicateKey").ReplicateKey = null as any;
+utilities.lazyLoad(exports, ["ReplicateKey"], () => require("./replicateKey"));
+
 export { SecretArgs, SecretState } from "./secret";
 export type Secret = import("./secret").Secret;
 export const Secret: typeof import("./secret").Secret = null as any;
 utilities.lazyLoad(exports, ["Secret"], () => require("./secret"));
+
+export { SecretBackupArgs, SecretBackupState } from "./secretBackup";
+export type SecretBackup = import("./secretBackup").SecretBackup;
+export const SecretBackup: typeof import("./secretBackup").SecretBackup = null as any;
+utilities.lazyLoad(exports, ["SecretBackup"], () => require("./secretBackup"));
+
+export { SecretRestoreArgs, SecretRestoreState } from "./secretRestore";
+export type SecretRestore = import("./secretRestore").SecretRestore;
+export const SecretRestore: typeof import("./secretRestore").SecretRestore = null as any;
+utilities.lazyLoad(exports, ["SecretRestore"], () => require("./secretRestore"));
+
+export { SecretRotateArgs, SecretRotateState } from "./secretRotate";
+export type SecretRotate = import("./secretRotate").SecretRotate;
+export const SecretRotate: typeof import("./secretRotate").SecretRotate = null as any;
+utilities.lazyLoad(exports, ["SecretRotate"], () => require("./secretRotate"));
+
+export { SecretVersionsArgs, SecretVersionsResult, SecretVersionsOutputArgs } from "./secretVersions";
+export const secretVersions: typeof import("./secretVersions").secretVersions = null as any;
+export const secretVersionsOutput: typeof import("./secretVersions").secretVersionsOutput = null as any;
+utilities.lazyLoad(exports, ["secretVersions","secretVersionsOutput"], () => require("./secretVersions"));
 
 export { SecretsArgs, SecretsResult, SecretsOutputArgs } from "./secrets";
 export const secrets: typeof import("./secrets").secrets = null as any;
@@ -70,26 +270,62 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:kms/asymmetricCiphertext:AsymmetricCiphertext":
+                return new AsymmetricCiphertext(name, <any>undefined, { urn })
+            case "volcengine:kms/asymmetricSignature:AsymmetricSignature":
+                return new AsymmetricSignature(name, <any>undefined, { urn })
+            case "volcengine:kms/cancelKeyDeletion:CancelKeyDeletion":
+                return new CancelKeyDeletion(name, <any>undefined, { urn })
+            case "volcengine:kms/cancelSecretDeletion:CancelSecretDeletion":
+                return new CancelSecretDeletion(name, <any>undefined, { urn })
+            case "volcengine:kms/ciphertext:Ciphertext":
+                return new Ciphertext(name, <any>undefined, { urn })
             case "volcengine:kms/key:Key":
                 return new Key(name, <any>undefined, { urn })
             case "volcengine:kms/keyArchive:KeyArchive":
                 return new KeyArchive(name, <any>undefined, { urn })
             case "volcengine:kms/keyEnable:KeyEnable":
                 return new KeyEnable(name, <any>undefined, { urn })
+            case "volcengine:kms/keyMaterial:KeyMaterial":
+                return new KeyMaterial(name, <any>undefined, { urn })
+            case "volcengine:kms/keyPrimaryRegion:KeyPrimaryRegion":
+                return new KeyPrimaryRegion(name, <any>undefined, { urn })
             case "volcengine:kms/keyRotation:KeyRotation":
                 return new KeyRotation(name, <any>undefined, { urn })
             case "volcengine:kms/keyring:Keyring":
                 return new Keyring(name, <any>undefined, { urn })
+            case "volcengine:kms/reEncrypt:ReEncrypt":
+                return new ReEncrypt(name, <any>undefined, { urn })
+            case "volcengine:kms/replicateKey:ReplicateKey":
+                return new ReplicateKey(name, <any>undefined, { urn })
             case "volcengine:kms/secret:Secret":
                 return new Secret(name, <any>undefined, { urn })
+            case "volcengine:kms/secretBackup:SecretBackup":
+                return new SecretBackup(name, <any>undefined, { urn })
+            case "volcengine:kms/secretRestore:SecretRestore":
+                return new SecretRestore(name, <any>undefined, { urn })
+            case "volcengine:kms/secretRotate:SecretRotate":
+                return new SecretRotate(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "kms/asymmetricCiphertext", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/asymmetricSignature", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/cancelKeyDeletion", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/cancelSecretDeletion", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/ciphertext", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kms/key", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kms/keyArchive", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kms/keyEnable", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/keyMaterial", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/keyPrimaryRegion", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kms/keyRotation", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kms/keyring", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/reEncrypt", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/replicateKey", _module)
 pulumi.runtime.registerResourceModule("volcengine", "kms/secret", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/secretBackup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/secretRestore", _module)
+pulumi.runtime.registerResourceModule("volcengine", "kms/secretRotate", _module)

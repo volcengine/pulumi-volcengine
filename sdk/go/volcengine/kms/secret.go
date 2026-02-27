@@ -32,6 +32,23 @@ import (
 //				SecretName:  pulumi.String("tf-test1"),
 //				SecretType:  pulumi.String("Generic"),
 //				SecretValue: pulumi.String("{\"dasdasd\":\"dasdasd\"}"),
+//				VersionName: pulumi.String("v1.0"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kms.NewSecret(ctx, "fooEcs", &kms.SecretArgs{
+//				AutomaticRotation:   pulumi.Bool(false),
+//				Description:         pulumi.String("tf-test ecs"),
+//				EncryptionKey:       pulumi.String("trn:kms:cn-beijing:21000******:keyrings/Tf-test/keys/Test-key1"),
+//				ExtendedConfig:      pulumi.String("{\"InstanceId\":\"i-yeehzz2tc0ygp2******\",\"SecretSubType\":\"Password\",\"CustomData\":{\"desc\":\"test\"}}"),
+//				ForceDelete:         pulumi.Bool(false),
+//				PendingWindowInDays: pulumi.Int(7),
+//				ProjectName:         pulumi.String("default"),
+//				SecretName:          pulumi.String("tf-test2"),
+//				SecretType:          pulumi.String("ECS"),
+//				SecretValue:         pulumi.String("{\"UserName\":\"root\",\"Password\":\"********\"}"),
+//				VersionName:         pulumi.String("v2.0"),
 //			})
 //			if err != nil {
 //				return err
@@ -52,7 +69,7 @@ import (
 type Secret struct {
 	pulumi.CustomResourceState
 
-	// The rotation state of the secret.
+	// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
 	AutomaticRotation pulumi.BoolPtrOutput `pulumi:"automaticRotation"`
 	// The date when the secret was created.
 	CreationDate pulumi.IntOutput `pulumi:"creationDate"`
@@ -62,13 +79,19 @@ type Secret struct {
 	EncryptionKey pulumi.StringOutput `pulumi:"encryptionKey"`
 	// The extended configurations of the secret.
 	ExtendedConfig pulumi.StringOutput `pulumi:"extendedConfig"`
+	// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+	ForceDelete pulumi.BoolPtrOutput `pulumi:"forceDelete"`
 	// The last time the secret was rotated.
 	LastRotationTime pulumi.StringOutput `pulumi:"lastRotationTime"`
 	// Indicates whether the secret is hosted.
 	Managed pulumi.BoolOutput `pulumi:"managed"`
+	// The cloud service that owns the secret.
+	OwningService pulumi.StringOutput `pulumi:"owningService"`
+	// The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+	PendingWindowInDays pulumi.IntPtrOutput `pulumi:"pendingWindowInDays"`
 	// The project name of the secret.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
-	// The interval at which automatic rotation is performed.
+	// The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
 	RotationInterval pulumi.StringOutput `pulumi:"rotationInterval"`
 	// Rotation interval second.
 	RotationIntervalSecond pulumi.IntOutput `pulumi:"rotationIntervalSecond"`
@@ -80,9 +103,9 @@ type Secret struct {
 	ScheduleRotationTime pulumi.StringOutput `pulumi:"scheduleRotationTime"`
 	// The name of the secret.
 	SecretName pulumi.StringOutput `pulumi:"secretName"`
-	// The type of the secret.
+	// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
 	SecretType pulumi.StringOutput `pulumi:"secretType"`
-	// The value of the secret.
+	// The value of the secret. Only Generic type secret support modifying secret_value.
 	SecretValue pulumi.StringOutput `pulumi:"secretValue"`
 	// The state of secret.
 	State pulumi.StringOutput `pulumi:"state"`
@@ -94,6 +117,8 @@ type Secret struct {
 	UpdateDate pulumi.IntOutput `pulumi:"updateDate"`
 	// The ID of secret.
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
+	// The version alias of the secret. Only Generic type secret support modifying version_name.
+	VersionName pulumi.StringPtrOutput `pulumi:"versionName"`
 }
 
 // NewSecret registers a new resource with the given unique name, arguments, and options.
@@ -135,7 +160,7 @@ func GetSecret(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Secret resources.
 type secretState struct {
-	// The rotation state of the secret.
+	// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
 	AutomaticRotation *bool `pulumi:"automaticRotation"`
 	// The date when the secret was created.
 	CreationDate *int `pulumi:"creationDate"`
@@ -145,13 +170,19 @@ type secretState struct {
 	EncryptionKey *string `pulumi:"encryptionKey"`
 	// The extended configurations of the secret.
 	ExtendedConfig *string `pulumi:"extendedConfig"`
+	// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+	ForceDelete *bool `pulumi:"forceDelete"`
 	// The last time the secret was rotated.
 	LastRotationTime *string `pulumi:"lastRotationTime"`
 	// Indicates whether the secret is hosted.
 	Managed *bool `pulumi:"managed"`
+	// The cloud service that owns the secret.
+	OwningService *string `pulumi:"owningService"`
+	// The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+	PendingWindowInDays *int `pulumi:"pendingWindowInDays"`
 	// The project name of the secret.
 	ProjectName *string `pulumi:"projectName"`
-	// The interval at which automatic rotation is performed.
+	// The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
 	RotationInterval *string `pulumi:"rotationInterval"`
 	// Rotation interval second.
 	RotationIntervalSecond *int `pulumi:"rotationIntervalSecond"`
@@ -163,9 +194,9 @@ type secretState struct {
 	ScheduleRotationTime *string `pulumi:"scheduleRotationTime"`
 	// The name of the secret.
 	SecretName *string `pulumi:"secretName"`
-	// The type of the secret.
+	// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
 	SecretType *string `pulumi:"secretType"`
-	// The value of the secret.
+	// The value of the secret. Only Generic type secret support modifying secret_value.
 	SecretValue *string `pulumi:"secretValue"`
 	// The state of secret.
 	State *string `pulumi:"state"`
@@ -177,10 +208,12 @@ type secretState struct {
 	UpdateDate *int `pulumi:"updateDate"`
 	// The ID of secret.
 	Uuid *string `pulumi:"uuid"`
+	// The version alias of the secret. Only Generic type secret support modifying version_name.
+	VersionName *string `pulumi:"versionName"`
 }
 
 type SecretState struct {
-	// The rotation state of the secret.
+	// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
 	AutomaticRotation pulumi.BoolPtrInput
 	// The date when the secret was created.
 	CreationDate pulumi.IntPtrInput
@@ -190,13 +223,19 @@ type SecretState struct {
 	EncryptionKey pulumi.StringPtrInput
 	// The extended configurations of the secret.
 	ExtendedConfig pulumi.StringPtrInput
+	// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+	ForceDelete pulumi.BoolPtrInput
 	// The last time the secret was rotated.
 	LastRotationTime pulumi.StringPtrInput
 	// Indicates whether the secret is hosted.
 	Managed pulumi.BoolPtrInput
+	// The cloud service that owns the secret.
+	OwningService pulumi.StringPtrInput
+	// The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+	PendingWindowInDays pulumi.IntPtrInput
 	// The project name of the secret.
 	ProjectName pulumi.StringPtrInput
-	// The interval at which automatic rotation is performed.
+	// The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
 	RotationInterval pulumi.StringPtrInput
 	// Rotation interval second.
 	RotationIntervalSecond pulumi.IntPtrInput
@@ -208,9 +247,9 @@ type SecretState struct {
 	ScheduleRotationTime pulumi.StringPtrInput
 	// The name of the secret.
 	SecretName pulumi.StringPtrInput
-	// The type of the secret.
+	// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
 	SecretType pulumi.StringPtrInput
-	// The value of the secret.
+	// The value of the secret. Only Generic type secret support modifying secret_value.
 	SecretValue pulumi.StringPtrInput
 	// The state of secret.
 	State pulumi.StringPtrInput
@@ -222,6 +261,8 @@ type SecretState struct {
 	UpdateDate pulumi.IntPtrInput
 	// The ID of secret.
 	Uuid pulumi.StringPtrInput
+	// The version alias of the secret. Only Generic type secret support modifying version_name.
+	VersionName pulumi.StringPtrInput
 }
 
 func (SecretState) ElementType() reflect.Type {
@@ -229,7 +270,7 @@ func (SecretState) ElementType() reflect.Type {
 }
 
 type secretArgs struct {
-	// The rotation state of the secret.
+	// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
 	AutomaticRotation *bool `pulumi:"automaticRotation"`
 	// The description of the secret.
 	Description *string `pulumi:"description"`
@@ -237,21 +278,27 @@ type secretArgs struct {
 	EncryptionKey *string `pulumi:"encryptionKey"`
 	// The extended configurations of the secret.
 	ExtendedConfig *string `pulumi:"extendedConfig"`
+	// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+	ForceDelete *bool `pulumi:"forceDelete"`
+	// The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+	PendingWindowInDays *int `pulumi:"pendingWindowInDays"`
 	// The project name of the secret.
 	ProjectName *string `pulumi:"projectName"`
-	// The interval at which automatic rotation is performed.
+	// The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
 	RotationInterval *string `pulumi:"rotationInterval"`
 	// The name of the secret.
 	SecretName string `pulumi:"secretName"`
-	// The type of the secret.
+	// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
 	SecretType string `pulumi:"secretType"`
-	// The value of the secret.
+	// The value of the secret. Only Generic type secret support modifying secret_value.
 	SecretValue string `pulumi:"secretValue"`
+	// The version alias of the secret. Only Generic type secret support modifying version_name.
+	VersionName *string `pulumi:"versionName"`
 }
 
 // The set of arguments for constructing a Secret resource.
 type SecretArgs struct {
-	// The rotation state of the secret.
+	// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
 	AutomaticRotation pulumi.BoolPtrInput
 	// The description of the secret.
 	Description pulumi.StringPtrInput
@@ -259,16 +306,22 @@ type SecretArgs struct {
 	EncryptionKey pulumi.StringPtrInput
 	// The extended configurations of the secret.
 	ExtendedConfig pulumi.StringPtrInput
+	// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+	ForceDelete pulumi.BoolPtrInput
+	// The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+	PendingWindowInDays pulumi.IntPtrInput
 	// The project name of the secret.
 	ProjectName pulumi.StringPtrInput
-	// The interval at which automatic rotation is performed.
+	// The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
 	RotationInterval pulumi.StringPtrInput
 	// The name of the secret.
 	SecretName pulumi.StringInput
-	// The type of the secret.
+	// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
 	SecretType pulumi.StringInput
-	// The value of the secret.
+	// The value of the secret. Only Generic type secret support modifying secret_value.
 	SecretValue pulumi.StringInput
+	// The version alias of the secret. Only Generic type secret support modifying version_name.
+	VersionName pulumi.StringPtrInput
 }
 
 func (SecretArgs) ElementType() reflect.Type {
@@ -358,7 +411,7 @@ func (o SecretOutput) ToSecretOutputWithContext(ctx context.Context) SecretOutpu
 	return o
 }
 
-// The rotation state of the secret.
+// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
 func (o SecretOutput) AutomaticRotation() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Secret) pulumi.BoolPtrOutput { return v.AutomaticRotation }).(pulumi.BoolPtrOutput)
 }
@@ -383,6 +436,11 @@ func (o SecretOutput) ExtendedConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.ExtendedConfig }).(pulumi.StringOutput)
 }
 
+// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+func (o SecretOutput) ForceDelete() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.BoolPtrOutput { return v.ForceDelete }).(pulumi.BoolPtrOutput)
+}
+
 // The last time the secret was rotated.
 func (o SecretOutput) LastRotationTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.LastRotationTime }).(pulumi.StringOutput)
@@ -393,12 +451,22 @@ func (o SecretOutput) Managed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Secret) pulumi.BoolOutput { return v.Managed }).(pulumi.BoolOutput)
 }
 
+// The cloud service that owns the secret.
+func (o SecretOutput) OwningService() pulumi.StringOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.OwningService }).(pulumi.StringOutput)
+}
+
+// The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+func (o SecretOutput) PendingWindowInDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.IntPtrOutput { return v.PendingWindowInDays }).(pulumi.IntPtrOutput)
+}
+
 // The project name of the secret.
 func (o SecretOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
-// The interval at which automatic rotation is performed.
+// The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
 func (o SecretOutput) RotationInterval() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.RotationInterval }).(pulumi.StringOutput)
 }
@@ -428,12 +496,12 @@ func (o SecretOutput) SecretName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.SecretName }).(pulumi.StringOutput)
 }
 
-// The type of the secret.
+// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
 func (o SecretOutput) SecretType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.SecretType }).(pulumi.StringOutput)
 }
 
-// The value of the secret.
+// The value of the secret. Only Generic type secret support modifying secret_value.
 func (o SecretOutput) SecretValue() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.SecretValue }).(pulumi.StringOutput)
 }
@@ -461,6 +529,11 @@ func (o SecretOutput) UpdateDate() pulumi.IntOutput {
 // The ID of secret.
 func (o SecretOutput) Uuid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+}
+
+// The version alias of the secret. Only Generic type secret support modifying version_name.
+func (o SecretOutput) VersionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.VersionName }).(pulumi.StringPtrOutput)
 }
 
 type SecretArrayOutput struct{ *pulumi.OutputState }

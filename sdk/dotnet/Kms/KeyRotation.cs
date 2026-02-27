@@ -23,7 +23,8 @@ namespace Pulumi.Volcengine.Kms
     /// {
     ///     var foo = new Volcengine.Kms.KeyRotation("foo", new()
     ///     {
-    ///         KeyId = "m_cn-guilin-boe_63c08fe9-42e8-4c10-a09e-8e8e6xxxxxx",
+    ///         KeyId = "c44870c3-f33b-421a-****-a2bba37c993e",
+    ///         RotateInterval = 90,
     ///     });
     /// 
     /// });
@@ -47,13 +48,13 @@ namespace Pulumi.Volcengine.Kms
     public partial class KeyRotation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The id of the CMK.
+        /// The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         /// </summary>
         [Output("keyId")]
         public Output<string> KeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Output("keyName")]
         public Output<string> KeyName { get; private set; } = null!;
@@ -63,6 +64,12 @@ namespace Pulumi.Volcengine.Kms
         /// </summary>
         [Output("keyringName")]
         public Output<string?> KeyringName { get; private set; } = null!;
+
+        /// <summary>
+        /// Key rotation period, unit: days; value range: [90, 2560].
+        /// </summary>
+        [Output("rotateInterval")]
+        public Output<int?> RotateInterval { get; private set; } = null!;
 
         /// <summary>
         /// The state of the key rotation.
@@ -118,13 +125,13 @@ namespace Pulumi.Volcengine.Kms
     public sealed class KeyRotationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the CMK.
+        /// The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
@@ -134,6 +141,12 @@ namespace Pulumi.Volcengine.Kms
         /// </summary>
         [Input("keyringName")]
         public Input<string>? KeyringName { get; set; }
+
+        /// <summary>
+        /// Key rotation period, unit: days; value range: [90, 2560].
+        /// </summary>
+        [Input("rotateInterval")]
+        public Input<int>? RotateInterval { get; set; }
 
         public KeyRotationArgs()
         {
@@ -144,13 +157,13 @@ namespace Pulumi.Volcengine.Kms
     public sealed class KeyRotationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the CMK.
+        /// The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
@@ -160,6 +173,12 @@ namespace Pulumi.Volcengine.Kms
         /// </summary>
         [Input("keyringName")]
         public Input<string>? KeyringName { get; set; }
+
+        /// <summary>
+        /// Key rotation period, unit: days; value range: [90, 2560].
+        /// </summary>
+        [Input("rotateInterval")]
+        public Input<int>? RotateInterval { get; set; }
 
         /// <summary>
         /// The state of the key rotation.

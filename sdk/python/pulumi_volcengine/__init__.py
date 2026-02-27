@@ -1357,6 +1357,46 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "kms/asymmetricCiphertext",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/asymmetricCiphertext:AsymmetricCiphertext": "AsymmetricCiphertext"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/asymmetricSignature",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/asymmetricSignature:AsymmetricSignature": "AsymmetricSignature"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/cancelKeyDeletion",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/cancelKeyDeletion:CancelKeyDeletion": "CancelKeyDeletion"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/cancelSecretDeletion",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/cancelSecretDeletion:CancelSecretDeletion": "CancelSecretDeletion"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/ciphertext",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/ciphertext:Ciphertext": "Ciphertext"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "kms/key",
   "fqn": "pulumi_volcengine.kms",
   "classes": {
@@ -1381,6 +1421,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "kms/keyMaterial",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/keyMaterial:KeyMaterial": "KeyMaterial"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/keyPrimaryRegion",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/keyPrimaryRegion:KeyPrimaryRegion": "KeyPrimaryRegion"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "kms/keyRotation",
   "fqn": "pulumi_volcengine.kms",
   "classes": {
@@ -1397,10 +1453,50 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "kms/reEncrypt",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/reEncrypt:ReEncrypt": "ReEncrypt"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/replicateKey",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/replicateKey:ReplicateKey": "ReplicateKey"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "kms/secret",
   "fqn": "pulumi_volcengine.kms",
   "classes": {
    "volcengine:kms/secret:Secret": "Secret"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/secretBackup",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/secretBackup:SecretBackup": "SecretBackup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/secretRestore",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/secretRestore:SecretRestore": "SecretRestore"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kms/secretRotate",
+  "fqn": "pulumi_volcengine.kms",
+  "classes": {
+   "volcengine:kms/secretRotate:SecretRotate": "SecretRotate"
   }
  },
  {

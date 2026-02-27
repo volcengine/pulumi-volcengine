@@ -283,16 +283,16 @@ def get_keys(creation_date_ranges: Optional[Sequence[str]] = None,
     :param Sequence[str] creation_date_ranges: The creation date of the keyring.
     :param Sequence[str] descriptions: The description of the key.
     :param Sequence[str] key_names: The name of the key.
-    :param Sequence[str] key_specs: The algorithm used in the key.
+    :param Sequence[str] key_specs: The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
     :param Sequence[str] key_states: The state of the key.
-    :param Sequence[str] key_usages: The usage of the key.
+    :param Sequence[str] key_usages: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
     :param str keyring_id: Query the Key ring that meets the specified conditions, which is composed of key-value pairs.
     :param str keyring_name: Query the Key ring that meets the specified conditions, which is composed of key-value pairs.
     :param str name_regex: A Name Regex of Resource.
-    :param Sequence[str] origins: The origin of the key.
+    :param Sequence[str] origins: The origin of the key. Valid values: CloudKMS, External.
     :param str output_file: File name where to save data source results.
-    :param Sequence[str] protection_levels: The protection level of the key.
-    :param Sequence[str] rotate_states: The state of the rotate.
+    :param Sequence[str] protection_levels: The protection level of the key. Valid values: SOFTWARE, HSM.
+    :param Sequence[str] rotate_states: The state of the rotate. Valid values: Enable, Disable.
     :param Sequence[pulumi.InputType['GetKeysTagArgs']] tags: A list of tags.
     :param Sequence[str] update_date_ranges: The update date of the keyring.
     """
@@ -391,16 +391,16 @@ def get_keys_output(creation_date_ranges: Optional[pulumi.Input[Optional[Sequenc
     :param Sequence[str] creation_date_ranges: The creation date of the keyring.
     :param Sequence[str] descriptions: The description of the key.
     :param Sequence[str] key_names: The name of the key.
-    :param Sequence[str] key_specs: The algorithm used in the key.
+    :param Sequence[str] key_specs: The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
     :param Sequence[str] key_states: The state of the key.
-    :param Sequence[str] key_usages: The usage of the key.
+    :param Sequence[str] key_usages: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
     :param str keyring_id: Query the Key ring that meets the specified conditions, which is composed of key-value pairs.
     :param str keyring_name: Query the Key ring that meets the specified conditions, which is composed of key-value pairs.
     :param str name_regex: A Name Regex of Resource.
-    :param Sequence[str] origins: The origin of the key.
+    :param Sequence[str] origins: The origin of the key. Valid values: CloudKMS, External.
     :param str output_file: File name where to save data source results.
-    :param Sequence[str] protection_levels: The protection level of the key.
-    :param Sequence[str] rotate_states: The state of the rotate.
+    :param Sequence[str] protection_levels: The protection level of the key. Valid values: SOFTWARE, HSM.
+    :param Sequence[str] rotate_states: The state of the rotate. Valid values: Enable, Disable.
     :param Sequence[pulumi.InputType['GetKeysTagArgs']] tags: A list of tags.
     :param Sequence[str] update_date_ranges: The update date of the keyring.
     """

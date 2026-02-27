@@ -47,13 +47,13 @@ namespace Pulumi.Volcengine.Kms
     public partial class KeyEnable : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The id of the CMK.
+        /// The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         /// </summary>
         [Output("keyId")]
         public Output<string> KeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Output("keyName")]
         public Output<string> KeyName { get; private set; } = null!;
@@ -118,13 +118,13 @@ namespace Pulumi.Volcengine.Kms
     public sealed class KeyEnableArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the CMK.
+        /// The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
@@ -144,13 +144,13 @@ namespace Pulumi.Volcengine.Kms
     public sealed class KeyEnableState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the CMK.
+        /// The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
 
         /// <summary>
-        /// The name of the CMK.
+        /// The name of the key.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }

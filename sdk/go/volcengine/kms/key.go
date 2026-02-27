@@ -49,6 +49,53 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = kms.NewKey(ctx, "foo1", &kms.KeyArgs{
+//				KeyringName:         fooKeyring.KeyringName,
+//				KeyName:             pulumi.String("Tf-test-key-1"),
+//				RotateState:         pulumi.String("Enable"),
+//				RotateInterval:      pulumi.Int(90),
+//				KeySpec:             pulumi.String("SYMMETRIC_128"),
+//				Description:         pulumi.String("Tf test key with SYMMETRIC_128"),
+//				KeyUsage:            pulumi.String("ENCRYPT_DECRYPT"),
+//				ProtectionLevel:     pulumi.String("SOFTWARE"),
+//				Origin:              pulumi.String("CloudKMS"),
+//				MultiRegion:         pulumi.Bool(false),
+//				PendingWindowInDays: pulumi.Int(30),
+//				Tags: kms.KeyTagArray{
+//					&kms.KeyTagArgs{
+//						Key:   pulumi.String("tfk1"),
+//						Value: pulumi.String("tfv1"),
+//					},
+//					&kms.KeyTagArgs{
+//						Key:   pulumi.String("tfk2"),
+//						Value: pulumi.String("tfv2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			foo2, err := kms.NewKey(ctx, "foo2", &kms.KeyArgs{
+//				KeyringName: fooKeyring.KeyringName,
+//				KeyName:     pulumi.String("mrk-Tf-test-key-2"),
+//				KeyUsage:    pulumi.String("ENCRYPT_DECRYPT"),
+//				Origin:      pulumi.String("External"),
+//				MultiRegion: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kms.NewKeyMaterial(ctx, "default", &kms.KeyMaterialArgs{
+//				KeyringName:          fooKeyring.KeyringName,
+//				KeyName:              foo2.KeyName,
+//				EncryptedKeyMaterial: pulumi.String("***"),
+//				ImportToken:          pulumi.String("***"),
+//				ExpirationModel:      pulumi.String("KEY_MATERIAL_EXPIRES"),
+//				ValidTo:              pulumi.Int(1770999621),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -67,31 +114,35 @@ type Key struct {
 
 	// The date when the keyring was created.
 	CreationDate pulumi.IntOutput `pulumi:"creationDate"`
+	// The ID of the custom key store.
+	CustomKeyStoreId pulumi.StringPtrOutput `pulumi:"customKeyStoreId"`
 	// The description of the key.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The time when the key material will expire.
 	KeyMaterialExpireTime pulumi.StringOutput `pulumi:"keyMaterialExpireTime"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringOutput `pulumi:"keyName"`
-	// The type of the keys.
+	// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
 	KeySpec pulumi.StringOutput `pulumi:"keySpec"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
 	KeyUsage pulumi.StringOutput `pulumi:"keyUsage"`
 	// The name of the keyring.
 	KeyringName pulumi.StringOutput `pulumi:"keyringName"`
 	// The last time the key was rotated.
 	LastRotationTime pulumi.StringOutput `pulumi:"lastRotationTime"`
-	// Whether it is the master key of the Multi-region type.
+	// Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
 	MultiRegion pulumi.BoolOutput `pulumi:"multiRegion"`
 	// The configuration of Multi-region key.
 	MultiRegionConfiguration KeyMultiRegionConfigurationOutput `pulumi:"multiRegionConfiguration"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
 	Origin pulumi.StringOutput `pulumi:"origin"`
-	// The pre-deletion cycle of the key.
+	// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
 	PendingWindowInDays pulumi.IntPtrOutput `pulumi:"pendingWindowInDays"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
 	ProtectionLevel pulumi.StringOutput `pulumi:"protectionLevel"`
-	// The rotation state of the key.
+	// Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+	RotateInterval pulumi.IntPtrOutput `pulumi:"rotateInterval"`
+	// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
 	RotateState pulumi.StringPtrOutput `pulumi:"rotateState"`
 	// The rotation configuration of the key.
 	RotationState pulumi.StringOutput `pulumi:"rotationState"`
@@ -107,6 +158,8 @@ type Key struct {
 	Trn pulumi.StringOutput `pulumi:"trn"`
 	// The date when the keyring was updated.
 	UpdateDate pulumi.IntOutput `pulumi:"updateDate"`
+	// The ID of the external key store.
+	XksKeyId pulumi.StringPtrOutput `pulumi:"xksKeyId"`
 }
 
 // NewKey registers a new resource with the given unique name, arguments, and options.
@@ -147,31 +200,35 @@ func GetKey(ctx *pulumi.Context,
 type keyState struct {
 	// The date when the keyring was created.
 	CreationDate *int `pulumi:"creationDate"`
+	// The ID of the custom key store.
+	CustomKeyStoreId *string `pulumi:"customKeyStoreId"`
 	// The description of the key.
 	Description *string `pulumi:"description"`
 	// The time when the key material will expire.
 	KeyMaterialExpireTime *string `pulumi:"keyMaterialExpireTime"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName *string `pulumi:"keyName"`
-	// The type of the keys.
+	// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
 	KeySpec *string `pulumi:"keySpec"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
 	KeyUsage *string `pulumi:"keyUsage"`
 	// The name of the keyring.
 	KeyringName *string `pulumi:"keyringName"`
 	// The last time the key was rotated.
 	LastRotationTime *string `pulumi:"lastRotationTime"`
-	// Whether it is the master key of the Multi-region type.
+	// Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
 	MultiRegion *bool `pulumi:"multiRegion"`
 	// The configuration of Multi-region key.
 	MultiRegionConfiguration *KeyMultiRegionConfiguration `pulumi:"multiRegionConfiguration"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
 	Origin *string `pulumi:"origin"`
-	// The pre-deletion cycle of the key.
+	// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
 	PendingWindowInDays *int `pulumi:"pendingWindowInDays"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
 	ProtectionLevel *string `pulumi:"protectionLevel"`
-	// The rotation state of the key.
+	// Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+	RotateInterval *int `pulumi:"rotateInterval"`
+	// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
 	RotateState *string `pulumi:"rotateState"`
 	// The rotation configuration of the key.
 	RotationState *string `pulumi:"rotationState"`
@@ -187,36 +244,42 @@ type keyState struct {
 	Trn *string `pulumi:"trn"`
 	// The date when the keyring was updated.
 	UpdateDate *int `pulumi:"updateDate"`
+	// The ID of the external key store.
+	XksKeyId *string `pulumi:"xksKeyId"`
 }
 
 type KeyState struct {
 	// The date when the keyring was created.
 	CreationDate pulumi.IntPtrInput
+	// The ID of the custom key store.
+	CustomKeyStoreId pulumi.StringPtrInput
 	// The description of the key.
 	Description pulumi.StringPtrInput
 	// The time when the key material will expire.
 	KeyMaterialExpireTime pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringPtrInput
-	// The type of the keys.
+	// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
 	KeySpec pulumi.StringPtrInput
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
 	KeyUsage pulumi.StringPtrInput
 	// The name of the keyring.
 	KeyringName pulumi.StringPtrInput
 	// The last time the key was rotated.
 	LastRotationTime pulumi.StringPtrInput
-	// Whether it is the master key of the Multi-region type.
+	// Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
 	MultiRegion pulumi.BoolPtrInput
 	// The configuration of Multi-region key.
 	MultiRegionConfiguration KeyMultiRegionConfigurationPtrInput
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
 	Origin pulumi.StringPtrInput
-	// The pre-deletion cycle of the key.
+	// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
 	PendingWindowInDays pulumi.IntPtrInput
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
 	ProtectionLevel pulumi.StringPtrInput
-	// The rotation state of the key.
+	// Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+	RotateInterval pulumi.IntPtrInput
+	// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
 	RotateState pulumi.StringPtrInput
 	// The rotation configuration of the key.
 	RotationState pulumi.StringPtrInput
@@ -232,6 +295,8 @@ type KeyState struct {
 	Trn pulumi.StringPtrInput
 	// The date when the keyring was updated.
 	UpdateDate pulumi.IntPtrInput
+	// The ID of the external key store.
+	XksKeyId pulumi.StringPtrInput
 }
 
 func (KeyState) ElementType() reflect.Type {
@@ -239,54 +304,66 @@ func (KeyState) ElementType() reflect.Type {
 }
 
 type keyArgs struct {
+	// The ID of the custom key store.
+	CustomKeyStoreId *string `pulumi:"customKeyStoreId"`
 	// The description of the key.
 	Description *string `pulumi:"description"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName string `pulumi:"keyName"`
-	// The type of the keys.
+	// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
 	KeySpec *string `pulumi:"keySpec"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
 	KeyUsage *string `pulumi:"keyUsage"`
 	// The name of the keyring.
 	KeyringName string `pulumi:"keyringName"`
-	// Whether it is the master key of the Multi-region type.
+	// Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
 	MultiRegion *bool `pulumi:"multiRegion"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
 	Origin *string `pulumi:"origin"`
-	// The pre-deletion cycle of the key.
+	// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
 	PendingWindowInDays *int `pulumi:"pendingWindowInDays"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
 	ProtectionLevel *string `pulumi:"protectionLevel"`
-	// The rotation state of the key.
+	// Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+	RotateInterval *int `pulumi:"rotateInterval"`
+	// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
 	RotateState *string `pulumi:"rotateState"`
 	// Tags.
 	Tags []KeyTag `pulumi:"tags"`
+	// The ID of the external key store.
+	XksKeyId *string `pulumi:"xksKeyId"`
 }
 
 // The set of arguments for constructing a Key resource.
 type KeyArgs struct {
+	// The ID of the custom key store.
+	CustomKeyStoreId pulumi.StringPtrInput
 	// The description of the key.
 	Description pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringInput
-	// The type of the keys.
+	// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
 	KeySpec pulumi.StringPtrInput
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
 	KeyUsage pulumi.StringPtrInput
 	// The name of the keyring.
 	KeyringName pulumi.StringInput
-	// Whether it is the master key of the Multi-region type.
+	// Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
 	MultiRegion pulumi.BoolPtrInput
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
 	Origin pulumi.StringPtrInput
-	// The pre-deletion cycle of the key.
+	// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
 	PendingWindowInDays pulumi.IntPtrInput
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
 	ProtectionLevel pulumi.StringPtrInput
-	// The rotation state of the key.
+	// Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+	RotateInterval pulumi.IntPtrInput
+	// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
 	RotateState pulumi.StringPtrInput
 	// Tags.
 	Tags KeyTagArrayInput
+	// The ID of the external key store.
+	XksKeyId pulumi.StringPtrInput
 }
 
 func (KeyArgs) ElementType() reflect.Type {
@@ -381,6 +458,11 @@ func (o KeyOutput) CreationDate() pulumi.IntOutput {
 	return o.ApplyT(func(v *Key) pulumi.IntOutput { return v.CreationDate }).(pulumi.IntOutput)
 }
 
+// The ID of the custom key store.
+func (o KeyOutput) CustomKeyStoreId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringPtrOutput { return v.CustomKeyStoreId }).(pulumi.StringPtrOutput)
+}
+
 // The description of the key.
 func (o KeyOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
@@ -391,17 +473,17 @@ func (o KeyOutput) KeyMaterialExpireTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.KeyMaterialExpireTime }).(pulumi.StringOutput)
 }
 
-// The name of the CMK.
+// The name of the key.
 func (o KeyOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.KeyName }).(pulumi.StringOutput)
 }
 
-// The type of the keys.
+// The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
 func (o KeyOutput) KeySpec() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.KeySpec }).(pulumi.StringOutput)
 }
 
-// The usage of the key.
+// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
 func (o KeyOutput) KeyUsage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.KeyUsage }).(pulumi.StringOutput)
 }
@@ -416,7 +498,7 @@ func (o KeyOutput) LastRotationTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.LastRotationTime }).(pulumi.StringOutput)
 }
 
-// Whether it is the master key of the Multi-region type.
+// Whether it is the master key of the Multi-region type. When multiRegion is true, the key name must start with "mrk-".
 func (o KeyOutput) MultiRegion() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Key) pulumi.BoolOutput { return v.MultiRegion }).(pulumi.BoolOutput)
 }
@@ -426,22 +508,27 @@ func (o KeyOutput) MultiRegionConfiguration() KeyMultiRegionConfigurationOutput 
 	return o.ApplyT(func(v *Key) KeyMultiRegionConfigurationOutput { return v.MultiRegionConfiguration }).(KeyMultiRegionConfigurationOutput)
 }
 
-// The origin of the key.
+// The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
 func (o KeyOutput) Origin() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Origin }).(pulumi.StringOutput)
 }
 
-// The pre-deletion cycle of the key.
+// The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
 func (o KeyOutput) PendingWindowInDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Key) pulumi.IntPtrOutput { return v.PendingWindowInDays }).(pulumi.IntPtrOutput)
 }
 
-// The protection level of the key.
+// The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
 func (o KeyOutput) ProtectionLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.ProtectionLevel }).(pulumi.StringOutput)
 }
 
-// The rotation state of the key.
+// Key rotation period, unit: days; value range: [90, 2560], required when rotateState is Enable.
+func (o KeyOutput) RotateInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Key) pulumi.IntPtrOutput { return v.RotateInterval }).(pulumi.IntPtrOutput)
+}
+
+// The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
 func (o KeyOutput) RotateState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringPtrOutput { return v.RotateState }).(pulumi.StringPtrOutput)
 }
@@ -479,6 +566,11 @@ func (o KeyOutput) Trn() pulumi.StringOutput {
 // The date when the keyring was updated.
 func (o KeyOutput) UpdateDate() pulumi.IntOutput {
 	return o.ApplyT(func(v *Key) pulumi.IntOutput { return v.UpdateDate }).(pulumi.IntOutput)
+}
+
+// The ID of the external key store.
+func (o KeyOutput) XksKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringPtrOutput { return v.XksKeyId }).(pulumi.StringPtrOutput)
 }
 
 type KeyArrayOutput struct{ *pulumi.OutputState }

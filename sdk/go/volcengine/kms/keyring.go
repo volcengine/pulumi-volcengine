@@ -55,7 +55,7 @@ type Keyring struct {
 	CreationDate pulumi.IntOutput `pulumi:"creationDate"`
 	// The description of the keyring.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// The name of the keyring.
+	// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
 	KeyringName pulumi.StringOutput `pulumi:"keyringName"`
 	// The type of the keyring.
 	KeyringType pulumi.StringOutput `pulumi:"keyringType"`
@@ -106,7 +106,7 @@ type keyringState struct {
 	CreationDate *int `pulumi:"creationDate"`
 	// The description of the keyring.
 	Description *string `pulumi:"description"`
-	// The name of the keyring.
+	// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
 	KeyringName *string `pulumi:"keyringName"`
 	// The type of the keyring.
 	KeyringType *string `pulumi:"keyringType"`
@@ -125,7 +125,7 @@ type KeyringState struct {
 	CreationDate pulumi.IntPtrInput
 	// The description of the keyring.
 	Description pulumi.StringPtrInput
-	// The name of the keyring.
+	// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
 	KeyringName pulumi.StringPtrInput
 	// The type of the keyring.
 	KeyringType pulumi.StringPtrInput
@@ -146,7 +146,7 @@ func (KeyringState) ElementType() reflect.Type {
 type keyringArgs struct {
 	// The description of the keyring.
 	Description *string `pulumi:"description"`
-	// The name of the keyring.
+	// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
 	KeyringName string `pulumi:"keyringName"`
 	// The type of the keyring.
 	KeyringType *string `pulumi:"keyringType"`
@@ -158,7 +158,7 @@ type keyringArgs struct {
 type KeyringArgs struct {
 	// The description of the keyring.
 	Description pulumi.StringPtrInput
-	// The name of the keyring.
+	// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
 	KeyringName pulumi.StringInput
 	// The type of the keyring.
 	KeyringType pulumi.StringPtrInput
@@ -263,7 +263,7 @@ func (o KeyringOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Keyring) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// The name of the keyring.
+// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
 func (o KeyringOutput) KeyringName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Keyring) pulumi.StringOutput { return v.KeyringName }).(pulumi.StringOutput)
 }

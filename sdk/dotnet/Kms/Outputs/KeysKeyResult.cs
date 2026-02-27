@@ -18,11 +18,15 @@ namespace Pulumi.Volcengine.Kms.Outputs
         /// </summary>
         public readonly int CreationDate;
         /// <summary>
+        /// The ID of the custom key store.
+        /// </summary>
+        public readonly string CustomKeyStoreId;
+        /// <summary>
         /// The description of the key.
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The unique ID of the key.
+        /// The ID of the external key store.
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -34,7 +38,7 @@ namespace Pulumi.Volcengine.Kms.Outputs
         /// </summary>
         public readonly string KeyName;
         /// <summary>
-        /// The algorithm used in the key.
+        /// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
         /// </summary>
         public readonly string KeySpec;
         /// <summary>
@@ -42,7 +46,7 @@ namespace Pulumi.Volcengine.Kms.Outputs
         /// </summary>
         public readonly string KeyState;
         /// <summary>
-        /// The usage of the key.
+        /// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
         /// </summary>
         public readonly string KeyUsage;
         /// <summary>
@@ -58,11 +62,11 @@ namespace Pulumi.Volcengine.Kms.Outputs
         /// </summary>
         public readonly Outputs.KeysKeyMultiRegionConfigurationResult MultiRegionConfiguration;
         /// <summary>
-        /// The origin of the key.
+        /// The origin of the key. Valid values: CloudKMS, External.
         /// </summary>
         public readonly string Origin;
         /// <summary>
-        /// The protection level of the key.
+        /// The protection level of the key. Valid values: SOFTWARE, HSM.
         /// </summary>
         public readonly string ProtectionLevel;
         /// <summary>
@@ -89,10 +93,16 @@ namespace Pulumi.Volcengine.Kms.Outputs
         /// The date when the keyring was updated.
         /// </summary>
         public readonly int UpdateDate;
+        /// <summary>
+        /// The configuration of the external key store.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.KeysKeyXksKeyConfigurationResult> XksKeyConfigurations;
 
         [OutputConstructor]
         private KeysKeyResult(
             int creationDate,
+
+            string customKeyStoreId,
 
             string description,
 
@@ -128,9 +138,12 @@ namespace Pulumi.Volcengine.Kms.Outputs
 
             string trn,
 
-            int updateDate)
+            int updateDate,
+
+            ImmutableArray<Outputs.KeysKeyXksKeyConfigurationResult> xksKeyConfigurations)
         {
             CreationDate = creationDate;
+            CustomKeyStoreId = customKeyStoreId;
             Description = description;
             Id = id;
             KeyMaterialExpireTime = keyMaterialExpireTime;
@@ -149,6 +162,7 @@ namespace Pulumi.Volcengine.Kms.Outputs
             Tags = tags;
             Trn = trn;
             UpdateDate = updateDate;
+            XksKeyConfigurations = xksKeyConfigurations;
         }
     }
 }
