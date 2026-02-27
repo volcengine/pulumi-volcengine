@@ -28,7 +28,7 @@ import (
 	"github.com/volcengine/terraform-provider-volcengine/volcengine"
 )
 
-// all of the token components used below.
+// all the token components used below.
 const (
 	// This variable controls the default name of the package in the package
 	// registries for nodejs and python:
