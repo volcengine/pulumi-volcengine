@@ -16,12 +16,14 @@ class KeyRotationArgs:
     def __init__(__self__, *,
                  key_id: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
-                 keyring_name: Optional[pulumi.Input[str]] = None):
+                 keyring_name: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a KeyRotation resource.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560].
         """
         if key_id is not None:
             pulumi.set(__self__, "key_id", key_id)
@@ -29,12 +31,14 @@ class KeyRotationArgs:
             pulumi.set(__self__, "key_name", key_name)
         if keyring_name is not None:
             pulumi.set(__self__, "keyring_name", keyring_name)
+        if rotate_interval is not None:
+            pulumi.set(__self__, "rotate_interval", rotate_interval)
 
     @property
     @pulumi.getter(name="keyId")
     def key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the CMK.
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         """
         return pulumi.get(self, "key_id")
 
@@ -46,7 +50,7 @@ class KeyRotationArgs:
     @pulumi.getter(name="keyName")
     def key_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -65,6 +69,18 @@ class KeyRotationArgs:
     @keyring_name.setter
     def keyring_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "keyring_name", value)
+
+    @property
+    @pulumi.getter(name="rotateInterval")
+    def rotate_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Key rotation period, unit: days; value range: [90, 2560].
+        """
+        return pulumi.get(self, "rotate_interval")
+
+    @rotate_interval.setter
+    def rotate_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotate_interval", value)
 
 
 @pulumi.input_type
@@ -73,12 +89,14 @@ class _KeyRotationState:
                  key_id: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
                  keyring_name: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None,
                  rotation_state: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KeyRotation resources.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560].
         :param pulumi.Input[str] rotation_state: The state of the key rotation.
         """
         if key_id is not None:
@@ -87,6 +105,8 @@ class _KeyRotationState:
             pulumi.set(__self__, "key_name", key_name)
         if keyring_name is not None:
             pulumi.set(__self__, "keyring_name", keyring_name)
+        if rotate_interval is not None:
+            pulumi.set(__self__, "rotate_interval", rotate_interval)
         if rotation_state is not None:
             pulumi.set(__self__, "rotation_state", rotation_state)
 
@@ -94,7 +114,7 @@ class _KeyRotationState:
     @pulumi.getter(name="keyId")
     def key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the CMK.
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         """
         return pulumi.get(self, "key_id")
 
@@ -106,7 +126,7 @@ class _KeyRotationState:
     @pulumi.getter(name="keyName")
     def key_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -125,6 +145,18 @@ class _KeyRotationState:
     @keyring_name.setter
     def keyring_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "keyring_name", value)
+
+    @property
+    @pulumi.getter(name="rotateInterval")
+    def rotate_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Key rotation period, unit: days; value range: [90, 2560].
+        """
+        return pulumi.get(self, "rotate_interval")
+
+    @rotate_interval.setter
+    def rotate_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotate_interval", value)
 
     @property
     @pulumi.getter(name="rotationState")
@@ -147,6 +179,7 @@ class KeyRotation(pulumi.CustomResource):
                  key_id: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
                  keyring_name: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
         Provides a resource to manage kms key rotation
@@ -156,7 +189,9 @@ class KeyRotation(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.kms.KeyRotation("foo", key_id="m_cn-guilin-boe_63c08fe9-42e8-4c10-a09e-8e8e6xxxxxx")
+        foo = volcengine.kms.KeyRotation("foo",
+            key_id="c44870c3-f33b-421a-****-a2bba37c993e",
+            rotate_interval=90)
         ```
 
         ## Import
@@ -175,9 +210,10 @@ class KeyRotation(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560].
         """
         ...
     @overload
@@ -193,7 +229,9 @@ class KeyRotation(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.kms.KeyRotation("foo", key_id="m_cn-guilin-boe_63c08fe9-42e8-4c10-a09e-8e8e6xxxxxx")
+        foo = volcengine.kms.KeyRotation("foo",
+            key_id="c44870c3-f33b-421a-****-a2bba37c993e",
+            rotate_interval=90)
         ```
 
         ## Import
@@ -228,6 +266,7 @@ class KeyRotation(pulumi.CustomResource):
                  key_id: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
                  keyring_name: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -240,6 +279,7 @@ class KeyRotation(pulumi.CustomResource):
             __props__.__dict__["key_id"] = key_id
             __props__.__dict__["key_name"] = key_name
             __props__.__dict__["keyring_name"] = keyring_name
+            __props__.__dict__["rotate_interval"] = rotate_interval
             __props__.__dict__["rotation_state"] = None
         super(KeyRotation, __self__).__init__(
             'volcengine:kms/keyRotation:KeyRotation',
@@ -254,6 +294,7 @@ class KeyRotation(pulumi.CustomResource):
             key_id: Optional[pulumi.Input[str]] = None,
             key_name: Optional[pulumi.Input[str]] = None,
             keyring_name: Optional[pulumi.Input[str]] = None,
+            rotate_interval: Optional[pulumi.Input[int]] = None,
             rotation_state: Optional[pulumi.Input[str]] = None) -> 'KeyRotation':
         """
         Get an existing KeyRotation resource's state with the given name, id, and optional extra
@@ -262,9 +303,10 @@ class KeyRotation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560].
         :param pulumi.Input[str] rotation_state: The state of the key rotation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -274,6 +316,7 @@ class KeyRotation(pulumi.CustomResource):
         __props__.__dict__["key_id"] = key_id
         __props__.__dict__["key_name"] = key_name
         __props__.__dict__["keyring_name"] = keyring_name
+        __props__.__dict__["rotate_interval"] = rotate_interval
         __props__.__dict__["rotation_state"] = rotation_state
         return KeyRotation(resource_name, opts=opts, __props__=__props__)
 
@@ -281,7 +324,7 @@ class KeyRotation(pulumi.CustomResource):
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Output[str]:
         """
-        The id of the CMK.
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         """
         return pulumi.get(self, "key_id")
 
@@ -289,7 +332,7 @@ class KeyRotation(pulumi.CustomResource):
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Output[str]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -300,6 +343,14 @@ class KeyRotation(pulumi.CustomResource):
         The name of the keyring.
         """
         return pulumi.get(self, "keyring_name")
+
+    @property
+    @pulumi.getter(name="rotateInterval")
+    def rotate_interval(self) -> pulumi.Output[Optional[int]]:
+        """
+        Key rotation period, unit: days; value range: [90, 2560].
+        """
+        return pulumi.get(self, "rotate_interval")
 
     @property
     @pulumi.getter(name="rotationState")

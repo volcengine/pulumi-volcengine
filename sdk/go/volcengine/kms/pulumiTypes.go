@@ -13,6 +13,730 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AsymmetricCiphertextsCiphertextInfo struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+}
+
+// AsymmetricCiphertextsCiphertextInfoInput is an input type that accepts AsymmetricCiphertextsCiphertextInfoArgs and AsymmetricCiphertextsCiphertextInfoOutput values.
+// You can construct a concrete instance of `AsymmetricCiphertextsCiphertextInfoInput` via:
+//
+//	AsymmetricCiphertextsCiphertextInfoArgs{...}
+type AsymmetricCiphertextsCiphertextInfoInput interface {
+	pulumi.Input
+
+	ToAsymmetricCiphertextsCiphertextInfoOutput() AsymmetricCiphertextsCiphertextInfoOutput
+	ToAsymmetricCiphertextsCiphertextInfoOutputWithContext(context.Context) AsymmetricCiphertextsCiphertextInfoOutput
+}
+
+type AsymmetricCiphertextsCiphertextInfoArgs struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+}
+
+func (AsymmetricCiphertextsCiphertextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i AsymmetricCiphertextsCiphertextInfoArgs) ToAsymmetricCiphertextsCiphertextInfoOutput() AsymmetricCiphertextsCiphertextInfoOutput {
+	return i.ToAsymmetricCiphertextsCiphertextInfoOutputWithContext(context.Background())
+}
+
+func (i AsymmetricCiphertextsCiphertextInfoArgs) ToAsymmetricCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) AsymmetricCiphertextsCiphertextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricCiphertextsCiphertextInfoOutput)
+}
+
+// AsymmetricCiphertextsCiphertextInfoArrayInput is an input type that accepts AsymmetricCiphertextsCiphertextInfoArray and AsymmetricCiphertextsCiphertextInfoArrayOutput values.
+// You can construct a concrete instance of `AsymmetricCiphertextsCiphertextInfoArrayInput` via:
+//
+//	AsymmetricCiphertextsCiphertextInfoArray{ AsymmetricCiphertextsCiphertextInfoArgs{...} }
+type AsymmetricCiphertextsCiphertextInfoArrayInput interface {
+	pulumi.Input
+
+	ToAsymmetricCiphertextsCiphertextInfoArrayOutput() AsymmetricCiphertextsCiphertextInfoArrayOutput
+	ToAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(context.Context) AsymmetricCiphertextsCiphertextInfoArrayOutput
+}
+
+type AsymmetricCiphertextsCiphertextInfoArray []AsymmetricCiphertextsCiphertextInfoInput
+
+func (AsymmetricCiphertextsCiphertextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i AsymmetricCiphertextsCiphertextInfoArray) ToAsymmetricCiphertextsCiphertextInfoArrayOutput() AsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return i.ToAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i AsymmetricCiphertextsCiphertextInfoArray) ToAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) AsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricCiphertextsCiphertextInfoArrayOutput)
+}
+
+type AsymmetricCiphertextsCiphertextInfoOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricCiphertextsCiphertextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o AsymmetricCiphertextsCiphertextInfoOutput) ToAsymmetricCiphertextsCiphertextInfoOutput() AsymmetricCiphertextsCiphertextInfoOutput {
+	return o
+}
+
+func (o AsymmetricCiphertextsCiphertextInfoOutput) ToAsymmetricCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) AsymmetricCiphertextsCiphertextInfoOutput {
+	return o
+}
+
+// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+func (o AsymmetricCiphertextsCiphertextInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v AsymmetricCiphertextsCiphertextInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+type AsymmetricCiphertextsCiphertextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricCiphertextsCiphertextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o AsymmetricCiphertextsCiphertextInfoArrayOutput) ToAsymmetricCiphertextsCiphertextInfoArrayOutput() AsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricCiphertextsCiphertextInfoArrayOutput) ToAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) AsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricCiphertextsCiphertextInfoArrayOutput) Index(i pulumi.IntInput) AsymmetricCiphertextsCiphertextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AsymmetricCiphertextsCiphertextInfo {
+		return vs[0].([]AsymmetricCiphertextsCiphertextInfo)[vs[1].(int)]
+	}).(AsymmetricCiphertextsCiphertextInfoOutput)
+}
+
+type AsymmetricPlaintextsPlaintextInfo struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext string `pulumi:"plaintext"`
+}
+
+// AsymmetricPlaintextsPlaintextInfoInput is an input type that accepts AsymmetricPlaintextsPlaintextInfoArgs and AsymmetricPlaintextsPlaintextInfoOutput values.
+// You can construct a concrete instance of `AsymmetricPlaintextsPlaintextInfoInput` via:
+//
+//	AsymmetricPlaintextsPlaintextInfoArgs{...}
+type AsymmetricPlaintextsPlaintextInfoInput interface {
+	pulumi.Input
+
+	ToAsymmetricPlaintextsPlaintextInfoOutput() AsymmetricPlaintextsPlaintextInfoOutput
+	ToAsymmetricPlaintextsPlaintextInfoOutputWithContext(context.Context) AsymmetricPlaintextsPlaintextInfoOutput
+}
+
+type AsymmetricPlaintextsPlaintextInfoArgs struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (AsymmetricPlaintextsPlaintextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i AsymmetricPlaintextsPlaintextInfoArgs) ToAsymmetricPlaintextsPlaintextInfoOutput() AsymmetricPlaintextsPlaintextInfoOutput {
+	return i.ToAsymmetricPlaintextsPlaintextInfoOutputWithContext(context.Background())
+}
+
+func (i AsymmetricPlaintextsPlaintextInfoArgs) ToAsymmetricPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) AsymmetricPlaintextsPlaintextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricPlaintextsPlaintextInfoOutput)
+}
+
+// AsymmetricPlaintextsPlaintextInfoArrayInput is an input type that accepts AsymmetricPlaintextsPlaintextInfoArray and AsymmetricPlaintextsPlaintextInfoArrayOutput values.
+// You can construct a concrete instance of `AsymmetricPlaintextsPlaintextInfoArrayInput` via:
+//
+//	AsymmetricPlaintextsPlaintextInfoArray{ AsymmetricPlaintextsPlaintextInfoArgs{...} }
+type AsymmetricPlaintextsPlaintextInfoArrayInput interface {
+	pulumi.Input
+
+	ToAsymmetricPlaintextsPlaintextInfoArrayOutput() AsymmetricPlaintextsPlaintextInfoArrayOutput
+	ToAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(context.Context) AsymmetricPlaintextsPlaintextInfoArrayOutput
+}
+
+type AsymmetricPlaintextsPlaintextInfoArray []AsymmetricPlaintextsPlaintextInfoInput
+
+func (AsymmetricPlaintextsPlaintextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i AsymmetricPlaintextsPlaintextInfoArray) ToAsymmetricPlaintextsPlaintextInfoArrayOutput() AsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return i.ToAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i AsymmetricPlaintextsPlaintextInfoArray) ToAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) AsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricPlaintextsPlaintextInfoArrayOutput)
+}
+
+type AsymmetricPlaintextsPlaintextInfoOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricPlaintextsPlaintextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o AsymmetricPlaintextsPlaintextInfoOutput) ToAsymmetricPlaintextsPlaintextInfoOutput() AsymmetricPlaintextsPlaintextInfoOutput {
+	return o
+}
+
+func (o AsymmetricPlaintextsPlaintextInfoOutput) ToAsymmetricPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) AsymmetricPlaintextsPlaintextInfoOutput {
+	return o
+}
+
+// The decrypted plaintext, Base64 encoded.
+func (o AsymmetricPlaintextsPlaintextInfoOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v AsymmetricPlaintextsPlaintextInfo) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+type AsymmetricPlaintextsPlaintextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricPlaintextsPlaintextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o AsymmetricPlaintextsPlaintextInfoArrayOutput) ToAsymmetricPlaintextsPlaintextInfoArrayOutput() AsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricPlaintextsPlaintextInfoArrayOutput) ToAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) AsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricPlaintextsPlaintextInfoArrayOutput) Index(i pulumi.IntInput) AsymmetricPlaintextsPlaintextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AsymmetricPlaintextsPlaintextInfo {
+		return vs[0].([]AsymmetricPlaintextsPlaintextInfo)[vs[1].(int)]
+	}).(AsymmetricPlaintextsPlaintextInfoOutput)
+}
+
+type AsymmetricSignaturesSignatureInfo struct {
+	// The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+	Signature string `pulumi:"signature"`
+}
+
+// AsymmetricSignaturesSignatureInfoInput is an input type that accepts AsymmetricSignaturesSignatureInfoArgs and AsymmetricSignaturesSignatureInfoOutput values.
+// You can construct a concrete instance of `AsymmetricSignaturesSignatureInfoInput` via:
+//
+//	AsymmetricSignaturesSignatureInfoArgs{...}
+type AsymmetricSignaturesSignatureInfoInput interface {
+	pulumi.Input
+
+	ToAsymmetricSignaturesSignatureInfoOutput() AsymmetricSignaturesSignatureInfoOutput
+	ToAsymmetricSignaturesSignatureInfoOutputWithContext(context.Context) AsymmetricSignaturesSignatureInfoOutput
+}
+
+type AsymmetricSignaturesSignatureInfoArgs struct {
+	// The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+	Signature pulumi.StringInput `pulumi:"signature"`
+}
+
+func (AsymmetricSignaturesSignatureInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (i AsymmetricSignaturesSignatureInfoArgs) ToAsymmetricSignaturesSignatureInfoOutput() AsymmetricSignaturesSignatureInfoOutput {
+	return i.ToAsymmetricSignaturesSignatureInfoOutputWithContext(context.Background())
+}
+
+func (i AsymmetricSignaturesSignatureInfoArgs) ToAsymmetricSignaturesSignatureInfoOutputWithContext(ctx context.Context) AsymmetricSignaturesSignatureInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricSignaturesSignatureInfoOutput)
+}
+
+// AsymmetricSignaturesSignatureInfoArrayInput is an input type that accepts AsymmetricSignaturesSignatureInfoArray and AsymmetricSignaturesSignatureInfoArrayOutput values.
+// You can construct a concrete instance of `AsymmetricSignaturesSignatureInfoArrayInput` via:
+//
+//	AsymmetricSignaturesSignatureInfoArray{ AsymmetricSignaturesSignatureInfoArgs{...} }
+type AsymmetricSignaturesSignatureInfoArrayInput interface {
+	pulumi.Input
+
+	ToAsymmetricSignaturesSignatureInfoArrayOutput() AsymmetricSignaturesSignatureInfoArrayOutput
+	ToAsymmetricSignaturesSignatureInfoArrayOutputWithContext(context.Context) AsymmetricSignaturesSignatureInfoArrayOutput
+}
+
+type AsymmetricSignaturesSignatureInfoArray []AsymmetricSignaturesSignatureInfoInput
+
+func (AsymmetricSignaturesSignatureInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (i AsymmetricSignaturesSignatureInfoArray) ToAsymmetricSignaturesSignatureInfoArrayOutput() AsymmetricSignaturesSignatureInfoArrayOutput {
+	return i.ToAsymmetricSignaturesSignatureInfoArrayOutputWithContext(context.Background())
+}
+
+func (i AsymmetricSignaturesSignatureInfoArray) ToAsymmetricSignaturesSignatureInfoArrayOutputWithContext(ctx context.Context) AsymmetricSignaturesSignatureInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricSignaturesSignatureInfoArrayOutput)
+}
+
+type AsymmetricSignaturesSignatureInfoOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricSignaturesSignatureInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (o AsymmetricSignaturesSignatureInfoOutput) ToAsymmetricSignaturesSignatureInfoOutput() AsymmetricSignaturesSignatureInfoOutput {
+	return o
+}
+
+func (o AsymmetricSignaturesSignatureInfoOutput) ToAsymmetricSignaturesSignatureInfoOutputWithContext(ctx context.Context) AsymmetricSignaturesSignatureInfoOutput {
+	return o
+}
+
+// The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+func (o AsymmetricSignaturesSignatureInfoOutput) Signature() pulumi.StringOutput {
+	return o.ApplyT(func(v AsymmetricSignaturesSignatureInfo) string { return v.Signature }).(pulumi.StringOutput)
+}
+
+type AsymmetricSignaturesSignatureInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricSignaturesSignatureInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (o AsymmetricSignaturesSignatureInfoArrayOutput) ToAsymmetricSignaturesSignatureInfoArrayOutput() AsymmetricSignaturesSignatureInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricSignaturesSignatureInfoArrayOutput) ToAsymmetricSignaturesSignatureInfoArrayOutputWithContext(ctx context.Context) AsymmetricSignaturesSignatureInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricSignaturesSignatureInfoArrayOutput) Index(i pulumi.IntInput) AsymmetricSignaturesSignatureInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AsymmetricSignaturesSignatureInfo {
+		return vs[0].([]AsymmetricSignaturesSignatureInfo)[vs[1].(int)]
+	}).(AsymmetricSignaturesSignatureInfoOutput)
+}
+
+type AsymmetricVerificationsVerificationInfo struct {
+	// Whether the signature is valid.
+	SignatureValid bool `pulumi:"signatureValid"`
+}
+
+// AsymmetricVerificationsVerificationInfoInput is an input type that accepts AsymmetricVerificationsVerificationInfoArgs and AsymmetricVerificationsVerificationInfoOutput values.
+// You can construct a concrete instance of `AsymmetricVerificationsVerificationInfoInput` via:
+//
+//	AsymmetricVerificationsVerificationInfoArgs{...}
+type AsymmetricVerificationsVerificationInfoInput interface {
+	pulumi.Input
+
+	ToAsymmetricVerificationsVerificationInfoOutput() AsymmetricVerificationsVerificationInfoOutput
+	ToAsymmetricVerificationsVerificationInfoOutputWithContext(context.Context) AsymmetricVerificationsVerificationInfoOutput
+}
+
+type AsymmetricVerificationsVerificationInfoArgs struct {
+	// Whether the signature is valid.
+	SignatureValid pulumi.BoolInput `pulumi:"signatureValid"`
+}
+
+func (AsymmetricVerificationsVerificationInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (i AsymmetricVerificationsVerificationInfoArgs) ToAsymmetricVerificationsVerificationInfoOutput() AsymmetricVerificationsVerificationInfoOutput {
+	return i.ToAsymmetricVerificationsVerificationInfoOutputWithContext(context.Background())
+}
+
+func (i AsymmetricVerificationsVerificationInfoArgs) ToAsymmetricVerificationsVerificationInfoOutputWithContext(ctx context.Context) AsymmetricVerificationsVerificationInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricVerificationsVerificationInfoOutput)
+}
+
+// AsymmetricVerificationsVerificationInfoArrayInput is an input type that accepts AsymmetricVerificationsVerificationInfoArray and AsymmetricVerificationsVerificationInfoArrayOutput values.
+// You can construct a concrete instance of `AsymmetricVerificationsVerificationInfoArrayInput` via:
+//
+//	AsymmetricVerificationsVerificationInfoArray{ AsymmetricVerificationsVerificationInfoArgs{...} }
+type AsymmetricVerificationsVerificationInfoArrayInput interface {
+	pulumi.Input
+
+	ToAsymmetricVerificationsVerificationInfoArrayOutput() AsymmetricVerificationsVerificationInfoArrayOutput
+	ToAsymmetricVerificationsVerificationInfoArrayOutputWithContext(context.Context) AsymmetricVerificationsVerificationInfoArrayOutput
+}
+
+type AsymmetricVerificationsVerificationInfoArray []AsymmetricVerificationsVerificationInfoInput
+
+func (AsymmetricVerificationsVerificationInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (i AsymmetricVerificationsVerificationInfoArray) ToAsymmetricVerificationsVerificationInfoArrayOutput() AsymmetricVerificationsVerificationInfoArrayOutput {
+	return i.ToAsymmetricVerificationsVerificationInfoArrayOutputWithContext(context.Background())
+}
+
+func (i AsymmetricVerificationsVerificationInfoArray) ToAsymmetricVerificationsVerificationInfoArrayOutputWithContext(ctx context.Context) AsymmetricVerificationsVerificationInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AsymmetricVerificationsVerificationInfoArrayOutput)
+}
+
+type AsymmetricVerificationsVerificationInfoOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricVerificationsVerificationInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (o AsymmetricVerificationsVerificationInfoOutput) ToAsymmetricVerificationsVerificationInfoOutput() AsymmetricVerificationsVerificationInfoOutput {
+	return o
+}
+
+func (o AsymmetricVerificationsVerificationInfoOutput) ToAsymmetricVerificationsVerificationInfoOutputWithContext(ctx context.Context) AsymmetricVerificationsVerificationInfoOutput {
+	return o
+}
+
+// Whether the signature is valid.
+func (o AsymmetricVerificationsVerificationInfoOutput) SignatureValid() pulumi.BoolOutput {
+	return o.ApplyT(func(v AsymmetricVerificationsVerificationInfo) bool { return v.SignatureValid }).(pulumi.BoolOutput)
+}
+
+type AsymmetricVerificationsVerificationInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (AsymmetricVerificationsVerificationInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (o AsymmetricVerificationsVerificationInfoArrayOutput) ToAsymmetricVerificationsVerificationInfoArrayOutput() AsymmetricVerificationsVerificationInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricVerificationsVerificationInfoArrayOutput) ToAsymmetricVerificationsVerificationInfoArrayOutputWithContext(ctx context.Context) AsymmetricVerificationsVerificationInfoArrayOutput {
+	return o
+}
+
+func (o AsymmetricVerificationsVerificationInfoArrayOutput) Index(i pulumi.IntInput) AsymmetricVerificationsVerificationInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AsymmetricVerificationsVerificationInfo {
+		return vs[0].([]AsymmetricVerificationsVerificationInfo)[vs[1].(int)]
+	}).(AsymmetricVerificationsVerificationInfoOutput)
+}
+
+type CiphertextsCiphertextInfo struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+}
+
+// CiphertextsCiphertextInfoInput is an input type that accepts CiphertextsCiphertextInfoArgs and CiphertextsCiphertextInfoOutput values.
+// You can construct a concrete instance of `CiphertextsCiphertextInfoInput` via:
+//
+//	CiphertextsCiphertextInfoArgs{...}
+type CiphertextsCiphertextInfoInput interface {
+	pulumi.Input
+
+	ToCiphertextsCiphertextInfoOutput() CiphertextsCiphertextInfoOutput
+	ToCiphertextsCiphertextInfoOutputWithContext(context.Context) CiphertextsCiphertextInfoOutput
+}
+
+type CiphertextsCiphertextInfoArgs struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+}
+
+func (CiphertextsCiphertextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i CiphertextsCiphertextInfoArgs) ToCiphertextsCiphertextInfoOutput() CiphertextsCiphertextInfoOutput {
+	return i.ToCiphertextsCiphertextInfoOutputWithContext(context.Background())
+}
+
+func (i CiphertextsCiphertextInfoArgs) ToCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) CiphertextsCiphertextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CiphertextsCiphertextInfoOutput)
+}
+
+// CiphertextsCiphertextInfoArrayInput is an input type that accepts CiphertextsCiphertextInfoArray and CiphertextsCiphertextInfoArrayOutput values.
+// You can construct a concrete instance of `CiphertextsCiphertextInfoArrayInput` via:
+//
+//	CiphertextsCiphertextInfoArray{ CiphertextsCiphertextInfoArgs{...} }
+type CiphertextsCiphertextInfoArrayInput interface {
+	pulumi.Input
+
+	ToCiphertextsCiphertextInfoArrayOutput() CiphertextsCiphertextInfoArrayOutput
+	ToCiphertextsCiphertextInfoArrayOutputWithContext(context.Context) CiphertextsCiphertextInfoArrayOutput
+}
+
+type CiphertextsCiphertextInfoArray []CiphertextsCiphertextInfoInput
+
+func (CiphertextsCiphertextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i CiphertextsCiphertextInfoArray) ToCiphertextsCiphertextInfoArrayOutput() CiphertextsCiphertextInfoArrayOutput {
+	return i.ToCiphertextsCiphertextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i CiphertextsCiphertextInfoArray) ToCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) CiphertextsCiphertextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CiphertextsCiphertextInfoArrayOutput)
+}
+
+type CiphertextsCiphertextInfoOutput struct{ *pulumi.OutputState }
+
+func (CiphertextsCiphertextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o CiphertextsCiphertextInfoOutput) ToCiphertextsCiphertextInfoOutput() CiphertextsCiphertextInfoOutput {
+	return o
+}
+
+func (o CiphertextsCiphertextInfoOutput) ToCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) CiphertextsCiphertextInfoOutput {
+	return o
+}
+
+// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+func (o CiphertextsCiphertextInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v CiphertextsCiphertextInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+type CiphertextsCiphertextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (CiphertextsCiphertextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o CiphertextsCiphertextInfoArrayOutput) ToCiphertextsCiphertextInfoArrayOutput() CiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o CiphertextsCiphertextInfoArrayOutput) ToCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) CiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o CiphertextsCiphertextInfoArrayOutput) Index(i pulumi.IntInput) CiphertextsCiphertextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CiphertextsCiphertextInfo {
+		return vs[0].([]CiphertextsCiphertextInfo)[vs[1].(int)]
+	}).(CiphertextsCiphertextInfoOutput)
+}
+
+type DataKeysDataKeyInfo struct {
+	// The generated ciphertext, Base64 encoded.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+	// The generated plaintext, Base64 encoded.
+	Plaintext string `pulumi:"plaintext"`
+}
+
+// DataKeysDataKeyInfoInput is an input type that accepts DataKeysDataKeyInfoArgs and DataKeysDataKeyInfoOutput values.
+// You can construct a concrete instance of `DataKeysDataKeyInfoInput` via:
+//
+//	DataKeysDataKeyInfoArgs{...}
+type DataKeysDataKeyInfoInput interface {
+	pulumi.Input
+
+	ToDataKeysDataKeyInfoOutput() DataKeysDataKeyInfoOutput
+	ToDataKeysDataKeyInfoOutputWithContext(context.Context) DataKeysDataKeyInfoOutput
+}
+
+type DataKeysDataKeyInfoArgs struct {
+	// The generated ciphertext, Base64 encoded.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+	// The generated plaintext, Base64 encoded.
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (DataKeysDataKeyInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (i DataKeysDataKeyInfoArgs) ToDataKeysDataKeyInfoOutput() DataKeysDataKeyInfoOutput {
+	return i.ToDataKeysDataKeyInfoOutputWithContext(context.Background())
+}
+
+func (i DataKeysDataKeyInfoArgs) ToDataKeysDataKeyInfoOutputWithContext(ctx context.Context) DataKeysDataKeyInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataKeysDataKeyInfoOutput)
+}
+
+// DataKeysDataKeyInfoArrayInput is an input type that accepts DataKeysDataKeyInfoArray and DataKeysDataKeyInfoArrayOutput values.
+// You can construct a concrete instance of `DataKeysDataKeyInfoArrayInput` via:
+//
+//	DataKeysDataKeyInfoArray{ DataKeysDataKeyInfoArgs{...} }
+type DataKeysDataKeyInfoArrayInput interface {
+	pulumi.Input
+
+	ToDataKeysDataKeyInfoArrayOutput() DataKeysDataKeyInfoArrayOutput
+	ToDataKeysDataKeyInfoArrayOutputWithContext(context.Context) DataKeysDataKeyInfoArrayOutput
+}
+
+type DataKeysDataKeyInfoArray []DataKeysDataKeyInfoInput
+
+func (DataKeysDataKeyInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (i DataKeysDataKeyInfoArray) ToDataKeysDataKeyInfoArrayOutput() DataKeysDataKeyInfoArrayOutput {
+	return i.ToDataKeysDataKeyInfoArrayOutputWithContext(context.Background())
+}
+
+func (i DataKeysDataKeyInfoArray) ToDataKeysDataKeyInfoArrayOutputWithContext(ctx context.Context) DataKeysDataKeyInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataKeysDataKeyInfoArrayOutput)
+}
+
+type DataKeysDataKeyInfoOutput struct{ *pulumi.OutputState }
+
+func (DataKeysDataKeyInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (o DataKeysDataKeyInfoOutput) ToDataKeysDataKeyInfoOutput() DataKeysDataKeyInfoOutput {
+	return o
+}
+
+func (o DataKeysDataKeyInfoOutput) ToDataKeysDataKeyInfoOutputWithContext(ctx context.Context) DataKeysDataKeyInfoOutput {
+	return o
+}
+
+// The generated ciphertext, Base64 encoded.
+func (o DataKeysDataKeyInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v DataKeysDataKeyInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+// The generated plaintext, Base64 encoded.
+func (o DataKeysDataKeyInfoOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v DataKeysDataKeyInfo) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+type DataKeysDataKeyInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (DataKeysDataKeyInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (o DataKeysDataKeyInfoArrayOutput) ToDataKeysDataKeyInfoArrayOutput() DataKeysDataKeyInfoArrayOutput {
+	return o
+}
+
+func (o DataKeysDataKeyInfoArrayOutput) ToDataKeysDataKeyInfoArrayOutputWithContext(ctx context.Context) DataKeysDataKeyInfoArrayOutput {
+	return o
+}
+
+func (o DataKeysDataKeyInfoArrayOutput) Index(i pulumi.IntInput) DataKeysDataKeyInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DataKeysDataKeyInfo {
+		return vs[0].([]DataKeysDataKeyInfo)[vs[1].(int)]
+	}).(DataKeysDataKeyInfoOutput)
+}
+
+type KeyMaterialsImportParameter struct {
+	// The import token, Base64 encoded.
+	ImportToken string `pulumi:"importToken"`
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// The id of keyring.
+	KeyringId string `pulumi:"keyringId"`
+	// The public key used to encrypt key materials, Base64 encoded.
+	PublicKey string `pulumi:"publicKey"`
+	// The token expire time.
+	TokenExpireTime string `pulumi:"tokenExpireTime"`
+}
+
+// KeyMaterialsImportParameterInput is an input type that accepts KeyMaterialsImportParameterArgs and KeyMaterialsImportParameterOutput values.
+// You can construct a concrete instance of `KeyMaterialsImportParameterInput` via:
+//
+//	KeyMaterialsImportParameterArgs{...}
+type KeyMaterialsImportParameterInput interface {
+	pulumi.Input
+
+	ToKeyMaterialsImportParameterOutput() KeyMaterialsImportParameterOutput
+	ToKeyMaterialsImportParameterOutputWithContext(context.Context) KeyMaterialsImportParameterOutput
+}
+
+type KeyMaterialsImportParameterArgs struct {
+	// The import token, Base64 encoded.
+	ImportToken pulumi.StringInput `pulumi:"importToken"`
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// The id of keyring.
+	KeyringId pulumi.StringInput `pulumi:"keyringId"`
+	// The public key used to encrypt key materials, Base64 encoded.
+	PublicKey pulumi.StringInput `pulumi:"publicKey"`
+	// The token expire time.
+	TokenExpireTime pulumi.StringInput `pulumi:"tokenExpireTime"`
+}
+
+func (KeyMaterialsImportParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (i KeyMaterialsImportParameterArgs) ToKeyMaterialsImportParameterOutput() KeyMaterialsImportParameterOutput {
+	return i.ToKeyMaterialsImportParameterOutputWithContext(context.Background())
+}
+
+func (i KeyMaterialsImportParameterArgs) ToKeyMaterialsImportParameterOutputWithContext(ctx context.Context) KeyMaterialsImportParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyMaterialsImportParameterOutput)
+}
+
+// KeyMaterialsImportParameterArrayInput is an input type that accepts KeyMaterialsImportParameterArray and KeyMaterialsImportParameterArrayOutput values.
+// You can construct a concrete instance of `KeyMaterialsImportParameterArrayInput` via:
+//
+//	KeyMaterialsImportParameterArray{ KeyMaterialsImportParameterArgs{...} }
+type KeyMaterialsImportParameterArrayInput interface {
+	pulumi.Input
+
+	ToKeyMaterialsImportParameterArrayOutput() KeyMaterialsImportParameterArrayOutput
+	ToKeyMaterialsImportParameterArrayOutputWithContext(context.Context) KeyMaterialsImportParameterArrayOutput
+}
+
+type KeyMaterialsImportParameterArray []KeyMaterialsImportParameterInput
+
+func (KeyMaterialsImportParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (i KeyMaterialsImportParameterArray) ToKeyMaterialsImportParameterArrayOutput() KeyMaterialsImportParameterArrayOutput {
+	return i.ToKeyMaterialsImportParameterArrayOutputWithContext(context.Background())
+}
+
+func (i KeyMaterialsImportParameterArray) ToKeyMaterialsImportParameterArrayOutputWithContext(ctx context.Context) KeyMaterialsImportParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyMaterialsImportParameterArrayOutput)
+}
+
+type KeyMaterialsImportParameterOutput struct{ *pulumi.OutputState }
+
+func (KeyMaterialsImportParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (o KeyMaterialsImportParameterOutput) ToKeyMaterialsImportParameterOutput() KeyMaterialsImportParameterOutput {
+	return o
+}
+
+func (o KeyMaterialsImportParameterOutput) ToKeyMaterialsImportParameterOutputWithContext(ctx context.Context) KeyMaterialsImportParameterOutput {
+	return o
+}
+
+// The import token, Base64 encoded.
+func (o KeyMaterialsImportParameterOutput) ImportToken() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyMaterialsImportParameter) string { return v.ImportToken }).(pulumi.StringOutput)
+}
+
+// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o KeyMaterialsImportParameterOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyMaterialsImportParameter) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// The id of keyring.
+func (o KeyMaterialsImportParameterOutput) KeyringId() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyMaterialsImportParameter) string { return v.KeyringId }).(pulumi.StringOutput)
+}
+
+// The public key used to encrypt key materials, Base64 encoded.
+func (o KeyMaterialsImportParameterOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyMaterialsImportParameter) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// The token expire time.
+func (o KeyMaterialsImportParameterOutput) TokenExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyMaterialsImportParameter) string { return v.TokenExpireTime }).(pulumi.StringOutput)
+}
+
+type KeyMaterialsImportParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (KeyMaterialsImportParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (o KeyMaterialsImportParameterArrayOutput) ToKeyMaterialsImportParameterArrayOutput() KeyMaterialsImportParameterArrayOutput {
+	return o
+}
+
+func (o KeyMaterialsImportParameterArrayOutput) ToKeyMaterialsImportParameterArrayOutputWithContext(ctx context.Context) KeyMaterialsImportParameterArrayOutput {
+	return o
+}
+
+func (o KeyMaterialsImportParameterArrayOutput) Index(i pulumi.IntInput) KeyMaterialsImportParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeyMaterialsImportParameter {
+		return vs[0].([]KeyMaterialsImportParameter)[vs[1].(int)]
+	}).(KeyMaterialsImportParameterOutput)
+}
+
 type KeyMultiRegionConfiguration struct {
 	// The type of the multi-region key.
 	MultiRegionKeyType *string `pulumi:"multiRegionKeyType"`
@@ -728,19 +1452,21 @@ func (o KeyringsKeyringArrayOutput) Index(i pulumi.IntInput) KeyringsKeyringOutp
 type KeysKey struct {
 	// The date when the keyring was created.
 	CreationDate int `pulumi:"creationDate"`
+	// The ID of the custom key store.
+	CustomKeyStoreId string `pulumi:"customKeyStoreId"`
 	// The description of the key.
 	Description string `pulumi:"description"`
-	// The unique ID of the key.
+	// The ID of the external key store.
 	Id string `pulumi:"id"`
 	// The time when the key material will expire.
 	KeyMaterialExpireTime string `pulumi:"keyMaterialExpireTime"`
 	// The name of the key.
 	KeyName string `pulumi:"keyName"`
-	// The algorithm used in the key.
+	// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 	KeySpec string `pulumi:"keySpec"`
 	// The state of the key.
 	KeyState string `pulumi:"keyState"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 	KeyUsage string `pulumi:"keyUsage"`
 	// The last time the key was rotated.
 	LastRotationTime string `pulumi:"lastRotationTime"`
@@ -748,9 +1474,9 @@ type KeysKey struct {
 	MultiRegion bool `pulumi:"multiRegion"`
 	// The configuration of Multi-region key.
 	MultiRegionConfiguration KeysKeyMultiRegionConfiguration `pulumi:"multiRegionConfiguration"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External.
 	Origin string `pulumi:"origin"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM.
 	ProtectionLevel string `pulumi:"protectionLevel"`
 	// The rotation configuration of the key.
 	RotationState string `pulumi:"rotationState"`
@@ -764,6 +1490,8 @@ type KeysKey struct {
 	Trn string `pulumi:"trn"`
 	// The date when the keyring was updated.
 	UpdateDate int `pulumi:"updateDate"`
+	// The configuration of the external key store.
+	XksKeyConfigurations []KeysKeyXksKeyConfiguration `pulumi:"xksKeyConfigurations"`
 }
 
 // KeysKeyInput is an input type that accepts KeysKeyArgs and KeysKeyOutput values.
@@ -780,19 +1508,21 @@ type KeysKeyInput interface {
 type KeysKeyArgs struct {
 	// The date when the keyring was created.
 	CreationDate pulumi.IntInput `pulumi:"creationDate"`
+	// The ID of the custom key store.
+	CustomKeyStoreId pulumi.StringInput `pulumi:"customKeyStoreId"`
 	// The description of the key.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The unique ID of the key.
+	// The ID of the external key store.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The time when the key material will expire.
 	KeyMaterialExpireTime pulumi.StringInput `pulumi:"keyMaterialExpireTime"`
 	// The name of the key.
 	KeyName pulumi.StringInput `pulumi:"keyName"`
-	// The algorithm used in the key.
+	// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 	KeySpec pulumi.StringInput `pulumi:"keySpec"`
 	// The state of the key.
 	KeyState pulumi.StringInput `pulumi:"keyState"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 	KeyUsage pulumi.StringInput `pulumi:"keyUsage"`
 	// The last time the key was rotated.
 	LastRotationTime pulumi.StringInput `pulumi:"lastRotationTime"`
@@ -800,9 +1530,9 @@ type KeysKeyArgs struct {
 	MultiRegion pulumi.BoolInput `pulumi:"multiRegion"`
 	// The configuration of Multi-region key.
 	MultiRegionConfiguration KeysKeyMultiRegionConfigurationInput `pulumi:"multiRegionConfiguration"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External.
 	Origin pulumi.StringInput `pulumi:"origin"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM.
 	ProtectionLevel pulumi.StringInput `pulumi:"protectionLevel"`
 	// The rotation configuration of the key.
 	RotationState pulumi.StringInput `pulumi:"rotationState"`
@@ -816,6 +1546,8 @@ type KeysKeyArgs struct {
 	Trn pulumi.StringInput `pulumi:"trn"`
 	// The date when the keyring was updated.
 	UpdateDate pulumi.IntInput `pulumi:"updateDate"`
+	// The configuration of the external key store.
+	XksKeyConfigurations KeysKeyXksKeyConfigurationArrayInput `pulumi:"xksKeyConfigurations"`
 }
 
 func (KeysKeyArgs) ElementType() reflect.Type {
@@ -874,12 +1606,17 @@ func (o KeysKeyOutput) CreationDate() pulumi.IntOutput {
 	return o.ApplyT(func(v KeysKey) int { return v.CreationDate }).(pulumi.IntOutput)
 }
 
+// The ID of the custom key store.
+func (o KeysKeyOutput) CustomKeyStoreId() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysKey) string { return v.CustomKeyStoreId }).(pulumi.StringOutput)
+}
+
 // The description of the key.
 func (o KeysKeyOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The unique ID of the key.
+// The ID of the external key store.
 func (o KeysKeyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -894,7 +1631,7 @@ func (o KeysKeyOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.KeyName }).(pulumi.StringOutput)
 }
 
-// The algorithm used in the key.
+// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 func (o KeysKeyOutput) KeySpec() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.KeySpec }).(pulumi.StringOutput)
 }
@@ -904,7 +1641,7 @@ func (o KeysKeyOutput) KeyState() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.KeyState }).(pulumi.StringOutput)
 }
 
-// The usage of the key.
+// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 func (o KeysKeyOutput) KeyUsage() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.KeyUsage }).(pulumi.StringOutput)
 }
@@ -924,12 +1661,12 @@ func (o KeysKeyOutput) MultiRegionConfiguration() KeysKeyMultiRegionConfiguratio
 	return o.ApplyT(func(v KeysKey) KeysKeyMultiRegionConfiguration { return v.MultiRegionConfiguration }).(KeysKeyMultiRegionConfigurationOutput)
 }
 
-// The origin of the key.
+// The origin of the key. Valid values: CloudKMS, External.
 func (o KeysKeyOutput) Origin() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.Origin }).(pulumi.StringOutput)
 }
 
-// The protection level of the key.
+// The protection level of the key. Valid values: SOFTWARE, HSM.
 func (o KeysKeyOutput) ProtectionLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysKey) string { return v.ProtectionLevel }).(pulumi.StringOutput)
 }
@@ -962,6 +1699,11 @@ func (o KeysKeyOutput) Trn() pulumi.StringOutput {
 // The date when the keyring was updated.
 func (o KeysKeyOutput) UpdateDate() pulumi.IntOutput {
 	return o.ApplyT(func(v KeysKey) int { return v.UpdateDate }).(pulumi.IntOutput)
+}
+
+// The configuration of the external key store.
+func (o KeysKeyOutput) XksKeyConfigurations() KeysKeyXksKeyConfigurationArrayOutput {
+	return o.ApplyT(func(v KeysKey) []KeysKeyXksKeyConfiguration { return v.XksKeyConfigurations }).(KeysKeyXksKeyConfigurationArrayOutput)
 }
 
 type KeysKeyArrayOutput struct{ *pulumi.OutputState }
@@ -1329,6 +2071,103 @@ func (o KeysKeyTagArrayOutput) Index(i pulumi.IntInput) KeysKeyTagOutput {
 	}).(KeysKeyTagOutput)
 }
 
+type KeysKeyXksKeyConfiguration struct {
+	// The ID of the external key store.
+	Id string `pulumi:"id"`
+}
+
+// KeysKeyXksKeyConfigurationInput is an input type that accepts KeysKeyXksKeyConfigurationArgs and KeysKeyXksKeyConfigurationOutput values.
+// You can construct a concrete instance of `KeysKeyXksKeyConfigurationInput` via:
+//
+//	KeysKeyXksKeyConfigurationArgs{...}
+type KeysKeyXksKeyConfigurationInput interface {
+	pulumi.Input
+
+	ToKeysKeyXksKeyConfigurationOutput() KeysKeyXksKeyConfigurationOutput
+	ToKeysKeyXksKeyConfigurationOutputWithContext(context.Context) KeysKeyXksKeyConfigurationOutput
+}
+
+type KeysKeyXksKeyConfigurationArgs struct {
+	// The ID of the external key store.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (KeysKeyXksKeyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (i KeysKeyXksKeyConfigurationArgs) ToKeysKeyXksKeyConfigurationOutput() KeysKeyXksKeyConfigurationOutput {
+	return i.ToKeysKeyXksKeyConfigurationOutputWithContext(context.Background())
+}
+
+func (i KeysKeyXksKeyConfigurationArgs) ToKeysKeyXksKeyConfigurationOutputWithContext(ctx context.Context) KeysKeyXksKeyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeysKeyXksKeyConfigurationOutput)
+}
+
+// KeysKeyXksKeyConfigurationArrayInput is an input type that accepts KeysKeyXksKeyConfigurationArray and KeysKeyXksKeyConfigurationArrayOutput values.
+// You can construct a concrete instance of `KeysKeyXksKeyConfigurationArrayInput` via:
+//
+//	KeysKeyXksKeyConfigurationArray{ KeysKeyXksKeyConfigurationArgs{...} }
+type KeysKeyXksKeyConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToKeysKeyXksKeyConfigurationArrayOutput() KeysKeyXksKeyConfigurationArrayOutput
+	ToKeysKeyXksKeyConfigurationArrayOutputWithContext(context.Context) KeysKeyXksKeyConfigurationArrayOutput
+}
+
+type KeysKeyXksKeyConfigurationArray []KeysKeyXksKeyConfigurationInput
+
+func (KeysKeyXksKeyConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (i KeysKeyXksKeyConfigurationArray) ToKeysKeyXksKeyConfigurationArrayOutput() KeysKeyXksKeyConfigurationArrayOutput {
+	return i.ToKeysKeyXksKeyConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i KeysKeyXksKeyConfigurationArray) ToKeysKeyXksKeyConfigurationArrayOutputWithContext(ctx context.Context) KeysKeyXksKeyConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeysKeyXksKeyConfigurationArrayOutput)
+}
+
+type KeysKeyXksKeyConfigurationOutput struct{ *pulumi.OutputState }
+
+func (KeysKeyXksKeyConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (o KeysKeyXksKeyConfigurationOutput) ToKeysKeyXksKeyConfigurationOutput() KeysKeyXksKeyConfigurationOutput {
+	return o
+}
+
+func (o KeysKeyXksKeyConfigurationOutput) ToKeysKeyXksKeyConfigurationOutputWithContext(ctx context.Context) KeysKeyXksKeyConfigurationOutput {
+	return o
+}
+
+// The ID of the external key store.
+func (o KeysKeyXksKeyConfigurationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysKeyXksKeyConfiguration) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type KeysKeyXksKeyConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (KeysKeyXksKeyConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (o KeysKeyXksKeyConfigurationArrayOutput) ToKeysKeyXksKeyConfigurationArrayOutput() KeysKeyXksKeyConfigurationArrayOutput {
+	return o
+}
+
+func (o KeysKeyXksKeyConfigurationArrayOutput) ToKeysKeyXksKeyConfigurationArrayOutputWithContext(ctx context.Context) KeysKeyXksKeyConfigurationArrayOutput {
+	return o
+}
+
+func (o KeysKeyXksKeyConfigurationArrayOutput) Index(i pulumi.IntInput) KeysKeyXksKeyConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeysKeyXksKeyConfiguration {
+		return vs[0].([]KeysKeyXksKeyConfiguration)[vs[1].(int)]
+	}).(KeysKeyXksKeyConfigurationOutput)
+}
+
 type KeysTag struct {
 	// The key of the tag.
 	Key string `pulumi:"key"`
@@ -1435,6 +2274,836 @@ func (o KeysTagArrayOutput) Index(i pulumi.IntInput) KeysTagOutput {
 	}).(KeysTagOutput)
 }
 
+type MacVerificationsMacVerificationInfo struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// Whether the MAC is valid.
+	MacValid bool `pulumi:"macValid"`
+}
+
+// MacVerificationsMacVerificationInfoInput is an input type that accepts MacVerificationsMacVerificationInfoArgs and MacVerificationsMacVerificationInfoOutput values.
+// You can construct a concrete instance of `MacVerificationsMacVerificationInfoInput` via:
+//
+//	MacVerificationsMacVerificationInfoArgs{...}
+type MacVerificationsMacVerificationInfoInput interface {
+	pulumi.Input
+
+	ToMacVerificationsMacVerificationInfoOutput() MacVerificationsMacVerificationInfoOutput
+	ToMacVerificationsMacVerificationInfoOutputWithContext(context.Context) MacVerificationsMacVerificationInfoOutput
+}
+
+type MacVerificationsMacVerificationInfoArgs struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// Whether the MAC is valid.
+	MacValid pulumi.BoolInput `pulumi:"macValid"`
+}
+
+func (MacVerificationsMacVerificationInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (i MacVerificationsMacVerificationInfoArgs) ToMacVerificationsMacVerificationInfoOutput() MacVerificationsMacVerificationInfoOutput {
+	return i.ToMacVerificationsMacVerificationInfoOutputWithContext(context.Background())
+}
+
+func (i MacVerificationsMacVerificationInfoArgs) ToMacVerificationsMacVerificationInfoOutputWithContext(ctx context.Context) MacVerificationsMacVerificationInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MacVerificationsMacVerificationInfoOutput)
+}
+
+// MacVerificationsMacVerificationInfoArrayInput is an input type that accepts MacVerificationsMacVerificationInfoArray and MacVerificationsMacVerificationInfoArrayOutput values.
+// You can construct a concrete instance of `MacVerificationsMacVerificationInfoArrayInput` via:
+//
+//	MacVerificationsMacVerificationInfoArray{ MacVerificationsMacVerificationInfoArgs{...} }
+type MacVerificationsMacVerificationInfoArrayInput interface {
+	pulumi.Input
+
+	ToMacVerificationsMacVerificationInfoArrayOutput() MacVerificationsMacVerificationInfoArrayOutput
+	ToMacVerificationsMacVerificationInfoArrayOutputWithContext(context.Context) MacVerificationsMacVerificationInfoArrayOutput
+}
+
+type MacVerificationsMacVerificationInfoArray []MacVerificationsMacVerificationInfoInput
+
+func (MacVerificationsMacVerificationInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (i MacVerificationsMacVerificationInfoArray) ToMacVerificationsMacVerificationInfoArrayOutput() MacVerificationsMacVerificationInfoArrayOutput {
+	return i.ToMacVerificationsMacVerificationInfoArrayOutputWithContext(context.Background())
+}
+
+func (i MacVerificationsMacVerificationInfoArray) ToMacVerificationsMacVerificationInfoArrayOutputWithContext(ctx context.Context) MacVerificationsMacVerificationInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MacVerificationsMacVerificationInfoArrayOutput)
+}
+
+type MacVerificationsMacVerificationInfoOutput struct{ *pulumi.OutputState }
+
+func (MacVerificationsMacVerificationInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (o MacVerificationsMacVerificationInfoOutput) ToMacVerificationsMacVerificationInfoOutput() MacVerificationsMacVerificationInfoOutput {
+	return o
+}
+
+func (o MacVerificationsMacVerificationInfoOutput) ToMacVerificationsMacVerificationInfoOutputWithContext(ctx context.Context) MacVerificationsMacVerificationInfoOutput {
+	return o
+}
+
+// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o MacVerificationsMacVerificationInfoOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v MacVerificationsMacVerificationInfo) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// Whether the MAC is valid.
+func (o MacVerificationsMacVerificationInfoOutput) MacValid() pulumi.BoolOutput {
+	return o.ApplyT(func(v MacVerificationsMacVerificationInfo) bool { return v.MacValid }).(pulumi.BoolOutput)
+}
+
+type MacVerificationsMacVerificationInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (MacVerificationsMacVerificationInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (o MacVerificationsMacVerificationInfoArrayOutput) ToMacVerificationsMacVerificationInfoArrayOutput() MacVerificationsMacVerificationInfoArrayOutput {
+	return o
+}
+
+func (o MacVerificationsMacVerificationInfoArrayOutput) ToMacVerificationsMacVerificationInfoArrayOutputWithContext(ctx context.Context) MacVerificationsMacVerificationInfoArrayOutput {
+	return o
+}
+
+func (o MacVerificationsMacVerificationInfoArrayOutput) Index(i pulumi.IntInput) MacVerificationsMacVerificationInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MacVerificationsMacVerificationInfo {
+		return vs[0].([]MacVerificationsMacVerificationInfo)[vs[1].(int)]
+	}).(MacVerificationsMacVerificationInfoOutput)
+}
+
+type MacsMacInfo struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// The MAC result, Base64 encoded.
+	Mac string `pulumi:"mac"`
+}
+
+// MacsMacInfoInput is an input type that accepts MacsMacInfoArgs and MacsMacInfoOutput values.
+// You can construct a concrete instance of `MacsMacInfoInput` via:
+//
+//	MacsMacInfoArgs{...}
+type MacsMacInfoInput interface {
+	pulumi.Input
+
+	ToMacsMacInfoOutput() MacsMacInfoOutput
+	ToMacsMacInfoOutputWithContext(context.Context) MacsMacInfoOutput
+}
+
+type MacsMacInfoArgs struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// The MAC result, Base64 encoded.
+	Mac pulumi.StringInput `pulumi:"mac"`
+}
+
+func (MacsMacInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MacsMacInfo)(nil)).Elem()
+}
+
+func (i MacsMacInfoArgs) ToMacsMacInfoOutput() MacsMacInfoOutput {
+	return i.ToMacsMacInfoOutputWithContext(context.Background())
+}
+
+func (i MacsMacInfoArgs) ToMacsMacInfoOutputWithContext(ctx context.Context) MacsMacInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MacsMacInfoOutput)
+}
+
+// MacsMacInfoArrayInput is an input type that accepts MacsMacInfoArray and MacsMacInfoArrayOutput values.
+// You can construct a concrete instance of `MacsMacInfoArrayInput` via:
+//
+//	MacsMacInfoArray{ MacsMacInfoArgs{...} }
+type MacsMacInfoArrayInput interface {
+	pulumi.Input
+
+	ToMacsMacInfoArrayOutput() MacsMacInfoArrayOutput
+	ToMacsMacInfoArrayOutputWithContext(context.Context) MacsMacInfoArrayOutput
+}
+
+type MacsMacInfoArray []MacsMacInfoInput
+
+func (MacsMacInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MacsMacInfo)(nil)).Elem()
+}
+
+func (i MacsMacInfoArray) ToMacsMacInfoArrayOutput() MacsMacInfoArrayOutput {
+	return i.ToMacsMacInfoArrayOutputWithContext(context.Background())
+}
+
+func (i MacsMacInfoArray) ToMacsMacInfoArrayOutputWithContext(ctx context.Context) MacsMacInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MacsMacInfoArrayOutput)
+}
+
+type MacsMacInfoOutput struct{ *pulumi.OutputState }
+
+func (MacsMacInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MacsMacInfo)(nil)).Elem()
+}
+
+func (o MacsMacInfoOutput) ToMacsMacInfoOutput() MacsMacInfoOutput {
+	return o
+}
+
+func (o MacsMacInfoOutput) ToMacsMacInfoOutputWithContext(ctx context.Context) MacsMacInfoOutput {
+	return o
+}
+
+// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o MacsMacInfoOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v MacsMacInfo) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// The MAC result, Base64 encoded.
+func (o MacsMacInfoOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v MacsMacInfo) string { return v.Mac }).(pulumi.StringOutput)
+}
+
+type MacsMacInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (MacsMacInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MacsMacInfo)(nil)).Elem()
+}
+
+func (o MacsMacInfoArrayOutput) ToMacsMacInfoArrayOutput() MacsMacInfoArrayOutput {
+	return o
+}
+
+func (o MacsMacInfoArrayOutput) ToMacsMacInfoArrayOutputWithContext(ctx context.Context) MacsMacInfoArrayOutput {
+	return o
+}
+
+func (o MacsMacInfoArrayOutput) Index(i pulumi.IntInput) MacsMacInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MacsMacInfo {
+		return vs[0].([]MacsMacInfo)[vs[1].(int)]
+	}).(MacsMacInfoOutput)
+}
+
+type PlaintextsPlaintextInfo struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext string `pulumi:"plaintext"`
+}
+
+// PlaintextsPlaintextInfoInput is an input type that accepts PlaintextsPlaintextInfoArgs and PlaintextsPlaintextInfoOutput values.
+// You can construct a concrete instance of `PlaintextsPlaintextInfoInput` via:
+//
+//	PlaintextsPlaintextInfoArgs{...}
+type PlaintextsPlaintextInfoInput interface {
+	pulumi.Input
+
+	ToPlaintextsPlaintextInfoOutput() PlaintextsPlaintextInfoOutput
+	ToPlaintextsPlaintextInfoOutputWithContext(context.Context) PlaintextsPlaintextInfoOutput
+}
+
+type PlaintextsPlaintextInfoArgs struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (PlaintextsPlaintextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i PlaintextsPlaintextInfoArgs) ToPlaintextsPlaintextInfoOutput() PlaintextsPlaintextInfoOutput {
+	return i.ToPlaintextsPlaintextInfoOutputWithContext(context.Background())
+}
+
+func (i PlaintextsPlaintextInfoArgs) ToPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) PlaintextsPlaintextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PlaintextsPlaintextInfoOutput)
+}
+
+// PlaintextsPlaintextInfoArrayInput is an input type that accepts PlaintextsPlaintextInfoArray and PlaintextsPlaintextInfoArrayOutput values.
+// You can construct a concrete instance of `PlaintextsPlaintextInfoArrayInput` via:
+//
+//	PlaintextsPlaintextInfoArray{ PlaintextsPlaintextInfoArgs{...} }
+type PlaintextsPlaintextInfoArrayInput interface {
+	pulumi.Input
+
+	ToPlaintextsPlaintextInfoArrayOutput() PlaintextsPlaintextInfoArrayOutput
+	ToPlaintextsPlaintextInfoArrayOutputWithContext(context.Context) PlaintextsPlaintextInfoArrayOutput
+}
+
+type PlaintextsPlaintextInfoArray []PlaintextsPlaintextInfoInput
+
+func (PlaintextsPlaintextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i PlaintextsPlaintextInfoArray) ToPlaintextsPlaintextInfoArrayOutput() PlaintextsPlaintextInfoArrayOutput {
+	return i.ToPlaintextsPlaintextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i PlaintextsPlaintextInfoArray) ToPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) PlaintextsPlaintextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PlaintextsPlaintextInfoArrayOutput)
+}
+
+type PlaintextsPlaintextInfoOutput struct{ *pulumi.OutputState }
+
+func (PlaintextsPlaintextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o PlaintextsPlaintextInfoOutput) ToPlaintextsPlaintextInfoOutput() PlaintextsPlaintextInfoOutput {
+	return o
+}
+
+func (o PlaintextsPlaintextInfoOutput) ToPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) PlaintextsPlaintextInfoOutput {
+	return o
+}
+
+// The decrypted plaintext, Base64 encoded.
+func (o PlaintextsPlaintextInfoOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v PlaintextsPlaintextInfo) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+type PlaintextsPlaintextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (PlaintextsPlaintextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o PlaintextsPlaintextInfoArrayOutput) ToPlaintextsPlaintextInfoArrayOutput() PlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o PlaintextsPlaintextInfoArrayOutput) ToPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) PlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o PlaintextsPlaintextInfoArrayOutput) Index(i pulumi.IntInput) PlaintextsPlaintextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PlaintextsPlaintextInfo {
+		return vs[0].([]PlaintextsPlaintextInfo)[vs[1].(int)]
+	}).(PlaintextsPlaintextInfoOutput)
+}
+
+type PublicKeysPublicKey struct {
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// The public key in PEM format.
+	PublicKey string `pulumi:"publicKey"`
+}
+
+// PublicKeysPublicKeyInput is an input type that accepts PublicKeysPublicKeyArgs and PublicKeysPublicKeyOutput values.
+// You can construct a concrete instance of `PublicKeysPublicKeyInput` via:
+//
+//	PublicKeysPublicKeyArgs{...}
+type PublicKeysPublicKeyInput interface {
+	pulumi.Input
+
+	ToPublicKeysPublicKeyOutput() PublicKeysPublicKeyOutput
+	ToPublicKeysPublicKeyOutputWithContext(context.Context) PublicKeysPublicKeyOutput
+}
+
+type PublicKeysPublicKeyArgs struct {
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// The public key in PEM format.
+	PublicKey pulumi.StringInput `pulumi:"publicKey"`
+}
+
+func (PublicKeysPublicKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PublicKeysPublicKey)(nil)).Elem()
+}
+
+func (i PublicKeysPublicKeyArgs) ToPublicKeysPublicKeyOutput() PublicKeysPublicKeyOutput {
+	return i.ToPublicKeysPublicKeyOutputWithContext(context.Background())
+}
+
+func (i PublicKeysPublicKeyArgs) ToPublicKeysPublicKeyOutputWithContext(ctx context.Context) PublicKeysPublicKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PublicKeysPublicKeyOutput)
+}
+
+// PublicKeysPublicKeyArrayInput is an input type that accepts PublicKeysPublicKeyArray and PublicKeysPublicKeyArrayOutput values.
+// You can construct a concrete instance of `PublicKeysPublicKeyArrayInput` via:
+//
+//	PublicKeysPublicKeyArray{ PublicKeysPublicKeyArgs{...} }
+type PublicKeysPublicKeyArrayInput interface {
+	pulumi.Input
+
+	ToPublicKeysPublicKeyArrayOutput() PublicKeysPublicKeyArrayOutput
+	ToPublicKeysPublicKeyArrayOutputWithContext(context.Context) PublicKeysPublicKeyArrayOutput
+}
+
+type PublicKeysPublicKeyArray []PublicKeysPublicKeyInput
+
+func (PublicKeysPublicKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PublicKeysPublicKey)(nil)).Elem()
+}
+
+func (i PublicKeysPublicKeyArray) ToPublicKeysPublicKeyArrayOutput() PublicKeysPublicKeyArrayOutput {
+	return i.ToPublicKeysPublicKeyArrayOutputWithContext(context.Background())
+}
+
+func (i PublicKeysPublicKeyArray) ToPublicKeysPublicKeyArrayOutputWithContext(ctx context.Context) PublicKeysPublicKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PublicKeysPublicKeyArrayOutput)
+}
+
+type PublicKeysPublicKeyOutput struct{ *pulumi.OutputState }
+
+func (PublicKeysPublicKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PublicKeysPublicKey)(nil)).Elem()
+}
+
+func (o PublicKeysPublicKeyOutput) ToPublicKeysPublicKeyOutput() PublicKeysPublicKeyOutput {
+	return o
+}
+
+func (o PublicKeysPublicKeyOutput) ToPublicKeysPublicKeyOutputWithContext(ctx context.Context) PublicKeysPublicKeyOutput {
+	return o
+}
+
+// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o PublicKeysPublicKeyOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v PublicKeysPublicKey) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// The public key in PEM format.
+func (o PublicKeysPublicKeyOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v PublicKeysPublicKey) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+type PublicKeysPublicKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (PublicKeysPublicKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PublicKeysPublicKey)(nil)).Elem()
+}
+
+func (o PublicKeysPublicKeyArrayOutput) ToPublicKeysPublicKeyArrayOutput() PublicKeysPublicKeyArrayOutput {
+	return o
+}
+
+func (o PublicKeysPublicKeyArrayOutput) ToPublicKeysPublicKeyArrayOutputWithContext(ctx context.Context) PublicKeysPublicKeyArrayOutput {
+	return o
+}
+
+func (o PublicKeysPublicKeyArrayOutput) Index(i pulumi.IntInput) PublicKeysPublicKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PublicKeysPublicKey {
+		return vs[0].([]PublicKeysPublicKey)[vs[1].(int)]
+	}).(PublicKeysPublicKeyOutput)
+}
+
+type ReEncryptsCiphertextInfo struct {
+	// The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+}
+
+// ReEncryptsCiphertextInfoInput is an input type that accepts ReEncryptsCiphertextInfoArgs and ReEncryptsCiphertextInfoOutput values.
+// You can construct a concrete instance of `ReEncryptsCiphertextInfoInput` via:
+//
+//	ReEncryptsCiphertextInfoArgs{...}
+type ReEncryptsCiphertextInfoInput interface {
+	pulumi.Input
+
+	ToReEncryptsCiphertextInfoOutput() ReEncryptsCiphertextInfoOutput
+	ToReEncryptsCiphertextInfoOutputWithContext(context.Context) ReEncryptsCiphertextInfoOutput
+}
+
+type ReEncryptsCiphertextInfoArgs struct {
+	// The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+}
+
+func (ReEncryptsCiphertextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (i ReEncryptsCiphertextInfoArgs) ToReEncryptsCiphertextInfoOutput() ReEncryptsCiphertextInfoOutput {
+	return i.ToReEncryptsCiphertextInfoOutputWithContext(context.Background())
+}
+
+func (i ReEncryptsCiphertextInfoArgs) ToReEncryptsCiphertextInfoOutputWithContext(ctx context.Context) ReEncryptsCiphertextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReEncryptsCiphertextInfoOutput)
+}
+
+// ReEncryptsCiphertextInfoArrayInput is an input type that accepts ReEncryptsCiphertextInfoArray and ReEncryptsCiphertextInfoArrayOutput values.
+// You can construct a concrete instance of `ReEncryptsCiphertextInfoArrayInput` via:
+//
+//	ReEncryptsCiphertextInfoArray{ ReEncryptsCiphertextInfoArgs{...} }
+type ReEncryptsCiphertextInfoArrayInput interface {
+	pulumi.Input
+
+	ToReEncryptsCiphertextInfoArrayOutput() ReEncryptsCiphertextInfoArrayOutput
+	ToReEncryptsCiphertextInfoArrayOutputWithContext(context.Context) ReEncryptsCiphertextInfoArrayOutput
+}
+
+type ReEncryptsCiphertextInfoArray []ReEncryptsCiphertextInfoInput
+
+func (ReEncryptsCiphertextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (i ReEncryptsCiphertextInfoArray) ToReEncryptsCiphertextInfoArrayOutput() ReEncryptsCiphertextInfoArrayOutput {
+	return i.ToReEncryptsCiphertextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i ReEncryptsCiphertextInfoArray) ToReEncryptsCiphertextInfoArrayOutputWithContext(ctx context.Context) ReEncryptsCiphertextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReEncryptsCiphertextInfoArrayOutput)
+}
+
+type ReEncryptsCiphertextInfoOutput struct{ *pulumi.OutputState }
+
+func (ReEncryptsCiphertextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (o ReEncryptsCiphertextInfoOutput) ToReEncryptsCiphertextInfoOutput() ReEncryptsCiphertextInfoOutput {
+	return o
+}
+
+func (o ReEncryptsCiphertextInfoOutput) ToReEncryptsCiphertextInfoOutputWithContext(ctx context.Context) ReEncryptsCiphertextInfoOutput {
+	return o
+}
+
+// The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+func (o ReEncryptsCiphertextInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v ReEncryptsCiphertextInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+type ReEncryptsCiphertextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (ReEncryptsCiphertextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (o ReEncryptsCiphertextInfoArrayOutput) ToReEncryptsCiphertextInfoArrayOutput() ReEncryptsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o ReEncryptsCiphertextInfoArrayOutput) ToReEncryptsCiphertextInfoArrayOutputWithContext(ctx context.Context) ReEncryptsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o ReEncryptsCiphertextInfoArrayOutput) Index(i pulumi.IntInput) ReEncryptsCiphertextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReEncryptsCiphertextInfo {
+		return vs[0].([]ReEncryptsCiphertextInfo)[vs[1].(int)]
+	}).(ReEncryptsCiphertextInfoOutput)
+}
+
+type RegionsRegion struct {
+	// The region ID.
+	RegionId string `pulumi:"regionId"`
+}
+
+// RegionsRegionInput is an input type that accepts RegionsRegionArgs and RegionsRegionOutput values.
+// You can construct a concrete instance of `RegionsRegionInput` via:
+//
+//	RegionsRegionArgs{...}
+type RegionsRegionInput interface {
+	pulumi.Input
+
+	ToRegionsRegionOutput() RegionsRegionOutput
+	ToRegionsRegionOutputWithContext(context.Context) RegionsRegionOutput
+}
+
+type RegionsRegionArgs struct {
+	// The region ID.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+}
+
+func (RegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionsRegion)(nil)).Elem()
+}
+
+func (i RegionsRegionArgs) ToRegionsRegionOutput() RegionsRegionOutput {
+	return i.ToRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i RegionsRegionArgs) ToRegionsRegionOutputWithContext(ctx context.Context) RegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionsRegionOutput)
+}
+
+// RegionsRegionArrayInput is an input type that accepts RegionsRegionArray and RegionsRegionArrayOutput values.
+// You can construct a concrete instance of `RegionsRegionArrayInput` via:
+//
+//	RegionsRegionArray{ RegionsRegionArgs{...} }
+type RegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToRegionsRegionArrayOutput() RegionsRegionArrayOutput
+	ToRegionsRegionArrayOutputWithContext(context.Context) RegionsRegionArrayOutput
+}
+
+type RegionsRegionArray []RegionsRegionInput
+
+func (RegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegionsRegion)(nil)).Elem()
+}
+
+func (i RegionsRegionArray) ToRegionsRegionArrayOutput() RegionsRegionArrayOutput {
+	return i.ToRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i RegionsRegionArray) ToRegionsRegionArrayOutputWithContext(ctx context.Context) RegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionsRegionArrayOutput)
+}
+
+type RegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (RegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionsRegion)(nil)).Elem()
+}
+
+func (o RegionsRegionOutput) ToRegionsRegionOutput() RegionsRegionOutput {
+	return o
+}
+
+func (o RegionsRegionOutput) ToRegionsRegionOutputWithContext(ctx context.Context) RegionsRegionOutput {
+	return o
+}
+
+// The region ID.
+func (o RegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v RegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+type RegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (RegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegionsRegion)(nil)).Elem()
+}
+
+func (o RegionsRegionArrayOutput) ToRegionsRegionArrayOutput() RegionsRegionArrayOutput {
+	return o
+}
+
+func (o RegionsRegionArrayOutput) ToRegionsRegionArrayOutputWithContext(ctx context.Context) RegionsRegionArrayOutput {
+	return o
+}
+
+func (o RegionsRegionArrayOutput) Index(i pulumi.IntInput) RegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegionsRegion {
+		return vs[0].([]RegionsRegion)[vs[1].(int)]
+	}).(RegionsRegionOutput)
+}
+
+type ReplicateKeyTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ReplicateKeyTagInput is an input type that accepts ReplicateKeyTagArgs and ReplicateKeyTagOutput values.
+// You can construct a concrete instance of `ReplicateKeyTagInput` via:
+//
+//	ReplicateKeyTagArgs{...}
+type ReplicateKeyTagInput interface {
+	pulumi.Input
+
+	ToReplicateKeyTagOutput() ReplicateKeyTagOutput
+	ToReplicateKeyTagOutputWithContext(context.Context) ReplicateKeyTagOutput
+}
+
+type ReplicateKeyTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ReplicateKeyTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReplicateKeyTag)(nil)).Elem()
+}
+
+func (i ReplicateKeyTagArgs) ToReplicateKeyTagOutput() ReplicateKeyTagOutput {
+	return i.ToReplicateKeyTagOutputWithContext(context.Background())
+}
+
+func (i ReplicateKeyTagArgs) ToReplicateKeyTagOutputWithContext(ctx context.Context) ReplicateKeyTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicateKeyTagOutput)
+}
+
+// ReplicateKeyTagArrayInput is an input type that accepts ReplicateKeyTagArray and ReplicateKeyTagArrayOutput values.
+// You can construct a concrete instance of `ReplicateKeyTagArrayInput` via:
+//
+//	ReplicateKeyTagArray{ ReplicateKeyTagArgs{...} }
+type ReplicateKeyTagArrayInput interface {
+	pulumi.Input
+
+	ToReplicateKeyTagArrayOutput() ReplicateKeyTagArrayOutput
+	ToReplicateKeyTagArrayOutputWithContext(context.Context) ReplicateKeyTagArrayOutput
+}
+
+type ReplicateKeyTagArray []ReplicateKeyTagInput
+
+func (ReplicateKeyTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReplicateKeyTag)(nil)).Elem()
+}
+
+func (i ReplicateKeyTagArray) ToReplicateKeyTagArrayOutput() ReplicateKeyTagArrayOutput {
+	return i.ToReplicateKeyTagArrayOutputWithContext(context.Background())
+}
+
+func (i ReplicateKeyTagArray) ToReplicateKeyTagArrayOutputWithContext(ctx context.Context) ReplicateKeyTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ReplicateKeyTagArrayOutput)
+}
+
+type ReplicateKeyTagOutput struct{ *pulumi.OutputState }
+
+func (ReplicateKeyTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ReplicateKeyTag)(nil)).Elem()
+}
+
+func (o ReplicateKeyTagOutput) ToReplicateKeyTagOutput() ReplicateKeyTagOutput {
+	return o
+}
+
+func (o ReplicateKeyTagOutput) ToReplicateKeyTagOutputWithContext(ctx context.Context) ReplicateKeyTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ReplicateKeyTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ReplicateKeyTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ReplicateKeyTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ReplicateKeyTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ReplicateKeyTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ReplicateKeyTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ReplicateKeyTag)(nil)).Elem()
+}
+
+func (o ReplicateKeyTagArrayOutput) ToReplicateKeyTagArrayOutput() ReplicateKeyTagArrayOutput {
+	return o
+}
+
+func (o ReplicateKeyTagArrayOutput) ToReplicateKeyTagArrayOutputWithContext(ctx context.Context) ReplicateKeyTagArrayOutput {
+	return o
+}
+
+func (o ReplicateKeyTagArrayOutput) Index(i pulumi.IntInput) ReplicateKeyTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReplicateKeyTag {
+		return vs[0].([]ReplicateKeyTag)[vs[1].(int)]
+	}).(ReplicateKeyTagOutput)
+}
+
+type SecretVersionsSecretVersion struct {
+	// The creation time of secret version.
+	CreationDate int `pulumi:"creationDate"`
+	// The version ID of secret value.
+	VersionId string `pulumi:"versionId"`
+	// The version stage of secret value.
+	VersionStage string `pulumi:"versionStage"`
+}
+
+// SecretVersionsSecretVersionInput is an input type that accepts SecretVersionsSecretVersionArgs and SecretVersionsSecretVersionOutput values.
+// You can construct a concrete instance of `SecretVersionsSecretVersionInput` via:
+//
+//	SecretVersionsSecretVersionArgs{...}
+type SecretVersionsSecretVersionInput interface {
+	pulumi.Input
+
+	ToSecretVersionsSecretVersionOutput() SecretVersionsSecretVersionOutput
+	ToSecretVersionsSecretVersionOutputWithContext(context.Context) SecretVersionsSecretVersionOutput
+}
+
+type SecretVersionsSecretVersionArgs struct {
+	// The creation time of secret version.
+	CreationDate pulumi.IntInput `pulumi:"creationDate"`
+	// The version ID of secret value.
+	VersionId pulumi.StringInput `pulumi:"versionId"`
+	// The version stage of secret value.
+	VersionStage pulumi.StringInput `pulumi:"versionStage"`
+}
+
+func (SecretVersionsSecretVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (i SecretVersionsSecretVersionArgs) ToSecretVersionsSecretVersionOutput() SecretVersionsSecretVersionOutput {
+	return i.ToSecretVersionsSecretVersionOutputWithContext(context.Background())
+}
+
+func (i SecretVersionsSecretVersionArgs) ToSecretVersionsSecretVersionOutputWithContext(ctx context.Context) SecretVersionsSecretVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionsSecretVersionOutput)
+}
+
+// SecretVersionsSecretVersionArrayInput is an input type that accepts SecretVersionsSecretVersionArray and SecretVersionsSecretVersionArrayOutput values.
+// You can construct a concrete instance of `SecretVersionsSecretVersionArrayInput` via:
+//
+//	SecretVersionsSecretVersionArray{ SecretVersionsSecretVersionArgs{...} }
+type SecretVersionsSecretVersionArrayInput interface {
+	pulumi.Input
+
+	ToSecretVersionsSecretVersionArrayOutput() SecretVersionsSecretVersionArrayOutput
+	ToSecretVersionsSecretVersionArrayOutputWithContext(context.Context) SecretVersionsSecretVersionArrayOutput
+}
+
+type SecretVersionsSecretVersionArray []SecretVersionsSecretVersionInput
+
+func (SecretVersionsSecretVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (i SecretVersionsSecretVersionArray) ToSecretVersionsSecretVersionArrayOutput() SecretVersionsSecretVersionArrayOutput {
+	return i.ToSecretVersionsSecretVersionArrayOutputWithContext(context.Background())
+}
+
+func (i SecretVersionsSecretVersionArray) ToSecretVersionsSecretVersionArrayOutputWithContext(ctx context.Context) SecretVersionsSecretVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionsSecretVersionArrayOutput)
+}
+
+type SecretVersionsSecretVersionOutput struct{ *pulumi.OutputState }
+
+func (SecretVersionsSecretVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (o SecretVersionsSecretVersionOutput) ToSecretVersionsSecretVersionOutput() SecretVersionsSecretVersionOutput {
+	return o
+}
+
+func (o SecretVersionsSecretVersionOutput) ToSecretVersionsSecretVersionOutputWithContext(ctx context.Context) SecretVersionsSecretVersionOutput {
+	return o
+}
+
+// The creation time of secret version.
+func (o SecretVersionsSecretVersionOutput) CreationDate() pulumi.IntOutput {
+	return o.ApplyT(func(v SecretVersionsSecretVersion) int { return v.CreationDate }).(pulumi.IntOutput)
+}
+
+// The version ID of secret value.
+func (o SecretVersionsSecretVersionOutput) VersionId() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretVersionsSecretVersion) string { return v.VersionId }).(pulumi.StringOutput)
+}
+
+// The version stage of secret value.
+func (o SecretVersionsSecretVersionOutput) VersionStage() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretVersionsSecretVersion) string { return v.VersionStage }).(pulumi.StringOutput)
+}
+
+type SecretVersionsSecretVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretVersionsSecretVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (o SecretVersionsSecretVersionArrayOutput) ToSecretVersionsSecretVersionArrayOutput() SecretVersionsSecretVersionArrayOutput {
+	return o
+}
+
+func (o SecretVersionsSecretVersionArrayOutput) ToSecretVersionsSecretVersionArrayOutputWithContext(ctx context.Context) SecretVersionsSecretVersionArrayOutput {
+	return o
+}
+
+func (o SecretVersionsSecretVersionArrayOutput) Index(i pulumi.IntInput) SecretVersionsSecretVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretVersionsSecretVersion {
+		return vs[0].([]SecretVersionsSecretVersion)[vs[1].(int)]
+	}).(SecretVersionsSecretVersionOutput)
+}
+
 type SecretsSecret struct {
 	// The date when the keyring was created.
 	CreationDate int `pulumi:"creationDate"`
@@ -1450,6 +3119,8 @@ type SecretsSecret struct {
 	LastRotationTime string `pulumi:"lastRotationTime"`
 	// Indicates whether the secret is hosted.
 	Managed bool `pulumi:"managed"`
+	// The cloud service that owns the secret.
+	OwningService string `pulumi:"owningService"`
 	// The name of the project to which the secret belongs.
 	ProjectName string `pulumi:"projectName"`
 	// The interval at which automatic rotation is performed.
@@ -1500,6 +3171,8 @@ type SecretsSecretArgs struct {
 	LastRotationTime pulumi.StringInput `pulumi:"lastRotationTime"`
 	// Indicates whether the secret is hosted.
 	Managed pulumi.BoolInput `pulumi:"managed"`
+	// The cloud service that owns the secret.
+	OwningService pulumi.StringInput `pulumi:"owningService"`
 	// The name of the project to which the secret belongs.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The interval at which automatic rotation is performed.
@@ -1610,6 +3283,11 @@ func (o SecretsSecretOutput) Managed() pulumi.BoolOutput {
 	return o.ApplyT(func(v SecretsSecret) bool { return v.Managed }).(pulumi.BoolOutput)
 }
 
+// The cloud service that owns the secret.
+func (o SecretsSecretOutput) OwningService() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsSecret) string { return v.OwningService }).(pulumi.StringOutput)
+}
+
 // The name of the project to which the secret belongs.
 func (o SecretsSecretOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsSecret) string { return v.ProjectName }).(pulumi.StringOutput)
@@ -1683,6 +3361,730 @@ func (o SecretsSecretArrayOutput) Index(i pulumi.IntInput) SecretsSecretOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsSecret {
 		return vs[0].([]SecretsSecret)[vs[1].(int)]
 	}).(SecretsSecretOutput)
+}
+
+type GetAsymmetricCiphertextsCiphertextInfo struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+}
+
+// GetAsymmetricCiphertextsCiphertextInfoInput is an input type that accepts GetAsymmetricCiphertextsCiphertextInfoArgs and GetAsymmetricCiphertextsCiphertextInfoOutput values.
+// You can construct a concrete instance of `GetAsymmetricCiphertextsCiphertextInfoInput` via:
+//
+//	GetAsymmetricCiphertextsCiphertextInfoArgs{...}
+type GetAsymmetricCiphertextsCiphertextInfoInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricCiphertextsCiphertextInfoOutput() GetAsymmetricCiphertextsCiphertextInfoOutput
+	ToGetAsymmetricCiphertextsCiphertextInfoOutputWithContext(context.Context) GetAsymmetricCiphertextsCiphertextInfoOutput
+}
+
+type GetAsymmetricCiphertextsCiphertextInfoArgs struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+}
+
+func (GetAsymmetricCiphertextsCiphertextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricCiphertextsCiphertextInfoArgs) ToGetAsymmetricCiphertextsCiphertextInfoOutput() GetAsymmetricCiphertextsCiphertextInfoOutput {
+	return i.ToGetAsymmetricCiphertextsCiphertextInfoOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricCiphertextsCiphertextInfoArgs) ToGetAsymmetricCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) GetAsymmetricCiphertextsCiphertextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricCiphertextsCiphertextInfoOutput)
+}
+
+// GetAsymmetricCiphertextsCiphertextInfoArrayInput is an input type that accepts GetAsymmetricCiphertextsCiphertextInfoArray and GetAsymmetricCiphertextsCiphertextInfoArrayOutput values.
+// You can construct a concrete instance of `GetAsymmetricCiphertextsCiphertextInfoArrayInput` via:
+//
+//	GetAsymmetricCiphertextsCiphertextInfoArray{ GetAsymmetricCiphertextsCiphertextInfoArgs{...} }
+type GetAsymmetricCiphertextsCiphertextInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricCiphertextsCiphertextInfoArrayOutput() GetAsymmetricCiphertextsCiphertextInfoArrayOutput
+	ToGetAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(context.Context) GetAsymmetricCiphertextsCiphertextInfoArrayOutput
+}
+
+type GetAsymmetricCiphertextsCiphertextInfoArray []GetAsymmetricCiphertextsCiphertextInfoInput
+
+func (GetAsymmetricCiphertextsCiphertextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricCiphertextsCiphertextInfoArray) ToGetAsymmetricCiphertextsCiphertextInfoArrayOutput() GetAsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return i.ToGetAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricCiphertextsCiphertextInfoArray) ToGetAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricCiphertextsCiphertextInfoArrayOutput)
+}
+
+type GetAsymmetricCiphertextsCiphertextInfoOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricCiphertextsCiphertextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricCiphertextsCiphertextInfoOutput) ToGetAsymmetricCiphertextsCiphertextInfoOutput() GetAsymmetricCiphertextsCiphertextInfoOutput {
+	return o
+}
+
+func (o GetAsymmetricCiphertextsCiphertextInfoOutput) ToGetAsymmetricCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) GetAsymmetricCiphertextsCiphertextInfoOutput {
+	return o
+}
+
+// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+func (o GetAsymmetricCiphertextsCiphertextInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAsymmetricCiphertextsCiphertextInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+type GetAsymmetricCiphertextsCiphertextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricCiphertextsCiphertextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricCiphertextsCiphertextInfoArrayOutput) ToGetAsymmetricCiphertextsCiphertextInfoArrayOutput() GetAsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricCiphertextsCiphertextInfoArrayOutput) ToGetAsymmetricCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricCiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricCiphertextsCiphertextInfoArrayOutput) Index(i pulumi.IntInput) GetAsymmetricCiphertextsCiphertextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAsymmetricCiphertextsCiphertextInfo {
+		return vs[0].([]GetAsymmetricCiphertextsCiphertextInfo)[vs[1].(int)]
+	}).(GetAsymmetricCiphertextsCiphertextInfoOutput)
+}
+
+type GetAsymmetricPlaintextsPlaintextInfo struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext string `pulumi:"plaintext"`
+}
+
+// GetAsymmetricPlaintextsPlaintextInfoInput is an input type that accepts GetAsymmetricPlaintextsPlaintextInfoArgs and GetAsymmetricPlaintextsPlaintextInfoOutput values.
+// You can construct a concrete instance of `GetAsymmetricPlaintextsPlaintextInfoInput` via:
+//
+//	GetAsymmetricPlaintextsPlaintextInfoArgs{...}
+type GetAsymmetricPlaintextsPlaintextInfoInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricPlaintextsPlaintextInfoOutput() GetAsymmetricPlaintextsPlaintextInfoOutput
+	ToGetAsymmetricPlaintextsPlaintextInfoOutputWithContext(context.Context) GetAsymmetricPlaintextsPlaintextInfoOutput
+}
+
+type GetAsymmetricPlaintextsPlaintextInfoArgs struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (GetAsymmetricPlaintextsPlaintextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricPlaintextsPlaintextInfoArgs) ToGetAsymmetricPlaintextsPlaintextInfoOutput() GetAsymmetricPlaintextsPlaintextInfoOutput {
+	return i.ToGetAsymmetricPlaintextsPlaintextInfoOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricPlaintextsPlaintextInfoArgs) ToGetAsymmetricPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) GetAsymmetricPlaintextsPlaintextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricPlaintextsPlaintextInfoOutput)
+}
+
+// GetAsymmetricPlaintextsPlaintextInfoArrayInput is an input type that accepts GetAsymmetricPlaintextsPlaintextInfoArray and GetAsymmetricPlaintextsPlaintextInfoArrayOutput values.
+// You can construct a concrete instance of `GetAsymmetricPlaintextsPlaintextInfoArrayInput` via:
+//
+//	GetAsymmetricPlaintextsPlaintextInfoArray{ GetAsymmetricPlaintextsPlaintextInfoArgs{...} }
+type GetAsymmetricPlaintextsPlaintextInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricPlaintextsPlaintextInfoArrayOutput() GetAsymmetricPlaintextsPlaintextInfoArrayOutput
+	ToGetAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(context.Context) GetAsymmetricPlaintextsPlaintextInfoArrayOutput
+}
+
+type GetAsymmetricPlaintextsPlaintextInfoArray []GetAsymmetricPlaintextsPlaintextInfoInput
+
+func (GetAsymmetricPlaintextsPlaintextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricPlaintextsPlaintextInfoArray) ToGetAsymmetricPlaintextsPlaintextInfoArrayOutput() GetAsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return i.ToGetAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricPlaintextsPlaintextInfoArray) ToGetAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricPlaintextsPlaintextInfoArrayOutput)
+}
+
+type GetAsymmetricPlaintextsPlaintextInfoOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricPlaintextsPlaintextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricPlaintextsPlaintextInfoOutput) ToGetAsymmetricPlaintextsPlaintextInfoOutput() GetAsymmetricPlaintextsPlaintextInfoOutput {
+	return o
+}
+
+func (o GetAsymmetricPlaintextsPlaintextInfoOutput) ToGetAsymmetricPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) GetAsymmetricPlaintextsPlaintextInfoOutput {
+	return o
+}
+
+// The decrypted plaintext, Base64 encoded.
+func (o GetAsymmetricPlaintextsPlaintextInfoOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAsymmetricPlaintextsPlaintextInfo) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+type GetAsymmetricPlaintextsPlaintextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricPlaintextsPlaintextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricPlaintextsPlaintextInfoArrayOutput) ToGetAsymmetricPlaintextsPlaintextInfoArrayOutput() GetAsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricPlaintextsPlaintextInfoArrayOutput) ToGetAsymmetricPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricPlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricPlaintextsPlaintextInfoArrayOutput) Index(i pulumi.IntInput) GetAsymmetricPlaintextsPlaintextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAsymmetricPlaintextsPlaintextInfo {
+		return vs[0].([]GetAsymmetricPlaintextsPlaintextInfo)[vs[1].(int)]
+	}).(GetAsymmetricPlaintextsPlaintextInfoOutput)
+}
+
+type GetAsymmetricSignaturesSignatureInfo struct {
+	// The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+	Signature string `pulumi:"signature"`
+}
+
+// GetAsymmetricSignaturesSignatureInfoInput is an input type that accepts GetAsymmetricSignaturesSignatureInfoArgs and GetAsymmetricSignaturesSignatureInfoOutput values.
+// You can construct a concrete instance of `GetAsymmetricSignaturesSignatureInfoInput` via:
+//
+//	GetAsymmetricSignaturesSignatureInfoArgs{...}
+type GetAsymmetricSignaturesSignatureInfoInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricSignaturesSignatureInfoOutput() GetAsymmetricSignaturesSignatureInfoOutput
+	ToGetAsymmetricSignaturesSignatureInfoOutputWithContext(context.Context) GetAsymmetricSignaturesSignatureInfoOutput
+}
+
+type GetAsymmetricSignaturesSignatureInfoArgs struct {
+	// The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+	Signature pulumi.StringInput `pulumi:"signature"`
+}
+
+func (GetAsymmetricSignaturesSignatureInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricSignaturesSignatureInfoArgs) ToGetAsymmetricSignaturesSignatureInfoOutput() GetAsymmetricSignaturesSignatureInfoOutput {
+	return i.ToGetAsymmetricSignaturesSignatureInfoOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricSignaturesSignatureInfoArgs) ToGetAsymmetricSignaturesSignatureInfoOutputWithContext(ctx context.Context) GetAsymmetricSignaturesSignatureInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricSignaturesSignatureInfoOutput)
+}
+
+// GetAsymmetricSignaturesSignatureInfoArrayInput is an input type that accepts GetAsymmetricSignaturesSignatureInfoArray and GetAsymmetricSignaturesSignatureInfoArrayOutput values.
+// You can construct a concrete instance of `GetAsymmetricSignaturesSignatureInfoArrayInput` via:
+//
+//	GetAsymmetricSignaturesSignatureInfoArray{ GetAsymmetricSignaturesSignatureInfoArgs{...} }
+type GetAsymmetricSignaturesSignatureInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricSignaturesSignatureInfoArrayOutput() GetAsymmetricSignaturesSignatureInfoArrayOutput
+	ToGetAsymmetricSignaturesSignatureInfoArrayOutputWithContext(context.Context) GetAsymmetricSignaturesSignatureInfoArrayOutput
+}
+
+type GetAsymmetricSignaturesSignatureInfoArray []GetAsymmetricSignaturesSignatureInfoInput
+
+func (GetAsymmetricSignaturesSignatureInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricSignaturesSignatureInfoArray) ToGetAsymmetricSignaturesSignatureInfoArrayOutput() GetAsymmetricSignaturesSignatureInfoArrayOutput {
+	return i.ToGetAsymmetricSignaturesSignatureInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricSignaturesSignatureInfoArray) ToGetAsymmetricSignaturesSignatureInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricSignaturesSignatureInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricSignaturesSignatureInfoArrayOutput)
+}
+
+type GetAsymmetricSignaturesSignatureInfoOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricSignaturesSignatureInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricSignaturesSignatureInfoOutput) ToGetAsymmetricSignaturesSignatureInfoOutput() GetAsymmetricSignaturesSignatureInfoOutput {
+	return o
+}
+
+func (o GetAsymmetricSignaturesSignatureInfoOutput) ToGetAsymmetricSignaturesSignatureInfoOutputWithContext(ctx context.Context) GetAsymmetricSignaturesSignatureInfoOutput {
+	return o
+}
+
+// The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+func (o GetAsymmetricSignaturesSignatureInfoOutput) Signature() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAsymmetricSignaturesSignatureInfo) string { return v.Signature }).(pulumi.StringOutput)
+}
+
+type GetAsymmetricSignaturesSignatureInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricSignaturesSignatureInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricSignaturesSignatureInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricSignaturesSignatureInfoArrayOutput) ToGetAsymmetricSignaturesSignatureInfoArrayOutput() GetAsymmetricSignaturesSignatureInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricSignaturesSignatureInfoArrayOutput) ToGetAsymmetricSignaturesSignatureInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricSignaturesSignatureInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricSignaturesSignatureInfoArrayOutput) Index(i pulumi.IntInput) GetAsymmetricSignaturesSignatureInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAsymmetricSignaturesSignatureInfo {
+		return vs[0].([]GetAsymmetricSignaturesSignatureInfo)[vs[1].(int)]
+	}).(GetAsymmetricSignaturesSignatureInfoOutput)
+}
+
+type GetAsymmetricVerificationsVerificationInfo struct {
+	// Whether the signature is valid.
+	SignatureValid bool `pulumi:"signatureValid"`
+}
+
+// GetAsymmetricVerificationsVerificationInfoInput is an input type that accepts GetAsymmetricVerificationsVerificationInfoArgs and GetAsymmetricVerificationsVerificationInfoOutput values.
+// You can construct a concrete instance of `GetAsymmetricVerificationsVerificationInfoInput` via:
+//
+//	GetAsymmetricVerificationsVerificationInfoArgs{...}
+type GetAsymmetricVerificationsVerificationInfoInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricVerificationsVerificationInfoOutput() GetAsymmetricVerificationsVerificationInfoOutput
+	ToGetAsymmetricVerificationsVerificationInfoOutputWithContext(context.Context) GetAsymmetricVerificationsVerificationInfoOutput
+}
+
+type GetAsymmetricVerificationsVerificationInfoArgs struct {
+	// Whether the signature is valid.
+	SignatureValid pulumi.BoolInput `pulumi:"signatureValid"`
+}
+
+func (GetAsymmetricVerificationsVerificationInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricVerificationsVerificationInfoArgs) ToGetAsymmetricVerificationsVerificationInfoOutput() GetAsymmetricVerificationsVerificationInfoOutput {
+	return i.ToGetAsymmetricVerificationsVerificationInfoOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricVerificationsVerificationInfoArgs) ToGetAsymmetricVerificationsVerificationInfoOutputWithContext(ctx context.Context) GetAsymmetricVerificationsVerificationInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricVerificationsVerificationInfoOutput)
+}
+
+// GetAsymmetricVerificationsVerificationInfoArrayInput is an input type that accepts GetAsymmetricVerificationsVerificationInfoArray and GetAsymmetricVerificationsVerificationInfoArrayOutput values.
+// You can construct a concrete instance of `GetAsymmetricVerificationsVerificationInfoArrayInput` via:
+//
+//	GetAsymmetricVerificationsVerificationInfoArray{ GetAsymmetricVerificationsVerificationInfoArgs{...} }
+type GetAsymmetricVerificationsVerificationInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetAsymmetricVerificationsVerificationInfoArrayOutput() GetAsymmetricVerificationsVerificationInfoArrayOutput
+	ToGetAsymmetricVerificationsVerificationInfoArrayOutputWithContext(context.Context) GetAsymmetricVerificationsVerificationInfoArrayOutput
+}
+
+type GetAsymmetricVerificationsVerificationInfoArray []GetAsymmetricVerificationsVerificationInfoInput
+
+func (GetAsymmetricVerificationsVerificationInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (i GetAsymmetricVerificationsVerificationInfoArray) ToGetAsymmetricVerificationsVerificationInfoArrayOutput() GetAsymmetricVerificationsVerificationInfoArrayOutput {
+	return i.ToGetAsymmetricVerificationsVerificationInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetAsymmetricVerificationsVerificationInfoArray) ToGetAsymmetricVerificationsVerificationInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricVerificationsVerificationInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAsymmetricVerificationsVerificationInfoArrayOutput)
+}
+
+type GetAsymmetricVerificationsVerificationInfoOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricVerificationsVerificationInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricVerificationsVerificationInfoOutput) ToGetAsymmetricVerificationsVerificationInfoOutput() GetAsymmetricVerificationsVerificationInfoOutput {
+	return o
+}
+
+func (o GetAsymmetricVerificationsVerificationInfoOutput) ToGetAsymmetricVerificationsVerificationInfoOutputWithContext(ctx context.Context) GetAsymmetricVerificationsVerificationInfoOutput {
+	return o
+}
+
+// Whether the signature is valid.
+func (o GetAsymmetricVerificationsVerificationInfoOutput) SignatureValid() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAsymmetricVerificationsVerificationInfo) bool { return v.SignatureValid }).(pulumi.BoolOutput)
+}
+
+type GetAsymmetricVerificationsVerificationInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAsymmetricVerificationsVerificationInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAsymmetricVerificationsVerificationInfo)(nil)).Elem()
+}
+
+func (o GetAsymmetricVerificationsVerificationInfoArrayOutput) ToGetAsymmetricVerificationsVerificationInfoArrayOutput() GetAsymmetricVerificationsVerificationInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricVerificationsVerificationInfoArrayOutput) ToGetAsymmetricVerificationsVerificationInfoArrayOutputWithContext(ctx context.Context) GetAsymmetricVerificationsVerificationInfoArrayOutput {
+	return o
+}
+
+func (o GetAsymmetricVerificationsVerificationInfoArrayOutput) Index(i pulumi.IntInput) GetAsymmetricVerificationsVerificationInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAsymmetricVerificationsVerificationInfo {
+		return vs[0].([]GetAsymmetricVerificationsVerificationInfo)[vs[1].(int)]
+	}).(GetAsymmetricVerificationsVerificationInfoOutput)
+}
+
+type GetCiphertextsCiphertextInfo struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+}
+
+// GetCiphertextsCiphertextInfoInput is an input type that accepts GetCiphertextsCiphertextInfoArgs and GetCiphertextsCiphertextInfoOutput values.
+// You can construct a concrete instance of `GetCiphertextsCiphertextInfoInput` via:
+//
+//	GetCiphertextsCiphertextInfoArgs{...}
+type GetCiphertextsCiphertextInfoInput interface {
+	pulumi.Input
+
+	ToGetCiphertextsCiphertextInfoOutput() GetCiphertextsCiphertextInfoOutput
+	ToGetCiphertextsCiphertextInfoOutputWithContext(context.Context) GetCiphertextsCiphertextInfoOutput
+}
+
+type GetCiphertextsCiphertextInfoArgs struct {
+	// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+}
+
+func (GetCiphertextsCiphertextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i GetCiphertextsCiphertextInfoArgs) ToGetCiphertextsCiphertextInfoOutput() GetCiphertextsCiphertextInfoOutput {
+	return i.ToGetCiphertextsCiphertextInfoOutputWithContext(context.Background())
+}
+
+func (i GetCiphertextsCiphertextInfoArgs) ToGetCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) GetCiphertextsCiphertextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCiphertextsCiphertextInfoOutput)
+}
+
+// GetCiphertextsCiphertextInfoArrayInput is an input type that accepts GetCiphertextsCiphertextInfoArray and GetCiphertextsCiphertextInfoArrayOutput values.
+// You can construct a concrete instance of `GetCiphertextsCiphertextInfoArrayInput` via:
+//
+//	GetCiphertextsCiphertextInfoArray{ GetCiphertextsCiphertextInfoArgs{...} }
+type GetCiphertextsCiphertextInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetCiphertextsCiphertextInfoArrayOutput() GetCiphertextsCiphertextInfoArrayOutput
+	ToGetCiphertextsCiphertextInfoArrayOutputWithContext(context.Context) GetCiphertextsCiphertextInfoArrayOutput
+}
+
+type GetCiphertextsCiphertextInfoArray []GetCiphertextsCiphertextInfoInput
+
+func (GetCiphertextsCiphertextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (i GetCiphertextsCiphertextInfoArray) ToGetCiphertextsCiphertextInfoArrayOutput() GetCiphertextsCiphertextInfoArrayOutput {
+	return i.ToGetCiphertextsCiphertextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetCiphertextsCiphertextInfoArray) ToGetCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) GetCiphertextsCiphertextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCiphertextsCiphertextInfoArrayOutput)
+}
+
+type GetCiphertextsCiphertextInfoOutput struct{ *pulumi.OutputState }
+
+func (GetCiphertextsCiphertextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o GetCiphertextsCiphertextInfoOutput) ToGetCiphertextsCiphertextInfoOutput() GetCiphertextsCiphertextInfoOutput {
+	return o
+}
+
+func (o GetCiphertextsCiphertextInfoOutput) ToGetCiphertextsCiphertextInfoOutputWithContext(ctx context.Context) GetCiphertextsCiphertextInfoOutput {
+	return o
+}
+
+// The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+func (o GetCiphertextsCiphertextInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCiphertextsCiphertextInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+type GetCiphertextsCiphertextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCiphertextsCiphertextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCiphertextsCiphertextInfo)(nil)).Elem()
+}
+
+func (o GetCiphertextsCiphertextInfoArrayOutput) ToGetCiphertextsCiphertextInfoArrayOutput() GetCiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o GetCiphertextsCiphertextInfoArrayOutput) ToGetCiphertextsCiphertextInfoArrayOutputWithContext(ctx context.Context) GetCiphertextsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o GetCiphertextsCiphertextInfoArrayOutput) Index(i pulumi.IntInput) GetCiphertextsCiphertextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCiphertextsCiphertextInfo {
+		return vs[0].([]GetCiphertextsCiphertextInfo)[vs[1].(int)]
+	}).(GetCiphertextsCiphertextInfoOutput)
+}
+
+type GetDataKeysDataKeyInfo struct {
+	// The generated ciphertext, Base64 encoded.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+	// The generated plaintext, Base64 encoded.
+	Plaintext string `pulumi:"plaintext"`
+}
+
+// GetDataKeysDataKeyInfoInput is an input type that accepts GetDataKeysDataKeyInfoArgs and GetDataKeysDataKeyInfoOutput values.
+// You can construct a concrete instance of `GetDataKeysDataKeyInfoInput` via:
+//
+//	GetDataKeysDataKeyInfoArgs{...}
+type GetDataKeysDataKeyInfoInput interface {
+	pulumi.Input
+
+	ToGetDataKeysDataKeyInfoOutput() GetDataKeysDataKeyInfoOutput
+	ToGetDataKeysDataKeyInfoOutputWithContext(context.Context) GetDataKeysDataKeyInfoOutput
+}
+
+type GetDataKeysDataKeyInfoArgs struct {
+	// The generated ciphertext, Base64 encoded.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+	// The generated plaintext, Base64 encoded.
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (GetDataKeysDataKeyInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (i GetDataKeysDataKeyInfoArgs) ToGetDataKeysDataKeyInfoOutput() GetDataKeysDataKeyInfoOutput {
+	return i.ToGetDataKeysDataKeyInfoOutputWithContext(context.Background())
+}
+
+func (i GetDataKeysDataKeyInfoArgs) ToGetDataKeysDataKeyInfoOutputWithContext(ctx context.Context) GetDataKeysDataKeyInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataKeysDataKeyInfoOutput)
+}
+
+// GetDataKeysDataKeyInfoArrayInput is an input type that accepts GetDataKeysDataKeyInfoArray and GetDataKeysDataKeyInfoArrayOutput values.
+// You can construct a concrete instance of `GetDataKeysDataKeyInfoArrayInput` via:
+//
+//	GetDataKeysDataKeyInfoArray{ GetDataKeysDataKeyInfoArgs{...} }
+type GetDataKeysDataKeyInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetDataKeysDataKeyInfoArrayOutput() GetDataKeysDataKeyInfoArrayOutput
+	ToGetDataKeysDataKeyInfoArrayOutputWithContext(context.Context) GetDataKeysDataKeyInfoArrayOutput
+}
+
+type GetDataKeysDataKeyInfoArray []GetDataKeysDataKeyInfoInput
+
+func (GetDataKeysDataKeyInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (i GetDataKeysDataKeyInfoArray) ToGetDataKeysDataKeyInfoArrayOutput() GetDataKeysDataKeyInfoArrayOutput {
+	return i.ToGetDataKeysDataKeyInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataKeysDataKeyInfoArray) ToGetDataKeysDataKeyInfoArrayOutputWithContext(ctx context.Context) GetDataKeysDataKeyInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataKeysDataKeyInfoArrayOutput)
+}
+
+type GetDataKeysDataKeyInfoOutput struct{ *pulumi.OutputState }
+
+func (GetDataKeysDataKeyInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (o GetDataKeysDataKeyInfoOutput) ToGetDataKeysDataKeyInfoOutput() GetDataKeysDataKeyInfoOutput {
+	return o
+}
+
+func (o GetDataKeysDataKeyInfoOutput) ToGetDataKeysDataKeyInfoOutputWithContext(ctx context.Context) GetDataKeysDataKeyInfoOutput {
+	return o
+}
+
+// The generated ciphertext, Base64 encoded.
+func (o GetDataKeysDataKeyInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataKeysDataKeyInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+// The generated plaintext, Base64 encoded.
+func (o GetDataKeysDataKeyInfoOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataKeysDataKeyInfo) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+type GetDataKeysDataKeyInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataKeysDataKeyInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataKeysDataKeyInfo)(nil)).Elem()
+}
+
+func (o GetDataKeysDataKeyInfoArrayOutput) ToGetDataKeysDataKeyInfoArrayOutput() GetDataKeysDataKeyInfoArrayOutput {
+	return o
+}
+
+func (o GetDataKeysDataKeyInfoArrayOutput) ToGetDataKeysDataKeyInfoArrayOutputWithContext(ctx context.Context) GetDataKeysDataKeyInfoArrayOutput {
+	return o
+}
+
+func (o GetDataKeysDataKeyInfoArrayOutput) Index(i pulumi.IntInput) GetDataKeysDataKeyInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataKeysDataKeyInfo {
+		return vs[0].([]GetDataKeysDataKeyInfo)[vs[1].(int)]
+	}).(GetDataKeysDataKeyInfoOutput)
+}
+
+type GetKeyMaterialsImportParameter struct {
+	// The import token, Base64 encoded.
+	ImportToken string `pulumi:"importToken"`
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// The id of keyring.
+	KeyringId string `pulumi:"keyringId"`
+	// The public key used to encrypt key materials, Base64 encoded.
+	PublicKey string `pulumi:"publicKey"`
+	// The token expire time.
+	TokenExpireTime string `pulumi:"tokenExpireTime"`
+}
+
+// GetKeyMaterialsImportParameterInput is an input type that accepts GetKeyMaterialsImportParameterArgs and GetKeyMaterialsImportParameterOutput values.
+// You can construct a concrete instance of `GetKeyMaterialsImportParameterInput` via:
+//
+//	GetKeyMaterialsImportParameterArgs{...}
+type GetKeyMaterialsImportParameterInput interface {
+	pulumi.Input
+
+	ToGetKeyMaterialsImportParameterOutput() GetKeyMaterialsImportParameterOutput
+	ToGetKeyMaterialsImportParameterOutputWithContext(context.Context) GetKeyMaterialsImportParameterOutput
+}
+
+type GetKeyMaterialsImportParameterArgs struct {
+	// The import token, Base64 encoded.
+	ImportToken pulumi.StringInput `pulumi:"importToken"`
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// The id of keyring.
+	KeyringId pulumi.StringInput `pulumi:"keyringId"`
+	// The public key used to encrypt key materials, Base64 encoded.
+	PublicKey pulumi.StringInput `pulumi:"publicKey"`
+	// The token expire time.
+	TokenExpireTime pulumi.StringInput `pulumi:"tokenExpireTime"`
+}
+
+func (GetKeyMaterialsImportParameterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (i GetKeyMaterialsImportParameterArgs) ToGetKeyMaterialsImportParameterOutput() GetKeyMaterialsImportParameterOutput {
+	return i.ToGetKeyMaterialsImportParameterOutputWithContext(context.Background())
+}
+
+func (i GetKeyMaterialsImportParameterArgs) ToGetKeyMaterialsImportParameterOutputWithContext(ctx context.Context) GetKeyMaterialsImportParameterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyMaterialsImportParameterOutput)
+}
+
+// GetKeyMaterialsImportParameterArrayInput is an input type that accepts GetKeyMaterialsImportParameterArray and GetKeyMaterialsImportParameterArrayOutput values.
+// You can construct a concrete instance of `GetKeyMaterialsImportParameterArrayInput` via:
+//
+//	GetKeyMaterialsImportParameterArray{ GetKeyMaterialsImportParameterArgs{...} }
+type GetKeyMaterialsImportParameterArrayInput interface {
+	pulumi.Input
+
+	ToGetKeyMaterialsImportParameterArrayOutput() GetKeyMaterialsImportParameterArrayOutput
+	ToGetKeyMaterialsImportParameterArrayOutputWithContext(context.Context) GetKeyMaterialsImportParameterArrayOutput
+}
+
+type GetKeyMaterialsImportParameterArray []GetKeyMaterialsImportParameterInput
+
+func (GetKeyMaterialsImportParameterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (i GetKeyMaterialsImportParameterArray) ToGetKeyMaterialsImportParameterArrayOutput() GetKeyMaterialsImportParameterArrayOutput {
+	return i.ToGetKeyMaterialsImportParameterArrayOutputWithContext(context.Background())
+}
+
+func (i GetKeyMaterialsImportParameterArray) ToGetKeyMaterialsImportParameterArrayOutputWithContext(ctx context.Context) GetKeyMaterialsImportParameterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyMaterialsImportParameterArrayOutput)
+}
+
+type GetKeyMaterialsImportParameterOutput struct{ *pulumi.OutputState }
+
+func (GetKeyMaterialsImportParameterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (o GetKeyMaterialsImportParameterOutput) ToGetKeyMaterialsImportParameterOutput() GetKeyMaterialsImportParameterOutput {
+	return o
+}
+
+func (o GetKeyMaterialsImportParameterOutput) ToGetKeyMaterialsImportParameterOutputWithContext(ctx context.Context) GetKeyMaterialsImportParameterOutput {
+	return o
+}
+
+// The import token, Base64 encoded.
+func (o GetKeyMaterialsImportParameterOutput) ImportToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyMaterialsImportParameter) string { return v.ImportToken }).(pulumi.StringOutput)
+}
+
+// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o GetKeyMaterialsImportParameterOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyMaterialsImportParameter) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// The id of keyring.
+func (o GetKeyMaterialsImportParameterOutput) KeyringId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyMaterialsImportParameter) string { return v.KeyringId }).(pulumi.StringOutput)
+}
+
+// The public key used to encrypt key materials, Base64 encoded.
+func (o GetKeyMaterialsImportParameterOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyMaterialsImportParameter) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// The token expire time.
+func (o GetKeyMaterialsImportParameterOutput) TokenExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyMaterialsImportParameter) string { return v.TokenExpireTime }).(pulumi.StringOutput)
+}
+
+type GetKeyMaterialsImportParameterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKeyMaterialsImportParameterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyMaterialsImportParameter)(nil)).Elem()
+}
+
+func (o GetKeyMaterialsImportParameterArrayOutput) ToGetKeyMaterialsImportParameterArrayOutput() GetKeyMaterialsImportParameterArrayOutput {
+	return o
+}
+
+func (o GetKeyMaterialsImportParameterArrayOutput) ToGetKeyMaterialsImportParameterArrayOutputWithContext(ctx context.Context) GetKeyMaterialsImportParameterArrayOutput {
+	return o
+}
+
+func (o GetKeyMaterialsImportParameterArrayOutput) Index(i pulumi.IntInput) GetKeyMaterialsImportParameterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKeyMaterialsImportParameter {
+		return vs[0].([]GetKeyMaterialsImportParameter)[vs[1].(int)]
+	}).(GetKeyMaterialsImportParameterOutput)
 }
 
 type GetKeyringsKeyring struct {
@@ -1857,19 +4259,21 @@ func (o GetKeyringsKeyringArrayOutput) Index(i pulumi.IntInput) GetKeyringsKeyri
 type GetKeysKey struct {
 	// The date when the keyring was created.
 	CreationDate int `pulumi:"creationDate"`
+	// The ID of the custom key store.
+	CustomKeyStoreId string `pulumi:"customKeyStoreId"`
 	// The description of the key.
 	Description string `pulumi:"description"`
-	// The unique ID of the key.
+	// The ID of the external key store.
 	Id string `pulumi:"id"`
 	// The time when the key material will expire.
 	KeyMaterialExpireTime string `pulumi:"keyMaterialExpireTime"`
 	// The name of the key.
 	KeyName string `pulumi:"keyName"`
-	// The algorithm used in the key.
+	// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 	KeySpec string `pulumi:"keySpec"`
 	// The state of the key.
 	KeyState string `pulumi:"keyState"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 	KeyUsage string `pulumi:"keyUsage"`
 	// The last time the key was rotated.
 	LastRotationTime string `pulumi:"lastRotationTime"`
@@ -1877,9 +4281,9 @@ type GetKeysKey struct {
 	MultiRegion bool `pulumi:"multiRegion"`
 	// The configuration of Multi-region key.
 	MultiRegionConfiguration GetKeysKeyMultiRegionConfiguration `pulumi:"multiRegionConfiguration"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External.
 	Origin string `pulumi:"origin"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM.
 	ProtectionLevel string `pulumi:"protectionLevel"`
 	// The rotation configuration of the key.
 	RotationState string `pulumi:"rotationState"`
@@ -1893,6 +4297,8 @@ type GetKeysKey struct {
 	Trn string `pulumi:"trn"`
 	// The date when the keyring was updated.
 	UpdateDate int `pulumi:"updateDate"`
+	// The configuration of the external key store.
+	XksKeyConfigurations []GetKeysKeyXksKeyConfiguration `pulumi:"xksKeyConfigurations"`
 }
 
 // GetKeysKeyInput is an input type that accepts GetKeysKeyArgs and GetKeysKeyOutput values.
@@ -1909,19 +4315,21 @@ type GetKeysKeyInput interface {
 type GetKeysKeyArgs struct {
 	// The date when the keyring was created.
 	CreationDate pulumi.IntInput `pulumi:"creationDate"`
+	// The ID of the custom key store.
+	CustomKeyStoreId pulumi.StringInput `pulumi:"customKeyStoreId"`
 	// The description of the key.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The unique ID of the key.
+	// The ID of the external key store.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The time when the key material will expire.
 	KeyMaterialExpireTime pulumi.StringInput `pulumi:"keyMaterialExpireTime"`
 	// The name of the key.
 	KeyName pulumi.StringInput `pulumi:"keyName"`
-	// The algorithm used in the key.
+	// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 	KeySpec pulumi.StringInput `pulumi:"keySpec"`
 	// The state of the key.
 	KeyState pulumi.StringInput `pulumi:"keyState"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 	KeyUsage pulumi.StringInput `pulumi:"keyUsage"`
 	// The last time the key was rotated.
 	LastRotationTime pulumi.StringInput `pulumi:"lastRotationTime"`
@@ -1929,9 +4337,9 @@ type GetKeysKeyArgs struct {
 	MultiRegion pulumi.BoolInput `pulumi:"multiRegion"`
 	// The configuration of Multi-region key.
 	MultiRegionConfiguration GetKeysKeyMultiRegionConfigurationInput `pulumi:"multiRegionConfiguration"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External.
 	Origin pulumi.StringInput `pulumi:"origin"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM.
 	ProtectionLevel pulumi.StringInput `pulumi:"protectionLevel"`
 	// The rotation configuration of the key.
 	RotationState pulumi.StringInput `pulumi:"rotationState"`
@@ -1945,6 +4353,8 @@ type GetKeysKeyArgs struct {
 	Trn pulumi.StringInput `pulumi:"trn"`
 	// The date when the keyring was updated.
 	UpdateDate pulumi.IntInput `pulumi:"updateDate"`
+	// The configuration of the external key store.
+	XksKeyConfigurations GetKeysKeyXksKeyConfigurationArrayInput `pulumi:"xksKeyConfigurations"`
 }
 
 func (GetKeysKeyArgs) ElementType() reflect.Type {
@@ -2003,12 +4413,17 @@ func (o GetKeysKeyOutput) CreationDate() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKeysKey) int { return v.CreationDate }).(pulumi.IntOutput)
 }
 
+// The ID of the custom key store.
+func (o GetKeysKeyOutput) CustomKeyStoreId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeysKey) string { return v.CustomKeyStoreId }).(pulumi.StringOutput)
+}
+
 // The description of the key.
 func (o GetKeysKeyOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The unique ID of the key.
+// The ID of the external key store.
 func (o GetKeysKeyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -2023,7 +4438,7 @@ func (o GetKeysKeyOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.KeyName }).(pulumi.StringOutput)
 }
 
-// The algorithm used in the key.
+// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 func (o GetKeysKeyOutput) KeySpec() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.KeySpec }).(pulumi.StringOutput)
 }
@@ -2033,7 +4448,7 @@ func (o GetKeysKeyOutput) KeyState() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.KeyState }).(pulumi.StringOutput)
 }
 
-// The usage of the key.
+// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 func (o GetKeysKeyOutput) KeyUsage() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.KeyUsage }).(pulumi.StringOutput)
 }
@@ -2053,12 +4468,12 @@ func (o GetKeysKeyOutput) MultiRegionConfiguration() GetKeysKeyMultiRegionConfig
 	return o.ApplyT(func(v GetKeysKey) GetKeysKeyMultiRegionConfiguration { return v.MultiRegionConfiguration }).(GetKeysKeyMultiRegionConfigurationOutput)
 }
 
-// The origin of the key.
+// The origin of the key. Valid values: CloudKMS, External.
 func (o GetKeysKeyOutput) Origin() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.Origin }).(pulumi.StringOutput)
 }
 
-// The protection level of the key.
+// The protection level of the key. Valid values: SOFTWARE, HSM.
 func (o GetKeysKeyOutput) ProtectionLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeysKey) string { return v.ProtectionLevel }).(pulumi.StringOutput)
 }
@@ -2091,6 +4506,11 @@ func (o GetKeysKeyOutput) Trn() pulumi.StringOutput {
 // The date when the keyring was updated.
 func (o GetKeysKeyOutput) UpdateDate() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKeysKey) int { return v.UpdateDate }).(pulumi.IntOutput)
+}
+
+// The configuration of the external key store.
+func (o GetKeysKeyOutput) XksKeyConfigurations() GetKeysKeyXksKeyConfigurationArrayOutput {
+	return o.ApplyT(func(v GetKeysKey) []GetKeysKeyXksKeyConfiguration { return v.XksKeyConfigurations }).(GetKeysKeyXksKeyConfigurationArrayOutput)
 }
 
 type GetKeysKeyArrayOutput struct{ *pulumi.OutputState }
@@ -2460,6 +4880,103 @@ func (o GetKeysKeyTagArrayOutput) Index(i pulumi.IntInput) GetKeysKeyTagOutput {
 	}).(GetKeysKeyTagOutput)
 }
 
+type GetKeysKeyXksKeyConfiguration struct {
+	// The ID of the external key store.
+	Id string `pulumi:"id"`
+}
+
+// GetKeysKeyXksKeyConfigurationInput is an input type that accepts GetKeysKeyXksKeyConfigurationArgs and GetKeysKeyXksKeyConfigurationOutput values.
+// You can construct a concrete instance of `GetKeysKeyXksKeyConfigurationInput` via:
+//
+//	GetKeysKeyXksKeyConfigurationArgs{...}
+type GetKeysKeyXksKeyConfigurationInput interface {
+	pulumi.Input
+
+	ToGetKeysKeyXksKeyConfigurationOutput() GetKeysKeyXksKeyConfigurationOutput
+	ToGetKeysKeyXksKeyConfigurationOutputWithContext(context.Context) GetKeysKeyXksKeyConfigurationOutput
+}
+
+type GetKeysKeyXksKeyConfigurationArgs struct {
+	// The ID of the external key store.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetKeysKeyXksKeyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (i GetKeysKeyXksKeyConfigurationArgs) ToGetKeysKeyXksKeyConfigurationOutput() GetKeysKeyXksKeyConfigurationOutput {
+	return i.ToGetKeysKeyXksKeyConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetKeysKeyXksKeyConfigurationArgs) ToGetKeysKeyXksKeyConfigurationOutputWithContext(ctx context.Context) GetKeysKeyXksKeyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeysKeyXksKeyConfigurationOutput)
+}
+
+// GetKeysKeyXksKeyConfigurationArrayInput is an input type that accepts GetKeysKeyXksKeyConfigurationArray and GetKeysKeyXksKeyConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetKeysKeyXksKeyConfigurationArrayInput` via:
+//
+//	GetKeysKeyXksKeyConfigurationArray{ GetKeysKeyXksKeyConfigurationArgs{...} }
+type GetKeysKeyXksKeyConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetKeysKeyXksKeyConfigurationArrayOutput() GetKeysKeyXksKeyConfigurationArrayOutput
+	ToGetKeysKeyXksKeyConfigurationArrayOutputWithContext(context.Context) GetKeysKeyXksKeyConfigurationArrayOutput
+}
+
+type GetKeysKeyXksKeyConfigurationArray []GetKeysKeyXksKeyConfigurationInput
+
+func (GetKeysKeyXksKeyConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (i GetKeysKeyXksKeyConfigurationArray) ToGetKeysKeyXksKeyConfigurationArrayOutput() GetKeysKeyXksKeyConfigurationArrayOutput {
+	return i.ToGetKeysKeyXksKeyConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetKeysKeyXksKeyConfigurationArray) ToGetKeysKeyXksKeyConfigurationArrayOutputWithContext(ctx context.Context) GetKeysKeyXksKeyConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeysKeyXksKeyConfigurationArrayOutput)
+}
+
+type GetKeysKeyXksKeyConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetKeysKeyXksKeyConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (o GetKeysKeyXksKeyConfigurationOutput) ToGetKeysKeyXksKeyConfigurationOutput() GetKeysKeyXksKeyConfigurationOutput {
+	return o
+}
+
+func (o GetKeysKeyXksKeyConfigurationOutput) ToGetKeysKeyXksKeyConfigurationOutputWithContext(ctx context.Context) GetKeysKeyXksKeyConfigurationOutput {
+	return o
+}
+
+// The ID of the external key store.
+func (o GetKeysKeyXksKeyConfigurationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeysKeyXksKeyConfiguration) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetKeysKeyXksKeyConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKeysKeyXksKeyConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeysKeyXksKeyConfiguration)(nil)).Elem()
+}
+
+func (o GetKeysKeyXksKeyConfigurationArrayOutput) ToGetKeysKeyXksKeyConfigurationArrayOutput() GetKeysKeyXksKeyConfigurationArrayOutput {
+	return o
+}
+
+func (o GetKeysKeyXksKeyConfigurationArrayOutput) ToGetKeysKeyXksKeyConfigurationArrayOutputWithContext(ctx context.Context) GetKeysKeyXksKeyConfigurationArrayOutput {
+	return o
+}
+
+func (o GetKeysKeyXksKeyConfigurationArrayOutput) Index(i pulumi.IntInput) GetKeysKeyXksKeyConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKeysKeyXksKeyConfiguration {
+		return vs[0].([]GetKeysKeyXksKeyConfiguration)[vs[1].(int)]
+	}).(GetKeysKeyXksKeyConfigurationOutput)
+}
+
 type GetKeysTag struct {
 	// The key of the tag.
 	Key string `pulumi:"key"`
@@ -2566,6 +5083,730 @@ func (o GetKeysTagArrayOutput) Index(i pulumi.IntInput) GetKeysTagOutput {
 	}).(GetKeysTagOutput)
 }
 
+type GetMacVerificationsMacVerificationInfo struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// Whether the MAC is valid.
+	MacValid bool `pulumi:"macValid"`
+}
+
+// GetMacVerificationsMacVerificationInfoInput is an input type that accepts GetMacVerificationsMacVerificationInfoArgs and GetMacVerificationsMacVerificationInfoOutput values.
+// You can construct a concrete instance of `GetMacVerificationsMacVerificationInfoInput` via:
+//
+//	GetMacVerificationsMacVerificationInfoArgs{...}
+type GetMacVerificationsMacVerificationInfoInput interface {
+	pulumi.Input
+
+	ToGetMacVerificationsMacVerificationInfoOutput() GetMacVerificationsMacVerificationInfoOutput
+	ToGetMacVerificationsMacVerificationInfoOutputWithContext(context.Context) GetMacVerificationsMacVerificationInfoOutput
+}
+
+type GetMacVerificationsMacVerificationInfoArgs struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// Whether the MAC is valid.
+	MacValid pulumi.BoolInput `pulumi:"macValid"`
+}
+
+func (GetMacVerificationsMacVerificationInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (i GetMacVerificationsMacVerificationInfoArgs) ToGetMacVerificationsMacVerificationInfoOutput() GetMacVerificationsMacVerificationInfoOutput {
+	return i.ToGetMacVerificationsMacVerificationInfoOutputWithContext(context.Background())
+}
+
+func (i GetMacVerificationsMacVerificationInfoArgs) ToGetMacVerificationsMacVerificationInfoOutputWithContext(ctx context.Context) GetMacVerificationsMacVerificationInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMacVerificationsMacVerificationInfoOutput)
+}
+
+// GetMacVerificationsMacVerificationInfoArrayInput is an input type that accepts GetMacVerificationsMacVerificationInfoArray and GetMacVerificationsMacVerificationInfoArrayOutput values.
+// You can construct a concrete instance of `GetMacVerificationsMacVerificationInfoArrayInput` via:
+//
+//	GetMacVerificationsMacVerificationInfoArray{ GetMacVerificationsMacVerificationInfoArgs{...} }
+type GetMacVerificationsMacVerificationInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetMacVerificationsMacVerificationInfoArrayOutput() GetMacVerificationsMacVerificationInfoArrayOutput
+	ToGetMacVerificationsMacVerificationInfoArrayOutputWithContext(context.Context) GetMacVerificationsMacVerificationInfoArrayOutput
+}
+
+type GetMacVerificationsMacVerificationInfoArray []GetMacVerificationsMacVerificationInfoInput
+
+func (GetMacVerificationsMacVerificationInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (i GetMacVerificationsMacVerificationInfoArray) ToGetMacVerificationsMacVerificationInfoArrayOutput() GetMacVerificationsMacVerificationInfoArrayOutput {
+	return i.ToGetMacVerificationsMacVerificationInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetMacVerificationsMacVerificationInfoArray) ToGetMacVerificationsMacVerificationInfoArrayOutputWithContext(ctx context.Context) GetMacVerificationsMacVerificationInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMacVerificationsMacVerificationInfoArrayOutput)
+}
+
+type GetMacVerificationsMacVerificationInfoOutput struct{ *pulumi.OutputState }
+
+func (GetMacVerificationsMacVerificationInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (o GetMacVerificationsMacVerificationInfoOutput) ToGetMacVerificationsMacVerificationInfoOutput() GetMacVerificationsMacVerificationInfoOutput {
+	return o
+}
+
+func (o GetMacVerificationsMacVerificationInfoOutput) ToGetMacVerificationsMacVerificationInfoOutputWithContext(ctx context.Context) GetMacVerificationsMacVerificationInfoOutput {
+	return o
+}
+
+// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o GetMacVerificationsMacVerificationInfoOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMacVerificationsMacVerificationInfo) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// Whether the MAC is valid.
+func (o GetMacVerificationsMacVerificationInfoOutput) MacValid() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMacVerificationsMacVerificationInfo) bool { return v.MacValid }).(pulumi.BoolOutput)
+}
+
+type GetMacVerificationsMacVerificationInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMacVerificationsMacVerificationInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMacVerificationsMacVerificationInfo)(nil)).Elem()
+}
+
+func (o GetMacVerificationsMacVerificationInfoArrayOutput) ToGetMacVerificationsMacVerificationInfoArrayOutput() GetMacVerificationsMacVerificationInfoArrayOutput {
+	return o
+}
+
+func (o GetMacVerificationsMacVerificationInfoArrayOutput) ToGetMacVerificationsMacVerificationInfoArrayOutputWithContext(ctx context.Context) GetMacVerificationsMacVerificationInfoArrayOutput {
+	return o
+}
+
+func (o GetMacVerificationsMacVerificationInfoArrayOutput) Index(i pulumi.IntInput) GetMacVerificationsMacVerificationInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMacVerificationsMacVerificationInfo {
+		return vs[0].([]GetMacVerificationsMacVerificationInfo)[vs[1].(int)]
+	}).(GetMacVerificationsMacVerificationInfoOutput)
+}
+
+type GetMacsMacInfo struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// The MAC result, Base64 encoded.
+	Mac string `pulumi:"mac"`
+}
+
+// GetMacsMacInfoInput is an input type that accepts GetMacsMacInfoArgs and GetMacsMacInfoOutput values.
+// You can construct a concrete instance of `GetMacsMacInfoInput` via:
+//
+//	GetMacsMacInfoArgs{...}
+type GetMacsMacInfoInput interface {
+	pulumi.Input
+
+	ToGetMacsMacInfoOutput() GetMacsMacInfoOutput
+	ToGetMacsMacInfoOutputWithContext(context.Context) GetMacsMacInfoOutput
+}
+
+type GetMacsMacInfoArgs struct {
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// The MAC result, Base64 encoded.
+	Mac pulumi.StringInput `pulumi:"mac"`
+}
+
+func (GetMacsMacInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMacsMacInfo)(nil)).Elem()
+}
+
+func (i GetMacsMacInfoArgs) ToGetMacsMacInfoOutput() GetMacsMacInfoOutput {
+	return i.ToGetMacsMacInfoOutputWithContext(context.Background())
+}
+
+func (i GetMacsMacInfoArgs) ToGetMacsMacInfoOutputWithContext(ctx context.Context) GetMacsMacInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMacsMacInfoOutput)
+}
+
+// GetMacsMacInfoArrayInput is an input type that accepts GetMacsMacInfoArray and GetMacsMacInfoArrayOutput values.
+// You can construct a concrete instance of `GetMacsMacInfoArrayInput` via:
+//
+//	GetMacsMacInfoArray{ GetMacsMacInfoArgs{...} }
+type GetMacsMacInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetMacsMacInfoArrayOutput() GetMacsMacInfoArrayOutput
+	ToGetMacsMacInfoArrayOutputWithContext(context.Context) GetMacsMacInfoArrayOutput
+}
+
+type GetMacsMacInfoArray []GetMacsMacInfoInput
+
+func (GetMacsMacInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMacsMacInfo)(nil)).Elem()
+}
+
+func (i GetMacsMacInfoArray) ToGetMacsMacInfoArrayOutput() GetMacsMacInfoArrayOutput {
+	return i.ToGetMacsMacInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetMacsMacInfoArray) ToGetMacsMacInfoArrayOutputWithContext(ctx context.Context) GetMacsMacInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMacsMacInfoArrayOutput)
+}
+
+type GetMacsMacInfoOutput struct{ *pulumi.OutputState }
+
+func (GetMacsMacInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMacsMacInfo)(nil)).Elem()
+}
+
+func (o GetMacsMacInfoOutput) ToGetMacsMacInfoOutput() GetMacsMacInfoOutput {
+	return o
+}
+
+func (o GetMacsMacInfoOutput) ToGetMacsMacInfoOutputWithContext(ctx context.Context) GetMacsMacInfoOutput {
+	return o
+}
+
+// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o GetMacsMacInfoOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMacsMacInfo) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// The MAC result, Base64 encoded.
+func (o GetMacsMacInfoOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMacsMacInfo) string { return v.Mac }).(pulumi.StringOutput)
+}
+
+type GetMacsMacInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMacsMacInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMacsMacInfo)(nil)).Elem()
+}
+
+func (o GetMacsMacInfoArrayOutput) ToGetMacsMacInfoArrayOutput() GetMacsMacInfoArrayOutput {
+	return o
+}
+
+func (o GetMacsMacInfoArrayOutput) ToGetMacsMacInfoArrayOutputWithContext(ctx context.Context) GetMacsMacInfoArrayOutput {
+	return o
+}
+
+func (o GetMacsMacInfoArrayOutput) Index(i pulumi.IntInput) GetMacsMacInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMacsMacInfo {
+		return vs[0].([]GetMacsMacInfo)[vs[1].(int)]
+	}).(GetMacsMacInfoOutput)
+}
+
+type GetPlaintextsPlaintextInfo struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext string `pulumi:"plaintext"`
+}
+
+// GetPlaintextsPlaintextInfoInput is an input type that accepts GetPlaintextsPlaintextInfoArgs and GetPlaintextsPlaintextInfoOutput values.
+// You can construct a concrete instance of `GetPlaintextsPlaintextInfoInput` via:
+//
+//	GetPlaintextsPlaintextInfoArgs{...}
+type GetPlaintextsPlaintextInfoInput interface {
+	pulumi.Input
+
+	ToGetPlaintextsPlaintextInfoOutput() GetPlaintextsPlaintextInfoOutput
+	ToGetPlaintextsPlaintextInfoOutputWithContext(context.Context) GetPlaintextsPlaintextInfoOutput
+}
+
+type GetPlaintextsPlaintextInfoArgs struct {
+	// The decrypted plaintext, Base64 encoded.
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (GetPlaintextsPlaintextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i GetPlaintextsPlaintextInfoArgs) ToGetPlaintextsPlaintextInfoOutput() GetPlaintextsPlaintextInfoOutput {
+	return i.ToGetPlaintextsPlaintextInfoOutputWithContext(context.Background())
+}
+
+func (i GetPlaintextsPlaintextInfoArgs) ToGetPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) GetPlaintextsPlaintextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPlaintextsPlaintextInfoOutput)
+}
+
+// GetPlaintextsPlaintextInfoArrayInput is an input type that accepts GetPlaintextsPlaintextInfoArray and GetPlaintextsPlaintextInfoArrayOutput values.
+// You can construct a concrete instance of `GetPlaintextsPlaintextInfoArrayInput` via:
+//
+//	GetPlaintextsPlaintextInfoArray{ GetPlaintextsPlaintextInfoArgs{...} }
+type GetPlaintextsPlaintextInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetPlaintextsPlaintextInfoArrayOutput() GetPlaintextsPlaintextInfoArrayOutput
+	ToGetPlaintextsPlaintextInfoArrayOutputWithContext(context.Context) GetPlaintextsPlaintextInfoArrayOutput
+}
+
+type GetPlaintextsPlaintextInfoArray []GetPlaintextsPlaintextInfoInput
+
+func (GetPlaintextsPlaintextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (i GetPlaintextsPlaintextInfoArray) ToGetPlaintextsPlaintextInfoArrayOutput() GetPlaintextsPlaintextInfoArrayOutput {
+	return i.ToGetPlaintextsPlaintextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetPlaintextsPlaintextInfoArray) ToGetPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) GetPlaintextsPlaintextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPlaintextsPlaintextInfoArrayOutput)
+}
+
+type GetPlaintextsPlaintextInfoOutput struct{ *pulumi.OutputState }
+
+func (GetPlaintextsPlaintextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o GetPlaintextsPlaintextInfoOutput) ToGetPlaintextsPlaintextInfoOutput() GetPlaintextsPlaintextInfoOutput {
+	return o
+}
+
+func (o GetPlaintextsPlaintextInfoOutput) ToGetPlaintextsPlaintextInfoOutputWithContext(ctx context.Context) GetPlaintextsPlaintextInfoOutput {
+	return o
+}
+
+// The decrypted plaintext, Base64 encoded.
+func (o GetPlaintextsPlaintextInfoOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPlaintextsPlaintextInfo) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+type GetPlaintextsPlaintextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPlaintextsPlaintextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPlaintextsPlaintextInfo)(nil)).Elem()
+}
+
+func (o GetPlaintextsPlaintextInfoArrayOutput) ToGetPlaintextsPlaintextInfoArrayOutput() GetPlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o GetPlaintextsPlaintextInfoArrayOutput) ToGetPlaintextsPlaintextInfoArrayOutputWithContext(ctx context.Context) GetPlaintextsPlaintextInfoArrayOutput {
+	return o
+}
+
+func (o GetPlaintextsPlaintextInfoArrayOutput) Index(i pulumi.IntInput) GetPlaintextsPlaintextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPlaintextsPlaintextInfo {
+		return vs[0].([]GetPlaintextsPlaintextInfo)[vs[1].(int)]
+	}).(GetPlaintextsPlaintextInfoOutput)
+}
+
+type GetPublicKeysPublicKey struct {
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId string `pulumi:"keyId"`
+	// The public key in PEM format.
+	PublicKey string `pulumi:"publicKey"`
+}
+
+// GetPublicKeysPublicKeyInput is an input type that accepts GetPublicKeysPublicKeyArgs and GetPublicKeysPublicKeyOutput values.
+// You can construct a concrete instance of `GetPublicKeysPublicKeyInput` via:
+//
+//	GetPublicKeysPublicKeyArgs{...}
+type GetPublicKeysPublicKeyInput interface {
+	pulumi.Input
+
+	ToGetPublicKeysPublicKeyOutput() GetPublicKeysPublicKeyOutput
+	ToGetPublicKeysPublicKeyOutputWithContext(context.Context) GetPublicKeysPublicKeyOutput
+}
+
+type GetPublicKeysPublicKeyArgs struct {
+	// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// The public key in PEM format.
+	PublicKey pulumi.StringInput `pulumi:"publicKey"`
+}
+
+func (GetPublicKeysPublicKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPublicKeysPublicKey)(nil)).Elem()
+}
+
+func (i GetPublicKeysPublicKeyArgs) ToGetPublicKeysPublicKeyOutput() GetPublicKeysPublicKeyOutput {
+	return i.ToGetPublicKeysPublicKeyOutputWithContext(context.Background())
+}
+
+func (i GetPublicKeysPublicKeyArgs) ToGetPublicKeysPublicKeyOutputWithContext(ctx context.Context) GetPublicKeysPublicKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPublicKeysPublicKeyOutput)
+}
+
+// GetPublicKeysPublicKeyArrayInput is an input type that accepts GetPublicKeysPublicKeyArray and GetPublicKeysPublicKeyArrayOutput values.
+// You can construct a concrete instance of `GetPublicKeysPublicKeyArrayInput` via:
+//
+//	GetPublicKeysPublicKeyArray{ GetPublicKeysPublicKeyArgs{...} }
+type GetPublicKeysPublicKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetPublicKeysPublicKeyArrayOutput() GetPublicKeysPublicKeyArrayOutput
+	ToGetPublicKeysPublicKeyArrayOutputWithContext(context.Context) GetPublicKeysPublicKeyArrayOutput
+}
+
+type GetPublicKeysPublicKeyArray []GetPublicKeysPublicKeyInput
+
+func (GetPublicKeysPublicKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPublicKeysPublicKey)(nil)).Elem()
+}
+
+func (i GetPublicKeysPublicKeyArray) ToGetPublicKeysPublicKeyArrayOutput() GetPublicKeysPublicKeyArrayOutput {
+	return i.ToGetPublicKeysPublicKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetPublicKeysPublicKeyArray) ToGetPublicKeysPublicKeyArrayOutputWithContext(ctx context.Context) GetPublicKeysPublicKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPublicKeysPublicKeyArrayOutput)
+}
+
+type GetPublicKeysPublicKeyOutput struct{ *pulumi.OutputState }
+
+func (GetPublicKeysPublicKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPublicKeysPublicKey)(nil)).Elem()
+}
+
+func (o GetPublicKeysPublicKeyOutput) ToGetPublicKeysPublicKeyOutput() GetPublicKeysPublicKeyOutput {
+	return o
+}
+
+func (o GetPublicKeysPublicKeyOutput) ToGetPublicKeysPublicKeyOutputWithContext(ctx context.Context) GetPublicKeysPublicKeyOutput {
+	return o
+}
+
+// The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+func (o GetPublicKeysPublicKeyOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPublicKeysPublicKey) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// The public key in PEM format.
+func (o GetPublicKeysPublicKeyOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPublicKeysPublicKey) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+type GetPublicKeysPublicKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPublicKeysPublicKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPublicKeysPublicKey)(nil)).Elem()
+}
+
+func (o GetPublicKeysPublicKeyArrayOutput) ToGetPublicKeysPublicKeyArrayOutput() GetPublicKeysPublicKeyArrayOutput {
+	return o
+}
+
+func (o GetPublicKeysPublicKeyArrayOutput) ToGetPublicKeysPublicKeyArrayOutputWithContext(ctx context.Context) GetPublicKeysPublicKeyArrayOutput {
+	return o
+}
+
+func (o GetPublicKeysPublicKeyArrayOutput) Index(i pulumi.IntInput) GetPublicKeysPublicKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPublicKeysPublicKey {
+		return vs[0].([]GetPublicKeysPublicKey)[vs[1].(int)]
+	}).(GetPublicKeysPublicKeyOutput)
+}
+
+type GetReEncryptsCiphertextInfo struct {
+	// The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+	CiphertextBlob string `pulumi:"ciphertextBlob"`
+}
+
+// GetReEncryptsCiphertextInfoInput is an input type that accepts GetReEncryptsCiphertextInfoArgs and GetReEncryptsCiphertextInfoOutput values.
+// You can construct a concrete instance of `GetReEncryptsCiphertextInfoInput` via:
+//
+//	GetReEncryptsCiphertextInfoArgs{...}
+type GetReEncryptsCiphertextInfoInput interface {
+	pulumi.Input
+
+	ToGetReEncryptsCiphertextInfoOutput() GetReEncryptsCiphertextInfoOutput
+	ToGetReEncryptsCiphertextInfoOutputWithContext(context.Context) GetReEncryptsCiphertextInfoOutput
+}
+
+type GetReEncryptsCiphertextInfoArgs struct {
+	// The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+	CiphertextBlob pulumi.StringInput `pulumi:"ciphertextBlob"`
+}
+
+func (GetReEncryptsCiphertextInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (i GetReEncryptsCiphertextInfoArgs) ToGetReEncryptsCiphertextInfoOutput() GetReEncryptsCiphertextInfoOutput {
+	return i.ToGetReEncryptsCiphertextInfoOutputWithContext(context.Background())
+}
+
+func (i GetReEncryptsCiphertextInfoArgs) ToGetReEncryptsCiphertextInfoOutputWithContext(ctx context.Context) GetReEncryptsCiphertextInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetReEncryptsCiphertextInfoOutput)
+}
+
+// GetReEncryptsCiphertextInfoArrayInput is an input type that accepts GetReEncryptsCiphertextInfoArray and GetReEncryptsCiphertextInfoArrayOutput values.
+// You can construct a concrete instance of `GetReEncryptsCiphertextInfoArrayInput` via:
+//
+//	GetReEncryptsCiphertextInfoArray{ GetReEncryptsCiphertextInfoArgs{...} }
+type GetReEncryptsCiphertextInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetReEncryptsCiphertextInfoArrayOutput() GetReEncryptsCiphertextInfoArrayOutput
+	ToGetReEncryptsCiphertextInfoArrayOutputWithContext(context.Context) GetReEncryptsCiphertextInfoArrayOutput
+}
+
+type GetReEncryptsCiphertextInfoArray []GetReEncryptsCiphertextInfoInput
+
+func (GetReEncryptsCiphertextInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (i GetReEncryptsCiphertextInfoArray) ToGetReEncryptsCiphertextInfoArrayOutput() GetReEncryptsCiphertextInfoArrayOutput {
+	return i.ToGetReEncryptsCiphertextInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetReEncryptsCiphertextInfoArray) ToGetReEncryptsCiphertextInfoArrayOutputWithContext(ctx context.Context) GetReEncryptsCiphertextInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetReEncryptsCiphertextInfoArrayOutput)
+}
+
+type GetReEncryptsCiphertextInfoOutput struct{ *pulumi.OutputState }
+
+func (GetReEncryptsCiphertextInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (o GetReEncryptsCiphertextInfoOutput) ToGetReEncryptsCiphertextInfoOutput() GetReEncryptsCiphertextInfoOutput {
+	return o
+}
+
+func (o GetReEncryptsCiphertextInfoOutput) ToGetReEncryptsCiphertextInfoOutputWithContext(ctx context.Context) GetReEncryptsCiphertextInfoOutput {
+	return o
+}
+
+// The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+func (o GetReEncryptsCiphertextInfoOutput) CiphertextBlob() pulumi.StringOutput {
+	return o.ApplyT(func(v GetReEncryptsCiphertextInfo) string { return v.CiphertextBlob }).(pulumi.StringOutput)
+}
+
+type GetReEncryptsCiphertextInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetReEncryptsCiphertextInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetReEncryptsCiphertextInfo)(nil)).Elem()
+}
+
+func (o GetReEncryptsCiphertextInfoArrayOutput) ToGetReEncryptsCiphertextInfoArrayOutput() GetReEncryptsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o GetReEncryptsCiphertextInfoArrayOutput) ToGetReEncryptsCiphertextInfoArrayOutputWithContext(ctx context.Context) GetReEncryptsCiphertextInfoArrayOutput {
+	return o
+}
+
+func (o GetReEncryptsCiphertextInfoArrayOutput) Index(i pulumi.IntInput) GetReEncryptsCiphertextInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetReEncryptsCiphertextInfo {
+		return vs[0].([]GetReEncryptsCiphertextInfo)[vs[1].(int)]
+	}).(GetReEncryptsCiphertextInfoOutput)
+}
+
+type GetRegionsRegion struct {
+	// The region ID.
+	RegionId string `pulumi:"regionId"`
+}
+
+// GetRegionsRegionInput is an input type that accepts GetRegionsRegionArgs and GetRegionsRegionOutput values.
+// You can construct a concrete instance of `GetRegionsRegionInput` via:
+//
+//	GetRegionsRegionArgs{...}
+type GetRegionsRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionOutput() GetRegionsRegionOutput
+	ToGetRegionsRegionOutputWithContext(context.Context) GetRegionsRegionOutput
+}
+
+type GetRegionsRegionArgs struct {
+	// The region ID.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+}
+
+func (GetRegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return i.ToGetRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArgs) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionOutput)
+}
+
+// GetRegionsRegionArrayInput is an input type that accepts GetRegionsRegionArray and GetRegionsRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionsRegionArrayInput` via:
+//
+//	GetRegionsRegionArray{ GetRegionsRegionArgs{...} }
+type GetRegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput
+	ToGetRegionsRegionArrayOutputWithContext(context.Context) GetRegionsRegionArrayOutput
+}
+
+type GetRegionsRegionArray []GetRegionsRegionInput
+
+func (GetRegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return i.ToGetRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionsRegionArray) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionsRegionArrayOutput)
+}
+
+type GetRegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutput() GetRegionsRegionOutput {
+	return o
+}
+
+func (o GetRegionsRegionOutput) ToGetRegionsRegionOutputWithContext(ctx context.Context) GetRegionsRegionOutput {
+	return o
+}
+
+// The region ID.
+func (o GetRegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+type GetRegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionsRegion)(nil)).Elem()
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutput() GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) ToGetRegionsRegionArrayOutputWithContext(ctx context.Context) GetRegionsRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionsRegionArrayOutput) Index(i pulumi.IntInput) GetRegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionsRegion {
+		return vs[0].([]GetRegionsRegion)[vs[1].(int)]
+	}).(GetRegionsRegionOutput)
+}
+
+type GetSecretVersionsSecretVersion struct {
+	// The creation time of secret version.
+	CreationDate int `pulumi:"creationDate"`
+	// The version ID of secret value.
+	VersionId string `pulumi:"versionId"`
+	// The version stage of secret value.
+	VersionStage string `pulumi:"versionStage"`
+}
+
+// GetSecretVersionsSecretVersionInput is an input type that accepts GetSecretVersionsSecretVersionArgs and GetSecretVersionsSecretVersionOutput values.
+// You can construct a concrete instance of `GetSecretVersionsSecretVersionInput` via:
+//
+//	GetSecretVersionsSecretVersionArgs{...}
+type GetSecretVersionsSecretVersionInput interface {
+	pulumi.Input
+
+	ToGetSecretVersionsSecretVersionOutput() GetSecretVersionsSecretVersionOutput
+	ToGetSecretVersionsSecretVersionOutputWithContext(context.Context) GetSecretVersionsSecretVersionOutput
+}
+
+type GetSecretVersionsSecretVersionArgs struct {
+	// The creation time of secret version.
+	CreationDate pulumi.IntInput `pulumi:"creationDate"`
+	// The version ID of secret value.
+	VersionId pulumi.StringInput `pulumi:"versionId"`
+	// The version stage of secret value.
+	VersionStage pulumi.StringInput `pulumi:"versionStage"`
+}
+
+func (GetSecretVersionsSecretVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (i GetSecretVersionsSecretVersionArgs) ToGetSecretVersionsSecretVersionOutput() GetSecretVersionsSecretVersionOutput {
+	return i.ToGetSecretVersionsSecretVersionOutputWithContext(context.Background())
+}
+
+func (i GetSecretVersionsSecretVersionArgs) ToGetSecretVersionsSecretVersionOutputWithContext(ctx context.Context) GetSecretVersionsSecretVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretVersionsSecretVersionOutput)
+}
+
+// GetSecretVersionsSecretVersionArrayInput is an input type that accepts GetSecretVersionsSecretVersionArray and GetSecretVersionsSecretVersionArrayOutput values.
+// You can construct a concrete instance of `GetSecretVersionsSecretVersionArrayInput` via:
+//
+//	GetSecretVersionsSecretVersionArray{ GetSecretVersionsSecretVersionArgs{...} }
+type GetSecretVersionsSecretVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetSecretVersionsSecretVersionArrayOutput() GetSecretVersionsSecretVersionArrayOutput
+	ToGetSecretVersionsSecretVersionArrayOutputWithContext(context.Context) GetSecretVersionsSecretVersionArrayOutput
+}
+
+type GetSecretVersionsSecretVersionArray []GetSecretVersionsSecretVersionInput
+
+func (GetSecretVersionsSecretVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (i GetSecretVersionsSecretVersionArray) ToGetSecretVersionsSecretVersionArrayOutput() GetSecretVersionsSecretVersionArrayOutput {
+	return i.ToGetSecretVersionsSecretVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetSecretVersionsSecretVersionArray) ToGetSecretVersionsSecretVersionArrayOutputWithContext(ctx context.Context) GetSecretVersionsSecretVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretVersionsSecretVersionArrayOutput)
+}
+
+type GetSecretVersionsSecretVersionOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionsSecretVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (o GetSecretVersionsSecretVersionOutput) ToGetSecretVersionsSecretVersionOutput() GetSecretVersionsSecretVersionOutput {
+	return o
+}
+
+func (o GetSecretVersionsSecretVersionOutput) ToGetSecretVersionsSecretVersionOutputWithContext(ctx context.Context) GetSecretVersionsSecretVersionOutput {
+	return o
+}
+
+// The creation time of secret version.
+func (o GetSecretVersionsSecretVersionOutput) CreationDate() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSecretVersionsSecretVersion) int { return v.CreationDate }).(pulumi.IntOutput)
+}
+
+// The version ID of secret value.
+func (o GetSecretVersionsSecretVersionOutput) VersionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionsSecretVersion) string { return v.VersionId }).(pulumi.StringOutput)
+}
+
+// The version stage of secret value.
+func (o GetSecretVersionsSecretVersionOutput) VersionStage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionsSecretVersion) string { return v.VersionStage }).(pulumi.StringOutput)
+}
+
+type GetSecretVersionsSecretVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionsSecretVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretVersionsSecretVersion)(nil)).Elem()
+}
+
+func (o GetSecretVersionsSecretVersionArrayOutput) ToGetSecretVersionsSecretVersionArrayOutput() GetSecretVersionsSecretVersionArrayOutput {
+	return o
+}
+
+func (o GetSecretVersionsSecretVersionArrayOutput) ToGetSecretVersionsSecretVersionArrayOutputWithContext(ctx context.Context) GetSecretVersionsSecretVersionArrayOutput {
+	return o
+}
+
+func (o GetSecretVersionsSecretVersionArrayOutput) Index(i pulumi.IntInput) GetSecretVersionsSecretVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSecretVersionsSecretVersion {
+		return vs[0].([]GetSecretVersionsSecretVersion)[vs[1].(int)]
+	}).(GetSecretVersionsSecretVersionOutput)
+}
+
 type GetSecretsSecret struct {
 	// The date when the keyring was created.
 	CreationDate int `pulumi:"creationDate"`
@@ -2581,6 +5822,8 @@ type GetSecretsSecret struct {
 	LastRotationTime string `pulumi:"lastRotationTime"`
 	// Indicates whether the secret is hosted.
 	Managed bool `pulumi:"managed"`
+	// The cloud service that owns the secret.
+	OwningService string `pulumi:"owningService"`
 	// The name of the project to which the secret belongs.
 	ProjectName string `pulumi:"projectName"`
 	// The interval at which automatic rotation is performed.
@@ -2631,6 +5874,8 @@ type GetSecretsSecretArgs struct {
 	LastRotationTime pulumi.StringInput `pulumi:"lastRotationTime"`
 	// Indicates whether the secret is hosted.
 	Managed pulumi.BoolInput `pulumi:"managed"`
+	// The cloud service that owns the secret.
+	OwningService pulumi.StringInput `pulumi:"owningService"`
 	// The name of the project to which the secret belongs.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The interval at which automatic rotation is performed.
@@ -2741,6 +5986,11 @@ func (o GetSecretsSecretOutput) Managed() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSecretsSecret) bool { return v.Managed }).(pulumi.BoolOutput)
 }
 
+// The cloud service that owns the secret.
+func (o GetSecretsSecretOutput) OwningService() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretsSecret) string { return v.OwningService }).(pulumi.StringOutput)
+}
+
 // The name of the project to which the secret belongs.
 func (o GetSecretsSecretOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSecretsSecret) string { return v.ProjectName }).(pulumi.StringOutput)
@@ -2817,6 +6067,20 @@ func (o GetSecretsSecretArrayOutput) Index(i pulumi.IntInput) GetSecretsSecretOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricCiphertextsCiphertextInfoInput)(nil)).Elem(), AsymmetricCiphertextsCiphertextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricCiphertextsCiphertextInfoArrayInput)(nil)).Elem(), AsymmetricCiphertextsCiphertextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricPlaintextsPlaintextInfoInput)(nil)).Elem(), AsymmetricPlaintextsPlaintextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricPlaintextsPlaintextInfoArrayInput)(nil)).Elem(), AsymmetricPlaintextsPlaintextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricSignaturesSignatureInfoInput)(nil)).Elem(), AsymmetricSignaturesSignatureInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricSignaturesSignatureInfoArrayInput)(nil)).Elem(), AsymmetricSignaturesSignatureInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricVerificationsVerificationInfoInput)(nil)).Elem(), AsymmetricVerificationsVerificationInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AsymmetricVerificationsVerificationInfoArrayInput)(nil)).Elem(), AsymmetricVerificationsVerificationInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CiphertextsCiphertextInfoInput)(nil)).Elem(), CiphertextsCiphertextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CiphertextsCiphertextInfoArrayInput)(nil)).Elem(), CiphertextsCiphertextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DataKeysDataKeyInfoInput)(nil)).Elem(), DataKeysDataKeyInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DataKeysDataKeyInfoArrayInput)(nil)).Elem(), DataKeysDataKeyInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyMaterialsImportParameterInput)(nil)).Elem(), KeyMaterialsImportParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyMaterialsImportParameterArrayInput)(nil)).Elem(), KeyMaterialsImportParameterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyMultiRegionConfigurationInput)(nil)).Elem(), KeyMultiRegionConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyMultiRegionConfigurationPtrInput)(nil)).Elem(), KeyMultiRegionConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyMultiRegionConfigurationPrimaryKeyInput)(nil)).Elem(), KeyMultiRegionConfigurationPrimaryKeyArgs{})
@@ -2835,10 +6099,42 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysKeyMultiRegionConfigurationReplicaKeyArrayInput)(nil)).Elem(), KeysKeyMultiRegionConfigurationReplicaKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysKeyTagInput)(nil)).Elem(), KeysKeyTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysKeyTagArrayInput)(nil)).Elem(), KeysKeyTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeysKeyXksKeyConfigurationInput)(nil)).Elem(), KeysKeyXksKeyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeysKeyXksKeyConfigurationArrayInput)(nil)).Elem(), KeysKeyXksKeyConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysTagInput)(nil)).Elem(), KeysTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysTagArrayInput)(nil)).Elem(), KeysTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MacVerificationsMacVerificationInfoInput)(nil)).Elem(), MacVerificationsMacVerificationInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MacVerificationsMacVerificationInfoArrayInput)(nil)).Elem(), MacVerificationsMacVerificationInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MacsMacInfoInput)(nil)).Elem(), MacsMacInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MacsMacInfoArrayInput)(nil)).Elem(), MacsMacInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PlaintextsPlaintextInfoInput)(nil)).Elem(), PlaintextsPlaintextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PlaintextsPlaintextInfoArrayInput)(nil)).Elem(), PlaintextsPlaintextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PublicKeysPublicKeyInput)(nil)).Elem(), PublicKeysPublicKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PublicKeysPublicKeyArrayInput)(nil)).Elem(), PublicKeysPublicKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReEncryptsCiphertextInfoInput)(nil)).Elem(), ReEncryptsCiphertextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReEncryptsCiphertextInfoArrayInput)(nil)).Elem(), ReEncryptsCiphertextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionInput)(nil)).Elem(), RegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReplicateKeyTagInput)(nil)).Elem(), ReplicateKeyTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReplicateKeyTagArrayInput)(nil)).Elem(), ReplicateKeyTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretVersionsSecretVersionInput)(nil)).Elem(), SecretVersionsSecretVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretVersionsSecretVersionArrayInput)(nil)).Elem(), SecretVersionsSecretVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsSecretInput)(nil)).Elem(), SecretsSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsSecretArrayInput)(nil)).Elem(), SecretsSecretArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricCiphertextsCiphertextInfoInput)(nil)).Elem(), GetAsymmetricCiphertextsCiphertextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricCiphertextsCiphertextInfoArrayInput)(nil)).Elem(), GetAsymmetricCiphertextsCiphertextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricPlaintextsPlaintextInfoInput)(nil)).Elem(), GetAsymmetricPlaintextsPlaintextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricPlaintextsPlaintextInfoArrayInput)(nil)).Elem(), GetAsymmetricPlaintextsPlaintextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricSignaturesSignatureInfoInput)(nil)).Elem(), GetAsymmetricSignaturesSignatureInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricSignaturesSignatureInfoArrayInput)(nil)).Elem(), GetAsymmetricSignaturesSignatureInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricVerificationsVerificationInfoInput)(nil)).Elem(), GetAsymmetricVerificationsVerificationInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAsymmetricVerificationsVerificationInfoArrayInput)(nil)).Elem(), GetAsymmetricVerificationsVerificationInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCiphertextsCiphertextInfoInput)(nil)).Elem(), GetCiphertextsCiphertextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCiphertextsCiphertextInfoArrayInput)(nil)).Elem(), GetCiphertextsCiphertextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDataKeysDataKeyInfoInput)(nil)).Elem(), GetDataKeysDataKeyInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDataKeysDataKeyInfoArrayInput)(nil)).Elem(), GetDataKeysDataKeyInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyMaterialsImportParameterInput)(nil)).Elem(), GetKeyMaterialsImportParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyMaterialsImportParameterArrayInput)(nil)).Elem(), GetKeyMaterialsImportParameterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyringsKeyringInput)(nil)).Elem(), GetKeyringsKeyringArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyringsKeyringArrayInput)(nil)).Elem(), GetKeyringsKeyringArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysKeyInput)(nil)).Elem(), GetKeysKeyArgs{})
@@ -2849,10 +6145,40 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysKeyMultiRegionConfigurationReplicaKeyArrayInput)(nil)).Elem(), GetKeysKeyMultiRegionConfigurationReplicaKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysKeyTagInput)(nil)).Elem(), GetKeysKeyTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysKeyTagArrayInput)(nil)).Elem(), GetKeysKeyTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysKeyXksKeyConfigurationInput)(nil)).Elem(), GetKeysKeyXksKeyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysKeyXksKeyConfigurationArrayInput)(nil)).Elem(), GetKeysKeyXksKeyConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysTagInput)(nil)).Elem(), GetKeysTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeysTagArrayInput)(nil)).Elem(), GetKeysTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMacVerificationsMacVerificationInfoInput)(nil)).Elem(), GetMacVerificationsMacVerificationInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMacVerificationsMacVerificationInfoArrayInput)(nil)).Elem(), GetMacVerificationsMacVerificationInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMacsMacInfoInput)(nil)).Elem(), GetMacsMacInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMacsMacInfoArrayInput)(nil)).Elem(), GetMacsMacInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPlaintextsPlaintextInfoInput)(nil)).Elem(), GetPlaintextsPlaintextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPlaintextsPlaintextInfoArrayInput)(nil)).Elem(), GetPlaintextsPlaintextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPublicKeysPublicKeyInput)(nil)).Elem(), GetPublicKeysPublicKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPublicKeysPublicKeyArrayInput)(nil)).Elem(), GetPublicKeysPublicKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetReEncryptsCiphertextInfoInput)(nil)).Elem(), GetReEncryptsCiphertextInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetReEncryptsCiphertextInfoArrayInput)(nil)).Elem(), GetReEncryptsCiphertextInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionArrayInput)(nil)).Elem(), GetRegionsRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretVersionsSecretVersionInput)(nil)).Elem(), GetSecretVersionsSecretVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretVersionsSecretVersionArrayInput)(nil)).Elem(), GetSecretVersionsSecretVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretsSecretInput)(nil)).Elem(), GetSecretsSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretsSecretArrayInput)(nil)).Elem(), GetSecretsSecretArray{})
+	pulumi.RegisterOutputType(AsymmetricCiphertextsCiphertextInfoOutput{})
+	pulumi.RegisterOutputType(AsymmetricCiphertextsCiphertextInfoArrayOutput{})
+	pulumi.RegisterOutputType(AsymmetricPlaintextsPlaintextInfoOutput{})
+	pulumi.RegisterOutputType(AsymmetricPlaintextsPlaintextInfoArrayOutput{})
+	pulumi.RegisterOutputType(AsymmetricSignaturesSignatureInfoOutput{})
+	pulumi.RegisterOutputType(AsymmetricSignaturesSignatureInfoArrayOutput{})
+	pulumi.RegisterOutputType(AsymmetricVerificationsVerificationInfoOutput{})
+	pulumi.RegisterOutputType(AsymmetricVerificationsVerificationInfoArrayOutput{})
+	pulumi.RegisterOutputType(CiphertextsCiphertextInfoOutput{})
+	pulumi.RegisterOutputType(CiphertextsCiphertextInfoArrayOutput{})
+	pulumi.RegisterOutputType(DataKeysDataKeyInfoOutput{})
+	pulumi.RegisterOutputType(DataKeysDataKeyInfoArrayOutput{})
+	pulumi.RegisterOutputType(KeyMaterialsImportParameterOutput{})
+	pulumi.RegisterOutputType(KeyMaterialsImportParameterArrayOutput{})
 	pulumi.RegisterOutputType(KeyMultiRegionConfigurationOutput{})
 	pulumi.RegisterOutputType(KeyMultiRegionConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(KeyMultiRegionConfigurationPrimaryKeyOutput{})
@@ -2871,10 +6197,42 @@ func init() {
 	pulumi.RegisterOutputType(KeysKeyMultiRegionConfigurationReplicaKeyArrayOutput{})
 	pulumi.RegisterOutputType(KeysKeyTagOutput{})
 	pulumi.RegisterOutputType(KeysKeyTagArrayOutput{})
+	pulumi.RegisterOutputType(KeysKeyXksKeyConfigurationOutput{})
+	pulumi.RegisterOutputType(KeysKeyXksKeyConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(KeysTagOutput{})
 	pulumi.RegisterOutputType(KeysTagArrayOutput{})
+	pulumi.RegisterOutputType(MacVerificationsMacVerificationInfoOutput{})
+	pulumi.RegisterOutputType(MacVerificationsMacVerificationInfoArrayOutput{})
+	pulumi.RegisterOutputType(MacsMacInfoOutput{})
+	pulumi.RegisterOutputType(MacsMacInfoArrayOutput{})
+	pulumi.RegisterOutputType(PlaintextsPlaintextInfoOutput{})
+	pulumi.RegisterOutputType(PlaintextsPlaintextInfoArrayOutput{})
+	pulumi.RegisterOutputType(PublicKeysPublicKeyOutput{})
+	pulumi.RegisterOutputType(PublicKeysPublicKeyArrayOutput{})
+	pulumi.RegisterOutputType(ReEncryptsCiphertextInfoOutput{})
+	pulumi.RegisterOutputType(ReEncryptsCiphertextInfoArrayOutput{})
+	pulumi.RegisterOutputType(RegionsRegionOutput{})
+	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(ReplicateKeyTagOutput{})
+	pulumi.RegisterOutputType(ReplicateKeyTagArrayOutput{})
+	pulumi.RegisterOutputType(SecretVersionsSecretVersionOutput{})
+	pulumi.RegisterOutputType(SecretVersionsSecretVersionArrayOutput{})
 	pulumi.RegisterOutputType(SecretsSecretOutput{})
 	pulumi.RegisterOutputType(SecretsSecretArrayOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricCiphertextsCiphertextInfoOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricCiphertextsCiphertextInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricPlaintextsPlaintextInfoOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricPlaintextsPlaintextInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricSignaturesSignatureInfoOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricSignaturesSignatureInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricVerificationsVerificationInfoOutput{})
+	pulumi.RegisterOutputType(GetAsymmetricVerificationsVerificationInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetCiphertextsCiphertextInfoOutput{})
+	pulumi.RegisterOutputType(GetCiphertextsCiphertextInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetDataKeysDataKeyInfoOutput{})
+	pulumi.RegisterOutputType(GetDataKeysDataKeyInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetKeyMaterialsImportParameterOutput{})
+	pulumi.RegisterOutputType(GetKeyMaterialsImportParameterArrayOutput{})
 	pulumi.RegisterOutputType(GetKeyringsKeyringOutput{})
 	pulumi.RegisterOutputType(GetKeyringsKeyringArrayOutput{})
 	pulumi.RegisterOutputType(GetKeysKeyOutput{})
@@ -2885,8 +6243,24 @@ func init() {
 	pulumi.RegisterOutputType(GetKeysKeyMultiRegionConfigurationReplicaKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetKeysKeyTagOutput{})
 	pulumi.RegisterOutputType(GetKeysKeyTagArrayOutput{})
+	pulumi.RegisterOutputType(GetKeysKeyXksKeyConfigurationOutput{})
+	pulumi.RegisterOutputType(GetKeysKeyXksKeyConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(GetKeysTagOutput{})
 	pulumi.RegisterOutputType(GetKeysTagArrayOutput{})
+	pulumi.RegisterOutputType(GetMacVerificationsMacVerificationInfoOutput{})
+	pulumi.RegisterOutputType(GetMacVerificationsMacVerificationInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetMacsMacInfoOutput{})
+	pulumi.RegisterOutputType(GetMacsMacInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetPlaintextsPlaintextInfoOutput{})
+	pulumi.RegisterOutputType(GetPlaintextsPlaintextInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetPublicKeysPublicKeyOutput{})
+	pulumi.RegisterOutputType(GetPublicKeysPublicKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetReEncryptsCiphertextInfoOutput{})
+	pulumi.RegisterOutputType(GetReEncryptsCiphertextInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionsRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetSecretVersionsSecretVersionOutput{})
+	pulumi.RegisterOutputType(GetSecretVersionsSecretVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetSecretsSecretOutput{})
 	pulumi.RegisterOutputType(GetSecretsSecretArrayOutput{})
 }

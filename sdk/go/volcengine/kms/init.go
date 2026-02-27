@@ -21,18 +21,42 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:kms/asymmetricCiphertext:AsymmetricCiphertext":
+		r = &AsymmetricCiphertext{}
+	case "volcengine:kms/asymmetricSignature:AsymmetricSignature":
+		r = &AsymmetricSignature{}
+	case "volcengine:kms/cancelKeyDeletion:CancelKeyDeletion":
+		r = &CancelKeyDeletion{}
+	case "volcengine:kms/cancelSecretDeletion:CancelSecretDeletion":
+		r = &CancelSecretDeletion{}
+	case "volcengine:kms/ciphertext:Ciphertext":
+		r = &Ciphertext{}
 	case "volcengine:kms/key:Key":
 		r = &Key{}
 	case "volcengine:kms/keyArchive:KeyArchive":
 		r = &KeyArchive{}
 	case "volcengine:kms/keyEnable:KeyEnable":
 		r = &KeyEnable{}
+	case "volcengine:kms/keyMaterial:KeyMaterial":
+		r = &KeyMaterial{}
+	case "volcengine:kms/keyPrimaryRegion:KeyPrimaryRegion":
+		r = &KeyPrimaryRegion{}
 	case "volcengine:kms/keyRotation:KeyRotation":
 		r = &KeyRotation{}
 	case "volcengine:kms/keyring:Keyring":
 		r = &Keyring{}
+	case "volcengine:kms/reEncrypt:ReEncrypt":
+		r = &ReEncrypt{}
+	case "volcengine:kms/replicateKey:ReplicateKey":
+		r = &ReplicateKey{}
 	case "volcengine:kms/secret:Secret":
 		r = &Secret{}
+	case "volcengine:kms/secretBackup:SecretBackup":
+		r = &SecretBackup{}
+	case "volcengine:kms/secretRestore:SecretRestore":
+		r = &SecretRestore{}
+	case "volcengine:kms/secretRotate:SecretRotate":
+		r = &SecretRotate{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -46,6 +70,31 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/asymmetricCiphertext",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/asymmetricSignature",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/cancelKeyDeletion",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/cancelSecretDeletion",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/ciphertext",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"kms/key",
@@ -63,6 +112,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"kms/keyMaterial",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/keyPrimaryRegion",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"kms/keyRotation",
 		&module{version},
 	)
@@ -73,7 +132,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"kms/reEncrypt",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/replicateKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"kms/secret",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/secretBackup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/secretRestore",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"kms/secretRotate",
 		&module{version},
 	)
 }

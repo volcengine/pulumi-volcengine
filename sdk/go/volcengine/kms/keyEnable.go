@@ -54,9 +54,9 @@ import (
 type KeyEnable struct {
 	pulumi.CustomResourceState
 
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringOutput `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringOutput `pulumi:"keyName"`
 	// The state of the key.
 	KeyState pulumi.StringOutput `pulumi:"keyState"`
@@ -94,9 +94,9 @@ func GetKeyEnable(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KeyEnable resources.
 type keyEnableState struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId *string `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName *string `pulumi:"keyName"`
 	// The state of the key.
 	KeyState *string `pulumi:"keyState"`
@@ -105,9 +105,9 @@ type keyEnableState struct {
 }
 
 type KeyEnableState struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringPtrInput
 	// The state of the key.
 	KeyState pulumi.StringPtrInput
@@ -120,9 +120,9 @@ func (KeyEnableState) ElementType() reflect.Type {
 }
 
 type keyEnableArgs struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId *string `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName *string `pulumi:"keyName"`
 	// The name of the keyring.
 	KeyringName *string `pulumi:"keyringName"`
@@ -130,9 +130,9 @@ type keyEnableArgs struct {
 
 // The set of arguments for constructing a KeyEnable resource.
 type KeyEnableArgs struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringPtrInput
 	// The name of the keyring.
 	KeyringName pulumi.StringPtrInput
@@ -225,12 +225,12 @@ func (o KeyEnableOutput) ToKeyEnableOutputWithContext(ctx context.Context) KeyEn
 	return o
 }
 
-// The id of the CMK.
+// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 func (o KeyEnableOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyEnable) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
 }
 
-// The name of the CMK.
+// The name of the key.
 func (o KeyEnableOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyEnable) pulumi.StringOutput { return v.KeyName }).(pulumi.StringOutput)
 }

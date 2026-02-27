@@ -17,6 +17,20 @@ import * as utilities from "../utilities";
  *     secretName: "tf-test1",
  *     secretType: "Generic",
  *     secretValue: "{\"dasdasd\":\"dasdasd\"}",
+ *     versionName: "v1.0",
+ * });
+ * const fooEcs = new volcengine.kms.Secret("fooEcs", {
+ *     automaticRotation: false,
+ *     description: "tf-test ecs",
+ *     encryptionKey: "trn:kms:cn-beijing:21000******:keyrings/Tf-test/keys/Test-key1",
+ *     extendedConfig: "{\"InstanceId\":\"i-yeehzz2tc0ygp2******\",\"SecretSubType\":\"Password\",\"CustomData\":{\"desc\":\"test\"}}",
+ *     forceDelete: false,
+ *     pendingWindowInDays: 7,
+ *     projectName: "default",
+ *     secretName: "tf-test2",
+ *     secretType: "ECS",
+ *     secretValue: "{\"UserName\":\"root\",\"Password\":\"********\"}",
+ *     versionName: "v2.0",
  * });
  * ```
  *
@@ -57,7 +71,7 @@ export class Secret extends pulumi.CustomResource {
     }
 
     /**
-     * The rotation state of the secret.
+     * The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
      */
     public readonly automaticRotation!: pulumi.Output<boolean | undefined>;
     /**
@@ -77,6 +91,10 @@ export class Secret extends pulumi.CustomResource {
      */
     public readonly extendedConfig!: pulumi.Output<string>;
     /**
+     * Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+     */
+    public readonly forceDelete!: pulumi.Output<boolean | undefined>;
+    /**
      * The last time the secret was rotated.
      */
     public /*out*/ readonly lastRotationTime!: pulumi.Output<string>;
@@ -85,11 +103,19 @@ export class Secret extends pulumi.CustomResource {
      */
     public /*out*/ readonly managed!: pulumi.Output<boolean>;
     /**
+     * The cloud service that owns the secret.
+     */
+    public /*out*/ readonly owningService!: pulumi.Output<string>;
+    /**
+     * The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+     */
+    public readonly pendingWindowInDays!: pulumi.Output<number | undefined>;
+    /**
      * The project name of the secret.
      */
     public readonly projectName!: pulumi.Output<string>;
     /**
-     * The interval at which automatic rotation is performed.
+     * The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
      */
     public readonly rotationInterval!: pulumi.Output<string>;
     /**
@@ -113,11 +139,11 @@ export class Secret extends pulumi.CustomResource {
      */
     public readonly secretName!: pulumi.Output<string>;
     /**
-     * The type of the secret.
+     * The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
      */
     public readonly secretType!: pulumi.Output<string>;
     /**
-     * The value of the secret.
+     * The value of the secret. Only Generic type secret support modifying secret_value.
      */
     public readonly secretValue!: pulumi.Output<string>;
     /**
@@ -140,6 +166,10 @@ export class Secret extends pulumi.CustomResource {
      * The ID of secret.
      */
     public /*out*/ readonly uuid!: pulumi.Output<string>;
+    /**
+     * The version alias of the secret. Only Generic type secret support modifying version_name.
+     */
+    public readonly versionName!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Secret resource with the given unique name, arguments, and options.
@@ -159,8 +189,11 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["encryptionKey"] = state ? state.encryptionKey : undefined;
             resourceInputs["extendedConfig"] = state ? state.extendedConfig : undefined;
+            resourceInputs["forceDelete"] = state ? state.forceDelete : undefined;
             resourceInputs["lastRotationTime"] = state ? state.lastRotationTime : undefined;
             resourceInputs["managed"] = state ? state.managed : undefined;
+            resourceInputs["owningService"] = state ? state.owningService : undefined;
+            resourceInputs["pendingWindowInDays"] = state ? state.pendingWindowInDays : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["rotationInterval"] = state ? state.rotationInterval : undefined;
             resourceInputs["rotationIntervalSecond"] = state ? state.rotationIntervalSecond : undefined;
@@ -175,6 +208,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["uid"] = state ? state.uid : undefined;
             resourceInputs["updateDate"] = state ? state.updateDate : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["versionName"] = state ? state.versionName : undefined;
         } else {
             const args = argsOrState as SecretArgs | undefined;
             if ((!args || args.secretName === undefined) && !opts.urn) {
@@ -190,14 +224,18 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["encryptionKey"] = args ? args.encryptionKey : undefined;
             resourceInputs["extendedConfig"] = args ? args.extendedConfig : undefined;
+            resourceInputs["forceDelete"] = args ? args.forceDelete : undefined;
+            resourceInputs["pendingWindowInDays"] = args ? args.pendingWindowInDays : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["rotationInterval"] = args ? args.rotationInterval : undefined;
             resourceInputs["secretName"] = args ? args.secretName : undefined;
             resourceInputs["secretType"] = args ? args.secretType : undefined;
             resourceInputs["secretValue"] = args ? args.secretValue : undefined;
+            resourceInputs["versionName"] = args ? args.versionName : undefined;
             resourceInputs["creationDate"] = undefined /*out*/;
             resourceInputs["lastRotationTime"] = undefined /*out*/;
             resourceInputs["managed"] = undefined /*out*/;
+            resourceInputs["owningService"] = undefined /*out*/;
             resourceInputs["rotationIntervalSecond"] = undefined /*out*/;
             resourceInputs["rotationState"] = undefined /*out*/;
             resourceInputs["scheduleDeleteTime"] = undefined /*out*/;
@@ -218,7 +256,7 @@ export class Secret extends pulumi.CustomResource {
  */
 export interface SecretState {
     /**
-     * The rotation state of the secret.
+     * The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
      */
     automaticRotation?: pulumi.Input<boolean>;
     /**
@@ -238,6 +276,10 @@ export interface SecretState {
      */
     extendedConfig?: pulumi.Input<string>;
     /**
+     * Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+     */
+    forceDelete?: pulumi.Input<boolean>;
+    /**
      * The last time the secret was rotated.
      */
     lastRotationTime?: pulumi.Input<string>;
@@ -246,11 +288,19 @@ export interface SecretState {
      */
     managed?: pulumi.Input<boolean>;
     /**
+     * The cloud service that owns the secret.
+     */
+    owningService?: pulumi.Input<string>;
+    /**
+     * The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+     */
+    pendingWindowInDays?: pulumi.Input<number>;
+    /**
      * The project name of the secret.
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The interval at which automatic rotation is performed.
+     * The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
      */
     rotationInterval?: pulumi.Input<string>;
     /**
@@ -274,11 +324,11 @@ export interface SecretState {
      */
     secretName?: pulumi.Input<string>;
     /**
-     * The type of the secret.
+     * The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
      */
     secretType?: pulumi.Input<string>;
     /**
-     * The value of the secret.
+     * The value of the secret. Only Generic type secret support modifying secret_value.
      */
     secretValue?: pulumi.Input<string>;
     /**
@@ -301,6 +351,10 @@ export interface SecretState {
      * The ID of secret.
      */
     uuid?: pulumi.Input<string>;
+    /**
+     * The version alias of the secret. Only Generic type secret support modifying version_name.
+     */
+    versionName?: pulumi.Input<string>;
 }
 
 /**
@@ -308,7 +362,7 @@ export interface SecretState {
  */
 export interface SecretArgs {
     /**
-     * The rotation state of the secret.
+     * The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
      */
     automaticRotation?: pulumi.Input<boolean>;
     /**
@@ -324,11 +378,19 @@ export interface SecretArgs {
      */
     extendedConfig?: pulumi.Input<string>;
     /**
+     * Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+     */
+    forceDelete?: pulumi.Input<boolean>;
+    /**
+     * The waiting period before deletion when forceDelete is false. Valid values: 7~30. Only effective when destroying resources.
+     */
+    pendingWindowInDays?: pulumi.Input<number>;
+    /**
      * The project name of the secret.
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The interval at which automatic rotation is performed.
+     * The interval at which automatic rotation is performed. This parameter must be specified when automaticRotation is true.
      */
     rotationInterval?: pulumi.Input<string>;
     /**
@@ -336,11 +398,15 @@ export interface SecretArgs {
      */
     secretName: pulumi.Input<string>;
     /**
-     * The type of the secret.
+     * The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
      */
     secretType: pulumi.Input<string>;
     /**
-     * The value of the secret.
+     * The value of the secret. Only Generic type secret support modifying secret_value.
      */
     secretValue: pulumi.Input<string>;
+    /**
+     * The version alias of the secret. Only Generic type secret support modifying version_name.
+     */
+    versionName?: pulumi.Input<string>;
 }

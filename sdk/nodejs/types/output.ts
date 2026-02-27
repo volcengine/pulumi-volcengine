@@ -27278,6 +27278,121 @@ export namespace kafka {
 }
 
 export namespace kms {
+    export interface AsymmetricCiphertextsCiphertextInfo {
+        /**
+         * The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `volcengine.kms.AsymmetricCiphertext` resource.
+         */
+        ciphertextBlob: string;
+    }
+
+    export interface AsymmetricPlaintextsPlaintextInfo {
+        /**
+         * The decrypted plaintext, Base64 encoded.
+         */
+        plaintext: string;
+    }
+
+    export interface AsymmetricSignaturesSignatureInfo {
+        /**
+         * The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `volcengine.kms.AsymmetricSignature` resource.
+         */
+        signature: string;
+    }
+
+    export interface AsymmetricVerificationsVerificationInfo {
+        /**
+         * Whether the signature is valid.
+         */
+        signatureValid: boolean;
+    }
+
+    export interface CiphertextsCiphertextInfo {
+        /**
+         * The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `volcengine.kms.Ciphertext` resource.
+         */
+        ciphertextBlob: string;
+    }
+
+    export interface DataKeysDataKeyInfo {
+        /**
+         * The generated ciphertext, Base64 encoded.
+         */
+        ciphertextBlob: string;
+        /**
+         * The generated plaintext, Base64 encoded.
+         */
+        plaintext: string;
+    }
+
+    export interface GetAsymmetricCiphertextsCiphertextInfo {
+        /**
+         * The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `volcengine.kms.AsymmetricCiphertext` resource.
+         */
+        ciphertextBlob: string;
+    }
+
+    export interface GetAsymmetricPlaintextsPlaintextInfo {
+        /**
+         * The decrypted plaintext, Base64 encoded.
+         */
+        plaintext: string;
+    }
+
+    export interface GetAsymmetricSignaturesSignatureInfo {
+        /**
+         * The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `volcengine.kms.AsymmetricSignature` resource.
+         */
+        signature: string;
+    }
+
+    export interface GetAsymmetricVerificationsVerificationInfo {
+        /**
+         * Whether the signature is valid.
+         */
+        signatureValid: boolean;
+    }
+
+    export interface GetCiphertextsCiphertextInfo {
+        /**
+         * The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `volcengine.kms.Ciphertext` resource.
+         */
+        ciphertextBlob: string;
+    }
+
+    export interface GetDataKeysDataKeyInfo {
+        /**
+         * The generated ciphertext, Base64 encoded.
+         */
+        ciphertextBlob: string;
+        /**
+         * The generated plaintext, Base64 encoded.
+         */
+        plaintext: string;
+    }
+
+    export interface GetKeyMaterialsImportParameter {
+        /**
+         * The import token, Base64 encoded.
+         */
+        importToken: string;
+        /**
+         * The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * The id of keyring.
+         */
+        keyringId: string;
+        /**
+         * The public key used to encrypt key materials, Base64 encoded.
+         */
+        publicKey: string;
+        /**
+         * The token expire time.
+         */
+        tokenExpireTime: string;
+    }
+
     export interface GetKeyringsKeyring {
         /**
          * The date when the keyring was created.
@@ -27323,11 +27438,15 @@ export namespace kms {
          */
         creationDate: number;
         /**
+         * The ID of the custom key store.
+         */
+        customKeyStoreId: string;
+        /**
          * The description of the key.
          */
         description: string;
         /**
-         * The unique ID of the key.
+         * The ID of the external key store.
          */
         id: string;
         /**
@@ -27339,7 +27458,7 @@ export namespace kms {
          */
         keyName: string;
         /**
-         * The algorithm used in the key.
+         * The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
          */
         keySpec: string;
         /**
@@ -27347,7 +27466,7 @@ export namespace kms {
          */
         keyState: string;
         /**
-         * The usage of the key.
+         * The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
          */
         keyUsage: string;
         /**
@@ -27363,11 +27482,11 @@ export namespace kms {
          */
         multiRegionConfiguration: outputs.kms.GetKeysKeyMultiRegionConfiguration;
         /**
-         * The origin of the key.
+         * The origin of the key. Valid values: CloudKMS, External.
          */
         origin: string;
         /**
-         * The protection level of the key.
+         * The protection level of the key. Valid values: SOFTWARE, HSM.
          */
         protectionLevel: string;
         /**
@@ -27394,6 +27513,10 @@ export namespace kms {
          * The date when the keyring was updated.
          */
         updateDate: number;
+        /**
+         * The configuration of the external key store.
+         */
+        xksKeyConfigurations: outputs.kms.GetKeysKeyXksKeyConfiguration[];
     }
 
     export interface GetKeysKeyMultiRegionConfiguration {
@@ -27444,6 +27567,13 @@ export namespace kms {
         value: string;
     }
 
+    export interface GetKeysKeyXksKeyConfiguration {
+        /**
+         * The ID of the external key store.
+         */
+        id: string;
+    }
+
     export interface GetKeysTag {
         /**
          * The key of the tag.
@@ -27453,6 +27583,75 @@ export namespace kms {
          * The values of the tag.
          */
         values: string[];
+    }
+
+    export interface GetMacVerificationsMacVerificationInfo {
+        /**
+         * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * Whether the MAC is valid.
+         */
+        macValid: boolean;
+    }
+
+    export interface GetMacsMacInfo {
+        /**
+         * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * The MAC result, Base64 encoded.
+         */
+        mac: string;
+    }
+
+    export interface GetPlaintextsPlaintextInfo {
+        /**
+         * The decrypted plaintext, Base64 encoded.
+         */
+        plaintext: string;
+    }
+
+    export interface GetPublicKeysPublicKey {
+        /**
+         * The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * The public key in PEM format.
+         */
+        publicKey: string;
+    }
+
+    export interface GetReEncryptsCiphertextInfo {
+        /**
+         * The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `volcengine.kms.ReEncrypt` resource.
+         */
+        ciphertextBlob: string;
+    }
+
+    export interface GetRegionsRegion {
+        /**
+         * The region ID.
+         */
+        regionId: string;
+    }
+
+    export interface GetSecretVersionsSecretVersion {
+        /**
+         * The creation time of secret version.
+         */
+        creationDate: number;
+        /**
+         * The version ID of secret value.
+         */
+        versionId: string;
+        /**
+         * The version stage of secret value.
+         */
+        versionStage: string;
     }
 
     export interface GetSecretsSecret {
@@ -27484,6 +27683,10 @@ export namespace kms {
          * Indicates whether the secret is hosted.
          */
         managed: boolean;
+        /**
+         * The cloud service that owns the secret.
+         */
+        owningService: string;
         /**
          * The name of the project to which the secret belongs.
          */
@@ -27528,6 +27731,29 @@ export namespace kms {
          * The date when the keyring was updated.
          */
         updateDate: number;
+    }
+
+    export interface KeyMaterialsImportParameter {
+        /**
+         * The import token, Base64 encoded.
+         */
+        importToken: string;
+        /**
+         * The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * The id of keyring.
+         */
+        keyringId: string;
+        /**
+         * The public key used to encrypt key materials, Base64 encoded.
+         */
+        publicKey: string;
+        /**
+         * The token expire time.
+         */
+        tokenExpireTime: string;
     }
 
     export interface KeyMultiRegionConfiguration {
@@ -27623,11 +27849,15 @@ export namespace kms {
          */
         creationDate: number;
         /**
+         * The ID of the custom key store.
+         */
+        customKeyStoreId: string;
+        /**
          * The description of the key.
          */
         description: string;
         /**
-         * The unique ID of the key.
+         * The ID of the external key store.
          */
         id: string;
         /**
@@ -27639,7 +27869,7 @@ export namespace kms {
          */
         keyName: string;
         /**
-         * The algorithm used in the key.
+         * The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
          */
         keySpec: string;
         /**
@@ -27647,7 +27877,7 @@ export namespace kms {
          */
         keyState: string;
         /**
-         * The usage of the key.
+         * The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
          */
         keyUsage: string;
         /**
@@ -27663,11 +27893,11 @@ export namespace kms {
          */
         multiRegionConfiguration: outputs.kms.KeysKeyMultiRegionConfiguration;
         /**
-         * The origin of the key.
+         * The origin of the key. Valid values: CloudKMS, External.
          */
         origin: string;
         /**
-         * The protection level of the key.
+         * The protection level of the key. Valid values: SOFTWARE, HSM.
          */
         protectionLevel: string;
         /**
@@ -27694,6 +27924,10 @@ export namespace kms {
          * The date when the keyring was updated.
          */
         updateDate: number;
+        /**
+         * The configuration of the external key store.
+         */
+        xksKeyConfigurations: outputs.kms.KeysKeyXksKeyConfiguration[];
     }
 
     export interface KeysKeyMultiRegionConfiguration {
@@ -27744,6 +27978,13 @@ export namespace kms {
         value: string;
     }
 
+    export interface KeysKeyXksKeyConfiguration {
+        /**
+         * The ID of the external key store.
+         */
+        id: string;
+    }
+
     export interface KeysTag {
         /**
          * The key of the tag.
@@ -27753,6 +27994,86 @@ export namespace kms {
          * The values of the tag.
          */
         values: string[];
+    }
+
+    export interface MacVerificationsMacVerificationInfo {
+        /**
+         * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * Whether the MAC is valid.
+         */
+        macValid: boolean;
+    }
+
+    export interface MacsMacInfo {
+        /**
+         * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * The MAC result, Base64 encoded.
+         */
+        mac: string;
+    }
+
+    export interface PlaintextsPlaintextInfo {
+        /**
+         * The decrypted plaintext, Base64 encoded.
+         */
+        plaintext: string;
+    }
+
+    export interface PublicKeysPublicKey {
+        /**
+         * The id of key. When keyId is not specified, both keyringName and keyName must be specified.
+         */
+        keyId: string;
+        /**
+         * The public key in PEM format.
+         */
+        publicKey: string;
+    }
+
+    export interface ReEncryptsCiphertextInfo {
+        /**
+         * The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `volcengine.kms.ReEncrypt` resource.
+         */
+        ciphertextBlob: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The region ID.
+         */
+        regionId: string;
+    }
+
+    export interface ReplicateKeyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SecretVersionsSecretVersion {
+        /**
+         * The creation time of secret version.
+         */
+        creationDate: number;
+        /**
+         * The version ID of secret value.
+         */
+        versionId: string;
+        /**
+         * The version stage of secret value.
+         */
+        versionStage: string;
     }
 
     export interface SecretsSecret {
@@ -27784,6 +28105,10 @@ export namespace kms {
          * Indicates whether the secret is hosted.
          */
         managed: boolean;
+        /**
+         * The cloud service that owns the secret.
+         */
+        owningService: string;
         /**
          * The name of the project to which the secret belongs.
          */

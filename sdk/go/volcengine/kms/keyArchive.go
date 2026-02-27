@@ -76,9 +76,9 @@ import (
 type KeyArchive struct {
 	pulumi.CustomResourceState
 
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringOutput `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringOutput `pulumi:"keyName"`
 	// The state of the key.
 	KeyState pulumi.StringOutput `pulumi:"keyState"`
@@ -116,9 +116,9 @@ func GetKeyArchive(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KeyArchive resources.
 type keyArchiveState struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId *string `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName *string `pulumi:"keyName"`
 	// The state of the key.
 	KeyState *string `pulumi:"keyState"`
@@ -127,9 +127,9 @@ type keyArchiveState struct {
 }
 
 type KeyArchiveState struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringPtrInput
 	// The state of the key.
 	KeyState pulumi.StringPtrInput
@@ -142,9 +142,9 @@ func (KeyArchiveState) ElementType() reflect.Type {
 }
 
 type keyArchiveArgs struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId *string `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName *string `pulumi:"keyName"`
 	// The name of the keyring.
 	KeyringName *string `pulumi:"keyringName"`
@@ -152,9 +152,9 @@ type keyArchiveArgs struct {
 
 // The set of arguments for constructing a KeyArchive resource.
 type KeyArchiveArgs struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringPtrInput
 	// The name of the keyring.
 	KeyringName pulumi.StringPtrInput
@@ -247,12 +247,12 @@ func (o KeyArchiveOutput) ToKeyArchiveOutputWithContext(ctx context.Context) Key
 	return o
 }
 
-// The id of the CMK.
+// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 func (o KeyArchiveOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyArchive) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
 }
 
-// The name of the CMK.
+// The name of the key.
 func (o KeyArchiveOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyArchive) pulumi.StringOutput { return v.KeyName }).(pulumi.StringOutput)
 }

@@ -19,8 +19,8 @@ class KeyArchiveArgs:
                  keyring_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KeyArchive resource.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
         """
         if key_id is not None:
@@ -34,7 +34,7 @@ class KeyArchiveArgs:
     @pulumi.getter(name="keyId")
     def key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the CMK.
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         """
         return pulumi.get(self, "key_id")
 
@@ -46,7 +46,7 @@ class KeyArchiveArgs:
     @pulumi.getter(name="keyName")
     def key_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -76,8 +76,8 @@ class _KeyArchiveState:
                  keyring_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KeyArchive resources.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] key_state: The state of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
         """
@@ -94,7 +94,7 @@ class _KeyArchiveState:
     @pulumi.getter(name="keyId")
     def key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the CMK.
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         """
         return pulumi.get(self, "key_id")
 
@@ -106,7 +106,7 @@ class _KeyArchiveState:
     @pulumi.getter(name="keyName")
     def key_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -187,8 +187,8 @@ class KeyArchive(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
         """
         ...
@@ -286,8 +286,8 @@ class KeyArchive(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] key_id: The id of the CMK.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] key_state: The state of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
         """
@@ -305,7 +305,7 @@ class KeyArchive(pulumi.CustomResource):
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Output[str]:
         """
-        The id of the CMK.
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
         """
         return pulumi.get(self, "key_id")
 
@@ -313,7 +313,7 @@ class KeyArchive(pulumi.CustomResource):
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Output[str]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 

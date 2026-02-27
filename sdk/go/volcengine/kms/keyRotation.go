@@ -27,7 +27,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := kms.NewKeyRotation(ctx, "foo", &kms.KeyRotationArgs{
-//				KeyId: pulumi.String("m_cn-guilin-boe_63c08fe9-42e8-4c10-a09e-8e8e6xxxxxx"),
+//				KeyId:          pulumi.String("c44870c3-f33b-421a-****-a2bba37c993e"),
+//				RotateInterval: pulumi.Int(90),
 //			})
 //			if err != nil {
 //				return err
@@ -54,12 +55,14 @@ import (
 type KeyRotation struct {
 	pulumi.CustomResourceState
 
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringOutput `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringOutput `pulumi:"keyName"`
 	// The name of the keyring.
 	KeyringName pulumi.StringPtrOutput `pulumi:"keyringName"`
+	// Key rotation period, unit: days; value range: [90, 2560].
+	RotateInterval pulumi.IntPtrOutput `pulumi:"rotateInterval"`
 	// The state of the key rotation.
 	RotationState pulumi.StringOutput `pulumi:"rotationState"`
 }
@@ -94,23 +97,27 @@ func GetKeyRotation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KeyRotation resources.
 type keyRotationState struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId *string `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName *string `pulumi:"keyName"`
 	// The name of the keyring.
 	KeyringName *string `pulumi:"keyringName"`
+	// Key rotation period, unit: days; value range: [90, 2560].
+	RotateInterval *int `pulumi:"rotateInterval"`
 	// The state of the key rotation.
 	RotationState *string `pulumi:"rotationState"`
 }
 
 type KeyRotationState struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringPtrInput
 	// The name of the keyring.
 	KeyringName pulumi.StringPtrInput
+	// Key rotation period, unit: days; value range: [90, 2560].
+	RotateInterval pulumi.IntPtrInput
 	// The state of the key rotation.
 	RotationState pulumi.StringPtrInput
 }
@@ -120,22 +127,26 @@ func (KeyRotationState) ElementType() reflect.Type {
 }
 
 type keyRotationArgs struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId *string `pulumi:"keyId"`
-	// The name of the CMK.
+	// The name of the key.
 	KeyName *string `pulumi:"keyName"`
 	// The name of the keyring.
 	KeyringName *string `pulumi:"keyringName"`
+	// Key rotation period, unit: days; value range: [90, 2560].
+	RotateInterval *int `pulumi:"rotateInterval"`
 }
 
 // The set of arguments for constructing a KeyRotation resource.
 type KeyRotationArgs struct {
-	// The id of the CMK.
+	// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 	KeyId pulumi.StringPtrInput
-	// The name of the CMK.
+	// The name of the key.
 	KeyName pulumi.StringPtrInput
 	// The name of the keyring.
 	KeyringName pulumi.StringPtrInput
+	// Key rotation period, unit: days; value range: [90, 2560].
+	RotateInterval pulumi.IntPtrInput
 }
 
 func (KeyRotationArgs) ElementType() reflect.Type {
@@ -225,12 +236,12 @@ func (o KeyRotationOutput) ToKeyRotationOutputWithContext(ctx context.Context) K
 	return o
 }
 
-// The id of the CMK.
+// The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
 func (o KeyRotationOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyRotation) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
 }
 
-// The name of the CMK.
+// The name of the key.
 func (o KeyRotationOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyRotation) pulumi.StringOutput { return v.KeyName }).(pulumi.StringOutput)
 }
@@ -238,6 +249,11 @@ func (o KeyRotationOutput) KeyName() pulumi.StringOutput {
 // The name of the keyring.
 func (o KeyRotationOutput) KeyringName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KeyRotation) pulumi.StringPtrOutput { return v.KeyringName }).(pulumi.StringPtrOutput)
+}
+
+// Key rotation period, unit: days; value range: [90, 2560].
+func (o KeyRotationOutput) RotateInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KeyRotation) pulumi.IntPtrOutput { return v.RotateInterval }).(pulumi.IntPtrOutput)
 }
 
 // The state of the key rotation.

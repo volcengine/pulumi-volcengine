@@ -22,7 +22,7 @@ class GetSecretsResult:
     """
     A collection of values returned by getSecrets.
     """
-    def __init__(__self__, creation_date_ranges=None, descriptions=None, id=None, managed_states=None, name_regex=None, output_file=None, project_name=None, rotation_states=None, secret_names=None, secret_states=None, secret_types=None, secrets=None, total_count=None, trns=None, update_date_ranges=None):
+    def __init__(__self__, creation_date_ranges=None, descriptions=None, id=None, managed_states=None, name_regex=None, output_file=None, owning_services=None, project_name=None, rotation_states=None, secret_names=None, secret_states=None, secret_types=None, secrets=None, total_count=None, trns=None, update_date_ranges=None):
         if creation_date_ranges and not isinstance(creation_date_ranges, list):
             raise TypeError("Expected argument 'creation_date_ranges' to be a list")
         pulumi.set(__self__, "creation_date_ranges", creation_date_ranges)
@@ -41,6 +41,9 @@ class GetSecretsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if owning_services and not isinstance(owning_services, list):
+            raise TypeError("Expected argument 'owning_services' to be a list")
+        pulumi.set(__self__, "owning_services", owning_services)
         if project_name and not isinstance(project_name, str):
             raise TypeError("Expected argument 'project_name' to be a str")
         pulumi.set(__self__, "project_name", project_name)
@@ -104,6 +107,14 @@ class GetSecretsResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="owningServices")
+    def owning_services(self) -> Optional[Sequence[str]]:
+        """
+        The cloud service that owns the secret.
+        """
+        return pulumi.get(self, "owning_services")
 
     @property
     @pulumi.getter(name="projectName")
@@ -187,6 +198,7 @@ class AwaitableGetSecretsResult(GetSecretsResult):
             managed_states=self.managed_states,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            owning_services=self.owning_services,
             project_name=self.project_name,
             rotation_states=self.rotation_states,
             secret_names=self.secret_names,
@@ -203,6 +215,7 @@ def get_secrets(creation_date_ranges: Optional[Sequence[str]] = None,
                 managed_states: Optional[Sequence[str]] = None,
                 name_regex: Optional[str] = None,
                 output_file: Optional[str] = None,
+                owning_services: Optional[Sequence[str]] = None,
                 project_name: Optional[str] = None,
                 rotation_states: Optional[Sequence[str]] = None,
                 secret_names: Optional[Sequence[str]] = None,
@@ -236,6 +249,7 @@ def get_secrets(creation_date_ranges: Optional[Sequence[str]] = None,
     :param Sequence[str] managed_states: The state of the managed.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param Sequence[str] owning_services: The cloud service that owns the secret.
     :param str project_name: The name of the project to which the secret belongs.
     :param Sequence[str] rotation_states: The state of the rotation.
     :param Sequence[str] secret_names: The name of the secret.
@@ -250,6 +264,7 @@ def get_secrets(creation_date_ranges: Optional[Sequence[str]] = None,
     __args__['managedStates'] = managed_states
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['owningServices'] = owning_services
     __args__['projectName'] = project_name
     __args__['rotationStates'] = rotation_states
     __args__['secretNames'] = secret_names
@@ -267,6 +282,7 @@ def get_secrets(creation_date_ranges: Optional[Sequence[str]] = None,
         managed_states=pulumi.get(__ret__, 'managed_states'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        owning_services=pulumi.get(__ret__, 'owning_services'),
         project_name=pulumi.get(__ret__, 'project_name'),
         rotation_states=pulumi.get(__ret__, 'rotation_states'),
         secret_names=pulumi.get(__ret__, 'secret_names'),
@@ -284,6 +300,7 @@ def get_secrets_output(creation_date_ranges: Optional[pulumi.Input[Optional[Sequ
                        managed_states: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                        output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                       owning_services: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        project_name: Optional[pulumi.Input[Optional[str]]] = None,
                        rotation_states: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        secret_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -317,6 +334,7 @@ def get_secrets_output(creation_date_ranges: Optional[pulumi.Input[Optional[Sequ
     :param Sequence[str] managed_states: The state of the managed.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param Sequence[str] owning_services: The cloud service that owns the secret.
     :param str project_name: The name of the project to which the secret belongs.
     :param Sequence[str] rotation_states: The state of the rotation.
     :param Sequence[str] secret_names: The name of the secret.

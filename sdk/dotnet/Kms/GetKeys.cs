@@ -209,7 +209,7 @@ namespace Pulumi.Volcengine.Kms
         private List<string>? _keySpecs;
 
         /// <summary>
-        /// The algorithm used in the key.
+        /// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
         /// </summary>
         public List<string> KeySpecs
         {
@@ -233,7 +233,7 @@ namespace Pulumi.Volcengine.Kms
         private List<string>? _keyUsages;
 
         /// <summary>
-        /// The usage of the key.
+        /// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
         /// </summary>
         public List<string> KeyUsages
         {
@@ -263,7 +263,7 @@ namespace Pulumi.Volcengine.Kms
         private List<string>? _origins;
 
         /// <summary>
-        /// The origin of the key.
+        /// The origin of the key. Valid values: CloudKMS, External.
         /// </summary>
         public List<string> Origins
         {
@@ -281,7 +281,7 @@ namespace Pulumi.Volcengine.Kms
         private List<string>? _protectionLevels;
 
         /// <summary>
-        /// The protection level of the key.
+        /// The protection level of the key. Valid values: SOFTWARE, HSM.
         /// </summary>
         public List<string> ProtectionLevels
         {
@@ -293,7 +293,7 @@ namespace Pulumi.Volcengine.Kms
         private List<string>? _rotateStates;
 
         /// <summary>
-        /// The state of the rotate.
+        /// The state of the rotate. Valid values: Enable, Disable.
         /// </summary>
         public List<string> RotateStates
         {
@@ -373,7 +373,7 @@ namespace Pulumi.Volcengine.Kms
         private InputList<string>? _keySpecs;
 
         /// <summary>
-        /// The algorithm used in the key.
+        /// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
         /// </summary>
         public InputList<string> KeySpecs
         {
@@ -397,7 +397,7 @@ namespace Pulumi.Volcengine.Kms
         private InputList<string>? _keyUsages;
 
         /// <summary>
-        /// The usage of the key.
+        /// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
         /// </summary>
         public InputList<string> KeyUsages
         {
@@ -427,7 +427,7 @@ namespace Pulumi.Volcengine.Kms
         private InputList<string>? _origins;
 
         /// <summary>
-        /// The origin of the key.
+        /// The origin of the key. Valid values: CloudKMS, External.
         /// </summary>
         public InputList<string> Origins
         {
@@ -445,7 +445,7 @@ namespace Pulumi.Volcengine.Kms
         private InputList<string>? _protectionLevels;
 
         /// <summary>
-        /// The protection level of the key.
+        /// The protection level of the key. Valid values: SOFTWARE, HSM.
         /// </summary>
         public InputList<string> ProtectionLevels
         {
@@ -457,7 +457,7 @@ namespace Pulumi.Volcengine.Kms
         private InputList<string>? _rotateStates;
 
         /// <summary>
-        /// The state of the rotate.
+        /// The state of the rotate. Valid values: Enable, Disable.
         /// </summary>
         public InputList<string> RotateStates
         {

@@ -130,6 +130,18 @@ namespace Pulumi.Volcengine.Kms
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("owningServices")]
+        private List<string>? _owningServices;
+
+        /// <summary>
+        /// The cloud service that owns the secret.
+        /// </summary>
+        public List<string> OwningServices
+        {
+            get => _owningServices ?? (_owningServices = new List<string>());
+            set => _owningServices = value;
+        }
+
         /// <summary>
         /// The name of the project to which the secret belongs.
         /// </summary>
@@ -264,6 +276,18 @@ namespace Pulumi.Volcengine.Kms
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("owningServices")]
+        private InputList<string>? _owningServices;
+
+        /// <summary>
+        /// The cloud service that owns the secret.
+        /// </summary>
+        public InputList<string> OwningServices
+        {
+            get => _owningServices ?? (_owningServices = new InputList<string>());
+            set => _owningServices = value;
+        }
+
         /// <summary>
         /// The name of the project to which the secret belongs.
         /// </summary>
@@ -365,6 +389,10 @@ namespace Pulumi.Volcengine.Kms
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The cloud service that owns the secret.
+        /// </summary>
+        public readonly ImmutableArray<string> OwningServices;
+        /// <summary>
         /// The project name of the secret.
         /// </summary>
         public readonly string? ProjectName;
@@ -412,6 +440,8 @@ namespace Pulumi.Volcengine.Kms
 
             string? outputFile,
 
+            ImmutableArray<string> owningServices,
+
             string? projectName,
 
             ImmutableArray<string> rotationStates,
@@ -436,6 +466,7 @@ namespace Pulumi.Volcengine.Kms
             ManagedStates = managedStates;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            OwningServices = owningServices;
             ProjectName = projectName;
             RotationStates = rotationStates;
             SecretNames = secretNames;

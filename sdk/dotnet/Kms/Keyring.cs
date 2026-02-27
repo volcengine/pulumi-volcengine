@@ -55,7 +55,7 @@ namespace Pulumi.Volcengine.Kms
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the keyring.
+        /// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         /// </summary>
         [Output("keyringName")]
         public Output<string> KeyringName { get; private set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumi.Volcengine.Kms
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the keyring.
+        /// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         /// </summary>
         [Input("keyringName", required: true)]
         public Input<string> KeyringName { get; set; } = null!;
@@ -182,7 +182,7 @@ namespace Pulumi.Volcengine.Kms
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the keyring.
+        /// The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
         /// </summary>
         [Input("keyringName")]
         public Input<string>? KeyringName { get; set; }

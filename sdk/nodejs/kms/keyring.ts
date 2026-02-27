@@ -64,7 +64,7 @@ export class Keyring extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
-     * The name of the keyring.
+     * The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
      */
     public readonly keyringName!: pulumi.Output<string>;
     /**
@@ -141,7 +141,7 @@ export interface KeyringState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The name of the keyring.
+     * The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
      */
     keyringName?: pulumi.Input<string>;
     /**
@@ -175,7 +175,7 @@ export interface KeyringArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The name of the keyring.
+     * The name of the keyring. Note: the keyring can only be deleted after all keys in it have been removed.
      */
     keyringName: pulumi.Input<string>;
     /**

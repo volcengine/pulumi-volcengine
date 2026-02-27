@@ -12,7 +12,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.kms.KeyRotation("foo", {keyId: "m_cn-guilin-boe_63c08fe9-42e8-4c10-a09e-8e8e6xxxxxx"});
+ * const foo = new volcengine.kms.KeyRotation("foo", {
+ *     keyId: "c44870c3-f33b-421a-****-a2bba37c993e",
+ *     rotateInterval: 90,
+ * });
  * ```
  *
  * ## Import
@@ -58,17 +61,21 @@ export class KeyRotation extends pulumi.CustomResource {
     }
 
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     public readonly keyId!: pulumi.Output<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     public readonly keyName!: pulumi.Output<string>;
     /**
      * The name of the keyring.
      */
     public readonly keyringName!: pulumi.Output<string | undefined>;
+    /**
+     * Key rotation period, unit: days; value range: [90, 2560].
+     */
+    public readonly rotateInterval!: pulumi.Output<number | undefined>;
     /**
      * The state of the key rotation.
      */
@@ -90,12 +97,14 @@ export class KeyRotation extends pulumi.CustomResource {
             resourceInputs["keyId"] = state ? state.keyId : undefined;
             resourceInputs["keyName"] = state ? state.keyName : undefined;
             resourceInputs["keyringName"] = state ? state.keyringName : undefined;
+            resourceInputs["rotateInterval"] = state ? state.rotateInterval : undefined;
             resourceInputs["rotationState"] = state ? state.rotationState : undefined;
         } else {
             const args = argsOrState as KeyRotationArgs | undefined;
             resourceInputs["keyId"] = args ? args.keyId : undefined;
             resourceInputs["keyName"] = args ? args.keyName : undefined;
             resourceInputs["keyringName"] = args ? args.keyringName : undefined;
+            resourceInputs["rotateInterval"] = args ? args.rotateInterval : undefined;
             resourceInputs["rotationState"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -108,17 +117,21 @@ export class KeyRotation extends pulumi.CustomResource {
  */
 export interface KeyRotationState {
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     keyId?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName?: pulumi.Input<string>;
     /**
      * The name of the keyring.
      */
     keyringName?: pulumi.Input<string>;
+    /**
+     * Key rotation period, unit: days; value range: [90, 2560].
+     */
+    rotateInterval?: pulumi.Input<number>;
     /**
      * The state of the key rotation.
      */
@@ -130,15 +143,19 @@ export interface KeyRotationState {
  */
 export interface KeyRotationArgs {
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     keyId?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName?: pulumi.Input<string>;
     /**
      * The name of the keyring.
      */
     keyringName?: pulumi.Input<string>;
+    /**
+     * Key rotation period, unit: days; value range: [90, 2560].
+     */
+    rotateInterval?: pulumi.Input<number>;
 }

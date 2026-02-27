@@ -4344,6 +4344,17 @@ export namespace kms {
         values: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface ReplicateKeyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
 }
 
 export namespace mongodb {

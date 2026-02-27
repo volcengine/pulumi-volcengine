@@ -39,6 +39,7 @@ export function secrets(args?: SecretsArgs, opts?: pulumi.InvokeOptions): Promis
         "managedStates": args.managedStates,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "owningServices": args.owningServices,
         "projectName": args.projectName,
         "rotationStates": args.rotationStates,
         "secretNames": args.secretNames,
@@ -73,6 +74,10 @@ export interface SecretsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The cloud service that owns the secret.
+     */
+    owningServices?: string[];
     /**
      * The name of the project to which the secret belongs.
      */
@@ -119,6 +124,10 @@ export interface SecretsResult {
     readonly managedStates?: string[];
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The cloud service that owns the secret.
+     */
+    readonly owningServices?: string[];
     /**
      * The project name of the secret.
      */
@@ -203,6 +212,10 @@ export interface SecretsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The cloud service that owns the secret.
+     */
+    owningServices?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the project to which the secret belongs.
      */

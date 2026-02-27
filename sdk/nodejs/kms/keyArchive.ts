@@ -72,11 +72,11 @@ export class KeyArchive extends pulumi.CustomResource {
     }
 
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     public readonly keyId!: pulumi.Output<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     public readonly keyName!: pulumi.Output<string>;
     /**
@@ -122,11 +122,11 @@ export class KeyArchive extends pulumi.CustomResource {
  */
 export interface KeyArchiveState {
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     keyId?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName?: pulumi.Input<string>;
     /**
@@ -144,11 +144,11 @@ export interface KeyArchiveState {
  */
 export interface KeyArchiveArgs {
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     keyId?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName?: pulumi.Input<string>;
     /**

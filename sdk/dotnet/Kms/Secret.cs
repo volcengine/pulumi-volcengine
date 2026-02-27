@@ -27,6 +27,22 @@ namespace Pulumi.Volcengine.Kms
     ///         SecretName = "tf-test1",
     ///         SecretType = "Generic",
     ///         SecretValue = "{\"dasdasd\":\"dasdasd\"}",
+    ///         VersionName = "v1.0",
+    ///     });
+    /// 
+    ///     var fooEcs = new Volcengine.Kms.Secret("fooEcs", new()
+    ///     {
+    ///         AutomaticRotation = false,
+    ///         Description = "tf-test ecs",
+    ///         EncryptionKey = "trn:kms:cn-beijing:21000******:keyrings/Tf-test/keys/Test-key1",
+    ///         ExtendedConfig = "{\"InstanceId\":\"i-yeehzz2tc0ygp2******\",\"SecretSubType\":\"Password\",\"CustomData\":{\"desc\":\"test\"}}",
+    ///         ForceDelete = false,
+    ///         PendingWindowInDays = 7,
+    ///         ProjectName = "default",
+    ///         SecretName = "tf-test2",
+    ///         SecretType = "ECS",
+    ///         SecretValue = "{\"UserName\":\"root\",\"Password\":\"********\"}",
+    ///         VersionName = "v2.0",
     ///     });
     /// 
     /// });
@@ -44,7 +60,7 @@ namespace Pulumi.Volcengine.Kms
     public partial class Secret : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The rotation state of the secret.
+        /// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         /// </summary>
         [Output("automaticRotation")]
         public Output<bool?> AutomaticRotation { get; private set; } = null!;
@@ -74,6 +90,12 @@ namespace Pulumi.Volcengine.Kms
         public Output<string> ExtendedConfig { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        /// </summary>
+        [Output("forceDelete")]
+        public Output<bool?> ForceDelete { get; private set; } = null!;
+
+        /// <summary>
         /// The last time the secret was rotated.
         /// </summary>
         [Output("lastRotationTime")]
@@ -86,13 +108,25 @@ namespace Pulumi.Volcengine.Kms
         public Output<bool> Managed { get; private set; } = null!;
 
         /// <summary>
+        /// The cloud service that owns the secret.
+        /// </summary>
+        [Output("owningService")]
+        public Output<string> OwningService { get; private set; } = null!;
+
+        /// <summary>
+        /// The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
+        /// </summary>
+        [Output("pendingWindowInDays")]
+        public Output<int?> PendingWindowInDays { get; private set; } = null!;
+
+        /// <summary>
         /// The project name of the secret.
         /// </summary>
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
-        /// The interval at which automatic rotation is performed.
+        /// The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         /// </summary>
         [Output("rotationInterval")]
         public Output<string> RotationInterval { get; private set; } = null!;
@@ -128,13 +162,13 @@ namespace Pulumi.Volcengine.Kms
         public Output<string> SecretName { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the secret.
+        /// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
         /// </summary>
         [Output("secretType")]
         public Output<string> SecretType { get; private set; } = null!;
 
         /// <summary>
-        /// The value of the secret.
+        /// The value of the secret. Only Generic type secret support modifying secret_value.
         /// </summary>
         [Output("secretValue")]
         public Output<string> SecretValue { get; private set; } = null!;
@@ -168,6 +202,12 @@ namespace Pulumi.Volcengine.Kms
         /// </summary>
         [Output("uuid")]
         public Output<string> Uuid { get; private set; } = null!;
+
+        /// <summary>
+        /// The version alias of the secret. Only Generic type secret support modifying version_name.
+        /// </summary>
+        [Output("versionName")]
+        public Output<string?> VersionName { get; private set; } = null!;
 
 
         /// <summary>
@@ -217,7 +257,7 @@ namespace Pulumi.Volcengine.Kms
     public sealed class SecretArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The rotation state of the secret.
+        /// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         /// </summary>
         [Input("automaticRotation")]
         public Input<bool>? AutomaticRotation { get; set; }
@@ -241,13 +281,25 @@ namespace Pulumi.Volcengine.Kms
         public Input<string>? ExtendedConfig { get; set; }
 
         /// <summary>
+        /// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        /// </summary>
+        [Input("forceDelete")]
+        public Input<bool>? ForceDelete { get; set; }
+
+        /// <summary>
+        /// The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
+        /// </summary>
+        [Input("pendingWindowInDays")]
+        public Input<int>? PendingWindowInDays { get; set; }
+
+        /// <summary>
         /// The project name of the secret.
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
         /// <summary>
-        /// The interval at which automatic rotation is performed.
+        /// The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         /// </summary>
         [Input("rotationInterval")]
         public Input<string>? RotationInterval { get; set; }
@@ -259,16 +311,22 @@ namespace Pulumi.Volcengine.Kms
         public Input<string> SecretName { get; set; } = null!;
 
         /// <summary>
-        /// The type of the secret.
+        /// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
         /// </summary>
         [Input("secretType", required: true)]
         public Input<string> SecretType { get; set; } = null!;
 
         /// <summary>
-        /// The value of the secret.
+        /// The value of the secret. Only Generic type secret support modifying secret_value.
         /// </summary>
         [Input("secretValue", required: true)]
         public Input<string> SecretValue { get; set; } = null!;
+
+        /// <summary>
+        /// The version alias of the secret. Only Generic type secret support modifying version_name.
+        /// </summary>
+        [Input("versionName")]
+        public Input<string>? VersionName { get; set; }
 
         public SecretArgs()
         {
@@ -279,7 +337,7 @@ namespace Pulumi.Volcengine.Kms
     public sealed class SecretState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The rotation state of the secret.
+        /// The rotation state of the secret. Only valid for IAM, RDS, Redis, ECS secrets.
         /// </summary>
         [Input("automaticRotation")]
         public Input<bool>? AutomaticRotation { get; set; }
@@ -309,6 +367,12 @@ namespace Pulumi.Volcengine.Kms
         public Input<string>? ExtendedConfig { get; set; }
 
         /// <summary>
+        /// Whether to delete the secret immediately. If false, the secret enters pending deletion state. Only effective when destroying resources.
+        /// </summary>
+        [Input("forceDelete")]
+        public Input<bool>? ForceDelete { get; set; }
+
+        /// <summary>
         /// The last time the secret was rotated.
         /// </summary>
         [Input("lastRotationTime")]
@@ -321,13 +385,25 @@ namespace Pulumi.Volcengine.Kms
         public Input<bool>? Managed { get; set; }
 
         /// <summary>
+        /// The cloud service that owns the secret.
+        /// </summary>
+        [Input("owningService")]
+        public Input<string>? OwningService { get; set; }
+
+        /// <summary>
+        /// The waiting period before deletion when force_delete is false. Valid values: 7~30. Only effective when destroying resources.
+        /// </summary>
+        [Input("pendingWindowInDays")]
+        public Input<int>? PendingWindowInDays { get; set; }
+
+        /// <summary>
         /// The project name of the secret.
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
         /// <summary>
-        /// The interval at which automatic rotation is performed.
+        /// The interval at which automatic rotation is performed. This parameter must be specified when automatic_rotation is true.
         /// </summary>
         [Input("rotationInterval")]
         public Input<string>? RotationInterval { get; set; }
@@ -363,13 +439,13 @@ namespace Pulumi.Volcengine.Kms
         public Input<string>? SecretName { get; set; }
 
         /// <summary>
-        /// The type of the secret.
+        /// The type of the secret. Valid values: Generic, IAM, RDS, Redis, ECS.
         /// </summary>
         [Input("secretType")]
         public Input<string>? SecretType { get; set; }
 
         /// <summary>
-        /// The value of the secret.
+        /// The value of the secret. Only Generic type secret support modifying secret_value.
         /// </summary>
         [Input("secretValue")]
         public Input<string>? SecretValue { get; set; }
@@ -403,6 +479,12 @@ namespace Pulumi.Volcengine.Kms
         /// </summary>
         [Input("uuid")]
         public Input<string>? Uuid { get; set; }
+
+        /// <summary>
+        /// The version alias of the secret. Only Generic type secret support modifying version_name.
+        /// </summary>
+        [Input("versionName")]
+        public Input<string>? VersionName { get; set; }
 
         public SecretState()
         {

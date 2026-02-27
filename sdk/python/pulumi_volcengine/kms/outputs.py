@@ -11,6 +11,13 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AsymmetricCiphertextsCiphertextInfoResult',
+    'AsymmetricPlaintextsPlaintextInfoResult',
+    'AsymmetricSignaturesSignatureInfoResult',
+    'AsymmetricVerificationsVerificationInfoResult',
+    'CiphertextsCiphertextInfoResult',
+    'DataKeysDataKeyInfoResult',
+    'KeyMaterialsImportParameterResult',
     'KeyMultiRegionConfiguration',
     'KeyMultiRegionConfigurationPrimaryKey',
     'KeyMultiRegionConfigurationReplicaKey',
@@ -21,17 +28,222 @@ __all__ = [
     'KeysKeyMultiRegionConfigurationPrimaryKeyResult',
     'KeysKeyMultiRegionConfigurationReplicaKeyResult',
     'KeysKeyTagResult',
+    'KeysKeyXksKeyConfigurationResult',
     'KeysTagResult',
+    'MacVerificationsMacVerificationInfoResult',
+    'MacsMacInfoResult',
+    'PlaintextsPlaintextInfoResult',
+    'PublicKeysPublicKeyResult',
+    'ReEncryptsCiphertextInfoResult',
+    'RegionsRegionResult',
+    'ReplicateKeyTag',
+    'SecretVersionsSecretVersionResult',
     'SecretsSecretResult',
+    'GetAsymmetricCiphertextsCiphertextInfoResult',
+    'GetAsymmetricPlaintextsPlaintextInfoResult',
+    'GetAsymmetricSignaturesSignatureInfoResult',
+    'GetAsymmetricVerificationsVerificationInfoResult',
+    'GetCiphertextsCiphertextInfoResult',
+    'GetDataKeysDataKeyInfoResult',
+    'GetKeyMaterialsImportParameterResult',
     'GetKeyringsKeyringResult',
     'GetKeysKeyResult',
     'GetKeysKeyMultiRegionConfigurationResult',
     'GetKeysKeyMultiRegionConfigurationPrimaryKeyResult',
     'GetKeysKeyMultiRegionConfigurationReplicaKeyResult',
     'GetKeysKeyTagResult',
+    'GetKeysKeyXksKeyConfigurationResult',
     'GetKeysTagResult',
+    'GetMacVerificationsMacVerificationInfoResult',
+    'GetMacsMacInfoResult',
+    'GetPlaintextsPlaintextInfoResult',
+    'GetPublicKeysPublicKeyResult',
+    'GetReEncryptsCiphertextInfoResult',
+    'GetRegionsRegionResult',
+    'GetSecretVersionsSecretVersionResult',
     'GetSecretsSecretResult',
 ]
+
+@pulumi.output_type
+class AsymmetricCiphertextsCiphertextInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str):
+        """
+        :param str ciphertext_blob: The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+
+@pulumi.output_type
+class AsymmetricPlaintextsPlaintextInfoResult(dict):
+    def __init__(__self__, *,
+                 plaintext: str):
+        """
+        :param str plaintext: The decrypted plaintext, Base64 encoded.
+        """
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        The decrypted plaintext, Base64 encoded.
+        """
+        return pulumi.get(self, "plaintext")
+
+
+@pulumi.output_type
+class AsymmetricSignaturesSignatureInfoResult(dict):
+    def __init__(__self__, *,
+                 signature: str):
+        """
+        :param str signature: The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+        """
+        pulumi.set(__self__, "signature", signature)
+
+    @property
+    @pulumi.getter
+    def signature(self) -> str:
+        """
+        The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+        """
+        return pulumi.get(self, "signature")
+
+
+@pulumi.output_type
+class AsymmetricVerificationsVerificationInfoResult(dict):
+    def __init__(__self__, *,
+                 signature_valid: bool):
+        """
+        :param bool signature_valid: Whether the signature is valid.
+        """
+        pulumi.set(__self__, "signature_valid", signature_valid)
+
+    @property
+    @pulumi.getter(name="signatureValid")
+    def signature_valid(self) -> bool:
+        """
+        Whether the signature is valid.
+        """
+        return pulumi.get(self, "signature_valid")
+
+
+@pulumi.output_type
+class CiphertextsCiphertextInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str):
+        """
+        :param str ciphertext_blob: The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+
+@pulumi.output_type
+class DataKeysDataKeyInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str,
+                 plaintext: str):
+        """
+        :param str ciphertext_blob: The generated ciphertext, Base64 encoded.
+        :param str plaintext: The generated plaintext, Base64 encoded.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The generated ciphertext, Base64 encoded.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        The generated plaintext, Base64 encoded.
+        """
+        return pulumi.get(self, "plaintext")
+
+
+@pulumi.output_type
+class KeyMaterialsImportParameterResult(dict):
+    def __init__(__self__, *,
+                 import_token: str,
+                 key_id: str,
+                 keyring_id: str,
+                 public_key: str,
+                 token_expire_time: str):
+        """
+        :param str import_token: The import token, Base64 encoded.
+        :param str key_id: The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param str keyring_id: The id of keyring.
+        :param str public_key: The public key used to encrypt key materials, Base64 encoded.
+        :param str token_expire_time: The token expire time.
+        """
+        pulumi.set(__self__, "import_token", import_token)
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "keyring_id", keyring_id)
+        pulumi.set(__self__, "public_key", public_key)
+        pulumi.set(__self__, "token_expire_time", token_expire_time)
+
+    @property
+    @pulumi.getter(name="importToken")
+    def import_token(self) -> str:
+        """
+        The import token, Base64 encoded.
+        """
+        return pulumi.get(self, "import_token")
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyringId")
+    def keyring_id(self) -> str:
+        """
+        The id of keyring.
+        """
+        return pulumi.get(self, "keyring_id")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The public key used to encrypt key materials, Base64 encoded.
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="tokenExpireTime")
+    def token_expire_time(self) -> str:
+        """
+        The token expire time.
+        """
+        return pulumi.get(self, "token_expire_time")
+
 
 @pulumi.output_type
 class KeyMultiRegionConfiguration(dict):
@@ -298,6 +510,7 @@ class KeyringsKeyringResult(dict):
 class KeysKeyResult(dict):
     def __init__(__self__, *,
                  creation_date: int,
+                 custom_key_store_id: str,
                  description: str,
                  id: str,
                  key_material_expire_time: str,
@@ -315,29 +528,33 @@ class KeysKeyResult(dict):
                  schedule_rotation_time: str,
                  tags: Sequence['outputs.KeysKeyTagResult'],
                  trn: str,
-                 update_date: int):
+                 update_date: int,
+                 xks_key_configurations: Sequence['outputs.KeysKeyXksKeyConfigurationResult']):
         """
         :param int creation_date: The date when the keyring was created.
+        :param str custom_key_store_id: The ID of the custom key store.
         :param str description: The description of the key.
-        :param str id: The unique ID of the key.
+        :param str id: The ID of the external key store.
         :param str key_material_expire_time: The time when the key material will expire.
         :param str key_name: The name of the key.
-        :param str key_spec: The algorithm used in the key.
+        :param str key_spec: The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
         :param str key_state: The state of the key.
-        :param str key_usage: The usage of the key.
+        :param str key_usage: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
         :param str last_rotation_time: The last time the key was rotated.
         :param bool multi_region: Whether it is the master key of the Multi-region type.
         :param 'KeysKeyMultiRegionConfigurationArgs' multi_region_configuration: The configuration of Multi-region key.
-        :param str origin: The origin of the key.
-        :param str protection_level: The protection level of the key.
+        :param str origin: The origin of the key. Valid values: CloudKMS, External.
+        :param str protection_level: The protection level of the key. Valid values: SOFTWARE, HSM.
         :param str rotation_state: The rotation configuration of the key.
         :param str schedule_delete_time: The time when the key will be deleted.
         :param str schedule_rotation_time: The next time the key will be rotated.
         :param Sequence['KeysKeyTagArgs'] tags: A list of tags.
         :param str trn: The name of the resource.
         :param int update_date: The date when the keyring was updated.
+        :param Sequence['KeysKeyXksKeyConfigurationArgs'] xks_key_configurations: The configuration of the external key store.
         """
         pulumi.set(__self__, "creation_date", creation_date)
+        pulumi.set(__self__, "custom_key_store_id", custom_key_store_id)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key_material_expire_time", key_material_expire_time)
@@ -356,6 +573,7 @@ class KeysKeyResult(dict):
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "trn", trn)
         pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "xks_key_configurations", xks_key_configurations)
 
     @property
     @pulumi.getter(name="creationDate")
@@ -364,6 +582,14 @@ class KeysKeyResult(dict):
         The date when the keyring was created.
         """
         return pulumi.get(self, "creation_date")
+
+    @property
+    @pulumi.getter(name="customKeyStoreId")
+    def custom_key_store_id(self) -> str:
+        """
+        The ID of the custom key store.
+        """
+        return pulumi.get(self, "custom_key_store_id")
 
     @property
     @pulumi.getter
@@ -377,7 +603,7 @@ class KeysKeyResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The unique ID of the key.
+        The ID of the external key store.
         """
         return pulumi.get(self, "id")
 
@@ -401,7 +627,7 @@ class KeysKeyResult(dict):
     @pulumi.getter(name="keySpec")
     def key_spec(self) -> str:
         """
-        The algorithm used in the key.
+        The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
         """
         return pulumi.get(self, "key_spec")
 
@@ -417,7 +643,7 @@ class KeysKeyResult(dict):
     @pulumi.getter(name="keyUsage")
     def key_usage(self) -> str:
         """
-        The usage of the key.
+        The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
         """
         return pulumi.get(self, "key_usage")
 
@@ -449,7 +675,7 @@ class KeysKeyResult(dict):
     @pulumi.getter
     def origin(self) -> str:
         """
-        The origin of the key.
+        The origin of the key. Valid values: CloudKMS, External.
         """
         return pulumi.get(self, "origin")
 
@@ -457,7 +683,7 @@ class KeysKeyResult(dict):
     @pulumi.getter(name="protectionLevel")
     def protection_level(self) -> str:
         """
-        The protection level of the key.
+        The protection level of the key. Valid values: SOFTWARE, HSM.
         """
         return pulumi.get(self, "protection_level")
 
@@ -508,6 +734,14 @@ class KeysKeyResult(dict):
         The date when the keyring was updated.
         """
         return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="xksKeyConfigurations")
+    def xks_key_configurations(self) -> Sequence['outputs.KeysKeyXksKeyConfigurationResult']:
+        """
+        The configuration of the external key store.
+        """
+        return pulumi.get(self, "xks_key_configurations")
 
 
 @pulumi.output_type
@@ -638,6 +872,24 @@ class KeysKeyTagResult(dict):
 
 
 @pulumi.output_type
+class KeysKeyXksKeyConfigurationResult(dict):
+    def __init__(__self__, *,
+                 id: str):
+        """
+        :param str id: The ID of the external key store.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the external key store.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class KeysTagResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -667,6 +919,216 @@ class KeysTagResult(dict):
 
 
 @pulumi.output_type
+class MacVerificationsMacVerificationInfoResult(dict):
+    def __init__(__self__, *,
+                 key_id: str,
+                 mac_valid: bool):
+        """
+        :param str key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param bool mac_valid: Whether the MAC is valid.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "mac_valid", mac_valid)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="macValid")
+    def mac_valid(self) -> bool:
+        """
+        Whether the MAC is valid.
+        """
+        return pulumi.get(self, "mac_valid")
+
+
+@pulumi.output_type
+class MacsMacInfoResult(dict):
+    def __init__(__self__, *,
+                 key_id: str,
+                 mac: str):
+        """
+        :param str key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param str mac: The MAC result, Base64 encoded.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "mac", mac)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        """
+        The MAC result, Base64 encoded.
+        """
+        return pulumi.get(self, "mac")
+
+
+@pulumi.output_type
+class PlaintextsPlaintextInfoResult(dict):
+    def __init__(__self__, *,
+                 plaintext: str):
+        """
+        :param str plaintext: The decrypted plaintext, Base64 encoded.
+        """
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        The decrypted plaintext, Base64 encoded.
+        """
+        return pulumi.get(self, "plaintext")
+
+
+@pulumi.output_type
+class PublicKeysPublicKeyResult(dict):
+    def __init__(__self__, *,
+                 key_id: str,
+                 public_key: str):
+        """
+        :param str key_id: The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param str public_key: The public key in PEM format.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "public_key", public_key)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The public key in PEM format.
+        """
+        return pulumi.get(self, "public_key")
+
+
+@pulumi.output_type
+class ReEncryptsCiphertextInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str):
+        """
+        :param str ciphertext_blob: The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+
+@pulumi.output_type
+class RegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 region_id: str):
+        """
+        :param str region_id: The region ID.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+
+@pulumi.output_type
+class ReplicateKeyTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SecretVersionsSecretVersionResult(dict):
+    def __init__(__self__, *,
+                 creation_date: int,
+                 version_id: str,
+                 version_stage: str):
+        """
+        :param int creation_date: The creation time of secret version.
+        :param str version_id: The version ID of secret value.
+        :param str version_stage: The version stage of secret value.
+        """
+        pulumi.set(__self__, "creation_date", creation_date)
+        pulumi.set(__self__, "version_id", version_id)
+        pulumi.set(__self__, "version_stage", version_stage)
+
+    @property
+    @pulumi.getter(name="creationDate")
+    def creation_date(self) -> int:
+        """
+        The creation time of secret version.
+        """
+        return pulumi.get(self, "creation_date")
+
+    @property
+    @pulumi.getter(name="versionId")
+    def version_id(self) -> str:
+        """
+        The version ID of secret value.
+        """
+        return pulumi.get(self, "version_id")
+
+    @property
+    @pulumi.getter(name="versionStage")
+    def version_stage(self) -> str:
+        """
+        The version stage of secret value.
+        """
+        return pulumi.get(self, "version_stage")
+
+
+@pulumi.output_type
 class SecretsSecretResult(dict):
     def __init__(__self__, *,
                  creation_date: int,
@@ -676,6 +1138,7 @@ class SecretsSecretResult(dict):
                  id: str,
                  last_rotation_time: str,
                  managed: bool,
+                 owning_service: str,
                  project_name: str,
                  rotation_interval: int,
                  rotation_state: str,
@@ -695,6 +1158,7 @@ class SecretsSecretResult(dict):
         :param str id: The unique ID of the secret. The value is in the UUID format.
         :param str last_rotation_time: The last time the secret was rotated.
         :param bool managed: Indicates whether the secret is hosted.
+        :param str owning_service: The cloud service that owns the secret.
         :param str project_name: The name of the project to which the secret belongs.
         :param int rotation_interval: The interval at which automatic rotation is performed.
         :param str rotation_state: The state of the rotation.
@@ -714,6 +1178,7 @@ class SecretsSecretResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "last_rotation_time", last_rotation_time)
         pulumi.set(__self__, "managed", managed)
+        pulumi.set(__self__, "owning_service", owning_service)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "rotation_interval", rotation_interval)
         pulumi.set(__self__, "rotation_state", rotation_state)
@@ -781,6 +1246,14 @@ class SecretsSecretResult(dict):
         Indicates whether the secret is hosted.
         """
         return pulumi.get(self, "managed")
+
+    @property
+    @pulumi.getter(name="owningService")
+    def owning_service(self) -> str:
+        """
+        The cloud service that owns the secret.
+        """
+        return pulumi.get(self, "owning_service")
 
     @property
     @pulumi.getter(name="projectName")
@@ -869,6 +1342,187 @@ class SecretsSecretResult(dict):
         The date when the keyring was updated.
         """
         return pulumi.get(self, "update_date")
+
+
+@pulumi.output_type
+class GetAsymmetricCiphertextsCiphertextInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str):
+        """
+        :param str ciphertext_blob: The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.AsymmetricCiphertext` resource.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+
+@pulumi.output_type
+class GetAsymmetricPlaintextsPlaintextInfoResult(dict):
+    def __init__(__self__, *,
+                 plaintext: str):
+        """
+        :param str plaintext: The decrypted plaintext, Base64 encoded.
+        """
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        The decrypted plaintext, Base64 encoded.
+        """
+        return pulumi.get(self, "plaintext")
+
+
+@pulumi.output_type
+class GetAsymmetricSignaturesSignatureInfoResult(dict):
+    def __init__(__self__, *,
+                 signature: str):
+        """
+        :param str signature: The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+        """
+        pulumi.set(__self__, "signature", signature)
+
+    @property
+    @pulumi.getter
+    def signature(self) -> str:
+        """
+        The signature, Base64 encoded. The signature gets re-signed on each apply, resulting in a changed signature. If a stable signature is needed use the `kms.AsymmetricSignature` resource.
+        """
+        return pulumi.get(self, "signature")
+
+
+@pulumi.output_type
+class GetAsymmetricVerificationsVerificationInfoResult(dict):
+    def __init__(__self__, *,
+                 signature_valid: bool):
+        """
+        :param bool signature_valid: Whether the signature is valid.
+        """
+        pulumi.set(__self__, "signature_valid", signature_valid)
+
+    @property
+    @pulumi.getter(name="signatureValid")
+    def signature_valid(self) -> bool:
+        """
+        Whether the signature is valid.
+        """
+        return pulumi.get(self, "signature_valid")
+
+
+@pulumi.output_type
+class GetCiphertextsCiphertextInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str):
+        """
+        :param str ciphertext_blob: The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The ciphertext, Base64 encoded. The plaintext gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.Ciphertext` resource.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+
+@pulumi.output_type
+class GetDataKeysDataKeyInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str,
+                 plaintext: str):
+        """
+        :param str ciphertext_blob: The generated ciphertext, Base64 encoded.
+        :param str plaintext: The generated plaintext, Base64 encoded.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The generated ciphertext, Base64 encoded.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        The generated plaintext, Base64 encoded.
+        """
+        return pulumi.get(self, "plaintext")
+
+
+@pulumi.output_type
+class GetKeyMaterialsImportParameterResult(dict):
+    def __init__(__self__, *,
+                 import_token: str,
+                 key_id: str,
+                 keyring_id: str,
+                 public_key: str,
+                 token_expire_time: str):
+        """
+        :param str import_token: The import token, Base64 encoded.
+        :param str key_id: The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param str keyring_id: The id of keyring.
+        :param str public_key: The public key used to encrypt key materials, Base64 encoded.
+        :param str token_expire_time: The token expire time.
+        """
+        pulumi.set(__self__, "import_token", import_token)
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "keyring_id", keyring_id)
+        pulumi.set(__self__, "public_key", public_key)
+        pulumi.set(__self__, "token_expire_time", token_expire_time)
+
+    @property
+    @pulumi.getter(name="importToken")
+    def import_token(self) -> str:
+        """
+        The import token, Base64 encoded.
+        """
+        return pulumi.get(self, "import_token")
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyringId")
+    def keyring_id(self) -> str:
+        """
+        The id of keyring.
+        """
+        return pulumi.get(self, "keyring_id")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The public key used to encrypt key materials, Base64 encoded.
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="tokenExpireTime")
+    def token_expire_time(self) -> str:
+        """
+        The token expire time.
+        """
+        return pulumi.get(self, "token_expire_time")
 
 
 @pulumi.output_type
@@ -981,6 +1635,7 @@ class GetKeyringsKeyringResult(dict):
 class GetKeysKeyResult(dict):
     def __init__(__self__, *,
                  creation_date: int,
+                 custom_key_store_id: str,
                  description: str,
                  id: str,
                  key_material_expire_time: str,
@@ -998,29 +1653,33 @@ class GetKeysKeyResult(dict):
                  schedule_rotation_time: str,
                  tags: Sequence['outputs.GetKeysKeyTagResult'],
                  trn: str,
-                 update_date: int):
+                 update_date: int,
+                 xks_key_configurations: Sequence['outputs.GetKeysKeyXksKeyConfigurationResult']):
         """
         :param int creation_date: The date when the keyring was created.
+        :param str custom_key_store_id: The ID of the custom key store.
         :param str description: The description of the key.
-        :param str id: The unique ID of the key.
+        :param str id: The ID of the external key store.
         :param str key_material_expire_time: The time when the key material will expire.
         :param str key_name: The name of the key.
-        :param str key_spec: The algorithm used in the key.
+        :param str key_spec: The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
         :param str key_state: The state of the key.
-        :param str key_usage: The usage of the key.
+        :param str key_usage: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
         :param str last_rotation_time: The last time the key was rotated.
         :param bool multi_region: Whether it is the master key of the Multi-region type.
         :param 'GetKeysKeyMultiRegionConfigurationArgs' multi_region_configuration: The configuration of Multi-region key.
-        :param str origin: The origin of the key.
-        :param str protection_level: The protection level of the key.
+        :param str origin: The origin of the key. Valid values: CloudKMS, External.
+        :param str protection_level: The protection level of the key. Valid values: SOFTWARE, HSM.
         :param str rotation_state: The rotation configuration of the key.
         :param str schedule_delete_time: The time when the key will be deleted.
         :param str schedule_rotation_time: The next time the key will be rotated.
         :param Sequence['GetKeysKeyTagArgs'] tags: A list of tags.
         :param str trn: The name of the resource.
         :param int update_date: The date when the keyring was updated.
+        :param Sequence['GetKeysKeyXksKeyConfigurationArgs'] xks_key_configurations: The configuration of the external key store.
         """
         pulumi.set(__self__, "creation_date", creation_date)
+        pulumi.set(__self__, "custom_key_store_id", custom_key_store_id)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key_material_expire_time", key_material_expire_time)
@@ -1039,6 +1698,7 @@ class GetKeysKeyResult(dict):
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "trn", trn)
         pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "xks_key_configurations", xks_key_configurations)
 
     @property
     @pulumi.getter(name="creationDate")
@@ -1047,6 +1707,14 @@ class GetKeysKeyResult(dict):
         The date when the keyring was created.
         """
         return pulumi.get(self, "creation_date")
+
+    @property
+    @pulumi.getter(name="customKeyStoreId")
+    def custom_key_store_id(self) -> str:
+        """
+        The ID of the custom key store.
+        """
+        return pulumi.get(self, "custom_key_store_id")
 
     @property
     @pulumi.getter
@@ -1060,7 +1728,7 @@ class GetKeysKeyResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The unique ID of the key.
+        The ID of the external key store.
         """
         return pulumi.get(self, "id")
 
@@ -1084,7 +1752,7 @@ class GetKeysKeyResult(dict):
     @pulumi.getter(name="keySpec")
     def key_spec(self) -> str:
         """
-        The algorithm used in the key.
+        The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
         """
         return pulumi.get(self, "key_spec")
 
@@ -1100,7 +1768,7 @@ class GetKeysKeyResult(dict):
     @pulumi.getter(name="keyUsage")
     def key_usage(self) -> str:
         """
-        The usage of the key.
+        The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
         """
         return pulumi.get(self, "key_usage")
 
@@ -1132,7 +1800,7 @@ class GetKeysKeyResult(dict):
     @pulumi.getter
     def origin(self) -> str:
         """
-        The origin of the key.
+        The origin of the key. Valid values: CloudKMS, External.
         """
         return pulumi.get(self, "origin")
 
@@ -1140,7 +1808,7 @@ class GetKeysKeyResult(dict):
     @pulumi.getter(name="protectionLevel")
     def protection_level(self) -> str:
         """
-        The protection level of the key.
+        The protection level of the key. Valid values: SOFTWARE, HSM.
         """
         return pulumi.get(self, "protection_level")
 
@@ -1191,6 +1859,14 @@ class GetKeysKeyResult(dict):
         The date when the keyring was updated.
         """
         return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="xksKeyConfigurations")
+    def xks_key_configurations(self) -> Sequence['outputs.GetKeysKeyXksKeyConfigurationResult']:
+        """
+        The configuration of the external key store.
+        """
+        return pulumi.get(self, "xks_key_configurations")
 
 
 @pulumi.output_type
@@ -1321,6 +1997,24 @@ class GetKeysKeyTagResult(dict):
 
 
 @pulumi.output_type
+class GetKeysKeyXksKeyConfigurationResult(dict):
+    def __init__(__self__, *,
+                 id: str):
+        """
+        :param str id: The ID of the external key store.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the external key store.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetKeysTagResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -1350,6 +2044,187 @@ class GetKeysTagResult(dict):
 
 
 @pulumi.output_type
+class GetMacVerificationsMacVerificationInfoResult(dict):
+    def __init__(__self__, *,
+                 key_id: str,
+                 mac_valid: bool):
+        """
+        :param str key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param bool mac_valid: Whether the MAC is valid.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "mac_valid", mac_valid)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="macValid")
+    def mac_valid(self) -> bool:
+        """
+        Whether the MAC is valid.
+        """
+        return pulumi.get(self, "mac_valid")
+
+
+@pulumi.output_type
+class GetMacsMacInfoResult(dict):
+    def __init__(__self__, *,
+                 key_id: str,
+                 mac: str):
+        """
+        :param str key_id: The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param str mac: The MAC result, Base64 encoded.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "mac", mac)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of the key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        """
+        The MAC result, Base64 encoded.
+        """
+        return pulumi.get(self, "mac")
+
+
+@pulumi.output_type
+class GetPlaintextsPlaintextInfoResult(dict):
+    def __init__(__self__, *,
+                 plaintext: str):
+        """
+        :param str plaintext: The decrypted plaintext, Base64 encoded.
+        """
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        The decrypted plaintext, Base64 encoded.
+        """
+        return pulumi.get(self, "plaintext")
+
+
+@pulumi.output_type
+class GetPublicKeysPublicKeyResult(dict):
+    def __init__(__self__, *,
+                 key_id: str,
+                 public_key: str):
+        """
+        :param str key_id: The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        :param str public_key: The public key in PEM format.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "public_key", public_key)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The id of key. When key_id is not specified, both keyring_name and key_name must be specified.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The public key in PEM format.
+        """
+        return pulumi.get(self, "public_key")
+
+
+@pulumi.output_type
+class GetReEncryptsCiphertextInfoResult(dict):
+    def __init__(__self__, *,
+                 ciphertext_blob: str):
+        """
+        :param str ciphertext_blob: The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+        """
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        The re-encrypted ciphertext, Base64 encoded. The data gets re-encrypted on each apply, resulting in a changed ciphertext_blob. If a stable ciphertext is needed use the `kms.ReEncrypt` resource.
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+
+@pulumi.output_type
+class GetRegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 region_id: str):
+        """
+        :param str region_id: The region ID.
+        """
+        pulumi.set(__self__, "region_id", region_id)
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The region ID.
+        """
+        return pulumi.get(self, "region_id")
+
+
+@pulumi.output_type
+class GetSecretVersionsSecretVersionResult(dict):
+    def __init__(__self__, *,
+                 creation_date: int,
+                 version_id: str,
+                 version_stage: str):
+        """
+        :param int creation_date: The creation time of secret version.
+        :param str version_id: The version ID of secret value.
+        :param str version_stage: The version stage of secret value.
+        """
+        pulumi.set(__self__, "creation_date", creation_date)
+        pulumi.set(__self__, "version_id", version_id)
+        pulumi.set(__self__, "version_stage", version_stage)
+
+    @property
+    @pulumi.getter(name="creationDate")
+    def creation_date(self) -> int:
+        """
+        The creation time of secret version.
+        """
+        return pulumi.get(self, "creation_date")
+
+    @property
+    @pulumi.getter(name="versionId")
+    def version_id(self) -> str:
+        """
+        The version ID of secret value.
+        """
+        return pulumi.get(self, "version_id")
+
+    @property
+    @pulumi.getter(name="versionStage")
+    def version_stage(self) -> str:
+        """
+        The version stage of secret value.
+        """
+        return pulumi.get(self, "version_stage")
+
+
+@pulumi.output_type
 class GetSecretsSecretResult(dict):
     def __init__(__self__, *,
                  creation_date: int,
@@ -1359,6 +2234,7 @@ class GetSecretsSecretResult(dict):
                  id: str,
                  last_rotation_time: str,
                  managed: bool,
+                 owning_service: str,
                  project_name: str,
                  rotation_interval: int,
                  rotation_state: str,
@@ -1378,6 +2254,7 @@ class GetSecretsSecretResult(dict):
         :param str id: The unique ID of the secret. The value is in the UUID format.
         :param str last_rotation_time: The last time the secret was rotated.
         :param bool managed: Indicates whether the secret is hosted.
+        :param str owning_service: The cloud service that owns the secret.
         :param str project_name: The name of the project to which the secret belongs.
         :param int rotation_interval: The interval at which automatic rotation is performed.
         :param str rotation_state: The state of the rotation.
@@ -1397,6 +2274,7 @@ class GetSecretsSecretResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "last_rotation_time", last_rotation_time)
         pulumi.set(__self__, "managed", managed)
+        pulumi.set(__self__, "owning_service", owning_service)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "rotation_interval", rotation_interval)
         pulumi.set(__self__, "rotation_state", rotation_state)
@@ -1464,6 +2342,14 @@ class GetSecretsSecretResult(dict):
         Indicates whether the secret is hosted.
         """
         return pulumi.get(self, "managed")
+
+    @property
+    @pulumi.getter(name="owningService")
+    def owning_service(self) -> str:
+        """
+        The cloud service that owns the secret.
+        """
+        return pulumi.get(self, "owning_service")
 
     @property
     @pulumi.getter(name="projectName")

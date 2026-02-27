@@ -58,11 +58,11 @@ export class KeyEnable extends pulumi.CustomResource {
     }
 
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     public readonly keyId!: pulumi.Output<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     public readonly keyName!: pulumi.Output<string>;
     /**
@@ -108,11 +108,11 @@ export class KeyEnable extends pulumi.CustomResource {
  */
 export interface KeyEnableState {
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     keyId?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName?: pulumi.Input<string>;
     /**
@@ -130,11 +130,11 @@ export interface KeyEnableState {
  */
 export interface KeyEnableArgs {
     /**
-     * The id of the CMK.
+     * The id of the key. When keyId is not specified, both keyringName and keyName must be specified.
      */
     keyId?: pulumi.Input<string>;
     /**
-     * The name of the CMK.
+     * The name of the key.
      */
     keyName?: pulumi.Input<string>;
     /**

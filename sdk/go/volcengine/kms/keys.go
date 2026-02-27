@@ -98,11 +98,11 @@ type KeysArgs struct {
 	Descriptions []string `pulumi:"descriptions"`
 	// The name of the key.
 	KeyNames []string `pulumi:"keyNames"`
-	// The algorithm used in the key.
+	// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 	KeySpecs []string `pulumi:"keySpecs"`
 	// The state of the key.
 	KeyStates []string `pulumi:"keyStates"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 	KeyUsages []string `pulumi:"keyUsages"`
 	// Query the Key ring that meets the specified conditions, which is composed of key-value pairs.
 	KeyringId *string `pulumi:"keyringId"`
@@ -110,13 +110,13 @@ type KeysArgs struct {
 	KeyringName *string `pulumi:"keyringName"`
 	// A Name Regex of Resource.
 	NameRegex *string `pulumi:"nameRegex"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External.
 	Origins []string `pulumi:"origins"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM.
 	ProtectionLevels []string `pulumi:"protectionLevels"`
-	// The state of the rotate.
+	// The state of the rotate. Valid values: Enable, Disable.
 	RotateStates []string `pulumi:"rotateStates"`
 	// A list of tags.
 	Tags []KeysTag `pulumi:"tags"`
@@ -178,11 +178,11 @@ type KeysOutputArgs struct {
 	Descriptions pulumi.StringArrayInput `pulumi:"descriptions"`
 	// The name of the key.
 	KeyNames pulumi.StringArrayInput `pulumi:"keyNames"`
-	// The algorithm used in the key.
+	// The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
 	KeySpecs pulumi.StringArrayInput `pulumi:"keySpecs"`
 	// The state of the key.
 	KeyStates pulumi.StringArrayInput `pulumi:"keyStates"`
-	// The usage of the key.
+	// The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
 	KeyUsages pulumi.StringArrayInput `pulumi:"keyUsages"`
 	// Query the Key ring that meets the specified conditions, which is composed of key-value pairs.
 	KeyringId pulumi.StringPtrInput `pulumi:"keyringId"`
@@ -190,13 +190,13 @@ type KeysOutputArgs struct {
 	KeyringName pulumi.StringPtrInput `pulumi:"keyringName"`
 	// A Name Regex of Resource.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
-	// The origin of the key.
+	// The origin of the key. Valid values: CloudKMS, External.
 	Origins pulumi.StringArrayInput `pulumi:"origins"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// The protection level of the key.
+	// The protection level of the key. Valid values: SOFTWARE, HSM.
 	ProtectionLevels pulumi.StringArrayInput `pulumi:"protectionLevels"`
-	// The state of the rotate.
+	// The state of the rotate. Valid values: Enable, Disable.
 	RotateStates pulumi.StringArrayInput `pulumi:"rotateStates"`
 	// A list of tags.
 	Tags KeysTagArrayInput `pulumi:"tags"`

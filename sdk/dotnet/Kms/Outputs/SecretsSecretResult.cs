@@ -42,6 +42,10 @@ namespace Pulumi.Volcengine.Kms.Outputs
         /// </summary>
         public readonly bool Managed;
         /// <summary>
+        /// The cloud service that owns the secret.
+        /// </summary>
+        public readonly string OwningService;
+        /// <summary>
         /// The name of the project to which the secret belongs.
         /// </summary>
         public readonly string ProjectName;
@@ -102,6 +106,8 @@ namespace Pulumi.Volcengine.Kms.Outputs
 
             bool managed,
 
+            string owningService,
+
             string projectName,
 
             int rotationInterval,
@@ -131,6 +137,7 @@ namespace Pulumi.Volcengine.Kms.Outputs
             Id = id;
             LastRotationTime = lastRotationTime;
             Managed = managed;
+            OwningService = owningService;
             ProjectName = projectName;
             RotationInterval = rotationInterval;
             RotationState = rotationState;

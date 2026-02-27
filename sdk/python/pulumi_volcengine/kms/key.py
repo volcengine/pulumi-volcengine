@@ -18,6 +18,7 @@ class KeyArgs:
     def __init__(__self__, *,
                  key_name: pulumi.Input[str],
                  keyring_name: pulumi.Input[str],
+                 custom_key_store_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  key_spec: Optional[pulumi.Input[str]] = None,
                  key_usage: Optional[pulumi.Input[str]] = None,
@@ -25,24 +26,31 @@ class KeyArgs:
                  origin: Optional[pulumi.Input[str]] = None,
                  pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  protection_level: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None,
                  rotate_state: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['KeyTagArgs']]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['KeyTagArgs']]]] = None,
+                 xks_key_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Key resource.
-        :param pulumi.Input[str] key_name: The name of the CMK.
+        :param pulumi.Input[str] key_name: The name of the key.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
+        :param pulumi.Input[str] custom_key_store_id: The ID of the custom key store.
         :param pulumi.Input[str] description: The description of the key.
-        :param pulumi.Input[str] key_spec: The type of the keys.
-        :param pulumi.Input[str] key_usage: The usage of the key.
-        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type.
-        :param pulumi.Input[str] origin: The origin of the key.
-        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key.
-        :param pulumi.Input[str] protection_level: The protection level of the key.
-        :param pulumi.Input[str] rotate_state: The rotation state of the key.
+        :param pulumi.Input[str] key_spec: The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
+        :param pulumi.Input[str] key_usage: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
+        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
+        :param pulumi.Input[str] origin: The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
+        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
+        :param pulumi.Input[str] protection_level: The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        :param pulumi.Input[str] rotate_state: The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         :param pulumi.Input[Sequence[pulumi.Input['KeyTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] xks_key_id: The ID of the external key store.
         """
         pulumi.set(__self__, "key_name", key_name)
         pulumi.set(__self__, "keyring_name", keyring_name)
+        if custom_key_store_id is not None:
+            pulumi.set(__self__, "custom_key_store_id", custom_key_store_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if key_spec is not None:
@@ -57,16 +65,20 @@ class KeyArgs:
             pulumi.set(__self__, "pending_window_in_days", pending_window_in_days)
         if protection_level is not None:
             pulumi.set(__self__, "protection_level", protection_level)
+        if rotate_interval is not None:
+            pulumi.set(__self__, "rotate_interval", rotate_interval)
         if rotate_state is not None:
             pulumi.set(__self__, "rotate_state", rotate_state)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if xks_key_id is not None:
+            pulumi.set(__self__, "xks_key_id", xks_key_id)
 
     @property
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Input[str]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -87,6 +99,18 @@ class KeyArgs:
         pulumi.set(self, "keyring_name", value)
 
     @property
+    @pulumi.getter(name="customKeyStoreId")
+    def custom_key_store_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the custom key store.
+        """
+        return pulumi.get(self, "custom_key_store_id")
+
+    @custom_key_store_id.setter
+    def custom_key_store_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "custom_key_store_id", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -102,7 +126,7 @@ class KeyArgs:
     @pulumi.getter(name="keySpec")
     def key_spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the keys.
+        The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
         """
         return pulumi.get(self, "key_spec")
 
@@ -114,7 +138,7 @@ class KeyArgs:
     @pulumi.getter(name="keyUsage")
     def key_usage(self) -> Optional[pulumi.Input[str]]:
         """
-        The usage of the key.
+        The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         """
         return pulumi.get(self, "key_usage")
 
@@ -126,7 +150,7 @@ class KeyArgs:
     @pulumi.getter(name="multiRegion")
     def multi_region(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether it is the master key of the Multi-region type.
+        Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         """
         return pulumi.get(self, "multi_region")
 
@@ -138,7 +162,7 @@ class KeyArgs:
     @pulumi.getter
     def origin(self) -> Optional[pulumi.Input[str]]:
         """
-        The origin of the key.
+        The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
         """
         return pulumi.get(self, "origin")
 
@@ -150,7 +174,7 @@ class KeyArgs:
     @pulumi.getter(name="pendingWindowInDays")
     def pending_window_in_days(self) -> Optional[pulumi.Input[int]]:
         """
-        The pre-deletion cycle of the key.
+        The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
         """
         return pulumi.get(self, "pending_window_in_days")
 
@@ -162,7 +186,7 @@ class KeyArgs:
     @pulumi.getter(name="protectionLevel")
     def protection_level(self) -> Optional[pulumi.Input[str]]:
         """
-        The protection level of the key.
+        The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
         """
         return pulumi.get(self, "protection_level")
 
@@ -171,10 +195,22 @@ class KeyArgs:
         pulumi.set(self, "protection_level", value)
 
     @property
+    @pulumi.getter(name="rotateInterval")
+    def rotate_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        """
+        return pulumi.get(self, "rotate_interval")
+
+    @rotate_interval.setter
+    def rotate_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotate_interval", value)
+
+    @property
     @pulumi.getter(name="rotateState")
     def rotate_state(self) -> Optional[pulumi.Input[str]]:
         """
-        The rotation state of the key.
+        The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         """
         return pulumi.get(self, "rotate_state")
 
@@ -194,11 +230,24 @@ class KeyArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeyTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="xksKeyId")
+    def xks_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the external key store.
+        """
+        return pulumi.get(self, "xks_key_id")
+
+    @xks_key_id.setter
+    def xks_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "xks_key_id", value)
+
 
 @pulumi.input_type
 class _KeyState:
     def __init__(__self__, *,
                  creation_date: Optional[pulumi.Input[int]] = None,
+                 custom_key_store_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  key_material_expire_time: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
@@ -211,6 +260,7 @@ class _KeyState:
                  origin: Optional[pulumi.Input[str]] = None,
                  pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  protection_level: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None,
                  rotate_state: Optional[pulumi.Input[str]] = None,
                  rotation_state: Optional[pulumi.Input[str]] = None,
                  schedule_delete_time: Optional[pulumi.Input[str]] = None,
@@ -218,23 +268,26 @@ class _KeyState:
                  state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['KeyTagArgs']]]] = None,
                  trn: Optional[pulumi.Input[str]] = None,
-                 update_date: Optional[pulumi.Input[int]] = None):
+                 update_date: Optional[pulumi.Input[int]] = None,
+                 xks_key_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Key resources.
         :param pulumi.Input[int] creation_date: The date when the keyring was created.
+        :param pulumi.Input[str] custom_key_store_id: The ID of the custom key store.
         :param pulumi.Input[str] description: The description of the key.
         :param pulumi.Input[str] key_material_expire_time: The time when the key material will expire.
-        :param pulumi.Input[str] key_name: The name of the CMK.
-        :param pulumi.Input[str] key_spec: The type of the keys.
-        :param pulumi.Input[str] key_usage: The usage of the key.
+        :param pulumi.Input[str] key_name: The name of the key.
+        :param pulumi.Input[str] key_spec: The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
+        :param pulumi.Input[str] key_usage: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
         :param pulumi.Input[str] last_rotation_time: The last time the key was rotated.
-        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type.
+        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         :param pulumi.Input['KeyMultiRegionConfigurationArgs'] multi_region_configuration: The configuration of Multi-region key.
-        :param pulumi.Input[str] origin: The origin of the key.
-        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key.
-        :param pulumi.Input[str] protection_level: The protection level of the key.
-        :param pulumi.Input[str] rotate_state: The rotation state of the key.
+        :param pulumi.Input[str] origin: The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
+        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
+        :param pulumi.Input[str] protection_level: The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        :param pulumi.Input[str] rotate_state: The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         :param pulumi.Input[str] rotation_state: The rotation configuration of the key.
         :param pulumi.Input[str] schedule_delete_time: The time when the key will be deleted.
         :param pulumi.Input[str] schedule_rotation_time: The next time the key will be rotated.
@@ -242,9 +295,12 @@ class _KeyState:
         :param pulumi.Input[Sequence[pulumi.Input['KeyTagArgs']]] tags: Tags.
         :param pulumi.Input[str] trn: The name of the resource.
         :param pulumi.Input[int] update_date: The date when the keyring was updated.
+        :param pulumi.Input[str] xks_key_id: The ID of the external key store.
         """
         if creation_date is not None:
             pulumi.set(__self__, "creation_date", creation_date)
+        if custom_key_store_id is not None:
+            pulumi.set(__self__, "custom_key_store_id", custom_key_store_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if key_material_expire_time is not None:
@@ -269,6 +325,8 @@ class _KeyState:
             pulumi.set(__self__, "pending_window_in_days", pending_window_in_days)
         if protection_level is not None:
             pulumi.set(__self__, "protection_level", protection_level)
+        if rotate_interval is not None:
+            pulumi.set(__self__, "rotate_interval", rotate_interval)
         if rotate_state is not None:
             pulumi.set(__self__, "rotate_state", rotate_state)
         if rotation_state is not None:
@@ -285,6 +343,8 @@ class _KeyState:
             pulumi.set(__self__, "trn", trn)
         if update_date is not None:
             pulumi.set(__self__, "update_date", update_date)
+        if xks_key_id is not None:
+            pulumi.set(__self__, "xks_key_id", xks_key_id)
 
     @property
     @pulumi.getter(name="creationDate")
@@ -297,6 +357,18 @@ class _KeyState:
     @creation_date.setter
     def creation_date(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "creation_date", value)
+
+    @property
+    @pulumi.getter(name="customKeyStoreId")
+    def custom_key_store_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the custom key store.
+        """
+        return pulumi.get(self, "custom_key_store_id")
+
+    @custom_key_store_id.setter
+    def custom_key_store_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "custom_key_store_id", value)
 
     @property
     @pulumi.getter
@@ -326,7 +398,7 @@ class _KeyState:
     @pulumi.getter(name="keyName")
     def key_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -338,7 +410,7 @@ class _KeyState:
     @pulumi.getter(name="keySpec")
     def key_spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the keys.
+        The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
         """
         return pulumi.get(self, "key_spec")
 
@@ -350,7 +422,7 @@ class _KeyState:
     @pulumi.getter(name="keyUsage")
     def key_usage(self) -> Optional[pulumi.Input[str]]:
         """
-        The usage of the key.
+        The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         """
         return pulumi.get(self, "key_usage")
 
@@ -386,7 +458,7 @@ class _KeyState:
     @pulumi.getter(name="multiRegion")
     def multi_region(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether it is the master key of the Multi-region type.
+        Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         """
         return pulumi.get(self, "multi_region")
 
@@ -410,7 +482,7 @@ class _KeyState:
     @pulumi.getter
     def origin(self) -> Optional[pulumi.Input[str]]:
         """
-        The origin of the key.
+        The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
         """
         return pulumi.get(self, "origin")
 
@@ -422,7 +494,7 @@ class _KeyState:
     @pulumi.getter(name="pendingWindowInDays")
     def pending_window_in_days(self) -> Optional[pulumi.Input[int]]:
         """
-        The pre-deletion cycle of the key.
+        The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
         """
         return pulumi.get(self, "pending_window_in_days")
 
@@ -434,7 +506,7 @@ class _KeyState:
     @pulumi.getter(name="protectionLevel")
     def protection_level(self) -> Optional[pulumi.Input[str]]:
         """
-        The protection level of the key.
+        The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
         """
         return pulumi.get(self, "protection_level")
 
@@ -443,10 +515,22 @@ class _KeyState:
         pulumi.set(self, "protection_level", value)
 
     @property
+    @pulumi.getter(name="rotateInterval")
+    def rotate_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        """
+        return pulumi.get(self, "rotate_interval")
+
+    @rotate_interval.setter
+    def rotate_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotate_interval", value)
+
+    @property
     @pulumi.getter(name="rotateState")
     def rotate_state(self) -> Optional[pulumi.Input[str]]:
         """
-        The rotation state of the key.
+        The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         """
         return pulumi.get(self, "rotate_state")
 
@@ -538,12 +622,25 @@ class _KeyState:
     def update_date(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "update_date", value)
 
+    @property
+    @pulumi.getter(name="xksKeyId")
+    def xks_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the external key store.
+        """
+        return pulumi.get(self, "xks_key_id")
+
+    @xks_key_id.setter
+    def xks_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "xks_key_id", value)
+
 
 class Key(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_key_store_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
                  key_spec: Optional[pulumi.Input[str]] = None,
@@ -553,8 +650,10 @@ class Key(pulumi.CustomResource):
                  origin: Optional[pulumi.Input[str]] = None,
                  pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  protection_level: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None,
                  rotate_state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyTagArgs']]]]] = None,
+                 xks_key_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage kms key
@@ -576,6 +675,41 @@ class Key(pulumi.CustomResource):
                 key="tfkey3",
                 value="tfvalue3",
             )])
+        foo1 = volcengine.kms.Key("foo1",
+            keyring_name=foo_keyring.keyring_name,
+            key_name="Tf-test-key-1",
+            rotate_state="Enable",
+            rotate_interval=90,
+            key_spec="SYMMETRIC_128",
+            description="Tf test key with SYMMETRIC_128",
+            key_usage="ENCRYPT_DECRYPT",
+            protection_level="SOFTWARE",
+            origin="CloudKMS",
+            multi_region=False,
+            pending_window_in_days=30,
+            tags=[
+                volcengine.kms.KeyTagArgs(
+                    key="tfk1",
+                    value="tfv1",
+                ),
+                volcengine.kms.KeyTagArgs(
+                    key="tfk2",
+                    value="tfv2",
+                ),
+            ])
+        foo2 = volcengine.kms.Key("foo2",
+            keyring_name=foo_keyring.keyring_name,
+            key_name="mrk-Tf-test-key-2",
+            key_usage="ENCRYPT_DECRYPT",
+            origin="External",
+            multi_region=True)
+        default = volcengine.kms.KeyMaterial("default",
+            keyring_name=foo_keyring.keyring_name,
+            key_name=foo2.key_name,
+            encrypted_key_material="***",
+            import_token="***",
+            expiration_model="KEY_MATERIAL_EXPIRES",
+            valid_to=1770999621)
         ```
 
         ## Import
@@ -588,17 +722,20 @@ class Key(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] custom_key_store_id: The ID of the custom key store.
         :param pulumi.Input[str] description: The description of the key.
-        :param pulumi.Input[str] key_name: The name of the CMK.
-        :param pulumi.Input[str] key_spec: The type of the keys.
-        :param pulumi.Input[str] key_usage: The usage of the key.
+        :param pulumi.Input[str] key_name: The name of the key.
+        :param pulumi.Input[str] key_spec: The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
+        :param pulumi.Input[str] key_usage: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
-        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type.
-        :param pulumi.Input[str] origin: The origin of the key.
-        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key.
-        :param pulumi.Input[str] protection_level: The protection level of the key.
-        :param pulumi.Input[str] rotate_state: The rotation state of the key.
+        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
+        :param pulumi.Input[str] origin: The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
+        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
+        :param pulumi.Input[str] protection_level: The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        :param pulumi.Input[str] rotate_state: The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] xks_key_id: The ID of the external key store.
         """
         ...
     @overload
@@ -626,6 +763,41 @@ class Key(pulumi.CustomResource):
                 key="tfkey3",
                 value="tfvalue3",
             )])
+        foo1 = volcengine.kms.Key("foo1",
+            keyring_name=foo_keyring.keyring_name,
+            key_name="Tf-test-key-1",
+            rotate_state="Enable",
+            rotate_interval=90,
+            key_spec="SYMMETRIC_128",
+            description="Tf test key with SYMMETRIC_128",
+            key_usage="ENCRYPT_DECRYPT",
+            protection_level="SOFTWARE",
+            origin="CloudKMS",
+            multi_region=False,
+            pending_window_in_days=30,
+            tags=[
+                volcengine.kms.KeyTagArgs(
+                    key="tfk1",
+                    value="tfv1",
+                ),
+                volcengine.kms.KeyTagArgs(
+                    key="tfk2",
+                    value="tfv2",
+                ),
+            ])
+        foo2 = volcengine.kms.Key("foo2",
+            keyring_name=foo_keyring.keyring_name,
+            key_name="mrk-Tf-test-key-2",
+            key_usage="ENCRYPT_DECRYPT",
+            origin="External",
+            multi_region=True)
+        default = volcengine.kms.KeyMaterial("default",
+            keyring_name=foo_keyring.keyring_name,
+            key_name=foo2.key_name,
+            encrypted_key_material="***",
+            import_token="***",
+            expiration_model="KEY_MATERIAL_EXPIRES",
+            valid_to=1770999621)
         ```
 
         ## Import
@@ -651,6 +823,7 @@ class Key(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_key_store_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
                  key_spec: Optional[pulumi.Input[str]] = None,
@@ -660,8 +833,10 @@ class Key(pulumi.CustomResource):
                  origin: Optional[pulumi.Input[str]] = None,
                  pending_window_in_days: Optional[pulumi.Input[int]] = None,
                  protection_level: Optional[pulumi.Input[str]] = None,
+                 rotate_interval: Optional[pulumi.Input[int]] = None,
                  rotate_state: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyTagArgs']]]]] = None,
+                 xks_key_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -671,6 +846,7 @@ class Key(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = KeyArgs.__new__(KeyArgs)
 
+            __props__.__dict__["custom_key_store_id"] = custom_key_store_id
             __props__.__dict__["description"] = description
             if key_name is None and not opts.urn:
                 raise TypeError("Missing required property 'key_name'")
@@ -684,8 +860,10 @@ class Key(pulumi.CustomResource):
             __props__.__dict__["origin"] = origin
             __props__.__dict__["pending_window_in_days"] = pending_window_in_days
             __props__.__dict__["protection_level"] = protection_level
+            __props__.__dict__["rotate_interval"] = rotate_interval
             __props__.__dict__["rotate_state"] = rotate_state
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["xks_key_id"] = xks_key_id
             __props__.__dict__["creation_date"] = None
             __props__.__dict__["key_material_expire_time"] = None
             __props__.__dict__["last_rotation_time"] = None
@@ -707,6 +885,7 @@ class Key(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             creation_date: Optional[pulumi.Input[int]] = None,
+            custom_key_store_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             key_material_expire_time: Optional[pulumi.Input[str]] = None,
             key_name: Optional[pulumi.Input[str]] = None,
@@ -719,6 +898,7 @@ class Key(pulumi.CustomResource):
             origin: Optional[pulumi.Input[str]] = None,
             pending_window_in_days: Optional[pulumi.Input[int]] = None,
             protection_level: Optional[pulumi.Input[str]] = None,
+            rotate_interval: Optional[pulumi.Input[int]] = None,
             rotate_state: Optional[pulumi.Input[str]] = None,
             rotation_state: Optional[pulumi.Input[str]] = None,
             schedule_delete_time: Optional[pulumi.Input[str]] = None,
@@ -726,7 +906,8 @@ class Key(pulumi.CustomResource):
             state: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyTagArgs']]]]] = None,
             trn: Optional[pulumi.Input[str]] = None,
-            update_date: Optional[pulumi.Input[int]] = None) -> 'Key':
+            update_date: Optional[pulumi.Input[int]] = None,
+            xks_key_id: Optional[pulumi.Input[str]] = None) -> 'Key':
         """
         Get an existing Key resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -735,19 +916,21 @@ class Key(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] creation_date: The date when the keyring was created.
+        :param pulumi.Input[str] custom_key_store_id: The ID of the custom key store.
         :param pulumi.Input[str] description: The description of the key.
         :param pulumi.Input[str] key_material_expire_time: The time when the key material will expire.
-        :param pulumi.Input[str] key_name: The name of the CMK.
-        :param pulumi.Input[str] key_spec: The type of the keys.
-        :param pulumi.Input[str] key_usage: The usage of the key.
+        :param pulumi.Input[str] key_name: The name of the key.
+        :param pulumi.Input[str] key_spec: The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
+        :param pulumi.Input[str] key_usage: The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         :param pulumi.Input[str] keyring_name: The name of the keyring.
         :param pulumi.Input[str] last_rotation_time: The last time the key was rotated.
-        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type.
+        :param pulumi.Input[bool] multi_region: Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         :param pulumi.Input[pulumi.InputType['KeyMultiRegionConfigurationArgs']] multi_region_configuration: The configuration of Multi-region key.
-        :param pulumi.Input[str] origin: The origin of the key.
-        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key.
-        :param pulumi.Input[str] protection_level: The protection level of the key.
-        :param pulumi.Input[str] rotate_state: The rotation state of the key.
+        :param pulumi.Input[str] origin: The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
+        :param pulumi.Input[int] pending_window_in_days: The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
+        :param pulumi.Input[str] protection_level: The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
+        :param pulumi.Input[int] rotate_interval: Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        :param pulumi.Input[str] rotate_state: The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         :param pulumi.Input[str] rotation_state: The rotation configuration of the key.
         :param pulumi.Input[str] schedule_delete_time: The time when the key will be deleted.
         :param pulumi.Input[str] schedule_rotation_time: The next time the key will be rotated.
@@ -755,12 +938,14 @@ class Key(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] trn: The name of the resource.
         :param pulumi.Input[int] update_date: The date when the keyring was updated.
+        :param pulumi.Input[str] xks_key_id: The ID of the external key store.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _KeyState.__new__(_KeyState)
 
         __props__.__dict__["creation_date"] = creation_date
+        __props__.__dict__["custom_key_store_id"] = custom_key_store_id
         __props__.__dict__["description"] = description
         __props__.__dict__["key_material_expire_time"] = key_material_expire_time
         __props__.__dict__["key_name"] = key_name
@@ -773,6 +958,7 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["origin"] = origin
         __props__.__dict__["pending_window_in_days"] = pending_window_in_days
         __props__.__dict__["protection_level"] = protection_level
+        __props__.__dict__["rotate_interval"] = rotate_interval
         __props__.__dict__["rotate_state"] = rotate_state
         __props__.__dict__["rotation_state"] = rotation_state
         __props__.__dict__["schedule_delete_time"] = schedule_delete_time
@@ -781,6 +967,7 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["trn"] = trn
         __props__.__dict__["update_date"] = update_date
+        __props__.__dict__["xks_key_id"] = xks_key_id
         return Key(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -790,6 +977,14 @@ class Key(pulumi.CustomResource):
         The date when the keyring was created.
         """
         return pulumi.get(self, "creation_date")
+
+    @property
+    @pulumi.getter(name="customKeyStoreId")
+    def custom_key_store_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the custom key store.
+        """
+        return pulumi.get(self, "custom_key_store_id")
 
     @property
     @pulumi.getter
@@ -811,7 +1006,7 @@ class Key(pulumi.CustomResource):
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Output[str]:
         """
-        The name of the CMK.
+        The name of the key.
         """
         return pulumi.get(self, "key_name")
 
@@ -819,7 +1014,7 @@ class Key(pulumi.CustomResource):
     @pulumi.getter(name="keySpec")
     def key_spec(self) -> pulumi.Output[str]:
         """
-        The type of the keys.
+        The type of the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2. Default value: SYMMETRIC_256.
         """
         return pulumi.get(self, "key_spec")
 
@@ -827,7 +1022,7 @@ class Key(pulumi.CustomResource):
     @pulumi.getter(name="keyUsage")
     def key_usage(self) -> pulumi.Output[str]:
         """
-        The usage of the key.
+        The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY, GENERATE_VERIFY_MAC. Default value: ENCRYPT_DECRYPT.
         """
         return pulumi.get(self, "key_usage")
 
@@ -851,7 +1046,7 @@ class Key(pulumi.CustomResource):
     @pulumi.getter(name="multiRegion")
     def multi_region(self) -> pulumi.Output[bool]:
         """
-        Whether it is the master key of the Multi-region type.
+        Whether it is the master key of the Multi-region type. When multi_region is true, the key name must start with "mrk-".
         """
         return pulumi.get(self, "multi_region")
 
@@ -867,7 +1062,7 @@ class Key(pulumi.CustomResource):
     @pulumi.getter
     def origin(self) -> pulumi.Output[str]:
         """
-        The origin of the key.
+        The origin of the key. Valid values: CloudKMS, External, ExternalKeyStore. Default value: CloudKMS.
         """
         return pulumi.get(self, "origin")
 
@@ -875,7 +1070,7 @@ class Key(pulumi.CustomResource):
     @pulumi.getter(name="pendingWindowInDays")
     def pending_window_in_days(self) -> pulumi.Output[Optional[int]]:
         """
-        The pre-deletion cycle of the key.
+        The pre-deletion cycle of the key. Valid values: [7, 30]. Default value: 7.
         """
         return pulumi.get(self, "pending_window_in_days")
 
@@ -883,15 +1078,23 @@ class Key(pulumi.CustomResource):
     @pulumi.getter(name="protectionLevel")
     def protection_level(self) -> pulumi.Output[str]:
         """
-        The protection level of the key.
+        The protection level of the key. Valid values: SOFTWARE, HSM. Default value: SOFTWARE.
         """
         return pulumi.get(self, "protection_level")
+
+    @property
+    @pulumi.getter(name="rotateInterval")
+    def rotate_interval(self) -> pulumi.Output[Optional[int]]:
+        """
+        Key rotation period, unit: days; value range: [90, 2560], required when rotate_state is Enable.
+        """
+        return pulumi.get(self, "rotate_interval")
 
     @property
     @pulumi.getter(name="rotateState")
     def rotate_state(self) -> pulumi.Output[Optional[str]]:
         """
-        The rotation state of the key.
+        The rotation state of the key. Valid values: Enable, Disable. Only symmetric keys support rotation.
         """
         return pulumi.get(self, "rotate_state")
 
@@ -950,4 +1153,12 @@ class Key(pulumi.CustomResource):
         The date when the keyring was updated.
         """
         return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="xksKeyId")
+    def xks_key_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the external key store.
+        """
+        return pulumi.get(self, "xks_key_id")
 

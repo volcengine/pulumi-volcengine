@@ -82,7 +82,7 @@ export interface GetKeysArgs {
      */
     keyNames?: string[];
     /**
-     * The algorithm used in the key.
+     * The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
      */
     keySpecs?: string[];
     /**
@@ -90,7 +90,7 @@ export interface GetKeysArgs {
      */
     keyStates?: string[];
     /**
-     * The usage of the key.
+     * The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
      */
     keyUsages?: string[];
     /**
@@ -106,7 +106,7 @@ export interface GetKeysArgs {
      */
     nameRegex?: string;
     /**
-     * The origin of the key.
+     * The origin of the key. Valid values: CloudKMS, External.
      */
     origins?: string[];
     /**
@@ -114,11 +114,11 @@ export interface GetKeysArgs {
      */
     outputFile?: string;
     /**
-     * The protection level of the key.
+     * The protection level of the key. Valid values: SOFTWARE, HSM.
      */
     protectionLevels?: string[];
     /**
-     * The state of the rotate.
+     * The state of the rotate. Valid values: Enable, Disable.
      */
     rotateStates?: string[];
     /**
@@ -244,7 +244,7 @@ export interface GetKeysOutputArgs {
      */
     keyNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The algorithm used in the key.
+     * The algorithm used in the key. Valid values: SYMMETRIC_256, SYMMETRIC_128, RSA_2048, RSA_3072, RSA_4096, EC_P256K, EC_P256, EC_P384, EC_P521, EC_SM2.
      */
     keySpecs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -252,7 +252,7 @@ export interface GetKeysOutputArgs {
      */
     keyStates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The usage of the key.
+     * The usage of the key. Valid values: ENCRYPT_DECRYPT, SIGN_VERIFY.
      */
     keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -268,7 +268,7 @@ export interface GetKeysOutputArgs {
      */
     nameRegex?: pulumi.Input<string>;
     /**
-     * The origin of the key.
+     * The origin of the key. Valid values: CloudKMS, External.
      */
     origins?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -276,11 +276,11 @@ export interface GetKeysOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * The protection level of the key.
+     * The protection level of the key. Valid values: SOFTWARE, HSM.
      */
     protectionLevels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The state of the rotate.
+     * The state of the rotate. Valid values: Enable, Disable.
      */
     rotateStates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
