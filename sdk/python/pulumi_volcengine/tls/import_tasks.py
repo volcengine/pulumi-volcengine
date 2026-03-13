@@ -211,7 +211,7 @@ def import_tasks(iam_project_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.tls.get_import_tasks()
+    foo = volcengine.tls.get_import_tasks(task_name="tf-test-task-name-kafka-mod")
     ```
 
 
@@ -281,7 +281,7 @@ def import_tasks_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.tls.get_import_tasks()
+    foo = volcengine.tls.get_import_tasks(task_name="tf-test-task-name-kafka-mod")
     ```
 
 

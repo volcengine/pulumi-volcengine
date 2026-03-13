@@ -299,6 +299,12 @@ namespace Pulumi.Volcengine.Vmp
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.AlertingRuleTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// The update time of the vmp alerting rule.
         /// </summary>
         [Output("updateTime")]
@@ -417,6 +423,18 @@ namespace Pulumi.Volcengine.Vmp
         [Input("query", required: true)]
         public Input<Inputs.AlertingRuleQueryArgs> Query { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.AlertingRuleTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AlertingRuleTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AlertingRuleTagArgs>());
+            set => _tags = value;
+        }
+
         public AlertingRuleArgs()
         {
         }
@@ -502,6 +520,18 @@ namespace Pulumi.Volcengine.Vmp
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.AlertingRuleTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AlertingRuleTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AlertingRuleTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of the vmp alerting rule.

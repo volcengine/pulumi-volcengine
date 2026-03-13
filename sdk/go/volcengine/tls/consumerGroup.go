@@ -28,12 +28,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewConsumerGroup(ctx, "foo", &tls.ConsumerGroupArgs{
-//				ConsumerGroupName: pulumi.String("tf-consumer-group-t"),
+//				ConsumerGroupName: pulumi.String("tf-consumer-group-hhh"),
 //				HeartbeatTtl:      pulumi.Int(120),
-//				OrderedConsume:    pulumi.Bool(false),
+//				OrderedConsume:    pulumi.Bool(true),
 //				ProjectId:         pulumi.String("7a8ac13e-8e3e-4392-ae77-aea8efa49bbf"),
 //				TopicIdLists: pulumi.StringArray{
 //					pulumi.String("33124cc3-15c4-4cdc-9a8a-cc64a9d593dd"),
+//					pulumi.String("9c5c57de-c39f-4777-a4e2-d9b1e69688db"),
 //				},
 //			})
 //			if err != nil {

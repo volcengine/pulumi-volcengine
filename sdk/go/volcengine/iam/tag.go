@@ -34,12 +34,12 @@ import (
 //				ResourceType: pulumi.String("User"),
 //				Tags: iam.TagTagArray{
 //					&iam.TagTagArgs{
-//						Key:   pulumi.String("key4"),
-//						Value: pulumi.String("value4"),
+//						Key:   pulumi.String("key1"),
+//						Value: pulumi.String("value1"),
 //					},
 //					&iam.TagTagArgs{
-//						Key:   pulumi.String("key3"),
-//						Value: pulumi.String("value3"),
+//						Key:   pulumi.String("key2"),
+//						Value: pulumi.String("value2"),
 //					},
 //				},
 //			})

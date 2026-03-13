@@ -21,7 +21,10 @@ __all__ = [
     'CommandsCommandTagResult',
     'CommandsTagResult',
     'DeploymentSetsDeploymentSetResult',
+    'HpcClusterTag',
     'HpcClustersHpcClusterResult',
+    'HpcClustersHpcClusterTagResult',
+    'HpcClustersTagResult',
     'ImageImportTag',
     'ImageSharePermissionsAccountResult',
     'ImageTag',
@@ -57,11 +60,18 @@ __all__ = [
     'InvocationsInvocationResult',
     'InvocationsInvocationTagResult',
     'InvocationsTagResult',
+    'KeyPairTag',
     'KeyPairsKeyPairResult',
+    'KeyPairsKeyPairTagResult',
+    'KeyPairsTagResult',
+    'LaunchTemplateLaunchTemplateTag',
     'LaunchTemplateNetworkInterface',
+    'LaunchTemplateTag',
     'LaunchTemplateVolume',
     'LaunchTemplatesLaunchTemplateResult',
+    'LaunchTemplatesLaunchTemplateLaunchTemplateTagResult',
     'LaunchTemplatesLaunchTemplateNetworkInterfaceResult',
+    'LaunchTemplatesLaunchTemplateTagResult',
     'LaunchTemplatesLaunchTemplateVolumeResult',
     'RegionsRegionResult',
     'ZonesZoneResult',
@@ -74,6 +84,8 @@ __all__ = [
     'GetCommandsTagResult',
     'GetDeploymentSetsDeploymentSetResult',
     'GetHpcClustersHpcClusterResult',
+    'GetHpcClustersHpcClusterTagResult',
+    'GetHpcClustersTagResult',
     'GetImageSharePermissionsAccountResult',
     'GetImagesImageResult',
     'GetImagesImageTagResult',
@@ -100,8 +112,12 @@ __all__ = [
     'GetInvocationsInvocationTagResult',
     'GetInvocationsTagResult',
     'GetKeyPairsKeyPairResult',
+    'GetKeyPairsKeyPairTagResult',
+    'GetKeyPairsTagResult',
     'GetLaunchTemplatesLaunchTemplateResult',
+    'GetLaunchTemplatesLaunchTemplateLaunchTemplateTagResult',
     'GetLaunchTemplatesLaunchTemplateNetworkInterfaceResult',
+    'GetLaunchTemplatesLaunchTemplateTagResult',
     'GetLaunchTemplatesLaunchTemplateVolumeResult',
     'GetRegionsRegionResult',
     'GetZonesZoneResult',
@@ -817,6 +833,35 @@ class DeploymentSetsDeploymentSetResult(dict):
 
 
 @pulumi.output_type
+class HpcClusterTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class HpcClustersHpcClusterResult(dict):
     def __init__(__self__, *,
                  created_at: str,
@@ -824,6 +869,8 @@ class HpcClustersHpcClusterResult(dict):
                  hpc_cluster_id: str,
                  id: str,
                  name: str,
+                 project_name: str,
+                 tags: Sequence['outputs.HpcClustersHpcClusterTagResult'],
                  updated_at: str,
                  vpc_id: str,
                  zone_id: str):
@@ -833,6 +880,8 @@ class HpcClustersHpcClusterResult(dict):
         :param str hpc_cluster_id: The id of the hpc cluster.
         :param str id: The id of the hpc cluster.
         :param str name: The name of the hpc cluster.
+        :param str project_name: The project name of the hpc cluster.
+        :param Sequence['HpcClustersHpcClusterTagArgs'] tags: Tags.
         :param str updated_at: The updated time of the hpc cluster.
         :param str vpc_id: The vpc id of the hpc cluster.
         :param str zone_id: The zone id of the hpc cluster.
@@ -842,6 +891,8 @@ class HpcClustersHpcClusterResult(dict):
         pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "zone_id", zone_id)
@@ -887,6 +938,22 @@ class HpcClustersHpcClusterResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the hpc cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.HpcClustersHpcClusterTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
@@ -909,6 +976,64 @@ class HpcClustersHpcClusterResult(dict):
         The zone id of the hpc cluster.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class HpcClustersHpcClusterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class HpcClustersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -3228,6 +3353,35 @@ class InvocationsTagResult(dict):
 
 
 @pulumi.output_type
+class KeyPairTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class KeyPairsKeyPairResult(dict):
     def __init__(__self__, *,
                  created_at: str,
@@ -3236,6 +3390,8 @@ class KeyPairsKeyPairResult(dict):
                  id: str,
                  key_pair_id: str,
                  key_pair_name: str,
+                 project_name: str,
+                 tags: Sequence['outputs.KeyPairsKeyPairTagResult'],
                  updated_at: str):
         """
         :param str created_at: The creation time of key pair.
@@ -3244,6 +3400,8 @@ class KeyPairsKeyPairResult(dict):
         :param str id: The id of key pair.
         :param str key_pair_id: The id of key pair.
         :param str key_pair_name: Name of key pair.
+        :param str project_name: The project name of the key pair.
+        :param Sequence['KeyPairsKeyPairTagArgs'] tags: Tags.
         :param str updated_at: The update time of key pair.
         """
         pulumi.set(__self__, "created_at", created_at)
@@ -3252,6 +3410,8 @@ class KeyPairsKeyPairResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key_pair_id", key_pair_id)
         pulumi.set(__self__, "key_pair_name", key_pair_name)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
 
     @property
@@ -3303,12 +3463,115 @@ class KeyPairsKeyPairResult(dict):
         return pulumi.get(self, "key_pair_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the key pair.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.KeyPairsKeyPairTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
         The update time of key pair.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class KeyPairsKeyPairTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class KeyPairsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class LaunchTemplateLaunchTemplateTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -3359,6 +3622,35 @@ class LaunchTemplateNetworkInterface(dict):
         The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
         """
         return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class LaunchTemplateTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -3442,9 +3734,13 @@ class LaunchTemplatesLaunchTemplateResult(dict):
                  latest_version_number: int,
                  launch_template_id: str,
                  launch_template_name: str,
+                 launch_template_project_name: str,
+                 launch_template_tags: Sequence['outputs.LaunchTemplatesLaunchTemplateLaunchTemplateTagResult'],
                  network_interfaces: Sequence['outputs.LaunchTemplatesLaunchTemplateNetworkInterfaceResult'],
+                 project_name: str,
                  security_enhancement_strategy: str,
                  suffix_index: int,
+                 tags: Sequence['outputs.LaunchTemplatesLaunchTemplateTagResult'],
                  unique_suffix: bool,
                  updated_at: str,
                  version_description: str,
@@ -3468,9 +3764,13 @@ class LaunchTemplatesLaunchTemplateResult(dict):
         :param int latest_version_number: The latest version of the launch template.
         :param str launch_template_id: The id of the launch template.
         :param str launch_template_name: The name of the launch template.
+        :param str launch_template_project_name: The project name of the launch template.
+        :param Sequence['LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs'] launch_template_tags: The tags of the launch template.
         :param Sequence['LaunchTemplatesLaunchTemplateNetworkInterfaceArgs'] network_interfaces: The list of network interfaces.
+        :param str project_name: The project name of the instance.
         :param str security_enhancement_strategy: Whether to open the security reinforcement.
         :param int suffix_index: The index of the ordered suffix.
+        :param Sequence['LaunchTemplatesLaunchTemplateTagArgs'] tags: Tags.
         :param bool unique_suffix: Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
         :param str updated_at: The updated time of the launch template.
         :param str version_description: The latest version description of the launch template.
@@ -3494,9 +3794,13 @@ class LaunchTemplatesLaunchTemplateResult(dict):
         pulumi.set(__self__, "latest_version_number", latest_version_number)
         pulumi.set(__self__, "launch_template_id", launch_template_id)
         pulumi.set(__self__, "launch_template_name", launch_template_name)
+        pulumi.set(__self__, "launch_template_project_name", launch_template_project_name)
+        pulumi.set(__self__, "launch_template_tags", launch_template_tags)
         pulumi.set(__self__, "network_interfaces", network_interfaces)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         pulumi.set(__self__, "suffix_index", suffix_index)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "unique_suffix", unique_suffix)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "version_description", version_description)
@@ -3633,12 +3937,36 @@ class LaunchTemplatesLaunchTemplateResult(dict):
         return pulumi.get(self, "launch_template_name")
 
     @property
+    @pulumi.getter(name="launchTemplateProjectName")
+    def launch_template_project_name(self) -> str:
+        """
+        The project name of the launch template.
+        """
+        return pulumi.get(self, "launch_template_project_name")
+
+    @property
+    @pulumi.getter(name="launchTemplateTags")
+    def launch_template_tags(self) -> Sequence['outputs.LaunchTemplatesLaunchTemplateLaunchTemplateTagResult']:
+        """
+        The tags of the launch template.
+        """
+        return pulumi.get(self, "launch_template_tags")
+
+    @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Sequence['outputs.LaunchTemplatesLaunchTemplateNetworkInterfaceResult']:
         """
         The list of network interfaces.
         """
         return pulumi.get(self, "network_interfaces")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="securityEnhancementStrategy")
@@ -3655,6 +3983,14 @@ class LaunchTemplatesLaunchTemplateResult(dict):
         The index of the ordered suffix.
         """
         return pulumi.get(self, "suffix_index")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.LaunchTemplatesLaunchTemplateTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="uniqueSuffix")
@@ -3706,6 +4042,35 @@ class LaunchTemplatesLaunchTemplateResult(dict):
 
 
 @pulumi.output_type
+class LaunchTemplatesLaunchTemplateLaunchTemplateTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class LaunchTemplatesLaunchTemplateNetworkInterfaceResult(dict):
     def __init__(__self__, *,
                  security_group_ids: Sequence[str],
@@ -3732,6 +4097,35 @@ class LaunchTemplatesLaunchTemplateNetworkInterfaceResult(dict):
         The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
         """
         return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class LaunchTemplatesLaunchTemplateTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -4380,6 +4774,8 @@ class GetHpcClustersHpcClusterResult(dict):
                  hpc_cluster_id: str,
                  id: str,
                  name: str,
+                 project_name: str,
+                 tags: Sequence['outputs.GetHpcClustersHpcClusterTagResult'],
                  updated_at: str,
                  vpc_id: str,
                  zone_id: str):
@@ -4389,6 +4785,8 @@ class GetHpcClustersHpcClusterResult(dict):
         :param str hpc_cluster_id: The id of the hpc cluster.
         :param str id: The id of the hpc cluster.
         :param str name: The name of the hpc cluster.
+        :param str project_name: The project name of the hpc cluster.
+        :param Sequence['GetHpcClustersHpcClusterTagArgs'] tags: Tags.
         :param str updated_at: The updated time of the hpc cluster.
         :param str vpc_id: The vpc id of the hpc cluster.
         :param str zone_id: The zone id of the hpc cluster.
@@ -4398,6 +4796,8 @@ class GetHpcClustersHpcClusterResult(dict):
         pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
         pulumi.set(__self__, "zone_id", zone_id)
@@ -4443,6 +4843,22 @@ class GetHpcClustersHpcClusterResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the hpc cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetHpcClustersHpcClusterTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
@@ -4465,6 +4881,64 @@ class GetHpcClustersHpcClusterResult(dict):
         The zone id of the hpc cluster.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetHpcClustersHpcClusterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetHpcClustersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -6323,6 +6797,8 @@ class GetKeyPairsKeyPairResult(dict):
                  id: str,
                  key_pair_id: str,
                  key_pair_name: str,
+                 project_name: str,
+                 tags: Sequence['outputs.GetKeyPairsKeyPairTagResult'],
                  updated_at: str):
         """
         :param str created_at: The creation time of key pair.
@@ -6331,6 +6807,8 @@ class GetKeyPairsKeyPairResult(dict):
         :param str id: The id of key pair.
         :param str key_pair_id: The id of key pair.
         :param str key_pair_name: Name of key pair.
+        :param str project_name: The project name of the key pair.
+        :param Sequence['GetKeyPairsKeyPairTagArgs'] tags: Tags.
         :param str updated_at: The update time of key pair.
         """
         pulumi.set(__self__, "created_at", created_at)
@@ -6339,6 +6817,8 @@ class GetKeyPairsKeyPairResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key_pair_id", key_pair_id)
         pulumi.set(__self__, "key_pair_name", key_pair_name)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
 
     @property
@@ -6390,12 +6870,86 @@ class GetKeyPairsKeyPairResult(dict):
         return pulumi.get(self, "key_pair_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the key pair.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetKeyPairsKeyPairTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
         The update time of key pair.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetKeyPairsKeyPairTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetKeyPairsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -6417,9 +6971,13 @@ class GetLaunchTemplatesLaunchTemplateResult(dict):
                  latest_version_number: int,
                  launch_template_id: str,
                  launch_template_name: str,
+                 launch_template_project_name: str,
+                 launch_template_tags: Sequence['outputs.GetLaunchTemplatesLaunchTemplateLaunchTemplateTagResult'],
                  network_interfaces: Sequence['outputs.GetLaunchTemplatesLaunchTemplateNetworkInterfaceResult'],
+                 project_name: str,
                  security_enhancement_strategy: str,
                  suffix_index: int,
+                 tags: Sequence['outputs.GetLaunchTemplatesLaunchTemplateTagResult'],
                  unique_suffix: bool,
                  updated_at: str,
                  version_description: str,
@@ -6443,9 +7001,13 @@ class GetLaunchTemplatesLaunchTemplateResult(dict):
         :param int latest_version_number: The latest version of the launch template.
         :param str launch_template_id: The id of the launch template.
         :param str launch_template_name: The name of the launch template.
+        :param str launch_template_project_name: The project name of the launch template.
+        :param Sequence['GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs'] launch_template_tags: The tags of the launch template.
         :param Sequence['GetLaunchTemplatesLaunchTemplateNetworkInterfaceArgs'] network_interfaces: The list of network interfaces.
+        :param str project_name: The project name of the instance.
         :param str security_enhancement_strategy: Whether to open the security reinforcement.
         :param int suffix_index: The index of the ordered suffix.
+        :param Sequence['GetLaunchTemplatesLaunchTemplateTagArgs'] tags: Tags.
         :param bool unique_suffix: Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
         :param str updated_at: The updated time of the launch template.
         :param str version_description: The latest version description of the launch template.
@@ -6469,9 +7031,13 @@ class GetLaunchTemplatesLaunchTemplateResult(dict):
         pulumi.set(__self__, "latest_version_number", latest_version_number)
         pulumi.set(__self__, "launch_template_id", launch_template_id)
         pulumi.set(__self__, "launch_template_name", launch_template_name)
+        pulumi.set(__self__, "launch_template_project_name", launch_template_project_name)
+        pulumi.set(__self__, "launch_template_tags", launch_template_tags)
         pulumi.set(__self__, "network_interfaces", network_interfaces)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         pulumi.set(__self__, "suffix_index", suffix_index)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "unique_suffix", unique_suffix)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "version_description", version_description)
@@ -6608,12 +7174,36 @@ class GetLaunchTemplatesLaunchTemplateResult(dict):
         return pulumi.get(self, "launch_template_name")
 
     @property
+    @pulumi.getter(name="launchTemplateProjectName")
+    def launch_template_project_name(self) -> str:
+        """
+        The project name of the launch template.
+        """
+        return pulumi.get(self, "launch_template_project_name")
+
+    @property
+    @pulumi.getter(name="launchTemplateTags")
+    def launch_template_tags(self) -> Sequence['outputs.GetLaunchTemplatesLaunchTemplateLaunchTemplateTagResult']:
+        """
+        The tags of the launch template.
+        """
+        return pulumi.get(self, "launch_template_tags")
+
+    @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Sequence['outputs.GetLaunchTemplatesLaunchTemplateNetworkInterfaceResult']:
         """
         The list of network interfaces.
         """
         return pulumi.get(self, "network_interfaces")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="securityEnhancementStrategy")
@@ -6630,6 +7220,14 @@ class GetLaunchTemplatesLaunchTemplateResult(dict):
         The index of the ordered suffix.
         """
         return pulumi.get(self, "suffix_index")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetLaunchTemplatesLaunchTemplateTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="uniqueSuffix")
@@ -6681,6 +7279,35 @@ class GetLaunchTemplatesLaunchTemplateResult(dict):
 
 
 @pulumi.output_type
+class GetLaunchTemplatesLaunchTemplateLaunchTemplateTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetLaunchTemplatesLaunchTemplateNetworkInterfaceResult(dict):
     def __init__(__self__, *,
                  security_group_ids: Sequence[str],
@@ -6707,6 +7334,35 @@ class GetLaunchTemplatesLaunchTemplateNetworkInterfaceResult(dict):
         The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
         """
         return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class GetLaunchTemplatesLaunchTemplateTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

@@ -14,18 +14,18 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.iam.OauthProvider("foo", {
  *     authorizeTemplate: "${authEndpoint}?client_id=${clientId}&scope=${scope}&response_type=code&state=12345",
- *     authorizeUrl: "https://example.com/authorize_modify",
- *     clientId: "test_client_id_modify",
+ *     authorizeUrl: "https://example.com/authorize",
+ *     clientId: "test_client_id",
  *     clientSecret: "",
- *     description: "acc-test-modify",
+ *     description: "acc-test",
  *     identityMapType: 1,
- *     idpIdentityKey: "username_modify",
+ *     idpIdentityKey: "username",
  *     oauthProviderName: "acc-test-oauth",
  *     scope: "openid",
  *     ssoType: 2,
  *     status: 1,
- *     tokenUrl: "https://example.com/access_token_modify",
- *     userInfoUrl: "https://example.com/user_info_modify",
+ *     tokenUrl: "https://example.com/access_token",
+ *     userInfoUrl: "https://example.com/user_info",
  * });
  * ```
  *

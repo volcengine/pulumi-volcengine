@@ -32,10 +32,10 @@ namespace Pulumi.Volcengine.Tls
     ///             },
     ///         },
     ///         WebhookMethod = "PUT",
-    ///         WebhookName = "terraform-tf-webhook",
+    ///         WebhookName = "terraform-tf-webhook-modify",
     ///         WebhookSecret = "your secret",
-    ///         WebhookType = "lark",
-    ///         WebhookUrl = "http://zijie.com",
+    ///         WebhookType = "wechat",
+    ///         WebhookUrl = "http://tencent.com",
     ///     });
     /// 
     /// });

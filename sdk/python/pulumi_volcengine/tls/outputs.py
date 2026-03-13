@@ -4320,14 +4320,17 @@ class EtlTaskTargetResource(dict):
 
     def __init__(__self__, *,
                  alias: str,
+                 region: str,
                  topic_id: str,
                  role_trn: Optional[str] = None):
         """
         :param str alias: Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        :param str region: The region where the log topic is located.
         :param str topic_id: Log topics used for storing processed logs.
         :param str role_trn: Cross-account authorized character names.
         """
         pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "topic_id", topic_id)
         if role_trn is not None:
             pulumi.set(__self__, "role_trn", role_trn)
@@ -4339,6 +4342,14 @@ class EtlTaskTargetResource(dict):
         Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
         """
         return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The region where the log topic is located.
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="topicId")
@@ -5222,6 +5233,7 @@ class HostGroupsInfoHostGroupInfoResult(dict):
                  host_group_name: str,
                  host_group_type: str,
                  host_identifier: str,
+                 host_ip_lists: Sequence[str],
                  iam_project_name: str,
                  modify_time: str,
                  rule_count: int,
@@ -5236,6 +5248,7 @@ class HostGroupsInfoHostGroupInfoResult(dict):
         :param str host_group_name: The name of host group.
         :param str host_group_type: The type of host group.
         :param str host_identifier: The identifier of host.
+        :param Sequence[str] host_ip_lists: The ip list of host group.
         :param str iam_project_name: The project name of iam.
         :param str modify_time: The modify time of host group.
         :param int rule_count: The rule count of host.
@@ -5250,6 +5263,7 @@ class HostGroupsInfoHostGroupInfoResult(dict):
         pulumi.set(__self__, "host_group_name", host_group_name)
         pulumi.set(__self__, "host_group_type", host_group_type)
         pulumi.set(__self__, "host_identifier", host_identifier)
+        pulumi.set(__self__, "host_ip_lists", host_ip_lists)
         pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "rule_count", rule_count)
@@ -5312,6 +5326,14 @@ class HostGroupsInfoHostGroupInfoResult(dict):
         The identifier of host.
         """
         return pulumi.get(self, "host_identifier")
+
+    @property
+    @pulumi.getter(name="hostIpLists")
+    def host_ip_lists(self) -> Sequence[str]:
+        """
+        The ip list of host group.
+        """
+        return pulumi.get(self, "host_ip_lists")
 
     @property
     @pulumi.getter(name="iamProjectName")
@@ -16421,6 +16443,7 @@ class GetHostGroupsInfoHostGroupInfoResult(dict):
                  host_group_name: str,
                  host_group_type: str,
                  host_identifier: str,
+                 host_ip_lists: Sequence[str],
                  iam_project_name: str,
                  modify_time: str,
                  rule_count: int,
@@ -16435,6 +16458,7 @@ class GetHostGroupsInfoHostGroupInfoResult(dict):
         :param str host_group_name: The name of host group.
         :param str host_group_type: The type of host group.
         :param str host_identifier: The identifier of host.
+        :param Sequence[str] host_ip_lists: The ip list of host group.
         :param str iam_project_name: The project name of iam.
         :param str modify_time: The modify time of host group.
         :param int rule_count: The rule count of host.
@@ -16449,6 +16473,7 @@ class GetHostGroupsInfoHostGroupInfoResult(dict):
         pulumi.set(__self__, "host_group_name", host_group_name)
         pulumi.set(__self__, "host_group_type", host_group_type)
         pulumi.set(__self__, "host_identifier", host_identifier)
+        pulumi.set(__self__, "host_ip_lists", host_ip_lists)
         pulumi.set(__self__, "iam_project_name", iam_project_name)
         pulumi.set(__self__, "modify_time", modify_time)
         pulumi.set(__self__, "rule_count", rule_count)
@@ -16511,6 +16536,14 @@ class GetHostGroupsInfoHostGroupInfoResult(dict):
         The identifier of host.
         """
         return pulumi.get(self, "host_identifier")
+
+    @property
+    @pulumi.getter(name="hostIpLists")
+    def host_ip_lists(self) -> Sequence[str]:
+        """
+        The ip list of host group.
+        """
+        return pulumi.get(self, "host_ip_lists")
 
     @property
     @pulumi.getter(name="iamProjectName")

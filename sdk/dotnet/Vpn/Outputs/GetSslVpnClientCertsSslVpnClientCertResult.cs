@@ -66,6 +66,10 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSslVpnClientCertsSslVpnClientCertTagResult> Tags;
+        /// <summary>
         /// The update time of the ssl vpn client cert.
         /// </summary>
         public readonly string UpdateTime;
@@ -98,6 +102,8 @@ namespace Pulumi.Volcengine.Vpn.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.GetSslVpnClientCertsSslVpnClientCertTagResult> tags,
+
             string updateTime)
         {
             CaCertificate = caCertificate;
@@ -113,6 +119,7 @@ namespace Pulumi.Volcengine.Vpn.Outputs
             SslVpnClientCertName = sslVpnClientCertName;
             SslVpnServerId = sslVpnServerId;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
         }
     }

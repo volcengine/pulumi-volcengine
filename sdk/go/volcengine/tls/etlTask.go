@@ -28,24 +28,26 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewEtlTask(ctx, "foo", &tls.EtlTaskArgs{
-//				Description:   pulumi.String("for-tf-test"),
+//				Description:   pulumi.String("for-t-test"),
 //				DslType:       pulumi.String("NORMAL"),
 //				Enable:        pulumi.Bool(false),
-//				FromTime:      pulumi.Int(1750649545),
+//				FromTime:      pulumi.Int(1750649546),
 //				Script:        pulumi.String(""),
 //				SourceTopicId: pulumi.String("9b756385-1dfb-4306-a094-0c88e04b34a5"),
 //				TargetResources: tls.EtlTaskTargetResourceArray{
 //					&tls.EtlTaskTargetResourceArgs{
-//						Alias:   pulumi.String("tf-test-1"),
+//						Alias:   pulumi.String("tf-test-1-modify"),
+//						Region:  pulumi.String("cn-guilin-boe"),
 //						TopicId: pulumi.String("a690a9b8-72c1-40a3-b8c6-f89a81d3748e"),
 //					},
 //					&tls.EtlTaskTargetResourceArgs{
 //						Alias:   pulumi.String("tf-test-2-modify"),
+//						Region:  pulumi.String("cn-guilin-boe"),
 //						TopicId: pulumi.String("bdf4f23b-a889-456c-ac5f-09d727427557"),
 //					},
 //				},
 //				TaskType: pulumi.String("Resident"),
-//				ToTime:   pulumi.Int(1750735958),
+//				ToTime:   pulumi.Int(1750735959),
 //			})
 //			if err != nil {
 //				return err

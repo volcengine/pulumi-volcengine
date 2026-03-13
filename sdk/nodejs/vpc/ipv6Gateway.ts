@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -71,9 +73,17 @@ export class Ipv6Gateway extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The project name of the Ipv6Gateway.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The Status of the Ipv6Gateway.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.Ipv6GatewayTag[] | undefined>;
     /**
      * Update time of the Ipv6Gateway.
      */
@@ -100,7 +110,9 @@ export class Ipv6Gateway extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ipv6GatewayId"] = state ? state.ipv6GatewayId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
@@ -110,6 +122,8 @@ export class Ipv6Gateway extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["creationTime"] = undefined /*out*/;
             resourceInputs["ipv6GatewayId"] = undefined /*out*/;
@@ -142,9 +156,17 @@ export interface Ipv6GatewayState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The project name of the Ipv6Gateway.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The Status of the Ipv6Gateway.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.Ipv6GatewayTag>[]>;
     /**
      * Update time of the Ipv6Gateway.
      */
@@ -167,6 +189,14 @@ export interface Ipv6GatewayArgs {
      * The name of the Ipv6Gateway.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The project name of the Ipv6Gateway.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.Ipv6GatewayTag>[]>;
     /**
      * The ID of the VPC which the Ipv6Gateway belongs to.
      */

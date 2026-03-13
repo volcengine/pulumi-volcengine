@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['VpcEndpointArgs', 'VpcEndpoint']
 
@@ -19,7 +21,9 @@ class VpcEndpointArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
                  private_dns_enabled: Optional[pulumi.Input[bool]] = None,
-                 service_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 service_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]]] = None):
         """
         The set of arguments for constructing a VpcEndpoint resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
@@ -28,7 +32,9 @@ class VpcEndpointArgs:
         :param pulumi.Input[str] description: The description of vpc endpoint.
         :param pulumi.Input[str] endpoint_name: The name of vpc endpoint.
         :param pulumi.Input[bool] private_dns_enabled: Whether to enable private dns name. Default is false.
+        :param pulumi.Input[str] project_name: The project name of vpc endpoint.
         :param pulumi.Input[str] service_name: The name of vpc endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "service_id", service_id)
@@ -38,8 +44,12 @@ class VpcEndpointArgs:
             pulumi.set(__self__, "endpoint_name", endpoint_name)
         if private_dns_enabled is not None:
             pulumi.set(__self__, "private_dns_enabled", private_dns_enabled)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if service_name is not None:
             pulumi.set(__self__, "service_name", service_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -103,6 +113,18 @@ class VpcEndpointArgs:
         pulumi.set(self, "private_dns_enabled", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of vpc endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -113,6 +135,18 @@ class VpcEndpointArgs:
     @service_name.setter
     def service_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -128,10 +162,12 @@ class _VpcEndpointState:
                  endpoint_type: Optional[pulumi.Input[str]] = None,
                  private_dns_enabled: Optional[pulumi.Input[bool]] = None,
                  private_dns_name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
@@ -146,11 +182,13 @@ class _VpcEndpointState:
         :param pulumi.Input[str] endpoint_type: The type of vpc endpoint.
         :param pulumi.Input[bool] private_dns_enabled: Whether to enable private dns name. Default is false.
         :param pulumi.Input[str] private_dns_name: The private dns name of vpc endpoint.
+        :param pulumi.Input[str] project_name: The project name of vpc endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
                For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         :param pulumi.Input[str] service_id: The id of vpc endpoint service.
         :param pulumi.Input[str] service_name: The name of vpc endpoint service.
         :param pulumi.Input[str] status: The status of vpc endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of vpc endpoint.
         :param pulumi.Input[str] vpc_id: The vpc id of vpc endpoint.
         """
@@ -174,6 +212,8 @@ class _VpcEndpointState:
             pulumi.set(__self__, "private_dns_enabled", private_dns_enabled)
         if private_dns_name is not None:
             pulumi.set(__self__, "private_dns_name", private_dns_name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
         if service_id is not None:
@@ -182,6 +222,8 @@ class _VpcEndpointState:
             pulumi.set(__self__, "service_name", service_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
         if vpc_id is not None:
@@ -308,6 +350,18 @@ class _VpcEndpointState:
         pulumi.set(self, "private_dns_name", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of vpc endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -357,6 +411,18 @@ class _VpcEndpointState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -389,9 +455,11 @@ class VpcEndpoint(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
                  private_dns_enabled: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage privatelink vpc endpoint
@@ -435,12 +503,22 @@ class VpcEndpoint(pulumi.CustomResource):
                 resource_type="CLB",
             )],
             description="acc-test",
-            auto_accept_enabled=True)
+            auto_accept_enabled=True,
+            project_name="default",
+            tags=[volcengine.privatelink.VpcEndpointServiceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
             security_group_ids=[foo_security_group.id],
             service_id=foo_vpc_endpoint_service.id,
             endpoint_name="acc-test-ep",
-            description="acc-test")
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.privatelink.VpcEndpointTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -456,10 +534,12 @@ class VpcEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of vpc endpoint.
         :param pulumi.Input[str] endpoint_name: The name of vpc endpoint.
         :param pulumi.Input[bool] private_dns_enabled: Whether to enable private dns name. Default is false.
+        :param pulumi.Input[str] project_name: The project name of vpc endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
                For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         :param pulumi.Input[str] service_id: The id of vpc endpoint service.
         :param pulumi.Input[str] service_name: The name of vpc endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -509,12 +589,22 @@ class VpcEndpoint(pulumi.CustomResource):
                 resource_type="CLB",
             )],
             description="acc-test",
-            auto_accept_enabled=True)
+            auto_accept_enabled=True,
+            project_name="default",
+            tags=[volcengine.privatelink.VpcEndpointServiceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
             security_group_ids=[foo_security_group.id],
             service_id=foo_vpc_endpoint_service.id,
             endpoint_name="acc-test-ep",
-            description="acc-test")
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.privatelink.VpcEndpointTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -543,9 +633,11 @@ class VpcEndpoint(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  endpoint_name: Optional[pulumi.Input[str]] = None,
                  private_dns_enabled: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -558,6 +650,7 @@ class VpcEndpoint(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["endpoint_name"] = endpoint_name
             __props__.__dict__["private_dns_enabled"] = private_dns_enabled
+            __props__.__dict__["project_name"] = project_name
             if security_group_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'security_group_ids'")
             __props__.__dict__["security_group_ids"] = security_group_ids
@@ -565,6 +658,7 @@ class VpcEndpoint(pulumi.CustomResource):
                 raise TypeError("Missing required property 'service_id'")
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["service_name"] = service_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["business_status"] = None
             __props__.__dict__["connection_status"] = None
             __props__.__dict__["creation_time"] = None
@@ -595,10 +689,12 @@ class VpcEndpoint(pulumi.CustomResource):
             endpoint_type: Optional[pulumi.Input[str]] = None,
             private_dns_enabled: Optional[pulumi.Input[bool]] = None,
             private_dns_name: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             service_id: Optional[pulumi.Input[str]] = None,
             service_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'VpcEndpoint':
         """
@@ -618,11 +714,13 @@ class VpcEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] endpoint_type: The type of vpc endpoint.
         :param pulumi.Input[bool] private_dns_enabled: Whether to enable private dns name. Default is false.
         :param pulumi.Input[str] private_dns_name: The private dns name of vpc endpoint.
+        :param pulumi.Input[str] project_name: The project name of vpc endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
                For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         :param pulumi.Input[str] service_id: The id of vpc endpoint service.
         :param pulumi.Input[str] service_name: The name of vpc endpoint service.
         :param pulumi.Input[str] status: The status of vpc endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of vpc endpoint.
         :param pulumi.Input[str] vpc_id: The vpc id of vpc endpoint.
         """
@@ -640,10 +738,12 @@ class VpcEndpoint(pulumi.CustomResource):
         __props__.__dict__["endpoint_type"] = endpoint_type
         __props__.__dict__["private_dns_enabled"] = private_dns_enabled
         __props__.__dict__["private_dns_name"] = private_dns_name
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["service_id"] = service_id
         __props__.__dict__["service_name"] = service_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         __props__.__dict__["vpc_id"] = vpc_id
         return VpcEndpoint(resource_name, opts=opts, __props__=__props__)
@@ -729,6 +829,14 @@ class VpcEndpoint(pulumi.CustomResource):
         return pulumi.get(self, "private_dns_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The project name of vpc endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Sequence[str]]:
         """
@@ -760,6 +868,14 @@ class VpcEndpoint(pulumi.CustomResource):
         The status of vpc endpoint.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.VpcEndpointTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

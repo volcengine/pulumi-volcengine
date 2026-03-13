@@ -121,6 +121,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetIpv6AddressBandwidthsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetIpv6AddressBandwidthsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetIpv6AddressBandwidthsTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The ID of Vpc the ipv6 address in.
         /// </summary>
@@ -189,6 +201,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetIpv6AddressBandwidthsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetIpv6AddressBandwidthsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetIpv6AddressBandwidthsTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The ID of Vpc the ipv6 address in.
         /// </summary>
@@ -226,6 +250,7 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         public readonly string? NetworkType;
         public readonly string? OutputFile;
+        public readonly ImmutableArray<Outputs.GetIpv6AddressBandwidthsTagResult> Tags;
         /// <summary>
         /// The total count of Ipv6AddressBandwidth query.
         /// </summary>
@@ -252,6 +277,8 @@ namespace Pulumi.Volcengine.Vpc
 
             string? outputFile,
 
+            ImmutableArray<Outputs.GetIpv6AddressBandwidthsTagResult> tags,
+
             int totalCount,
 
             string? vpcId)
@@ -265,6 +292,7 @@ namespace Pulumi.Volcengine.Vpc
             Isp = isp;
             NetworkType = networkType;
             OutputFile = outputFile;
+            Tags = tags;
             TotalCount = totalCount;
             VpcId = vpcId;
         }

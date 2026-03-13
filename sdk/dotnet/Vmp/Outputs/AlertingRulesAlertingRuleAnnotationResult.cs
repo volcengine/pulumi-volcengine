@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Vmp.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The value of the label.
+        /// The Value of Tags.
         /// </summary>
         public readonly string Value;
 

@@ -15,24 +15,26 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.EtlTask("foo", {
- *     description: "for-tf-test",
+ *     description: "for-t-test",
  *     dslType: "NORMAL",
  *     enable: false,
- *     fromTime: 1750649545,
+ *     fromTime: 1750649546,
  *     script: "",
  *     sourceTopicId: "9b756385-1dfb-4306-a094-0c88e04b34a5",
  *     targetResources: [
  *         {
- *             alias: "tf-test-1",
+ *             alias: "tf-test-1-modify",
+ *             region: "cn-guilin-boe",
  *             topicId: "a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
  *         },
  *         {
  *             alias: "tf-test-2-modify",
+ *             region: "cn-guilin-boe",
  *             topicId: "bdf4f23b-a889-456c-ac5f-09d727427557",
  *         },
  *     ],
  *     taskType: "Resident",
- *     toTime: 1750735958,
+ *     toTime: 1750735959,
  * });
  * ```
  *

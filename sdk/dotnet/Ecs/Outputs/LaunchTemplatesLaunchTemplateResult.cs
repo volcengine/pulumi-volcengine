@@ -78,9 +78,21 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string LaunchTemplateName;
         /// <summary>
+        /// The project name of the launch template.
+        /// </summary>
+        public readonly string LaunchTemplateProjectName;
+        /// <summary>
+        /// The tags of the launch template.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateLaunchTemplateTagResult> LaunchTemplateTags;
+        /// <summary>
         /// The list of network interfaces.
         /// </summary>
         public readonly ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateNetworkInterfaceResult> NetworkInterfaces;
+        /// <summary>
+        /// The project name of the instance.
+        /// </summary>
+        public readonly string ProjectName;
         /// <summary>
         /// Whether to open the security reinforcement.
         /// </summary>
@@ -89,6 +101,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// The index of the ordered suffix.
         /// </summary>
         public readonly int SuffixIndex;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateTagResult> Tags;
         /// <summary>
         /// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
         /// </summary>
@@ -148,11 +164,19 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string launchTemplateName,
 
+            string launchTemplateProjectName,
+
+            ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateLaunchTemplateTagResult> launchTemplateTags,
+
             ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateNetworkInterfaceResult> networkInterfaces,
+
+            string projectName,
 
             string securityEnhancementStrategy,
 
             int suffixIndex,
+
+            ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateTagResult> tags,
 
             bool uniqueSuffix,
 
@@ -182,9 +206,13 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             LatestVersionNumber = latestVersionNumber;
             LaunchTemplateId = launchTemplateId;
             LaunchTemplateName = launchTemplateName;
+            LaunchTemplateProjectName = launchTemplateProjectName;
+            LaunchTemplateTags = launchTemplateTags;
             NetworkInterfaces = networkInterfaces;
+            ProjectName = projectName;
             SecurityEnhancementStrategy = securityEnhancementStrategy;
             SuffixIndex = suffixIndex;
+            Tags = tags;
             UniqueSuffix = uniqueSuffix;
             UpdatedAt = updatedAt;
             VersionDescription = versionDescription;

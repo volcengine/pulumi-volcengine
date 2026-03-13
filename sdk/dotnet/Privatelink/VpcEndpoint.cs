@@ -79,6 +79,15 @@ namespace Pulumi.Volcengine.Privatelink
     ///         },
     ///         Description = "acc-test",
     ///         AutoAcceptEnabled = true,
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Privatelink.Inputs.VpcEndpointServiceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var fooVpcEndpoint = new Volcengine.Privatelink.VpcEndpoint("fooVpcEndpoint", new()
@@ -90,6 +99,15 @@ namespace Pulumi.Volcengine.Privatelink
     ///         ServiceId = fooVpcEndpointService.Id,
     ///         EndpointName = "acc-test-ep",
     ///         Description = "acc-test",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Privatelink.Inputs.VpcEndpointTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -167,6 +185,12 @@ namespace Pulumi.Volcengine.Privatelink
         public Output<string> PrivateDnsName { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of vpc endpoint.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
         /// For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         /// </summary>
@@ -190,6 +214,12 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.VpcEndpointTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The update time of vpc endpoint.
@@ -268,6 +298,12 @@ namespace Pulumi.Volcengine.Privatelink
         [Input("privateDnsEnabled")]
         public Input<bool>? PrivateDnsEnabled { get; set; }
 
+        /// <summary>
+        /// The project name of vpc endpoint.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("securityGroupIds", required: true)]
         private InputList<string>? _securityGroupIds;
 
@@ -292,6 +328,18 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcEndpointTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcEndpointTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcEndpointTagArgs>());
+            set => _tags = value;
+        }
 
         public VpcEndpointArgs()
         {
@@ -361,6 +409,12 @@ namespace Pulumi.Volcengine.Privatelink
         [Input("privateDnsName")]
         public Input<string>? PrivateDnsName { get; set; }
 
+        /// <summary>
+        /// The project name of vpc endpoint.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
 
@@ -391,6 +445,18 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcEndpointTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcEndpointTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcEndpointTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of vpc endpoint.

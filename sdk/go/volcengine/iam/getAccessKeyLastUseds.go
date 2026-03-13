@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.GetAccessKeyLastUseds(ctx, &iam.GetAccessKeyLastUsedsArgs{
-//				AccessKeyId: "AKLxxxxxxxxxxxxxxxxxxxxxxxxx",
+//				AccessKeyId: "your access_key_id",
 //			}, nil)
 //			if err != nil {
 //				return err

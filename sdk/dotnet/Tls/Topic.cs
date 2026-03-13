@@ -26,13 +26,19 @@ namespace Pulumi.Volcengine.Tls
     ///         ArchiveTtl = 0,
     ///         AutoSplit = true,
     ///         ColdTtl = 30,
-    ///         Description = "test",
+    ///         Description = "test-modify",
     ///         EnableHotTtl = true,
     ///         EnableTracking = true,
     ///         EncryptConf = new Volcengine.Tls.Inputs.TopicEncryptConfArgs
     ///         {
     ///             Enable = true,
     ///             EncryptType = "default",
+    ///             UserCmkInfo = new Volcengine.Tls.Inputs.TopicEncryptConfUserCmkInfoArgs
+    ///             {
+    ///                 RegionId = "cn-guilin-boe",
+    ///                 Trn = "trn:iam::2100xxxxx:role/ServiceRoleForTLS",
+    ///                 UserCmkId = "m_cn-guilin-boe_441a350d-b21c-4760-bd8e-01ec2bc5e58a",
+    ///             },
     ///         },
     ///         HotTtl = 30,
     ///         LogPublicIp = true,
@@ -49,7 +55,7 @@ namespace Pulumi.Volcengine.Tls
     ///         },
     ///         TimeFormat = "%Y-%m-%dT%H:%M:%S,%f",
     ///         TimeKey = "request_time",
-    ///         TopicName = "tf-topic-5",
+    ///         TopicName = "tf-topic-with-encrypt",
     ///         Ttl = 60,
     ///     });
     /// 

@@ -81,6 +81,13 @@ import (
 //				},
 //				Description:       pulumi.String("acc-test"),
 //				AutoAcceptEnabled: pulumi.Bool(true),
+//				ProjectName:       pulumi.String("default"),
+//				Tags: privatelink.VpcEndpointServiceTagArray{
+//					&privatelink.VpcEndpointServiceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -109,6 +116,8 @@ type VpcEndpointService struct {
 	CreationTime pulumi.StringOutput `pulumi:"creationTime"`
 	// The description of service.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The project name of service.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources VpcEndpointServiceResourceTypeArrayOutput `pulumi:"resources"`
 	// The domain of service.
@@ -123,6 +132,8 @@ type VpcEndpointService struct {
 	ServiceType pulumi.StringOutput `pulumi:"serviceType"`
 	// The status of service.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags VpcEndpointServiceTagArrayOutput `pulumi:"tags"`
 	// The update time of service.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 	// The IDs of zones.
@@ -168,6 +179,8 @@ type vpcEndpointServiceState struct {
 	CreationTime *string `pulumi:"creationTime"`
 	// The description of service.
 	Description *string `pulumi:"description"`
+	// The project name of service.
+	ProjectName *string `pulumi:"projectName"`
 	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources []VpcEndpointServiceResourceType `pulumi:"resources"`
 	// The domain of service.
@@ -182,6 +195,8 @@ type vpcEndpointServiceState struct {
 	ServiceType *string `pulumi:"serviceType"`
 	// The status of service.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []VpcEndpointServiceTag `pulumi:"tags"`
 	// The update time of service.
 	UpdateTime *string `pulumi:"updateTime"`
 	// The IDs of zones.
@@ -195,6 +210,8 @@ type VpcEndpointServiceState struct {
 	CreationTime pulumi.StringPtrInput
 	// The description of service.
 	Description pulumi.StringPtrInput
+	// The project name of service.
+	ProjectName pulumi.StringPtrInput
 	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources VpcEndpointServiceResourceTypeArrayInput
 	// The domain of service.
@@ -209,6 +226,8 @@ type VpcEndpointServiceState struct {
 	ServiceType pulumi.StringPtrInput
 	// The status of service.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags VpcEndpointServiceTagArrayInput
 	// The update time of service.
 	UpdateTime pulumi.StringPtrInput
 	// The IDs of zones.
@@ -224,8 +243,12 @@ type vpcEndpointServiceArgs struct {
 	AutoAcceptEnabled *bool `pulumi:"autoAcceptEnabled"`
 	// The description of service.
 	Description *string `pulumi:"description"`
+	// The project name of service.
+	ProjectName *string `pulumi:"projectName"`
 	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources []VpcEndpointServiceResourceType `pulumi:"resources"`
+	// Tags.
+	Tags []VpcEndpointServiceTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a VpcEndpointService resource.
@@ -234,8 +257,12 @@ type VpcEndpointServiceArgs struct {
 	AutoAcceptEnabled pulumi.BoolPtrInput
 	// The description of service.
 	Description pulumi.StringPtrInput
+	// The project name of service.
+	ProjectName pulumi.StringPtrInput
 	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources VpcEndpointServiceResourceTypeArrayInput
+	// Tags.
+	Tags VpcEndpointServiceTagArrayInput
 }
 
 func (VpcEndpointServiceArgs) ElementType() reflect.Type {
@@ -340,6 +367,11 @@ func (o VpcEndpointServiceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcEndpointService) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The project name of service.
+func (o VpcEndpointServiceOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcEndpointService) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 func (o VpcEndpointServiceOutput) Resources() VpcEndpointServiceResourceTypeArrayOutput {
 	return o.ApplyT(func(v *VpcEndpointService) VpcEndpointServiceResourceTypeArrayOutput { return v.Resources }).(VpcEndpointServiceResourceTypeArrayOutput)
@@ -373,6 +405,11 @@ func (o VpcEndpointServiceOutput) ServiceType() pulumi.StringOutput {
 // The status of service.
 func (o VpcEndpointServiceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcEndpointService) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o VpcEndpointServiceOutput) Tags() VpcEndpointServiceTagArrayOutput {
+	return o.ApplyT(func(v *VpcEndpointService) VpcEndpointServiceTagArrayOutput { return v.Tags }).(VpcEndpointServiceTagArrayOutput)
 }
 
 // The update time of service.

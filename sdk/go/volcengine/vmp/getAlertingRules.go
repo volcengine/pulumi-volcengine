@@ -226,6 +226,8 @@ type GetAlertingRulesArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []GetAlertingRulesTag `pulumi:"tags"`
 	// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 	Type *string `pulumi:"type"`
 	// The workspace id of vmp alerting rule.
@@ -247,6 +249,8 @@ type GetAlertingRulesResult struct {
 	OutputFile           *string  `pulumi:"outputFile"`
 	// The status of the vmp alerting rule.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []GetAlertingRulesTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The type of the vmp alerting rule.
@@ -284,6 +288,8 @@ type GetAlertingRulesOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Tags.
+	Tags GetAlertingRulesTagArrayInput `pulumi:"tags"`
 	// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// The workspace id of vmp alerting rule.
@@ -347,6 +353,11 @@ func (o GetAlertingRulesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The status of the vmp alerting rule.
 func (o GetAlertingRulesResultOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAlertingRulesResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetAlertingRulesResultOutput) Tags() GetAlertingRulesTagArrayOutput {
+	return o.ApplyT(func(v GetAlertingRulesResult) []GetAlertingRulesTag { return v.Tags }).(GetAlertingRulesTagArrayOutput)
 }
 
 // The total count of query.

@@ -29,18 +29,18 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewOauthProvider(ctx, "foo", &iam.OauthProviderArgs{
 //				AuthorizeTemplate: pulumi.String("${authEndpoint}?client_id=${clientId}&scope=${scope}&response_type=code&state=12345"),
-//				AuthorizeUrl:      pulumi.String("https://example.com/authorize_modify"),
-//				ClientId:          pulumi.String("test_client_id_modify"),
+//				AuthorizeUrl:      pulumi.String("https://example.com/authorize"),
+//				ClientId:          pulumi.String("test_client_id"),
 //				ClientSecret:      pulumi.String(""),
-//				Description:       pulumi.String("acc-test-modify"),
+//				Description:       pulumi.String("acc-test"),
 //				IdentityMapType:   pulumi.Int(1),
-//				IdpIdentityKey:    pulumi.String("username_modify"),
+//				IdpIdentityKey:    pulumi.String("username"),
 //				OauthProviderName: pulumi.String("acc-test-oauth"),
 //				Scope:             pulumi.String("openid"),
 //				SsoType:           pulumi.Int(2),
 //				Status:            pulumi.Int(1),
-//				TokenUrl:          pulumi.String("https://example.com/access_token_modify"),
-//				UserInfoUrl:       pulumi.String("https://example.com/user_info_modify"),
+//				TokenUrl:          pulumi.String("https://example.com/access_token"),
+//				UserInfoUrl:       pulumi.String("https://example.com/user_info"),
 //			})
 //			if err != nil {
 //				return err

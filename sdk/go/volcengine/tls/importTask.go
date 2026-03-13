@@ -45,10 +45,10 @@ import (
 //						UnMatchUpLoadSwitch: pulumi.Bool(true),
 //					},
 //					LogType: pulumi.String("json_log"),
-//					Region:  pulumi.String("cn-beijing"),
+//					Region:  pulumi.String("cn-guilin-boe"),
 //				},
 //				TaskName: pulumi.String("tf-test-task-name-kafka"),
-//				TopicId:  pulumi.String("b966e41a-d6a6-4999-bd75-39xxxxxxx"),
+//				TopicId:  pulumi.String("a0197686-1309-4c46-8003-4be3b278a838"),
 //			})
 //			if err != nil {
 //				return err

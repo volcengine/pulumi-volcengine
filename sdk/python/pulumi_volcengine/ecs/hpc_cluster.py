@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['HpcClusterArgs', 'HpcCluster']
 
@@ -16,18 +18,26 @@ class HpcClusterArgs:
     def __init__(__self__, *,
                  zone_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]]] = None):
         """
         The set of arguments for constructing a HpcCluster resource.
         :param pulumi.Input[str] zone_id: The zone id of the hpc cluster.
         :param pulumi.Input[str] description: The description of the hpc cluster.
         :param pulumi.Input[str] name: The name of the hpc cluster.
+        :param pulumi.Input[str] project_name: The project name of the hpc cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "zone_id", zone_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="zoneId")
@@ -65,23 +75,55 @@ class HpcClusterArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the hpc cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _HpcClusterState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering HpcCluster resources.
         :param pulumi.Input[str] description: The description of the hpc cluster.
         :param pulumi.Input[str] name: The name of the hpc cluster.
+        :param pulumi.Input[str] project_name: The project name of the hpc cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]] tags: Tags.
         :param pulumi.Input[str] zone_id: The zone id of the hpc cluster.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
 
@@ -110,6 +152,30 @@ class _HpcClusterState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the hpc cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HpcClusterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -129,6 +195,8 @@ class HpcCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HpcClusterTagArgs']]]]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -141,6 +209,11 @@ class HpcCluster(pulumi.CustomResource):
 
         foo = volcengine.ecs.HpcCluster("foo",
             description="acc-test",
+            project_name="default",
+            tags=[volcengine.ecs.HpcClusterTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )],
             zone_id="cn-beijing-b")
         ```
 
@@ -156,6 +229,8 @@ class HpcCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the hpc cluster.
         :param pulumi.Input[str] name: The name of the hpc cluster.
+        :param pulumi.Input[str] project_name: The project name of the hpc cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HpcClusterTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] zone_id: The zone id of the hpc cluster.
         """
         ...
@@ -174,6 +249,11 @@ class HpcCluster(pulumi.CustomResource):
 
         foo = volcengine.ecs.HpcCluster("foo",
             description="acc-test",
+            project_name="default",
+            tags=[volcengine.ecs.HpcClusterTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )],
             zone_id="cn-beijing-b")
         ```
 
@@ -202,6 +282,8 @@ class HpcCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HpcClusterTagArgs']]]]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -214,6 +296,8 @@ class HpcCluster(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             if zone_id is None and not opts.urn:
                 raise TypeError("Missing required property 'zone_id'")
             __props__.__dict__["zone_id"] = zone_id
@@ -229,6 +313,8 @@ class HpcCluster(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HpcClusterTagArgs']]]]] = None,
             zone_id: Optional[pulumi.Input[str]] = None) -> 'HpcCluster':
         """
         Get an existing HpcCluster resource's state with the given name, id, and optional extra
@@ -239,6 +325,8 @@ class HpcCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the hpc cluster.
         :param pulumi.Input[str] name: The name of the hpc cluster.
+        :param pulumi.Input[str] project_name: The project name of the hpc cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['HpcClusterTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] zone_id: The zone id of the hpc cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -247,6 +335,8 @@ class HpcCluster(pulumi.CustomResource):
 
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
+        __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["zone_id"] = zone_id
         return HpcCluster(resource_name, opts=opts, __props__=__props__)
 
@@ -265,6 +355,22 @@ class HpcCluster(pulumi.CustomResource):
         The name of the hpc cluster.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The project name of the hpc cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.HpcClusterTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="zoneId")

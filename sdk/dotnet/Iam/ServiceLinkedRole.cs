@@ -23,13 +23,13 @@ namespace Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.ServiceLinkedRole("foo", new()
     ///     {
-    ///         ServiceName = "ecs",
+    ///         ServiceName = "vpc",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Iam.Inputs.ServiceLinkedRoleTagArgs
     ///             {
     ///                 Key = "key-2",
-    ///                 Value = "value-3",
+    ///                 Value = "value-2",
     ///             },
     ///         },
     ///     });

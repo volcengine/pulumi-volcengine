@@ -42,6 +42,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string HostIdentifier;
         /// <summary>
+        /// The ip list of host group.
+        /// </summary>
+        public readonly ImmutableArray<string> HostIpLists;
+        /// <summary>
         /// The project name of iam.
         /// </summary>
         public readonly string IamProjectName;
@@ -82,6 +86,8 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             string hostIdentifier,
 
+            ImmutableArray<string> hostIpLists,
+
             string iamProjectName,
 
             string modifyTime,
@@ -101,6 +107,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
             HostGroupName = hostGroupName;
             HostGroupType = hostGroupType;
             HostIdentifier = hostIdentifier;
+            HostIpLists = hostIpLists;
             IamProjectName = iamProjectName;
             ModifyTime = modifyTime;
             RuleCount = ruleCount;

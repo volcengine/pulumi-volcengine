@@ -139,6 +139,12 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.Ipv6AddressBandwidthTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// Update time of the Ipv6AddressBandwidth.
         /// </summary>
         [Output("updateTime")]
@@ -208,6 +214,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("ipv6Address", required: true)]
         public Input<string> Ipv6Address { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.Ipv6AddressBandwidthTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.Ipv6AddressBandwidthTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.Ipv6AddressBandwidthTagArgs>());
+            set => _tags = value;
+        }
 
         public Ipv6AddressBandwidthArgs()
         {
@@ -300,6 +318,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.Ipv6AddressBandwidthTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.Ipv6AddressBandwidthTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.Ipv6AddressBandwidthTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Update time of the Ipv6AddressBandwidth.

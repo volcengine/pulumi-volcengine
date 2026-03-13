@@ -203,10 +203,28 @@ namespace Pulumi.Volcengine.Privatelink
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of vpc endpoint service.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// The name of vpc endpoint service.
         /// </summary>
         [Input("serviceName")]
         public string? ServiceName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.VpcEndpointServicesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.VpcEndpointServicesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.VpcEndpointServicesTagArgs>());
+            set => _tags = value;
+        }
 
         public VpcEndpointServicesArgs()
         {
@@ -241,10 +259,28 @@ namespace Pulumi.Volcengine.Privatelink
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of vpc endpoint service.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The name of vpc endpoint service.
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcEndpointServicesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcEndpointServicesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcEndpointServicesTagInputArgs>());
+            set => _tags = value;
+        }
 
         public VpcEndpointServicesInvokeArgs()
         {
@@ -264,6 +300,10 @@ namespace Pulumi.Volcengine.Privatelink
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of service.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The name of service.
         /// </summary>
         public readonly string? ServiceName;
@@ -271,6 +311,10 @@ namespace Pulumi.Volcengine.Privatelink
         /// The collection of query.
         /// </summary>
         public readonly ImmutableArray<Outputs.VpcEndpointServicesServiceResult> Services;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.VpcEndpointServicesTagResult> Tags;
         /// <summary>
         /// Returns the total amount of the data list.
         /// </summary>
@@ -286,9 +330,13 @@ namespace Pulumi.Volcengine.Privatelink
 
             string? outputFile,
 
+            string? projectName,
+
             string? serviceName,
 
             ImmutableArray<Outputs.VpcEndpointServicesServiceResult> services,
+
+            ImmutableArray<Outputs.VpcEndpointServicesTagResult> tags,
 
             int totalCount)
         {
@@ -296,8 +344,10 @@ namespace Pulumi.Volcengine.Privatelink
             Ids = ids;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             ServiceName = serviceName;
             Services = services;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

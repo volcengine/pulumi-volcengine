@@ -293,6 +293,12 @@ namespace Pulumi.Volcengine.Vpn
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ConnectionTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// The id of transit router, valid when the attach type is 'TransitRouter'.
         /// </summary>
         [Output("transitRouterId")]
@@ -525,6 +531,18 @@ namespace Pulumi.Volcengine.Vpn
             set => _remoteSubnets = value;
         }
 
+        [Input("tags")]
+        private InputList<Inputs.ConnectionTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ConnectionTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ConnectionTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The name of the VPN connection.
         /// </summary>
@@ -748,6 +766,18 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ConnectionTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ConnectionTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ConnectionTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The id of transit router, valid when the attach type is 'TransitRouter'.

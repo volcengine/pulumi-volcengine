@@ -62,6 +62,10 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
         /// </summary>
         public readonly string PrivateDnsName;
         /// <summary>
+        /// The project name of vpc endpoint.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The Id of vpc endpoint service.
         /// </summary>
         public readonly string ServiceId;
@@ -73,6 +77,10 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
         /// The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetVpcEndpointsVpcEndpointTagResult> Tags;
         /// <summary>
         /// The update time of vpc endpoint.
         /// </summary>
@@ -108,11 +116,15 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
 
             string privateDnsName,
 
+            string projectName,
+
             string serviceId,
 
             string serviceName,
 
             string status,
+
+            ImmutableArray<Outputs.GetVpcEndpointsVpcEndpointTagResult> tags,
 
             string updateTime,
 
@@ -130,9 +142,11 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
             Id = id;
             PrivateDnsEnabled = privateDnsEnabled;
             PrivateDnsName = privateDnsName;
+            ProjectName = projectName;
             ServiceId = serviceId;
             ServiceName = serviceName;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
             VpcId = vpcId;
         }

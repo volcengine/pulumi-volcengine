@@ -201,7 +201,7 @@ def shippers(iam_project_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_shippers()
+    default = volcengine.tls.get_shippers(shipper_id="7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe")
     ```
 
 
@@ -267,7 +267,7 @@ def shippers_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_shippers()
+    default = volcengine.tls.get_shippers(shipper_id="7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe")
     ```
 
 

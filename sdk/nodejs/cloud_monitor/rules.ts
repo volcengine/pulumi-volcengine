@@ -34,6 +34,7 @@ export function rules(args?: RulesArgs, opts?: pulumi.InvokeOptions): Promise<Ru
         "namespaces": args.namespaces,
         "outputFile": args.outputFile,
         "ruleName": args.ruleName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -73,6 +74,10 @@ export interface RulesArgs {
      * The name of the cloud monitor rule. This field support fuzzy query.
      */
     ruleName?: string;
+    /**
+     * The tags of the cloud monitor rule.
+     */
+    tags?: inputs.cloud_monitor.RulesTag[];
 }
 
 /**
@@ -110,6 +115,10 @@ export interface RulesResult {
      * The collection of query.
      */
     readonly rules: outputs.cloud_monitor.RulesRule[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.cloud_monitor.RulesTag[];
     /**
      * The total count of query.
      */
@@ -169,4 +178,8 @@ export interface RulesOutputArgs {
      * The name of the cloud monitor rule. This field support fuzzy query.
      */
     ruleName?: pulumi.Input<string>;
+    /**
+     * The tags of the cloud monitor rule.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.cloud_monitor.RulesTagArgs>[]>;
 }

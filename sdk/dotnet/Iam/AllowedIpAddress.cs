@@ -29,12 +29,12 @@ namespace Pulumi.Volcengine.Iam
     ///             new Volcengine.Iam.Inputs.AllowedIpAddressIpListArgs
     ///             {
     ///                 Description = "test1",
-    ///                 Ip = "your ip",
+    ///                 Ip = "your_ip",
     ///             },
     ///             new Volcengine.Iam.Inputs.AllowedIpAddressIpListArgs
     ///             {
     ///                 Description = "test2",
-    ///                 Ip = "your ip",
+    ///                 Ip = "your_ip",
     ///             },
     ///         },
     ///     });

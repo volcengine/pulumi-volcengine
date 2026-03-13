@@ -31,7 +31,7 @@ namespace Pulumi.Volcengine.Iam
     ///         SafeAuthExemptUnit = 1,
     ///         SafeAuthFlag = true,
     ///         SafeAuthType = "phone",
-    ///         UserName = "jonny",
+    ///         UserName = "jonny-tt",
     ///     });
     /// 
     /// });

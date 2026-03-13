@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'KeyPairsResult',
@@ -24,7 +25,7 @@ class KeyPairsResult:
     """
     A collection of values returned by KeyPairs.
     """
-    def __init__(__self__, finger_print=None, id=None, key_pair_ids=None, key_pair_name=None, key_pair_names=None, key_pairs=None, name_regex=None, output_file=None, total_count=None):
+    def __init__(__self__, finger_print=None, id=None, key_pair_ids=None, key_pair_name=None, key_pair_names=None, key_pairs=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None):
         if finger_print and not isinstance(finger_print, str):
             raise TypeError("Expected argument 'finger_print' to be a str")
         pulumi.set(__self__, "finger_print", finger_print)
@@ -49,6 +50,12 @@ class KeyPairsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -106,6 +113,22 @@ class KeyPairsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the key pair.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.KeyPairsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -128,6 +151,8 @@ class AwaitableKeyPairsResult(KeyPairsResult):
             key_pairs=self.key_pairs,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -137,6 +162,8 @@ def key_pairs(finger_print: Optional[str] = None,
               key_pair_names: Optional[Sequence[str]] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
+              project_name: Optional[str] = None,
+              tags: Optional[Sequence[pulumi.InputType['KeyPairsTagArgs']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableKeyPairsResult:
     """
     Use this data source to query detailed information of ecs key pairs
@@ -159,6 +186,8 @@ def key_pairs(finger_print: Optional[str] = None,
     :param Sequence[str] key_pair_names: Key pair names info.
     :param str name_regex: A Name Regex of ECS key pairs.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the key pair.
+    :param Sequence[pulumi.InputType['KeyPairsTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""key_pairs is deprecated: volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs""")
     __args__ = dict()
@@ -168,6 +197,8 @@ def key_pairs(finger_print: Optional[str] = None,
     __args__['keyPairNames'] = key_pair_names
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:ecs/keyPairs:KeyPairs', __args__, opts=opts, typ=KeyPairsResult).value
 
@@ -180,6 +211,8 @@ def key_pairs(finger_print: Optional[str] = None,
         key_pairs=pulumi.get(__ret__, 'key_pairs'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -190,6 +223,8 @@ def key_pairs_output(finger_print: Optional[pulumi.Input[Optional[str]]] = None,
                      key_pair_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['KeyPairsTagArgs']]]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[KeyPairsResult]:
     """
     Use this data source to query detailed information of ecs key pairs
@@ -212,6 +247,8 @@ def key_pairs_output(finger_print: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[str] key_pair_names: Key pair names info.
     :param str name_regex: A Name Regex of ECS key pairs.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the key pair.
+    :param Sequence[pulumi.InputType['KeyPairsTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""key_pairs is deprecated: volcengine.ecs.KeyPairs has been deprecated in favor of volcengine.ecs.getKeyPairs""")
     ...

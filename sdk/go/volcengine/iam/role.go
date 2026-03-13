@@ -28,14 +28,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewRole(ctx, "foo", &iam.RoleArgs{
-//				Description:        pulumi.String("tf-test-modify"),
+//				Description:        pulumi.String("tf-test"),
 //				DisplayName:        pulumi.String("tf-test-modify"),
-//				MaxSessionDuration: pulumi.Int(3600),
-//				RoleName:           pulumi.String("tf-test-role"),
+//				MaxSessionDuration: pulumi.Int(4800),
+//				RoleName:           pulumi.String("tf-test"),
 //				Tags: iam.RoleTagArray{
 //					&iam.RoleTagArgs{
-//						Key:   pulumi.String("key-modify"),
-//						Value: pulumi.String("value-modify"),
+//						Key:   pulumi.String("key-1"),
+//						Value: pulumi.String("value-1"),
 //					},
 //				},
 //				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),

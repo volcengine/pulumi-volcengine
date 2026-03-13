@@ -282,34 +282,30 @@ class Index(pulumi.CustomResource):
                 include_chinese=False,
             ),
             key_values=[volcengine.tls.IndexKeyValueArgs(
-                auto_index_flag=False,
                 case_sensitive=True,
                 delimiter="!",
                 include_chinese=False,
                 index_all=True,
-                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="name-2",
+                        key="name",
                         value_type="text",
                     ),
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="key-2",
+                        key="key",
                         value_type="long",
                     ),
                 ],
-                key="k21",
+                key="k1",
                 sql_flag=True,
                 value_type="json",
             )],
             max_text_len=2048,
-            topic_id="c36ed436-84f1-467a-b00e-ba504db753ca",
+            topic_id="a0197686-1309-4c46-8003-4be3b278a838",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
-                auto_index_flag=False,
+                case_sensitive=False,
                 delimiter=",:-/ ",
                 include_chinese=False,
-                index_all=True,
-                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
                         key="app",
@@ -321,7 +317,7 @@ class Index(pulumi.CustomResource):
                     ),
                 ],
                 key="__content__",
-                sql_flag=True,
+                sql_flag=False,
                 value_type="json",
             )])
         ```
@@ -367,34 +363,30 @@ class Index(pulumi.CustomResource):
                 include_chinese=False,
             ),
             key_values=[volcengine.tls.IndexKeyValueArgs(
-                auto_index_flag=False,
                 case_sensitive=True,
                 delimiter="!",
                 include_chinese=False,
                 index_all=True,
-                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="name-2",
+                        key="name",
                         value_type="text",
                     ),
                     volcengine.tls.IndexKeyValueJsonKeyArgs(
-                        key="key-2",
+                        key="key",
                         value_type="long",
                     ),
                 ],
-                key="k21",
+                key="k1",
                 sql_flag=True,
                 value_type="json",
             )],
             max_text_len=2048,
-            topic_id="c36ed436-84f1-467a-b00e-ba504db753ca",
+            topic_id="a0197686-1309-4c46-8003-4be3b278a838",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
-                auto_index_flag=False,
+                case_sensitive=False,
                 delimiter=",:-/ ",
                 include_chinese=False,
-                index_all=True,
-                index_sql_all=True,
                 json_keys=[
                     volcengine.tls.IndexUserInnerKeyValueJsonKeyArgs(
                         key="app",
@@ -406,7 +398,7 @@ class Index(pulumi.CustomResource):
                     ),
                 ],
                 key="__content__",
-                sql_flag=True,
+                sql_flag=False,
                 value_type="json",
             )])
         ```

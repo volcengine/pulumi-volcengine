@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['GroupArgs', 'Group']
 
@@ -16,17 +18,21 @@ class GroupArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[str],
                  instance_id: pulumi.Input[str],
-                 description: Optional[pulumi.Input[str]] = None):
+                 description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]]] = None):
         """
         The set of arguments for constructing a Group resource.
         :param pulumi.Input[str] group_id: The id of kafka group.
         :param pulumi.Input[str] instance_id: The instance id of kafka group.
         :param pulumi.Input[str] description: The description of kafka group.
+        :param pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "group_id", group_id)
         pulumi.set(__self__, "instance_id", instance_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="groupId")
@@ -64,6 +70,18 @@ class GroupArgs:
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _GroupState:
@@ -71,13 +89,15 @@ class _GroupState:
                  description: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 state: Optional[pulumi.Input[str]] = None):
+                 state: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
         :param pulumi.Input[str] description: The description of kafka group.
         :param pulumi.Input[str] group_id: The id of kafka group.
         :param pulumi.Input[str] instance_id: The instance id of kafka group.
         :param pulumi.Input[str] state: The state of kafka group.
+        :param pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]] tags: Tags.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -87,6 +107,8 @@ class _GroupState:
             pulumi.set(__self__, "instance_id", instance_id)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -136,6 +158,18 @@ class _GroupState:
     def state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class Group(pulumi.CustomResource):
     @overload
@@ -145,6 +179,7 @@ class Group(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage kafka group
@@ -192,7 +227,11 @@ class Group(pulumi.CustomResource):
         foo_group = volcengine.kafka.Group("fooGroup",
             instance_id=foo_instance.id,
             group_id="acc-test-group",
-            description="tf-test")
+            description="tf-test",
+            tags=[volcengine.kafka.GroupTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -208,6 +247,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of kafka group.
         :param pulumi.Input[str] group_id: The id of kafka group.
         :param pulumi.Input[str] instance_id: The instance id of kafka group.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -261,7 +301,11 @@ class Group(pulumi.CustomResource):
         foo_group = volcengine.kafka.Group("fooGroup",
             instance_id=foo_instance.id,
             group_id="acc-test-group",
-            description="tf-test")
+            description="tf-test",
+            tags=[volcengine.kafka.GroupTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -290,6 +334,7 @@ class Group(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -306,6 +351,7 @@ class Group(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["state"] = None
         super(Group, __self__).__init__(
             'volcengine:kafka/group:Group',
@@ -320,7 +366,8 @@ class Group(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
-            state: Optional[pulumi.Input[str]] = None) -> 'Group':
+            state: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupTagArgs']]]]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -332,6 +379,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] group_id: The id of kafka group.
         :param pulumi.Input[str] instance_id: The instance id of kafka group.
         :param pulumi.Input[str] state: The state of kafka group.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -341,6 +389,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["state"] = state
+        __props__.__dict__["tags"] = tags
         return Group(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -374,4 +423,12 @@ class Group(pulumi.CustomResource):
         The state of kafka group.
         """
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.GroupTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

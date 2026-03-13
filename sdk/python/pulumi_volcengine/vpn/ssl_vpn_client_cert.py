@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SslVpnClientCertArgs', 'SslVpnClientCert']
 
@@ -16,18 +18,22 @@ class SslVpnClientCertArgs:
     def __init__(__self__, *,
                  ssl_vpn_server_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
-                 ssl_vpn_client_cert_name: Optional[pulumi.Input[str]] = None):
+                 ssl_vpn_client_cert_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]]] = None):
         """
         The set of arguments for constructing a SslVpnClientCert resource.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
         :param pulumi.Input[str] description: The description of the ssl vpn client cert.
         :param pulumi.Input[str] ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
+        :param pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if ssl_vpn_client_cert_name is not None:
             pulumi.set(__self__, "ssl_vpn_client_cert_name", ssl_vpn_client_cert_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="sslVpnServerId")
@@ -65,6 +71,18 @@ class SslVpnClientCertArgs:
     def ssl_vpn_client_cert_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_vpn_client_cert_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _SslVpnClientCertState:
@@ -80,6 +98,7 @@ class _SslVpnClientCertState:
                  ssl_vpn_client_cert_name: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SslVpnClientCert resources.
@@ -94,6 +113,7 @@ class _SslVpnClientCertState:
         :param pulumi.Input[str] ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
         :param pulumi.Input[str] status: The status of the ssl vpn client.
+        :param pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the ssl vpn client cert.
         """
         if ca_certificate is not None:
@@ -118,6 +138,8 @@ class _SslVpnClientCertState:
             pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
 
@@ -254,6 +276,18 @@ class _SslVpnClientCertState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnClientCertTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -274,6 +308,7 @@ class SslVpnClientCert(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_client_cert_name: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnClientCertTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage ssl vpn client cert
@@ -331,6 +366,7 @@ class SslVpnClientCert(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the ssl vpn client cert.
         :param pulumi.Input[str] ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnClientCertTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -407,6 +443,7 @@ class SslVpnClientCert(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_client_cert_name: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnClientCertTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -421,6 +458,7 @@ class SslVpnClientCert(pulumi.CustomResource):
             if ssl_vpn_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ssl_vpn_server_id'")
             __props__.__dict__["ssl_vpn_server_id"] = ssl_vpn_server_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["ca_certificate"] = None
             __props__.__dict__["certificate_status"] = None
             __props__.__dict__["client_certificate"] = None
@@ -451,6 +489,7 @@ class SslVpnClientCert(pulumi.CustomResource):
             ssl_vpn_client_cert_name: Optional[pulumi.Input[str]] = None,
             ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnClientCertTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'SslVpnClientCert':
         """
         Get an existing SslVpnClientCert resource's state with the given name, id, and optional extra
@@ -470,6 +509,7 @@ class SslVpnClientCert(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
         :param pulumi.Input[str] status: The status of the ssl vpn client.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnClientCertTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the ssl vpn client cert.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -487,6 +527,7 @@ class SslVpnClientCert(pulumi.CustomResource):
         __props__.__dict__["ssl_vpn_client_cert_name"] = ssl_vpn_client_cert_name
         __props__.__dict__["ssl_vpn_server_id"] = ssl_vpn_server_id
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         return SslVpnClientCert(resource_name, opts=opts, __props__=__props__)
 
@@ -577,6 +618,14 @@ class SslVpnClientCert(pulumi.CustomResource):
         The status of the ssl vpn client.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.SslVpnClientCertTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

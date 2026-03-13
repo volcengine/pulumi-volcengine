@@ -46,9 +46,21 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string IpAddress;
         /// <summary>
-        /// The status of the customer gateway.
+        /// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+        /// </summary>
+        public readonly string IpVersion;
+        /// <summary>
+        /// The project name of the VPN customer gateway.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.CustomerGatewaysCustomerGatewayTagResult> Tags;
         /// <summary>
         /// The update time of customer gateway.
         /// </summary>
@@ -72,7 +84,13 @@ namespace Pulumi.Volcengine.Vpn.Outputs
 
             string ipAddress,
 
+            string ipVersion,
+
+            string projectName,
+
             string status,
+
+            ImmutableArray<Outputs.CustomerGatewaysCustomerGatewayTagResult> tags,
 
             string updateTime)
         {
@@ -84,7 +102,10 @@ namespace Pulumi.Volcengine.Vpn.Outputs
             Description = description;
             Id = id;
             IpAddress = ipAddress;
+            IpVersion = ipVersion;
+            ProjectName = projectName;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
         }
     }

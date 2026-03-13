@@ -90,6 +90,11 @@ namespace Pulumi.Volcengine.Kafka
     ///         Description = "tf-test",
     ///         PartitionNumber = 15,
     ///         ReplicaNumber = 3,
+    ///         CleanupPolicies = new[]
+    ///         {
+    ///             "delete",
+    ///             "compact",
+    ///         },
     ///         Parameters = new Volcengine.Kafka.Inputs.TopicParametersArgs
     ///         {
     ///             MinInsyncReplicaNumber = 2,
@@ -103,6 +108,14 @@ namespace Pulumi.Volcengine.Kafka
     ///             {
     ///                 UserName = fooSaslUser.UserName,
     ///                 AccessPolicy = "Pub",
+    ///             },
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Kafka.Inputs.TopicTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
     ///         },
     ///     });
@@ -134,6 +147,12 @@ namespace Pulumi.Volcengine.Kafka
         public Output<bool?> AllAuthority { get; private set; } = null!;
 
         /// <summary>
+        /// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+        /// </summary>
+        [Output("cleanupPolicies")]
+        public Output<ImmutableArray<string>> CleanupPolicies { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the kafka topic.
         /// </summary>
         [Output("description")]
@@ -162,6 +181,12 @@ namespace Pulumi.Volcengine.Kafka
         /// </summary>
         [Output("replicaNumber")]
         public Output<int?> ReplicaNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.TopicTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The name of the kafka topic.
@@ -234,6 +259,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("allAuthority")]
         public Input<bool>? AllAuthority { get; set; }
 
+        [Input("cleanupPolicies")]
+        private InputList<string>? _cleanupPolicies;
+
+        /// <summary>
+        /// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+        /// </summary>
+        public InputList<string> CleanupPolicies
+        {
+            get => _cleanupPolicies ?? (_cleanupPolicies = new InputList<string>());
+            set => _cleanupPolicies = value;
+        }
+
         /// <summary>
         /// The description of the kafka topic.
         /// </summary>
@@ -263,6 +300,18 @@ namespace Pulumi.Volcengine.Kafka
         /// </summary>
         [Input("replicaNumber")]
         public Input<int>? ReplicaNumber { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.TopicTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.TopicTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.TopicTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The name of the kafka topic.
@@ -296,6 +345,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("allAuthority")]
         public Input<bool>? AllAuthority { get; set; }
 
+        [Input("cleanupPolicies")]
+        private InputList<string>? _cleanupPolicies;
+
+        /// <summary>
+        /// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+        /// </summary>
+        public InputList<string> CleanupPolicies
+        {
+            get => _cleanupPolicies ?? (_cleanupPolicies = new InputList<string>());
+            set => _cleanupPolicies = value;
+        }
+
         /// <summary>
         /// The description of the kafka topic.
         /// </summary>
@@ -325,6 +386,18 @@ namespace Pulumi.Volcengine.Kafka
         /// </summary>
         [Input("replicaNumber")]
         public Input<int>? ReplicaNumber { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.TopicTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.TopicTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.TopicTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The name of the kafka topic.

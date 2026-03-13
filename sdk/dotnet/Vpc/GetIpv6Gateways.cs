@@ -97,6 +97,24 @@ namespace Pulumi.Volcengine.Vpc
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the Ipv6Gateway.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.GetIpv6GatewaysTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetIpv6GatewaysTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetIpv6GatewaysTagArgs>());
+            set => _tags = value;
+        }
+
         [Input("vpcIds")]
         private List<string>? _vpcIds;
 
@@ -147,6 +165,24 @@ namespace Pulumi.Volcengine.Vpc
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the Ipv6Gateway.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GetIpv6GatewaysTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetIpv6GatewaysTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetIpv6GatewaysTagInputArgs>());
+            set => _tags = value;
+        }
+
         [Input("vpcIds")]
         private InputList<string>? _vpcIds;
 
@@ -185,6 +221,14 @@ namespace Pulumi.Volcengine.Vpc
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of the Ipv6Gateway.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetIpv6GatewaysTagResult> Tags;
+        /// <summary>
         /// The total count of Ipv6Gateway query.
         /// </summary>
         public readonly int TotalCount;
@@ -204,6 +248,10 @@ namespace Pulumi.Volcengine.Vpc
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<Outputs.GetIpv6GatewaysTagResult> tags,
+
             int totalCount,
 
             ImmutableArray<string> vpcIds)
@@ -214,6 +262,8 @@ namespace Pulumi.Volcengine.Vpc
             Name = name;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
             VpcIds = vpcIds;
         }

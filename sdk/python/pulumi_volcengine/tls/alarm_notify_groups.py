@@ -139,7 +139,7 @@ def alarm_notify_groups(alarm_notify_group_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_alarm_notify_groups()
+    default = volcengine.tls.get_alarm_notify_groups(alarm_notify_group_id="807cc2d8-e92d-447d-b9d7-da70cb8e41bd")
     ```
 
 
@@ -185,7 +185,7 @@ def alarm_notify_groups_output(alarm_notify_group_id: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_alarm_notify_groups()
+    default = volcengine.tls.get_alarm_notify_groups(alarm_notify_group_id="807cc2d8-e92d-447d-b9d7-da70cb8e41bd")
     ```
 
 

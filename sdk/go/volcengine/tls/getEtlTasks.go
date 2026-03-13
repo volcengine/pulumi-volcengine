@@ -26,7 +26,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetEtlTasks(ctx, nil, nil)
+//			_, err := tls.GetEtlTasks(ctx, &tls.GetEtlTasksArgs{
+//				ProjectId: pulumi.StringRef("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}

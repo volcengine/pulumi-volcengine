@@ -19,11 +19,11 @@ import * as utilities from "../utilities";
  *     ipLists: [
  *         {
  *             description: "test1",
- *             ip: "your ip",
+ *             ip: "your_ip",
  *         },
  *         {
  *             description: "test2",
- *             ip: "your ip",
+ *             ip: "your_ip",
  *         },
  *     ],
  * });

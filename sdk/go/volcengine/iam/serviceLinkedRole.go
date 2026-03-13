@@ -28,11 +28,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewServiceLinkedRole(ctx, "foo", &iam.ServiceLinkedRoleArgs{
-//				ServiceName: pulumi.String("ecs"),
+//				ServiceName: pulumi.String("vpc"),
 //				Tags: iam.ServiceLinkedRoleTagArray{
 //					&iam.ServiceLinkedRoleTagArgs{
 //						Key:   pulumi.String("key-2"),
-//						Value: pulumi.String("value-3"),
+//						Value: pulumi.String("value-2"),
 //					},
 //				},
 //			})

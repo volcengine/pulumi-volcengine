@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.iam.UserGroupPolicyAttachment("foo", {
  *     policyName: "test",
  *     policyType: "Custom",
- *     userGroupName: "tf-test",
+ *     userGroupName: "xRqElT",
  * });
  * ```
  *

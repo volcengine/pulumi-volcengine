@@ -204,6 +204,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GroupsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GroupsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GroupsTagArgs>());
+            set => _tags = value;
+        }
+
         public GroupsArgs()
         {
         }
@@ -236,6 +248,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GroupsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GroupsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GroupsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GroupsInvokeArgs()
         {
         }
@@ -262,6 +286,10 @@ namespace Pulumi.Volcengine.Kafka
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GroupsTagResult> Tags;
+        /// <summary>
         /// The total count of query.
         /// </summary>
         public readonly int TotalCount;
@@ -280,6 +308,8 @@ namespace Pulumi.Volcengine.Kafka
 
             string? outputFile,
 
+            ImmutableArray<Outputs.GroupsTagResult> tags,
+
             int totalCount)
         {
             GroupId = groupId;
@@ -288,6 +318,7 @@ namespace Pulumi.Volcengine.Kafka
             InstanceId = instanceId;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

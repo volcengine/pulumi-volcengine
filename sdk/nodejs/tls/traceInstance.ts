@@ -16,22 +16,19 @@ import * as utilities from "../utilities";
  *
  * // Example: Create a TLS trace instance
  * const foo = new volcengine.tls.TraceInstance("foo", {
- *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
- *     traceInstanceName: "tf-trace-instance-df",
- *     description: "This is an example trace instance",
  *     backendConfig: {
- *         ttl: 60,
- *         enableHotTtl: true,
- *         hotTtl: 30,
- *         coldTtl: 30,
  *         archiveTtl: 0,
  *         autoSplit: true,
+ *         coldTtl: 30,
+ *         enableHotTtl: true,
+ *         hotTtl: 60,
  *         maxSplitPartitions: 10,
+ *         ttl: 90,
  *     },
+ *     description: "This is an instance-modify",
+ *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+ *     traceInstanceName: "tf-trace-instance-nn",
  * });
- * export const tlsTraceInstanceId = foo.id;
- * export const tlsTraceInstanceName = foo.traceInstanceName;
- * export const tlsTraceInstanceDescription = foo.description;
  * ```
  *
  * ## Import

@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.Project("foo", new()
     ///     {
-    ///         Description = "tf-desc-modify",
+    ///         Description = "tf-desc",
     ///         IamProjectName = "default",
     ///         ProjectName = "tf-project-m",
     ///         Region = "cn-guilin-boe",
@@ -31,12 +31,12 @@ namespace Pulumi.Volcengine.Tls
     ///         {
     ///             new Volcengine.Tls.Inputs.ProjectTagArgs
     ///             {
-    ///                 Key = "k1",
+    ///                 Key = "k2m",
     ///                 Value = "v1",
     ///             },
     ///             new Volcengine.Tls.Inputs.ProjectTagArgs
     ///             {
-    ///                 Key = "k2",
+    ///                 Key = "kt3",
     ///                 Value = "v3",
     ///             },
     ///         },

@@ -32,13 +32,13 @@ namespace Pulumi.Volcengine.Iam
     ///         {
     ///             new Volcengine.Iam.Inputs.TagTagArgs
     ///             {
-    ///                 Key = "key4",
-    ///                 Value = "value4",
+    ///                 Key = "key1",
+    ///                 Value = "value1",
     ///             },
     ///             new Volcengine.Iam.Inputs.TagTagArgs
     ///             {
-    ///                 Key = "key3",
-    ///                 Value = "value3",
+    ///                 Key = "key2",
+    ///                 Value = "value2",
     ///             },
     ///         },
     ///     });

@@ -13,12 +13,12 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.OidcProvider("foo", {
- *     clientIds: ["6c505fb67d32417c8de287ee1fa89fd2"],
- *     description: "acc-test-oidc-modify",
- *     issuanceLimitTime: 10,
+ *     clientIds: ["6c505fb67d32417c8de287ee1fa89fc1"],
+ *     description: "acc-test-oidc",
+ *     issuanceLimitTime: 6,
  *     issuerUrl: "https://security-api.snssdk.com/qa/sso/oidc/6c505fb67d32417c8de287ee1fa89fc1",
  *     oidcProviderName: "oidc_provider",
- *     thumbprints: ["9b1afaa2dfca349fe38c5ef3e72ee03cb0696d65ea2e11f597ea9aa55fcff44d"],
+ *     thumbprints: ["9b1afaa2dfca349fe38c5ef3e72ee03cb0696d65ea2e11f597ea9aa55fcff33a"],
  * });
  * ```
  *

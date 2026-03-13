@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetGroupsResult',
@@ -22,7 +23,7 @@ class GetGroupsResult:
     """
     A collection of values returned by getGroups.
     """
-    def __init__(__self__, group_id=None, groups=None, id=None, instance_id=None, name_regex=None, output_file=None, total_count=None):
+    def __init__(__self__, group_id=None, groups=None, id=None, instance_id=None, name_regex=None, output_file=None, tags=None, total_count=None):
         if group_id and not isinstance(group_id, str):
             raise TypeError("Expected argument 'group_id' to be a str")
         pulumi.set(__self__, "group_id", group_id)
@@ -41,6 +42,9 @@ class GetGroupsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -85,6 +89,14 @@ class GetGroupsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetGroupsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -105,6 +117,7 @@ class AwaitableGetGroupsResult(GetGroupsResult):
             instance_id=self.instance_id,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -112,6 +125,7 @@ def get_groups(group_id: Optional[str] = None,
                instance_id: Optional[str] = None,
                name_regex: Optional[str] = None,
                output_file: Optional[str] = None,
+               tags: Optional[Sequence[pulumi.InputType['GetGroupsTagArgs']]] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupsResult:
     """
     Use this data source to query detailed information of kafka groups
@@ -168,12 +182,14 @@ def get_groups(group_id: Optional[str] = None,
     :param str instance_id: The instance id of kafka group.
     :param str name_regex: A Name Regex of kafka group.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['GetGroupsTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['groupId'] = group_id
     __args__['instanceId'] = instance_id
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:kafka/getGroups:getGroups', __args__, opts=opts, typ=GetGroupsResult).value
 
@@ -184,6 +200,7 @@ def get_groups(group_id: Optional[str] = None,
         instance_id=pulumi.get(__ret__, 'instance_id'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -192,6 +209,7 @@ def get_groups_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
                       instance_id: Optional[pulumi.Input[str]] = None,
                       name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                       output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                      tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetGroupsTagArgs']]]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupsResult]:
     """
     Use this data source to query detailed information of kafka groups
@@ -248,5 +266,6 @@ def get_groups_output(group_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_id: The instance id of kafka group.
     :param str name_regex: A Name Regex of kafka group.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['GetGroupsTagArgs']] tags: Tags.
     """
     ...

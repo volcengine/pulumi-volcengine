@@ -8,6 +8,33 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage tls alarm notify group
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const foo = new volcengine.tls.AlarmNotifyGroup("foo", {
+ *     alarmNotifyGroupName: "tf-test",
+ *     iamProjectName: "default",
+ *     notifyTypes: ["Recovery"],
+ *     receivers: [{
+ *         endTime: "23:59:59",
+ *         generalWebhookBody: "test",
+ *         generalWebhookHeaders: [{
+ *             key: "test",
+ *             value: "test",
+ *         }],
+ *         generalWebhookMethod: "PUT",
+ *         generalWebhookUrl: "https://www.volcengine.com/docs/6470xxx/112220?lang=zh",
+ *         receiverChannels: ["Email"],
+ *         receiverNames: ["jonny"],
+ *         receiverType: "User",
+ *         startTime: "10:00:00",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * tls alarm notify group can be imported using the id, e.g.

@@ -24,7 +24,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetAlarmNotifyGroups.Invoke();
+        ///     var @default = Volcengine.Tls.GetAlarmNotifyGroups.Invoke(new()
+        ///     {
+        ///         AlarmNotifyGroupId = "807cc2d8-e92d-447d-b9d7-da70cb8e41bd",
+        ///     });
         /// 
         /// });
         /// ```
@@ -44,7 +47,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetAlarmNotifyGroups.Invoke();
+        ///     var @default = Volcengine.Tls.GetAlarmNotifyGroups.Invoke(new()
+        ///     {
+        ///         AlarmNotifyGroupId = "807cc2d8-e92d-447d-b9d7-da70cb8e41bd",
+        ///     });
         /// 
         /// });
         /// ```

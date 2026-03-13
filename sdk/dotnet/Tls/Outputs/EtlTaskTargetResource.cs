@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string Alias;
         /// <summary>
+        /// The region where the log topic is located.
+        /// </summary>
+        public readonly string Region;
+        /// <summary>
         /// Cross-account authorized character names.
         /// </summary>
         public readonly string? RoleTrn;
@@ -30,11 +34,14 @@ namespace Pulumi.Volcengine.Tls.Outputs
         private EtlTaskTargetResource(
             string alias,
 
+            string region,
+
             string? roleTrn,
 
             string topicId)
         {
             Alias = alias;
+            Region = region;
             RoleTrn = roleTrn;
             TopicId = topicId;
         }

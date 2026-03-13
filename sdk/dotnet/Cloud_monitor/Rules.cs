@@ -146,6 +146,18 @@ namespace Pulumi.Volcengine.Cloud_monitor
         [Input("ruleName")]
         public string? RuleName { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.RulesTagArgs>? _tags;
+
+        /// <summary>
+        /// The tags of the cloud monitor rule.
+        /// </summary>
+        public List<Inputs.RulesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.RulesTagArgs>());
+            set => _tags = value;
+        }
+
         public RulesArgs()
         {
         }
@@ -232,6 +244,18 @@ namespace Pulumi.Volcengine.Cloud_monitor
         [Input("ruleName")]
         public Input<string>? RuleName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.RulesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// The tags of the cloud monitor rule.
+        /// </summary>
+        public InputList<Inputs.RulesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RulesTagInputArgs>());
+            set => _tags = value;
+        }
+
         public RulesInvokeArgs()
         {
         }
@@ -274,6 +298,10 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// </summary>
         public readonly ImmutableArray<Outputs.RulesRuleResult> Rules;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.RulesTagResult> Tags;
+        /// <summary>
         /// The total count of query.
         /// </summary>
         public readonly int TotalCount;
@@ -300,6 +328,8 @@ namespace Pulumi.Volcengine.Cloud_monitor
 
             ImmutableArray<Outputs.RulesRuleResult> rules,
 
+            ImmutableArray<Outputs.RulesTagResult> tags,
+
             int totalCount)
         {
             AlertStates = alertStates;
@@ -312,6 +342,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
             OutputFile = outputFile;
             RuleName = ruleName;
             Rules = rules;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

@@ -11,6 +11,57 @@ namespace Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls alarm notify group
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Volcengine.Tls.AlarmNotifyGroup("foo", new()
+    ///     {
+    ///         AlarmNotifyGroupName = "tf-test",
+    ///         IamProjectName = "default",
+    ///         NotifyTypes = new[]
+    ///         {
+    ///             "Recovery",
+    ///         },
+    ///         Receivers = new[]
+    ///         {
+    ///             new Volcengine.Tls.Inputs.AlarmNotifyGroupReceiverArgs
+    ///             {
+    ///                 EndTime = "23:59:59",
+    ///                 GeneralWebhookBody = "test",
+    ///                 GeneralWebhookHeaders = new[]
+    ///                 {
+    ///                     new Volcengine.Tls.Inputs.AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs
+    ///                     {
+    ///                         Key = "test",
+    ///                         Value = "test",
+    ///                     },
+    ///                 },
+    ///                 GeneralWebhookMethod = "PUT",
+    ///                 GeneralWebhookUrl = "https://www.volcengine.com/docs/6470xxx/112220?lang=zh",
+    ///                 ReceiverChannels = new[]
+    ///                 {
+    ///                     "Email",
+    ///                 },
+    ///                 ReceiverNames = new[]
+    ///                 {
+    ///                     "jonny",
+    ///                 },
+    ///                 ReceiverType = "User",
+    ///                 StartTime = "10:00:00",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// tls alarm notify group can be imported using the id, e.g.

@@ -195,7 +195,7 @@ def etl_tasks(iam_project_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.tls.get_etl_tasks()
+    foo = volcengine.tls.get_etl_tasks(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac")
     ```
 
 
@@ -261,7 +261,7 @@ def etl_tasks_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.tls.get_etl_tasks()
+    foo = volcengine.tls.get_etl_tasks(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac")
     ```
 
 

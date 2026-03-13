@@ -276,10 +276,10 @@ class AlarmWebhookIntegration(pulumi.CustomResource):
                 value="application/json",
             )],
             webhook_method="PUT",
-            webhook_name="terraform-tf-webhook",
+            webhook_name="terraform-tf-webhook-modify",
             webhook_secret="your secret",
-            webhook_type="lark",
-            webhook_url="http://zijie.com")
+            webhook_type="wechat",
+            webhook_url="http://tencent.com")
         ```
 
         ## Import
@@ -319,10 +319,10 @@ class AlarmWebhookIntegration(pulumi.CustomResource):
                 value="application/json",
             )],
             webhook_method="PUT",
-            webhook_name="terraform-tf-webhook",
+            webhook_name="terraform-tf-webhook-modify",
             webhook_secret="your secret",
-            webhook_type="lark",
-            webhook_url="http://zijie.com")
+            webhook_type="wechat",
+            webhook_url="http://tencent.com")
         ```
 
         ## Import

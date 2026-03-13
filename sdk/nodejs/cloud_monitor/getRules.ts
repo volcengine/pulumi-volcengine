@@ -32,6 +32,7 @@ export function getRules(args?: GetRulesArgs, opts?: pulumi.InvokeOptions): Prom
         "namespaces": args.namespaces,
         "outputFile": args.outputFile,
         "ruleName": args.ruleName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -71,6 +72,10 @@ export interface GetRulesArgs {
      * The name of the cloud monitor rule. This field support fuzzy query.
      */
     ruleName?: string;
+    /**
+     * The tags of the cloud monitor rule.
+     */
+    tags?: inputs.cloud_monitor.GetRulesTag[];
 }
 
 /**
@@ -108,6 +113,10 @@ export interface GetRulesResult {
      * The collection of query.
      */
     readonly rules: outputs.cloud_monitor.GetRulesRule[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.cloud_monitor.GetRulesTag[];
     /**
      * The total count of query.
      */
@@ -166,4 +175,8 @@ export interface GetRulesOutputArgs {
      * The name of the cloud monitor rule. This field support fuzzy query.
      */
     ruleName?: pulumi.Input<string>;
+    /**
+     * The tags of the cloud monitor rule.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.cloud_monitor.GetRulesTagArgs>[]>;
 }

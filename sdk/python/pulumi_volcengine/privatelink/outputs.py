@@ -16,17 +16,34 @@ __all__ = [
     'VpcEndpointConnectionsConnectionZoneResult',
     'VpcEndpointServicePermissionsPermissionResult',
     'VpcEndpointServiceResource',
+    'VpcEndpointServiceTag',
     'VpcEndpointServicesServiceResult',
     'VpcEndpointServicesServiceResourceResult',
+    'VpcEndpointServicesServiceTagResult',
+    'VpcEndpointServicesTagResult',
+    'VpcEndpointTag',
     'VpcEndpointZonesVpcEndpointZoneResult',
+    'VpcEndpointsTagResult',
     'VpcEndpointsVpcEndpointResult',
+    'VpcEndpointsVpcEndpointTagResult',
+    'VpcGatewayEndpointTag',
+    'VpcGatewayEndpointsTagResult',
+    'VpcGatewayEndpointsVpcGatewayEndpointResult',
+    'VpcGatewayEndpointsVpcGatewayEndpointTagResult',
     'GetVpcEndpointConnectionsConnectionResult',
     'GetVpcEndpointConnectionsConnectionZoneResult',
     'GetVpcEndpointServicePermissionsPermissionResult',
     'GetVpcEndpointServicesServiceResult',
     'GetVpcEndpointServicesServiceResourceResult',
+    'GetVpcEndpointServicesServiceTagResult',
+    'GetVpcEndpointServicesTagResult',
     'GetVpcEndpointZonesVpcEndpointZoneResult',
+    'GetVpcEndpointsTagResult',
     'GetVpcEndpointsVpcEndpointResult',
+    'GetVpcEndpointsVpcEndpointTagResult',
+    'GetVpcGatewayEndpointsTagResult',
+    'GetVpcGatewayEndpointsVpcGatewayEndpointResult',
+    'GetVpcGatewayEndpointsVpcGatewayEndpointTagResult',
 ]
 
 @pulumi.output_type
@@ -395,12 +412,42 @@ class VpcEndpointServiceResource(dict):
 
 
 @pulumi.output_type
+class VpcEndpointServiceTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class VpcEndpointServicesServiceResult(dict):
     def __init__(__self__, *,
                  auto_accept_enabled: bool,
                  creation_time: str,
                  description: str,
                  id: str,
+                 project_name: str,
                  resources: Sequence['outputs.VpcEndpointServicesServiceResourceResult'],
                  service_domain: str,
                  service_id: str,
@@ -408,6 +455,7 @@ class VpcEndpointServicesServiceResult(dict):
                  service_resource_type: str,
                  service_type: str,
                  status: str,
+                 tags: Sequence['outputs.VpcEndpointServicesServiceTagResult'],
                  update_time: str,
                  zone_ids: Sequence[str]):
         """
@@ -415,6 +463,7 @@ class VpcEndpointServicesServiceResult(dict):
         :param str creation_time: The create time of service.
         :param str description: The description of service.
         :param str id: The Id of service.
+        :param str project_name: The project name of vpc endpoint service.
         :param Sequence['VpcEndpointServicesServiceResourceArgs'] resources: The resources info.
         :param str service_domain: The domain of service.
         :param str service_id: The Id of service.
@@ -422,6 +471,7 @@ class VpcEndpointServicesServiceResult(dict):
         :param str service_resource_type: The resource type of service.
         :param str service_type: The type of service.
         :param str status: The status of service.
+        :param Sequence['VpcEndpointServicesServiceTagArgs'] tags: Tags.
         :param str update_time: The update time of service.
         :param Sequence[str] zone_ids: The IDs of zones.
         """
@@ -429,6 +479,7 @@ class VpcEndpointServicesServiceResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "service_domain", service_domain)
         pulumi.set(__self__, "service_id", service_id)
@@ -436,6 +487,7 @@ class VpcEndpointServicesServiceResult(dict):
         pulumi.set(__self__, "service_resource_type", service_resource_type)
         pulumi.set(__self__, "service_type", service_type)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "zone_ids", zone_ids)
 
@@ -470,6 +522,14 @@ class VpcEndpointServicesServiceResult(dict):
         The Id of service.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of vpc endpoint service.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -528,6 +588,14 @@ class VpcEndpointServicesServiceResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.VpcEndpointServicesServiceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> str:
         """
@@ -582,6 +650,93 @@ class VpcEndpointServicesServiceResourceResult(dict):
         The zone id of resource.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class VpcEndpointServicesServiceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpcEndpointServicesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpcEndpointTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -680,6 +835,35 @@ class VpcEndpointZonesVpcEndpointZoneResult(dict):
 
 
 @pulumi.output_type
+class VpcEndpointsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class VpcEndpointsVpcEndpointResult(dict):
     def __init__(__self__, *,
                  business_status: str,
@@ -694,9 +878,11 @@ class VpcEndpointsVpcEndpointResult(dict):
                  id: str,
                  private_dns_enabled: bool,
                  private_dns_name: str,
+                 project_name: str,
                  service_id: str,
                  service_name: str,
                  status: str,
+                 tags: Sequence['outputs.VpcEndpointsVpcEndpointTagResult'],
                  update_time: str,
                  vpc_id: str):
         """
@@ -712,9 +898,11 @@ class VpcEndpointsVpcEndpointResult(dict):
         :param str id: The Id of vpc endpoint.
         :param bool private_dns_enabled: Whether to enable private dns name.
         :param str private_dns_name: The private dns name of vpc endpoint.
+        :param str project_name: The project name of vpc endpoint.
         :param str service_id: The Id of vpc endpoint service.
         :param str service_name: The name of vpc endpoint service.
         :param str status: The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+        :param Sequence['VpcEndpointsVpcEndpointTagArgs'] tags: Tags.
         :param str update_time: The update time of vpc endpoint.
         :param str vpc_id: The vpc id of vpc endpoint.
         """
@@ -730,9 +918,11 @@ class VpcEndpointsVpcEndpointResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "private_dns_enabled", private_dns_enabled)
         pulumi.set(__self__, "private_dns_name", private_dns_name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "service_id", service_id)
         pulumi.set(__self__, "service_name", service_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -833,6 +1023,14 @@ class VpcEndpointsVpcEndpointResult(dict):
         return pulumi.get(self, "private_dns_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of vpc endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> str:
         """
@@ -857,6 +1055,14 @@ class VpcEndpointsVpcEndpointResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.VpcEndpointsVpcEndpointTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> str:
         """
@@ -871,6 +1077,272 @@ class VpcEndpointsVpcEndpointResult(dict):
         The vpc id of vpc endpoint.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class VpcEndpointsVpcEndpointTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpcGatewayEndpointTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpcGatewayEndpointsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpcGatewayEndpointsVpcGatewayEndpointResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 description: str,
+                 endpoint_id: str,
+                 endpoint_name: str,
+                 id: str,
+                 project_name: str,
+                 service_id: str,
+                 service_name: str,
+                 status: str,
+                 tags: Sequence['outputs.VpcGatewayEndpointsVpcGatewayEndpointTagResult'],
+                 update_time: str,
+                 vpc_id: str,
+                 vpc_policy: str):
+        """
+        :param str creation_time: The create time of the gateway endpoint.
+        :param str description: The description of the gateway endpoint.
+        :param str endpoint_id: The id of the gateway endpoint.
+        :param str endpoint_name: The name of the gateway endpoint.
+        :param str id: The id of the gateway endpoint.
+        :param str project_name: The project name of the gateway endpoint.
+        :param str service_id: The id of the gateway endpoint service.
+        :param str service_name: The name of the gateway endpoint service.
+        :param str status: The status of the gateway endpoint.
+        :param Sequence['VpcGatewayEndpointsVpcGatewayEndpointTagArgs'] tags: Tags.
+        :param str update_time: The update time of the gateway endpoint.
+        :param str vpc_id: The id of the vpc.
+        :param str vpc_policy: The vpc policy of the gateway endpoint.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "endpoint_name", endpoint_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "service_name", service_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpc_policy", vpc_policy)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the gateway endpoint.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the gateway endpoint.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        """
+        The id of the gateway endpoint.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="endpointName")
+    def endpoint_name(self) -> str:
+        """
+        The name of the gateway endpoint.
+        """
+        return pulumi.get(self, "endpoint_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the gateway endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the gateway endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        """
+        The id of the gateway endpoint service.
+        """
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        """
+        The name of the gateway endpoint service.
+        """
+        return pulumi.get(self, "service_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the gateway endpoint.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.VpcGatewayEndpointsVpcGatewayEndpointTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the gateway endpoint.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The id of the vpc.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcPolicy")
+    def vpc_policy(self) -> str:
+        """
+        The vpc policy of the gateway endpoint.
+        """
+        return pulumi.get(self, "vpc_policy")
+
+
+@pulumi.output_type
+class VpcGatewayEndpointsVpcGatewayEndpointTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1077,6 +1549,7 @@ class GetVpcEndpointServicesServiceResult(dict):
                  creation_time: str,
                  description: str,
                  id: str,
+                 project_name: str,
                  resources: Sequence['outputs.GetVpcEndpointServicesServiceResourceResult'],
                  service_domain: str,
                  service_id: str,
@@ -1084,6 +1557,7 @@ class GetVpcEndpointServicesServiceResult(dict):
                  service_resource_type: str,
                  service_type: str,
                  status: str,
+                 tags: Sequence['outputs.GetVpcEndpointServicesServiceTagResult'],
                  update_time: str,
                  zone_ids: Sequence[str]):
         """
@@ -1091,6 +1565,7 @@ class GetVpcEndpointServicesServiceResult(dict):
         :param str creation_time: The create time of service.
         :param str description: The description of service.
         :param str id: The Id of service.
+        :param str project_name: The project name of vpc endpoint service.
         :param Sequence['GetVpcEndpointServicesServiceResourceArgs'] resources: The resources info.
         :param str service_domain: The domain of service.
         :param str service_id: The Id of service.
@@ -1098,6 +1573,7 @@ class GetVpcEndpointServicesServiceResult(dict):
         :param str service_resource_type: The resource type of service.
         :param str service_type: The type of service.
         :param str status: The status of service.
+        :param Sequence['GetVpcEndpointServicesServiceTagArgs'] tags: Tags.
         :param str update_time: The update time of service.
         :param Sequence[str] zone_ids: The IDs of zones.
         """
@@ -1105,6 +1581,7 @@ class GetVpcEndpointServicesServiceResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "service_domain", service_domain)
         pulumi.set(__self__, "service_id", service_id)
@@ -1112,6 +1589,7 @@ class GetVpcEndpointServicesServiceResult(dict):
         pulumi.set(__self__, "service_resource_type", service_resource_type)
         pulumi.set(__self__, "service_type", service_type)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "zone_ids", zone_ids)
 
@@ -1146,6 +1624,14 @@ class GetVpcEndpointServicesServiceResult(dict):
         The Id of service.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of vpc endpoint service.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -1204,6 +1690,14 @@ class GetVpcEndpointServicesServiceResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetVpcEndpointServicesServiceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> str:
         """
@@ -1258,6 +1752,64 @@ class GetVpcEndpointServicesServiceResourceResult(dict):
         The zone id of resource.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetVpcEndpointServicesServiceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVpcEndpointServicesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1356,6 +1908,35 @@ class GetVpcEndpointZonesVpcEndpointZoneResult(dict):
 
 
 @pulumi.output_type
+class GetVpcEndpointsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetVpcEndpointsVpcEndpointResult(dict):
     def __init__(__self__, *,
                  business_status: str,
@@ -1370,9 +1951,11 @@ class GetVpcEndpointsVpcEndpointResult(dict):
                  id: str,
                  private_dns_enabled: bool,
                  private_dns_name: str,
+                 project_name: str,
                  service_id: str,
                  service_name: str,
                  status: str,
+                 tags: Sequence['outputs.GetVpcEndpointsVpcEndpointTagResult'],
                  update_time: str,
                  vpc_id: str):
         """
@@ -1388,9 +1971,11 @@ class GetVpcEndpointsVpcEndpointResult(dict):
         :param str id: The Id of vpc endpoint.
         :param bool private_dns_enabled: Whether to enable private dns name.
         :param str private_dns_name: The private dns name of vpc endpoint.
+        :param str project_name: The project name of vpc endpoint.
         :param str service_id: The Id of vpc endpoint service.
         :param str service_name: The name of vpc endpoint service.
         :param str status: The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+        :param Sequence['GetVpcEndpointsVpcEndpointTagArgs'] tags: Tags.
         :param str update_time: The update time of vpc endpoint.
         :param str vpc_id: The vpc id of vpc endpoint.
         """
@@ -1406,9 +1991,11 @@ class GetVpcEndpointsVpcEndpointResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "private_dns_enabled", private_dns_enabled)
         pulumi.set(__self__, "private_dns_name", private_dns_name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "service_id", service_id)
         pulumi.set(__self__, "service_name", service_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -1509,6 +2096,14 @@ class GetVpcEndpointsVpcEndpointResult(dict):
         return pulumi.get(self, "private_dns_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of vpc endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> str:
         """
@@ -1533,6 +2128,14 @@ class GetVpcEndpointsVpcEndpointResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetVpcEndpointsVpcEndpointTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> str:
         """
@@ -1547,5 +2150,242 @@ class GetVpcEndpointsVpcEndpointResult(dict):
         The vpc id of vpc endpoint.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetVpcEndpointsVpcEndpointTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVpcGatewayEndpointsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVpcGatewayEndpointsVpcGatewayEndpointResult(dict):
+    def __init__(__self__, *,
+                 creation_time: str,
+                 description: str,
+                 endpoint_id: str,
+                 endpoint_name: str,
+                 id: str,
+                 project_name: str,
+                 service_id: str,
+                 service_name: str,
+                 status: str,
+                 tags: Sequence['outputs.GetVpcGatewayEndpointsVpcGatewayEndpointTagResult'],
+                 update_time: str,
+                 vpc_id: str,
+                 vpc_policy: str):
+        """
+        :param str creation_time: The create time of the gateway endpoint.
+        :param str description: The description of the gateway endpoint.
+        :param str endpoint_id: The id of the gateway endpoint.
+        :param str endpoint_name: The name of the gateway endpoint.
+        :param str id: The id of the gateway endpoint.
+        :param str project_name: The project name of the gateway endpoint.
+        :param str service_id: The id of the gateway endpoint service.
+        :param str service_name: The name of the gateway endpoint service.
+        :param str status: The status of the gateway endpoint.
+        :param Sequence['GetVpcGatewayEndpointsVpcGatewayEndpointTagArgs'] tags: Tags.
+        :param str update_time: The update time of the gateway endpoint.
+        :param str vpc_id: The id of the vpc.
+        :param str vpc_policy: The vpc policy of the gateway endpoint.
+        """
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "endpoint_name", endpoint_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "service_name", service_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_time", update_time)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "vpc_policy", vpc_policy)
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the gateway endpoint.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the gateway endpoint.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        """
+        The id of the gateway endpoint.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="endpointName")
+    def endpoint_name(self) -> str:
+        """
+        The name of the gateway endpoint.
+        """
+        return pulumi.get(self, "endpoint_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the gateway endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the gateway endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        """
+        The id of the gateway endpoint service.
+        """
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        """
+        The name of the gateway endpoint service.
+        """
+        return pulumi.get(self, "service_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the gateway endpoint.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetVpcGatewayEndpointsVpcGatewayEndpointTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the gateway endpoint.
+        """
+        return pulumi.get(self, "update_time")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The id of the vpc.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcPolicy")
+    def vpc_policy(self) -> str:
+        """
+        The vpc policy of the gateway endpoint.
+        """
+        return pulumi.get(self, "vpc_policy")
+
+
+@pulumi.output_type
+class GetVpcGatewayEndpointsVpcGatewayEndpointTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 

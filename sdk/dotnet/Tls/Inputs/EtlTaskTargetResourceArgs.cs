@@ -19,6 +19,12 @@ namespace Pulumi.Volcengine.Tls.Inputs
         public Input<string> Alias { get; set; } = null!;
 
         /// <summary>
+        /// The region where the log topic is located.
+        /// </summary>
+        [Input("region", required: true)]
+        public Input<string> Region { get; set; } = null!;
+
+        /// <summary>
         /// Cross-account authorized character names.
         /// </summary>
         [Input("roleTrn")]

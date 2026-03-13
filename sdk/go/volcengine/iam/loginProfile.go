@@ -36,7 +36,7 @@ import (
 //				SafeAuthExemptUnit:     pulumi.Int(1),
 //				SafeAuthFlag:           pulumi.Bool(true),
 //				SafeAuthType:           pulumi.String("phone"),
-//				UserName:               pulumi.String("jonny"),
+//				UserName:               pulumi.String("jonny-tt"),
 //			})
 //			if err != nil {
 //				return err

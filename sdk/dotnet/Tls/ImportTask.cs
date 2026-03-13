@@ -44,10 +44,10 @@ namespace Pulumi.Volcengine.Tls
     ///                 UnMatchUpLoadSwitch = true,
     ///             },
     ///             LogType = "json_log",
-    ///             Region = "cn-beijing",
+    ///             Region = "cn-guilin-boe",
     ///         },
     ///         TaskName = "tf-test-task-name-kafka",
-    ///         TopicId = "b966e41a-d6a6-4999-bd75-39xxxxxxx",
+    ///         TopicId = "a0197686-1309-4c46-8003-4be3b278a838",
     ///     });
     /// 
     /// });

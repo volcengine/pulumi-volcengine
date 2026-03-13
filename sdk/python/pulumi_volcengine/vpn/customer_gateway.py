@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['CustomerGatewayArgs', 'CustomerGateway']
 
@@ -17,21 +19,29 @@ class CustomerGatewayArgs:
                  ip_address: pulumi.Input[str],
                  customer_gateway_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 ip_version: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]]] = None):
         """
         The set of arguments for constructing a CustomerGateway resource.
         :param pulumi.Input[str] ip_address: The IP address of the customer gateway.
         :param pulumi.Input[str] customer_gateway_name: The name of the customer gateway.
         :param pulumi.Input[str] description: The description of the customer gateway.
+        :param pulumi.Input[str] ip_version: The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
         :param pulumi.Input[str] project_name: The project name of the VPN customer gateway.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "ip_address", ip_address)
         if customer_gateway_name is not None:
             pulumi.set(__self__, "customer_gateway_name", customer_gateway_name)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if ip_version is not None:
+            pulumi.set(__self__, "ip_version", ip_version)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -70,6 +80,18 @@ class CustomerGatewayArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @ip_version.setter
+    def ip_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_version", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -80,6 +102,18 @@ class CustomerGatewayArgs:
     @project_name.setter
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -92,8 +126,10 @@ class _CustomerGatewayState:
                  customer_gateway_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
+                 ip_version: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CustomerGateway resources.
@@ -104,8 +140,10 @@ class _CustomerGatewayState:
         :param pulumi.Input[str] customer_gateway_name: The name of the customer gateway.
         :param pulumi.Input[str] description: The description of the customer gateway.
         :param pulumi.Input[str] ip_address: The IP address of the customer gateway.
+        :param pulumi.Input[str] ip_version: The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
         :param pulumi.Input[str] project_name: The project name of the VPN customer gateway.
         :param pulumi.Input[str] status: The status of the customer gateway.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of customer gateway.
         """
         if account_id is not None:
@@ -122,10 +160,14 @@ class _CustomerGatewayState:
             pulumi.set(__self__, "description", description)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
+        if ip_version is not None:
+            pulumi.set(__self__, "ip_version", ip_version)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
 
@@ -214,6 +256,18 @@ class _CustomerGatewayState:
         pulumi.set(self, "ip_address", value)
 
     @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @ip_version.setter
+    def ip_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_version", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -238,6 +292,18 @@ class _CustomerGatewayState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomerGatewayTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -258,7 +324,9 @@ class CustomerGateway(pulumi.CustomResource):
                  customer_gateway_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
+                 ip_version: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomerGatewayTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage customer gateway
@@ -288,7 +356,9 @@ class CustomerGateway(pulumi.CustomResource):
         :param pulumi.Input[str] customer_gateway_name: The name of the customer gateway.
         :param pulumi.Input[str] description: The description of the customer gateway.
         :param pulumi.Input[str] ip_address: The IP address of the customer gateway.
+        :param pulumi.Input[str] ip_version: The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
         :param pulumi.Input[str] project_name: The project name of the VPN customer gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomerGatewayTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -337,7 +407,9 @@ class CustomerGateway(pulumi.CustomResource):
                  customer_gateway_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
+                 ip_version: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomerGatewayTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -352,7 +424,9 @@ class CustomerGateway(pulumi.CustomResource):
             if ip_address is None and not opts.urn:
                 raise TypeError("Missing required property 'ip_address'")
             __props__.__dict__["ip_address"] = ip_address
+            __props__.__dict__["ip_version"] = ip_version
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["account_id"] = None
             __props__.__dict__["connection_count"] = None
             __props__.__dict__["creation_time"] = None
@@ -376,8 +450,10 @@ class CustomerGateway(pulumi.CustomResource):
             customer_gateway_name: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
+            ip_version: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomerGatewayTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'CustomerGateway':
         """
         Get an existing CustomerGateway resource's state with the given name, id, and optional extra
@@ -393,8 +469,10 @@ class CustomerGateway(pulumi.CustomResource):
         :param pulumi.Input[str] customer_gateway_name: The name of the customer gateway.
         :param pulumi.Input[str] description: The description of the customer gateway.
         :param pulumi.Input[str] ip_address: The IP address of the customer gateway.
+        :param pulumi.Input[str] ip_version: The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
         :param pulumi.Input[str] project_name: The project name of the VPN customer gateway.
         :param pulumi.Input[str] status: The status of the customer gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomerGatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of customer gateway.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -408,8 +486,10 @@ class CustomerGateway(pulumi.CustomResource):
         __props__.__dict__["customer_gateway_name"] = customer_gateway_name
         __props__.__dict__["description"] = description
         __props__.__dict__["ip_address"] = ip_address
+        __props__.__dict__["ip_version"] = ip_version
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         return CustomerGateway(resource_name, opts=opts, __props__=__props__)
 
@@ -470,6 +550,14 @@ class CustomerGateway(pulumi.CustomResource):
         return pulumi.get(self, "ip_address")
 
     @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Output[str]:
         """
@@ -484,6 +572,14 @@ class CustomerGateway(pulumi.CustomResource):
         The status of the customer gateway.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.CustomerGatewayTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

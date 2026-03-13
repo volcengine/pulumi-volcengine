@@ -125,6 +125,8 @@ type SslVpnClientCert struct {
 	SslVpnServerId pulumi.StringOutput `pulumi:"sslVpnServerId"`
 	// The status of the ssl vpn client.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags SslVpnClientCertTagArrayOutput `pulumi:"tags"`
 	// The update time of the ssl vpn client cert.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 }
@@ -184,6 +186,8 @@ type sslVpnClientCertState struct {
 	SslVpnServerId *string `pulumi:"sslVpnServerId"`
 	// The status of the ssl vpn client.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []SslVpnClientCertTag `pulumi:"tags"`
 	// The update time of the ssl vpn client cert.
 	UpdateTime *string `pulumi:"updateTime"`
 }
@@ -211,6 +215,8 @@ type SslVpnClientCertState struct {
 	SslVpnServerId pulumi.StringPtrInput
 	// The status of the ssl vpn client.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags SslVpnClientCertTagArrayInput
 	// The update time of the ssl vpn client cert.
 	UpdateTime pulumi.StringPtrInput
 }
@@ -226,6 +232,8 @@ type sslVpnClientCertArgs struct {
 	SslVpnClientCertName *string `pulumi:"sslVpnClientCertName"`
 	// The id of the ssl vpn server.
 	SslVpnServerId string `pulumi:"sslVpnServerId"`
+	// Tags.
+	Tags []SslVpnClientCertTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a SslVpnClientCert resource.
@@ -236,6 +244,8 @@ type SslVpnClientCertArgs struct {
 	SslVpnClientCertName pulumi.StringPtrInput
 	// The id of the ssl vpn server.
 	SslVpnServerId pulumi.StringInput
+	// Tags.
+	Tags SslVpnClientCertTagArrayInput
 }
 
 func (SslVpnClientCertArgs) ElementType() reflect.Type {
@@ -378,6 +388,11 @@ func (o SslVpnClientCertOutput) SslVpnServerId() pulumi.StringOutput {
 // The status of the ssl vpn client.
 func (o SslVpnClientCertOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *SslVpnClientCert) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o SslVpnClientCertOutput) Tags() SslVpnClientCertTagArrayOutput {
+	return o.ApplyT(func(v *SslVpnClientCert) SslVpnClientCertTagArrayOutput { return v.Tags }).(SslVpnClientCertTagArrayOutput)
 }
 
 // The update time of the ssl vpn client cert.

@@ -115,6 +115,12 @@ namespace Pulumi.Volcengine.Vpn
         public string? IpAddress { get; set; }
 
         /// <summary>
+        /// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+        /// </summary>
+        [Input("ipVersion")]
+        public string? IpVersion { get; set; }
+
+        /// <summary>
         /// A Name Regex of customer gateway.
         /// </summary>
         [Input("nameRegex")]
@@ -131,6 +137,24 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("projectName")]
         public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+        /// </summary>
+        [Input("status")]
+        public string? Status { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.CustomerGatewaysTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.CustomerGatewaysTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.CustomerGatewaysTagArgs>());
+            set => _tags = value;
+        }
 
         public CustomerGatewaysArgs()
         {
@@ -171,6 +195,12 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
+        /// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+        /// </summary>
+        [Input("ipVersion")]
+        public Input<string>? IpVersion { get; set; }
+
+        /// <summary>
         /// A Name Regex of customer gateway.
         /// </summary>
         [Input("nameRegex")]
@@ -187,6 +217,24 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CustomerGatewaysTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CustomerGatewaysTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CustomerGatewaysTagInputArgs>());
+            set => _tags = value;
+        }
 
         public CustomerGatewaysInvokeArgs()
         {
@@ -212,9 +260,24 @@ namespace Pulumi.Volcengine.Vpn
         /// The IP address of the customer gateway.
         /// </summary>
         public readonly string? IpAddress;
+        /// <summary>
+        /// The IP version of the customer gateway.
+        /// </summary>
+        public readonly string? IpVersion;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The project name of the VPN customer gateway.
+        /// </summary>
         public readonly string? ProjectName;
+        /// <summary>
+        /// The status of the customer gateway.
+        /// </summary>
+        public readonly string? Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.CustomerGatewaysTagResult> Tags;
         /// <summary>
         /// The total count of customer gateway query.
         /// </summary>
@@ -232,11 +295,17 @@ namespace Pulumi.Volcengine.Vpn
 
             string? ipAddress,
 
+            string? ipVersion,
+
             string? nameRegex,
 
             string? outputFile,
 
             string? projectName,
+
+            string? status,
+
+            ImmutableArray<Outputs.CustomerGatewaysTagResult> tags,
 
             int totalCount)
         {
@@ -245,9 +314,12 @@ namespace Pulumi.Volcengine.Vpn
             Id = id;
             Ids = ids;
             IpAddress = ipAddress;
+            IpVersion = ipVersion;
             NameRegex = nameRegex;
             OutputFile = outputFile;
             ProjectName = projectName;
+            Status = status;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

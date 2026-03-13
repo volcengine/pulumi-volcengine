@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ConnectionArgs', 'Connection']
 
@@ -37,6 +39,7 @@ class ConnectionArgs:
                  nat_traversal: Optional[pulumi.Input[bool]] = None,
                  negotiate_instantly: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]]] = None,
                  vpn_connection_name: Optional[pulumi.Input[str]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None):
         """
@@ -64,6 +67,7 @@ class ConnectionArgs:
         :param pulumi.Input[bool] nat_traversal: The nat traversal of the VPN connection.
         :param pulumi.Input[bool] negotiate_instantly: Whether to initiate negotiation mode immediately.
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
+        :param pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpn_connection_name: The name of the VPN connection.
         :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         """
@@ -109,6 +113,8 @@ class ConnectionArgs:
             pulumi.set(__self__, "negotiate_instantly", negotiate_instantly)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpn_connection_name is not None:
             pulumi.set(__self__, "vpn_connection_name", vpn_connection_name)
         if vpn_gateway_id is not None:
@@ -391,6 +397,18 @@ class ConnectionArgs:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="vpnConnectionName")
     def vpn_connection_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -450,6 +468,7 @@ class _ConnectionState:
                  project_name: Optional[pulumi.Input[str]] = None,
                  remote_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
                  vpn_connection_id: Optional[pulumi.Input[str]] = None,
@@ -490,6 +509,7 @@ class _ConnectionState:
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection. Up to 5 network segments are supported.
         :param pulumi.Input[str] status: The status of the VPN connection.
+        :param pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_id: The id of transit router, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] update_time: The update time of VPN connection.
         :param pulumi.Input[str] vpn_connection_id: The ID of the VPN connection.
@@ -561,6 +581,8 @@ class _ConnectionState:
             pulumi.set(__self__, "remote_subnets", remote_subnets)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_id is not None:
             pulumi.set(__self__, "transit_router_id", transit_router_id)
         if update_time is not None:
@@ -959,6 +981,18 @@ class _ConnectionState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ConnectionTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterId")
     def transit_router_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1059,6 +1093,7 @@ class Connection(pulumi.CustomResource):
                  negotiate_instantly: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  remote_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConnectionTagArgs']]]]] = None,
                  vpn_connection_name: Optional[pulumi.Input[str]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1149,6 +1184,7 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[bool] negotiate_instantly: Whether to initiate negotiation mode immediately.
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection. Up to 5 network segments are supported.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConnectionTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpn_connection_name: The name of the VPN connection.
         :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         """
@@ -1258,6 +1294,7 @@ class Connection(pulumi.CustomResource):
                  negotiate_instantly: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  remote_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConnectionTagArgs']]]]] = None,
                  vpn_connection_name: Optional[pulumi.Input[str]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1300,6 +1337,7 @@ class Connection(pulumi.CustomResource):
             if remote_subnets is None and not opts.urn:
                 raise TypeError("Missing required property 'remote_subnets'")
             __props__.__dict__["remote_subnets"] = remote_subnets
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["vpn_connection_name"] = vpn_connection_name
             __props__.__dict__["vpn_gateway_id"] = vpn_gateway_id
             __props__.__dict__["account_id"] = None
@@ -1357,6 +1395,7 @@ class Connection(pulumi.CustomResource):
             project_name: Optional[pulumi.Input[str]] = None,
             remote_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConnectionTagArgs']]]]] = None,
             transit_router_id: Optional[pulumi.Input[str]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
             vpn_connection_id: Optional[pulumi.Input[str]] = None,
@@ -1402,6 +1441,7 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection. Up to 5 network segments are supported.
         :param pulumi.Input[str] status: The status of the VPN connection.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ConnectionTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_id: The id of transit router, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] update_time: The update time of VPN connection.
         :param pulumi.Input[str] vpn_connection_id: The ID of the VPN connection.
@@ -1445,6 +1485,7 @@ class Connection(pulumi.CustomResource):
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["remote_subnets"] = remote_subnets
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_id"] = transit_router_id
         __props__.__dict__["update_time"] = update_time
         __props__.__dict__["vpn_connection_id"] = vpn_connection_id
@@ -1708,6 +1749,14 @@ class Connection(pulumi.CustomResource):
         The status of the VPN connection.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ConnectionTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterId")

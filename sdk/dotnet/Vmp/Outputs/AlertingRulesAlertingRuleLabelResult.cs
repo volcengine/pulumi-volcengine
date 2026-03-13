@@ -14,11 +14,11 @@ namespace Pulumi.Volcengine.Vmp.Outputs
     public sealed class AlertingRulesAlertingRuleLabelResult
     {
         /// <summary>
-        /// The name of the label.
+        /// The Key of Tags.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The value of the label.
+        /// The Value of Tags.
         /// </summary>
         public readonly string Value;
 

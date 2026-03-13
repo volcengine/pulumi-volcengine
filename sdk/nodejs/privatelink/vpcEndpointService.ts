@@ -50,6 +50,11 @@ import * as utilities from "../utilities";
  *     }],
  *     description: "acc-test",
  *     autoAcceptEnabled: true,
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -104,6 +109,10 @@ export class VpcEndpointService extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The project name of service.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
      */
     public readonly resources!: pulumi.Output<outputs.privatelink.VpcEndpointServiceResource[]>;
@@ -132,6 +141,10 @@ export class VpcEndpointService extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.privatelink.VpcEndpointServiceTag[] | undefined>;
+    /**
      * The update time of service.
      */
     public /*out*/ readonly updateTime!: pulumi.Output<string>;
@@ -156,6 +169,7 @@ export class VpcEndpointService extends pulumi.CustomResource {
             resourceInputs["autoAcceptEnabled"] = state ? state.autoAcceptEnabled : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["resources"] = state ? state.resources : undefined;
             resourceInputs["serviceDomain"] = state ? state.serviceDomain : undefined;
             resourceInputs["serviceId"] = state ? state.serviceId : undefined;
@@ -163,6 +177,7 @@ export class VpcEndpointService extends pulumi.CustomResource {
             resourceInputs["serviceResourceType"] = state ? state.serviceResourceType : undefined;
             resourceInputs["serviceType"] = state ? state.serviceType : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["zoneIds"] = state ? state.zoneIds : undefined;
         } else {
@@ -172,7 +187,9 @@ export class VpcEndpointService extends pulumi.CustomResource {
             }
             resourceInputs["autoAcceptEnabled"] = args ? args.autoAcceptEnabled : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["resources"] = args ? args.resources : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["creationTime"] = undefined /*out*/;
             resourceInputs["serviceDomain"] = undefined /*out*/;
             resourceInputs["serviceId"] = undefined /*out*/;
@@ -205,6 +222,10 @@ export interface VpcEndpointServiceState {
      */
     description?: pulumi.Input<string>;
     /**
+     * The project name of service.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
      */
     resources?: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointServiceResource>[]>;
@@ -233,6 +254,10 @@ export interface VpcEndpointServiceState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointServiceTag>[]>;
+    /**
      * The update time of service.
      */
     updateTime?: pulumi.Input<string>;
@@ -255,7 +280,15 @@ export interface VpcEndpointServiceArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * The project name of service.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
      */
     resources: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointServiceResource>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointServiceTag>[]>;
 }

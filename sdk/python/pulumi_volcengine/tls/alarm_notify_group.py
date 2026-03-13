@@ -225,6 +225,32 @@ class AlarmNotifyGroup(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage tls alarm notify group
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo = volcengine.tls.AlarmNotifyGroup("foo",
+            alarm_notify_group_name="tf-test",
+            iam_project_name="default",
+            notify_types=["Recovery"],
+            receivers=[volcengine.tls.AlarmNotifyGroupReceiverArgs(
+                end_time="23:59:59",
+                general_webhook_body="test",
+                general_webhook_headers=[volcengine.tls.AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs(
+                    key="test",
+                    value="test",
+                )],
+                general_webhook_method="PUT",
+                general_webhook_url="https://www.volcengine.com/docs/6470xxx/112220?lang=zh",
+                receiver_channels=["Email"],
+                receiver_names=["jonny"],
+                receiver_type="User",
+                start_time="10:00:00",
+            )])
+        ```
+
         ## Import
 
         tls alarm notify group can be imported using the id, e.g.
@@ -251,6 +277,32 @@ class AlarmNotifyGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage tls alarm notify group
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_volcengine as volcengine
+
+        foo = volcengine.tls.AlarmNotifyGroup("foo",
+            alarm_notify_group_name="tf-test",
+            iam_project_name="default",
+            notify_types=["Recovery"],
+            receivers=[volcengine.tls.AlarmNotifyGroupReceiverArgs(
+                end_time="23:59:59",
+                general_webhook_body="test",
+                general_webhook_headers=[volcengine.tls.AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs(
+                    key="test",
+                    value="test",
+                )],
+                general_webhook_method="PUT",
+                general_webhook_url="https://www.volcengine.com/docs/6470xxx/112220?lang=zh",
+                receiver_channels=["Email"],
+                receiver_names=["jonny"],
+                receiver_type="User",
+                start_time="10:00:00",
+            )])
+        ```
+
         ## Import
 
         tls alarm notify group can be imported using the id, e.g.

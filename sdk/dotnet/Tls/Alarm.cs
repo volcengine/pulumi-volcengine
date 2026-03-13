@@ -56,8 +56,8 @@ namespace Pulumi.Volcengine.Tls
     ///             Time = 20,
     ///             Type = "Period",
     ///         },
-    ///         SendResolved = true,
-    ///         Status = false,
+    ///         SendResolved = false,
+    ///         Status = true,
     ///         TriggerConditions = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.AlarmTriggerConditionArgs
@@ -69,7 +69,7 @@ namespace Pulumi.Volcengine.Tls
     ///             },
     ///         },
     ///         TriggerPeriod = 2,
-    ///         UserDefineMsg = "test for terraform",
+    ///         UserDefineMsg = "test for terraform-modify",
     ///     });
     /// 
     /// });

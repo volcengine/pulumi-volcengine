@@ -58,8 +58,12 @@ type Ipv6Gateway struct {
 	Ipv6GatewayId pulumi.StringOutput `pulumi:"ipv6GatewayId"`
 	// The name of the Ipv6Gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The project name of the Ipv6Gateway.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The Status of the Ipv6Gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags Ipv6GatewayTagArrayOutput `pulumi:"tags"`
 	// Update time of the Ipv6Gateway.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 	// The ID of the VPC which the Ipv6Gateway belongs to.
@@ -107,8 +111,12 @@ type ipv6GatewayState struct {
 	Ipv6GatewayId *string `pulumi:"ipv6GatewayId"`
 	// The name of the Ipv6Gateway.
 	Name *string `pulumi:"name"`
+	// The project name of the Ipv6Gateway.
+	ProjectName *string `pulumi:"projectName"`
 	// The Status of the Ipv6Gateway.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []Ipv6GatewayTag `pulumi:"tags"`
 	// Update time of the Ipv6Gateway.
 	UpdateTime *string `pulumi:"updateTime"`
 	// The ID of the VPC which the Ipv6Gateway belongs to.
@@ -124,8 +132,12 @@ type Ipv6GatewayState struct {
 	Ipv6GatewayId pulumi.StringPtrInput
 	// The name of the Ipv6Gateway.
 	Name pulumi.StringPtrInput
+	// The project name of the Ipv6Gateway.
+	ProjectName pulumi.StringPtrInput
 	// The Status of the Ipv6Gateway.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags Ipv6GatewayTagArrayInput
 	// Update time of the Ipv6Gateway.
 	UpdateTime pulumi.StringPtrInput
 	// The ID of the VPC which the Ipv6Gateway belongs to.
@@ -141,6 +153,10 @@ type ipv6GatewayArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of the Ipv6Gateway.
 	Name *string `pulumi:"name"`
+	// The project name of the Ipv6Gateway.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []Ipv6GatewayTag `pulumi:"tags"`
 	// The ID of the VPC which the Ipv6Gateway belongs to.
 	VpcId string `pulumi:"vpcId"`
 }
@@ -151,6 +167,10 @@ type Ipv6GatewayArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of the Ipv6Gateway.
 	Name pulumi.StringPtrInput
+	// The project name of the Ipv6Gateway.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags Ipv6GatewayTagArrayInput
 	// The ID of the VPC which the Ipv6Gateway belongs to.
 	VpcId pulumi.StringInput
 }
@@ -262,9 +282,19 @@ func (o Ipv6GatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ipv6Gateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the Ipv6Gateway.
+func (o Ipv6GatewayOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ipv6Gateway) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The Status of the Ipv6Gateway.
 func (o Ipv6GatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ipv6Gateway) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o Ipv6GatewayOutput) Tags() Ipv6GatewayTagArrayOutput {
+	return o.ApplyT(func(v *Ipv6Gateway) Ipv6GatewayTagArrayOutput { return v.Tags }).(Ipv6GatewayTagArrayOutput)
 }
 
 // Update time of the Ipv6Gateway.

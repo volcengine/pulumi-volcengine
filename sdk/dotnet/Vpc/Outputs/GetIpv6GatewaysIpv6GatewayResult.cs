@@ -34,9 +34,17 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The project name of the Ipv6Gateway.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The Status of the Ipv6Gateway.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetIpv6GatewaysIpv6GatewayTagResult> Tags;
         /// <summary>
         /// Update time of the Ipv6Gateway.
         /// </summary>
@@ -58,7 +66,11 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string name,
 
+            string projectName,
+
             string status,
+
+            ImmutableArray<Outputs.GetIpv6GatewaysIpv6GatewayTagResult> tags,
 
             string updateTime,
 
@@ -69,7 +81,9 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             Id = id;
             Ipv6GatewayId = ipv6GatewayId;
             Name = name;
+            ProjectName = projectName;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
             VpcId = vpcId;
         }

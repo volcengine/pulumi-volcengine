@@ -27,13 +27,7 @@ namespace Pulumi.Volcengine.Tls
         ///     var byName = Volcengine.Tls.GetTraceInstances.Invoke(new()
         ///     {
         ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        ///         TraceInstanceName = "测试trace",
-        ///     });
-        /// 
-        ///     var byStatus = Volcengine.Tls.GetTraceInstances.Invoke(new()
-        ///     {
-        ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        ///         Status = "CREATED",
+        ///         TraceInstanceName = "tf-trace-instance-nn",
         ///     });
         /// 
         /// });
@@ -57,13 +51,7 @@ namespace Pulumi.Volcengine.Tls
         ///     var byName = Volcengine.Tls.GetTraceInstances.Invoke(new()
         ///     {
         ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        ///         TraceInstanceName = "测试trace",
-        ///     });
-        /// 
-        ///     var byStatus = Volcengine.Tls.GetTraceInstances.Invoke(new()
-        ///     {
-        ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        ///         Status = "CREATED",
+        ///         TraceInstanceName = "tf-trace-instance-nn",
         ///     });
         /// 
         /// });

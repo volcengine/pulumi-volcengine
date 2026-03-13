@@ -34,6 +34,7 @@ class RuleArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  multiple_conditions: Optional[pulumi.Input[bool]] = None,
                  recovery_notify: Optional[pulumi.Input['RuleRecoveryNotifyArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]] = None,
                  web_hook: Optional[pulumi.Input[str]] = None,
                  webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -56,6 +57,7 @@ class RuleArgs:
         :param pulumi.Input[str] description: The description of the cloud monitor rule.
         :param pulumi.Input[bool] multiple_conditions: Whether to enable the multiple conditions function of the cloud monitor rule.
         :param pulumi.Input['RuleRecoveryNotifyArgs'] recovery_notify: The recovery notify of the cloud monitor rule.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]] tags: Tags.
         :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
@@ -82,6 +84,8 @@ class RuleArgs:
             pulumi.set(__self__, "multiple_conditions", multiple_conditions)
         if recovery_notify is not None:
             pulumi.set(__self__, "recovery_notify", recovery_notify)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if web_hook is not None:
             pulumi.set(__self__, "web_hook", web_hook)
         if webhook_ids is not None:
@@ -304,6 +308,18 @@ class RuleArgs:
         pulumi.set(self, "recovery_notify", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="webHook")
     def web_hook(self) -> Optional[pulumi.Input[str]]:
         """
@@ -351,6 +367,7 @@ class _RuleState:
                  rule_name: Optional[pulumi.Input[str]] = None,
                  silence_time: Optional[pulumi.Input[int]] = None,
                  sub_namespace: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  web_hook: Optional[pulumi.Input[str]] = None,
                  webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -376,6 +393,7 @@ class _RuleState:
         :param pulumi.Input[str] rule_name: The name of the cloud monitor rule.
         :param pulumi.Input[int] silence_time: The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
         :param pulumi.Input[str] sub_namespace: The sub namespace of the cloud monitor rule.
+        :param pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]] tags: Tags.
         :param pulumi.Input[str] updated_at: The updated time of the cloud monitor rule.
         :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
@@ -420,6 +438,8 @@ class _RuleState:
             pulumi.set(__self__, "silence_time", silence_time)
         if sub_namespace is not None:
             pulumi.set(__self__, "sub_namespace", sub_namespace)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if web_hook is not None:
@@ -668,6 +688,18 @@ class _RuleState:
         pulumi.set(self, "sub_namespace", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
@@ -727,6 +759,7 @@ class Rule(pulumi.CustomResource):
                  rule_name: Optional[pulumi.Input[str]] = None,
                  silence_time: Optional[pulumi.Input[int]] = None,
                  sub_namespace: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]]] = None,
                  web_hook: Optional[pulumi.Input[str]] = None,
                  webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -792,6 +825,10 @@ class Rule(pulumi.CustomResource):
             rule_name="acc-test-rule",
             silence_time=5,
             sub_namespace="Storage",
+            tags=[volcengine.cloud_monitor.RuleTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )],
             webhook_ids=[
                 "187655704106731****",
                 "187655712542447****",
@@ -826,6 +863,7 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] rule_name: The name of the cloud monitor rule.
         :param pulumi.Input[int] silence_time: The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
         :param pulumi.Input[str] sub_namespace: The sub namespace of the cloud monitor rule.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         """
@@ -897,6 +935,10 @@ class Rule(pulumi.CustomResource):
             rule_name="acc-test-rule",
             silence_time=5,
             sub_namespace="Storage",
+            tags=[volcengine.cloud_monitor.RuleTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )],
             webhook_ids=[
                 "187655704106731****",
                 "187655712542447****",
@@ -944,6 +986,7 @@ class Rule(pulumi.CustomResource):
                  rule_name: Optional[pulumi.Input[str]] = None,
                  silence_time: Optional[pulumi.Input[int]] = None,
                  sub_namespace: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]]] = None,
                  web_hook: Optional[pulumi.Input[str]] = None,
                  webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -999,6 +1042,7 @@ class Rule(pulumi.CustomResource):
             if sub_namespace is None and not opts.urn:
                 raise TypeError("Missing required property 'sub_namespace'")
             __props__.__dict__["sub_namespace"] = sub_namespace
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["web_hook"] = web_hook
             __props__.__dict__["webhook_ids"] = webhook_ids
             __props__.__dict__["alert_state"] = None
@@ -1034,6 +1078,7 @@ class Rule(pulumi.CustomResource):
             rule_name: Optional[pulumi.Input[str]] = None,
             silence_time: Optional[pulumi.Input[int]] = None,
             sub_namespace: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             web_hook: Optional[pulumi.Input[str]] = None,
             webhook_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Rule':
@@ -1064,6 +1109,7 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] rule_name: The name of the cloud monitor rule.
         :param pulumi.Input[int] silence_time: The silence time of the cloud monitor rule. Unit in minutes. Valid values: 5, 30, 60, 180, 360, 720, 1440.
         :param pulumi.Input[str] sub_namespace: The sub namespace of the cloud monitor rule.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] updated_at: The updated time of the cloud monitor rule.
         :param pulumi.Input[str] web_hook: The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] webhook_ids: The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
@@ -1092,6 +1138,7 @@ class Rule(pulumi.CustomResource):
         __props__.__dict__["rule_name"] = rule_name
         __props__.__dict__["silence_time"] = silence_time
         __props__.__dict__["sub_namespace"] = sub_namespace
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["web_hook"] = web_hook
         __props__.__dict__["webhook_ids"] = webhook_ids
@@ -1256,6 +1303,14 @@ class Rule(pulumi.CustomResource):
         The sub namespace of the cloud monitor rule.
         """
         return pulumi.get(self, "sub_namespace")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.RuleTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")

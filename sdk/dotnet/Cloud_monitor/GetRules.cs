@@ -145,6 +145,18 @@ namespace Pulumi.Volcengine.Cloud_monitor
         [Input("ruleName")]
         public string? RuleName { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetRulesTagArgs>? _tags;
+
+        /// <summary>
+        /// The tags of the cloud monitor rule.
+        /// </summary>
+        public List<Inputs.GetRulesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetRulesTagArgs>());
+            set => _tags = value;
+        }
+
         public GetRulesArgs()
         {
         }
@@ -231,6 +243,18 @@ namespace Pulumi.Volcengine.Cloud_monitor
         [Input("ruleName")]
         public Input<string>? RuleName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetRulesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// The tags of the cloud monitor rule.
+        /// </summary>
+        public InputList<Inputs.GetRulesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetRulesTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetRulesInvokeArgs()
         {
         }
@@ -273,6 +297,10 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRulesRuleResult> Rules;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetRulesTagResult> Tags;
+        /// <summary>
         /// The total count of query.
         /// </summary>
         public readonly int TotalCount;
@@ -299,6 +327,8 @@ namespace Pulumi.Volcengine.Cloud_monitor
 
             ImmutableArray<Outputs.GetRulesRuleResult> rules,
 
+            ImmutableArray<Outputs.GetRulesTagResult> tags,
+
             int totalCount)
         {
             AlertStates = alertStates;
@@ -311,6 +341,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
             OutputFile = outputFile;
             RuleName = ruleName;
             Rules = rules;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

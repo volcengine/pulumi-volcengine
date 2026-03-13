@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ScalingGroupsResult',
@@ -24,7 +25,7 @@ class ScalingGroupsResult:
     """
     A collection of values returned by ScalingGroups.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, scaling_group_names=None, scaling_groups=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, scaling_group_names=None, scaling_groups=None, tags=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -46,6 +47,9 @@ class ScalingGroupsResult:
         if scaling_groups and not isinstance(scaling_groups, list):
             raise TypeError("Expected argument 'scaling_groups' to be a list")
         pulumi.set(__self__, "scaling_groups", scaling_groups)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -95,6 +99,14 @@ class ScalingGroupsResult:
         return pulumi.get(self, "scaling_groups")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ScalingGroupsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -116,6 +128,7 @@ class AwaitableScalingGroupsResult(ScalingGroupsResult):
             project_name=self.project_name,
             scaling_group_names=self.scaling_group_names,
             scaling_groups=self.scaling_groups,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -124,6 +137,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
                    output_file: Optional[str] = None,
                    project_name: Optional[str] = None,
                    scaling_group_names: Optional[Sequence[str]] = None,
+                   tags: Optional[Sequence[pulumi.InputType['ScalingGroupsTagArgs']]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableScalingGroupsResult:
     """
     Use this data source to query detailed information of scaling groups
@@ -172,6 +186,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the scaling group.
     :param Sequence[str] scaling_group_names: A list of scaling group names.
+    :param Sequence[pulumi.InputType['ScalingGroupsTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""scaling_groups is deprecated: volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups""")
     __args__ = dict()
@@ -180,6 +195,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
     __args__['outputFile'] = output_file
     __args__['projectName'] = project_name
     __args__['scalingGroupNames'] = scaling_group_names
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:autoscaling/scalingGroups:ScalingGroups', __args__, opts=opts, typ=ScalingGroupsResult).value
 
@@ -191,6 +207,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
         project_name=pulumi.get(__ret__, 'project_name'),
         scaling_group_names=pulumi.get(__ret__, 'scaling_group_names'),
         scaling_groups=pulumi.get(__ret__, 'scaling_groups'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -200,6 +217,7 @@ def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
                           project_name: Optional[pulumi.Input[Optional[str]]] = None,
                           scaling_group_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                          tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ScalingGroupsTagArgs']]]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ScalingGroupsResult]:
     """
     Use this data source to query detailed information of scaling groups
@@ -248,6 +266,7 @@ def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the scaling group.
     :param Sequence[str] scaling_group_names: A list of scaling group names.
+    :param Sequence[pulumi.InputType['ScalingGroupsTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""scaling_groups is deprecated: volcengine.autoscaling.ScalingGroups has been deprecated in favor of volcengine.autoscaling.getScalingGroups""")
     ...

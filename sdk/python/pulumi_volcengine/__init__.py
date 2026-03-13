@@ -66,6 +66,8 @@ if typing.TYPE_CHECKING:
     nas = __nas
     import pulumi_volcengine.nat as __nat
     nat = __nat
+    import pulumi_volcengine.nlb as __nlb
+    nlb = __nlb
     import pulumi_volcengine.organization as __organization
     organization = __organization
     import pulumi_volcengine.private_zone as __private_zone
@@ -143,6 +145,7 @@ else:
     mongodb = _utilities.lazy_import('pulumi_volcengine.mongodb')
     nas = _utilities.lazy_import('pulumi_volcengine.nas')
     nat = _utilities.lazy_import('pulumi_volcengine.nat')
+    nlb = _utilities.lazy_import('pulumi_volcengine.nlb')
     organization = _utilities.lazy_import('pulumi_volcengine.organization')
     private_zone = _utilities.lazy_import('pulumi_volcengine.private_zone')
     privatelink = _utilities.lazy_import('pulumi_volcengine.privatelink')
@@ -1637,6 +1640,46 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "nlb/backendServer",
+  "fqn": "pulumi_volcengine.nlb",
+  "classes": {
+   "volcengine:nlb/backendServer:BackendServer": "BackendServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nlb/listener",
+  "fqn": "pulumi_volcengine.nlb",
+  "classes": {
+   "volcengine:nlb/listener:Listener": "Listener"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nlb/networkLoadBalancer",
+  "fqn": "pulumi_volcengine.nlb",
+  "classes": {
+   "volcengine:nlb/networkLoadBalancer:NetworkLoadBalancer": "NetworkLoadBalancer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nlb/serverGroup",
+  "fqn": "pulumi_volcengine.nlb",
+  "classes": {
+   "volcengine:nlb/serverGroup:ServerGroup": "ServerGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nlb/tag",
+  "fqn": "pulumi_volcengine.nlb",
+  "classes": {
+   "volcengine:nlb/tag:Tag": "Tag"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "organization/account",
   "fqn": "pulumi_volcengine.organization",
   "classes": {
@@ -1785,6 +1828,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.privatelink",
   "classes": {
    "volcengine:privatelink/vpcEndpointZone:VpcEndpointZone": "VpcEndpointZone"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/vpcGatewayEndpoint",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/vpcGatewayEndpoint:VpcGatewayEndpoint": "VpcGatewayEndpoint"
   }
  },
  {

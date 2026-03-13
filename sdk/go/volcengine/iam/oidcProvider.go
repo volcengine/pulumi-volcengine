@@ -29,14 +29,14 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewOidcProvider(ctx, "foo", &iam.OidcProviderArgs{
 //				ClientIds: pulumi.StringArray{
-//					pulumi.String("6c505fb67d32417c8de287ee1fa89fd2"),
+//					pulumi.String("6c505fb67d32417c8de287ee1fa89fc1"),
 //				},
-//				Description:       pulumi.String("acc-test-oidc-modify"),
-//				IssuanceLimitTime: pulumi.Int(10),
+//				Description:       pulumi.String("acc-test-oidc"),
+//				IssuanceLimitTime: pulumi.Int(6),
 //				IssuerUrl:         pulumi.String("https://security-api.snssdk.com/qa/sso/oidc/6c505fb67d32417c8de287ee1fa89fc1"),
 //				OidcProviderName:  pulumi.String("oidc_provider"),
 //				Thumbprints: pulumi.StringArray{
-//					pulumi.String("9b1afaa2dfca349fe38c5ef3e72ee03cb0696d65ea2e11f597ea9aa55fcff44d"),
+//					pulumi.String("9b1afaa2dfca349fe38c5ef3e72ee03cb0696d65ea2e11f597ea9aa55fcff33a"),
 //				},
 //			})
 //			if err != nil {

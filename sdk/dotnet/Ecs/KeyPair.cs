@@ -25,6 +25,15 @@ namespace Pulumi.Volcengine.Ecs
     ///     {
     ///         Description = "acc-test",
     ///         KeyPairName = "acc-test-key-name",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.KeyPairTagArgs
+    ///             {
+    ///                 Key = "tfk1",
+    ///                 Value = "tfv1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -72,10 +81,22 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> KeyPairName { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the key pair.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// Public key string.
         /// </summary>
         [Output("publicKey")]
         public Output<string?> PublicKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.KeyPairTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -143,10 +164,28 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string> KeyPairName { get; set; } = null!;
 
         /// <summary>
+        /// The project name of the key pair.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Public key string.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.KeyPairTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.KeyPairTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.KeyPairTagArgs>());
+            set => _tags = value;
+        }
 
         public KeyPairArgs()
         {
@@ -187,10 +226,28 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? KeyPairName { get; set; }
 
         /// <summary>
+        /// The project name of the key pair.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Public key string.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.KeyPairTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.KeyPairTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.KeyPairTagGetArgs>());
+            set => _tags = value;
+        }
 
         public KeyPairState()
         {

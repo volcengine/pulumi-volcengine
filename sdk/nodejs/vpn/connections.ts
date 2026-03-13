@@ -85,6 +85,7 @@ export function connections(args?: ConnectionsArgs, opts?: pulumi.InvokeOptions)
         "projectName": args.projectName,
         "spec": args.spec,
         "status": args.status,
+        "tags": args.tags,
         "transitRouterId": args.transitRouterId,
         "vpnConnectionNames": args.vpnConnectionNames,
         "vpnGatewayId": args.vpnGatewayId,
@@ -132,6 +133,10 @@ export interface ConnectionsArgs {
      */
     status?: string;
     /**
+     * Tags.
+     */
+    tags?: inputs.vpn.ConnectionsTag[];
+    /**
      * An ID of transit router.
      */
     transitRouterId?: string;
@@ -174,6 +179,10 @@ export interface ConnectionsResult {
      * The status of the VPN connection.
      */
     readonly status?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpn.ConnectionsTag[];
     /**
      * The total count of VPN connection query.
      */
@@ -300,6 +309,10 @@ export interface ConnectionsOutputArgs {
      * The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.ConnectionsTagArgs>[]>;
     /**
      * An ID of transit router.
      */

@@ -16,11 +16,7 @@ import * as utilities from "../utilities";
  *
  * const byName = volcengine.tls.getTraceInstances({
  *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
- *     traceInstanceName: "测试trace",
- * });
- * const byStatus = volcengine.tls.getTraceInstances({
- *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
- *     status: "CREATED",
+ *     traceInstanceName: "tf-trace-instance-nn",
  * });
  * ```
  */
@@ -128,11 +124,7 @@ export interface GetTraceInstancesResult {
  *
  * const byName = volcengine.tls.getTraceInstances({
  *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
- *     traceInstanceName: "测试trace",
- * });
- * const byStatus = volcengine.tls.getTraceInstances({
- *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
- *     status: "CREATED",
+ *     traceInstanceName: "tf-trace-instance-nn",
  * });
  * ```
  */

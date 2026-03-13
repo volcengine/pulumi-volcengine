@@ -145,6 +145,8 @@ type TopicsArgs struct {
 	PartitionNumber *int `pulumi:"partitionNumber"`
 	// The number of replica in kafka topic.
 	ReplicaNumber *int `pulumi:"replicaNumber"`
+	// Tags.
+	Tags []TopicsTag `pulumi:"tags"`
 	// The name of kafka topic. This field supports fuzzy query.
 	TopicName *string `pulumi:"topicName"`
 	// When a user name is specified, only the access policy of the specified user for this Topic will be returned.
@@ -162,6 +164,8 @@ type TopicsResult struct {
 	PartitionNumber *int `pulumi:"partitionNumber"`
 	// The number of replica in the kafka topic.
 	ReplicaNumber *int `pulumi:"replicaNumber"`
+	// Tags.
+	Tags []TopicsTag `pulumi:"tags"`
 	// The name of the kafka topic.
 	TopicName *string `pulumi:"topicName"`
 	// The collection of query.
@@ -197,6 +201,8 @@ type TopicsOutputArgs struct {
 	PartitionNumber pulumi.IntPtrInput `pulumi:"partitionNumber"`
 	// The number of replica in kafka topic.
 	ReplicaNumber pulumi.IntPtrInput `pulumi:"replicaNumber"`
+	// Tags.
+	Tags TopicsTagArrayInput `pulumi:"tags"`
 	// The name of kafka topic. This field supports fuzzy query.
 	TopicName pulumi.StringPtrInput `pulumi:"topicName"`
 	// When a user name is specified, only the access policy of the specified user for this Topic will be returned.
@@ -247,6 +253,11 @@ func (o TopicsResultOutput) PartitionNumber() pulumi.IntPtrOutput {
 // The number of replica in the kafka topic.
 func (o TopicsResultOutput) ReplicaNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TopicsResult) *int { return v.ReplicaNumber }).(pulumi.IntPtrOutput)
+}
+
+// Tags.
+func (o TopicsResultOutput) Tags() TopicsTagArrayOutput {
+	return o.ApplyT(func(v TopicsResult) []TopicsTag { return v.Tags }).(TopicsTagArrayOutput)
 }
 
 // The name of the kafka topic.

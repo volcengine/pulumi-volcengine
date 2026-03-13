@@ -518,11 +518,123 @@ func (o ConsumedTopicsConsumedTopicArrayOutput) Index(i pulumi.IntInput) Consume
 	}).(ConsumedTopicsConsumedTopicOutput)
 }
 
+type GroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GroupTagInput is an input type that accepts GroupTagArgs and GroupTagOutput values.
+// You can construct a concrete instance of `GroupTagInput` via:
+//
+//	GroupTagArgs{...}
+type GroupTagInput interface {
+	pulumi.Input
+
+	ToGroupTagOutput() GroupTagOutput
+	ToGroupTagOutputWithContext(context.Context) GroupTagOutput
+}
+
+type GroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupTag)(nil)).Elem()
+}
+
+func (i GroupTagArgs) ToGroupTagOutput() GroupTagOutput {
+	return i.ToGroupTagOutputWithContext(context.Background())
+}
+
+func (i GroupTagArgs) ToGroupTagOutputWithContext(ctx context.Context) GroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupTagOutput)
+}
+
+// GroupTagArrayInput is an input type that accepts GroupTagArray and GroupTagArrayOutput values.
+// You can construct a concrete instance of `GroupTagArrayInput` via:
+//
+//	GroupTagArray{ GroupTagArgs{...} }
+type GroupTagArrayInput interface {
+	pulumi.Input
+
+	ToGroupTagArrayOutput() GroupTagArrayOutput
+	ToGroupTagArrayOutputWithContext(context.Context) GroupTagArrayOutput
+}
+
+type GroupTagArray []GroupTagInput
+
+func (GroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupTag)(nil)).Elem()
+}
+
+func (i GroupTagArray) ToGroupTagArrayOutput() GroupTagArrayOutput {
+	return i.ToGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i GroupTagArray) ToGroupTagArrayOutputWithContext(ctx context.Context) GroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupTagArrayOutput)
+}
+
+type GroupTagOutput struct{ *pulumi.OutputState }
+
+func (GroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupTag)(nil)).Elem()
+}
+
+func (o GroupTagOutput) ToGroupTagOutput() GroupTagOutput {
+	return o
+}
+
+func (o GroupTagOutput) ToGroupTagOutputWithContext(ctx context.Context) GroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupTag)(nil)).Elem()
+}
+
+func (o GroupTagArrayOutput) ToGroupTagArrayOutput() GroupTagArrayOutput {
+	return o
+}
+
+func (o GroupTagArrayOutput) ToGroupTagArrayOutputWithContext(ctx context.Context) GroupTagArrayOutput {
+	return o
+}
+
+func (o GroupTagArrayOutput) Index(i pulumi.IntInput) GroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupTag {
+		return vs[0].([]GroupTag)[vs[1].(int)]
+	}).(GroupTagOutput)
+}
+
 type GroupsGroup struct {
+	// The description of kafka group.
+	Description string `pulumi:"description"`
 	// The id of kafka group, support fuzzy matching.
 	GroupId string `pulumi:"groupId"`
+	// The protocol type of kafka group.
+	ProtocolType string `pulumi:"protocolType"`
 	// The state of kafka group.
 	State string `pulumi:"state"`
+	// Tags.
+	Tags []GroupsGroupTag `pulumi:"tags"`
 }
 
 // GroupsGroupInput is an input type that accepts GroupsGroupArgs and GroupsGroupOutput values.
@@ -537,10 +649,16 @@ type GroupsGroupInput interface {
 }
 
 type GroupsGroupArgs struct {
+	// The description of kafka group.
+	Description pulumi.StringInput `pulumi:"description"`
 	// The id of kafka group, support fuzzy matching.
 	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// The protocol type of kafka group.
+	ProtocolType pulumi.StringInput `pulumi:"protocolType"`
 	// The state of kafka group.
 	State pulumi.StringInput `pulumi:"state"`
+	// Tags.
+	Tags GroupsGroupTagArrayInput `pulumi:"tags"`
 }
 
 func (GroupsGroupArgs) ElementType() reflect.Type {
@@ -594,14 +712,29 @@ func (o GroupsGroupOutput) ToGroupsGroupOutputWithContext(ctx context.Context) G
 	return o
 }
 
+// The description of kafka group.
+func (o GroupsGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupsGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
 // The id of kafka group, support fuzzy matching.
 func (o GroupsGroupOutput) GroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupsGroup) string { return v.GroupId }).(pulumi.StringOutput)
 }
 
+// The protocol type of kafka group.
+func (o GroupsGroupOutput) ProtocolType() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupsGroup) string { return v.ProtocolType }).(pulumi.StringOutput)
+}
+
 // The state of kafka group.
 func (o GroupsGroupOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupsGroup) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GroupsGroupOutput) Tags() GroupsGroupTagArrayOutput {
+	return o.ApplyT(func(v GroupsGroup) []GroupsGroupTag { return v.Tags }).(GroupsGroupTagArrayOutput)
 }
 
 type GroupsGroupArrayOutput struct{ *pulumi.OutputState }
@@ -622,6 +755,218 @@ func (o GroupsGroupArrayOutput) Index(i pulumi.IntInput) GroupsGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupsGroup {
 		return vs[0].([]GroupsGroup)[vs[1].(int)]
 	}).(GroupsGroupOutput)
+}
+
+type GroupsGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GroupsGroupTagInput is an input type that accepts GroupsGroupTagArgs and GroupsGroupTagOutput values.
+// You can construct a concrete instance of `GroupsGroupTagInput` via:
+//
+//	GroupsGroupTagArgs{...}
+type GroupsGroupTagInput interface {
+	pulumi.Input
+
+	ToGroupsGroupTagOutput() GroupsGroupTagOutput
+	ToGroupsGroupTagOutputWithContext(context.Context) GroupsGroupTagOutput
+}
+
+type GroupsGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GroupsGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupsGroupTag)(nil)).Elem()
+}
+
+func (i GroupsGroupTagArgs) ToGroupsGroupTagOutput() GroupsGroupTagOutput {
+	return i.ToGroupsGroupTagOutputWithContext(context.Background())
+}
+
+func (i GroupsGroupTagArgs) ToGroupsGroupTagOutputWithContext(ctx context.Context) GroupsGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupsGroupTagOutput)
+}
+
+// GroupsGroupTagArrayInput is an input type that accepts GroupsGroupTagArray and GroupsGroupTagArrayOutput values.
+// You can construct a concrete instance of `GroupsGroupTagArrayInput` via:
+//
+//	GroupsGroupTagArray{ GroupsGroupTagArgs{...} }
+type GroupsGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToGroupsGroupTagArrayOutput() GroupsGroupTagArrayOutput
+	ToGroupsGroupTagArrayOutputWithContext(context.Context) GroupsGroupTagArrayOutput
+}
+
+type GroupsGroupTagArray []GroupsGroupTagInput
+
+func (GroupsGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupsGroupTag)(nil)).Elem()
+}
+
+func (i GroupsGroupTagArray) ToGroupsGroupTagArrayOutput() GroupsGroupTagArrayOutput {
+	return i.ToGroupsGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i GroupsGroupTagArray) ToGroupsGroupTagArrayOutputWithContext(ctx context.Context) GroupsGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupsGroupTagArrayOutput)
+}
+
+type GroupsGroupTagOutput struct{ *pulumi.OutputState }
+
+func (GroupsGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupsGroupTag)(nil)).Elem()
+}
+
+func (o GroupsGroupTagOutput) ToGroupsGroupTagOutput() GroupsGroupTagOutput {
+	return o
+}
+
+func (o GroupsGroupTagOutput) ToGroupsGroupTagOutputWithContext(ctx context.Context) GroupsGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GroupsGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupsGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GroupsGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupsGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GroupsGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupsGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupsGroupTag)(nil)).Elem()
+}
+
+func (o GroupsGroupTagArrayOutput) ToGroupsGroupTagArrayOutput() GroupsGroupTagArrayOutput {
+	return o
+}
+
+func (o GroupsGroupTagArrayOutput) ToGroupsGroupTagArrayOutputWithContext(ctx context.Context) GroupsGroupTagArrayOutput {
+	return o
+}
+
+func (o GroupsGroupTagArrayOutput) Index(i pulumi.IntInput) GroupsGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupsGroupTag {
+		return vs[0].([]GroupsGroupTag)[vs[1].(int)]
+	}).(GroupsGroupTagOutput)
+}
+
+type GroupsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GroupsTagInput is an input type that accepts GroupsTagArgs and GroupsTagOutput values.
+// You can construct a concrete instance of `GroupsTagInput` via:
+//
+//	GroupsTagArgs{...}
+type GroupsTagInput interface {
+	pulumi.Input
+
+	ToGroupsTagOutput() GroupsTagOutput
+	ToGroupsTagOutputWithContext(context.Context) GroupsTagOutput
+}
+
+type GroupsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GroupsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupsTag)(nil)).Elem()
+}
+
+func (i GroupsTagArgs) ToGroupsTagOutput() GroupsTagOutput {
+	return i.ToGroupsTagOutputWithContext(context.Background())
+}
+
+func (i GroupsTagArgs) ToGroupsTagOutputWithContext(ctx context.Context) GroupsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupsTagOutput)
+}
+
+// GroupsTagArrayInput is an input type that accepts GroupsTagArray and GroupsTagArrayOutput values.
+// You can construct a concrete instance of `GroupsTagArrayInput` via:
+//
+//	GroupsTagArray{ GroupsTagArgs{...} }
+type GroupsTagArrayInput interface {
+	pulumi.Input
+
+	ToGroupsTagArrayOutput() GroupsTagArrayOutput
+	ToGroupsTagArrayOutputWithContext(context.Context) GroupsTagArrayOutput
+}
+
+type GroupsTagArray []GroupsTagInput
+
+func (GroupsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupsTag)(nil)).Elem()
+}
+
+func (i GroupsTagArray) ToGroupsTagArrayOutput() GroupsTagArrayOutput {
+	return i.ToGroupsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GroupsTagArray) ToGroupsTagArrayOutputWithContext(ctx context.Context) GroupsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupsTagArrayOutput)
+}
+
+type GroupsTagOutput struct{ *pulumi.OutputState }
+
+func (GroupsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupsTag)(nil)).Elem()
+}
+
+func (o GroupsTagOutput) ToGroupsTagOutput() GroupsTagOutput {
+	return o
+}
+
+func (o GroupsTagOutput) ToGroupsTagOutputWithContext(ctx context.Context) GroupsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GroupsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GroupsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GroupsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupsTag)(nil)).Elem()
+}
+
+func (o GroupsTagArrayOutput) ToGroupsTagArrayOutput() GroupsTagArrayOutput {
+	return o
+}
+
+func (o GroupsTagArrayOutput) ToGroupsTagArrayOutputWithContext(ctx context.Context) GroupsTagArrayOutput {
+	return o
+}
+
+func (o GroupsTagArrayOutput) Index(i pulumi.IntInput) GroupsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupsTag {
+		return vs[0].([]GroupsTag)[vs[1].(int)]
+	}).(GroupsTagOutput)
 }
 
 type InstanceParameter struct {
@@ -2370,15 +2715,231 @@ func (o TopicPartitionsPartitionArrayOutput) Index(i pulumi.IntInput) TopicParti
 	}).(TopicPartitionsPartitionOutput)
 }
 
+type TopicTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TopicTagInput is an input type that accepts TopicTagArgs and TopicTagOutput values.
+// You can construct a concrete instance of `TopicTagInput` via:
+//
+//	TopicTagArgs{...}
+type TopicTagInput interface {
+	pulumi.Input
+
+	ToTopicTagOutput() TopicTagOutput
+	ToTopicTagOutputWithContext(context.Context) TopicTagOutput
+}
+
+type TopicTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TopicTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicTag)(nil)).Elem()
+}
+
+func (i TopicTagArgs) ToTopicTagOutput() TopicTagOutput {
+	return i.ToTopicTagOutputWithContext(context.Background())
+}
+
+func (i TopicTagArgs) ToTopicTagOutputWithContext(ctx context.Context) TopicTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicTagOutput)
+}
+
+// TopicTagArrayInput is an input type that accepts TopicTagArray and TopicTagArrayOutput values.
+// You can construct a concrete instance of `TopicTagArrayInput` via:
+//
+//	TopicTagArray{ TopicTagArgs{...} }
+type TopicTagArrayInput interface {
+	pulumi.Input
+
+	ToTopicTagArrayOutput() TopicTagArrayOutput
+	ToTopicTagArrayOutputWithContext(context.Context) TopicTagArrayOutput
+}
+
+type TopicTagArray []TopicTagInput
+
+func (TopicTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicTag)(nil)).Elem()
+}
+
+func (i TopicTagArray) ToTopicTagArrayOutput() TopicTagArrayOutput {
+	return i.ToTopicTagArrayOutputWithContext(context.Background())
+}
+
+func (i TopicTagArray) ToTopicTagArrayOutputWithContext(ctx context.Context) TopicTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicTagArrayOutput)
+}
+
+type TopicTagOutput struct{ *pulumi.OutputState }
+
+func (TopicTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicTag)(nil)).Elem()
+}
+
+func (o TopicTagOutput) ToTopicTagOutput() TopicTagOutput {
+	return o
+}
+
+func (o TopicTagOutput) ToTopicTagOutputWithContext(ctx context.Context) TopicTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TopicTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TopicTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TopicTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TopicTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TopicTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TopicTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicTag)(nil)).Elem()
+}
+
+func (o TopicTagArrayOutput) ToTopicTagArrayOutput() TopicTagArrayOutput {
+	return o
+}
+
+func (o TopicTagArrayOutput) ToTopicTagArrayOutputWithContext(ctx context.Context) TopicTagArrayOutput {
+	return o
+}
+
+func (o TopicTagArrayOutput) Index(i pulumi.IntInput) TopicTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TopicTag {
+		return vs[0].([]TopicTag)[vs[1].(int)]
+	}).(TopicTagOutput)
+}
+
+type TopicsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TopicsTagInput is an input type that accepts TopicsTagArgs and TopicsTagOutput values.
+// You can construct a concrete instance of `TopicsTagInput` via:
+//
+//	TopicsTagArgs{...}
+type TopicsTagInput interface {
+	pulumi.Input
+
+	ToTopicsTagOutput() TopicsTagOutput
+	ToTopicsTagOutputWithContext(context.Context) TopicsTagOutput
+}
+
+type TopicsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TopicsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicsTag)(nil)).Elem()
+}
+
+func (i TopicsTagArgs) ToTopicsTagOutput() TopicsTagOutput {
+	return i.ToTopicsTagOutputWithContext(context.Background())
+}
+
+func (i TopicsTagArgs) ToTopicsTagOutputWithContext(ctx context.Context) TopicsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicsTagOutput)
+}
+
+// TopicsTagArrayInput is an input type that accepts TopicsTagArray and TopicsTagArrayOutput values.
+// You can construct a concrete instance of `TopicsTagArrayInput` via:
+//
+//	TopicsTagArray{ TopicsTagArgs{...} }
+type TopicsTagArrayInput interface {
+	pulumi.Input
+
+	ToTopicsTagArrayOutput() TopicsTagArrayOutput
+	ToTopicsTagArrayOutputWithContext(context.Context) TopicsTagArrayOutput
+}
+
+type TopicsTagArray []TopicsTagInput
+
+func (TopicsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicsTag)(nil)).Elem()
+}
+
+func (i TopicsTagArray) ToTopicsTagArrayOutput() TopicsTagArrayOutput {
+	return i.ToTopicsTagArrayOutputWithContext(context.Background())
+}
+
+func (i TopicsTagArray) ToTopicsTagArrayOutputWithContext(ctx context.Context) TopicsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicsTagArrayOutput)
+}
+
+type TopicsTagOutput struct{ *pulumi.OutputState }
+
+func (TopicsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicsTag)(nil)).Elem()
+}
+
+func (o TopicsTagOutput) ToTopicsTagOutput() TopicsTagOutput {
+	return o
+}
+
+func (o TopicsTagOutput) ToTopicsTagOutputWithContext(ctx context.Context) TopicsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TopicsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TopicsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TopicsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TopicsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TopicsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TopicsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicsTag)(nil)).Elem()
+}
+
+func (o TopicsTagArrayOutput) ToTopicsTagArrayOutput() TopicsTagArrayOutput {
+	return o
+}
+
+func (o TopicsTagArrayOutput) ToTopicsTagArrayOutputWithContext(ctx context.Context) TopicsTagArrayOutput {
+	return o
+}
+
+func (o TopicsTagArrayOutput) Index(i pulumi.IntInput) TopicsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TopicsTag {
+		return vs[0].([]TopicsTag)[vs[1].(int)]
+	}).(TopicsTagOutput)
+}
+
 type TopicsTopic struct {
 	// The access policies info of the kafka topic.
 	AccessPolicies []TopicsTopicAccessPolicy `pulumi:"accessPolicies"`
 	// Whether the kafka topic is configured to be accessible by all users.
 	AllAuthority bool `pulumi:"allAuthority"`
+	// The cleanup policy of the kafka topic.
+	CleanupPolicies []string `pulumi:"cleanupPolicies"`
 	// The create time of the kafka topic.
 	CreateTime string `pulumi:"createTime"`
 	// The description of the kafka topic.
 	Description string `pulumi:"description"`
+	// The retention hours of log.
+	LogRetentionHours int `pulumi:"logRetentionHours"`
 	// The parameters of the kafka topic.
 	Parameters TopicsTopicParameters `pulumi:"parameters"`
 	// The number of partition in kafka topic.
@@ -2387,8 +2948,14 @@ type TopicsTopic struct {
 	ReplicaNumber int `pulumi:"replicaNumber"`
 	// The status of the kafka topic.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []TopicsTopicTag `pulumi:"tags"`
 	// The name of kafka topic. This field supports fuzzy query.
 	TopicName string `pulumi:"topicName"`
+	// The used storage percentage in instance.
+	UsedStoragePercentageInInstance int `pulumi:"usedStoragePercentageInInstance"`
+	// The total storage space size already used by the current Topic.
+	UsedStorageSpaceInBytes int `pulumi:"usedStorageSpaceInBytes"`
 }
 
 // TopicsTopicInput is an input type that accepts TopicsTopicArgs and TopicsTopicOutput values.
@@ -2407,10 +2974,14 @@ type TopicsTopicArgs struct {
 	AccessPolicies TopicsTopicAccessPolicyArrayInput `pulumi:"accessPolicies"`
 	// Whether the kafka topic is configured to be accessible by all users.
 	AllAuthority pulumi.BoolInput `pulumi:"allAuthority"`
+	// The cleanup policy of the kafka topic.
+	CleanupPolicies pulumi.StringArrayInput `pulumi:"cleanupPolicies"`
 	// The create time of the kafka topic.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The description of the kafka topic.
 	Description pulumi.StringInput `pulumi:"description"`
+	// The retention hours of log.
+	LogRetentionHours pulumi.IntInput `pulumi:"logRetentionHours"`
 	// The parameters of the kafka topic.
 	Parameters TopicsTopicParametersInput `pulumi:"parameters"`
 	// The number of partition in kafka topic.
@@ -2419,8 +2990,14 @@ type TopicsTopicArgs struct {
 	ReplicaNumber pulumi.IntInput `pulumi:"replicaNumber"`
 	// The status of the kafka topic.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags TopicsTopicTagArrayInput `pulumi:"tags"`
 	// The name of kafka topic. This field supports fuzzy query.
 	TopicName pulumi.StringInput `pulumi:"topicName"`
+	// The used storage percentage in instance.
+	UsedStoragePercentageInInstance pulumi.IntInput `pulumi:"usedStoragePercentageInInstance"`
+	// The total storage space size already used by the current Topic.
+	UsedStorageSpaceInBytes pulumi.IntInput `pulumi:"usedStorageSpaceInBytes"`
 }
 
 func (TopicsTopicArgs) ElementType() reflect.Type {
@@ -2484,6 +3061,11 @@ func (o TopicsTopicOutput) AllAuthority() pulumi.BoolOutput {
 	return o.ApplyT(func(v TopicsTopic) bool { return v.AllAuthority }).(pulumi.BoolOutput)
 }
 
+// The cleanup policy of the kafka topic.
+func (o TopicsTopicOutput) CleanupPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TopicsTopic) []string { return v.CleanupPolicies }).(pulumi.StringArrayOutput)
+}
+
 // The create time of the kafka topic.
 func (o TopicsTopicOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v TopicsTopic) string { return v.CreateTime }).(pulumi.StringOutput)
@@ -2492,6 +3074,11 @@ func (o TopicsTopicOutput) CreateTime() pulumi.StringOutput {
 // The description of the kafka topic.
 func (o TopicsTopicOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v TopicsTopic) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The retention hours of log.
+func (o TopicsTopicOutput) LogRetentionHours() pulumi.IntOutput {
+	return o.ApplyT(func(v TopicsTopic) int { return v.LogRetentionHours }).(pulumi.IntOutput)
 }
 
 // The parameters of the kafka topic.
@@ -2514,9 +3101,24 @@ func (o TopicsTopicOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v TopicsTopic) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o TopicsTopicOutput) Tags() TopicsTopicTagArrayOutput {
+	return o.ApplyT(func(v TopicsTopic) []TopicsTopicTag { return v.Tags }).(TopicsTopicTagArrayOutput)
+}
+
 // The name of kafka topic. This field supports fuzzy query.
 func (o TopicsTopicOutput) TopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v TopicsTopic) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+// The used storage percentage in instance.
+func (o TopicsTopicOutput) UsedStoragePercentageInInstance() pulumi.IntOutput {
+	return o.ApplyT(func(v TopicsTopic) int { return v.UsedStoragePercentageInInstance }).(pulumi.IntOutput)
+}
+
+// The total storage space size already used by the current Topic.
+func (o TopicsTopicOutput) UsedStorageSpaceInBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v TopicsTopic) int { return v.UsedStorageSpaceInBytes }).(pulumi.IntOutput)
 }
 
 type TopicsTopicArrayOutput struct{ *pulumi.OutputState }
@@ -2713,6 +3315,112 @@ func (o TopicsTopicParametersOutput) MessageMaxByte() pulumi.IntOutput {
 // The min number of sync replica.
 func (o TopicsTopicParametersOutput) MinInsyncReplicaNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v TopicsTopicParameters) int { return v.MinInsyncReplicaNumber }).(pulumi.IntOutput)
+}
+
+type TopicsTopicTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TopicsTopicTagInput is an input type that accepts TopicsTopicTagArgs and TopicsTopicTagOutput values.
+// You can construct a concrete instance of `TopicsTopicTagInput` via:
+//
+//	TopicsTopicTagArgs{...}
+type TopicsTopicTagInput interface {
+	pulumi.Input
+
+	ToTopicsTopicTagOutput() TopicsTopicTagOutput
+	ToTopicsTopicTagOutputWithContext(context.Context) TopicsTopicTagOutput
+}
+
+type TopicsTopicTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TopicsTopicTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicsTopicTag)(nil)).Elem()
+}
+
+func (i TopicsTopicTagArgs) ToTopicsTopicTagOutput() TopicsTopicTagOutput {
+	return i.ToTopicsTopicTagOutputWithContext(context.Background())
+}
+
+func (i TopicsTopicTagArgs) ToTopicsTopicTagOutputWithContext(ctx context.Context) TopicsTopicTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicsTopicTagOutput)
+}
+
+// TopicsTopicTagArrayInput is an input type that accepts TopicsTopicTagArray and TopicsTopicTagArrayOutput values.
+// You can construct a concrete instance of `TopicsTopicTagArrayInput` via:
+//
+//	TopicsTopicTagArray{ TopicsTopicTagArgs{...} }
+type TopicsTopicTagArrayInput interface {
+	pulumi.Input
+
+	ToTopicsTopicTagArrayOutput() TopicsTopicTagArrayOutput
+	ToTopicsTopicTagArrayOutputWithContext(context.Context) TopicsTopicTagArrayOutput
+}
+
+type TopicsTopicTagArray []TopicsTopicTagInput
+
+func (TopicsTopicTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicsTopicTag)(nil)).Elem()
+}
+
+func (i TopicsTopicTagArray) ToTopicsTopicTagArrayOutput() TopicsTopicTagArrayOutput {
+	return i.ToTopicsTopicTagArrayOutputWithContext(context.Background())
+}
+
+func (i TopicsTopicTagArray) ToTopicsTopicTagArrayOutputWithContext(ctx context.Context) TopicsTopicTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TopicsTopicTagArrayOutput)
+}
+
+type TopicsTopicTagOutput struct{ *pulumi.OutputState }
+
+func (TopicsTopicTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TopicsTopicTag)(nil)).Elem()
+}
+
+func (o TopicsTopicTagOutput) ToTopicsTopicTagOutput() TopicsTopicTagOutput {
+	return o
+}
+
+func (o TopicsTopicTagOutput) ToTopicsTopicTagOutputWithContext(ctx context.Context) TopicsTopicTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TopicsTopicTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TopicsTopicTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TopicsTopicTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TopicsTopicTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TopicsTopicTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TopicsTopicTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TopicsTopicTag)(nil)).Elem()
+}
+
+func (o TopicsTopicTagArrayOutput) ToTopicsTopicTagArrayOutput() TopicsTopicTagArrayOutput {
+	return o
+}
+
+func (o TopicsTopicTagArrayOutput) ToTopicsTopicTagArrayOutputWithContext(ctx context.Context) TopicsTopicTagArrayOutput {
+	return o
+}
+
+func (o TopicsTopicTagArrayOutput) Index(i pulumi.IntInput) TopicsTopicTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TopicsTopicTag {
+		return vs[0].([]TopicsTopicTag)[vs[1].(int)]
+	}).(TopicsTopicTagOutput)
 }
 
 type ZonesZone struct {
@@ -3356,10 +4064,16 @@ func (o GetConsumedTopicsConsumedTopicArrayOutput) Index(i pulumi.IntInput) GetC
 }
 
 type GetGroupsGroup struct {
+	// The description of kafka group.
+	Description string `pulumi:"description"`
 	// The id of kafka group, support fuzzy matching.
 	GroupId string `pulumi:"groupId"`
+	// The protocol type of kafka group.
+	ProtocolType string `pulumi:"protocolType"`
 	// The state of kafka group.
 	State string `pulumi:"state"`
+	// Tags.
+	Tags []GetGroupsGroupTag `pulumi:"tags"`
 }
 
 // GetGroupsGroupInput is an input type that accepts GetGroupsGroupArgs and GetGroupsGroupOutput values.
@@ -3374,10 +4088,16 @@ type GetGroupsGroupInput interface {
 }
 
 type GetGroupsGroupArgs struct {
+	// The description of kafka group.
+	Description pulumi.StringInput `pulumi:"description"`
 	// The id of kafka group, support fuzzy matching.
 	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// The protocol type of kafka group.
+	ProtocolType pulumi.StringInput `pulumi:"protocolType"`
 	// The state of kafka group.
 	State pulumi.StringInput `pulumi:"state"`
+	// Tags.
+	Tags GetGroupsGroupTagArrayInput `pulumi:"tags"`
 }
 
 func (GetGroupsGroupArgs) ElementType() reflect.Type {
@@ -3431,14 +4151,29 @@ func (o GetGroupsGroupOutput) ToGetGroupsGroupOutputWithContext(ctx context.Cont
 	return o
 }
 
+// The description of kafka group.
+func (o GetGroupsGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
 // The id of kafka group, support fuzzy matching.
 func (o GetGroupsGroupOutput) GroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGroupsGroup) string { return v.GroupId }).(pulumi.StringOutput)
 }
 
+// The protocol type of kafka group.
+func (o GetGroupsGroupOutput) ProtocolType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.ProtocolType }).(pulumi.StringOutput)
+}
+
 // The state of kafka group.
 func (o GetGroupsGroupOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGroupsGroup) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetGroupsGroupOutput) Tags() GetGroupsGroupTagArrayOutput {
+	return o.ApplyT(func(v GetGroupsGroup) []GetGroupsGroupTag { return v.Tags }).(GetGroupsGroupTagArrayOutput)
 }
 
 type GetGroupsGroupArrayOutput struct{ *pulumi.OutputState }
@@ -3459,6 +4194,218 @@ func (o GetGroupsGroupArrayOutput) Index(i pulumi.IntInput) GetGroupsGroupOutput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsGroup {
 		return vs[0].([]GetGroupsGroup)[vs[1].(int)]
 	}).(GetGroupsGroupOutput)
+}
+
+type GetGroupsGroupTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetGroupsGroupTagInput is an input type that accepts GetGroupsGroupTagArgs and GetGroupsGroupTagOutput values.
+// You can construct a concrete instance of `GetGroupsGroupTagInput` via:
+//
+//	GetGroupsGroupTagArgs{...}
+type GetGroupsGroupTagInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupTagOutput() GetGroupsGroupTagOutput
+	ToGetGroupsGroupTagOutputWithContext(context.Context) GetGroupsGroupTagOutput
+}
+
+type GetGroupsGroupTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetGroupsGroupTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroupTag)(nil)).Elem()
+}
+
+func (i GetGroupsGroupTagArgs) ToGetGroupsGroupTagOutput() GetGroupsGroupTagOutput {
+	return i.ToGetGroupsGroupTagOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupTagArgs) ToGetGroupsGroupTagOutputWithContext(ctx context.Context) GetGroupsGroupTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupTagOutput)
+}
+
+// GetGroupsGroupTagArrayInput is an input type that accepts GetGroupsGroupTagArray and GetGroupsGroupTagArrayOutput values.
+// You can construct a concrete instance of `GetGroupsGroupTagArrayInput` via:
+//
+//	GetGroupsGroupTagArray{ GetGroupsGroupTagArgs{...} }
+type GetGroupsGroupTagArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupTagArrayOutput() GetGroupsGroupTagArrayOutput
+	ToGetGroupsGroupTagArrayOutputWithContext(context.Context) GetGroupsGroupTagArrayOutput
+}
+
+type GetGroupsGroupTagArray []GetGroupsGroupTagInput
+
+func (GetGroupsGroupTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroupTag)(nil)).Elem()
+}
+
+func (i GetGroupsGroupTagArray) ToGetGroupsGroupTagArrayOutput() GetGroupsGroupTagArrayOutput {
+	return i.ToGetGroupsGroupTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupTagArray) ToGetGroupsGroupTagArrayOutputWithContext(ctx context.Context) GetGroupsGroupTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupTagArrayOutput)
+}
+
+type GetGroupsGroupTagOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroupTag)(nil)).Elem()
+}
+
+func (o GetGroupsGroupTagOutput) ToGetGroupsGroupTagOutput() GetGroupsGroupTagOutput {
+	return o
+}
+
+func (o GetGroupsGroupTagOutput) ToGetGroupsGroupTagOutputWithContext(ctx context.Context) GetGroupsGroupTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetGroupsGroupTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroupTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetGroupsGroupTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroupTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetGroupsGroupTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroupTag)(nil)).Elem()
+}
+
+func (o GetGroupsGroupTagArrayOutput) ToGetGroupsGroupTagArrayOutput() GetGroupsGroupTagArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupTagArrayOutput) ToGetGroupsGroupTagArrayOutputWithContext(ctx context.Context) GetGroupsGroupTagArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupTagArrayOutput) Index(i pulumi.IntInput) GetGroupsGroupTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsGroupTag {
+		return vs[0].([]GetGroupsGroupTag)[vs[1].(int)]
+	}).(GetGroupsGroupTagOutput)
+}
+
+type GetGroupsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetGroupsTagInput is an input type that accepts GetGroupsTagArgs and GetGroupsTagOutput values.
+// You can construct a concrete instance of `GetGroupsTagInput` via:
+//
+//	GetGroupsTagArgs{...}
+type GetGroupsTagInput interface {
+	pulumi.Input
+
+	ToGetGroupsTagOutput() GetGroupsTagOutput
+	ToGetGroupsTagOutputWithContext(context.Context) GetGroupsTagOutput
+}
+
+type GetGroupsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetGroupsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsTag)(nil)).Elem()
+}
+
+func (i GetGroupsTagArgs) ToGetGroupsTagOutput() GetGroupsTagOutput {
+	return i.ToGetGroupsTagOutputWithContext(context.Background())
+}
+
+func (i GetGroupsTagArgs) ToGetGroupsTagOutputWithContext(ctx context.Context) GetGroupsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsTagOutput)
+}
+
+// GetGroupsTagArrayInput is an input type that accepts GetGroupsTagArray and GetGroupsTagArrayOutput values.
+// You can construct a concrete instance of `GetGroupsTagArrayInput` via:
+//
+//	GetGroupsTagArray{ GetGroupsTagArgs{...} }
+type GetGroupsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsTagArrayOutput() GetGroupsTagArrayOutput
+	ToGetGroupsTagArrayOutputWithContext(context.Context) GetGroupsTagArrayOutput
+}
+
+type GetGroupsTagArray []GetGroupsTagInput
+
+func (GetGroupsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsTag)(nil)).Elem()
+}
+
+func (i GetGroupsTagArray) ToGetGroupsTagArrayOutput() GetGroupsTagArrayOutput {
+	return i.ToGetGroupsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsTagArray) ToGetGroupsTagArrayOutputWithContext(ctx context.Context) GetGroupsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsTagArrayOutput)
+}
+
+type GetGroupsTagOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsTag)(nil)).Elem()
+}
+
+func (o GetGroupsTagOutput) ToGetGroupsTagOutput() GetGroupsTagOutput {
+	return o
+}
+
+func (o GetGroupsTagOutput) ToGetGroupsTagOutputWithContext(ctx context.Context) GetGroupsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetGroupsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetGroupsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetGroupsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsTag)(nil)).Elem()
+}
+
+func (o GetGroupsTagArrayOutput) ToGetGroupsTagArrayOutput() GetGroupsTagArrayOutput {
+	return o
+}
+
+func (o GetGroupsTagArrayOutput) ToGetGroupsTagArrayOutputWithContext(ctx context.Context) GetGroupsTagArrayOutput {
+	return o
+}
+
+func (o GetGroupsTagArrayOutput) Index(i pulumi.IntInput) GetGroupsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsTag {
+		return vs[0].([]GetGroupsTag)[vs[1].(int)]
+	}).(GetGroupsTagOutput)
 }
 
 type GetInstancesInstance struct {
@@ -4714,15 +5661,125 @@ func (o GetTopicPartitionsPartitionArrayOutput) Index(i pulumi.IntInput) GetTopi
 	}).(GetTopicPartitionsPartitionOutput)
 }
 
+type GetTopicsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTopicsTagInput is an input type that accepts GetTopicsTagArgs and GetTopicsTagOutput values.
+// You can construct a concrete instance of `GetTopicsTagInput` via:
+//
+//	GetTopicsTagArgs{...}
+type GetTopicsTagInput interface {
+	pulumi.Input
+
+	ToGetTopicsTagOutput() GetTopicsTagOutput
+	ToGetTopicsTagOutputWithContext(context.Context) GetTopicsTagOutput
+}
+
+type GetTopicsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTopicsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTag)(nil)).Elem()
+}
+
+func (i GetTopicsTagArgs) ToGetTopicsTagOutput() GetTopicsTagOutput {
+	return i.ToGetTopicsTagOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTagArgs) ToGetTopicsTagOutputWithContext(ctx context.Context) GetTopicsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTagOutput)
+}
+
+// GetTopicsTagArrayInput is an input type that accepts GetTopicsTagArray and GetTopicsTagArrayOutput values.
+// You can construct a concrete instance of `GetTopicsTagArrayInput` via:
+//
+//	GetTopicsTagArray{ GetTopicsTagArgs{...} }
+type GetTopicsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsTagArrayOutput() GetTopicsTagArrayOutput
+	ToGetTopicsTagArrayOutputWithContext(context.Context) GetTopicsTagArrayOutput
+}
+
+type GetTopicsTagArray []GetTopicsTagInput
+
+func (GetTopicsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTag)(nil)).Elem()
+}
+
+func (i GetTopicsTagArray) ToGetTopicsTagArrayOutput() GetTopicsTagArrayOutput {
+	return i.ToGetTopicsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTagArray) ToGetTopicsTagArrayOutputWithContext(ctx context.Context) GetTopicsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTagArrayOutput)
+}
+
+type GetTopicsTagOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTag)(nil)).Elem()
+}
+
+func (o GetTopicsTagOutput) ToGetTopicsTagOutput() GetTopicsTagOutput {
+	return o
+}
+
+func (o GetTopicsTagOutput) ToGetTopicsTagOutputWithContext(ctx context.Context) GetTopicsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTopicsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTopicsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTopicsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTag)(nil)).Elem()
+}
+
+func (o GetTopicsTagArrayOutput) ToGetTopicsTagArrayOutput() GetTopicsTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTagArrayOutput) ToGetTopicsTagArrayOutputWithContext(ctx context.Context) GetTopicsTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTagArrayOutput) Index(i pulumi.IntInput) GetTopicsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsTag {
+		return vs[0].([]GetTopicsTag)[vs[1].(int)]
+	}).(GetTopicsTagOutput)
+}
+
 type GetTopicsTopic struct {
 	// The access policies info of the kafka topic.
 	AccessPolicies []GetTopicsTopicAccessPolicy `pulumi:"accessPolicies"`
 	// Whether the kafka topic is configured to be accessible by all users.
 	AllAuthority bool `pulumi:"allAuthority"`
+	// The cleanup policy of the kafka topic.
+	CleanupPolicies []string `pulumi:"cleanupPolicies"`
 	// The create time of the kafka topic.
 	CreateTime string `pulumi:"createTime"`
 	// The description of the kafka topic.
 	Description string `pulumi:"description"`
+	// The retention hours of log.
+	LogRetentionHours int `pulumi:"logRetentionHours"`
 	// The parameters of the kafka topic.
 	Parameters GetTopicsTopicParameters `pulumi:"parameters"`
 	// The number of partition in kafka topic.
@@ -4731,8 +5788,14 @@ type GetTopicsTopic struct {
 	ReplicaNumber int `pulumi:"replicaNumber"`
 	// The status of the kafka topic.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetTopicsTopicTag `pulumi:"tags"`
 	// The name of kafka topic. This field supports fuzzy query.
 	TopicName string `pulumi:"topicName"`
+	// The used storage percentage in instance.
+	UsedStoragePercentageInInstance int `pulumi:"usedStoragePercentageInInstance"`
+	// The total storage space size already used by the current Topic.
+	UsedStorageSpaceInBytes int `pulumi:"usedStorageSpaceInBytes"`
 }
 
 // GetTopicsTopicInput is an input type that accepts GetTopicsTopicArgs and GetTopicsTopicOutput values.
@@ -4751,10 +5814,14 @@ type GetTopicsTopicArgs struct {
 	AccessPolicies GetTopicsTopicAccessPolicyArrayInput `pulumi:"accessPolicies"`
 	// Whether the kafka topic is configured to be accessible by all users.
 	AllAuthority pulumi.BoolInput `pulumi:"allAuthority"`
+	// The cleanup policy of the kafka topic.
+	CleanupPolicies pulumi.StringArrayInput `pulumi:"cleanupPolicies"`
 	// The create time of the kafka topic.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The description of the kafka topic.
 	Description pulumi.StringInput `pulumi:"description"`
+	// The retention hours of log.
+	LogRetentionHours pulumi.IntInput `pulumi:"logRetentionHours"`
 	// The parameters of the kafka topic.
 	Parameters GetTopicsTopicParametersInput `pulumi:"parameters"`
 	// The number of partition in kafka topic.
@@ -4763,8 +5830,14 @@ type GetTopicsTopicArgs struct {
 	ReplicaNumber pulumi.IntInput `pulumi:"replicaNumber"`
 	// The status of the kafka topic.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetTopicsTopicTagArrayInput `pulumi:"tags"`
 	// The name of kafka topic. This field supports fuzzy query.
 	TopicName pulumi.StringInput `pulumi:"topicName"`
+	// The used storage percentage in instance.
+	UsedStoragePercentageInInstance pulumi.IntInput `pulumi:"usedStoragePercentageInInstance"`
+	// The total storage space size already used by the current Topic.
+	UsedStorageSpaceInBytes pulumi.IntInput `pulumi:"usedStorageSpaceInBytes"`
 }
 
 func (GetTopicsTopicArgs) ElementType() reflect.Type {
@@ -4828,6 +5901,11 @@ func (o GetTopicsTopicOutput) AllAuthority() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetTopicsTopic) bool { return v.AllAuthority }).(pulumi.BoolOutput)
 }
 
+// The cleanup policy of the kafka topic.
+func (o GetTopicsTopicOutput) CleanupPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetTopicsTopic) []string { return v.CleanupPolicies }).(pulumi.StringArrayOutput)
+}
+
 // The create time of the kafka topic.
 func (o GetTopicsTopicOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTopicsTopic) string { return v.CreateTime }).(pulumi.StringOutput)
@@ -4836,6 +5914,11 @@ func (o GetTopicsTopicOutput) CreateTime() pulumi.StringOutput {
 // The description of the kafka topic.
 func (o GetTopicsTopicOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTopicsTopic) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The retention hours of log.
+func (o GetTopicsTopicOutput) LogRetentionHours() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopic) int { return v.LogRetentionHours }).(pulumi.IntOutput)
 }
 
 // The parameters of the kafka topic.
@@ -4858,9 +5941,24 @@ func (o GetTopicsTopicOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTopicsTopic) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o GetTopicsTopicOutput) Tags() GetTopicsTopicTagArrayOutput {
+	return o.ApplyT(func(v GetTopicsTopic) []GetTopicsTopicTag { return v.Tags }).(GetTopicsTopicTagArrayOutput)
+}
+
 // The name of kafka topic. This field supports fuzzy query.
 func (o GetTopicsTopicOutput) TopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTopicsTopic) string { return v.TopicName }).(pulumi.StringOutput)
+}
+
+// The used storage percentage in instance.
+func (o GetTopicsTopicOutput) UsedStoragePercentageInInstance() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopic) int { return v.UsedStoragePercentageInInstance }).(pulumi.IntOutput)
+}
+
+// The total storage space size already used by the current Topic.
+func (o GetTopicsTopicOutput) UsedStorageSpaceInBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTopicsTopic) int { return v.UsedStorageSpaceInBytes }).(pulumi.IntOutput)
 }
 
 type GetTopicsTopicArrayOutput struct{ *pulumi.OutputState }
@@ -5059,6 +6157,112 @@ func (o GetTopicsTopicParametersOutput) MinInsyncReplicaNumber() pulumi.IntOutpu
 	return o.ApplyT(func(v GetTopicsTopicParameters) int { return v.MinInsyncReplicaNumber }).(pulumi.IntOutput)
 }
 
+type GetTopicsTopicTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetTopicsTopicTagInput is an input type that accepts GetTopicsTopicTagArgs and GetTopicsTopicTagOutput values.
+// You can construct a concrete instance of `GetTopicsTopicTagInput` via:
+//
+//	GetTopicsTopicTagArgs{...}
+type GetTopicsTopicTagInput interface {
+	pulumi.Input
+
+	ToGetTopicsTopicTagOutput() GetTopicsTopicTagOutput
+	ToGetTopicsTopicTagOutputWithContext(context.Context) GetTopicsTopicTagOutput
+}
+
+type GetTopicsTopicTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetTopicsTopicTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopicTag)(nil)).Elem()
+}
+
+func (i GetTopicsTopicTagArgs) ToGetTopicsTopicTagOutput() GetTopicsTopicTagOutput {
+	return i.ToGetTopicsTopicTagOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTopicTagArgs) ToGetTopicsTopicTagOutputWithContext(ctx context.Context) GetTopicsTopicTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTopicTagOutput)
+}
+
+// GetTopicsTopicTagArrayInput is an input type that accepts GetTopicsTopicTagArray and GetTopicsTopicTagArrayOutput values.
+// You can construct a concrete instance of `GetTopicsTopicTagArrayInput` via:
+//
+//	GetTopicsTopicTagArray{ GetTopicsTopicTagArgs{...} }
+type GetTopicsTopicTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTopicsTopicTagArrayOutput() GetTopicsTopicTagArrayOutput
+	ToGetTopicsTopicTagArrayOutputWithContext(context.Context) GetTopicsTopicTagArrayOutput
+}
+
+type GetTopicsTopicTagArray []GetTopicsTopicTagInput
+
+func (GetTopicsTopicTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTopicTag)(nil)).Elem()
+}
+
+func (i GetTopicsTopicTagArray) ToGetTopicsTopicTagArrayOutput() GetTopicsTopicTagArrayOutput {
+	return i.ToGetTopicsTopicTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTopicsTopicTagArray) ToGetTopicsTopicTagArrayOutputWithContext(ctx context.Context) GetTopicsTopicTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTopicsTopicTagArrayOutput)
+}
+
+type GetTopicsTopicTagOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTopicTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTopicsTopicTag)(nil)).Elem()
+}
+
+func (o GetTopicsTopicTagOutput) ToGetTopicsTopicTagOutput() GetTopicsTopicTagOutput {
+	return o
+}
+
+func (o GetTopicsTopicTagOutput) ToGetTopicsTopicTagOutputWithContext(ctx context.Context) GetTopicsTopicTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetTopicsTopicTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopicTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetTopicsTopicTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTopicsTopicTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetTopicsTopicTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTopicsTopicTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTopicsTopicTag)(nil)).Elem()
+}
+
+func (o GetTopicsTopicTagArrayOutput) ToGetTopicsTopicTagArrayOutput() GetTopicsTopicTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTopicTagArrayOutput) ToGetTopicsTopicTagArrayOutputWithContext(ctx context.Context) GetTopicsTopicTagArrayOutput {
+	return o
+}
+
+func (o GetTopicsTopicTagArrayOutput) Index(i pulumi.IntInput) GetTopicsTopicTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTopicsTopicTag {
+		return vs[0].([]GetTopicsTopicTag)[vs[1].(int)]
+	}).(GetTopicsTopicTagOutput)
+}
+
 type GetZonesZone struct {
 	// The description of the zone.
 	Description string `pulumi:"description"`
@@ -5201,8 +6405,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedPartitionsConsumedPartitionArrayInput)(nil)).Elem(), ConsumedPartitionsConsumedPartitionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedTopicsConsumedTopicInput)(nil)).Elem(), ConsumedTopicsConsumedTopicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConsumedTopicsConsumedTopicArrayInput)(nil)).Elem(), ConsumedTopicsConsumedTopicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupTagInput)(nil)).Elem(), GroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupTagArrayInput)(nil)).Elem(), GroupTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupsGroupInput)(nil)).Elem(), GroupsGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupsGroupArrayInput)(nil)).Elem(), GroupsGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupsGroupTagInput)(nil)).Elem(), GroupsGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupsGroupTagArrayInput)(nil)).Elem(), GroupsGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupsTagInput)(nil)).Elem(), GroupsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupsTagArrayInput)(nil)).Elem(), GroupsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterInput)(nil)).Elem(), InstanceParameterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterArrayInput)(nil)).Elem(), InstanceParameterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTagInput)(nil)).Elem(), InstanceTagArgs{})
@@ -5227,11 +6437,17 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicParametersPtrInput)(nil)).Elem(), TopicParametersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicPartitionsPartitionInput)(nil)).Elem(), TopicPartitionsPartitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicPartitionsPartitionArrayInput)(nil)).Elem(), TopicPartitionsPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicTagInput)(nil)).Elem(), TopicTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicTagArrayInput)(nil)).Elem(), TopicTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTagInput)(nil)).Elem(), TopicsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTagArrayInput)(nil)).Elem(), TopicsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicInput)(nil)).Elem(), TopicsTopicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicArrayInput)(nil)).Elem(), TopicsTopicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicAccessPolicyInput)(nil)).Elem(), TopicsTopicAccessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicAccessPolicyArrayInput)(nil)).Elem(), TopicsTopicAccessPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicParametersInput)(nil)).Elem(), TopicsTopicParametersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicTagInput)(nil)).Elem(), TopicsTopicTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TopicsTopicTagArrayInput)(nil)).Elem(), TopicsTopicTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAllowListsAllowListInput)(nil)).Elem(), GetAllowListsAllowListArgs{})
@@ -5244,6 +6460,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConsumedTopicsConsumedTopicArrayInput)(nil)).Elem(), GetConsumedTopicsConsumedTopicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupInput)(nil)).Elem(), GetGroupsGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupArrayInput)(nil)).Elem(), GetGroupsGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupTagInput)(nil)).Elem(), GetGroupsGroupTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupTagArrayInput)(nil)).Elem(), GetGroupsGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsTagInput)(nil)).Elem(), GetGroupsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsTagArrayInput)(nil)).Elem(), GetGroupsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInput)(nil)).Elem(), GetInstancesInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceArrayInput)(nil)).Elem(), GetInstancesInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceConnectionInfoInput)(nil)).Elem(), GetInstancesInstanceConnectionInfoArgs{})
@@ -5260,11 +6480,15 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSaslUsersUserArrayInput)(nil)).Elem(), GetSaslUsersUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicPartitionsPartitionInput)(nil)).Elem(), GetTopicPartitionsPartitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicPartitionsPartitionArrayInput)(nil)).Elem(), GetTopicPartitionsPartitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTagInput)(nil)).Elem(), GetTopicsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTagArrayInput)(nil)).Elem(), GetTopicsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicInput)(nil)).Elem(), GetTopicsTopicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicArrayInput)(nil)).Elem(), GetTopicsTopicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicAccessPolicyInput)(nil)).Elem(), GetTopicsTopicAccessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicAccessPolicyArrayInput)(nil)).Elem(), GetTopicsTopicAccessPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicParametersInput)(nil)).Elem(), GetTopicsTopicParametersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicTagInput)(nil)).Elem(), GetTopicsTopicTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTopicsTopicTagArrayInput)(nil)).Elem(), GetTopicsTopicTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneInput)(nil)).Elem(), GetZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetZonesZoneArrayInput)(nil)).Elem(), GetZonesZoneArray{})
 	pulumi.RegisterOutputType(AllowListsAllowListOutput{})
@@ -5275,8 +6499,14 @@ func init() {
 	pulumi.RegisterOutputType(ConsumedPartitionsConsumedPartitionArrayOutput{})
 	pulumi.RegisterOutputType(ConsumedTopicsConsumedTopicOutput{})
 	pulumi.RegisterOutputType(ConsumedTopicsConsumedTopicArrayOutput{})
+	pulumi.RegisterOutputType(GroupTagOutput{})
+	pulumi.RegisterOutputType(GroupTagArrayOutput{})
 	pulumi.RegisterOutputType(GroupsGroupOutput{})
 	pulumi.RegisterOutputType(GroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(GroupsGroupTagOutput{})
+	pulumi.RegisterOutputType(GroupsGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(GroupsTagOutput{})
+	pulumi.RegisterOutputType(GroupsTagArrayOutput{})
 	pulumi.RegisterOutputType(InstanceParameterOutput{})
 	pulumi.RegisterOutputType(InstanceParameterArrayOutput{})
 	pulumi.RegisterOutputType(InstanceTagOutput{})
@@ -5301,11 +6531,17 @@ func init() {
 	pulumi.RegisterOutputType(TopicParametersPtrOutput{})
 	pulumi.RegisterOutputType(TopicPartitionsPartitionOutput{})
 	pulumi.RegisterOutputType(TopicPartitionsPartitionArrayOutput{})
+	pulumi.RegisterOutputType(TopicTagOutput{})
+	pulumi.RegisterOutputType(TopicTagArrayOutput{})
+	pulumi.RegisterOutputType(TopicsTagOutput{})
+	pulumi.RegisterOutputType(TopicsTagArrayOutput{})
 	pulumi.RegisterOutputType(TopicsTopicOutput{})
 	pulumi.RegisterOutputType(TopicsTopicArrayOutput{})
 	pulumi.RegisterOutputType(TopicsTopicAccessPolicyOutput{})
 	pulumi.RegisterOutputType(TopicsTopicAccessPolicyArrayOutput{})
 	pulumi.RegisterOutputType(TopicsTopicParametersOutput{})
+	pulumi.RegisterOutputType(TopicsTopicTagOutput{})
+	pulumi.RegisterOutputType(TopicsTopicTagArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
 	pulumi.RegisterOutputType(GetAllowListsAllowListOutput{})
@@ -5318,6 +6554,10 @@ func init() {
 	pulumi.RegisterOutputType(GetConsumedTopicsConsumedTopicArrayOutput{})
 	pulumi.RegisterOutputType(GetGroupsGroupOutput{})
 	pulumi.RegisterOutputType(GetGroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupTagOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsTagOutput{})
+	pulumi.RegisterOutputType(GetGroupsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceConnectionInfoOutput{})
@@ -5334,11 +6574,15 @@ func init() {
 	pulumi.RegisterOutputType(GetSaslUsersUserArrayOutput{})
 	pulumi.RegisterOutputType(GetTopicPartitionsPartitionOutput{})
 	pulumi.RegisterOutputType(GetTopicPartitionsPartitionArrayOutput{})
+	pulumi.RegisterOutputType(GetTopicsTagOutput{})
+	pulumi.RegisterOutputType(GetTopicsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetTopicsTopicOutput{})
 	pulumi.RegisterOutputType(GetTopicsTopicArrayOutput{})
 	pulumi.RegisterOutputType(GetTopicsTopicAccessPolicyOutput{})
 	pulumi.RegisterOutputType(GetTopicsTopicAccessPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetTopicsTopicParametersOutput{})
+	pulumi.RegisterOutputType(GetTopicsTopicTagOutput{})
+	pulumi.RegisterOutputType(GetTopicsTopicTagArrayOutput{})
 	pulumi.RegisterOutputType(GetZonesZoneOutput{})
 	pulumi.RegisterOutputType(GetZonesZoneArrayOutput{})
 }

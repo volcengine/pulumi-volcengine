@@ -217,6 +217,10 @@ export class AlertingRule extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vmp.AlertingRuleTag[] | undefined>;
+    /**
      * The update time of the vmp alerting rule.
      */
     public /*out*/ readonly updateTime!: pulumi.Output<string>;
@@ -244,6 +248,7 @@ export class AlertingRule extends pulumi.CustomResource {
             resourceInputs["notifyPolicyId"] = state ? state.notifyPolicyId : undefined;
             resourceInputs["query"] = state ? state.query : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
             const args = argsOrState as AlertingRuleArgs | undefined;
@@ -264,6 +269,7 @@ export class AlertingRule extends pulumi.CustomResource {
             resourceInputs["notifyGroupPolicyId"] = args ? args.notifyGroupPolicyId : undefined;
             resourceInputs["notifyPolicyId"] = args ? args.notifyPolicyId : undefined;
             resourceInputs["query"] = args ? args.query : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updateTime"] = undefined /*out*/;
@@ -318,6 +324,10 @@ export interface AlertingRuleState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vmp.AlertingRuleTag>[]>;
+    /**
      * The update time of the vmp alerting rule.
      */
     updateTime?: pulumi.Input<string>;
@@ -359,4 +369,8 @@ export interface AlertingRuleArgs {
      * The alerting query of the vmp alerting rule.
      */
     query: pulumi.Input<inputs.vmp.AlertingRuleQuery>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vmp.AlertingRuleTag>[]>;
 }

@@ -138,10 +138,14 @@ type VpcEndpointsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of vpc endpoint.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of vpc endpoint service.
 	ServiceName *string `pulumi:"serviceName"`
 	// The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []VpcEndpointsTag `pulumi:"tags"`
 	// The vpc id of vpc endpoint.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -155,10 +159,14 @@ type VpcEndpointsResult struct {
 	Ids        []string `pulumi:"ids"`
 	NameRegex  *string  `pulumi:"nameRegex"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The project name of vpc endpoint.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of vpc endpoint service.
 	ServiceName *string `pulumi:"serviceName"`
 	// The status of vpc endpoint.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []VpcEndpointsTag `pulumi:"tags"`
 	// Returns the total amount of the data list.
 	TotalCount int `pulumi:"totalCount"`
 	// The collection of query.
@@ -190,10 +198,14 @@ type VpcEndpointsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of vpc endpoint.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The name of vpc endpoint service.
 	ServiceName pulumi.StringPtrInput `pulumi:"serviceName"`
 	// The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Tags.
+	Tags VpcEndpointsTagArrayInput `pulumi:"tags"`
 	// The vpc id of vpc endpoint.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -239,6 +251,11 @@ func (o VpcEndpointsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcEndpointsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of vpc endpoint.
+func (o VpcEndpointsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcEndpointsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The name of vpc endpoint service.
 func (o VpcEndpointsResultOutput) ServiceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcEndpointsResult) *string { return v.ServiceName }).(pulumi.StringPtrOutput)
@@ -247,6 +264,11 @@ func (o VpcEndpointsResultOutput) ServiceName() pulumi.StringPtrOutput {
 // The status of vpc endpoint.
 func (o VpcEndpointsResultOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcEndpointsResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o VpcEndpointsResultOutput) Tags() VpcEndpointsTagArrayOutput {
+	return o.ApplyT(func(v VpcEndpointsResult) []VpcEndpointsTag { return v.Tags }).(VpcEndpointsTagArrayOutput)
 }
 
 // Returns the total amount of the data list.

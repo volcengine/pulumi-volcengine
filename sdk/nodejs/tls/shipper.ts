@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.tls.Shipper("foo", {
+ * const tosFoo = new volcengine.tls.Shipper("tosFoo", {
  *     contentInfo: {
  *         format: "json",
  *         jsonInfo: {
@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  *     },
  *     roleTrn: "",
  *     shipperEndTime: 1751255700021,
- *     shipperName: "tf-test",
+ *     shipperName: "tf-test-tos-1",
  *     shipperStartTime: 1750737324521,
  *     shipperType: "tos",
  *     topicId: "8ba48bd7-2493-4300-b1d0-cb760b89e51b",

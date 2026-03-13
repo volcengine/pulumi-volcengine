@@ -24,34 +24,30 @@ import * as utilities from "../utilities";
  *         includeChinese: false,
  *     },
  *     keyValues: [{
- *         autoIndexFlag: false,
  *         caseSensitive: true,
  *         delimiter: "!",
  *         includeChinese: false,
  *         indexAll: true,
- *         indexSqlAll: true,
  *         jsonKeys: [
  *             {
- *                 key: "name-2",
+ *                 key: "name",
  *                 valueType: "text",
  *             },
  *             {
- *                 key: "key-2",
+ *                 key: "key",
  *                 valueType: "long",
  *             },
  *         ],
- *         key: "k21",
+ *         key: "k1",
  *         sqlFlag: true,
  *         valueType: "json",
  *     }],
  *     maxTextLen: 2048,
- *     topicId: "c36ed436-84f1-467a-b00e-ba504db753ca",
+ *     topicId: "a0197686-1309-4c46-8003-4be3b278a838",
  *     userInnerKeyValues: [{
- *         autoIndexFlag: false,
+ *         caseSensitive: false,
  *         delimiter: ",:-/ ",
  *         includeChinese: false,
- *         indexAll: true,
- *         indexSqlAll: true,
  *         jsonKeys: [
  *             {
  *                 key: "app",
@@ -63,7 +59,7 @@ import * as utilities from "../utilities";
  *             },
  *         ],
  *         key: "__content__",
- *         sqlFlag: true,
+ *         sqlFlag: false,
  *         valueType: "json",
  *     }],
  * });

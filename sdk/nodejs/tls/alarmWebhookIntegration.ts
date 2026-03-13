@@ -20,10 +20,10 @@ import * as utilities from "../utilities";
  *         value: "application/json",
  *     }],
  *     webhookMethod: "PUT",
- *     webhookName: "terraform-tf-webhook",
+ *     webhookName: "terraform-tf-webhook-modify",
  *     webhookSecret: "your secret",
- *     webhookType: "lark",
- *     webhookUrl: "http://zijie.com",
+ *     webhookType: "wechat",
+ *     webhookUrl: "http://tencent.com",
  * });
  * ```
  *

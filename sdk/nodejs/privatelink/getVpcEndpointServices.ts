@@ -67,7 +67,9 @@ export function getVpcEndpointServices(args?: GetVpcEndpointServicesArgs, opts?:
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "serviceName": args.serviceName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -88,9 +90,17 @@ export interface GetVpcEndpointServicesArgs {
      */
     outputFile?: string;
     /**
+     * The project name of vpc endpoint service.
+     */
+    projectName?: string;
+    /**
      * The name of vpc endpoint service.
      */
     serviceName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.privatelink.GetVpcEndpointServicesTag[];
 }
 
 /**
@@ -105,6 +115,10 @@ export interface GetVpcEndpointServicesResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The project name of service.
+     */
+    readonly projectName?: string;
+    /**
      * The name of service.
      */
     readonly serviceName?: string;
@@ -112,6 +126,10 @@ export interface GetVpcEndpointServicesResult {
      * The collection of query.
      */
     readonly services: outputs.privatelink.GetVpcEndpointServicesService[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.privatelink.GetVpcEndpointServicesTag[];
     /**
      * Returns the total amount of the data list.
      */
@@ -191,7 +209,15 @@ export interface GetVpcEndpointServicesOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The project name of vpc endpoint service.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The name of vpc endpoint service.
      */
     serviceName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.privatelink.GetVpcEndpointServicesTagArgs>[]>;
 }

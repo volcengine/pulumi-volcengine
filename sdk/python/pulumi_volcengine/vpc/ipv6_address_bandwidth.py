@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['Ipv6AddressBandwidthArgs', 'Ipv6AddressBandwidth']
 
@@ -16,17 +18,21 @@ class Ipv6AddressBandwidthArgs:
     def __init__(__self__, *,
                  billing_type: pulumi.Input[str],
                  ipv6_address: pulumi.Input[str],
-                 bandwidth: Optional[pulumi.Input[int]] = None):
+                 bandwidth: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]]] = None):
         """
         The set of arguments for constructing a Ipv6AddressBandwidth resource.
         :param pulumi.Input[str] billing_type: BillingType of the Ipv6 bandwidth. Valid values: `PostPaidByBandwidth`; `PostPaidByTraffic`.
         :param pulumi.Input[str] ipv6_address: Ipv6 address.
         :param pulumi.Input[int] bandwidth: Peek bandwidth of the Ipv6 address. Valid values: 1 to 200. Unit: Mbit/s.
+        :param pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "billing_type", billing_type)
         pulumi.set(__self__, "ipv6_address", ipv6_address)
         if bandwidth is not None:
             pulumi.set(__self__, "bandwidth", bandwidth)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="billingType")
@@ -64,6 +70,18 @@ class Ipv6AddressBandwidthArgs:
     def bandwidth(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "bandwidth", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _Ipv6AddressBandwidthState:
@@ -82,6 +100,7 @@ class _Ipv6AddressBandwidthState:
                  network_type: Optional[pulumi.Input[str]] = None,
                  overdue_time: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ipv6AddressBandwidth resources.
@@ -99,6 +118,7 @@ class _Ipv6AddressBandwidthState:
         :param pulumi.Input[str] network_type: The network type of the Ipv6AddressBandwidth.
         :param pulumi.Input[str] overdue_time: Overdue time of the Ipv6AddressBandwidth.
         :param pulumi.Input[str] status: The status of the Ipv6AddressBandwidth.
+        :param pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: Update time of the Ipv6AddressBandwidth.
         """
         if allocation_id is not None:
@@ -129,6 +149,8 @@ class _Ipv6AddressBandwidthState:
             pulumi.set(__self__, "overdue_time", overdue_time)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
 
@@ -301,6 +323,18 @@ class _Ipv6AddressBandwidthState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Ipv6AddressBandwidthTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -321,6 +355,7 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  billing_type: Optional[pulumi.Input[str]] = None,
                  ipv6_address: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ipv6AddressBandwidthTagArgs']]]]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -350,6 +385,7 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
         :param pulumi.Input[int] bandwidth: Peek bandwidth of the Ipv6 address. Valid values: 1 to 200. Unit: Mbit/s.
         :param pulumi.Input[str] billing_type: BillingType of the Ipv6 bandwidth. Valid values: `PostPaidByBandwidth`; `PostPaidByTraffic`.
         :param pulumi.Input[str] ipv6_address: Ipv6 address.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ipv6AddressBandwidthTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -398,6 +434,7 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  billing_type: Optional[pulumi.Input[str]] = None,
                  ipv6_address: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ipv6AddressBandwidthTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -414,6 +451,7 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
             if ipv6_address is None and not opts.urn:
                 raise TypeError("Missing required property 'ipv6_address'")
             __props__.__dict__["ipv6_address"] = ipv6_address
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["allocation_id"] = None
             __props__.__dict__["business_status"] = None
             __props__.__dict__["creation_time"] = None
@@ -450,6 +488,7 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
             network_type: Optional[pulumi.Input[str]] = None,
             overdue_time: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ipv6AddressBandwidthTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'Ipv6AddressBandwidth':
         """
         Get an existing Ipv6AddressBandwidth resource's state with the given name, id, and optional extra
@@ -472,6 +511,7 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
         :param pulumi.Input[str] network_type: The network type of the Ipv6AddressBandwidth.
         :param pulumi.Input[str] overdue_time: Overdue time of the Ipv6AddressBandwidth.
         :param pulumi.Input[str] status: The status of the Ipv6AddressBandwidth.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ipv6AddressBandwidthTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: Update time of the Ipv6AddressBandwidth.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -492,6 +532,7 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
         __props__.__dict__["network_type"] = network_type
         __props__.__dict__["overdue_time"] = overdue_time
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         return Ipv6AddressBandwidth(resource_name, opts=opts, __props__=__props__)
 
@@ -606,6 +647,14 @@ class Ipv6AddressBandwidth(pulumi.CustomResource):
         The status of the Ipv6AddressBandwidth.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.Ipv6AddressBandwidthTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

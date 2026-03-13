@@ -1149,6 +1149,112 @@ func (o HaVipsTagArrayOutput) Index(i pulumi.IntInput) HaVipsTagOutput {
 	}).(HaVipsTagOutput)
 }
 
+type Ipv6AddressBandwidthTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// Ipv6AddressBandwidthTagInput is an input type that accepts Ipv6AddressBandwidthTagArgs and Ipv6AddressBandwidthTagOutput values.
+// You can construct a concrete instance of `Ipv6AddressBandwidthTagInput` via:
+//
+//	Ipv6AddressBandwidthTagArgs{...}
+type Ipv6AddressBandwidthTagInput interface {
+	pulumi.Input
+
+	ToIpv6AddressBandwidthTagOutput() Ipv6AddressBandwidthTagOutput
+	ToIpv6AddressBandwidthTagOutputWithContext(context.Context) Ipv6AddressBandwidthTagOutput
+}
+
+type Ipv6AddressBandwidthTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (Ipv6AddressBandwidthTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6AddressBandwidthTag)(nil)).Elem()
+}
+
+func (i Ipv6AddressBandwidthTagArgs) ToIpv6AddressBandwidthTagOutput() Ipv6AddressBandwidthTagOutput {
+	return i.ToIpv6AddressBandwidthTagOutputWithContext(context.Background())
+}
+
+func (i Ipv6AddressBandwidthTagArgs) ToIpv6AddressBandwidthTagOutputWithContext(ctx context.Context) Ipv6AddressBandwidthTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6AddressBandwidthTagOutput)
+}
+
+// Ipv6AddressBandwidthTagArrayInput is an input type that accepts Ipv6AddressBandwidthTagArray and Ipv6AddressBandwidthTagArrayOutput values.
+// You can construct a concrete instance of `Ipv6AddressBandwidthTagArrayInput` via:
+//
+//	Ipv6AddressBandwidthTagArray{ Ipv6AddressBandwidthTagArgs{...} }
+type Ipv6AddressBandwidthTagArrayInput interface {
+	pulumi.Input
+
+	ToIpv6AddressBandwidthTagArrayOutput() Ipv6AddressBandwidthTagArrayOutput
+	ToIpv6AddressBandwidthTagArrayOutputWithContext(context.Context) Ipv6AddressBandwidthTagArrayOutput
+}
+
+type Ipv6AddressBandwidthTagArray []Ipv6AddressBandwidthTagInput
+
+func (Ipv6AddressBandwidthTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6AddressBandwidthTag)(nil)).Elem()
+}
+
+func (i Ipv6AddressBandwidthTagArray) ToIpv6AddressBandwidthTagArrayOutput() Ipv6AddressBandwidthTagArrayOutput {
+	return i.ToIpv6AddressBandwidthTagArrayOutputWithContext(context.Background())
+}
+
+func (i Ipv6AddressBandwidthTagArray) ToIpv6AddressBandwidthTagArrayOutputWithContext(ctx context.Context) Ipv6AddressBandwidthTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6AddressBandwidthTagArrayOutput)
+}
+
+type Ipv6AddressBandwidthTagOutput struct{ *pulumi.OutputState }
+
+func (Ipv6AddressBandwidthTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6AddressBandwidthTag)(nil)).Elem()
+}
+
+func (o Ipv6AddressBandwidthTagOutput) ToIpv6AddressBandwidthTagOutput() Ipv6AddressBandwidthTagOutput {
+	return o
+}
+
+func (o Ipv6AddressBandwidthTagOutput) ToIpv6AddressBandwidthTagOutputWithContext(ctx context.Context) Ipv6AddressBandwidthTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o Ipv6AddressBandwidthTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6AddressBandwidthTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o Ipv6AddressBandwidthTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6AddressBandwidthTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type Ipv6AddressBandwidthTagArrayOutput struct{ *pulumi.OutputState }
+
+func (Ipv6AddressBandwidthTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6AddressBandwidthTag)(nil)).Elem()
+}
+
+func (o Ipv6AddressBandwidthTagArrayOutput) ToIpv6AddressBandwidthTagArrayOutput() Ipv6AddressBandwidthTagArrayOutput {
+	return o
+}
+
+func (o Ipv6AddressBandwidthTagArrayOutput) ToIpv6AddressBandwidthTagArrayOutputWithContext(ctx context.Context) Ipv6AddressBandwidthTagArrayOutput {
+	return o
+}
+
+func (o Ipv6AddressBandwidthTagArrayOutput) Index(i pulumi.IntInput) Ipv6AddressBandwidthTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Ipv6AddressBandwidthTag {
+		return vs[0].([]Ipv6AddressBandwidthTag)[vs[1].(int)]
+	}).(Ipv6AddressBandwidthTagOutput)
+}
+
 type Ipv6AddressBandwidthsIpv6AddressBandwidth struct {
 	// The ID of the Ipv6AddressBandwidth.
 	AllocationId string `pulumi:"allocationId"`
@@ -1381,6 +1487,112 @@ func (o Ipv6AddressBandwidthsIpv6AddressBandwidthArrayOutput) Index(i pulumi.Int
 	}).(Ipv6AddressBandwidthsIpv6AddressBandwidthOutput)
 }
 
+type Ipv6AddressBandwidthsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// Ipv6AddressBandwidthsTagInput is an input type that accepts Ipv6AddressBandwidthsTagArgs and Ipv6AddressBandwidthsTagOutput values.
+// You can construct a concrete instance of `Ipv6AddressBandwidthsTagInput` via:
+//
+//	Ipv6AddressBandwidthsTagArgs{...}
+type Ipv6AddressBandwidthsTagInput interface {
+	pulumi.Input
+
+	ToIpv6AddressBandwidthsTagOutput() Ipv6AddressBandwidthsTagOutput
+	ToIpv6AddressBandwidthsTagOutputWithContext(context.Context) Ipv6AddressBandwidthsTagOutput
+}
+
+type Ipv6AddressBandwidthsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (Ipv6AddressBandwidthsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (i Ipv6AddressBandwidthsTagArgs) ToIpv6AddressBandwidthsTagOutput() Ipv6AddressBandwidthsTagOutput {
+	return i.ToIpv6AddressBandwidthsTagOutputWithContext(context.Background())
+}
+
+func (i Ipv6AddressBandwidthsTagArgs) ToIpv6AddressBandwidthsTagOutputWithContext(ctx context.Context) Ipv6AddressBandwidthsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6AddressBandwidthsTagOutput)
+}
+
+// Ipv6AddressBandwidthsTagArrayInput is an input type that accepts Ipv6AddressBandwidthsTagArray and Ipv6AddressBandwidthsTagArrayOutput values.
+// You can construct a concrete instance of `Ipv6AddressBandwidthsTagArrayInput` via:
+//
+//	Ipv6AddressBandwidthsTagArray{ Ipv6AddressBandwidthsTagArgs{...} }
+type Ipv6AddressBandwidthsTagArrayInput interface {
+	pulumi.Input
+
+	ToIpv6AddressBandwidthsTagArrayOutput() Ipv6AddressBandwidthsTagArrayOutput
+	ToIpv6AddressBandwidthsTagArrayOutputWithContext(context.Context) Ipv6AddressBandwidthsTagArrayOutput
+}
+
+type Ipv6AddressBandwidthsTagArray []Ipv6AddressBandwidthsTagInput
+
+func (Ipv6AddressBandwidthsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (i Ipv6AddressBandwidthsTagArray) ToIpv6AddressBandwidthsTagArrayOutput() Ipv6AddressBandwidthsTagArrayOutput {
+	return i.ToIpv6AddressBandwidthsTagArrayOutputWithContext(context.Background())
+}
+
+func (i Ipv6AddressBandwidthsTagArray) ToIpv6AddressBandwidthsTagArrayOutputWithContext(ctx context.Context) Ipv6AddressBandwidthsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6AddressBandwidthsTagArrayOutput)
+}
+
+type Ipv6AddressBandwidthsTagOutput struct{ *pulumi.OutputState }
+
+func (Ipv6AddressBandwidthsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (o Ipv6AddressBandwidthsTagOutput) ToIpv6AddressBandwidthsTagOutput() Ipv6AddressBandwidthsTagOutput {
+	return o
+}
+
+func (o Ipv6AddressBandwidthsTagOutput) ToIpv6AddressBandwidthsTagOutputWithContext(ctx context.Context) Ipv6AddressBandwidthsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o Ipv6AddressBandwidthsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6AddressBandwidthsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o Ipv6AddressBandwidthsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6AddressBandwidthsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type Ipv6AddressBandwidthsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (Ipv6AddressBandwidthsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (o Ipv6AddressBandwidthsTagArrayOutput) ToIpv6AddressBandwidthsTagArrayOutput() Ipv6AddressBandwidthsTagArrayOutput {
+	return o
+}
+
+func (o Ipv6AddressBandwidthsTagArrayOutput) ToIpv6AddressBandwidthsTagArrayOutputWithContext(ctx context.Context) Ipv6AddressBandwidthsTagArrayOutput {
+	return o
+}
+
+func (o Ipv6AddressBandwidthsTagArrayOutput) Index(i pulumi.IntInput) Ipv6AddressBandwidthsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Ipv6AddressBandwidthsTag {
+		return vs[0].([]Ipv6AddressBandwidthsTag)[vs[1].(int)]
+	}).(Ipv6AddressBandwidthsTagOutput)
+}
+
 type Ipv6AddressesIpv6Address struct {
 	// The IPv6 address.
 	Ipv6Address string `pulumi:"ipv6Address"`
@@ -1478,6 +1690,112 @@ func (o Ipv6AddressesIpv6AddressArrayOutput) Index(i pulumi.IntInput) Ipv6Addres
 	}).(Ipv6AddressesIpv6AddressOutput)
 }
 
+type Ipv6GatewayTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// Ipv6GatewayTagInput is an input type that accepts Ipv6GatewayTagArgs and Ipv6GatewayTagOutput values.
+// You can construct a concrete instance of `Ipv6GatewayTagInput` via:
+//
+//	Ipv6GatewayTagArgs{...}
+type Ipv6GatewayTagInput interface {
+	pulumi.Input
+
+	ToIpv6GatewayTagOutput() Ipv6GatewayTagOutput
+	ToIpv6GatewayTagOutputWithContext(context.Context) Ipv6GatewayTagOutput
+}
+
+type Ipv6GatewayTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (Ipv6GatewayTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6GatewayTag)(nil)).Elem()
+}
+
+func (i Ipv6GatewayTagArgs) ToIpv6GatewayTagOutput() Ipv6GatewayTagOutput {
+	return i.ToIpv6GatewayTagOutputWithContext(context.Background())
+}
+
+func (i Ipv6GatewayTagArgs) ToIpv6GatewayTagOutputWithContext(ctx context.Context) Ipv6GatewayTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6GatewayTagOutput)
+}
+
+// Ipv6GatewayTagArrayInput is an input type that accepts Ipv6GatewayTagArray and Ipv6GatewayTagArrayOutput values.
+// You can construct a concrete instance of `Ipv6GatewayTagArrayInput` via:
+//
+//	Ipv6GatewayTagArray{ Ipv6GatewayTagArgs{...} }
+type Ipv6GatewayTagArrayInput interface {
+	pulumi.Input
+
+	ToIpv6GatewayTagArrayOutput() Ipv6GatewayTagArrayOutput
+	ToIpv6GatewayTagArrayOutputWithContext(context.Context) Ipv6GatewayTagArrayOutput
+}
+
+type Ipv6GatewayTagArray []Ipv6GatewayTagInput
+
+func (Ipv6GatewayTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6GatewayTag)(nil)).Elem()
+}
+
+func (i Ipv6GatewayTagArray) ToIpv6GatewayTagArrayOutput() Ipv6GatewayTagArrayOutput {
+	return i.ToIpv6GatewayTagArrayOutputWithContext(context.Background())
+}
+
+func (i Ipv6GatewayTagArray) ToIpv6GatewayTagArrayOutputWithContext(ctx context.Context) Ipv6GatewayTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6GatewayTagArrayOutput)
+}
+
+type Ipv6GatewayTagOutput struct{ *pulumi.OutputState }
+
+func (Ipv6GatewayTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6GatewayTag)(nil)).Elem()
+}
+
+func (o Ipv6GatewayTagOutput) ToIpv6GatewayTagOutput() Ipv6GatewayTagOutput {
+	return o
+}
+
+func (o Ipv6GatewayTagOutput) ToIpv6GatewayTagOutputWithContext(ctx context.Context) Ipv6GatewayTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o Ipv6GatewayTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6GatewayTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o Ipv6GatewayTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6GatewayTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type Ipv6GatewayTagArrayOutput struct{ *pulumi.OutputState }
+
+func (Ipv6GatewayTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6GatewayTag)(nil)).Elem()
+}
+
+func (o Ipv6GatewayTagArrayOutput) ToIpv6GatewayTagArrayOutput() Ipv6GatewayTagArrayOutput {
+	return o
+}
+
+func (o Ipv6GatewayTagArrayOutput) ToIpv6GatewayTagArrayOutputWithContext(ctx context.Context) Ipv6GatewayTagArrayOutput {
+	return o
+}
+
+func (o Ipv6GatewayTagArrayOutput) Index(i pulumi.IntInput) Ipv6GatewayTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Ipv6GatewayTag {
+		return vs[0].([]Ipv6GatewayTag)[vs[1].(int)]
+	}).(Ipv6GatewayTagOutput)
+}
+
 type Ipv6GatewaysIpv6Gateway struct {
 	// Creation time of the Ipv6Gateway.
 	CreationTime string `pulumi:"creationTime"`
@@ -1489,8 +1807,12 @@ type Ipv6GatewaysIpv6Gateway struct {
 	Ipv6GatewayId string `pulumi:"ipv6GatewayId"`
 	// The name of the Ipv6Gateway.
 	Name string `pulumi:"name"`
+	// The project name of the Ipv6Gateway.
+	ProjectName string `pulumi:"projectName"`
 	// The Status of the Ipv6Gateway.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []Ipv6GatewaysIpv6GatewayTag `pulumi:"tags"`
 	// Update time of the Ipv6Gateway.
 	UpdateTime string `pulumi:"updateTime"`
 	// The id of the VPC which the Ipv6Gateway belongs to.
@@ -1519,8 +1841,12 @@ type Ipv6GatewaysIpv6GatewayArgs struct {
 	Ipv6GatewayId pulumi.StringInput `pulumi:"ipv6GatewayId"`
 	// The name of the Ipv6Gateway.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the Ipv6Gateway.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The Status of the Ipv6Gateway.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags Ipv6GatewaysIpv6GatewayTagArrayInput `pulumi:"tags"`
 	// Update time of the Ipv6Gateway.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// The id of the VPC which the Ipv6Gateway belongs to.
@@ -1603,9 +1929,19 @@ func (o Ipv6GatewaysIpv6GatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Ipv6GatewaysIpv6Gateway) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the Ipv6Gateway.
+func (o Ipv6GatewaysIpv6GatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6GatewaysIpv6Gateway) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The Status of the Ipv6Gateway.
 func (o Ipv6GatewaysIpv6GatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v Ipv6GatewaysIpv6Gateway) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o Ipv6GatewaysIpv6GatewayOutput) Tags() Ipv6GatewaysIpv6GatewayTagArrayOutput {
+	return o.ApplyT(func(v Ipv6GatewaysIpv6Gateway) []Ipv6GatewaysIpv6GatewayTag { return v.Tags }).(Ipv6GatewaysIpv6GatewayTagArrayOutput)
 }
 
 // Update time of the Ipv6Gateway.
@@ -1636,6 +1972,218 @@ func (o Ipv6GatewaysIpv6GatewayArrayOutput) Index(i pulumi.IntInput) Ipv6Gateway
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Ipv6GatewaysIpv6Gateway {
 		return vs[0].([]Ipv6GatewaysIpv6Gateway)[vs[1].(int)]
 	}).(Ipv6GatewaysIpv6GatewayOutput)
+}
+
+type Ipv6GatewaysIpv6GatewayTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// Ipv6GatewaysIpv6GatewayTagInput is an input type that accepts Ipv6GatewaysIpv6GatewayTagArgs and Ipv6GatewaysIpv6GatewayTagOutput values.
+// You can construct a concrete instance of `Ipv6GatewaysIpv6GatewayTagInput` via:
+//
+//	Ipv6GatewaysIpv6GatewayTagArgs{...}
+type Ipv6GatewaysIpv6GatewayTagInput interface {
+	pulumi.Input
+
+	ToIpv6GatewaysIpv6GatewayTagOutput() Ipv6GatewaysIpv6GatewayTagOutput
+	ToIpv6GatewaysIpv6GatewayTagOutputWithContext(context.Context) Ipv6GatewaysIpv6GatewayTagOutput
+}
+
+type Ipv6GatewaysIpv6GatewayTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (Ipv6GatewaysIpv6GatewayTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (i Ipv6GatewaysIpv6GatewayTagArgs) ToIpv6GatewaysIpv6GatewayTagOutput() Ipv6GatewaysIpv6GatewayTagOutput {
+	return i.ToIpv6GatewaysIpv6GatewayTagOutputWithContext(context.Background())
+}
+
+func (i Ipv6GatewaysIpv6GatewayTagArgs) ToIpv6GatewaysIpv6GatewayTagOutputWithContext(ctx context.Context) Ipv6GatewaysIpv6GatewayTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6GatewaysIpv6GatewayTagOutput)
+}
+
+// Ipv6GatewaysIpv6GatewayTagArrayInput is an input type that accepts Ipv6GatewaysIpv6GatewayTagArray and Ipv6GatewaysIpv6GatewayTagArrayOutput values.
+// You can construct a concrete instance of `Ipv6GatewaysIpv6GatewayTagArrayInput` via:
+//
+//	Ipv6GatewaysIpv6GatewayTagArray{ Ipv6GatewaysIpv6GatewayTagArgs{...} }
+type Ipv6GatewaysIpv6GatewayTagArrayInput interface {
+	pulumi.Input
+
+	ToIpv6GatewaysIpv6GatewayTagArrayOutput() Ipv6GatewaysIpv6GatewayTagArrayOutput
+	ToIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(context.Context) Ipv6GatewaysIpv6GatewayTagArrayOutput
+}
+
+type Ipv6GatewaysIpv6GatewayTagArray []Ipv6GatewaysIpv6GatewayTagInput
+
+func (Ipv6GatewaysIpv6GatewayTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (i Ipv6GatewaysIpv6GatewayTagArray) ToIpv6GatewaysIpv6GatewayTagArrayOutput() Ipv6GatewaysIpv6GatewayTagArrayOutput {
+	return i.ToIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(context.Background())
+}
+
+func (i Ipv6GatewaysIpv6GatewayTagArray) ToIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(ctx context.Context) Ipv6GatewaysIpv6GatewayTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6GatewaysIpv6GatewayTagArrayOutput)
+}
+
+type Ipv6GatewaysIpv6GatewayTagOutput struct{ *pulumi.OutputState }
+
+func (Ipv6GatewaysIpv6GatewayTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (o Ipv6GatewaysIpv6GatewayTagOutput) ToIpv6GatewaysIpv6GatewayTagOutput() Ipv6GatewaysIpv6GatewayTagOutput {
+	return o
+}
+
+func (o Ipv6GatewaysIpv6GatewayTagOutput) ToIpv6GatewaysIpv6GatewayTagOutputWithContext(ctx context.Context) Ipv6GatewaysIpv6GatewayTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o Ipv6GatewaysIpv6GatewayTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6GatewaysIpv6GatewayTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o Ipv6GatewaysIpv6GatewayTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6GatewaysIpv6GatewayTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type Ipv6GatewaysIpv6GatewayTagArrayOutput struct{ *pulumi.OutputState }
+
+func (Ipv6GatewaysIpv6GatewayTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (o Ipv6GatewaysIpv6GatewayTagArrayOutput) ToIpv6GatewaysIpv6GatewayTagArrayOutput() Ipv6GatewaysIpv6GatewayTagArrayOutput {
+	return o
+}
+
+func (o Ipv6GatewaysIpv6GatewayTagArrayOutput) ToIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(ctx context.Context) Ipv6GatewaysIpv6GatewayTagArrayOutput {
+	return o
+}
+
+func (o Ipv6GatewaysIpv6GatewayTagArrayOutput) Index(i pulumi.IntInput) Ipv6GatewaysIpv6GatewayTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Ipv6GatewaysIpv6GatewayTag {
+		return vs[0].([]Ipv6GatewaysIpv6GatewayTag)[vs[1].(int)]
+	}).(Ipv6GatewaysIpv6GatewayTagOutput)
+}
+
+type Ipv6GatewaysTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// Ipv6GatewaysTagInput is an input type that accepts Ipv6GatewaysTagArgs and Ipv6GatewaysTagOutput values.
+// You can construct a concrete instance of `Ipv6GatewaysTagInput` via:
+//
+//	Ipv6GatewaysTagArgs{...}
+type Ipv6GatewaysTagInput interface {
+	pulumi.Input
+
+	ToIpv6GatewaysTagOutput() Ipv6GatewaysTagOutput
+	ToIpv6GatewaysTagOutputWithContext(context.Context) Ipv6GatewaysTagOutput
+}
+
+type Ipv6GatewaysTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (Ipv6GatewaysTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6GatewaysTag)(nil)).Elem()
+}
+
+func (i Ipv6GatewaysTagArgs) ToIpv6GatewaysTagOutput() Ipv6GatewaysTagOutput {
+	return i.ToIpv6GatewaysTagOutputWithContext(context.Background())
+}
+
+func (i Ipv6GatewaysTagArgs) ToIpv6GatewaysTagOutputWithContext(ctx context.Context) Ipv6GatewaysTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6GatewaysTagOutput)
+}
+
+// Ipv6GatewaysTagArrayInput is an input type that accepts Ipv6GatewaysTagArray and Ipv6GatewaysTagArrayOutput values.
+// You can construct a concrete instance of `Ipv6GatewaysTagArrayInput` via:
+//
+//	Ipv6GatewaysTagArray{ Ipv6GatewaysTagArgs{...} }
+type Ipv6GatewaysTagArrayInput interface {
+	pulumi.Input
+
+	ToIpv6GatewaysTagArrayOutput() Ipv6GatewaysTagArrayOutput
+	ToIpv6GatewaysTagArrayOutputWithContext(context.Context) Ipv6GatewaysTagArrayOutput
+}
+
+type Ipv6GatewaysTagArray []Ipv6GatewaysTagInput
+
+func (Ipv6GatewaysTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6GatewaysTag)(nil)).Elem()
+}
+
+func (i Ipv6GatewaysTagArray) ToIpv6GatewaysTagArrayOutput() Ipv6GatewaysTagArrayOutput {
+	return i.ToIpv6GatewaysTagArrayOutputWithContext(context.Background())
+}
+
+func (i Ipv6GatewaysTagArray) ToIpv6GatewaysTagArrayOutputWithContext(ctx context.Context) Ipv6GatewaysTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Ipv6GatewaysTagArrayOutput)
+}
+
+type Ipv6GatewaysTagOutput struct{ *pulumi.OutputState }
+
+func (Ipv6GatewaysTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Ipv6GatewaysTag)(nil)).Elem()
+}
+
+func (o Ipv6GatewaysTagOutput) ToIpv6GatewaysTagOutput() Ipv6GatewaysTagOutput {
+	return o
+}
+
+func (o Ipv6GatewaysTagOutput) ToIpv6GatewaysTagOutputWithContext(ctx context.Context) Ipv6GatewaysTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o Ipv6GatewaysTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6GatewaysTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o Ipv6GatewaysTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v Ipv6GatewaysTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type Ipv6GatewaysTagArrayOutput struct{ *pulumi.OutputState }
+
+func (Ipv6GatewaysTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Ipv6GatewaysTag)(nil)).Elem()
+}
+
+func (o Ipv6GatewaysTagArrayOutput) ToIpv6GatewaysTagArrayOutput() Ipv6GatewaysTagArrayOutput {
+	return o
+}
+
+func (o Ipv6GatewaysTagArrayOutput) ToIpv6GatewaysTagArrayOutputWithContext(ctx context.Context) Ipv6GatewaysTagArrayOutput {
+	return o
+}
+
+func (o Ipv6GatewaysTagArrayOutput) Index(i pulumi.IntInput) Ipv6GatewaysTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Ipv6GatewaysTag {
+		return vs[0].([]Ipv6GatewaysTag)[vs[1].(int)]
+	}).(Ipv6GatewaysTagOutput)
 }
 
 type NetworkAclEgressAclEntry struct {
@@ -10978,6 +11526,112 @@ func (o GetIpv6AddressBandwidthsIpv6AddressBandwidthArrayOutput) Index(i pulumi.
 	}).(GetIpv6AddressBandwidthsIpv6AddressBandwidthOutput)
 }
 
+type GetIpv6AddressBandwidthsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetIpv6AddressBandwidthsTagInput is an input type that accepts GetIpv6AddressBandwidthsTagArgs and GetIpv6AddressBandwidthsTagOutput values.
+// You can construct a concrete instance of `GetIpv6AddressBandwidthsTagInput` via:
+//
+//	GetIpv6AddressBandwidthsTagArgs{...}
+type GetIpv6AddressBandwidthsTagInput interface {
+	pulumi.Input
+
+	ToGetIpv6AddressBandwidthsTagOutput() GetIpv6AddressBandwidthsTagOutput
+	ToGetIpv6AddressBandwidthsTagOutputWithContext(context.Context) GetIpv6AddressBandwidthsTagOutput
+}
+
+type GetIpv6AddressBandwidthsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetIpv6AddressBandwidthsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (i GetIpv6AddressBandwidthsTagArgs) ToGetIpv6AddressBandwidthsTagOutput() GetIpv6AddressBandwidthsTagOutput {
+	return i.ToGetIpv6AddressBandwidthsTagOutputWithContext(context.Background())
+}
+
+func (i GetIpv6AddressBandwidthsTagArgs) ToGetIpv6AddressBandwidthsTagOutputWithContext(ctx context.Context) GetIpv6AddressBandwidthsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpv6AddressBandwidthsTagOutput)
+}
+
+// GetIpv6AddressBandwidthsTagArrayInput is an input type that accepts GetIpv6AddressBandwidthsTagArray and GetIpv6AddressBandwidthsTagArrayOutput values.
+// You can construct a concrete instance of `GetIpv6AddressBandwidthsTagArrayInput` via:
+//
+//	GetIpv6AddressBandwidthsTagArray{ GetIpv6AddressBandwidthsTagArgs{...} }
+type GetIpv6AddressBandwidthsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetIpv6AddressBandwidthsTagArrayOutput() GetIpv6AddressBandwidthsTagArrayOutput
+	ToGetIpv6AddressBandwidthsTagArrayOutputWithContext(context.Context) GetIpv6AddressBandwidthsTagArrayOutput
+}
+
+type GetIpv6AddressBandwidthsTagArray []GetIpv6AddressBandwidthsTagInput
+
+func (GetIpv6AddressBandwidthsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (i GetIpv6AddressBandwidthsTagArray) ToGetIpv6AddressBandwidthsTagArrayOutput() GetIpv6AddressBandwidthsTagArrayOutput {
+	return i.ToGetIpv6AddressBandwidthsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetIpv6AddressBandwidthsTagArray) ToGetIpv6AddressBandwidthsTagArrayOutputWithContext(ctx context.Context) GetIpv6AddressBandwidthsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpv6AddressBandwidthsTagArrayOutput)
+}
+
+type GetIpv6AddressBandwidthsTagOutput struct{ *pulumi.OutputState }
+
+func (GetIpv6AddressBandwidthsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (o GetIpv6AddressBandwidthsTagOutput) ToGetIpv6AddressBandwidthsTagOutput() GetIpv6AddressBandwidthsTagOutput {
+	return o
+}
+
+func (o GetIpv6AddressBandwidthsTagOutput) ToGetIpv6AddressBandwidthsTagOutputWithContext(ctx context.Context) GetIpv6AddressBandwidthsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetIpv6AddressBandwidthsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpv6AddressBandwidthsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetIpv6AddressBandwidthsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpv6AddressBandwidthsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetIpv6AddressBandwidthsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIpv6AddressBandwidthsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpv6AddressBandwidthsTag)(nil)).Elem()
+}
+
+func (o GetIpv6AddressBandwidthsTagArrayOutput) ToGetIpv6AddressBandwidthsTagArrayOutput() GetIpv6AddressBandwidthsTagArrayOutput {
+	return o
+}
+
+func (o GetIpv6AddressBandwidthsTagArrayOutput) ToGetIpv6AddressBandwidthsTagArrayOutputWithContext(ctx context.Context) GetIpv6AddressBandwidthsTagArrayOutput {
+	return o
+}
+
+func (o GetIpv6AddressBandwidthsTagArrayOutput) Index(i pulumi.IntInput) GetIpv6AddressBandwidthsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpv6AddressBandwidthsTag {
+		return vs[0].([]GetIpv6AddressBandwidthsTag)[vs[1].(int)]
+	}).(GetIpv6AddressBandwidthsTagOutput)
+}
+
 type GetIpv6AddressesIpv6Address struct {
 	// The IPv6 address.
 	Ipv6Address string `pulumi:"ipv6Address"`
@@ -11086,8 +11740,12 @@ type GetIpv6GatewaysIpv6Gateway struct {
 	Ipv6GatewayId string `pulumi:"ipv6GatewayId"`
 	// The name of the Ipv6Gateway.
 	Name string `pulumi:"name"`
+	// The project name of the Ipv6Gateway.
+	ProjectName string `pulumi:"projectName"`
 	// The Status of the Ipv6Gateway.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetIpv6GatewaysIpv6GatewayTag `pulumi:"tags"`
 	// Update time of the Ipv6Gateway.
 	UpdateTime string `pulumi:"updateTime"`
 	// The id of the VPC which the Ipv6Gateway belongs to.
@@ -11116,8 +11774,12 @@ type GetIpv6GatewaysIpv6GatewayArgs struct {
 	Ipv6GatewayId pulumi.StringInput `pulumi:"ipv6GatewayId"`
 	// The name of the Ipv6Gateway.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the Ipv6Gateway.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The Status of the Ipv6Gateway.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetIpv6GatewaysIpv6GatewayTagArrayInput `pulumi:"tags"`
 	// Update time of the Ipv6Gateway.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// The id of the VPC which the Ipv6Gateway belongs to.
@@ -11200,9 +11862,19 @@ func (o GetIpv6GatewaysIpv6GatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpv6GatewaysIpv6Gateway) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the Ipv6Gateway.
+func (o GetIpv6GatewaysIpv6GatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpv6GatewaysIpv6Gateway) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The Status of the Ipv6Gateway.
 func (o GetIpv6GatewaysIpv6GatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpv6GatewaysIpv6Gateway) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetIpv6GatewaysIpv6GatewayOutput) Tags() GetIpv6GatewaysIpv6GatewayTagArrayOutput {
+	return o.ApplyT(func(v GetIpv6GatewaysIpv6Gateway) []GetIpv6GatewaysIpv6GatewayTag { return v.Tags }).(GetIpv6GatewaysIpv6GatewayTagArrayOutput)
 }
 
 // Update time of the Ipv6Gateway.
@@ -11233,6 +11905,218 @@ func (o GetIpv6GatewaysIpv6GatewayArrayOutput) Index(i pulumi.IntInput) GetIpv6G
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpv6GatewaysIpv6Gateway {
 		return vs[0].([]GetIpv6GatewaysIpv6Gateway)[vs[1].(int)]
 	}).(GetIpv6GatewaysIpv6GatewayOutput)
+}
+
+type GetIpv6GatewaysIpv6GatewayTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetIpv6GatewaysIpv6GatewayTagInput is an input type that accepts GetIpv6GatewaysIpv6GatewayTagArgs and GetIpv6GatewaysIpv6GatewayTagOutput values.
+// You can construct a concrete instance of `GetIpv6GatewaysIpv6GatewayTagInput` via:
+//
+//	GetIpv6GatewaysIpv6GatewayTagArgs{...}
+type GetIpv6GatewaysIpv6GatewayTagInput interface {
+	pulumi.Input
+
+	ToGetIpv6GatewaysIpv6GatewayTagOutput() GetIpv6GatewaysIpv6GatewayTagOutput
+	ToGetIpv6GatewaysIpv6GatewayTagOutputWithContext(context.Context) GetIpv6GatewaysIpv6GatewayTagOutput
+}
+
+type GetIpv6GatewaysIpv6GatewayTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetIpv6GatewaysIpv6GatewayTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (i GetIpv6GatewaysIpv6GatewayTagArgs) ToGetIpv6GatewaysIpv6GatewayTagOutput() GetIpv6GatewaysIpv6GatewayTagOutput {
+	return i.ToGetIpv6GatewaysIpv6GatewayTagOutputWithContext(context.Background())
+}
+
+func (i GetIpv6GatewaysIpv6GatewayTagArgs) ToGetIpv6GatewaysIpv6GatewayTagOutputWithContext(ctx context.Context) GetIpv6GatewaysIpv6GatewayTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpv6GatewaysIpv6GatewayTagOutput)
+}
+
+// GetIpv6GatewaysIpv6GatewayTagArrayInput is an input type that accepts GetIpv6GatewaysIpv6GatewayTagArray and GetIpv6GatewaysIpv6GatewayTagArrayOutput values.
+// You can construct a concrete instance of `GetIpv6GatewaysIpv6GatewayTagArrayInput` via:
+//
+//	GetIpv6GatewaysIpv6GatewayTagArray{ GetIpv6GatewaysIpv6GatewayTagArgs{...} }
+type GetIpv6GatewaysIpv6GatewayTagArrayInput interface {
+	pulumi.Input
+
+	ToGetIpv6GatewaysIpv6GatewayTagArrayOutput() GetIpv6GatewaysIpv6GatewayTagArrayOutput
+	ToGetIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(context.Context) GetIpv6GatewaysIpv6GatewayTagArrayOutput
+}
+
+type GetIpv6GatewaysIpv6GatewayTagArray []GetIpv6GatewaysIpv6GatewayTagInput
+
+func (GetIpv6GatewaysIpv6GatewayTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (i GetIpv6GatewaysIpv6GatewayTagArray) ToGetIpv6GatewaysIpv6GatewayTagArrayOutput() GetIpv6GatewaysIpv6GatewayTagArrayOutput {
+	return i.ToGetIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetIpv6GatewaysIpv6GatewayTagArray) ToGetIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(ctx context.Context) GetIpv6GatewaysIpv6GatewayTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpv6GatewaysIpv6GatewayTagArrayOutput)
+}
+
+type GetIpv6GatewaysIpv6GatewayTagOutput struct{ *pulumi.OutputState }
+
+func (GetIpv6GatewaysIpv6GatewayTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (o GetIpv6GatewaysIpv6GatewayTagOutput) ToGetIpv6GatewaysIpv6GatewayTagOutput() GetIpv6GatewaysIpv6GatewayTagOutput {
+	return o
+}
+
+func (o GetIpv6GatewaysIpv6GatewayTagOutput) ToGetIpv6GatewaysIpv6GatewayTagOutputWithContext(ctx context.Context) GetIpv6GatewaysIpv6GatewayTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetIpv6GatewaysIpv6GatewayTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpv6GatewaysIpv6GatewayTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetIpv6GatewaysIpv6GatewayTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpv6GatewaysIpv6GatewayTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetIpv6GatewaysIpv6GatewayTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIpv6GatewaysIpv6GatewayTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpv6GatewaysIpv6GatewayTag)(nil)).Elem()
+}
+
+func (o GetIpv6GatewaysIpv6GatewayTagArrayOutput) ToGetIpv6GatewaysIpv6GatewayTagArrayOutput() GetIpv6GatewaysIpv6GatewayTagArrayOutput {
+	return o
+}
+
+func (o GetIpv6GatewaysIpv6GatewayTagArrayOutput) ToGetIpv6GatewaysIpv6GatewayTagArrayOutputWithContext(ctx context.Context) GetIpv6GatewaysIpv6GatewayTagArrayOutput {
+	return o
+}
+
+func (o GetIpv6GatewaysIpv6GatewayTagArrayOutput) Index(i pulumi.IntInput) GetIpv6GatewaysIpv6GatewayTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpv6GatewaysIpv6GatewayTag {
+		return vs[0].([]GetIpv6GatewaysIpv6GatewayTag)[vs[1].(int)]
+	}).(GetIpv6GatewaysIpv6GatewayTagOutput)
+}
+
+type GetIpv6GatewaysTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetIpv6GatewaysTagInput is an input type that accepts GetIpv6GatewaysTagArgs and GetIpv6GatewaysTagOutput values.
+// You can construct a concrete instance of `GetIpv6GatewaysTagInput` via:
+//
+//	GetIpv6GatewaysTagArgs{...}
+type GetIpv6GatewaysTagInput interface {
+	pulumi.Input
+
+	ToGetIpv6GatewaysTagOutput() GetIpv6GatewaysTagOutput
+	ToGetIpv6GatewaysTagOutputWithContext(context.Context) GetIpv6GatewaysTagOutput
+}
+
+type GetIpv6GatewaysTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetIpv6GatewaysTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpv6GatewaysTag)(nil)).Elem()
+}
+
+func (i GetIpv6GatewaysTagArgs) ToGetIpv6GatewaysTagOutput() GetIpv6GatewaysTagOutput {
+	return i.ToGetIpv6GatewaysTagOutputWithContext(context.Background())
+}
+
+func (i GetIpv6GatewaysTagArgs) ToGetIpv6GatewaysTagOutputWithContext(ctx context.Context) GetIpv6GatewaysTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpv6GatewaysTagOutput)
+}
+
+// GetIpv6GatewaysTagArrayInput is an input type that accepts GetIpv6GatewaysTagArray and GetIpv6GatewaysTagArrayOutput values.
+// You can construct a concrete instance of `GetIpv6GatewaysTagArrayInput` via:
+//
+//	GetIpv6GatewaysTagArray{ GetIpv6GatewaysTagArgs{...} }
+type GetIpv6GatewaysTagArrayInput interface {
+	pulumi.Input
+
+	ToGetIpv6GatewaysTagArrayOutput() GetIpv6GatewaysTagArrayOutput
+	ToGetIpv6GatewaysTagArrayOutputWithContext(context.Context) GetIpv6GatewaysTagArrayOutput
+}
+
+type GetIpv6GatewaysTagArray []GetIpv6GatewaysTagInput
+
+func (GetIpv6GatewaysTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpv6GatewaysTag)(nil)).Elem()
+}
+
+func (i GetIpv6GatewaysTagArray) ToGetIpv6GatewaysTagArrayOutput() GetIpv6GatewaysTagArrayOutput {
+	return i.ToGetIpv6GatewaysTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetIpv6GatewaysTagArray) ToGetIpv6GatewaysTagArrayOutputWithContext(ctx context.Context) GetIpv6GatewaysTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpv6GatewaysTagArrayOutput)
+}
+
+type GetIpv6GatewaysTagOutput struct{ *pulumi.OutputState }
+
+func (GetIpv6GatewaysTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpv6GatewaysTag)(nil)).Elem()
+}
+
+func (o GetIpv6GatewaysTagOutput) ToGetIpv6GatewaysTagOutput() GetIpv6GatewaysTagOutput {
+	return o
+}
+
+func (o GetIpv6GatewaysTagOutput) ToGetIpv6GatewaysTagOutputWithContext(ctx context.Context) GetIpv6GatewaysTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetIpv6GatewaysTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpv6GatewaysTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetIpv6GatewaysTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpv6GatewaysTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetIpv6GatewaysTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIpv6GatewaysTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpv6GatewaysTag)(nil)).Elem()
+}
+
+func (o GetIpv6GatewaysTagArrayOutput) ToGetIpv6GatewaysTagArrayOutput() GetIpv6GatewaysTagArrayOutput {
+	return o
+}
+
+func (o GetIpv6GatewaysTagArrayOutput) ToGetIpv6GatewaysTagArrayOutputWithContext(ctx context.Context) GetIpv6GatewaysTagArrayOutput {
+	return o
+}
+
+func (o GetIpv6GatewaysTagArrayOutput) Index(i pulumi.IntInput) GetIpv6GatewaysTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpv6GatewaysTag {
+		return vs[0].([]GetIpv6GatewaysTag)[vs[1].(int)]
+	}).(GetIpv6GatewaysTagOutput)
 }
 
 type GetNetworkAclsNetworkAcl struct {
@@ -17743,12 +18627,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipTagArrayInput)(nil)).Elem(), HaVipsHaVipTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsTagInput)(nil)).Elem(), HaVipsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsTagArrayInput)(nil)).Elem(), HaVipsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthTagInput)(nil)).Elem(), Ipv6AddressBandwidthTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthTagArrayInput)(nil)).Elem(), Ipv6AddressBandwidthTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsIpv6AddressBandwidthInput)(nil)).Elem(), Ipv6AddressBandwidthsIpv6AddressBandwidthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsIpv6AddressBandwidthArrayInput)(nil)).Elem(), Ipv6AddressBandwidthsIpv6AddressBandwidthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsTagInput)(nil)).Elem(), Ipv6AddressBandwidthsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsTagArrayInput)(nil)).Elem(), Ipv6AddressBandwidthsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressesIpv6AddressInput)(nil)).Elem(), Ipv6AddressesIpv6AddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressesIpv6AddressArrayInput)(nil)).Elem(), Ipv6AddressesIpv6AddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewayTagInput)(nil)).Elem(), Ipv6GatewayTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewayTagArrayInput)(nil)).Elem(), Ipv6GatewayTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewaysIpv6GatewayInput)(nil)).Elem(), Ipv6GatewaysIpv6GatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewaysIpv6GatewayArrayInput)(nil)).Elem(), Ipv6GatewaysIpv6GatewayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewaysIpv6GatewayTagInput)(nil)).Elem(), Ipv6GatewaysIpv6GatewayTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewaysIpv6GatewayTagArrayInput)(nil)).Elem(), Ipv6GatewaysIpv6GatewayTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewaysTagInput)(nil)).Elem(), Ipv6GatewaysTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6GatewaysTagArrayInput)(nil)).Elem(), Ipv6GatewaysTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclEgressAclEntryInput)(nil)).Elem(), NetworkAclEgressAclEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclEgressAclEntryArrayInput)(nil)).Elem(), NetworkAclEgressAclEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclIngressAclEntryInput)(nil)).Elem(), NetworkAclIngressAclEntryArgs{})
@@ -17880,10 +18774,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHaVipsTagArrayInput)(nil)).Elem(), GetHaVipsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6AddressBandwidthsIpv6AddressBandwidthInput)(nil)).Elem(), GetIpv6AddressBandwidthsIpv6AddressBandwidthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6AddressBandwidthsIpv6AddressBandwidthArrayInput)(nil)).Elem(), GetIpv6AddressBandwidthsIpv6AddressBandwidthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6AddressBandwidthsTagInput)(nil)).Elem(), GetIpv6AddressBandwidthsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6AddressBandwidthsTagArrayInput)(nil)).Elem(), GetIpv6AddressBandwidthsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6AddressesIpv6AddressInput)(nil)).Elem(), GetIpv6AddressesIpv6AddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6AddressesIpv6AddressArrayInput)(nil)).Elem(), GetIpv6AddressesIpv6AddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6GatewaysIpv6GatewayInput)(nil)).Elem(), GetIpv6GatewaysIpv6GatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6GatewaysIpv6GatewayArrayInput)(nil)).Elem(), GetIpv6GatewaysIpv6GatewayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6GatewaysIpv6GatewayTagInput)(nil)).Elem(), GetIpv6GatewaysIpv6GatewayTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6GatewaysIpv6GatewayTagArrayInput)(nil)).Elem(), GetIpv6GatewaysIpv6GatewayTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6GatewaysTagInput)(nil)).Elem(), GetIpv6GatewaysTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpv6GatewaysTagArrayInput)(nil)).Elem(), GetIpv6GatewaysTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkAclsNetworkAclInput)(nil)).Elem(), GetNetworkAclsNetworkAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkAclsNetworkAclArrayInput)(nil)).Elem(), GetNetworkAclsNetworkAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkAclsNetworkAclEgressAclEntryInput)(nil)).Elem(), GetNetworkAclsNetworkAclEgressAclEntryArgs{})
@@ -17987,12 +18887,22 @@ func init() {
 	pulumi.RegisterOutputType(HaVipsHaVipTagArrayOutput{})
 	pulumi.RegisterOutputType(HaVipsTagOutput{})
 	pulumi.RegisterOutputType(HaVipsTagArrayOutput{})
+	pulumi.RegisterOutputType(Ipv6AddressBandwidthTagOutput{})
+	pulumi.RegisterOutputType(Ipv6AddressBandwidthTagArrayOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressBandwidthsIpv6AddressBandwidthOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressBandwidthsIpv6AddressBandwidthArrayOutput{})
+	pulumi.RegisterOutputType(Ipv6AddressBandwidthsTagOutput{})
+	pulumi.RegisterOutputType(Ipv6AddressBandwidthsTagArrayOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressesIpv6AddressOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressesIpv6AddressArrayOutput{})
+	pulumi.RegisterOutputType(Ipv6GatewayTagOutput{})
+	pulumi.RegisterOutputType(Ipv6GatewayTagArrayOutput{})
 	pulumi.RegisterOutputType(Ipv6GatewaysIpv6GatewayOutput{})
 	pulumi.RegisterOutputType(Ipv6GatewaysIpv6GatewayArrayOutput{})
+	pulumi.RegisterOutputType(Ipv6GatewaysIpv6GatewayTagOutput{})
+	pulumi.RegisterOutputType(Ipv6GatewaysIpv6GatewayTagArrayOutput{})
+	pulumi.RegisterOutputType(Ipv6GatewaysTagOutput{})
+	pulumi.RegisterOutputType(Ipv6GatewaysTagArrayOutput{})
 	pulumi.RegisterOutputType(NetworkAclEgressAclEntryOutput{})
 	pulumi.RegisterOutputType(NetworkAclEgressAclEntryArrayOutput{})
 	pulumi.RegisterOutputType(NetworkAclIngressAclEntryOutput{})
@@ -18124,10 +19034,16 @@ func init() {
 	pulumi.RegisterOutputType(GetHaVipsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetIpv6AddressBandwidthsIpv6AddressBandwidthOutput{})
 	pulumi.RegisterOutputType(GetIpv6AddressBandwidthsIpv6AddressBandwidthArrayOutput{})
+	pulumi.RegisterOutputType(GetIpv6AddressBandwidthsTagOutput{})
+	pulumi.RegisterOutputType(GetIpv6AddressBandwidthsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetIpv6AddressesIpv6AddressOutput{})
 	pulumi.RegisterOutputType(GetIpv6AddressesIpv6AddressArrayOutput{})
 	pulumi.RegisterOutputType(GetIpv6GatewaysIpv6GatewayOutput{})
 	pulumi.RegisterOutputType(GetIpv6GatewaysIpv6GatewayArrayOutput{})
+	pulumi.RegisterOutputType(GetIpv6GatewaysIpv6GatewayTagOutput{})
+	pulumi.RegisterOutputType(GetIpv6GatewaysIpv6GatewayTagArrayOutput{})
+	pulumi.RegisterOutputType(GetIpv6GatewaysTagOutput{})
+	pulumi.RegisterOutputType(GetIpv6GatewaysTagArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkAclsNetworkAclOutput{})
 	pulumi.RegisterOutputType(GetNetworkAclsNetworkAclArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkAclsNetworkAclEgressAclEntryOutput{})

@@ -111,6 +111,8 @@ type GetScalingGroupsArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// A list of scaling group names.
 	ScalingGroupNames []string `pulumi:"scalingGroupNames"`
+	// Tags.
+	Tags []GetScalingGroupsTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getScalingGroups.
@@ -125,6 +127,8 @@ type GetScalingGroupsResult struct {
 	ScalingGroupNames []string `pulumi:"scalingGroupNames"`
 	// The collection of scaling group query.
 	ScalingGroups []GetScalingGroupsScalingGroup `pulumi:"scalingGroups"`
+	// Tags.
+	Tags []GetScalingGroupsTag `pulumi:"tags"`
 	// The total count of scaling group query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -154,6 +158,8 @@ type GetScalingGroupsOutputArgs struct {
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// A list of scaling group names.
 	ScalingGroupNames pulumi.StringArrayInput `pulumi:"scalingGroupNames"`
+	// Tags.
+	Tags GetScalingGroupsTagArrayInput `pulumi:"tags"`
 }
 
 func (GetScalingGroupsOutputArgs) ElementType() reflect.Type {
@@ -204,6 +210,11 @@ func (o GetScalingGroupsResultOutput) ScalingGroupNames() pulumi.StringArrayOutp
 // The collection of scaling group query.
 func (o GetScalingGroupsResultOutput) ScalingGroups() GetScalingGroupsScalingGroupArrayOutput {
 	return o.ApplyT(func(v GetScalingGroupsResult) []GetScalingGroupsScalingGroup { return v.ScalingGroups }).(GetScalingGroupsScalingGroupArrayOutput)
+}
+
+// Tags.
+func (o GetScalingGroupsResultOutput) Tags() GetScalingGroupsTagArrayOutput {
+	return o.ApplyT(func(v GetScalingGroupsResult) []GetScalingGroupsTag { return v.Tags }).(GetScalingGroupsTagArrayOutput)
 }
 
 // The total count of scaling group query.

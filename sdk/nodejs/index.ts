@@ -40,6 +40,7 @@ import * as kms from "./kms";
 import * as mongodb from "./mongodb";
 import * as nas from "./nas";
 import * as nat from "./nat";
+import * as nlb from "./nlb";
 import * as organization from "./organization";
 import * as private_zone from "./private_zone";
 import * as privatelink from "./privatelink";
@@ -95,6 +96,7 @@ export {
     mongodb,
     nas,
     nat,
+    nlb,
     organization,
     private_zone,
     privatelink,

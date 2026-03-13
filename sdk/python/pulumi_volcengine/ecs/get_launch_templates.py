@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetLaunchTemplatesResult',
@@ -22,7 +23,7 @@ class GetLaunchTemplatesResult:
     """
     A collection of values returned by getLaunchTemplates.
     """
-    def __init__(__self__, id=None, ids=None, launch_template_names=None, launch_templates=None, name_regex=None, output_file=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, launch_template_names=None, launch_template_project_name=None, launch_template_tags=None, launch_templates=None, name_regex=None, output_file=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -32,6 +33,12 @@ class GetLaunchTemplatesResult:
         if launch_template_names and not isinstance(launch_template_names, list):
             raise TypeError("Expected argument 'launch_template_names' to be a list")
         pulumi.set(__self__, "launch_template_names", launch_template_names)
+        if launch_template_project_name and not isinstance(launch_template_project_name, str):
+            raise TypeError("Expected argument 'launch_template_project_name' to be a str")
+        pulumi.set(__self__, "launch_template_project_name", launch_template_project_name)
+        if launch_template_tags and not isinstance(launch_template_tags, list):
+            raise TypeError("Expected argument 'launch_template_tags' to be a list")
+        pulumi.set(__self__, "launch_template_tags", launch_template_tags)
         if launch_templates and not isinstance(launch_templates, list):
             raise TypeError("Expected argument 'launch_templates' to be a list")
         pulumi.set(__self__, "launch_templates", launch_templates)
@@ -62,6 +69,22 @@ class GetLaunchTemplatesResult:
     @pulumi.getter(name="launchTemplateNames")
     def launch_template_names(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "launch_template_names")
+
+    @property
+    @pulumi.getter(name="launchTemplateProjectName")
+    def launch_template_project_name(self) -> Optional[str]:
+        """
+        The project name of the launch template.
+        """
+        return pulumi.get(self, "launch_template_project_name")
+
+    @property
+    @pulumi.getter(name="launchTemplateTags")
+    def launch_template_tags(self) -> Optional[Sequence['outputs.GetLaunchTemplatesLaunchTemplateTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "launch_template_tags")
 
     @property
     @pulumi.getter(name="launchTemplates")
@@ -99,6 +122,8 @@ class AwaitableGetLaunchTemplatesResult(GetLaunchTemplatesResult):
             id=self.id,
             ids=self.ids,
             launch_template_names=self.launch_template_names,
+            launch_template_project_name=self.launch_template_project_name,
+            launch_template_tags=self.launch_template_tags,
             launch_templates=self.launch_templates,
             name_regex=self.name_regex,
             output_file=self.output_file,
@@ -107,6 +132,8 @@ class AwaitableGetLaunchTemplatesResult(GetLaunchTemplatesResult):
 
 def get_launch_templates(ids: Optional[Sequence[str]] = None,
                          launch_template_names: Optional[Sequence[str]] = None,
+                         launch_template_project_name: Optional[str] = None,
+                         launch_template_tags: Optional[Sequence[pulumi.InputType['GetLaunchTemplatesLaunchTemplateTagArgs']]] = None,
                          name_regex: Optional[str] = None,
                          output_file: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLaunchTemplatesResult:
@@ -137,12 +164,16 @@ def get_launch_templates(ids: Optional[Sequence[str]] = None,
 
     :param Sequence[str] ids: A list of launch template ids.
     :param Sequence[str] launch_template_names: A list of launch template names.
+    :param str launch_template_project_name: The project name of the launch template.
+    :param Sequence[pulumi.InputType['GetLaunchTemplatesLaunchTemplateTagArgs']] launch_template_tags: The tags of the launch template.
     :param str name_regex: A Name Regex of scaling policy.
     :param str output_file: File name where to save data source results.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['launchTemplateNames'] = launch_template_names
+    __args__['launchTemplateProjectName'] = launch_template_project_name
+    __args__['launchTemplateTags'] = launch_template_tags
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -152,6 +183,8 @@ def get_launch_templates(ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         launch_template_names=pulumi.get(__ret__, 'launch_template_names'),
+        launch_template_project_name=pulumi.get(__ret__, 'launch_template_project_name'),
+        launch_template_tags=pulumi.get(__ret__, 'launch_template_tags'),
         launch_templates=pulumi.get(__ret__, 'launch_templates'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
@@ -161,6 +194,8 @@ def get_launch_templates(ids: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(get_launch_templates)
 def get_launch_templates_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                 launch_template_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                launch_template_project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                                launch_template_tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetLaunchTemplatesLaunchTemplateTagArgs']]]]] = None,
                                 name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                                 output_file: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLaunchTemplatesResult]:
@@ -191,6 +226,8 @@ def get_launch_templates_output(ids: Optional[pulumi.Input[Optional[Sequence[str
 
     :param Sequence[str] ids: A list of launch template ids.
     :param Sequence[str] launch_template_names: A list of launch template names.
+    :param str launch_template_project_name: The project name of the launch template.
+    :param Sequence[pulumi.InputType['GetLaunchTemplatesLaunchTemplateTagArgs']] launch_template_tags: The tags of the launch template.
     :param str name_regex: A Name Regex of scaling policy.
     :param str output_file: File name where to save data source results.
     """

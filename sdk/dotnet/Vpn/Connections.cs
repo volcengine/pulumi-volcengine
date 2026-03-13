@@ -258,6 +258,18 @@ namespace Pulumi.Volcengine.Vpn
         [Input("status")]
         public string? Status { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.ConnectionsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.ConnectionsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.ConnectionsTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// An ID of transit router.
         /// </summary>
@@ -350,6 +362,18 @@ namespace Pulumi.Volcengine.Vpn
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.ConnectionsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ConnectionsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ConnectionsTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// An ID of transit router.
         /// </summary>
@@ -410,6 +434,10 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         public readonly string? Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ConnectionsTagResult> Tags;
+        /// <summary>
         /// The total count of VPN connection query.
         /// </summary>
         public readonly int TotalCount;
@@ -449,6 +477,8 @@ namespace Pulumi.Volcengine.Vpn
 
             string? status,
 
+            ImmutableArray<Outputs.ConnectionsTagResult> tags,
+
             int totalCount,
 
             string? transitRouterId,
@@ -469,6 +499,7 @@ namespace Pulumi.Volcengine.Vpn
             ProjectName = projectName;
             Spec = spec;
             Status = status;
+            Tags = tags;
             TotalCount = totalCount;
             TransitRouterId = transitRouterId;
             VpnConnectionNames = vpnConnectionNames;

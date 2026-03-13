@@ -526,18 +526,18 @@ class OauthProvider(pulumi.CustomResource):
 
         foo = volcengine.iam.OauthProvider("foo",
             authorize_template="${authEndpoint}?client_id=${clientId}&scope=${scope}&response_type=code&state=12345",
-            authorize_url="https://example.com/authorize_modify",
-            client_id="test_client_id_modify",
+            authorize_url="https://example.com/authorize",
+            client_id="test_client_id",
             client_secret="",
-            description="acc-test-modify",
+            description="acc-test",
             identity_map_type=1,
-            idp_identity_key="username_modify",
+            idp_identity_key="username",
             oauth_provider_name="acc-test-oauth",
             scope="openid",
             sso_type=2,
             status=1,
-            token_url="https://example.com/access_token_modify",
-            user_info_url="https://example.com/user_info_modify")
+            token_url="https://example.com/access_token",
+            user_info_url="https://example.com/user_info")
         ```
 
         ## Import
@@ -580,18 +580,18 @@ class OauthProvider(pulumi.CustomResource):
 
         foo = volcengine.iam.OauthProvider("foo",
             authorize_template="${authEndpoint}?client_id=${clientId}&scope=${scope}&response_type=code&state=12345",
-            authorize_url="https://example.com/authorize_modify",
-            client_id="test_client_id_modify",
+            authorize_url="https://example.com/authorize",
+            client_id="test_client_id",
             client_secret="",
-            description="acc-test-modify",
+            description="acc-test",
             identity_map_type=1,
-            idp_identity_key="username_modify",
+            idp_identity_key="username",
             oauth_provider_name="acc-test-oauth",
             scope="openid",
             sso_type=2,
             status=1,
-            token_url="https://example.com/access_token_modify",
-            user_info_url="https://example.com/user_info_modify")
+            token_url="https://example.com/access_token",
+            user_info_url="https://example.com/user_info")
         ```
 
         ## Import

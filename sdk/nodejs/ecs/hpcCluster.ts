@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -14,6 +16,11 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.ecs.HpcCluster("foo", {
  *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "tfk1",
+ *         value: "tfv1",
+ *     }],
  *     zoneId: "cn-beijing-b",
  * });
  * ```
@@ -63,6 +70,14 @@ export class HpcCluster extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The project name of the hpc cluster.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.ecs.HpcClusterTag[] | undefined>;
+    /**
      * The zone id of the hpc cluster.
      */
     public readonly zoneId!: pulumi.Output<string>;
@@ -82,6 +97,8 @@ export class HpcCluster extends pulumi.CustomResource {
             const state = argsOrState as HpcClusterState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["zoneId"] = state ? state.zoneId : undefined;
         } else {
             const args = argsOrState as HpcClusterArgs | undefined;
@@ -90,6 +107,8 @@ export class HpcCluster extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -110,6 +129,14 @@ export interface HpcClusterState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The project name of the hpc cluster.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.HpcClusterTag>[]>;
+    /**
      * The zone id of the hpc cluster.
      */
     zoneId?: pulumi.Input<string>;
@@ -127,6 +154,14 @@ export interface HpcClusterArgs {
      * The name of the hpc cluster.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The project name of the hpc cluster.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.HpcClusterTag>[]>;
     /**
      * The zone id of the hpc cluster.
      */

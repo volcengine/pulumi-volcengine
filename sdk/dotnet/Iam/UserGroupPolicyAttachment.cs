@@ -25,7 +25,7 @@ namespace Pulumi.Volcengine.Iam
     ///     {
     ///         PolicyName = "test",
     ///         PolicyType = "Custom",
-    ///         UserGroupName = "tf-test",
+    ///         UserGroupName = "xRqElT",
     ///     });
     /// 
     /// });

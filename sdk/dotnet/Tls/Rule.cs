@@ -44,8 +44,8 @@ namespace Pulumi.Volcengine.Tls
     ///         {
     ///             new Volcengine.Tls.Inputs.TopicTagArgs
     ///             {
-    ///                 Key = "k2",
-    ///                 Value = "v3",
+    ///                 Key = "km",
+    ///                 Value = "vm",
     ///             },
     ///         },
     ///         LogPublicIp = true,
@@ -155,28 +155,28 @@ namespace Pulumi.Volcengine.Tls
     ///             ContainerNameRegex = ".*test.*",
     ///             IncludeContainerLabelRegex = 
     ///             {
-    ///                 { "Key1", "Value122" },
-    ///                 { "Key2", "Value223" },
+    ///                 { "Key1", "Value1221" },
+    ///                 { "Key2", "Value223q" },
     ///             },
     ///             ExcludeContainerLabelRegex = 
     ///             {
-    ///                 { "Key1", "Value312" },
-    ///                 { "Key2", "Valu5e22" },
+    ///                 { "Key1", "Value312q" },
+    ///                 { "Key2", "Valu5e22q" },
     ///             },
     ///             IncludeContainerEnvRegex = 
     ///             {
-    ///                 { "Key1", "Val2ue1" },
-    ///                 { "Key2", "Val2ue2" },
+    ///                 { "Key1", "Val2ue1q" },
+    ///                 { "Key2", "Val2ue2q" },
     ///             },
     ///             ExcludeContainerEnvRegex = 
     ///             {
-    ///                 { "Key1", "Value1" },
-    ///                 { "Key2", "Value2" },
+    ///                 { "Key1", "Value1q" },
+    ///                 { "Key2", "Value2q" },
     ///             },
     ///             EnvTag = 
     ///             {
-    ///                 { "Key1", "Value1" },
-    ///                 { "Key2", "Value2" },
+    ///                 { "Key1", "Value1q" },
+    ///                 { "Key2", "Value2q" },
     ///             },
     ///             KubernetesRule = new Volcengine.Tls.Inputs.RuleContainerRuleKubernetesRuleArgs
     ///             {
@@ -196,13 +196,13 @@ namespace Pulumi.Volcengine.Tls
     ///                 PodNameRegex = ".*test.*",
     ///                 LabelTag = 
     ///                 {
-    ///                     { "Key1", "Value1" },
-    ///                     { "Key2", "Value2" },
+    ///                     { "Key1", "Value1q" },
+    ///                     { "Key2", "Value2q" },
     ///                 },
     ///                 AnnotationTag = 
     ///                 {
-    ///                     { "Key1", "Value1" },
-    ///                     { "Key2", "Value2" },
+    ///                     { "Key1", "Value1q" },
+    ///                     { "Key2", "Value2q" },
     ///                 },
     ///             },
     ///         },

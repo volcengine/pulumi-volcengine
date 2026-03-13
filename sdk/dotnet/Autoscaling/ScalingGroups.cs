@@ -200,6 +200,18 @@ namespace Pulumi.Volcengine.Autoscaling
             set => _scalingGroupNames = value;
         }
 
+        [Input("tags")]
+        private List<Inputs.ScalingGroupsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.ScalingGroupsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.ScalingGroupsTagArgs>());
+            set => _tags = value;
+        }
+
         public ScalingGroupsArgs()
         {
         }
@@ -250,6 +262,18 @@ namespace Pulumi.Volcengine.Autoscaling
             set => _scalingGroupNames = value;
         }
 
+        [Input("tags")]
+        private InputList<Inputs.ScalingGroupsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ScalingGroupsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ScalingGroupsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public ScalingGroupsInvokeArgs()
         {
         }
@@ -277,6 +301,10 @@ namespace Pulumi.Volcengine.Autoscaling
         /// </summary>
         public readonly ImmutableArray<Outputs.ScalingGroupsScalingGroupResult> ScalingGroups;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ScalingGroupsTagResult> Tags;
+        /// <summary>
         /// The total count of scaling group query.
         /// </summary>
         public readonly int TotalCount;
@@ -297,6 +325,8 @@ namespace Pulumi.Volcengine.Autoscaling
 
             ImmutableArray<Outputs.ScalingGroupsScalingGroupResult> scalingGroups,
 
+            ImmutableArray<Outputs.ScalingGroupsTagResult> tags,
+
             int totalCount)
         {
             Id = id;
@@ -306,6 +336,7 @@ namespace Pulumi.Volcengine.Autoscaling
             ProjectName = projectName;
             ScalingGroupNames = scalingGroupNames;
             ScalingGroups = scalingGroups;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

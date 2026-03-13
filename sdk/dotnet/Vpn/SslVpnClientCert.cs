@@ -154,6 +154,12 @@ namespace Pulumi.Volcengine.Vpn
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.SslVpnClientCertTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// The update time of the ssl vpn client cert.
         /// </summary>
         [Output("updateTime")]
@@ -223,6 +229,18 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("sslVpnServerId", required: true)]
         public Input<string> SslVpnServerId { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.SslVpnClientCertTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SslVpnClientCertTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SslVpnClientCertTagArgs>());
+            set => _tags = value;
+        }
 
         public SslVpnClientCertArgs()
         {
@@ -297,6 +315,18 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.SslVpnClientCertTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SslVpnClientCertTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SslVpnClientCertTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of the ssl vpn client cert.

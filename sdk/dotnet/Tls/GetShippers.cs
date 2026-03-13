@@ -23,7 +23,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetShippers.Invoke();
+        ///     var @default = Volcengine.Tls.GetShippers.Invoke(new()
+        ///     {
+        ///         ShipperId = "7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe",
+        ///     });
         /// 
         /// });
         /// ```
@@ -43,7 +46,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Tls.GetShippers.Invoke();
+        ///     var @default = Volcengine.Tls.GetShippers.Invoke(new()
+        ///     {
+        ///         ShipperId = "7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe",
+        ///     });
         /// 
         /// });
         /// ```

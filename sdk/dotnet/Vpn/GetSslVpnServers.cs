@@ -176,10 +176,28 @@ namespace Pulumi.Volcengine.Vpn
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the ssl server.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// The name of the ssl vpn server.
         /// </summary>
         [Input("sslVpnServerName")]
         public string? SslVpnServerName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.GetSslVpnServersTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetSslVpnServersTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetSslVpnServersTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The id of the vpn gateway.
@@ -214,10 +232,28 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the ssl server.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The name of the ssl vpn server.
         /// </summary>
         [Input("sslVpnServerName")]
         public Input<string>? SslVpnServerName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GetSslVpnServersTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetSslVpnServersTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetSslVpnServersTagInputArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The id of the vpn gateway.
@@ -242,6 +278,10 @@ namespace Pulumi.Volcengine.Vpn
         public readonly ImmutableArray<string> Ids;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of the ssl server.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The name of the SSL server.
         /// </summary>
         public readonly string? SslVpnServerName;
@@ -249,6 +289,10 @@ namespace Pulumi.Volcengine.Vpn
         /// List of SSL VPN servers.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSslVpnServersSslVpnServerResult> SslVpnServers;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSslVpnServersTagResult> Tags;
         /// <summary>
         /// The total count of SSL VPN server query.
         /// </summary>
@@ -266,9 +310,13 @@ namespace Pulumi.Volcengine.Vpn
 
             string? outputFile,
 
+            string? projectName,
+
             string? sslVpnServerName,
 
             ImmutableArray<Outputs.GetSslVpnServersSslVpnServerResult> sslVpnServers,
+
+            ImmutableArray<Outputs.GetSslVpnServersTagResult> tags,
 
             int totalCount,
 
@@ -277,8 +325,10 @@ namespace Pulumi.Volcengine.Vpn
             Id = id;
             Ids = ids;
             OutputFile = outputFile;
+            ProjectName = projectName;
             SslVpnServerName = sslVpnServerName;
             SslVpnServers = sslVpnServers;
+            Tags = tags;
             TotalCount = totalCount;
             VpnGatewayId = vpnGatewayId;
         }

@@ -13,6 +13,218 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type ConnectionTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ConnectionTagInput is an input type that accepts ConnectionTagArgs and ConnectionTagOutput values.
+// You can construct a concrete instance of `ConnectionTagInput` via:
+//
+//	ConnectionTagArgs{...}
+type ConnectionTagInput interface {
+	pulumi.Input
+
+	ToConnectionTagOutput() ConnectionTagOutput
+	ToConnectionTagOutputWithContext(context.Context) ConnectionTagOutput
+}
+
+type ConnectionTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ConnectionTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectionTag)(nil)).Elem()
+}
+
+func (i ConnectionTagArgs) ToConnectionTagOutput() ConnectionTagOutput {
+	return i.ToConnectionTagOutputWithContext(context.Background())
+}
+
+func (i ConnectionTagArgs) ToConnectionTagOutputWithContext(ctx context.Context) ConnectionTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionTagOutput)
+}
+
+// ConnectionTagArrayInput is an input type that accepts ConnectionTagArray and ConnectionTagArrayOutput values.
+// You can construct a concrete instance of `ConnectionTagArrayInput` via:
+//
+//	ConnectionTagArray{ ConnectionTagArgs{...} }
+type ConnectionTagArrayInput interface {
+	pulumi.Input
+
+	ToConnectionTagArrayOutput() ConnectionTagArrayOutput
+	ToConnectionTagArrayOutputWithContext(context.Context) ConnectionTagArrayOutput
+}
+
+type ConnectionTagArray []ConnectionTagInput
+
+func (ConnectionTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConnectionTag)(nil)).Elem()
+}
+
+func (i ConnectionTagArray) ToConnectionTagArrayOutput() ConnectionTagArrayOutput {
+	return i.ToConnectionTagArrayOutputWithContext(context.Background())
+}
+
+func (i ConnectionTagArray) ToConnectionTagArrayOutputWithContext(ctx context.Context) ConnectionTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionTagArrayOutput)
+}
+
+type ConnectionTagOutput struct{ *pulumi.OutputState }
+
+func (ConnectionTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectionTag)(nil)).Elem()
+}
+
+func (o ConnectionTagOutput) ToConnectionTagOutput() ConnectionTagOutput {
+	return o
+}
+
+func (o ConnectionTagOutput) ToConnectionTagOutputWithContext(ctx context.Context) ConnectionTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ConnectionTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ConnectionTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ConnectionTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ConnectionTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ConnectionTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ConnectionTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConnectionTag)(nil)).Elem()
+}
+
+func (o ConnectionTagArrayOutput) ToConnectionTagArrayOutput() ConnectionTagArrayOutput {
+	return o
+}
+
+func (o ConnectionTagArrayOutput) ToConnectionTagArrayOutputWithContext(ctx context.Context) ConnectionTagArrayOutput {
+	return o
+}
+
+func (o ConnectionTagArrayOutput) Index(i pulumi.IntInput) ConnectionTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConnectionTag {
+		return vs[0].([]ConnectionTag)[vs[1].(int)]
+	}).(ConnectionTagOutput)
+}
+
+type ConnectionsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ConnectionsTagInput is an input type that accepts ConnectionsTagArgs and ConnectionsTagOutput values.
+// You can construct a concrete instance of `ConnectionsTagInput` via:
+//
+//	ConnectionsTagArgs{...}
+type ConnectionsTagInput interface {
+	pulumi.Input
+
+	ToConnectionsTagOutput() ConnectionsTagOutput
+	ToConnectionsTagOutputWithContext(context.Context) ConnectionsTagOutput
+}
+
+type ConnectionsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ConnectionsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectionsTag)(nil)).Elem()
+}
+
+func (i ConnectionsTagArgs) ToConnectionsTagOutput() ConnectionsTagOutput {
+	return i.ToConnectionsTagOutputWithContext(context.Background())
+}
+
+func (i ConnectionsTagArgs) ToConnectionsTagOutputWithContext(ctx context.Context) ConnectionsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionsTagOutput)
+}
+
+// ConnectionsTagArrayInput is an input type that accepts ConnectionsTagArray and ConnectionsTagArrayOutput values.
+// You can construct a concrete instance of `ConnectionsTagArrayInput` via:
+//
+//	ConnectionsTagArray{ ConnectionsTagArgs{...} }
+type ConnectionsTagArrayInput interface {
+	pulumi.Input
+
+	ToConnectionsTagArrayOutput() ConnectionsTagArrayOutput
+	ToConnectionsTagArrayOutputWithContext(context.Context) ConnectionsTagArrayOutput
+}
+
+type ConnectionsTagArray []ConnectionsTagInput
+
+func (ConnectionsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConnectionsTag)(nil)).Elem()
+}
+
+func (i ConnectionsTagArray) ToConnectionsTagArrayOutput() ConnectionsTagArrayOutput {
+	return i.ToConnectionsTagArrayOutputWithContext(context.Background())
+}
+
+func (i ConnectionsTagArray) ToConnectionsTagArrayOutputWithContext(ctx context.Context) ConnectionsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionsTagArrayOutput)
+}
+
+type ConnectionsTagOutput struct{ *pulumi.OutputState }
+
+func (ConnectionsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectionsTag)(nil)).Elem()
+}
+
+func (o ConnectionsTagOutput) ToConnectionsTagOutput() ConnectionsTagOutput {
+	return o
+}
+
+func (o ConnectionsTagOutput) ToConnectionsTagOutputWithContext(ctx context.Context) ConnectionsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ConnectionsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ConnectionsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ConnectionsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ConnectionsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ConnectionsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ConnectionsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConnectionsTag)(nil)).Elem()
+}
+
+func (o ConnectionsTagArrayOutput) ToConnectionsTagArrayOutput() ConnectionsTagArrayOutput {
+	return o
+}
+
+func (o ConnectionsTagArrayOutput) ToConnectionsTagArrayOutputWithContext(ctx context.Context) ConnectionsTagArrayOutput {
+	return o
+}
+
+func (o ConnectionsTagArrayOutput) Index(i pulumi.IntInput) ConnectionsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConnectionsTag {
+		return vs[0].([]ConnectionsTag)[vs[1].(int)]
+	}).(ConnectionsTagOutput)
+}
+
 type ConnectionsVpnConnection struct {
 	// The account ID of the VPN connection.
 	AccountId string `pulumi:"accountId"`
@@ -78,6 +290,8 @@ type ConnectionsVpnConnection struct {
 	RemoteSubnets []string `pulumi:"remoteSubnets"`
 	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []ConnectionsVpnConnectionTag `pulumi:"tags"`
 	// An ID of transit router.
 	TransitRouterId string `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
@@ -168,6 +382,8 @@ type ConnectionsVpnConnectionArgs struct {
 	RemoteSubnets pulumi.StringArrayInput `pulumi:"remoteSubnets"`
 	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags ConnectionsVpnConnectionTagArrayInput `pulumi:"tags"`
 	// An ID of transit router.
 	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
@@ -393,6 +609,11 @@ func (o ConnectionsVpnConnectionOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsVpnConnection) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o ConnectionsVpnConnectionOutput) Tags() ConnectionsVpnConnectionTagArrayOutput {
+	return o.ApplyT(func(v ConnectionsVpnConnection) []ConnectionsVpnConnectionTag { return v.Tags }).(ConnectionsVpnConnectionTagArrayOutput)
+}
+
 // An ID of transit router.
 func (o ConnectionsVpnConnectionOutput) TransitRouterId() pulumi.StringOutput {
 	return o.ApplyT(func(v ConnectionsVpnConnection) string { return v.TransitRouterId }).(pulumi.StringOutput)
@@ -443,6 +664,218 @@ func (o ConnectionsVpnConnectionArrayOutput) Index(i pulumi.IntInput) Connection
 	}).(ConnectionsVpnConnectionOutput)
 }
 
+type ConnectionsVpnConnectionTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ConnectionsVpnConnectionTagInput is an input type that accepts ConnectionsVpnConnectionTagArgs and ConnectionsVpnConnectionTagOutput values.
+// You can construct a concrete instance of `ConnectionsVpnConnectionTagInput` via:
+//
+//	ConnectionsVpnConnectionTagArgs{...}
+type ConnectionsVpnConnectionTagInput interface {
+	pulumi.Input
+
+	ToConnectionsVpnConnectionTagOutput() ConnectionsVpnConnectionTagOutput
+	ToConnectionsVpnConnectionTagOutputWithContext(context.Context) ConnectionsVpnConnectionTagOutput
+}
+
+type ConnectionsVpnConnectionTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ConnectionsVpnConnectionTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (i ConnectionsVpnConnectionTagArgs) ToConnectionsVpnConnectionTagOutput() ConnectionsVpnConnectionTagOutput {
+	return i.ToConnectionsVpnConnectionTagOutputWithContext(context.Background())
+}
+
+func (i ConnectionsVpnConnectionTagArgs) ToConnectionsVpnConnectionTagOutputWithContext(ctx context.Context) ConnectionsVpnConnectionTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionsVpnConnectionTagOutput)
+}
+
+// ConnectionsVpnConnectionTagArrayInput is an input type that accepts ConnectionsVpnConnectionTagArray and ConnectionsVpnConnectionTagArrayOutput values.
+// You can construct a concrete instance of `ConnectionsVpnConnectionTagArrayInput` via:
+//
+//	ConnectionsVpnConnectionTagArray{ ConnectionsVpnConnectionTagArgs{...} }
+type ConnectionsVpnConnectionTagArrayInput interface {
+	pulumi.Input
+
+	ToConnectionsVpnConnectionTagArrayOutput() ConnectionsVpnConnectionTagArrayOutput
+	ToConnectionsVpnConnectionTagArrayOutputWithContext(context.Context) ConnectionsVpnConnectionTagArrayOutput
+}
+
+type ConnectionsVpnConnectionTagArray []ConnectionsVpnConnectionTagInput
+
+func (ConnectionsVpnConnectionTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (i ConnectionsVpnConnectionTagArray) ToConnectionsVpnConnectionTagArrayOutput() ConnectionsVpnConnectionTagArrayOutput {
+	return i.ToConnectionsVpnConnectionTagArrayOutputWithContext(context.Background())
+}
+
+func (i ConnectionsVpnConnectionTagArray) ToConnectionsVpnConnectionTagArrayOutputWithContext(ctx context.Context) ConnectionsVpnConnectionTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionsVpnConnectionTagArrayOutput)
+}
+
+type ConnectionsVpnConnectionTagOutput struct{ *pulumi.OutputState }
+
+func (ConnectionsVpnConnectionTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (o ConnectionsVpnConnectionTagOutput) ToConnectionsVpnConnectionTagOutput() ConnectionsVpnConnectionTagOutput {
+	return o
+}
+
+func (o ConnectionsVpnConnectionTagOutput) ToConnectionsVpnConnectionTagOutputWithContext(ctx context.Context) ConnectionsVpnConnectionTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ConnectionsVpnConnectionTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ConnectionsVpnConnectionTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ConnectionsVpnConnectionTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ConnectionsVpnConnectionTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ConnectionsVpnConnectionTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ConnectionsVpnConnectionTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (o ConnectionsVpnConnectionTagArrayOutput) ToConnectionsVpnConnectionTagArrayOutput() ConnectionsVpnConnectionTagArrayOutput {
+	return o
+}
+
+func (o ConnectionsVpnConnectionTagArrayOutput) ToConnectionsVpnConnectionTagArrayOutputWithContext(ctx context.Context) ConnectionsVpnConnectionTagArrayOutput {
+	return o
+}
+
+func (o ConnectionsVpnConnectionTagArrayOutput) Index(i pulumi.IntInput) ConnectionsVpnConnectionTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ConnectionsVpnConnectionTag {
+		return vs[0].([]ConnectionsVpnConnectionTag)[vs[1].(int)]
+	}).(ConnectionsVpnConnectionTagOutput)
+}
+
+type CustomerGatewayTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CustomerGatewayTagInput is an input type that accepts CustomerGatewayTagArgs and CustomerGatewayTagOutput values.
+// You can construct a concrete instance of `CustomerGatewayTagInput` via:
+//
+//	CustomerGatewayTagArgs{...}
+type CustomerGatewayTagInput interface {
+	pulumi.Input
+
+	ToCustomerGatewayTagOutput() CustomerGatewayTagOutput
+	ToCustomerGatewayTagOutputWithContext(context.Context) CustomerGatewayTagOutput
+}
+
+type CustomerGatewayTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CustomerGatewayTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomerGatewayTag)(nil)).Elem()
+}
+
+func (i CustomerGatewayTagArgs) ToCustomerGatewayTagOutput() CustomerGatewayTagOutput {
+	return i.ToCustomerGatewayTagOutputWithContext(context.Background())
+}
+
+func (i CustomerGatewayTagArgs) ToCustomerGatewayTagOutputWithContext(ctx context.Context) CustomerGatewayTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomerGatewayTagOutput)
+}
+
+// CustomerGatewayTagArrayInput is an input type that accepts CustomerGatewayTagArray and CustomerGatewayTagArrayOutput values.
+// You can construct a concrete instance of `CustomerGatewayTagArrayInput` via:
+//
+//	CustomerGatewayTagArray{ CustomerGatewayTagArgs{...} }
+type CustomerGatewayTagArrayInput interface {
+	pulumi.Input
+
+	ToCustomerGatewayTagArrayOutput() CustomerGatewayTagArrayOutput
+	ToCustomerGatewayTagArrayOutputWithContext(context.Context) CustomerGatewayTagArrayOutput
+}
+
+type CustomerGatewayTagArray []CustomerGatewayTagInput
+
+func (CustomerGatewayTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomerGatewayTag)(nil)).Elem()
+}
+
+func (i CustomerGatewayTagArray) ToCustomerGatewayTagArrayOutput() CustomerGatewayTagArrayOutput {
+	return i.ToCustomerGatewayTagArrayOutputWithContext(context.Background())
+}
+
+func (i CustomerGatewayTagArray) ToCustomerGatewayTagArrayOutputWithContext(ctx context.Context) CustomerGatewayTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomerGatewayTagArrayOutput)
+}
+
+type CustomerGatewayTagOutput struct{ *pulumi.OutputState }
+
+func (CustomerGatewayTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomerGatewayTag)(nil)).Elem()
+}
+
+func (o CustomerGatewayTagOutput) ToCustomerGatewayTagOutput() CustomerGatewayTagOutput {
+	return o
+}
+
+func (o CustomerGatewayTagOutput) ToCustomerGatewayTagOutputWithContext(ctx context.Context) CustomerGatewayTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CustomerGatewayTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewayTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CustomerGatewayTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewayTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CustomerGatewayTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomerGatewayTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomerGatewayTag)(nil)).Elem()
+}
+
+func (o CustomerGatewayTagArrayOutput) ToCustomerGatewayTagArrayOutput() CustomerGatewayTagArrayOutput {
+	return o
+}
+
+func (o CustomerGatewayTagArrayOutput) ToCustomerGatewayTagArrayOutputWithContext(ctx context.Context) CustomerGatewayTagArrayOutput {
+	return o
+}
+
+func (o CustomerGatewayTagArrayOutput) Index(i pulumi.IntInput) CustomerGatewayTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomerGatewayTag {
+		return vs[0].([]CustomerGatewayTag)[vs[1].(int)]
+	}).(CustomerGatewayTagOutput)
+}
+
 type CustomerGatewaysCustomerGateway struct {
 	// The account ID of the customer gateway.
 	AccountId string `pulumi:"accountId"`
@@ -460,8 +893,14 @@ type CustomerGatewaysCustomerGateway struct {
 	Id string `pulumi:"id"`
 	// A IP address of the customer gateway.
 	IpAddress string `pulumi:"ipAddress"`
-	// The status of the customer gateway.
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion string `pulumi:"ipVersion"`
+	// The project name of the VPN customer gateway.
+	ProjectName string `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []CustomerGatewaysCustomerGatewayTag `pulumi:"tags"`
 	// The update time of customer gateway.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -494,8 +933,14 @@ type CustomerGatewaysCustomerGatewayArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// A IP address of the customer gateway.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The status of the customer gateway.
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion pulumi.StringInput `pulumi:"ipVersion"`
+	// The project name of the VPN customer gateway.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags CustomerGatewaysCustomerGatewayTagArrayInput `pulumi:"tags"`
 	// The update time of customer gateway.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -591,9 +1036,24 @@ func (o CustomerGatewaysCustomerGatewayOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v CustomerGatewaysCustomerGateway) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The status of the customer gateway.
+// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+func (o CustomerGatewaysCustomerGatewayOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewaysCustomerGateway) string { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+// The project name of the VPN customer gateway.
+func (o CustomerGatewaysCustomerGatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewaysCustomerGateway) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
 func (o CustomerGatewaysCustomerGatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v CustomerGatewaysCustomerGateway) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CustomerGatewaysCustomerGatewayOutput) Tags() CustomerGatewaysCustomerGatewayTagArrayOutput {
+	return o.ApplyT(func(v CustomerGatewaysCustomerGateway) []CustomerGatewaysCustomerGatewayTag { return v.Tags }).(CustomerGatewaysCustomerGatewayTagArrayOutput)
 }
 
 // The update time of customer gateway.
@@ -619,6 +1079,218 @@ func (o CustomerGatewaysCustomerGatewayArrayOutput) Index(i pulumi.IntInput) Cus
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomerGatewaysCustomerGateway {
 		return vs[0].([]CustomerGatewaysCustomerGateway)[vs[1].(int)]
 	}).(CustomerGatewaysCustomerGatewayOutput)
+}
+
+type CustomerGatewaysCustomerGatewayTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CustomerGatewaysCustomerGatewayTagInput is an input type that accepts CustomerGatewaysCustomerGatewayTagArgs and CustomerGatewaysCustomerGatewayTagOutput values.
+// You can construct a concrete instance of `CustomerGatewaysCustomerGatewayTagInput` via:
+//
+//	CustomerGatewaysCustomerGatewayTagArgs{...}
+type CustomerGatewaysCustomerGatewayTagInput interface {
+	pulumi.Input
+
+	ToCustomerGatewaysCustomerGatewayTagOutput() CustomerGatewaysCustomerGatewayTagOutput
+	ToCustomerGatewaysCustomerGatewayTagOutputWithContext(context.Context) CustomerGatewaysCustomerGatewayTagOutput
+}
+
+type CustomerGatewaysCustomerGatewayTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CustomerGatewaysCustomerGatewayTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (i CustomerGatewaysCustomerGatewayTagArgs) ToCustomerGatewaysCustomerGatewayTagOutput() CustomerGatewaysCustomerGatewayTagOutput {
+	return i.ToCustomerGatewaysCustomerGatewayTagOutputWithContext(context.Background())
+}
+
+func (i CustomerGatewaysCustomerGatewayTagArgs) ToCustomerGatewaysCustomerGatewayTagOutputWithContext(ctx context.Context) CustomerGatewaysCustomerGatewayTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomerGatewaysCustomerGatewayTagOutput)
+}
+
+// CustomerGatewaysCustomerGatewayTagArrayInput is an input type that accepts CustomerGatewaysCustomerGatewayTagArray and CustomerGatewaysCustomerGatewayTagArrayOutput values.
+// You can construct a concrete instance of `CustomerGatewaysCustomerGatewayTagArrayInput` via:
+//
+//	CustomerGatewaysCustomerGatewayTagArray{ CustomerGatewaysCustomerGatewayTagArgs{...} }
+type CustomerGatewaysCustomerGatewayTagArrayInput interface {
+	pulumi.Input
+
+	ToCustomerGatewaysCustomerGatewayTagArrayOutput() CustomerGatewaysCustomerGatewayTagArrayOutput
+	ToCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(context.Context) CustomerGatewaysCustomerGatewayTagArrayOutput
+}
+
+type CustomerGatewaysCustomerGatewayTagArray []CustomerGatewaysCustomerGatewayTagInput
+
+func (CustomerGatewaysCustomerGatewayTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (i CustomerGatewaysCustomerGatewayTagArray) ToCustomerGatewaysCustomerGatewayTagArrayOutput() CustomerGatewaysCustomerGatewayTagArrayOutput {
+	return i.ToCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(context.Background())
+}
+
+func (i CustomerGatewaysCustomerGatewayTagArray) ToCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(ctx context.Context) CustomerGatewaysCustomerGatewayTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomerGatewaysCustomerGatewayTagArrayOutput)
+}
+
+type CustomerGatewaysCustomerGatewayTagOutput struct{ *pulumi.OutputState }
+
+func (CustomerGatewaysCustomerGatewayTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (o CustomerGatewaysCustomerGatewayTagOutput) ToCustomerGatewaysCustomerGatewayTagOutput() CustomerGatewaysCustomerGatewayTagOutput {
+	return o
+}
+
+func (o CustomerGatewaysCustomerGatewayTagOutput) ToCustomerGatewaysCustomerGatewayTagOutputWithContext(ctx context.Context) CustomerGatewaysCustomerGatewayTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CustomerGatewaysCustomerGatewayTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewaysCustomerGatewayTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CustomerGatewaysCustomerGatewayTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewaysCustomerGatewayTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CustomerGatewaysCustomerGatewayTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomerGatewaysCustomerGatewayTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (o CustomerGatewaysCustomerGatewayTagArrayOutput) ToCustomerGatewaysCustomerGatewayTagArrayOutput() CustomerGatewaysCustomerGatewayTagArrayOutput {
+	return o
+}
+
+func (o CustomerGatewaysCustomerGatewayTagArrayOutput) ToCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(ctx context.Context) CustomerGatewaysCustomerGatewayTagArrayOutput {
+	return o
+}
+
+func (o CustomerGatewaysCustomerGatewayTagArrayOutput) Index(i pulumi.IntInput) CustomerGatewaysCustomerGatewayTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomerGatewaysCustomerGatewayTag {
+		return vs[0].([]CustomerGatewaysCustomerGatewayTag)[vs[1].(int)]
+	}).(CustomerGatewaysCustomerGatewayTagOutput)
+}
+
+type CustomerGatewaysTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CustomerGatewaysTagInput is an input type that accepts CustomerGatewaysTagArgs and CustomerGatewaysTagOutput values.
+// You can construct a concrete instance of `CustomerGatewaysTagInput` via:
+//
+//	CustomerGatewaysTagArgs{...}
+type CustomerGatewaysTagInput interface {
+	pulumi.Input
+
+	ToCustomerGatewaysTagOutput() CustomerGatewaysTagOutput
+	ToCustomerGatewaysTagOutputWithContext(context.Context) CustomerGatewaysTagOutput
+}
+
+type CustomerGatewaysTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CustomerGatewaysTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomerGatewaysTag)(nil)).Elem()
+}
+
+func (i CustomerGatewaysTagArgs) ToCustomerGatewaysTagOutput() CustomerGatewaysTagOutput {
+	return i.ToCustomerGatewaysTagOutputWithContext(context.Background())
+}
+
+func (i CustomerGatewaysTagArgs) ToCustomerGatewaysTagOutputWithContext(ctx context.Context) CustomerGatewaysTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomerGatewaysTagOutput)
+}
+
+// CustomerGatewaysTagArrayInput is an input type that accepts CustomerGatewaysTagArray and CustomerGatewaysTagArrayOutput values.
+// You can construct a concrete instance of `CustomerGatewaysTagArrayInput` via:
+//
+//	CustomerGatewaysTagArray{ CustomerGatewaysTagArgs{...} }
+type CustomerGatewaysTagArrayInput interface {
+	pulumi.Input
+
+	ToCustomerGatewaysTagArrayOutput() CustomerGatewaysTagArrayOutput
+	ToCustomerGatewaysTagArrayOutputWithContext(context.Context) CustomerGatewaysTagArrayOutput
+}
+
+type CustomerGatewaysTagArray []CustomerGatewaysTagInput
+
+func (CustomerGatewaysTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomerGatewaysTag)(nil)).Elem()
+}
+
+func (i CustomerGatewaysTagArray) ToCustomerGatewaysTagArrayOutput() CustomerGatewaysTagArrayOutput {
+	return i.ToCustomerGatewaysTagArrayOutputWithContext(context.Background())
+}
+
+func (i CustomerGatewaysTagArray) ToCustomerGatewaysTagArrayOutputWithContext(ctx context.Context) CustomerGatewaysTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomerGatewaysTagArrayOutput)
+}
+
+type CustomerGatewaysTagOutput struct{ *pulumi.OutputState }
+
+func (CustomerGatewaysTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomerGatewaysTag)(nil)).Elem()
+}
+
+func (o CustomerGatewaysTagOutput) ToCustomerGatewaysTagOutput() CustomerGatewaysTagOutput {
+	return o
+}
+
+func (o CustomerGatewaysTagOutput) ToCustomerGatewaysTagOutputWithContext(ctx context.Context) CustomerGatewaysTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CustomerGatewaysTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewaysTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CustomerGatewaysTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomerGatewaysTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CustomerGatewaysTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomerGatewaysTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomerGatewaysTag)(nil)).Elem()
+}
+
+func (o CustomerGatewaysTagArrayOutput) ToCustomerGatewaysTagArrayOutput() CustomerGatewaysTagArrayOutput {
+	return o
+}
+
+func (o CustomerGatewaysTagArrayOutput) ToCustomerGatewaysTagArrayOutputWithContext(ctx context.Context) CustomerGatewaysTagArrayOutput {
+	return o
+}
+
+func (o CustomerGatewaysTagArrayOutput) Index(i pulumi.IntInput) CustomerGatewaysTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomerGatewaysTag {
+		return vs[0].([]CustomerGatewaysTag)[vs[1].(int)]
+	}).(CustomerGatewaysTagOutput)
 }
 
 type GatewayRoutesVpnGatewayRoute struct {
@@ -1403,6 +2075,112 @@ func (o GatewaysVpnGatewayTagArrayOutput) Index(i pulumi.IntInput) GatewaysVpnGa
 	}).(GatewaysVpnGatewayTagOutput)
 }
 
+type SslVpnClientCertTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SslVpnClientCertTagInput is an input type that accepts SslVpnClientCertTagArgs and SslVpnClientCertTagOutput values.
+// You can construct a concrete instance of `SslVpnClientCertTagInput` via:
+//
+//	SslVpnClientCertTagArgs{...}
+type SslVpnClientCertTagInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertTagOutput() SslVpnClientCertTagOutput
+	ToSslVpnClientCertTagOutputWithContext(context.Context) SslVpnClientCertTagOutput
+}
+
+type SslVpnClientCertTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SslVpnClientCertTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertTag)(nil)).Elem()
+}
+
+func (i SslVpnClientCertTagArgs) ToSslVpnClientCertTagOutput() SslVpnClientCertTagOutput {
+	return i.ToSslVpnClientCertTagOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertTagArgs) ToSslVpnClientCertTagOutputWithContext(ctx context.Context) SslVpnClientCertTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertTagOutput)
+}
+
+// SslVpnClientCertTagArrayInput is an input type that accepts SslVpnClientCertTagArray and SslVpnClientCertTagArrayOutput values.
+// You can construct a concrete instance of `SslVpnClientCertTagArrayInput` via:
+//
+//	SslVpnClientCertTagArray{ SslVpnClientCertTagArgs{...} }
+type SslVpnClientCertTagArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertTagArrayOutput() SslVpnClientCertTagArrayOutput
+	ToSslVpnClientCertTagArrayOutputWithContext(context.Context) SslVpnClientCertTagArrayOutput
+}
+
+type SslVpnClientCertTagArray []SslVpnClientCertTagInput
+
+func (SslVpnClientCertTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertTag)(nil)).Elem()
+}
+
+func (i SslVpnClientCertTagArray) ToSslVpnClientCertTagArrayOutput() SslVpnClientCertTagArrayOutput {
+	return i.ToSslVpnClientCertTagArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertTagArray) ToSslVpnClientCertTagArrayOutputWithContext(ctx context.Context) SslVpnClientCertTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertTagArrayOutput)
+}
+
+type SslVpnClientCertTagOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertTag)(nil)).Elem()
+}
+
+func (o SslVpnClientCertTagOutput) ToSslVpnClientCertTagOutput() SslVpnClientCertTagOutput {
+	return o
+}
+
+func (o SslVpnClientCertTagOutput) ToSslVpnClientCertTagOutputWithContext(ctx context.Context) SslVpnClientCertTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SslVpnClientCertTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SslVpnClientCertTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SslVpnClientCertTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertTag)(nil)).Elem()
+}
+
+func (o SslVpnClientCertTagArrayOutput) ToSslVpnClientCertTagArrayOutput() SslVpnClientCertTagArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertTagArrayOutput) ToSslVpnClientCertTagArrayOutputWithContext(ctx context.Context) SslVpnClientCertTagArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertTagArrayOutput) Index(i pulumi.IntInput) SslVpnClientCertTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnClientCertTag {
+		return vs[0].([]SslVpnClientCertTag)[vs[1].(int)]
+	}).(SslVpnClientCertTagOutput)
+}
+
 type SslVpnClientCertsSslVpnClientCert struct {
 	// The CA certificate.
 	CaCertificate string `pulumi:"caCertificate"`
@@ -1430,6 +2208,8 @@ type SslVpnClientCertsSslVpnClientCert struct {
 	SslVpnServerId string `pulumi:"sslVpnServerId"`
 	// The status of the ssl vpn client.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []SslVpnClientCertsSslVpnClientCertTag `pulumi:"tags"`
 	// The update time of the ssl vpn client cert.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -1472,6 +2252,8 @@ type SslVpnClientCertsSslVpnClientCertArgs struct {
 	SslVpnServerId pulumi.StringInput `pulumi:"sslVpnServerId"`
 	// The status of the ssl vpn client.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags SslVpnClientCertsSslVpnClientCertTagArrayInput `pulumi:"tags"`
 	// The update time of the ssl vpn client cert.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -1592,6 +2374,11 @@ func (o SslVpnClientCertsSslVpnClientCertOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o SslVpnClientCertsSslVpnClientCertOutput) Tags() SslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) []SslVpnClientCertsSslVpnClientCertTag { return v.Tags }).(SslVpnClientCertsSslVpnClientCertTagArrayOutput)
+}
+
 // The update time of the ssl vpn client cert.
 func (o SslVpnClientCertsSslVpnClientCertOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.UpdateTime }).(pulumi.StringOutput)
@@ -1615,6 +2402,324 @@ func (o SslVpnClientCertsSslVpnClientCertArrayOutput) Index(i pulumi.IntInput) S
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnClientCertsSslVpnClientCert {
 		return vs[0].([]SslVpnClientCertsSslVpnClientCert)[vs[1].(int)]
 	}).(SslVpnClientCertsSslVpnClientCertOutput)
+}
+
+type SslVpnClientCertsSslVpnClientCertTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SslVpnClientCertsSslVpnClientCertTagInput is an input type that accepts SslVpnClientCertsSslVpnClientCertTagArgs and SslVpnClientCertsSslVpnClientCertTagOutput values.
+// You can construct a concrete instance of `SslVpnClientCertsSslVpnClientCertTagInput` via:
+//
+//	SslVpnClientCertsSslVpnClientCertTagArgs{...}
+type SslVpnClientCertsSslVpnClientCertTagInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertsSslVpnClientCertTagOutput() SslVpnClientCertsSslVpnClientCertTagOutput
+	ToSslVpnClientCertsSslVpnClientCertTagOutputWithContext(context.Context) SslVpnClientCertsSslVpnClientCertTagOutput
+}
+
+type SslVpnClientCertsSslVpnClientCertTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SslVpnClientCertsSslVpnClientCertTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (i SslVpnClientCertsSslVpnClientCertTagArgs) ToSslVpnClientCertsSslVpnClientCertTagOutput() SslVpnClientCertsSslVpnClientCertTagOutput {
+	return i.ToSslVpnClientCertsSslVpnClientCertTagOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertsSslVpnClientCertTagArgs) ToSslVpnClientCertsSslVpnClientCertTagOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertsSslVpnClientCertTagOutput)
+}
+
+// SslVpnClientCertsSslVpnClientCertTagArrayInput is an input type that accepts SslVpnClientCertsSslVpnClientCertTagArray and SslVpnClientCertsSslVpnClientCertTagArrayOutput values.
+// You can construct a concrete instance of `SslVpnClientCertsSslVpnClientCertTagArrayInput` via:
+//
+//	SslVpnClientCertsSslVpnClientCertTagArray{ SslVpnClientCertsSslVpnClientCertTagArgs{...} }
+type SslVpnClientCertsSslVpnClientCertTagArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertsSslVpnClientCertTagArrayOutput() SslVpnClientCertsSslVpnClientCertTagArrayOutput
+	ToSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(context.Context) SslVpnClientCertsSslVpnClientCertTagArrayOutput
+}
+
+type SslVpnClientCertsSslVpnClientCertTagArray []SslVpnClientCertsSslVpnClientCertTagInput
+
+func (SslVpnClientCertsSslVpnClientCertTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (i SslVpnClientCertsSslVpnClientCertTagArray) ToSslVpnClientCertsSslVpnClientCertTagArrayOutput() SslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return i.ToSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertsSslVpnClientCertTagArray) ToSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertsSslVpnClientCertTagArrayOutput)
+}
+
+type SslVpnClientCertsSslVpnClientCertTagOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertsSslVpnClientCertTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (o SslVpnClientCertsSslVpnClientCertTagOutput) ToSslVpnClientCertsSslVpnClientCertTagOutput() SslVpnClientCertsSslVpnClientCertTagOutput {
+	return o
+}
+
+func (o SslVpnClientCertsSslVpnClientCertTagOutput) ToSslVpnClientCertsSslVpnClientCertTagOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SslVpnClientCertsSslVpnClientCertTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCertTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SslVpnClientCertsSslVpnClientCertTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCertTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SslVpnClientCertsSslVpnClientCertTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertsSslVpnClientCertTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (o SslVpnClientCertsSslVpnClientCertTagArrayOutput) ToSslVpnClientCertsSslVpnClientCertTagArrayOutput() SslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertsSslVpnClientCertTagArrayOutput) ToSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertsSslVpnClientCertTagArrayOutput) Index(i pulumi.IntInput) SslVpnClientCertsSslVpnClientCertTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnClientCertsSslVpnClientCertTag {
+		return vs[0].([]SslVpnClientCertsSslVpnClientCertTag)[vs[1].(int)]
+	}).(SslVpnClientCertsSslVpnClientCertTagOutput)
+}
+
+type SslVpnClientCertsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SslVpnClientCertsTagInput is an input type that accepts SslVpnClientCertsTagArgs and SslVpnClientCertsTagOutput values.
+// You can construct a concrete instance of `SslVpnClientCertsTagInput` via:
+//
+//	SslVpnClientCertsTagArgs{...}
+type SslVpnClientCertsTagInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertsTagOutput() SslVpnClientCertsTagOutput
+	ToSslVpnClientCertsTagOutputWithContext(context.Context) SslVpnClientCertsTagOutput
+}
+
+type SslVpnClientCertsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SslVpnClientCertsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (i SslVpnClientCertsTagArgs) ToSslVpnClientCertsTagOutput() SslVpnClientCertsTagOutput {
+	return i.ToSslVpnClientCertsTagOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertsTagArgs) ToSslVpnClientCertsTagOutputWithContext(ctx context.Context) SslVpnClientCertsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertsTagOutput)
+}
+
+// SslVpnClientCertsTagArrayInput is an input type that accepts SslVpnClientCertsTagArray and SslVpnClientCertsTagArrayOutput values.
+// You can construct a concrete instance of `SslVpnClientCertsTagArrayInput` via:
+//
+//	SslVpnClientCertsTagArray{ SslVpnClientCertsTagArgs{...} }
+type SslVpnClientCertsTagArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertsTagArrayOutput() SslVpnClientCertsTagArrayOutput
+	ToSslVpnClientCertsTagArrayOutputWithContext(context.Context) SslVpnClientCertsTagArrayOutput
+}
+
+type SslVpnClientCertsTagArray []SslVpnClientCertsTagInput
+
+func (SslVpnClientCertsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (i SslVpnClientCertsTagArray) ToSslVpnClientCertsTagArrayOutput() SslVpnClientCertsTagArrayOutput {
+	return i.ToSslVpnClientCertsTagArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertsTagArray) ToSslVpnClientCertsTagArrayOutputWithContext(ctx context.Context) SslVpnClientCertsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertsTagArrayOutput)
+}
+
+type SslVpnClientCertsTagOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (o SslVpnClientCertsTagOutput) ToSslVpnClientCertsTagOutput() SslVpnClientCertsTagOutput {
+	return o
+}
+
+func (o SslVpnClientCertsTagOutput) ToSslVpnClientCertsTagOutputWithContext(ctx context.Context) SslVpnClientCertsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SslVpnClientCertsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SslVpnClientCertsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SslVpnClientCertsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (o SslVpnClientCertsTagArrayOutput) ToSslVpnClientCertsTagArrayOutput() SslVpnClientCertsTagArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertsTagArrayOutput) ToSslVpnClientCertsTagArrayOutputWithContext(ctx context.Context) SslVpnClientCertsTagArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertsTagArrayOutput) Index(i pulumi.IntInput) SslVpnClientCertsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnClientCertsTag {
+		return vs[0].([]SslVpnClientCertsTag)[vs[1].(int)]
+	}).(SslVpnClientCertsTagOutput)
+}
+
+type SslVpnServerTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SslVpnServerTagInput is an input type that accepts SslVpnServerTagArgs and SslVpnServerTagOutput values.
+// You can construct a concrete instance of `SslVpnServerTagInput` via:
+//
+//	SslVpnServerTagArgs{...}
+type SslVpnServerTagInput interface {
+	pulumi.Input
+
+	ToSslVpnServerTagOutput() SslVpnServerTagOutput
+	ToSslVpnServerTagOutputWithContext(context.Context) SslVpnServerTagOutput
+}
+
+type SslVpnServerTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SslVpnServerTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServerTag)(nil)).Elem()
+}
+
+func (i SslVpnServerTagArgs) ToSslVpnServerTagOutput() SslVpnServerTagOutput {
+	return i.ToSslVpnServerTagOutputWithContext(context.Background())
+}
+
+func (i SslVpnServerTagArgs) ToSslVpnServerTagOutputWithContext(ctx context.Context) SslVpnServerTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServerTagOutput)
+}
+
+// SslVpnServerTagArrayInput is an input type that accepts SslVpnServerTagArray and SslVpnServerTagArrayOutput values.
+// You can construct a concrete instance of `SslVpnServerTagArrayInput` via:
+//
+//	SslVpnServerTagArray{ SslVpnServerTagArgs{...} }
+type SslVpnServerTagArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnServerTagArrayOutput() SslVpnServerTagArrayOutput
+	ToSslVpnServerTagArrayOutputWithContext(context.Context) SslVpnServerTagArrayOutput
+}
+
+type SslVpnServerTagArray []SslVpnServerTagInput
+
+func (SslVpnServerTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServerTag)(nil)).Elem()
+}
+
+func (i SslVpnServerTagArray) ToSslVpnServerTagArrayOutput() SslVpnServerTagArrayOutput {
+	return i.ToSslVpnServerTagArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnServerTagArray) ToSslVpnServerTagArrayOutputWithContext(ctx context.Context) SslVpnServerTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServerTagArrayOutput)
+}
+
+type SslVpnServerTagOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServerTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServerTag)(nil)).Elem()
+}
+
+func (o SslVpnServerTagOutput) ToSslVpnServerTagOutput() SslVpnServerTagOutput {
+	return o
+}
+
+func (o SslVpnServerTagOutput) ToSslVpnServerTagOutputWithContext(ctx context.Context) SslVpnServerTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SslVpnServerTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServerTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SslVpnServerTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServerTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SslVpnServerTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServerTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServerTag)(nil)).Elem()
+}
+
+func (o SslVpnServerTagArrayOutput) ToSslVpnServerTagArrayOutput() SslVpnServerTagArrayOutput {
+	return o
+}
+
+func (o SslVpnServerTagArrayOutput) ToSslVpnServerTagArrayOutputWithContext(ctx context.Context) SslVpnServerTagArrayOutput {
+	return o
+}
+
+func (o SslVpnServerTagArrayOutput) Index(i pulumi.IntInput) SslVpnServerTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnServerTag {
+		return vs[0].([]SslVpnServerTag)[vs[1].(int)]
+	}).(SslVpnServerTagOutput)
 }
 
 type SslVpnServersSslVpnServer struct {
@@ -1655,6 +2760,8 @@ type SslVpnServersSslVpnServer struct {
 	SslVpnServerName string `pulumi:"sslVpnServerName"`
 	// The status of the ssl vpn server.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []SslVpnServersSslVpnServerTag `pulumi:"tags"`
 	// The update time.
 	UpdateTime string `pulumi:"updateTime"`
 	// The id of the vpn gateway.
@@ -1710,6 +2817,8 @@ type SslVpnServersSslVpnServerArgs struct {
 	SslVpnServerName pulumi.StringInput `pulumi:"sslVpnServerName"`
 	// The status of the ssl vpn server.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags SslVpnServersSslVpnServerTagArrayInput `pulumi:"tags"`
 	// The update time.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// The id of the vpn gateway.
@@ -1846,6 +2955,11 @@ func (o SslVpnServersSslVpnServerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o SslVpnServersSslVpnServerOutput) Tags() SslVpnServersSslVpnServerTagArrayOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) []SslVpnServersSslVpnServerTag { return v.Tags }).(SslVpnServersSslVpnServerTagArrayOutput)
+}
+
 // The update time.
 func (o SslVpnServersSslVpnServerOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.UpdateTime }).(pulumi.StringOutput)
@@ -1874,6 +2988,324 @@ func (o SslVpnServersSslVpnServerArrayOutput) Index(i pulumi.IntInput) SslVpnSer
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnServersSslVpnServer {
 		return vs[0].([]SslVpnServersSslVpnServer)[vs[1].(int)]
 	}).(SslVpnServersSslVpnServerOutput)
+}
+
+type SslVpnServersSslVpnServerTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SslVpnServersSslVpnServerTagInput is an input type that accepts SslVpnServersSslVpnServerTagArgs and SslVpnServersSslVpnServerTagOutput values.
+// You can construct a concrete instance of `SslVpnServersSslVpnServerTagInput` via:
+//
+//	SslVpnServersSslVpnServerTagArgs{...}
+type SslVpnServersSslVpnServerTagInput interface {
+	pulumi.Input
+
+	ToSslVpnServersSslVpnServerTagOutput() SslVpnServersSslVpnServerTagOutput
+	ToSslVpnServersSslVpnServerTagOutputWithContext(context.Context) SslVpnServersSslVpnServerTagOutput
+}
+
+type SslVpnServersSslVpnServerTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SslVpnServersSslVpnServerTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (i SslVpnServersSslVpnServerTagArgs) ToSslVpnServersSslVpnServerTagOutput() SslVpnServersSslVpnServerTagOutput {
+	return i.ToSslVpnServersSslVpnServerTagOutputWithContext(context.Background())
+}
+
+func (i SslVpnServersSslVpnServerTagArgs) ToSslVpnServersSslVpnServerTagOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServersSslVpnServerTagOutput)
+}
+
+// SslVpnServersSslVpnServerTagArrayInput is an input type that accepts SslVpnServersSslVpnServerTagArray and SslVpnServersSslVpnServerTagArrayOutput values.
+// You can construct a concrete instance of `SslVpnServersSslVpnServerTagArrayInput` via:
+//
+//	SslVpnServersSslVpnServerTagArray{ SslVpnServersSslVpnServerTagArgs{...} }
+type SslVpnServersSslVpnServerTagArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnServersSslVpnServerTagArrayOutput() SslVpnServersSslVpnServerTagArrayOutput
+	ToSslVpnServersSslVpnServerTagArrayOutputWithContext(context.Context) SslVpnServersSslVpnServerTagArrayOutput
+}
+
+type SslVpnServersSslVpnServerTagArray []SslVpnServersSslVpnServerTagInput
+
+func (SslVpnServersSslVpnServerTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (i SslVpnServersSslVpnServerTagArray) ToSslVpnServersSslVpnServerTagArrayOutput() SslVpnServersSslVpnServerTagArrayOutput {
+	return i.ToSslVpnServersSslVpnServerTagArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnServersSslVpnServerTagArray) ToSslVpnServersSslVpnServerTagArrayOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServersSslVpnServerTagArrayOutput)
+}
+
+type SslVpnServersSslVpnServerTagOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServersSslVpnServerTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (o SslVpnServersSslVpnServerTagOutput) ToSslVpnServersSslVpnServerTagOutput() SslVpnServersSslVpnServerTagOutput {
+	return o
+}
+
+func (o SslVpnServersSslVpnServerTagOutput) ToSslVpnServersSslVpnServerTagOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SslVpnServersSslVpnServerTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServerTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SslVpnServersSslVpnServerTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServerTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SslVpnServersSslVpnServerTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServersSslVpnServerTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (o SslVpnServersSslVpnServerTagArrayOutput) ToSslVpnServersSslVpnServerTagArrayOutput() SslVpnServersSslVpnServerTagArrayOutput {
+	return o
+}
+
+func (o SslVpnServersSslVpnServerTagArrayOutput) ToSslVpnServersSslVpnServerTagArrayOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerTagArrayOutput {
+	return o
+}
+
+func (o SslVpnServersSslVpnServerTagArrayOutput) Index(i pulumi.IntInput) SslVpnServersSslVpnServerTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnServersSslVpnServerTag {
+		return vs[0].([]SslVpnServersSslVpnServerTag)[vs[1].(int)]
+	}).(SslVpnServersSslVpnServerTagOutput)
+}
+
+type SslVpnServersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SslVpnServersTagInput is an input type that accepts SslVpnServersTagArgs and SslVpnServersTagOutput values.
+// You can construct a concrete instance of `SslVpnServersTagInput` via:
+//
+//	SslVpnServersTagArgs{...}
+type SslVpnServersTagInput interface {
+	pulumi.Input
+
+	ToSslVpnServersTagOutput() SslVpnServersTagOutput
+	ToSslVpnServersTagOutputWithContext(context.Context) SslVpnServersTagOutput
+}
+
+type SslVpnServersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SslVpnServersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServersTag)(nil)).Elem()
+}
+
+func (i SslVpnServersTagArgs) ToSslVpnServersTagOutput() SslVpnServersTagOutput {
+	return i.ToSslVpnServersTagOutputWithContext(context.Background())
+}
+
+func (i SslVpnServersTagArgs) ToSslVpnServersTagOutputWithContext(ctx context.Context) SslVpnServersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServersTagOutput)
+}
+
+// SslVpnServersTagArrayInput is an input type that accepts SslVpnServersTagArray and SslVpnServersTagArrayOutput values.
+// You can construct a concrete instance of `SslVpnServersTagArrayInput` via:
+//
+//	SslVpnServersTagArray{ SslVpnServersTagArgs{...} }
+type SslVpnServersTagArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnServersTagArrayOutput() SslVpnServersTagArrayOutput
+	ToSslVpnServersTagArrayOutputWithContext(context.Context) SslVpnServersTagArrayOutput
+}
+
+type SslVpnServersTagArray []SslVpnServersTagInput
+
+func (SslVpnServersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServersTag)(nil)).Elem()
+}
+
+func (i SslVpnServersTagArray) ToSslVpnServersTagArrayOutput() SslVpnServersTagArrayOutput {
+	return i.ToSslVpnServersTagArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnServersTagArray) ToSslVpnServersTagArrayOutputWithContext(ctx context.Context) SslVpnServersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServersTagArrayOutput)
+}
+
+type SslVpnServersTagOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServersTag)(nil)).Elem()
+}
+
+func (o SslVpnServersTagOutput) ToSslVpnServersTagOutput() SslVpnServersTagOutput {
+	return o
+}
+
+func (o SslVpnServersTagOutput) ToSslVpnServersTagOutputWithContext(ctx context.Context) SslVpnServersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SslVpnServersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SslVpnServersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SslVpnServersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServersTag)(nil)).Elem()
+}
+
+func (o SslVpnServersTagArrayOutput) ToSslVpnServersTagArrayOutput() SslVpnServersTagArrayOutput {
+	return o
+}
+
+func (o SslVpnServersTagArrayOutput) ToSslVpnServersTagArrayOutputWithContext(ctx context.Context) SslVpnServersTagArrayOutput {
+	return o
+}
+
+func (o SslVpnServersTagArrayOutput) Index(i pulumi.IntInput) SslVpnServersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnServersTag {
+		return vs[0].([]SslVpnServersTag)[vs[1].(int)]
+	}).(SslVpnServersTagOutput)
+}
+
+type GetConnectionsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetConnectionsTagInput is an input type that accepts GetConnectionsTagArgs and GetConnectionsTagOutput values.
+// You can construct a concrete instance of `GetConnectionsTagInput` via:
+//
+//	GetConnectionsTagArgs{...}
+type GetConnectionsTagInput interface {
+	pulumi.Input
+
+	ToGetConnectionsTagOutput() GetConnectionsTagOutput
+	ToGetConnectionsTagOutputWithContext(context.Context) GetConnectionsTagOutput
+}
+
+type GetConnectionsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetConnectionsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsTag)(nil)).Elem()
+}
+
+func (i GetConnectionsTagArgs) ToGetConnectionsTagOutput() GetConnectionsTagOutput {
+	return i.ToGetConnectionsTagOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsTagArgs) ToGetConnectionsTagOutputWithContext(ctx context.Context) GetConnectionsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsTagOutput)
+}
+
+// GetConnectionsTagArrayInput is an input type that accepts GetConnectionsTagArray and GetConnectionsTagArrayOutput values.
+// You can construct a concrete instance of `GetConnectionsTagArrayInput` via:
+//
+//	GetConnectionsTagArray{ GetConnectionsTagArgs{...} }
+type GetConnectionsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionsTagArrayOutput() GetConnectionsTagArrayOutput
+	ToGetConnectionsTagArrayOutputWithContext(context.Context) GetConnectionsTagArrayOutput
+}
+
+type GetConnectionsTagArray []GetConnectionsTagInput
+
+func (GetConnectionsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsTag)(nil)).Elem()
+}
+
+func (i GetConnectionsTagArray) ToGetConnectionsTagArrayOutput() GetConnectionsTagArrayOutput {
+	return i.ToGetConnectionsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsTagArray) ToGetConnectionsTagArrayOutputWithContext(ctx context.Context) GetConnectionsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsTagArrayOutput)
+}
+
+type GetConnectionsTagOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsTag)(nil)).Elem()
+}
+
+func (o GetConnectionsTagOutput) ToGetConnectionsTagOutput() GetConnectionsTagOutput {
+	return o
+}
+
+func (o GetConnectionsTagOutput) ToGetConnectionsTagOutputWithContext(ctx context.Context) GetConnectionsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetConnectionsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetConnectionsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetConnectionsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsTag)(nil)).Elem()
+}
+
+func (o GetConnectionsTagArrayOutput) ToGetConnectionsTagArrayOutput() GetConnectionsTagArrayOutput {
+	return o
+}
+
+func (o GetConnectionsTagArrayOutput) ToGetConnectionsTagArrayOutputWithContext(ctx context.Context) GetConnectionsTagArrayOutput {
+	return o
+}
+
+func (o GetConnectionsTagArrayOutput) Index(i pulumi.IntInput) GetConnectionsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionsTag {
+		return vs[0].([]GetConnectionsTag)[vs[1].(int)]
+	}).(GetConnectionsTagOutput)
 }
 
 type GetConnectionsVpnConnection struct {
@@ -1941,6 +3373,8 @@ type GetConnectionsVpnConnection struct {
 	RemoteSubnets []string `pulumi:"remoteSubnets"`
 	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetConnectionsVpnConnectionTag `pulumi:"tags"`
 	// An ID of transit router.
 	TransitRouterId string `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
@@ -2031,6 +3465,8 @@ type GetConnectionsVpnConnectionArgs struct {
 	RemoteSubnets pulumi.StringArrayInput `pulumi:"remoteSubnets"`
 	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetConnectionsVpnConnectionTagArrayInput `pulumi:"tags"`
 	// An ID of transit router.
 	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
@@ -2256,6 +3692,11 @@ func (o GetConnectionsVpnConnectionOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConnectionsVpnConnection) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o GetConnectionsVpnConnectionOutput) Tags() GetConnectionsVpnConnectionTagArrayOutput {
+	return o.ApplyT(func(v GetConnectionsVpnConnection) []GetConnectionsVpnConnectionTag { return v.Tags }).(GetConnectionsVpnConnectionTagArrayOutput)
+}
+
 // An ID of transit router.
 func (o GetConnectionsVpnConnectionOutput) TransitRouterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConnectionsVpnConnection) string { return v.TransitRouterId }).(pulumi.StringOutput)
@@ -2306,6 +3747,112 @@ func (o GetConnectionsVpnConnectionArrayOutput) Index(i pulumi.IntInput) GetConn
 	}).(GetConnectionsVpnConnectionOutput)
 }
 
+type GetConnectionsVpnConnectionTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetConnectionsVpnConnectionTagInput is an input type that accepts GetConnectionsVpnConnectionTagArgs and GetConnectionsVpnConnectionTagOutput values.
+// You can construct a concrete instance of `GetConnectionsVpnConnectionTagInput` via:
+//
+//	GetConnectionsVpnConnectionTagArgs{...}
+type GetConnectionsVpnConnectionTagInput interface {
+	pulumi.Input
+
+	ToGetConnectionsVpnConnectionTagOutput() GetConnectionsVpnConnectionTagOutput
+	ToGetConnectionsVpnConnectionTagOutputWithContext(context.Context) GetConnectionsVpnConnectionTagOutput
+}
+
+type GetConnectionsVpnConnectionTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetConnectionsVpnConnectionTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (i GetConnectionsVpnConnectionTagArgs) ToGetConnectionsVpnConnectionTagOutput() GetConnectionsVpnConnectionTagOutput {
+	return i.ToGetConnectionsVpnConnectionTagOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsVpnConnectionTagArgs) ToGetConnectionsVpnConnectionTagOutputWithContext(ctx context.Context) GetConnectionsVpnConnectionTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsVpnConnectionTagOutput)
+}
+
+// GetConnectionsVpnConnectionTagArrayInput is an input type that accepts GetConnectionsVpnConnectionTagArray and GetConnectionsVpnConnectionTagArrayOutput values.
+// You can construct a concrete instance of `GetConnectionsVpnConnectionTagArrayInput` via:
+//
+//	GetConnectionsVpnConnectionTagArray{ GetConnectionsVpnConnectionTagArgs{...} }
+type GetConnectionsVpnConnectionTagArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionsVpnConnectionTagArrayOutput() GetConnectionsVpnConnectionTagArrayOutput
+	ToGetConnectionsVpnConnectionTagArrayOutputWithContext(context.Context) GetConnectionsVpnConnectionTagArrayOutput
+}
+
+type GetConnectionsVpnConnectionTagArray []GetConnectionsVpnConnectionTagInput
+
+func (GetConnectionsVpnConnectionTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (i GetConnectionsVpnConnectionTagArray) ToGetConnectionsVpnConnectionTagArrayOutput() GetConnectionsVpnConnectionTagArrayOutput {
+	return i.ToGetConnectionsVpnConnectionTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionsVpnConnectionTagArray) ToGetConnectionsVpnConnectionTagArrayOutputWithContext(ctx context.Context) GetConnectionsVpnConnectionTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionsVpnConnectionTagArrayOutput)
+}
+
+type GetConnectionsVpnConnectionTagOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsVpnConnectionTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (o GetConnectionsVpnConnectionTagOutput) ToGetConnectionsVpnConnectionTagOutput() GetConnectionsVpnConnectionTagOutput {
+	return o
+}
+
+func (o GetConnectionsVpnConnectionTagOutput) ToGetConnectionsVpnConnectionTagOutputWithContext(ctx context.Context) GetConnectionsVpnConnectionTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetConnectionsVpnConnectionTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsVpnConnectionTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetConnectionsVpnConnectionTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionsVpnConnectionTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetConnectionsVpnConnectionTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionsVpnConnectionTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionsVpnConnectionTag)(nil)).Elem()
+}
+
+func (o GetConnectionsVpnConnectionTagArrayOutput) ToGetConnectionsVpnConnectionTagArrayOutput() GetConnectionsVpnConnectionTagArrayOutput {
+	return o
+}
+
+func (o GetConnectionsVpnConnectionTagArrayOutput) ToGetConnectionsVpnConnectionTagArrayOutputWithContext(ctx context.Context) GetConnectionsVpnConnectionTagArrayOutput {
+	return o
+}
+
+func (o GetConnectionsVpnConnectionTagArrayOutput) Index(i pulumi.IntInput) GetConnectionsVpnConnectionTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionsVpnConnectionTag {
+		return vs[0].([]GetConnectionsVpnConnectionTag)[vs[1].(int)]
+	}).(GetConnectionsVpnConnectionTagOutput)
+}
+
 type GetCustomerGatewaysCustomerGateway struct {
 	// The account ID of the customer gateway.
 	AccountId string `pulumi:"accountId"`
@@ -2323,8 +3870,14 @@ type GetCustomerGatewaysCustomerGateway struct {
 	Id string `pulumi:"id"`
 	// A IP address of the customer gateway.
 	IpAddress string `pulumi:"ipAddress"`
-	// The status of the customer gateway.
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion string `pulumi:"ipVersion"`
+	// The project name of the VPN customer gateway.
+	ProjectName string `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetCustomerGatewaysCustomerGatewayTag `pulumi:"tags"`
 	// The update time of customer gateway.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -2357,8 +3910,14 @@ type GetCustomerGatewaysCustomerGatewayArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// A IP address of the customer gateway.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The status of the customer gateway.
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion pulumi.StringInput `pulumi:"ipVersion"`
+	// The project name of the VPN customer gateway.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetCustomerGatewaysCustomerGatewayTagArrayInput `pulumi:"tags"`
 	// The update time of customer gateway.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -2454,9 +4013,24 @@ func (o GetCustomerGatewaysCustomerGatewayOutput) IpAddress() pulumi.StringOutpu
 	return o.ApplyT(func(v GetCustomerGatewaysCustomerGateway) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The status of the customer gateway.
+// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+func (o GetCustomerGatewaysCustomerGatewayOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysCustomerGateway) string { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+// The project name of the VPN customer gateway.
+func (o GetCustomerGatewaysCustomerGatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysCustomerGateway) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
 func (o GetCustomerGatewaysCustomerGatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomerGatewaysCustomerGateway) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetCustomerGatewaysCustomerGatewayOutput) Tags() GetCustomerGatewaysCustomerGatewayTagArrayOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysCustomerGateway) []GetCustomerGatewaysCustomerGatewayTag { return v.Tags }).(GetCustomerGatewaysCustomerGatewayTagArrayOutput)
 }
 
 // The update time of customer gateway.
@@ -2482,6 +4056,218 @@ func (o GetCustomerGatewaysCustomerGatewayArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCustomerGatewaysCustomerGateway {
 		return vs[0].([]GetCustomerGatewaysCustomerGateway)[vs[1].(int)]
 	}).(GetCustomerGatewaysCustomerGatewayOutput)
+}
+
+type GetCustomerGatewaysCustomerGatewayTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCustomerGatewaysCustomerGatewayTagInput is an input type that accepts GetCustomerGatewaysCustomerGatewayTagArgs and GetCustomerGatewaysCustomerGatewayTagOutput values.
+// You can construct a concrete instance of `GetCustomerGatewaysCustomerGatewayTagInput` via:
+//
+//	GetCustomerGatewaysCustomerGatewayTagArgs{...}
+type GetCustomerGatewaysCustomerGatewayTagInput interface {
+	pulumi.Input
+
+	ToGetCustomerGatewaysCustomerGatewayTagOutput() GetCustomerGatewaysCustomerGatewayTagOutput
+	ToGetCustomerGatewaysCustomerGatewayTagOutputWithContext(context.Context) GetCustomerGatewaysCustomerGatewayTagOutput
+}
+
+type GetCustomerGatewaysCustomerGatewayTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCustomerGatewaysCustomerGatewayTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (i GetCustomerGatewaysCustomerGatewayTagArgs) ToGetCustomerGatewaysCustomerGatewayTagOutput() GetCustomerGatewaysCustomerGatewayTagOutput {
+	return i.ToGetCustomerGatewaysCustomerGatewayTagOutputWithContext(context.Background())
+}
+
+func (i GetCustomerGatewaysCustomerGatewayTagArgs) ToGetCustomerGatewaysCustomerGatewayTagOutputWithContext(ctx context.Context) GetCustomerGatewaysCustomerGatewayTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomerGatewaysCustomerGatewayTagOutput)
+}
+
+// GetCustomerGatewaysCustomerGatewayTagArrayInput is an input type that accepts GetCustomerGatewaysCustomerGatewayTagArray and GetCustomerGatewaysCustomerGatewayTagArrayOutput values.
+// You can construct a concrete instance of `GetCustomerGatewaysCustomerGatewayTagArrayInput` via:
+//
+//	GetCustomerGatewaysCustomerGatewayTagArray{ GetCustomerGatewaysCustomerGatewayTagArgs{...} }
+type GetCustomerGatewaysCustomerGatewayTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCustomerGatewaysCustomerGatewayTagArrayOutput() GetCustomerGatewaysCustomerGatewayTagArrayOutput
+	ToGetCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(context.Context) GetCustomerGatewaysCustomerGatewayTagArrayOutput
+}
+
+type GetCustomerGatewaysCustomerGatewayTagArray []GetCustomerGatewaysCustomerGatewayTagInput
+
+func (GetCustomerGatewaysCustomerGatewayTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (i GetCustomerGatewaysCustomerGatewayTagArray) ToGetCustomerGatewaysCustomerGatewayTagArrayOutput() GetCustomerGatewaysCustomerGatewayTagArrayOutput {
+	return i.ToGetCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCustomerGatewaysCustomerGatewayTagArray) ToGetCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(ctx context.Context) GetCustomerGatewaysCustomerGatewayTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomerGatewaysCustomerGatewayTagArrayOutput)
+}
+
+type GetCustomerGatewaysCustomerGatewayTagOutput struct{ *pulumi.OutputState }
+
+func (GetCustomerGatewaysCustomerGatewayTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (o GetCustomerGatewaysCustomerGatewayTagOutput) ToGetCustomerGatewaysCustomerGatewayTagOutput() GetCustomerGatewaysCustomerGatewayTagOutput {
+	return o
+}
+
+func (o GetCustomerGatewaysCustomerGatewayTagOutput) ToGetCustomerGatewaysCustomerGatewayTagOutputWithContext(ctx context.Context) GetCustomerGatewaysCustomerGatewayTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCustomerGatewaysCustomerGatewayTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysCustomerGatewayTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCustomerGatewaysCustomerGatewayTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysCustomerGatewayTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCustomerGatewaysCustomerGatewayTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCustomerGatewaysCustomerGatewayTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomerGatewaysCustomerGatewayTag)(nil)).Elem()
+}
+
+func (o GetCustomerGatewaysCustomerGatewayTagArrayOutput) ToGetCustomerGatewaysCustomerGatewayTagArrayOutput() GetCustomerGatewaysCustomerGatewayTagArrayOutput {
+	return o
+}
+
+func (o GetCustomerGatewaysCustomerGatewayTagArrayOutput) ToGetCustomerGatewaysCustomerGatewayTagArrayOutputWithContext(ctx context.Context) GetCustomerGatewaysCustomerGatewayTagArrayOutput {
+	return o
+}
+
+func (o GetCustomerGatewaysCustomerGatewayTagArrayOutput) Index(i pulumi.IntInput) GetCustomerGatewaysCustomerGatewayTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCustomerGatewaysCustomerGatewayTag {
+		return vs[0].([]GetCustomerGatewaysCustomerGatewayTag)[vs[1].(int)]
+	}).(GetCustomerGatewaysCustomerGatewayTagOutput)
+}
+
+type GetCustomerGatewaysTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetCustomerGatewaysTagInput is an input type that accepts GetCustomerGatewaysTagArgs and GetCustomerGatewaysTagOutput values.
+// You can construct a concrete instance of `GetCustomerGatewaysTagInput` via:
+//
+//	GetCustomerGatewaysTagArgs{...}
+type GetCustomerGatewaysTagInput interface {
+	pulumi.Input
+
+	ToGetCustomerGatewaysTagOutput() GetCustomerGatewaysTagOutput
+	ToGetCustomerGatewaysTagOutputWithContext(context.Context) GetCustomerGatewaysTagOutput
+}
+
+type GetCustomerGatewaysTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCustomerGatewaysTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomerGatewaysTag)(nil)).Elem()
+}
+
+func (i GetCustomerGatewaysTagArgs) ToGetCustomerGatewaysTagOutput() GetCustomerGatewaysTagOutput {
+	return i.ToGetCustomerGatewaysTagOutputWithContext(context.Background())
+}
+
+func (i GetCustomerGatewaysTagArgs) ToGetCustomerGatewaysTagOutputWithContext(ctx context.Context) GetCustomerGatewaysTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomerGatewaysTagOutput)
+}
+
+// GetCustomerGatewaysTagArrayInput is an input type that accepts GetCustomerGatewaysTagArray and GetCustomerGatewaysTagArrayOutput values.
+// You can construct a concrete instance of `GetCustomerGatewaysTagArrayInput` via:
+//
+//	GetCustomerGatewaysTagArray{ GetCustomerGatewaysTagArgs{...} }
+type GetCustomerGatewaysTagArrayInput interface {
+	pulumi.Input
+
+	ToGetCustomerGatewaysTagArrayOutput() GetCustomerGatewaysTagArrayOutput
+	ToGetCustomerGatewaysTagArrayOutputWithContext(context.Context) GetCustomerGatewaysTagArrayOutput
+}
+
+type GetCustomerGatewaysTagArray []GetCustomerGatewaysTagInput
+
+func (GetCustomerGatewaysTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomerGatewaysTag)(nil)).Elem()
+}
+
+func (i GetCustomerGatewaysTagArray) ToGetCustomerGatewaysTagArrayOutput() GetCustomerGatewaysTagArrayOutput {
+	return i.ToGetCustomerGatewaysTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetCustomerGatewaysTagArray) ToGetCustomerGatewaysTagArrayOutputWithContext(ctx context.Context) GetCustomerGatewaysTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomerGatewaysTagArrayOutput)
+}
+
+type GetCustomerGatewaysTagOutput struct{ *pulumi.OutputState }
+
+func (GetCustomerGatewaysTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomerGatewaysTag)(nil)).Elem()
+}
+
+func (o GetCustomerGatewaysTagOutput) ToGetCustomerGatewaysTagOutput() GetCustomerGatewaysTagOutput {
+	return o
+}
+
+func (o GetCustomerGatewaysTagOutput) ToGetCustomerGatewaysTagOutputWithContext(ctx context.Context) GetCustomerGatewaysTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetCustomerGatewaysTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetCustomerGatewaysTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCustomerGatewaysTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCustomerGatewaysTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCustomerGatewaysTag)(nil)).Elem()
+}
+
+func (o GetCustomerGatewaysTagArrayOutput) ToGetCustomerGatewaysTagArrayOutput() GetCustomerGatewaysTagArrayOutput {
+	return o
+}
+
+func (o GetCustomerGatewaysTagArrayOutput) ToGetCustomerGatewaysTagArrayOutputWithContext(ctx context.Context) GetCustomerGatewaysTagArrayOutput {
+	return o
+}
+
+func (o GetCustomerGatewaysTagArrayOutput) Index(i pulumi.IntInput) GetCustomerGatewaysTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCustomerGatewaysTag {
+		return vs[0].([]GetCustomerGatewaysTag)[vs[1].(int)]
+	}).(GetCustomerGatewaysTagOutput)
 }
 
 type GetGatewayRoutesVpnGatewayRoute struct {
@@ -3187,6 +4973,8 @@ type GetSslVpnClientCertsSslVpnClientCert struct {
 	SslVpnServerId string `pulumi:"sslVpnServerId"`
 	// The status of the ssl vpn client.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetSslVpnClientCertsSslVpnClientCertTag `pulumi:"tags"`
 	// The update time of the ssl vpn client cert.
 	UpdateTime string `pulumi:"updateTime"`
 }
@@ -3229,6 +5017,8 @@ type GetSslVpnClientCertsSslVpnClientCertArgs struct {
 	SslVpnServerId pulumi.StringInput `pulumi:"sslVpnServerId"`
 	// The status of the ssl vpn client.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetSslVpnClientCertsSslVpnClientCertTagArrayInput `pulumi:"tags"`
 	// The update time of the ssl vpn client cert.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
@@ -3349,6 +5139,11 @@ func (o GetSslVpnClientCertsSslVpnClientCertOutput) Status() pulumi.StringOutput
 	return o.ApplyT(func(v GetSslVpnClientCertsSslVpnClientCert) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o GetSslVpnClientCertsSslVpnClientCertOutput) Tags() GetSslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return o.ApplyT(func(v GetSslVpnClientCertsSslVpnClientCert) []GetSslVpnClientCertsSslVpnClientCertTag { return v.Tags }).(GetSslVpnClientCertsSslVpnClientCertTagArrayOutput)
+}
+
 // The update time of the ssl vpn client cert.
 func (o GetSslVpnClientCertsSslVpnClientCertOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSslVpnClientCertsSslVpnClientCert) string { return v.UpdateTime }).(pulumi.StringOutput)
@@ -3372,6 +5167,218 @@ func (o GetSslVpnClientCertsSslVpnClientCertArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSslVpnClientCertsSslVpnClientCert {
 		return vs[0].([]GetSslVpnClientCertsSslVpnClientCert)[vs[1].(int)]
 	}).(GetSslVpnClientCertsSslVpnClientCertOutput)
+}
+
+type GetSslVpnClientCertsSslVpnClientCertTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetSslVpnClientCertsSslVpnClientCertTagInput is an input type that accepts GetSslVpnClientCertsSslVpnClientCertTagArgs and GetSslVpnClientCertsSslVpnClientCertTagOutput values.
+// You can construct a concrete instance of `GetSslVpnClientCertsSslVpnClientCertTagInput` via:
+//
+//	GetSslVpnClientCertsSslVpnClientCertTagArgs{...}
+type GetSslVpnClientCertsSslVpnClientCertTagInput interface {
+	pulumi.Input
+
+	ToGetSslVpnClientCertsSslVpnClientCertTagOutput() GetSslVpnClientCertsSslVpnClientCertTagOutput
+	ToGetSslVpnClientCertsSslVpnClientCertTagOutputWithContext(context.Context) GetSslVpnClientCertsSslVpnClientCertTagOutput
+}
+
+type GetSslVpnClientCertsSslVpnClientCertTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetSslVpnClientCertsSslVpnClientCertTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (i GetSslVpnClientCertsSslVpnClientCertTagArgs) ToGetSslVpnClientCertsSslVpnClientCertTagOutput() GetSslVpnClientCertsSslVpnClientCertTagOutput {
+	return i.ToGetSslVpnClientCertsSslVpnClientCertTagOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnClientCertsSslVpnClientCertTagArgs) ToGetSslVpnClientCertsSslVpnClientCertTagOutputWithContext(ctx context.Context) GetSslVpnClientCertsSslVpnClientCertTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnClientCertsSslVpnClientCertTagOutput)
+}
+
+// GetSslVpnClientCertsSslVpnClientCertTagArrayInput is an input type that accepts GetSslVpnClientCertsSslVpnClientCertTagArray and GetSslVpnClientCertsSslVpnClientCertTagArrayOutput values.
+// You can construct a concrete instance of `GetSslVpnClientCertsSslVpnClientCertTagArrayInput` via:
+//
+//	GetSslVpnClientCertsSslVpnClientCertTagArray{ GetSslVpnClientCertsSslVpnClientCertTagArgs{...} }
+type GetSslVpnClientCertsSslVpnClientCertTagArrayInput interface {
+	pulumi.Input
+
+	ToGetSslVpnClientCertsSslVpnClientCertTagArrayOutput() GetSslVpnClientCertsSslVpnClientCertTagArrayOutput
+	ToGetSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(context.Context) GetSslVpnClientCertsSslVpnClientCertTagArrayOutput
+}
+
+type GetSslVpnClientCertsSslVpnClientCertTagArray []GetSslVpnClientCertsSslVpnClientCertTagInput
+
+func (GetSslVpnClientCertsSslVpnClientCertTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (i GetSslVpnClientCertsSslVpnClientCertTagArray) ToGetSslVpnClientCertsSslVpnClientCertTagArrayOutput() GetSslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return i.ToGetSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnClientCertsSslVpnClientCertTagArray) ToGetSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(ctx context.Context) GetSslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnClientCertsSslVpnClientCertTagArrayOutput)
+}
+
+type GetSslVpnClientCertsSslVpnClientCertTagOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnClientCertsSslVpnClientCertTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (o GetSslVpnClientCertsSslVpnClientCertTagOutput) ToGetSslVpnClientCertsSslVpnClientCertTagOutput() GetSslVpnClientCertsSslVpnClientCertTagOutput {
+	return o
+}
+
+func (o GetSslVpnClientCertsSslVpnClientCertTagOutput) ToGetSslVpnClientCertsSslVpnClientCertTagOutputWithContext(ctx context.Context) GetSslVpnClientCertsSslVpnClientCertTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetSslVpnClientCertsSslVpnClientCertTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnClientCertsSslVpnClientCertTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetSslVpnClientCertsSslVpnClientCertTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnClientCertsSslVpnClientCertTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetSslVpnClientCertsSslVpnClientCertTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnClientCertsSslVpnClientCertTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnClientCertsSslVpnClientCertTag)(nil)).Elem()
+}
+
+func (o GetSslVpnClientCertsSslVpnClientCertTagArrayOutput) ToGetSslVpnClientCertsSslVpnClientCertTagArrayOutput() GetSslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnClientCertsSslVpnClientCertTagArrayOutput) ToGetSslVpnClientCertsSslVpnClientCertTagArrayOutputWithContext(ctx context.Context) GetSslVpnClientCertsSslVpnClientCertTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnClientCertsSslVpnClientCertTagArrayOutput) Index(i pulumi.IntInput) GetSslVpnClientCertsSslVpnClientCertTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSslVpnClientCertsSslVpnClientCertTag {
+		return vs[0].([]GetSslVpnClientCertsSslVpnClientCertTag)[vs[1].(int)]
+	}).(GetSslVpnClientCertsSslVpnClientCertTagOutput)
+}
+
+type GetSslVpnClientCertsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetSslVpnClientCertsTagInput is an input type that accepts GetSslVpnClientCertsTagArgs and GetSslVpnClientCertsTagOutput values.
+// You can construct a concrete instance of `GetSslVpnClientCertsTagInput` via:
+//
+//	GetSslVpnClientCertsTagArgs{...}
+type GetSslVpnClientCertsTagInput interface {
+	pulumi.Input
+
+	ToGetSslVpnClientCertsTagOutput() GetSslVpnClientCertsTagOutput
+	ToGetSslVpnClientCertsTagOutputWithContext(context.Context) GetSslVpnClientCertsTagOutput
+}
+
+type GetSslVpnClientCertsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetSslVpnClientCertsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (i GetSslVpnClientCertsTagArgs) ToGetSslVpnClientCertsTagOutput() GetSslVpnClientCertsTagOutput {
+	return i.ToGetSslVpnClientCertsTagOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnClientCertsTagArgs) ToGetSslVpnClientCertsTagOutputWithContext(ctx context.Context) GetSslVpnClientCertsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnClientCertsTagOutput)
+}
+
+// GetSslVpnClientCertsTagArrayInput is an input type that accepts GetSslVpnClientCertsTagArray and GetSslVpnClientCertsTagArrayOutput values.
+// You can construct a concrete instance of `GetSslVpnClientCertsTagArrayInput` via:
+//
+//	GetSslVpnClientCertsTagArray{ GetSslVpnClientCertsTagArgs{...} }
+type GetSslVpnClientCertsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetSslVpnClientCertsTagArrayOutput() GetSslVpnClientCertsTagArrayOutput
+	ToGetSslVpnClientCertsTagArrayOutputWithContext(context.Context) GetSslVpnClientCertsTagArrayOutput
+}
+
+type GetSslVpnClientCertsTagArray []GetSslVpnClientCertsTagInput
+
+func (GetSslVpnClientCertsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (i GetSslVpnClientCertsTagArray) ToGetSslVpnClientCertsTagArrayOutput() GetSslVpnClientCertsTagArrayOutput {
+	return i.ToGetSslVpnClientCertsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnClientCertsTagArray) ToGetSslVpnClientCertsTagArrayOutputWithContext(ctx context.Context) GetSslVpnClientCertsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnClientCertsTagArrayOutput)
+}
+
+type GetSslVpnClientCertsTagOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnClientCertsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (o GetSslVpnClientCertsTagOutput) ToGetSslVpnClientCertsTagOutput() GetSslVpnClientCertsTagOutput {
+	return o
+}
+
+func (o GetSslVpnClientCertsTagOutput) ToGetSslVpnClientCertsTagOutputWithContext(ctx context.Context) GetSslVpnClientCertsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetSslVpnClientCertsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnClientCertsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetSslVpnClientCertsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnClientCertsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetSslVpnClientCertsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnClientCertsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnClientCertsTag)(nil)).Elem()
+}
+
+func (o GetSslVpnClientCertsTagArrayOutput) ToGetSslVpnClientCertsTagArrayOutput() GetSslVpnClientCertsTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnClientCertsTagArrayOutput) ToGetSslVpnClientCertsTagArrayOutputWithContext(ctx context.Context) GetSslVpnClientCertsTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnClientCertsTagArrayOutput) Index(i pulumi.IntInput) GetSslVpnClientCertsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSslVpnClientCertsTag {
+		return vs[0].([]GetSslVpnClientCertsTag)[vs[1].(int)]
+	}).(GetSslVpnClientCertsTagOutput)
 }
 
 type GetSslVpnServersSslVpnServer struct {
@@ -3412,6 +5419,8 @@ type GetSslVpnServersSslVpnServer struct {
 	SslVpnServerName string `pulumi:"sslVpnServerName"`
 	// The status of the ssl vpn server.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetSslVpnServersSslVpnServerTag `pulumi:"tags"`
 	// The update time.
 	UpdateTime string `pulumi:"updateTime"`
 	// The id of the vpn gateway.
@@ -3467,6 +5476,8 @@ type GetSslVpnServersSslVpnServerArgs struct {
 	SslVpnServerName pulumi.StringInput `pulumi:"sslVpnServerName"`
 	// The status of the ssl vpn server.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetSslVpnServersSslVpnServerTagArrayInput `pulumi:"tags"`
 	// The update time.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// The id of the vpn gateway.
@@ -3603,6 +5614,11 @@ func (o GetSslVpnServersSslVpnServerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSslVpnServersSslVpnServer) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o GetSslVpnServersSslVpnServerOutput) Tags() GetSslVpnServersSslVpnServerTagArrayOutput {
+	return o.ApplyT(func(v GetSslVpnServersSslVpnServer) []GetSslVpnServersSslVpnServerTag { return v.Tags }).(GetSslVpnServersSslVpnServerTagArrayOutput)
+}
+
 // The update time.
 func (o GetSslVpnServersSslVpnServerOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSslVpnServersSslVpnServer) string { return v.UpdateTime }).(pulumi.StringOutput)
@@ -3633,11 +5649,235 @@ func (o GetSslVpnServersSslVpnServerArrayOutput) Index(i pulumi.IntInput) GetSsl
 	}).(GetSslVpnServersSslVpnServerOutput)
 }
 
+type GetSslVpnServersSslVpnServerTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetSslVpnServersSslVpnServerTagInput is an input type that accepts GetSslVpnServersSslVpnServerTagArgs and GetSslVpnServersSslVpnServerTagOutput values.
+// You can construct a concrete instance of `GetSslVpnServersSslVpnServerTagInput` via:
+//
+//	GetSslVpnServersSslVpnServerTagArgs{...}
+type GetSslVpnServersSslVpnServerTagInput interface {
+	pulumi.Input
+
+	ToGetSslVpnServersSslVpnServerTagOutput() GetSslVpnServersSslVpnServerTagOutput
+	ToGetSslVpnServersSslVpnServerTagOutputWithContext(context.Context) GetSslVpnServersSslVpnServerTagOutput
+}
+
+type GetSslVpnServersSslVpnServerTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetSslVpnServersSslVpnServerTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (i GetSslVpnServersSslVpnServerTagArgs) ToGetSslVpnServersSslVpnServerTagOutput() GetSslVpnServersSslVpnServerTagOutput {
+	return i.ToGetSslVpnServersSslVpnServerTagOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnServersSslVpnServerTagArgs) ToGetSslVpnServersSslVpnServerTagOutputWithContext(ctx context.Context) GetSslVpnServersSslVpnServerTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnServersSslVpnServerTagOutput)
+}
+
+// GetSslVpnServersSslVpnServerTagArrayInput is an input type that accepts GetSslVpnServersSslVpnServerTagArray and GetSslVpnServersSslVpnServerTagArrayOutput values.
+// You can construct a concrete instance of `GetSslVpnServersSslVpnServerTagArrayInput` via:
+//
+//	GetSslVpnServersSslVpnServerTagArray{ GetSslVpnServersSslVpnServerTagArgs{...} }
+type GetSslVpnServersSslVpnServerTagArrayInput interface {
+	pulumi.Input
+
+	ToGetSslVpnServersSslVpnServerTagArrayOutput() GetSslVpnServersSslVpnServerTagArrayOutput
+	ToGetSslVpnServersSslVpnServerTagArrayOutputWithContext(context.Context) GetSslVpnServersSslVpnServerTagArrayOutput
+}
+
+type GetSslVpnServersSslVpnServerTagArray []GetSslVpnServersSslVpnServerTagInput
+
+func (GetSslVpnServersSslVpnServerTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (i GetSslVpnServersSslVpnServerTagArray) ToGetSslVpnServersSslVpnServerTagArrayOutput() GetSslVpnServersSslVpnServerTagArrayOutput {
+	return i.ToGetSslVpnServersSslVpnServerTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnServersSslVpnServerTagArray) ToGetSslVpnServersSslVpnServerTagArrayOutputWithContext(ctx context.Context) GetSslVpnServersSslVpnServerTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnServersSslVpnServerTagArrayOutput)
+}
+
+type GetSslVpnServersSslVpnServerTagOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnServersSslVpnServerTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (o GetSslVpnServersSslVpnServerTagOutput) ToGetSslVpnServersSslVpnServerTagOutput() GetSslVpnServersSslVpnServerTagOutput {
+	return o
+}
+
+func (o GetSslVpnServersSslVpnServerTagOutput) ToGetSslVpnServersSslVpnServerTagOutputWithContext(ctx context.Context) GetSslVpnServersSslVpnServerTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetSslVpnServersSslVpnServerTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnServersSslVpnServerTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetSslVpnServersSslVpnServerTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnServersSslVpnServerTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetSslVpnServersSslVpnServerTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnServersSslVpnServerTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnServersSslVpnServerTag)(nil)).Elem()
+}
+
+func (o GetSslVpnServersSslVpnServerTagArrayOutput) ToGetSslVpnServersSslVpnServerTagArrayOutput() GetSslVpnServersSslVpnServerTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnServersSslVpnServerTagArrayOutput) ToGetSslVpnServersSslVpnServerTagArrayOutputWithContext(ctx context.Context) GetSslVpnServersSslVpnServerTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnServersSslVpnServerTagArrayOutput) Index(i pulumi.IntInput) GetSslVpnServersSslVpnServerTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSslVpnServersSslVpnServerTag {
+		return vs[0].([]GetSslVpnServersSslVpnServerTag)[vs[1].(int)]
+	}).(GetSslVpnServersSslVpnServerTagOutput)
+}
+
+type GetSslVpnServersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetSslVpnServersTagInput is an input type that accepts GetSslVpnServersTagArgs and GetSslVpnServersTagOutput values.
+// You can construct a concrete instance of `GetSslVpnServersTagInput` via:
+//
+//	GetSslVpnServersTagArgs{...}
+type GetSslVpnServersTagInput interface {
+	pulumi.Input
+
+	ToGetSslVpnServersTagOutput() GetSslVpnServersTagOutput
+	ToGetSslVpnServersTagOutputWithContext(context.Context) GetSslVpnServersTagOutput
+}
+
+type GetSslVpnServersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetSslVpnServersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnServersTag)(nil)).Elem()
+}
+
+func (i GetSslVpnServersTagArgs) ToGetSslVpnServersTagOutput() GetSslVpnServersTagOutput {
+	return i.ToGetSslVpnServersTagOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnServersTagArgs) ToGetSslVpnServersTagOutputWithContext(ctx context.Context) GetSslVpnServersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnServersTagOutput)
+}
+
+// GetSslVpnServersTagArrayInput is an input type that accepts GetSslVpnServersTagArray and GetSslVpnServersTagArrayOutput values.
+// You can construct a concrete instance of `GetSslVpnServersTagArrayInput` via:
+//
+//	GetSslVpnServersTagArray{ GetSslVpnServersTagArgs{...} }
+type GetSslVpnServersTagArrayInput interface {
+	pulumi.Input
+
+	ToGetSslVpnServersTagArrayOutput() GetSslVpnServersTagArrayOutput
+	ToGetSslVpnServersTagArrayOutputWithContext(context.Context) GetSslVpnServersTagArrayOutput
+}
+
+type GetSslVpnServersTagArray []GetSslVpnServersTagInput
+
+func (GetSslVpnServersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnServersTag)(nil)).Elem()
+}
+
+func (i GetSslVpnServersTagArray) ToGetSslVpnServersTagArrayOutput() GetSslVpnServersTagArrayOutput {
+	return i.ToGetSslVpnServersTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetSslVpnServersTagArray) ToGetSslVpnServersTagArrayOutputWithContext(ctx context.Context) GetSslVpnServersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSslVpnServersTagArrayOutput)
+}
+
+type GetSslVpnServersTagOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnServersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSslVpnServersTag)(nil)).Elem()
+}
+
+func (o GetSslVpnServersTagOutput) ToGetSslVpnServersTagOutput() GetSslVpnServersTagOutput {
+	return o
+}
+
+func (o GetSslVpnServersTagOutput) ToGetSslVpnServersTagOutputWithContext(ctx context.Context) GetSslVpnServersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetSslVpnServersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnServersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetSslVpnServersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSslVpnServersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetSslVpnServersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSslVpnServersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSslVpnServersTag)(nil)).Elem()
+}
+
+func (o GetSslVpnServersTagArrayOutput) ToGetSslVpnServersTagArrayOutput() GetSslVpnServersTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnServersTagArrayOutput) ToGetSslVpnServersTagArrayOutputWithContext(ctx context.Context) GetSslVpnServersTagArrayOutput {
+	return o
+}
+
+func (o GetSslVpnServersTagArrayOutput) Index(i pulumi.IntInput) GetSslVpnServersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSslVpnServersTag {
+		return vs[0].([]GetSslVpnServersTag)[vs[1].(int)]
+	}).(GetSslVpnServersTagOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionTagInput)(nil)).Elem(), ConnectionTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionTagArrayInput)(nil)).Elem(), ConnectionTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsTagInput)(nil)).Elem(), ConnectionsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsTagArrayInput)(nil)).Elem(), ConnectionsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsVpnConnectionInput)(nil)).Elem(), ConnectionsVpnConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsVpnConnectionArrayInput)(nil)).Elem(), ConnectionsVpnConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsVpnConnectionTagInput)(nil)).Elem(), ConnectionsVpnConnectionTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsVpnConnectionTagArrayInput)(nil)).Elem(), ConnectionsVpnConnectionTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewayTagInput)(nil)).Elem(), CustomerGatewayTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewayTagArrayInput)(nil)).Elem(), CustomerGatewayTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewaysCustomerGatewayInput)(nil)).Elem(), CustomerGatewaysCustomerGatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewaysCustomerGatewayArrayInput)(nil)).Elem(), CustomerGatewaysCustomerGatewayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewaysCustomerGatewayTagInput)(nil)).Elem(), CustomerGatewaysCustomerGatewayTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewaysCustomerGatewayTagArrayInput)(nil)).Elem(), CustomerGatewaysCustomerGatewayTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewaysTagInput)(nil)).Elem(), CustomerGatewaysTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomerGatewaysTagArrayInput)(nil)).Elem(), CustomerGatewaysTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayRoutesVpnGatewayRouteInput)(nil)).Elem(), GatewayRoutesVpnGatewayRouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayRoutesVpnGatewayRouteArrayInput)(nil)).Elem(), GatewayRoutesVpnGatewayRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayTagInput)(nil)).Elem(), GatewayTagArgs{})
@@ -3648,14 +5888,34 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysVpnGatewayArrayInput)(nil)).Elem(), GatewaysVpnGatewayArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysVpnGatewayTagInput)(nil)).Elem(), GatewaysVpnGatewayTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysVpnGatewayTagArrayInput)(nil)).Elem(), GatewaysVpnGatewayTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertTagInput)(nil)).Elem(), SslVpnClientCertTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertTagArrayInput)(nil)).Elem(), SslVpnClientCertTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertInput)(nil)).Elem(), SslVpnClientCertsSslVpnClientCertArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertArrayInput)(nil)).Elem(), SslVpnClientCertsSslVpnClientCertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertTagInput)(nil)).Elem(), SslVpnClientCertsSslVpnClientCertTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertTagArrayInput)(nil)).Elem(), SslVpnClientCertsSslVpnClientCertTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsTagInput)(nil)).Elem(), SslVpnClientCertsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsTagArrayInput)(nil)).Elem(), SslVpnClientCertsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServerTagInput)(nil)).Elem(), SslVpnServerTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServerTagArrayInput)(nil)).Elem(), SslVpnServerTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersSslVpnServerInput)(nil)).Elem(), SslVpnServersSslVpnServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersSslVpnServerArrayInput)(nil)).Elem(), SslVpnServersSslVpnServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersSslVpnServerTagInput)(nil)).Elem(), SslVpnServersSslVpnServerTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersSslVpnServerTagArrayInput)(nil)).Elem(), SslVpnServersSslVpnServerTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersTagInput)(nil)).Elem(), SslVpnServersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersTagArrayInput)(nil)).Elem(), SslVpnServersTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsTagInput)(nil)).Elem(), GetConnectionsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsTagArrayInput)(nil)).Elem(), GetConnectionsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsVpnConnectionInput)(nil)).Elem(), GetConnectionsVpnConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsVpnConnectionArrayInput)(nil)).Elem(), GetConnectionsVpnConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsVpnConnectionTagInput)(nil)).Elem(), GetConnectionsVpnConnectionTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionsVpnConnectionTagArrayInput)(nil)).Elem(), GetConnectionsVpnConnectionTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomerGatewaysCustomerGatewayInput)(nil)).Elem(), GetCustomerGatewaysCustomerGatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomerGatewaysCustomerGatewayArrayInput)(nil)).Elem(), GetCustomerGatewaysCustomerGatewayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomerGatewaysCustomerGatewayTagInput)(nil)).Elem(), GetCustomerGatewaysCustomerGatewayTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomerGatewaysCustomerGatewayTagArrayInput)(nil)).Elem(), GetCustomerGatewaysCustomerGatewayTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomerGatewaysTagInput)(nil)).Elem(), GetCustomerGatewaysTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomerGatewaysTagArrayInput)(nil)).Elem(), GetCustomerGatewaysTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayRoutesVpnGatewayRouteInput)(nil)).Elem(), GetGatewayRoutesVpnGatewayRouteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayRoutesVpnGatewayRouteArrayInput)(nil)).Elem(), GetGatewayRoutesVpnGatewayRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysTagInput)(nil)).Elem(), GetGatewaysTagArgs{})
@@ -3666,12 +5926,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewaysVpnGatewayTagArrayInput)(nil)).Elem(), GetGatewaysVpnGatewayTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnClientCertsSslVpnClientCertInput)(nil)).Elem(), GetSslVpnClientCertsSslVpnClientCertArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnClientCertsSslVpnClientCertArrayInput)(nil)).Elem(), GetSslVpnClientCertsSslVpnClientCertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnClientCertsSslVpnClientCertTagInput)(nil)).Elem(), GetSslVpnClientCertsSslVpnClientCertTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnClientCertsSslVpnClientCertTagArrayInput)(nil)).Elem(), GetSslVpnClientCertsSslVpnClientCertTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnClientCertsTagInput)(nil)).Elem(), GetSslVpnClientCertsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnClientCertsTagArrayInput)(nil)).Elem(), GetSslVpnClientCertsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnServersSslVpnServerInput)(nil)).Elem(), GetSslVpnServersSslVpnServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnServersSslVpnServerArrayInput)(nil)).Elem(), GetSslVpnServersSslVpnServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnServersSslVpnServerTagInput)(nil)).Elem(), GetSslVpnServersSslVpnServerTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnServersSslVpnServerTagArrayInput)(nil)).Elem(), GetSslVpnServersSslVpnServerTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnServersTagInput)(nil)).Elem(), GetSslVpnServersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSslVpnServersTagArrayInput)(nil)).Elem(), GetSslVpnServersTagArray{})
+	pulumi.RegisterOutputType(ConnectionTagOutput{})
+	pulumi.RegisterOutputType(ConnectionTagArrayOutput{})
+	pulumi.RegisterOutputType(ConnectionsTagOutput{})
+	pulumi.RegisterOutputType(ConnectionsTagArrayOutput{})
 	pulumi.RegisterOutputType(ConnectionsVpnConnectionOutput{})
 	pulumi.RegisterOutputType(ConnectionsVpnConnectionArrayOutput{})
+	pulumi.RegisterOutputType(ConnectionsVpnConnectionTagOutput{})
+	pulumi.RegisterOutputType(ConnectionsVpnConnectionTagArrayOutput{})
+	pulumi.RegisterOutputType(CustomerGatewayTagOutput{})
+	pulumi.RegisterOutputType(CustomerGatewayTagArrayOutput{})
 	pulumi.RegisterOutputType(CustomerGatewaysCustomerGatewayOutput{})
 	pulumi.RegisterOutputType(CustomerGatewaysCustomerGatewayArrayOutput{})
+	pulumi.RegisterOutputType(CustomerGatewaysCustomerGatewayTagOutput{})
+	pulumi.RegisterOutputType(CustomerGatewaysCustomerGatewayTagArrayOutput{})
+	pulumi.RegisterOutputType(CustomerGatewaysTagOutput{})
+	pulumi.RegisterOutputType(CustomerGatewaysTagArrayOutput{})
 	pulumi.RegisterOutputType(GatewayRoutesVpnGatewayRouteOutput{})
 	pulumi.RegisterOutputType(GatewayRoutesVpnGatewayRouteArrayOutput{})
 	pulumi.RegisterOutputType(GatewayTagOutput{})
@@ -3682,14 +5962,34 @@ func init() {
 	pulumi.RegisterOutputType(GatewaysVpnGatewayArrayOutput{})
 	pulumi.RegisterOutputType(GatewaysVpnGatewayTagOutput{})
 	pulumi.RegisterOutputType(GatewaysVpnGatewayTagArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertTagOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertTagArrayOutput{})
 	pulumi.RegisterOutputType(SslVpnClientCertsSslVpnClientCertOutput{})
 	pulumi.RegisterOutputType(SslVpnClientCertsSslVpnClientCertArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertsSslVpnClientCertTagOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertsSslVpnClientCertTagArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertsTagOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertsTagArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnServerTagOutput{})
+	pulumi.RegisterOutputType(SslVpnServerTagArrayOutput{})
 	pulumi.RegisterOutputType(SslVpnServersSslVpnServerOutput{})
 	pulumi.RegisterOutputType(SslVpnServersSslVpnServerArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnServersSslVpnServerTagOutput{})
+	pulumi.RegisterOutputType(SslVpnServersSslVpnServerTagArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnServersTagOutput{})
+	pulumi.RegisterOutputType(SslVpnServersTagArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionsTagOutput{})
+	pulumi.RegisterOutputType(GetConnectionsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetConnectionsVpnConnectionOutput{})
 	pulumi.RegisterOutputType(GetConnectionsVpnConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionsVpnConnectionTagOutput{})
+	pulumi.RegisterOutputType(GetConnectionsVpnConnectionTagArrayOutput{})
 	pulumi.RegisterOutputType(GetCustomerGatewaysCustomerGatewayOutput{})
 	pulumi.RegisterOutputType(GetCustomerGatewaysCustomerGatewayArrayOutput{})
+	pulumi.RegisterOutputType(GetCustomerGatewaysCustomerGatewayTagOutput{})
+	pulumi.RegisterOutputType(GetCustomerGatewaysCustomerGatewayTagArrayOutput{})
+	pulumi.RegisterOutputType(GetCustomerGatewaysTagOutput{})
+	pulumi.RegisterOutputType(GetCustomerGatewaysTagArrayOutput{})
 	pulumi.RegisterOutputType(GetGatewayRoutesVpnGatewayRouteOutput{})
 	pulumi.RegisterOutputType(GetGatewayRoutesVpnGatewayRouteArrayOutput{})
 	pulumi.RegisterOutputType(GetGatewaysTagOutput{})
@@ -3700,6 +6000,14 @@ func init() {
 	pulumi.RegisterOutputType(GetGatewaysVpnGatewayTagArrayOutput{})
 	pulumi.RegisterOutputType(GetSslVpnClientCertsSslVpnClientCertOutput{})
 	pulumi.RegisterOutputType(GetSslVpnClientCertsSslVpnClientCertArrayOutput{})
+	pulumi.RegisterOutputType(GetSslVpnClientCertsSslVpnClientCertTagOutput{})
+	pulumi.RegisterOutputType(GetSslVpnClientCertsSslVpnClientCertTagArrayOutput{})
+	pulumi.RegisterOutputType(GetSslVpnClientCertsTagOutput{})
+	pulumi.RegisterOutputType(GetSslVpnClientCertsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetSslVpnServersSslVpnServerOutput{})
 	pulumi.RegisterOutputType(GetSslVpnServersSslVpnServerArrayOutput{})
+	pulumi.RegisterOutputType(GetSslVpnServersSslVpnServerTagOutput{})
+	pulumi.RegisterOutputType(GetSslVpnServersSslVpnServerTagArrayOutput{})
+	pulumi.RegisterOutputType(GetSslVpnServersTagOutput{})
+	pulumi.RegisterOutputType(GetSslVpnServersTagArrayOutput{})
 }

@@ -25,7 +25,7 @@ namespace Pulumi.Volcengine.Iam
         /// {
         ///     var @default = Volcengine.Iam.GetAccessKeyLastUseds.Invoke(new()
         ///     {
-        ///         AccessKeyId = "AKLxxxxxxxxxxxxxxxxxxxxxxxxx",
+        ///         AccessKeyId = "your access_key_id",
         ///     });
         /// 
         /// });
@@ -48,7 +48,7 @@ namespace Pulumi.Volcengine.Iam
         /// {
         ///     var @default = Volcengine.Iam.GetAccessKeyLastUseds.Invoke(new()
         ///     {
-        ///         AccessKeyId = "AKLxxxxxxxxxxxxxxxxxxxxxxxxx",
+        ///         AccessKeyId = "your access_key_id",
         ///     });
         /// 
         /// });

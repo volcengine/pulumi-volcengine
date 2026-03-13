@@ -501,6 +501,18 @@ namespace Pulumi.Volcengine.Vmp
         [Input("status")]
         public string? Status { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetAlertingRulesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetAlertingRulesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetAlertingRulesTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
         /// </summary>
@@ -581,6 +593,18 @@ namespace Pulumi.Volcengine.Vmp
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetAlertingRulesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetAlertingRulesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetAlertingRulesTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
         /// </summary>
@@ -625,6 +649,10 @@ namespace Pulumi.Volcengine.Vmp
         /// </summary>
         public readonly string? Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAlertingRulesTagResult> Tags;
+        /// <summary>
         /// The total count of query.
         /// </summary>
         public readonly int TotalCount;
@@ -657,6 +685,8 @@ namespace Pulumi.Volcengine.Vmp
 
             string? status,
 
+            ImmutableArray<Outputs.GetAlertingRulesTagResult> tags,
+
             int totalCount,
 
             string? type,
@@ -672,6 +702,7 @@ namespace Pulumi.Volcengine.Vmp
             NotifyPolicyIds = notifyPolicyIds;
             OutputFile = outputFile;
             Status = status;
+            Tags = tags;
             TotalCount = totalCount;
             Type = type;
             WorkspaceId = workspaceId;

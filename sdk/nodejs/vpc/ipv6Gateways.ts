@@ -30,6 +30,8 @@ export function ipv6Gateways(args?: Ipv6GatewaysArgs, opts?: pulumi.InvokeOption
         "name": args.name,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
         "vpcIds": args.vpcIds,
     }, opts);
 }
@@ -55,6 +57,14 @@ export interface Ipv6GatewaysArgs {
      */
     outputFile?: string;
     /**
+     * The project name of the Ipv6Gateway.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpc.Ipv6GatewaysTag[];
+    /**
      * The ID list of the VPC which the Ipv6Gateway belongs to.
      */
     vpcIds?: string[];
@@ -79,6 +89,14 @@ export interface Ipv6GatewaysResult {
     readonly name?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The project name of the Ipv6Gateway.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.Ipv6GatewaysTag[];
     /**
      * The total count of Ipv6Gateway query.
      */
@@ -123,6 +141,14 @@ export interface Ipv6GatewaysOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the Ipv6Gateway.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.Ipv6GatewaysTagArgs>[]>;
     /**
      * The ID list of the VPC which the Ipv6Gateway belongs to.
      */

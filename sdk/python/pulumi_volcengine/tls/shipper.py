@@ -370,7 +370,7 @@ class Shipper(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.Shipper("foo",
+        tos_foo = volcengine.tls.Shipper("tosFoo",
             content_info=volcengine.tls.ShipperContentInfoArgs(
                 format="json",
                 json_info=volcengine.tls.ShipperContentInfoJsonInfoArgs(
@@ -383,7 +383,7 @@ class Shipper(pulumi.CustomResource):
             ),
             role_trn="",
             shipper_end_time=1751255700021,
-            shipper_name="tf-test",
+            shipper_name="tf-test-tos-1",
             shipper_start_time=1750737324521,
             shipper_type="tos",
             topic_id="8ba48bd7-2493-4300-b1d0-cb760b89e51b",
@@ -432,7 +432,7 @@ class Shipper(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.Shipper("foo",
+        tos_foo = volcengine.tls.Shipper("tosFoo",
             content_info=volcengine.tls.ShipperContentInfoArgs(
                 format="json",
                 json_info=volcengine.tls.ShipperContentInfoJsonInfoArgs(
@@ -445,7 +445,7 @@ class Shipper(pulumi.CustomResource):
             ),
             role_trn="",
             shipper_end_time=1751255700021,
-            shipper_name="tf-test",
+            shipper_name="tf-test-tos-1",
             shipper_start_time=1750737324521,
             shipper_type="tos",
             topic_id="8ba48bd7-2493-4300-b1d0-cb760b89e51b",

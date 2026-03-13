@@ -26,7 +26,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetImportTasks(ctx, nil, nil)
+//			_, err := tls.GetImportTasks(ctx, &tls.GetImportTasksArgs{
+//				TaskName: pulumi.StringRef("tf-test-task-name-kafka-mod"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}

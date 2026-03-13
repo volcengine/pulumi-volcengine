@@ -323,10 +323,10 @@ class ImportTask(pulumi.CustomResource):
                     un_match_up_load_switch=True,
                 ),
                 log_type="json_log",
-                region="cn-beijing",
+                region="cn-guilin-boe",
             ),
             task_name="tf-test-task-name-kafka",
-            topic_id="b966e41a-d6a6-4999-bd75-39xxxxxxx")
+            topic_id="a0197686-1309-4c46-8003-4be3b278a838")
         ```
 
         ## Import
@@ -380,10 +380,10 @@ class ImportTask(pulumi.CustomResource):
                     un_match_up_load_switch=True,
                 ),
                 log_type="json_log",
-                region="cn-beijing",
+                region="cn-guilin-boe",
             ),
             task_name="tf-test-task-name-kafka",
-            topic_id="b966e41a-d6a6-4999-bd75-39xxxxxxx")
+            topic_id="a0197686-1309-4c46-8003-4be3b278a838")
         ```
 
         ## Import

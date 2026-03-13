@@ -34,6 +34,14 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The project name of the hpc cluster.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.HpcClustersHpcClusterTagResult> Tags;
+        /// <summary>
         /// The updated time of the hpc cluster.
         /// </summary>
         public readonly string UpdatedAt;
@@ -58,6 +66,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string name,
 
+            string projectName,
+
+            ImmutableArray<Outputs.HpcClustersHpcClusterTagResult> tags,
+
             string updatedAt,
 
             string vpcId,
@@ -69,6 +81,8 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             HpcClusterId = hpcClusterId;
             Id = id;
             Name = name;
+            ProjectName = projectName;
+            Tags = tags;
             UpdatedAt = updatedAt;
             VpcId = vpcId;
             ZoneId = zoneId;

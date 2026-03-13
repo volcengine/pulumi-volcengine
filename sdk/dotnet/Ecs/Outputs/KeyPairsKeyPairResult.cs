@@ -38,6 +38,14 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string KeyPairName;
         /// <summary>
+        /// The project name of the key pair.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.KeyPairsKeyPairTagResult> Tags;
+        /// <summary>
         /// The update time of key pair.
         /// </summary>
         public readonly string UpdatedAt;
@@ -56,6 +64,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string keyPairName,
 
+            string projectName,
+
+            ImmutableArray<Outputs.KeyPairsKeyPairTagResult> tags,
+
             string updatedAt)
         {
             CreatedAt = createdAt;
@@ -64,6 +76,8 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             Id = id;
             KeyPairId = keyPairId;
             KeyPairName = keyPairName;
+            ProjectName = projectName;
+            Tags = tags;
             UpdatedAt = updatedAt;
         }
     }

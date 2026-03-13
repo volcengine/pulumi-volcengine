@@ -58,6 +58,10 @@ namespace Pulumi.Volcengine.Vmp.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAlertingRulesAlertingRuleTagResult> Tags;
+        /// <summary>
         /// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
         /// </summary>
         public readonly string Type;
@@ -90,6 +94,8 @@ namespace Pulumi.Volcengine.Vmp.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.GetAlertingRulesAlertingRuleTagResult> tags,
+
             string type,
 
             string updateTime)
@@ -105,6 +111,7 @@ namespace Pulumi.Volcengine.Vmp.Outputs
             NotifyPolicyId = notifyPolicyId;
             Queries = queries;
             Status = status;
+            Tags = tags;
             Type = type;
             UpdateTime = updateTime;
         }

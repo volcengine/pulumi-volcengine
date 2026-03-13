@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getShippers({});
+ * const default = volcengine.tls.getShippers({
+ *     shipperId: "7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.Shippers has been deprecated in favor of volcengine.tls.getShippers */
@@ -139,7 +141,9 @@ export interface ShippersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getShippers({});
+ * const default = volcengine.tls.getShippers({
+ *     shipperId: "7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.Shippers has been deprecated in favor of volcengine.tls.getShippers */

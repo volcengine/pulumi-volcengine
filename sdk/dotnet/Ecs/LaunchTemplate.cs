@@ -34,6 +34,15 @@ namespace Pulumi.Volcengine.Ecs
     ///         InstanceTypeId = "ecs.g1.large",
     ///         KeyPairName = "tf-key-pair",
     ///         LaunchTemplateName = "tf-acc-template",
+    ///         LaunchTemplateProjectName = "default",
+    ///         LaunchTemplateTags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.LaunchTemplateLaunchTemplateTagArgs
+    ///             {
+    ///                 Key = "tfk1",
+    ///                 Value = "tfv1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -131,10 +140,28 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> LaunchTemplateName { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the launch template.
+        /// </summary>
+        [Output("launchTemplateProjectName")]
+        public Output<string?> LaunchTemplateProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// The tags of the launch template.
+        /// </summary>
+        [Output("launchTemplateTags")]
+        public Output<ImmutableArray<Outputs.LaunchTemplateLaunchTemplateTag>> LaunchTemplateTags { get; private set; } = null!;
+
+        /// <summary>
         /// The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
         /// </summary>
         [Output("networkInterfaces")]
         public Output<ImmutableArray<Outputs.LaunchTemplateNetworkInterface>> NetworkInterfaces { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name of the instance.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// Whether to open the security reinforcement.
@@ -147,6 +174,12 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Output("suffixIndex")]
         public Output<int> SuffixIndex { get; private set; } = null!;
+
+        /// <summary>
+        /// The tags of the instance.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.LaunchTemplateTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
@@ -303,6 +336,24 @@ namespace Pulumi.Volcengine.Ecs
         [Input("launchTemplateName", required: true)]
         public Input<string> LaunchTemplateName { get; set; } = null!;
 
+        /// <summary>
+        /// The project name of the launch template.
+        /// </summary>
+        [Input("launchTemplateProjectName")]
+        public Input<string>? LaunchTemplateProjectName { get; set; }
+
+        [Input("launchTemplateTags")]
+        private InputList<Inputs.LaunchTemplateLaunchTemplateTagArgs>? _launchTemplateTags;
+
+        /// <summary>
+        /// The tags of the launch template.
+        /// </summary>
+        public InputList<Inputs.LaunchTemplateLaunchTemplateTagArgs> LaunchTemplateTags
+        {
+            get => _launchTemplateTags ?? (_launchTemplateTags = new InputList<Inputs.LaunchTemplateLaunchTemplateTagArgs>());
+            set => _launchTemplateTags = value;
+        }
+
         [Input("networkInterfaces")]
         private InputList<Inputs.LaunchTemplateNetworkInterfaceArgs>? _networkInterfaces;
 
@@ -316,6 +367,12 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The project name of the instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Whether to open the security reinforcement.
         /// </summary>
         [Input("securityEnhancementStrategy")]
@@ -326,6 +383,18 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("suffixIndex")]
         public Input<int>? SuffixIndex { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.LaunchTemplateTagArgs>? _tags;
+
+        /// <summary>
+        /// The tags of the instance.
+        /// </summary>
+        public InputList<Inputs.LaunchTemplateTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.LaunchTemplateTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
@@ -455,6 +524,24 @@ namespace Pulumi.Volcengine.Ecs
         [Input("launchTemplateName")]
         public Input<string>? LaunchTemplateName { get; set; }
 
+        /// <summary>
+        /// The project name of the launch template.
+        /// </summary>
+        [Input("launchTemplateProjectName")]
+        public Input<string>? LaunchTemplateProjectName { get; set; }
+
+        [Input("launchTemplateTags")]
+        private InputList<Inputs.LaunchTemplateLaunchTemplateTagGetArgs>? _launchTemplateTags;
+
+        /// <summary>
+        /// The tags of the launch template.
+        /// </summary>
+        public InputList<Inputs.LaunchTemplateLaunchTemplateTagGetArgs> LaunchTemplateTags
+        {
+            get => _launchTemplateTags ?? (_launchTemplateTags = new InputList<Inputs.LaunchTemplateLaunchTemplateTagGetArgs>());
+            set => _launchTemplateTags = value;
+        }
+
         [Input("networkInterfaces")]
         private InputList<Inputs.LaunchTemplateNetworkInterfaceGetArgs>? _networkInterfaces;
 
@@ -468,6 +555,12 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The project name of the instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Whether to open the security reinforcement.
         /// </summary>
         [Input("securityEnhancementStrategy")]
@@ -478,6 +571,18 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("suffixIndex")]
         public Input<int>? SuffixIndex { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.LaunchTemplateTagGetArgs>? _tags;
+
+        /// <summary>
+        /// The tags of the instance.
+        /// </summary>
+        public InputList<Inputs.LaunchTemplateTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.LaunchTemplateTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.

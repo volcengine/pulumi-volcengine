@@ -19,9 +19,14 @@ __all__ = [
     'HaVipsHaVipResult',
     'HaVipsHaVipTagResult',
     'HaVipsTagResult',
+    'Ipv6AddressBandwidthTag',
     'Ipv6AddressBandwidthsIpv6AddressBandwidthResult',
+    'Ipv6AddressBandwidthsTagResult',
     'Ipv6AddressesIpv6AddressResult',
+    'Ipv6GatewayTag',
     'Ipv6GatewaysIpv6GatewayResult',
+    'Ipv6GatewaysIpv6GatewayTagResult',
+    'Ipv6GatewaysTagResult',
     'NetworkAclEgressAclEntry',
     'NetworkAclIngressAclEntry',
     'NetworkAclTag',
@@ -88,8 +93,11 @@ __all__ = [
     'GetHaVipsHaVipTagResult',
     'GetHaVipsTagResult',
     'GetIpv6AddressBandwidthsIpv6AddressBandwidthResult',
+    'GetIpv6AddressBandwidthsTagResult',
     'GetIpv6AddressesIpv6AddressResult',
     'GetIpv6GatewaysIpv6GatewayResult',
+    'GetIpv6GatewaysIpv6GatewayTagResult',
+    'GetIpv6GatewaysTagResult',
     'GetNetworkAclsNetworkAclResult',
     'GetNetworkAclsNetworkAclEgressAclEntryResult',
     'GetNetworkAclsNetworkAclIngressAclEntryResult',
@@ -721,6 +729,35 @@ class HaVipsTagResult(dict):
 
 
 @pulumi.output_type
+class Ipv6AddressBandwidthTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class Ipv6AddressBandwidthsIpv6AddressBandwidthResult(dict):
     def __init__(__self__, *,
                  allocation_id: str,
@@ -904,6 +941,35 @@ class Ipv6AddressBandwidthsIpv6AddressBandwidthResult(dict):
 
 
 @pulumi.output_type
+class Ipv6AddressBandwidthsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class Ipv6AddressesIpv6AddressResult(dict):
     def __init__(__self__, *,
                  ipv6_address: str):
@@ -922,6 +988,35 @@ class Ipv6AddressesIpv6AddressResult(dict):
 
 
 @pulumi.output_type
+class Ipv6GatewayTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class Ipv6GatewaysIpv6GatewayResult(dict):
     def __init__(__self__, *,
                  creation_time: str,
@@ -929,7 +1024,9 @@ class Ipv6GatewaysIpv6GatewayResult(dict):
                  id: str,
                  ipv6_gateway_id: str,
                  name: str,
+                 project_name: str,
                  status: str,
+                 tags: Sequence['outputs.Ipv6GatewaysIpv6GatewayTagResult'],
                  update_time: str,
                  vpc_id: str):
         """
@@ -938,7 +1035,9 @@ class Ipv6GatewaysIpv6GatewayResult(dict):
         :param str id: The ID of the Ipv6Gateway.
         :param str ipv6_gateway_id: The ID of the Ipv6Gateway.
         :param str name: The name of the Ipv6Gateway.
+        :param str project_name: The project name of the Ipv6Gateway.
         :param str status: The Status of the Ipv6Gateway.
+        :param Sequence['Ipv6GatewaysIpv6GatewayTagArgs'] tags: Tags.
         :param str update_time: Update time of the Ipv6Gateway.
         :param str vpc_id: The id of the VPC which the Ipv6Gateway belongs to.
         """
@@ -947,7 +1046,9 @@ class Ipv6GatewaysIpv6GatewayResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ipv6_gateway_id", ipv6_gateway_id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -992,12 +1093,28 @@ class Ipv6GatewaysIpv6GatewayResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
         The Status of the Ipv6Gateway.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.Ipv6GatewaysIpv6GatewayTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")
@@ -1014,6 +1131,64 @@ class Ipv6GatewaysIpv6GatewayResult(dict):
         The id of the VPC which the Ipv6Gateway belongs to.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class Ipv6GatewaysIpv6GatewayTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class Ipv6GatewaysTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -5931,6 +6106,35 @@ class GetIpv6AddressBandwidthsIpv6AddressBandwidthResult(dict):
 
 
 @pulumi.output_type
+class GetIpv6AddressBandwidthsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetIpv6AddressesIpv6AddressResult(dict):
     def __init__(__self__, *,
                  ipv6_address: str):
@@ -5956,7 +6160,9 @@ class GetIpv6GatewaysIpv6GatewayResult(dict):
                  id: str,
                  ipv6_gateway_id: str,
                  name: str,
+                 project_name: str,
                  status: str,
+                 tags: Sequence['outputs.GetIpv6GatewaysIpv6GatewayTagResult'],
                  update_time: str,
                  vpc_id: str):
         """
@@ -5965,7 +6171,9 @@ class GetIpv6GatewaysIpv6GatewayResult(dict):
         :param str id: The ID of the Ipv6Gateway.
         :param str ipv6_gateway_id: The ID of the Ipv6Gateway.
         :param str name: The name of the Ipv6Gateway.
+        :param str project_name: The project name of the Ipv6Gateway.
         :param str status: The Status of the Ipv6Gateway.
+        :param Sequence['GetIpv6GatewaysIpv6GatewayTagArgs'] tags: Tags.
         :param str update_time: Update time of the Ipv6Gateway.
         :param str vpc_id: The id of the VPC which the Ipv6Gateway belongs to.
         """
@@ -5974,7 +6182,9 @@ class GetIpv6GatewaysIpv6GatewayResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ipv6_gateway_id", ipv6_gateway_id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -6019,12 +6229,28 @@ class GetIpv6GatewaysIpv6GatewayResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the Ipv6Gateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
         The Status of the Ipv6Gateway.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetIpv6GatewaysIpv6GatewayTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")
@@ -6041,6 +6267,64 @@ class GetIpv6GatewaysIpv6GatewayResult(dict):
         The id of the VPC which the Ipv6Gateway belongs to.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class GetIpv6GatewaysIpv6GatewayTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetIpv6GatewaysTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

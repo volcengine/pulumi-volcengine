@@ -105,7 +105,7 @@ class KafkaConsumer(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.KafkaConsumer("foo", topic_id="cfb5c08b-0c7a-44fa-8971-8afc12f1b123")
+        foo = volcengine.tls.KafkaConsumer("foo", topic_id="a0197686-1309-4c46-8003-4be3b278a838")
         ```
 
         ## Import
@@ -134,7 +134,7 @@ class KafkaConsumer(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.KafkaConsumer("foo", topic_id="cfb5c08b-0c7a-44fa-8971-8afc12f1b123")
+        foo = volcengine.tls.KafkaConsumer("foo", topic_id="a0197686-1309-4c46-8003-4be3b278a838")
         ```
 
         ## Import

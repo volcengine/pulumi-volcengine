@@ -98,6 +98,10 @@ import (
 //				Description:     pulumi.String("tf-test"),
 //				PartitionNumber: pulumi.Int(15),
 //				ReplicaNumber:   pulumi.Int(3),
+//				CleanupPolicies: pulumi.StringArray{
+//					pulumi.String("delete"),
+//					pulumi.String("compact"),
+//				},
 //				Parameters: &kafka.TopicParametersArgs{
 //					MinInsyncReplicaNumber: pulumi.Int(2),
 //					MessageMaxByte:         pulumi.Int(10),
@@ -108,6 +112,12 @@ import (
 //					&kafka.TopicAccessPolicyArgs{
 //						UserName:     fooSaslUser.UserName,
 //						AccessPolicy: pulumi.String("Pub"),
+//					},
+//				},
+//				Tags: kafka.TopicTagArray{
+//					&kafka.TopicTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
 //					},
 //				},
 //			})
@@ -134,6 +144,8 @@ type Topic struct {
 	AccessPolicies TopicAccessPolicyArrayOutput `pulumi:"accessPolicies"`
 	// Whether the kafka topic is configured to be accessible by all users. Default: true.
 	AllAuthority pulumi.BoolPtrOutput `pulumi:"allAuthority"`
+	// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+	CleanupPolicies pulumi.StringArrayOutput `pulumi:"cleanupPolicies"`
 	// The description of the kafka topic.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The instance id of the kafka topic.
@@ -144,6 +156,8 @@ type Topic struct {
 	PartitionNumber pulumi.IntOutput `pulumi:"partitionNumber"`
 	// The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
 	ReplicaNumber pulumi.IntPtrOutput `pulumi:"replicaNumber"`
+	// Tags.
+	Tags TopicTagArrayOutput `pulumi:"tags"`
 	// The name of the kafka topic.
 	TopicName pulumi.StringOutput `pulumi:"topicName"`
 }
@@ -191,6 +205,8 @@ type topicState struct {
 	AccessPolicies []TopicAccessPolicy `pulumi:"accessPolicies"`
 	// Whether the kafka topic is configured to be accessible by all users. Default: true.
 	AllAuthority *bool `pulumi:"allAuthority"`
+	// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+	CleanupPolicies []string `pulumi:"cleanupPolicies"`
 	// The description of the kafka topic.
 	Description *string `pulumi:"description"`
 	// The instance id of the kafka topic.
@@ -201,6 +217,8 @@ type topicState struct {
 	PartitionNumber *int `pulumi:"partitionNumber"`
 	// The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
 	ReplicaNumber *int `pulumi:"replicaNumber"`
+	// Tags.
+	Tags []TopicTag `pulumi:"tags"`
 	// The name of the kafka topic.
 	TopicName *string `pulumi:"topicName"`
 }
@@ -210,6 +228,8 @@ type TopicState struct {
 	AccessPolicies TopicAccessPolicyArrayInput
 	// Whether the kafka topic is configured to be accessible by all users. Default: true.
 	AllAuthority pulumi.BoolPtrInput
+	// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+	CleanupPolicies pulumi.StringArrayInput
 	// The description of the kafka topic.
 	Description pulumi.StringPtrInput
 	// The instance id of the kafka topic.
@@ -220,6 +240,8 @@ type TopicState struct {
 	PartitionNumber pulumi.IntPtrInput
 	// The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
 	ReplicaNumber pulumi.IntPtrInput
+	// Tags.
+	Tags TopicTagArrayInput
 	// The name of the kafka topic.
 	TopicName pulumi.StringPtrInput
 }
@@ -233,6 +255,8 @@ type topicArgs struct {
 	AccessPolicies []TopicAccessPolicy `pulumi:"accessPolicies"`
 	// Whether the kafka topic is configured to be accessible by all users. Default: true.
 	AllAuthority *bool `pulumi:"allAuthority"`
+	// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+	CleanupPolicies []string `pulumi:"cleanupPolicies"`
 	// The description of the kafka topic.
 	Description *string `pulumi:"description"`
 	// The instance id of the kafka topic.
@@ -243,6 +267,8 @@ type topicArgs struct {
 	PartitionNumber int `pulumi:"partitionNumber"`
 	// The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
 	ReplicaNumber *int `pulumi:"replicaNumber"`
+	// Tags.
+	Tags []TopicTag `pulumi:"tags"`
 	// The name of the kafka topic.
 	TopicName string `pulumi:"topicName"`
 }
@@ -253,6 +279,8 @@ type TopicArgs struct {
 	AccessPolicies TopicAccessPolicyArrayInput
 	// Whether the kafka topic is configured to be accessible by all users. Default: true.
 	AllAuthority pulumi.BoolPtrInput
+	// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+	CleanupPolicies pulumi.StringArrayInput
 	// The description of the kafka topic.
 	Description pulumi.StringPtrInput
 	// The instance id of the kafka topic.
@@ -263,6 +291,8 @@ type TopicArgs struct {
 	PartitionNumber pulumi.IntInput
 	// The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
 	ReplicaNumber pulumi.IntPtrInput
+	// Tags.
+	Tags TopicTagArrayInput
 	// The name of the kafka topic.
 	TopicName pulumi.StringInput
 }
@@ -364,6 +394,11 @@ func (o TopicOutput) AllAuthority() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Topic) pulumi.BoolPtrOutput { return v.AllAuthority }).(pulumi.BoolPtrOutput)
 }
 
+// The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+func (o TopicOutput) CleanupPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Topic) pulumi.StringArrayOutput { return v.CleanupPolicies }).(pulumi.StringArrayOutput)
+}
+
 // The description of the kafka topic.
 func (o TopicOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Topic) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -387,6 +422,11 @@ func (o TopicOutput) PartitionNumber() pulumi.IntOutput {
 // The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
 func (o TopicOutput) ReplicaNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Topic) pulumi.IntPtrOutput { return v.ReplicaNumber }).(pulumi.IntPtrOutput)
+}
+
+// Tags.
+func (o TopicOutput) Tags() TopicTagArrayOutput {
+	return o.ApplyT(func(v *Topic) TopicTagArrayOutput { return v.Tags }).(TopicTagArrayOutput)
 }
 
 // The name of the kafka topic.

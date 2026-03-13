@@ -638,6 +638,112 @@ func (o AlertingRuleQueryPtrOutput) WorkspaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type AlertingRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AlertingRuleTagInput is an input type that accepts AlertingRuleTagArgs and AlertingRuleTagOutput values.
+// You can construct a concrete instance of `AlertingRuleTagInput` via:
+//
+//	AlertingRuleTagArgs{...}
+type AlertingRuleTagInput interface {
+	pulumi.Input
+
+	ToAlertingRuleTagOutput() AlertingRuleTagOutput
+	ToAlertingRuleTagOutputWithContext(context.Context) AlertingRuleTagOutput
+}
+
+type AlertingRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AlertingRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertingRuleTag)(nil)).Elem()
+}
+
+func (i AlertingRuleTagArgs) ToAlertingRuleTagOutput() AlertingRuleTagOutput {
+	return i.ToAlertingRuleTagOutputWithContext(context.Background())
+}
+
+func (i AlertingRuleTagArgs) ToAlertingRuleTagOutputWithContext(ctx context.Context) AlertingRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertingRuleTagOutput)
+}
+
+// AlertingRuleTagArrayInput is an input type that accepts AlertingRuleTagArray and AlertingRuleTagArrayOutput values.
+// You can construct a concrete instance of `AlertingRuleTagArrayInput` via:
+//
+//	AlertingRuleTagArray{ AlertingRuleTagArgs{...} }
+type AlertingRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToAlertingRuleTagArrayOutput() AlertingRuleTagArrayOutput
+	ToAlertingRuleTagArrayOutputWithContext(context.Context) AlertingRuleTagArrayOutput
+}
+
+type AlertingRuleTagArray []AlertingRuleTagInput
+
+func (AlertingRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertingRuleTag)(nil)).Elem()
+}
+
+func (i AlertingRuleTagArray) ToAlertingRuleTagArrayOutput() AlertingRuleTagArrayOutput {
+	return i.ToAlertingRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i AlertingRuleTagArray) ToAlertingRuleTagArrayOutputWithContext(ctx context.Context) AlertingRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertingRuleTagArrayOutput)
+}
+
+type AlertingRuleTagOutput struct{ *pulumi.OutputState }
+
+func (AlertingRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertingRuleTag)(nil)).Elem()
+}
+
+func (o AlertingRuleTagOutput) ToAlertingRuleTagOutput() AlertingRuleTagOutput {
+	return o
+}
+
+func (o AlertingRuleTagOutput) ToAlertingRuleTagOutputWithContext(ctx context.Context) AlertingRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AlertingRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertingRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AlertingRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertingRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AlertingRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertingRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertingRuleTag)(nil)).Elem()
+}
+
+func (o AlertingRuleTagArrayOutput) ToAlertingRuleTagArrayOutput() AlertingRuleTagArrayOutput {
+	return o
+}
+
+func (o AlertingRuleTagArrayOutput) ToAlertingRuleTagArrayOutputWithContext(ctx context.Context) AlertingRuleTagArrayOutput {
+	return o
+}
+
+func (o AlertingRuleTagArrayOutput) Index(i pulumi.IntInput) AlertingRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertingRuleTag {
+		return vs[0].([]AlertingRuleTag)[vs[1].(int)]
+	}).(AlertingRuleTagOutput)
+}
+
 type AlertingRulesAlertingRule struct {
 	// The annotations of the vmp alerting rule.
 	Annotations []AlertingRulesAlertingRuleAnnotation `pulumi:"annotations"`
@@ -661,6 +767,8 @@ type AlertingRulesAlertingRule struct {
 	Queries []AlertingRulesAlertingRuleQuery `pulumi:"queries"`
 	// The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []AlertingRulesAlertingRuleTag `pulumi:"tags"`
 	// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 	Type string `pulumi:"type"`
 	// The update time of the vmp alerting rule.
@@ -701,6 +809,8 @@ type AlertingRulesAlertingRuleArgs struct {
 	Queries AlertingRulesAlertingRuleQueryArrayInput `pulumi:"queries"`
 	// The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags AlertingRulesAlertingRuleTagArrayInput `pulumi:"tags"`
 	// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The update time of the vmp alerting rule.
@@ -813,6 +923,11 @@ func (o AlertingRulesAlertingRuleOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertingRulesAlertingRule) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o AlertingRulesAlertingRuleOutput) Tags() AlertingRulesAlertingRuleTagArrayOutput {
+	return o.ApplyT(func(v AlertingRulesAlertingRule) []AlertingRulesAlertingRuleTag { return v.Tags }).(AlertingRulesAlertingRuleTagArrayOutput)
+}
+
 // The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 func (o AlertingRulesAlertingRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertingRulesAlertingRule) string { return v.Type }).(pulumi.StringOutput)
@@ -846,7 +961,7 @@ func (o AlertingRulesAlertingRuleArrayOutput) Index(i pulumi.IntInput) AlertingR
 type AlertingRulesAlertingRuleAnnotation struct {
 	// The name of vmp alerting rule. This field support fuzzy query.
 	Name string `pulumi:"name"`
-	// The value of the label.
+	// The Value of Tags.
 	Value string `pulumi:"value"`
 }
 
@@ -864,7 +979,7 @@ type AlertingRulesAlertingRuleAnnotationInput interface {
 type AlertingRulesAlertingRuleAnnotationArgs struct {
 	// The name of vmp alerting rule. This field support fuzzy query.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The value of the label.
+	// The Value of Tags.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -924,7 +1039,7 @@ func (o AlertingRulesAlertingRuleAnnotationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertingRulesAlertingRuleAnnotation) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The value of the label.
+// The Value of Tags.
 func (o AlertingRulesAlertingRuleAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertingRulesAlertingRuleAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -950,9 +1065,9 @@ func (o AlertingRulesAlertingRuleAnnotationArrayOutput) Index(i pulumi.IntInput)
 }
 
 type AlertingRulesAlertingRuleLabel struct {
-	// The name of the label.
+	// The Key of Tags.
 	Key string `pulumi:"key"`
-	// The value of the label.
+	// The Value of Tags.
 	Value string `pulumi:"value"`
 }
 
@@ -968,9 +1083,9 @@ type AlertingRulesAlertingRuleLabelInput interface {
 }
 
 type AlertingRulesAlertingRuleLabelArgs struct {
-	// The name of the label.
+	// The Key of Tags.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The value of the label.
+	// The Value of Tags.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -1025,12 +1140,12 @@ func (o AlertingRulesAlertingRuleLabelOutput) ToAlertingRulesAlertingRuleLabelOu
 	return o
 }
 
-// The name of the label.
+// The Key of Tags.
 func (o AlertingRulesAlertingRuleLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertingRulesAlertingRuleLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The value of the label.
+// The Value of Tags.
 func (o AlertingRulesAlertingRuleLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertingRulesAlertingRuleLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -1283,6 +1398,218 @@ func (o AlertingRulesAlertingRuleQueryArrayOutput) Index(i pulumi.IntInput) Aler
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertingRulesAlertingRuleQuery {
 		return vs[0].([]AlertingRulesAlertingRuleQuery)[vs[1].(int)]
 	}).(AlertingRulesAlertingRuleQueryOutput)
+}
+
+type AlertingRulesAlertingRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AlertingRulesAlertingRuleTagInput is an input type that accepts AlertingRulesAlertingRuleTagArgs and AlertingRulesAlertingRuleTagOutput values.
+// You can construct a concrete instance of `AlertingRulesAlertingRuleTagInput` via:
+//
+//	AlertingRulesAlertingRuleTagArgs{...}
+type AlertingRulesAlertingRuleTagInput interface {
+	pulumi.Input
+
+	ToAlertingRulesAlertingRuleTagOutput() AlertingRulesAlertingRuleTagOutput
+	ToAlertingRulesAlertingRuleTagOutputWithContext(context.Context) AlertingRulesAlertingRuleTagOutput
+}
+
+type AlertingRulesAlertingRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AlertingRulesAlertingRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (i AlertingRulesAlertingRuleTagArgs) ToAlertingRulesAlertingRuleTagOutput() AlertingRulesAlertingRuleTagOutput {
+	return i.ToAlertingRulesAlertingRuleTagOutputWithContext(context.Background())
+}
+
+func (i AlertingRulesAlertingRuleTagArgs) ToAlertingRulesAlertingRuleTagOutputWithContext(ctx context.Context) AlertingRulesAlertingRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertingRulesAlertingRuleTagOutput)
+}
+
+// AlertingRulesAlertingRuleTagArrayInput is an input type that accepts AlertingRulesAlertingRuleTagArray and AlertingRulesAlertingRuleTagArrayOutput values.
+// You can construct a concrete instance of `AlertingRulesAlertingRuleTagArrayInput` via:
+//
+//	AlertingRulesAlertingRuleTagArray{ AlertingRulesAlertingRuleTagArgs{...} }
+type AlertingRulesAlertingRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToAlertingRulesAlertingRuleTagArrayOutput() AlertingRulesAlertingRuleTagArrayOutput
+	ToAlertingRulesAlertingRuleTagArrayOutputWithContext(context.Context) AlertingRulesAlertingRuleTagArrayOutput
+}
+
+type AlertingRulesAlertingRuleTagArray []AlertingRulesAlertingRuleTagInput
+
+func (AlertingRulesAlertingRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (i AlertingRulesAlertingRuleTagArray) ToAlertingRulesAlertingRuleTagArrayOutput() AlertingRulesAlertingRuleTagArrayOutput {
+	return i.ToAlertingRulesAlertingRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i AlertingRulesAlertingRuleTagArray) ToAlertingRulesAlertingRuleTagArrayOutputWithContext(ctx context.Context) AlertingRulesAlertingRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertingRulesAlertingRuleTagArrayOutput)
+}
+
+type AlertingRulesAlertingRuleTagOutput struct{ *pulumi.OutputState }
+
+func (AlertingRulesAlertingRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (o AlertingRulesAlertingRuleTagOutput) ToAlertingRulesAlertingRuleTagOutput() AlertingRulesAlertingRuleTagOutput {
+	return o
+}
+
+func (o AlertingRulesAlertingRuleTagOutput) ToAlertingRulesAlertingRuleTagOutputWithContext(ctx context.Context) AlertingRulesAlertingRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AlertingRulesAlertingRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertingRulesAlertingRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AlertingRulesAlertingRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertingRulesAlertingRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AlertingRulesAlertingRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertingRulesAlertingRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (o AlertingRulesAlertingRuleTagArrayOutput) ToAlertingRulesAlertingRuleTagArrayOutput() AlertingRulesAlertingRuleTagArrayOutput {
+	return o
+}
+
+func (o AlertingRulesAlertingRuleTagArrayOutput) ToAlertingRulesAlertingRuleTagArrayOutputWithContext(ctx context.Context) AlertingRulesAlertingRuleTagArrayOutput {
+	return o
+}
+
+func (o AlertingRulesAlertingRuleTagArrayOutput) Index(i pulumi.IntInput) AlertingRulesAlertingRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertingRulesAlertingRuleTag {
+		return vs[0].([]AlertingRulesAlertingRuleTag)[vs[1].(int)]
+	}).(AlertingRulesAlertingRuleTagOutput)
+}
+
+type AlertingRulesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AlertingRulesTagInput is an input type that accepts AlertingRulesTagArgs and AlertingRulesTagOutput values.
+// You can construct a concrete instance of `AlertingRulesTagInput` via:
+//
+//	AlertingRulesTagArgs{...}
+type AlertingRulesTagInput interface {
+	pulumi.Input
+
+	ToAlertingRulesTagOutput() AlertingRulesTagOutput
+	ToAlertingRulesTagOutputWithContext(context.Context) AlertingRulesTagOutput
+}
+
+type AlertingRulesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AlertingRulesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertingRulesTag)(nil)).Elem()
+}
+
+func (i AlertingRulesTagArgs) ToAlertingRulesTagOutput() AlertingRulesTagOutput {
+	return i.ToAlertingRulesTagOutputWithContext(context.Background())
+}
+
+func (i AlertingRulesTagArgs) ToAlertingRulesTagOutputWithContext(ctx context.Context) AlertingRulesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertingRulesTagOutput)
+}
+
+// AlertingRulesTagArrayInput is an input type that accepts AlertingRulesTagArray and AlertingRulesTagArrayOutput values.
+// You can construct a concrete instance of `AlertingRulesTagArrayInput` via:
+//
+//	AlertingRulesTagArray{ AlertingRulesTagArgs{...} }
+type AlertingRulesTagArrayInput interface {
+	pulumi.Input
+
+	ToAlertingRulesTagArrayOutput() AlertingRulesTagArrayOutput
+	ToAlertingRulesTagArrayOutputWithContext(context.Context) AlertingRulesTagArrayOutput
+}
+
+type AlertingRulesTagArray []AlertingRulesTagInput
+
+func (AlertingRulesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertingRulesTag)(nil)).Elem()
+}
+
+func (i AlertingRulesTagArray) ToAlertingRulesTagArrayOutput() AlertingRulesTagArrayOutput {
+	return i.ToAlertingRulesTagArrayOutputWithContext(context.Background())
+}
+
+func (i AlertingRulesTagArray) ToAlertingRulesTagArrayOutputWithContext(ctx context.Context) AlertingRulesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertingRulesTagArrayOutput)
+}
+
+type AlertingRulesTagOutput struct{ *pulumi.OutputState }
+
+func (AlertingRulesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertingRulesTag)(nil)).Elem()
+}
+
+func (o AlertingRulesTagOutput) ToAlertingRulesTagOutput() AlertingRulesTagOutput {
+	return o
+}
+
+func (o AlertingRulesTagOutput) ToAlertingRulesTagOutputWithContext(ctx context.Context) AlertingRulesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AlertingRulesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertingRulesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AlertingRulesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertingRulesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AlertingRulesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertingRulesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertingRulesTag)(nil)).Elem()
+}
+
+func (o AlertingRulesTagArrayOutput) ToAlertingRulesTagArrayOutput() AlertingRulesTagArrayOutput {
+	return o
+}
+
+func (o AlertingRulesTagArrayOutput) ToAlertingRulesTagArrayOutputWithContext(ctx context.Context) AlertingRulesTagArrayOutput {
+	return o
+}
+
+func (o AlertingRulesTagArrayOutput) Index(i pulumi.IntInput) AlertingRulesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertingRulesTag {
+		return vs[0].([]AlertingRulesTag)[vs[1].(int)]
+	}).(AlertingRulesTagOutput)
 }
 
 type AlertsAlert struct {
@@ -7549,6 +7876,8 @@ type GetAlertingRulesAlertingRule struct {
 	Queries []GetAlertingRulesAlertingRuleQuery `pulumi:"queries"`
 	// The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []GetAlertingRulesAlertingRuleTag `pulumi:"tags"`
 	// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 	Type string `pulumi:"type"`
 	// The update time of the vmp alerting rule.
@@ -7589,6 +7918,8 @@ type GetAlertingRulesAlertingRuleArgs struct {
 	Queries GetAlertingRulesAlertingRuleQueryArrayInput `pulumi:"queries"`
 	// The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags GetAlertingRulesAlertingRuleTagArrayInput `pulumi:"tags"`
 	// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The update time of the vmp alerting rule.
@@ -7701,6 +8032,11 @@ func (o GetAlertingRulesAlertingRuleOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertingRulesAlertingRule) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o GetAlertingRulesAlertingRuleOutput) Tags() GetAlertingRulesAlertingRuleTagArrayOutput {
+	return o.ApplyT(func(v GetAlertingRulesAlertingRule) []GetAlertingRulesAlertingRuleTag { return v.Tags }).(GetAlertingRulesAlertingRuleTagArrayOutput)
+}
+
 // The type of vmp alerting rule. Valid values: `vmp/PromQL`.
 func (o GetAlertingRulesAlertingRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertingRulesAlertingRule) string { return v.Type }).(pulumi.StringOutput)
@@ -7734,7 +8070,7 @@ func (o GetAlertingRulesAlertingRuleArrayOutput) Index(i pulumi.IntInput) GetAle
 type GetAlertingRulesAlertingRuleAnnotation struct {
 	// The name of vmp alerting rule. This field support fuzzy query.
 	Name string `pulumi:"name"`
-	// The value of the label.
+	// The Value of Tags.
 	Value string `pulumi:"value"`
 }
 
@@ -7752,7 +8088,7 @@ type GetAlertingRulesAlertingRuleAnnotationInput interface {
 type GetAlertingRulesAlertingRuleAnnotationArgs struct {
 	// The name of vmp alerting rule. This field support fuzzy query.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The value of the label.
+	// The Value of Tags.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -7812,7 +8148,7 @@ func (o GetAlertingRulesAlertingRuleAnnotationOutput) Name() pulumi.StringOutput
 	return o.ApplyT(func(v GetAlertingRulesAlertingRuleAnnotation) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The value of the label.
+// The Value of Tags.
 func (o GetAlertingRulesAlertingRuleAnnotationOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertingRulesAlertingRuleAnnotation) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -7838,9 +8174,9 @@ func (o GetAlertingRulesAlertingRuleAnnotationArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetAlertingRulesAlertingRuleLabel struct {
-	// The name of the label.
+	// The Key of Tags.
 	Key string `pulumi:"key"`
-	// The value of the label.
+	// The Value of Tags.
 	Value string `pulumi:"value"`
 }
 
@@ -7856,9 +8192,9 @@ type GetAlertingRulesAlertingRuleLabelInput interface {
 }
 
 type GetAlertingRulesAlertingRuleLabelArgs struct {
-	// The name of the label.
+	// The Key of Tags.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The value of the label.
+	// The Value of Tags.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -7913,12 +8249,12 @@ func (o GetAlertingRulesAlertingRuleLabelOutput) ToGetAlertingRulesAlertingRuleL
 	return o
 }
 
-// The name of the label.
+// The Key of Tags.
 func (o GetAlertingRulesAlertingRuleLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertingRulesAlertingRuleLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The value of the label.
+// The Value of Tags.
 func (o GetAlertingRulesAlertingRuleLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertingRulesAlertingRuleLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -8171,6 +8507,218 @@ func (o GetAlertingRulesAlertingRuleQueryArrayOutput) Index(i pulumi.IntInput) G
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertingRulesAlertingRuleQuery {
 		return vs[0].([]GetAlertingRulesAlertingRuleQuery)[vs[1].(int)]
 	}).(GetAlertingRulesAlertingRuleQueryOutput)
+}
+
+type GetAlertingRulesAlertingRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAlertingRulesAlertingRuleTagInput is an input type that accepts GetAlertingRulesAlertingRuleTagArgs and GetAlertingRulesAlertingRuleTagOutput values.
+// You can construct a concrete instance of `GetAlertingRulesAlertingRuleTagInput` via:
+//
+//	GetAlertingRulesAlertingRuleTagArgs{...}
+type GetAlertingRulesAlertingRuleTagInput interface {
+	pulumi.Input
+
+	ToGetAlertingRulesAlertingRuleTagOutput() GetAlertingRulesAlertingRuleTagOutput
+	ToGetAlertingRulesAlertingRuleTagOutputWithContext(context.Context) GetAlertingRulesAlertingRuleTagOutput
+}
+
+type GetAlertingRulesAlertingRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAlertingRulesAlertingRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (i GetAlertingRulesAlertingRuleTagArgs) ToGetAlertingRulesAlertingRuleTagOutput() GetAlertingRulesAlertingRuleTagOutput {
+	return i.ToGetAlertingRulesAlertingRuleTagOutputWithContext(context.Background())
+}
+
+func (i GetAlertingRulesAlertingRuleTagArgs) ToGetAlertingRulesAlertingRuleTagOutputWithContext(ctx context.Context) GetAlertingRulesAlertingRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertingRulesAlertingRuleTagOutput)
+}
+
+// GetAlertingRulesAlertingRuleTagArrayInput is an input type that accepts GetAlertingRulesAlertingRuleTagArray and GetAlertingRulesAlertingRuleTagArrayOutput values.
+// You can construct a concrete instance of `GetAlertingRulesAlertingRuleTagArrayInput` via:
+//
+//	GetAlertingRulesAlertingRuleTagArray{ GetAlertingRulesAlertingRuleTagArgs{...} }
+type GetAlertingRulesAlertingRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAlertingRulesAlertingRuleTagArrayOutput() GetAlertingRulesAlertingRuleTagArrayOutput
+	ToGetAlertingRulesAlertingRuleTagArrayOutputWithContext(context.Context) GetAlertingRulesAlertingRuleTagArrayOutput
+}
+
+type GetAlertingRulesAlertingRuleTagArray []GetAlertingRulesAlertingRuleTagInput
+
+func (GetAlertingRulesAlertingRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (i GetAlertingRulesAlertingRuleTagArray) ToGetAlertingRulesAlertingRuleTagArrayOutput() GetAlertingRulesAlertingRuleTagArrayOutput {
+	return i.ToGetAlertingRulesAlertingRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertingRulesAlertingRuleTagArray) ToGetAlertingRulesAlertingRuleTagArrayOutputWithContext(ctx context.Context) GetAlertingRulesAlertingRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertingRulesAlertingRuleTagArrayOutput)
+}
+
+type GetAlertingRulesAlertingRuleTagOutput struct{ *pulumi.OutputState }
+
+func (GetAlertingRulesAlertingRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (o GetAlertingRulesAlertingRuleTagOutput) ToGetAlertingRulesAlertingRuleTagOutput() GetAlertingRulesAlertingRuleTagOutput {
+	return o
+}
+
+func (o GetAlertingRulesAlertingRuleTagOutput) ToGetAlertingRulesAlertingRuleTagOutputWithContext(ctx context.Context) GetAlertingRulesAlertingRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAlertingRulesAlertingRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertingRulesAlertingRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAlertingRulesAlertingRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertingRulesAlertingRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAlertingRulesAlertingRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertingRulesAlertingRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertingRulesAlertingRuleTag)(nil)).Elem()
+}
+
+func (o GetAlertingRulesAlertingRuleTagArrayOutput) ToGetAlertingRulesAlertingRuleTagArrayOutput() GetAlertingRulesAlertingRuleTagArrayOutput {
+	return o
+}
+
+func (o GetAlertingRulesAlertingRuleTagArrayOutput) ToGetAlertingRulesAlertingRuleTagArrayOutputWithContext(ctx context.Context) GetAlertingRulesAlertingRuleTagArrayOutput {
+	return o
+}
+
+func (o GetAlertingRulesAlertingRuleTagArrayOutput) Index(i pulumi.IntInput) GetAlertingRulesAlertingRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertingRulesAlertingRuleTag {
+		return vs[0].([]GetAlertingRulesAlertingRuleTag)[vs[1].(int)]
+	}).(GetAlertingRulesAlertingRuleTagOutput)
+}
+
+type GetAlertingRulesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetAlertingRulesTagInput is an input type that accepts GetAlertingRulesTagArgs and GetAlertingRulesTagOutput values.
+// You can construct a concrete instance of `GetAlertingRulesTagInput` via:
+//
+//	GetAlertingRulesTagArgs{...}
+type GetAlertingRulesTagInput interface {
+	pulumi.Input
+
+	ToGetAlertingRulesTagOutput() GetAlertingRulesTagOutput
+	ToGetAlertingRulesTagOutputWithContext(context.Context) GetAlertingRulesTagOutput
+}
+
+type GetAlertingRulesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAlertingRulesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertingRulesTag)(nil)).Elem()
+}
+
+func (i GetAlertingRulesTagArgs) ToGetAlertingRulesTagOutput() GetAlertingRulesTagOutput {
+	return i.ToGetAlertingRulesTagOutputWithContext(context.Background())
+}
+
+func (i GetAlertingRulesTagArgs) ToGetAlertingRulesTagOutputWithContext(ctx context.Context) GetAlertingRulesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertingRulesTagOutput)
+}
+
+// GetAlertingRulesTagArrayInput is an input type that accepts GetAlertingRulesTagArray and GetAlertingRulesTagArrayOutput values.
+// You can construct a concrete instance of `GetAlertingRulesTagArrayInput` via:
+//
+//	GetAlertingRulesTagArray{ GetAlertingRulesTagArgs{...} }
+type GetAlertingRulesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetAlertingRulesTagArrayOutput() GetAlertingRulesTagArrayOutput
+	ToGetAlertingRulesTagArrayOutputWithContext(context.Context) GetAlertingRulesTagArrayOutput
+}
+
+type GetAlertingRulesTagArray []GetAlertingRulesTagInput
+
+func (GetAlertingRulesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertingRulesTag)(nil)).Elem()
+}
+
+func (i GetAlertingRulesTagArray) ToGetAlertingRulesTagArrayOutput() GetAlertingRulesTagArrayOutput {
+	return i.ToGetAlertingRulesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertingRulesTagArray) ToGetAlertingRulesTagArrayOutputWithContext(ctx context.Context) GetAlertingRulesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertingRulesTagArrayOutput)
+}
+
+type GetAlertingRulesTagOutput struct{ *pulumi.OutputState }
+
+func (GetAlertingRulesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertingRulesTag)(nil)).Elem()
+}
+
+func (o GetAlertingRulesTagOutput) ToGetAlertingRulesTagOutput() GetAlertingRulesTagOutput {
+	return o
+}
+
+func (o GetAlertingRulesTagOutput) ToGetAlertingRulesTagOutputWithContext(ctx context.Context) GetAlertingRulesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetAlertingRulesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertingRulesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetAlertingRulesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertingRulesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAlertingRulesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertingRulesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertingRulesTag)(nil)).Elem()
+}
+
+func (o GetAlertingRulesTagArrayOutput) ToGetAlertingRulesTagArrayOutput() GetAlertingRulesTagArrayOutput {
+	return o
+}
+
+func (o GetAlertingRulesTagArrayOutput) ToGetAlertingRulesTagArrayOutputWithContext(ctx context.Context) GetAlertingRulesTagArrayOutput {
+	return o
+}
+
+func (o GetAlertingRulesTagArrayOutput) Index(i pulumi.IntInput) GetAlertingRulesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertingRulesTag {
+		return vs[0].([]GetAlertingRulesTag)[vs[1].(int)]
+	}).(GetAlertingRulesTagOutput)
 }
 
 type GetAlertsAlert struct {
@@ -12297,6 +12845,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleLevelArrayInput)(nil)).Elem(), AlertingRuleLevelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleQueryInput)(nil)).Elem(), AlertingRuleQueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleQueryPtrInput)(nil)).Elem(), AlertingRuleQueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleTagInput)(nil)).Elem(), AlertingRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRuleTagArrayInput)(nil)).Elem(), AlertingRuleTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleInput)(nil)).Elem(), AlertingRulesAlertingRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleArrayInput)(nil)).Elem(), AlertingRulesAlertingRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleAnnotationInput)(nil)).Elem(), AlertingRulesAlertingRuleAnnotationArgs{})
@@ -12307,6 +12857,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleLevelArrayInput)(nil)).Elem(), AlertingRulesAlertingRuleLevelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleQueryInput)(nil)).Elem(), AlertingRulesAlertingRuleQueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleQueryArrayInput)(nil)).Elem(), AlertingRulesAlertingRuleQueryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleTagInput)(nil)).Elem(), AlertingRulesAlertingRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesAlertingRuleTagArrayInput)(nil)).Elem(), AlertingRulesAlertingRuleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesTagInput)(nil)).Elem(), AlertingRulesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertingRulesTagArrayInput)(nil)).Elem(), AlertingRulesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertInput)(nil)).Elem(), AlertsAlertArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertArrayInput)(nil)).Elem(), AlertsAlertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertsAlertAlertingRuleQueryInput)(nil)).Elem(), AlertsAlertAlertingRuleQueryArgs{})
@@ -12409,6 +12963,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleLevelArrayInput)(nil)).Elem(), GetAlertingRulesAlertingRuleLevelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleQueryInput)(nil)).Elem(), GetAlertingRulesAlertingRuleQueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleQueryArrayInput)(nil)).Elem(), GetAlertingRulesAlertingRuleQueryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleTagInput)(nil)).Elem(), GetAlertingRulesAlertingRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesAlertingRuleTagArrayInput)(nil)).Elem(), GetAlertingRulesAlertingRuleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesTagInput)(nil)).Elem(), GetAlertingRulesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertingRulesTagArrayInput)(nil)).Elem(), GetAlertingRulesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertInput)(nil)).Elem(), GetAlertsAlertArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertArrayInput)(nil)).Elem(), GetAlertsAlertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertsAlertAlertingRuleQueryInput)(nil)).Elem(), GetAlertsAlertAlertingRuleQueryArgs{})
@@ -12481,6 +13039,8 @@ func init() {
 	pulumi.RegisterOutputType(AlertingRuleLevelArrayOutput{})
 	pulumi.RegisterOutputType(AlertingRuleQueryOutput{})
 	pulumi.RegisterOutputType(AlertingRuleQueryPtrOutput{})
+	pulumi.RegisterOutputType(AlertingRuleTagOutput{})
+	pulumi.RegisterOutputType(AlertingRuleTagArrayOutput{})
 	pulumi.RegisterOutputType(AlertingRulesAlertingRuleOutput{})
 	pulumi.RegisterOutputType(AlertingRulesAlertingRuleArrayOutput{})
 	pulumi.RegisterOutputType(AlertingRulesAlertingRuleAnnotationOutput{})
@@ -12491,6 +13051,10 @@ func init() {
 	pulumi.RegisterOutputType(AlertingRulesAlertingRuleLevelArrayOutput{})
 	pulumi.RegisterOutputType(AlertingRulesAlertingRuleQueryOutput{})
 	pulumi.RegisterOutputType(AlertingRulesAlertingRuleQueryArrayOutput{})
+	pulumi.RegisterOutputType(AlertingRulesAlertingRuleTagOutput{})
+	pulumi.RegisterOutputType(AlertingRulesAlertingRuleTagArrayOutput{})
+	pulumi.RegisterOutputType(AlertingRulesTagOutput{})
+	pulumi.RegisterOutputType(AlertingRulesTagArrayOutput{})
 	pulumi.RegisterOutputType(AlertsAlertOutput{})
 	pulumi.RegisterOutputType(AlertsAlertArrayOutput{})
 	pulumi.RegisterOutputType(AlertsAlertAlertingRuleQueryOutput{})
@@ -12593,6 +13157,10 @@ func init() {
 	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleLevelArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleQueryOutput{})
 	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleQueryArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleTagOutput{})
+	pulumi.RegisterOutputType(GetAlertingRulesAlertingRuleTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertingRulesTagOutput{})
+	pulumi.RegisterOutputType(GetAlertingRulesTagArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertsAlertOutput{})
 	pulumi.RegisterOutputType(GetAlertsAlertArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertsAlertAlertingRuleQueryOutput{})

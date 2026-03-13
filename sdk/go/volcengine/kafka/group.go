@@ -85,6 +85,12 @@ import (
 //				InstanceId:  fooInstance.ID(),
 //				GroupId:     pulumi.String("acc-test-group"),
 //				Description: pulumi.String("tf-test"),
+//				Tags: kafka.GroupTagArray{
+//					&kafka.GroupTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -113,6 +119,8 @@ type Group struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The state of kafka group.
 	State pulumi.StringOutput `pulumi:"state"`
+	// Tags.
+	Tags GroupTagArrayOutput `pulumi:"tags"`
 }
 
 // NewGroup registers a new resource with the given unique name, arguments, and options.
@@ -159,6 +167,8 @@ type groupState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// The state of kafka group.
 	State *string `pulumi:"state"`
+	// Tags.
+	Tags []GroupTag `pulumi:"tags"`
 }
 
 type GroupState struct {
@@ -170,6 +180,8 @@ type GroupState struct {
 	InstanceId pulumi.StringPtrInput
 	// The state of kafka group.
 	State pulumi.StringPtrInput
+	// Tags.
+	Tags GroupTagArrayInput
 }
 
 func (GroupState) ElementType() reflect.Type {
@@ -183,6 +195,8 @@ type groupArgs struct {
 	GroupId string `pulumi:"groupId"`
 	// The instance id of kafka group.
 	InstanceId string `pulumi:"instanceId"`
+	// Tags.
+	Tags []GroupTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Group resource.
@@ -193,6 +207,8 @@ type GroupArgs struct {
 	GroupId pulumi.StringInput
 	// The instance id of kafka group.
 	InstanceId pulumi.StringInput
+	// Tags.
+	Tags GroupTagArrayInput
 }
 
 func (GroupArgs) ElementType() reflect.Type {
@@ -300,6 +316,11 @@ func (o GroupOutput) InstanceId() pulumi.StringOutput {
 // The state of kafka group.
 func (o GroupOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GroupOutput) Tags() GroupTagArrayOutput {
+	return o.ApplyT(func(v *Group) GroupTagArrayOutput { return v.Tags }).(GroupTagArrayOutput)
 }
 
 type GroupArrayOutput struct{ *pulumi.OutputState }

@@ -15,7 +15,10 @@ __all__ = [
     'AllowListsAllowListAssociatedInstanceResult',
     'ConsumedPartitionsConsumedPartitionResult',
     'ConsumedTopicsConsumedTopicResult',
+    'GroupTag',
     'GroupsGroupResult',
+    'GroupsGroupTagResult',
+    'GroupsTagResult',
     'InstanceParameter',
     'InstanceTag',
     'InstancesInstanceResult',
@@ -28,15 +31,20 @@ __all__ = [
     'TopicAccessPolicy',
     'TopicParameters',
     'TopicPartitionsPartitionResult',
+    'TopicTag',
+    'TopicsTagResult',
     'TopicsTopicResult',
     'TopicsTopicAccessPolicyResult',
     'TopicsTopicParametersResult',
+    'TopicsTopicTagResult',
     'ZonesZoneResult',
     'GetAllowListsAllowListResult',
     'GetAllowListsAllowListAssociatedInstanceResult',
     'GetConsumedPartitionsConsumedPartitionResult',
     'GetConsumedTopicsConsumedTopicResult',
     'GetGroupsGroupResult',
+    'GetGroupsGroupTagResult',
+    'GetGroupsTagResult',
     'GetInstancesInstanceResult',
     'GetInstancesInstanceConnectionInfoResult',
     'GetInstancesInstanceParameterResult',
@@ -45,9 +53,11 @@ __all__ = [
     'GetRegionsRegionResult',
     'GetSaslUsersUserResult',
     'GetTopicPartitionsPartitionResult',
+    'GetTopicsTagResult',
     'GetTopicsTopicResult',
     'GetTopicsTopicAccessPolicyResult',
     'GetTopicsTopicParametersResult',
+    'GetTopicsTopicTagResult',
     'GetZonesZoneResult',
 ]
 
@@ -267,16 +277,62 @@ class ConsumedTopicsConsumedTopicResult(dict):
 
 
 @pulumi.output_type
+class GroupTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GroupsGroupResult(dict):
     def __init__(__self__, *,
+                 description: str,
                  group_id: str,
-                 state: str):
+                 protocol_type: str,
+                 state: str,
+                 tags: Sequence['outputs.GroupsGroupTagResult']):
         """
+        :param str description: The description of kafka group.
         :param str group_id: The id of kafka group, support fuzzy matching.
+        :param str protocol_type: The protocol type of kafka group.
         :param str state: The state of kafka group.
+        :param Sequence['GroupsGroupTagArgs'] tags: Tags.
         """
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "protocol_type", protocol_type)
         pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of kafka group.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="groupId")
@@ -287,12 +343,86 @@ class GroupsGroupResult(dict):
         return pulumi.get(self, "group_id")
 
     @property
+    @pulumi.getter(name="protocolType")
+    def protocol_type(self) -> str:
+        """
+        The protocol type of kafka group.
+        """
+        return pulumi.get(self, "protocol_type")
+
+    @property
     @pulumi.getter
     def state(self) -> str:
         """
         The state of kafka group.
         """
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GroupsGroupTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GroupsGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GroupsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1212,37 +1342,110 @@ class TopicPartitionsPartitionResult(dict):
 
 
 @pulumi.output_type
+class TopicTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TopicsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class TopicsTopicResult(dict):
     def __init__(__self__, *,
                  access_policies: Sequence['outputs.TopicsTopicAccessPolicyResult'],
                  all_authority: bool,
+                 cleanup_policies: Sequence[str],
                  create_time: str,
                  description: str,
+                 log_retention_hours: int,
                  parameters: 'outputs.TopicsTopicParametersResult',
                  partition_number: int,
                  replica_number: int,
                  status: str,
-                 topic_name: str):
+                 tags: Sequence['outputs.TopicsTopicTagResult'],
+                 topic_name: str,
+                 used_storage_percentage_in_instance: int,
+                 used_storage_space_in_bytes: int):
         """
         :param Sequence['TopicsTopicAccessPolicyArgs'] access_policies: The access policies info of the kafka topic.
         :param bool all_authority: Whether the kafka topic is configured to be accessible by all users.
+        :param Sequence[str] cleanup_policies: The cleanup policy of the kafka topic.
         :param str create_time: The create time of the kafka topic.
         :param str description: The description of the kafka topic.
+        :param int log_retention_hours: The retention hours of log.
         :param 'TopicsTopicParametersArgs' parameters: The parameters of the kafka topic.
         :param int partition_number: The number of partition in kafka topic.
         :param int replica_number: The number of replica in kafka topic.
         :param str status: The status of the kafka topic.
+        :param Sequence['TopicsTopicTagArgs'] tags: Tags.
         :param str topic_name: The name of kafka topic. This field supports fuzzy query.
+        :param int used_storage_percentage_in_instance: The used storage percentage in instance.
+        :param int used_storage_space_in_bytes: The total storage space size already used by the current Topic.
         """
         pulumi.set(__self__, "access_policies", access_policies)
         pulumi.set(__self__, "all_authority", all_authority)
+        pulumi.set(__self__, "cleanup_policies", cleanup_policies)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "log_retention_hours", log_retention_hours)
         pulumi.set(__self__, "parameters", parameters)
         pulumi.set(__self__, "partition_number", partition_number)
         pulumi.set(__self__, "replica_number", replica_number)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "used_storage_percentage_in_instance", used_storage_percentage_in_instance)
+        pulumi.set(__self__, "used_storage_space_in_bytes", used_storage_space_in_bytes)
 
     @property
     @pulumi.getter(name="accessPolicies")
@@ -1261,6 +1464,14 @@ class TopicsTopicResult(dict):
         return pulumi.get(self, "all_authority")
 
     @property
+    @pulumi.getter(name="cleanupPolicies")
+    def cleanup_policies(self) -> Sequence[str]:
+        """
+        The cleanup policy of the kafka topic.
+        """
+        return pulumi.get(self, "cleanup_policies")
+
+    @property
     @pulumi.getter(name="createTime")
     def create_time(self) -> str:
         """
@@ -1275,6 +1486,14 @@ class TopicsTopicResult(dict):
         The description of the kafka topic.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="logRetentionHours")
+    def log_retention_hours(self) -> int:
+        """
+        The retention hours of log.
+        """
+        return pulumi.get(self, "log_retention_hours")
 
     @property
     @pulumi.getter
@@ -1309,12 +1528,36 @@ class TopicsTopicResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.TopicsTopicTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="topicName")
     def topic_name(self) -> str:
         """
         The name of kafka topic. This field supports fuzzy query.
         """
         return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter(name="usedStoragePercentageInInstance")
+    def used_storage_percentage_in_instance(self) -> int:
+        """
+        The used storage percentage in instance.
+        """
+        return pulumi.get(self, "used_storage_percentage_in_instance")
+
+    @property
+    @pulumi.getter(name="usedStorageSpaceInBytes")
+    def used_storage_space_in_bytes(self) -> int:
+        """
+        The total storage space size already used by the current Topic.
+        """
+        return pulumi.get(self, "used_storage_space_in_bytes")
 
 
 @pulumi.output_type
@@ -1384,6 +1627,35 @@ class TopicsTopicParametersResult(dict):
         The min number of sync replica.
         """
         return pulumi.get(self, "min_insync_replica_number")
+
+
+@pulumi.output_type
+class TopicsTopicTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1666,14 +1938,31 @@ class GetConsumedTopicsConsumedTopicResult(dict):
 @pulumi.output_type
 class GetGroupsGroupResult(dict):
     def __init__(__self__, *,
+                 description: str,
                  group_id: str,
-                 state: str):
+                 protocol_type: str,
+                 state: str,
+                 tags: Sequence['outputs.GetGroupsGroupTagResult']):
         """
+        :param str description: The description of kafka group.
         :param str group_id: The id of kafka group, support fuzzy matching.
+        :param str protocol_type: The protocol type of kafka group.
         :param str state: The state of kafka group.
+        :param Sequence['GetGroupsGroupTagArgs'] tags: Tags.
         """
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "protocol_type", protocol_type)
         pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of kafka group.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="groupId")
@@ -1684,12 +1973,86 @@ class GetGroupsGroupResult(dict):
         return pulumi.get(self, "group_id")
 
     @property
+    @pulumi.getter(name="protocolType")
+    def protocol_type(self) -> str:
+        """
+        The protocol type of kafka group.
+        """
+        return pulumi.get(self, "protocol_type")
+
+    @property
     @pulumi.getter
     def state(self) -> str:
         """
         The state of kafka group.
         """
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetGroupsGroupTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetGroupsGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetGroupsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -2420,37 +2783,81 @@ class GetTopicPartitionsPartitionResult(dict):
 
 
 @pulumi.output_type
+class GetTopicsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetTopicsTopicResult(dict):
     def __init__(__self__, *,
                  access_policies: Sequence['outputs.GetTopicsTopicAccessPolicyResult'],
                  all_authority: bool,
+                 cleanup_policies: Sequence[str],
                  create_time: str,
                  description: str,
+                 log_retention_hours: int,
                  parameters: 'outputs.GetTopicsTopicParametersResult',
                  partition_number: int,
                  replica_number: int,
                  status: str,
-                 topic_name: str):
+                 tags: Sequence['outputs.GetTopicsTopicTagResult'],
+                 topic_name: str,
+                 used_storage_percentage_in_instance: int,
+                 used_storage_space_in_bytes: int):
         """
         :param Sequence['GetTopicsTopicAccessPolicyArgs'] access_policies: The access policies info of the kafka topic.
         :param bool all_authority: Whether the kafka topic is configured to be accessible by all users.
+        :param Sequence[str] cleanup_policies: The cleanup policy of the kafka topic.
         :param str create_time: The create time of the kafka topic.
         :param str description: The description of the kafka topic.
+        :param int log_retention_hours: The retention hours of log.
         :param 'GetTopicsTopicParametersArgs' parameters: The parameters of the kafka topic.
         :param int partition_number: The number of partition in kafka topic.
         :param int replica_number: The number of replica in kafka topic.
         :param str status: The status of the kafka topic.
+        :param Sequence['GetTopicsTopicTagArgs'] tags: Tags.
         :param str topic_name: The name of kafka topic. This field supports fuzzy query.
+        :param int used_storage_percentage_in_instance: The used storage percentage in instance.
+        :param int used_storage_space_in_bytes: The total storage space size already used by the current Topic.
         """
         pulumi.set(__self__, "access_policies", access_policies)
         pulumi.set(__self__, "all_authority", all_authority)
+        pulumi.set(__self__, "cleanup_policies", cleanup_policies)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "log_retention_hours", log_retention_hours)
         pulumi.set(__self__, "parameters", parameters)
         pulumi.set(__self__, "partition_number", partition_number)
         pulumi.set(__self__, "replica_number", replica_number)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "topic_name", topic_name)
+        pulumi.set(__self__, "used_storage_percentage_in_instance", used_storage_percentage_in_instance)
+        pulumi.set(__self__, "used_storage_space_in_bytes", used_storage_space_in_bytes)
 
     @property
     @pulumi.getter(name="accessPolicies")
@@ -2469,6 +2876,14 @@ class GetTopicsTopicResult(dict):
         return pulumi.get(self, "all_authority")
 
     @property
+    @pulumi.getter(name="cleanupPolicies")
+    def cleanup_policies(self) -> Sequence[str]:
+        """
+        The cleanup policy of the kafka topic.
+        """
+        return pulumi.get(self, "cleanup_policies")
+
+    @property
     @pulumi.getter(name="createTime")
     def create_time(self) -> str:
         """
@@ -2483,6 +2898,14 @@ class GetTopicsTopicResult(dict):
         The description of the kafka topic.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="logRetentionHours")
+    def log_retention_hours(self) -> int:
+        """
+        The retention hours of log.
+        """
+        return pulumi.get(self, "log_retention_hours")
 
     @property
     @pulumi.getter
@@ -2517,12 +2940,36 @@ class GetTopicsTopicResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetTopicsTopicTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="topicName")
     def topic_name(self) -> str:
         """
         The name of kafka topic. This field supports fuzzy query.
         """
         return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter(name="usedStoragePercentageInInstance")
+    def used_storage_percentage_in_instance(self) -> int:
+        """
+        The used storage percentage in instance.
+        """
+        return pulumi.get(self, "used_storage_percentage_in_instance")
+
+    @property
+    @pulumi.getter(name="usedStorageSpaceInBytes")
+    def used_storage_space_in_bytes(self) -> int:
+        """
+        The total storage space size already used by the current Topic.
+        """
+        return pulumi.get(self, "used_storage_space_in_bytes")
 
 
 @pulumi.output_type
@@ -2592,6 +3039,35 @@ class GetTopicsTopicParametersResult(dict):
         The min number of sync replica.
         """
         return pulumi.get(self, "min_insync_replica_number")
+
+
+@pulumi.output_type
+class GetTopicsTopicTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

@@ -93,6 +93,8 @@ type Ipv6AddressBandwidth struct {
 	OverdueTime pulumi.StringOutput `pulumi:"overdueTime"`
 	// The status of the Ipv6AddressBandwidth.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags Ipv6AddressBandwidthTagArrayOutput `pulumi:"tags"`
 	// Update time of the Ipv6AddressBandwidth.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 }
@@ -161,6 +163,8 @@ type ipv6AddressBandwidthState struct {
 	OverdueTime *string `pulumi:"overdueTime"`
 	// The status of the Ipv6AddressBandwidth.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []Ipv6AddressBandwidthTag `pulumi:"tags"`
 	// Update time of the Ipv6AddressBandwidth.
 	UpdateTime *string `pulumi:"updateTime"`
 }
@@ -194,6 +198,8 @@ type Ipv6AddressBandwidthState struct {
 	OverdueTime pulumi.StringPtrInput
 	// The status of the Ipv6AddressBandwidth.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags Ipv6AddressBandwidthTagArrayInput
 	// Update time of the Ipv6AddressBandwidth.
 	UpdateTime pulumi.StringPtrInput
 }
@@ -209,6 +215,8 @@ type ipv6AddressBandwidthArgs struct {
 	BillingType string `pulumi:"billingType"`
 	// Ipv6 address.
 	Ipv6Address string `pulumi:"ipv6Address"`
+	// Tags.
+	Tags []Ipv6AddressBandwidthTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Ipv6AddressBandwidth resource.
@@ -219,6 +227,8 @@ type Ipv6AddressBandwidthArgs struct {
 	BillingType pulumi.StringInput
 	// Ipv6 address.
 	Ipv6Address pulumi.StringInput
+	// Tags.
+	Tags Ipv6AddressBandwidthTagArrayInput
 }
 
 func (Ipv6AddressBandwidthArgs) ElementType() reflect.Type {
@@ -376,6 +386,11 @@ func (o Ipv6AddressBandwidthOutput) OverdueTime() pulumi.StringOutput {
 // The status of the Ipv6AddressBandwidth.
 func (o Ipv6AddressBandwidthOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ipv6AddressBandwidth) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o Ipv6AddressBandwidthOutput) Tags() Ipv6AddressBandwidthTagArrayOutput {
+	return o.ApplyT(func(v *Ipv6AddressBandwidth) Ipv6AddressBandwidthTagArrayOutput { return v.Tags }).(Ipv6AddressBandwidthTagArrayOutput)
 }
 
 // Update time of the Ipv6AddressBandwidth.

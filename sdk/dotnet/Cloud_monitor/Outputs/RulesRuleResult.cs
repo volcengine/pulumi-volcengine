@@ -94,6 +94,10 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
         /// </summary>
         public readonly string SubNamespace;
         /// <summary>
+        /// The tags of the cloud monitor rule.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.RulesRuleTagResult> Tags;
+        /// <summary>
         /// The updated time of the cloud monitor rule.
         /// </summary>
         public readonly string UpdatedAt;
@@ -148,6 +152,8 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
 
             string subNamespace,
 
+            ImmutableArray<Outputs.RulesRuleTagResult> tags,
+
             string updatedAt,
 
             string webHook,
@@ -174,6 +180,7 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
             RuleName = ruleName;
             SilenceTime = silenceTime;
             SubNamespace = subNamespace;
+            Tags = tags;
             UpdatedAt = updatedAt;
             WebHook = webHook;
             WebhookIds = webhookIds;

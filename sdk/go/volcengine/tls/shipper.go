@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.NewShipper(ctx, "foo", &tls.ShipperArgs{
+//			_, err := tls.NewShipper(ctx, "tosFoo", &tls.ShipperArgs{
 //				ContentInfo: &tls.ShipperContentInfoArgs{
 //					Format: pulumi.String("json"),
 //					JsonInfo: &tls.ShipperContentInfoJsonInfoArgs{
@@ -40,7 +40,7 @@ import (
 //				},
 //				RoleTrn:          pulumi.String(""),
 //				ShipperEndTime:   pulumi.Int(1751255700021),
-//				ShipperName:      pulumi.String("tf-test"),
+//				ShipperName:      pulumi.String("tf-test-tos-1"),
 //				ShipperStartTime: pulumi.Int(1750737324521),
 //				ShipperType:      pulumi.String("tos"),
 //				TopicId:          pulumi.String("8ba48bd7-2493-4300-b1d0-cb760b89e51b"),

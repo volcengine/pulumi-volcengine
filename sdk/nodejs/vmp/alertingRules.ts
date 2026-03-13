@@ -150,6 +150,7 @@ export function alertingRules(args?: AlertingRulesArgs, opts?: pulumi.InvokeOpti
         "notifyPolicyIds": args.notifyPolicyIds,
         "outputFile": args.outputFile,
         "status": args.status,
+        "tags": args.tags,
         "type": args.type,
         "workspaceId": args.workspaceId,
     }, opts);
@@ -188,6 +189,10 @@ export interface AlertingRulesArgs {
      */
     status?: string;
     /**
+     * Tags.
+     */
+    tags?: inputs.vmp.AlertingRulesTag[];
+    /**
      * The type of vmp alerting rule. Valid values: `vmp/PromQL`.
      */
     type?: string;
@@ -222,6 +227,10 @@ export interface AlertingRulesResult {
      * The status of the vmp alerting rule.
      */
     readonly status?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vmp.AlertingRulesTag[];
     /**
      * The total count of query.
      */
@@ -402,6 +411,10 @@ export interface AlertingRulesOutputArgs {
      * The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vmp.AlertingRulesTagArgs>[]>;
     /**
      * The type of vmp alerting rule. Valid values: `vmp/PromQL`.
      */

@@ -35,10 +35,10 @@ import (
 //					},
 //				},
 //				WebhookMethod: pulumi.String("PUT"),
-//				WebhookName:   pulumi.String("terraform-tf-webhook"),
+//				WebhookName:   pulumi.String("terraform-tf-webhook-modify"),
 //				WebhookSecret: pulumi.String("your secret"),
-//				WebhookType:   pulumi.String("lark"),
-//				WebhookUrl:    pulumi.String("http://zijie.com"),
+//				WebhookType:   pulumi.String("wechat"),
+//				WebhookUrl:    pulumi.String("http://tencent.com"),
 //			})
 //			if err != nil {
 //				return err

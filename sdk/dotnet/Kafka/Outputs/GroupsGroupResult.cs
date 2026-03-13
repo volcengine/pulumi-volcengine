@@ -14,22 +14,43 @@ namespace Pulumi.Volcengine.Kafka.Outputs
     public sealed class GroupsGroupResult
     {
         /// <summary>
+        /// The description of kafka group.
+        /// </summary>
+        public readonly string Description;
+        /// <summary>
         /// The id of kafka group, support fuzzy matching.
         /// </summary>
         public readonly string GroupId;
         /// <summary>
+        /// The protocol type of kafka group.
+        /// </summary>
+        public readonly string ProtocolType;
+        /// <summary>
         /// The state of kafka group.
         /// </summary>
         public readonly string State;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GroupsGroupTagResult> Tags;
 
         [OutputConstructor]
         private GroupsGroupResult(
+            string description,
+
             string groupId,
 
-            string state)
+            string protocolType,
+
+            string state,
+
+            ImmutableArray<Outputs.GroupsGroupTagResult> tags)
         {
+            Description = description;
             GroupId = groupId;
+            ProtocolType = protocolType;
             State = state;
+            Tags = tags;
         }
     }
 }

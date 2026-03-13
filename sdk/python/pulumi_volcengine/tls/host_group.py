@@ -400,15 +400,6 @@ class HostGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.HostGroup("foo",
-            auto_update=True,
-            host_group_name="tfgroup-test-x",
-            host_group_type="Label",
-            host_identifier="hostlable",
-            iam_project_name="default",
-            service_logging=False,
-            update_end_time="02:00",
-            update_start_time="00:00")
         foo_ip = volcengine.tls.HostGroup("fooIp",
             auto_update=True,
             host_group_name="tfgroup-ip-x",
@@ -458,15 +449,6 @@ class HostGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.tls.HostGroup("foo",
-            auto_update=True,
-            host_group_name="tfgroup-test-x",
-            host_group_type="Label",
-            host_identifier="hostlable",
-            iam_project_name="default",
-            service_logging=False,
-            update_end_time="02:00",
-            update_start_time="00:00")
         foo_ip = volcengine.tls.HostGroup("fooIp",
             auto_update=True,
             host_group_name="tfgroup-ip-x",

@@ -13,6 +13,8 @@ __all__ = [
     'CommandParameterDefinitionArgs',
     'CommandTagArgs',
     'CommandsTagArgs',
+    'HpcClusterTagArgs',
+    'HpcClustersTagArgs',
     'ImageImportTagArgs',
     'ImageTagArgs',
     'ImagesTagArgs',
@@ -26,12 +28,20 @@ __all__ = [
     'InvocationParameterArgs',
     'InvocationTagArgs',
     'InvocationsTagArgs',
+    'KeyPairTagArgs',
+    'KeyPairsTagArgs',
+    'LaunchTemplateLaunchTemplateTagArgs',
     'LaunchTemplateNetworkInterfaceArgs',
+    'LaunchTemplateTagArgs',
     'LaunchTemplateVolumeArgs',
+    'LaunchTemplatesLaunchTemplateTagArgs',
     'GetCommandsTagArgs',
+    'GetHpcClustersTagArgs',
     'GetImagesTagArgs',
     'GetInstancesTagArgs',
     'GetInvocationsTagArgs',
+    'GetKeyPairsTagArgs',
+    'GetLaunchTemplatesLaunchTemplateTagArgs',
 ]
 
 @pulumi.input_type
@@ -222,6 +232,80 @@ class CommandTagArgs:
 
 @pulumi.input_type
 class CommandsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class HpcClusterTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class HpcClustersTagArgs:
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -841,6 +925,117 @@ class InvocationsTagArgs:
 
 
 @pulumi.input_type
+class KeyPairTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class KeyPairsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class LaunchTemplateLaunchTemplateTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class LaunchTemplateNetworkInterfaceArgs:
     def __init__(__self__, *,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -877,6 +1072,43 @@ class LaunchTemplateNetworkInterfaceArgs:
     @subnet_id.setter
     def subnet_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_id", value)
+
+
+@pulumi.input_type
+class LaunchTemplateTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -935,7 +1167,81 @@ class LaunchTemplateVolumeArgs:
 
 
 @pulumi.input_type
+class LaunchTemplatesLaunchTemplateTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class GetCommandsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetHpcClustersTagArgs:
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -1047,6 +1353,80 @@ class GetInstancesTagArgs:
 
 @pulumi.input_type
 class GetInvocationsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetKeyPairsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class GetLaunchTemplatesLaunchTemplateTagArgs:
     def __init__(__self__, *,
                  key: str,
                  value: str):

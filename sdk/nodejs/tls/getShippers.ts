@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getShippers({});
+ * const default = volcengine.tls.getShippers({
+ *     shipperId: "7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe",
+ * });
  * ```
  */
 export function getShippers(args?: GetShippersArgs, opts?: pulumi.InvokeOptions): Promise<GetShippersResult> {
@@ -137,7 +139,9 @@ export interface GetShippersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getShippers({});
+ * const default = volcengine.tls.getShippers({
+ *     shipperId: "7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe",
+ * });
  * ```
  */
 export function getShippersOutput(args?: GetShippersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetShippersResult> {

@@ -15,17 +15,17 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Project("foo", {
- *     description: "tf-desc-modify",
+ *     description: "tf-desc",
  *     iamProjectName: "default",
  *     projectName: "tf-project-m",
  *     region: "cn-guilin-boe",
  *     tags: [
  *         {
- *             key: "k1",
+ *             key: "k2m",
  *             value: "v1",
  *         },
  *         {
- *             key: "k2",
+ *             key: "kt3",
  *             value: "v3",
  *         },
  *     ],

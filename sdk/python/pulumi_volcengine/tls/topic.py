@@ -718,12 +718,17 @@ class Topic(pulumi.CustomResource):
             archive_ttl=0,
             auto_split=True,
             cold_ttl=30,
-            description="test",
+            description="test-modify",
             enable_hot_ttl=True,
             enable_tracking=True,
             encrypt_conf=volcengine.tls.TopicEncryptConfArgs(
                 enable=True,
                 encrypt_type="default",
+                user_cmk_info=volcengine.tls.TopicEncryptConfUserCmkInfoArgs(
+                    region_id="cn-guilin-boe",
+                    trn="trn:iam::2100xxxxx:role/ServiceRoleForTLS",
+                    user_cmk_id="m_cn-guilin-boe_441a350d-b21c-4760-bd8e-01ec2bc5e58a",
+                ),
             ),
             hot_ttl=30,
             log_public_ip=True,
@@ -736,7 +741,7 @@ class Topic(pulumi.CustomResource):
             )],
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             time_key="request_time",
-            topic_name="tf-topic-5",
+            topic_name="tf-topic-with-encrypt",
             ttl=60)
         ```
 
@@ -792,12 +797,17 @@ class Topic(pulumi.CustomResource):
             archive_ttl=0,
             auto_split=True,
             cold_ttl=30,
-            description="test",
+            description="test-modify",
             enable_hot_ttl=True,
             enable_tracking=True,
             encrypt_conf=volcengine.tls.TopicEncryptConfArgs(
                 enable=True,
                 encrypt_type="default",
+                user_cmk_info=volcengine.tls.TopicEncryptConfUserCmkInfoArgs(
+                    region_id="cn-guilin-boe",
+                    trn="trn:iam::2100xxxxx:role/ServiceRoleForTLS",
+                    user_cmk_id="m_cn-guilin-boe_441a350d-b21c-4760-bd8e-01ec2bc5e58a",
+                ),
             ),
             hot_ttl=30,
             log_public_ip=True,
@@ -810,7 +820,7 @@ class Topic(pulumi.CustomResource):
             )],
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             time_key="request_time",
-            topic_name="tf-topic-5",
+            topic_name="tf-topic-with-encrypt",
             ttl=60)
         ```
 

@@ -37,6 +37,8 @@ export function keyPairs(args?: KeyPairsArgs, opts?: pulumi.InvokeOptions): Prom
         "keyPairNames": args.keyPairNames,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -68,6 +70,14 @@ export interface KeyPairsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name of the key pair.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.ecs.KeyPairsTag[];
 }
 
 /**
@@ -94,6 +104,14 @@ export interface KeyPairsResult {
     readonly keyPairs: outputs.ecs.KeyPairsKeyPair[];
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The project name of the key pair.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.ecs.KeyPairsTag[];
     /**
      * The total count of ECS key pair query.
      */
@@ -150,4 +168,12 @@ export interface KeyPairsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the key pair.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.KeyPairsTagArgs>[]>;
 }

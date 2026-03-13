@@ -13,6 +13,58 @@ import (
 )
 
 // Provides a resource to manage tls alarm notify group
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tls"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tls.NewAlarmNotifyGroup(ctx, "foo", &tls.AlarmNotifyGroupArgs{
+//				AlarmNotifyGroupName: pulumi.String("tf-test"),
+//				IamProjectName:       pulumi.String("default"),
+//				NotifyTypes: pulumi.StringArray{
+//					pulumi.String("Recovery"),
+//				},
+//				Receivers: tls.AlarmNotifyGroupReceiverArray{
+//					&tls.AlarmNotifyGroupReceiverArgs{
+//						EndTime:            pulumi.String("23:59:59"),
+//						GeneralWebhookBody: pulumi.String("test"),
+//						GeneralWebhookHeaders: tls.AlarmNotifyGroupReceiverGeneralWebhookHeaderArray{
+//							&tls.AlarmNotifyGroupReceiverGeneralWebhookHeaderArgs{
+//								Key:   pulumi.String("test"),
+//								Value: pulumi.String("test"),
+//							},
+//						},
+//						GeneralWebhookMethod: pulumi.String("PUT"),
+//						GeneralWebhookUrl:    pulumi.String("https://www.volcengine.com/docs/6470xxx/112220?lang=zh"),
+//						ReceiverChannels: pulumi.StringArray{
+//							pulumi.String("Email"),
+//						},
+//						ReceiverNames: pulumi.StringArray{
+//							pulumi.String("jonny"),
+//						},
+//						ReceiverType: pulumi.String("User"),
+//						StartTime:    pulumi.String("10:00:00"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // tls alarm notify group can be imported using the id, e.g.

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.iam.getAccessKeyLastUseds({
- *     accessKeyId: "AKLxxxxxxxxxxxxxxxxxxxxxxxxx",
+ *     accessKeyId: "your access_key_id",
  * });
  * ```
  */
@@ -78,7 +78,7 @@ export interface AccessKeyLastUsedsResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.iam.getAccessKeyLastUseds({
- *     accessKeyId: "AKLxxxxxxxxxxxxxxxxxxxxxxxxx",
+ *     accessKeyId: "your access_key_id",
  * });
  * ```
  */

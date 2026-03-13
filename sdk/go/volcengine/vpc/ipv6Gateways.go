@@ -61,6 +61,10 @@ type Ipv6GatewaysArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the Ipv6Gateway.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []Ipv6GatewaysTag `pulumi:"tags"`
 	// The ID list of the VPC which the Ipv6Gateway belongs to.
 	VpcIds []string `pulumi:"vpcIds"`
 }
@@ -76,6 +80,10 @@ type Ipv6GatewaysResult struct {
 	Name       *string `pulumi:"name"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the Ipv6Gateway.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []Ipv6GatewaysTag `pulumi:"tags"`
 	// The total count of Ipv6Gateway query.
 	TotalCount int      `pulumi:"totalCount"`
 	VpcIds     []string `pulumi:"vpcIds"`
@@ -104,6 +112,10 @@ type Ipv6GatewaysOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the Ipv6Gateway.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags Ipv6GatewaysTagArrayInput `pulumi:"tags"`
 	// The ID list of the VPC which the Ipv6Gateway belongs to.
 	VpcIds pulumi.StringArrayInput `pulumi:"vpcIds"`
 }
@@ -152,6 +164,16 @@ func (o Ipv6GatewaysResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o Ipv6GatewaysResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ipv6GatewaysResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the Ipv6Gateway.
+func (o Ipv6GatewaysResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Ipv6GatewaysResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o Ipv6GatewaysResultOutput) Tags() Ipv6GatewaysTagArrayOutput {
+	return o.ApplyT(func(v Ipv6GatewaysResult) []Ipv6GatewaysTag { return v.Tags }).(Ipv6GatewaysTagArrayOutput)
 }
 
 // The total count of Ipv6Gateway query.

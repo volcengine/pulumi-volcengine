@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getHostGroups({});
+ * const default = volcengine.tls.getHostGroups({
+ *     hostGroupId: "97cadc9f-4415-450d-9727-ea877d8bf993",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.HostGroups has been deprecated in favor of volcengine.tls.getHostGroups */
@@ -124,7 +126,9 @@ export interface HostGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getHostGroups({});
+ * const default = volcengine.tls.getHostGroups({
+ *     hostGroupId: "97cadc9f-4415-450d-9727-ea877d8bf993",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.HostGroups has been deprecated in favor of volcengine.tls.getHostGroups */

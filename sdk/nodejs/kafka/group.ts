@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -55,6 +57,10 @@ import * as utilities from "../utilities";
  *     instanceId: fooInstance.id,
  *     groupId: "acc-test-group",
  *     description: "tf-test",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -110,6 +116,10 @@ export class Group extends pulumi.CustomResource {
      * The state of kafka group.
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.kafka.GroupTag[] | undefined>;
 
     /**
      * Create a Group resource with the given unique name, arguments, and options.
@@ -128,6 +138,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["groupId"] = state ? state.groupId : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as GroupArgs | undefined;
             if ((!args || args.groupId === undefined) && !opts.urn) {
@@ -139,6 +150,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["groupId"] = args ? args.groupId : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -166,6 +178,10 @@ export interface GroupState {
      * The state of kafka group.
      */
     state?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.kafka.GroupTag>[]>;
 }
 
 /**
@@ -184,4 +200,8 @@ export interface GroupArgs {
      * The instance id of kafka group.
      */
     instanceId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.kafka.GroupTag>[]>;
 }

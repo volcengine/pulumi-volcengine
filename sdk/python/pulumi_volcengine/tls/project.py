@@ -207,17 +207,17 @@ class Project(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Project("foo",
-            description="tf-desc-modify",
+            description="tf-desc",
             iam_project_name="default",
             project_name="tf-project-m",
             region="cn-guilin-boe",
             tags=[
                 volcengine.tls.ProjectTagArgs(
-                    key="k1",
+                    key="k2m",
                     value="v1",
                 ),
                 volcengine.tls.ProjectTagArgs(
-                    key="k2",
+                    key="kt3",
                     value="v3",
                 ),
             ])
@@ -254,17 +254,17 @@ class Project(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.Project("foo",
-            description="tf-desc-modify",
+            description="tf-desc",
             iam_project_name="default",
             project_name="tf-project-m",
             region="cn-guilin-boe",
             tags=[
                 volcengine.tls.ProjectTagArgs(
-                    key="k1",
+                    key="k2m",
                     value="v1",
                 ),
                 volcengine.tls.ProjectTagArgs(
-                    key="k2",
+                    key="kt3",
                     value="v3",
                 ),
             ])

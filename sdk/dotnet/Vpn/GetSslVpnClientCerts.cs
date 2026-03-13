@@ -209,6 +209,18 @@ namespace Pulumi.Volcengine.Vpn
         [Input("sslVpnServerId")]
         public string? SslVpnServerId { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.GetSslVpnClientCertsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetSslVpnClientCertsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetSslVpnClientCertsTagArgs>());
+            set => _tags = value;
+        }
+
         public GetSslVpnClientCertsArgs()
         {
         }
@@ -253,6 +265,18 @@ namespace Pulumi.Volcengine.Vpn
         [Input("sslVpnServerId")]
         public Input<string>? SslVpnServerId { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.GetSslVpnClientCertsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetSslVpnClientCertsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetSslVpnClientCertsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetSslVpnClientCertsInvokeArgs()
         {
         }
@@ -282,6 +306,7 @@ namespace Pulumi.Volcengine.Vpn
         /// The id of the ssl vpn server.
         /// </summary>
         public readonly string? SslVpnServerId;
+        public readonly ImmutableArray<Outputs.GetSslVpnClientCertsTagResult> Tags;
         /// <summary>
         /// The total count of ssl vpn client cert query.
         /// </summary>
@@ -303,6 +328,8 @@ namespace Pulumi.Volcengine.Vpn
 
             string? sslVpnServerId,
 
+            ImmutableArray<Outputs.GetSslVpnClientCertsTagResult> tags,
+
             int totalCount)
         {
             Id = id;
@@ -312,6 +339,7 @@ namespace Pulumi.Volcengine.Vpn
             SslVpnClientCertName = sslVpnClientCertName;
             SslVpnClientCerts = sslVpnClientCerts;
             SslVpnServerId = sslVpnServerId;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

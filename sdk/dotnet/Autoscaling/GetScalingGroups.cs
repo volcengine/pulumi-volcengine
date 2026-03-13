@@ -199,6 +199,18 @@ namespace Pulumi.Volcengine.Autoscaling
             set => _scalingGroupNames = value;
         }
 
+        [Input("tags")]
+        private List<Inputs.GetScalingGroupsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetScalingGroupsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetScalingGroupsTagArgs>());
+            set => _tags = value;
+        }
+
         public GetScalingGroupsArgs()
         {
         }
@@ -249,6 +261,18 @@ namespace Pulumi.Volcengine.Autoscaling
             set => _scalingGroupNames = value;
         }
 
+        [Input("tags")]
+        private InputList<Inputs.GetScalingGroupsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetScalingGroupsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetScalingGroupsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetScalingGroupsInvokeArgs()
         {
         }
@@ -276,6 +300,10 @@ namespace Pulumi.Volcengine.Autoscaling
         /// </summary>
         public readonly ImmutableArray<Outputs.GetScalingGroupsScalingGroupResult> ScalingGroups;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetScalingGroupsTagResult> Tags;
+        /// <summary>
         /// The total count of scaling group query.
         /// </summary>
         public readonly int TotalCount;
@@ -296,6 +324,8 @@ namespace Pulumi.Volcengine.Autoscaling
 
             ImmutableArray<Outputs.GetScalingGroupsScalingGroupResult> scalingGroups,
 
+            ImmutableArray<Outputs.GetScalingGroupsTagResult> tags,
+
             int totalCount)
         {
             Id = id;
@@ -305,6 +335,7 @@ namespace Pulumi.Volcengine.Autoscaling
             ProjectName = projectName;
             ScalingGroupNames = scalingGroupNames;
             ScalingGroups = scalingGroups;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

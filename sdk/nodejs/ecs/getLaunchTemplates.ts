@@ -41,6 +41,8 @@ export function getLaunchTemplates(args?: GetLaunchTemplatesArgs, opts?: pulumi.
     return pulumi.runtime.invoke("volcengine:ecs/getLaunchTemplates:getLaunchTemplates", {
         "ids": args.ids,
         "launchTemplateNames": args.launchTemplateNames,
+        "launchTemplateProjectName": args.launchTemplateProjectName,
+        "launchTemplateTags": args.launchTemplateTags,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
     }, opts);
@@ -58,6 +60,14 @@ export interface GetLaunchTemplatesArgs {
      * A list of launch template names.
      */
     launchTemplateNames?: string[];
+    /**
+     * The project name of the launch template.
+     */
+    launchTemplateProjectName?: string;
+    /**
+     * The tags of the launch template.
+     */
+    launchTemplateTags?: inputs.ecs.GetLaunchTemplatesLaunchTemplateTag[];
     /**
      * A Name Regex of scaling policy.
      */
@@ -78,6 +88,14 @@ export interface GetLaunchTemplatesResult {
     readonly id: string;
     readonly ids?: string[];
     readonly launchTemplateNames?: string[];
+    /**
+     * The project name of the launch template.
+     */
+    readonly launchTemplateProjectName?: string;
+    /**
+     * Tags.
+     */
+    readonly launchTemplateTags?: outputs.ecs.GetLaunchTemplatesLaunchTemplateTag[];
     /**
      * The collection of launch templates.
      */
@@ -133,6 +151,14 @@ export interface GetLaunchTemplatesOutputArgs {
      * A list of launch template names.
      */
     launchTemplateNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The project name of the launch template.
+     */
+    launchTemplateProjectName?: pulumi.Input<string>;
+    /**
+     * The tags of the launch template.
+     */
+    launchTemplateTags?: pulumi.Input<pulumi.Input<inputs.ecs.GetLaunchTemplatesLaunchTemplateTagArgs>[]>;
     /**
      * A Name Regex of scaling policy.
      */

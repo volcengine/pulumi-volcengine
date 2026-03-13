@@ -67,6 +67,8 @@ type Ipv6AddressBandwidthsArgs struct {
 	NetworkType *string `pulumi:"networkType"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []Ipv6AddressBandwidthsTag `pulumi:"tags"`
 	// The ID of Vpc the ipv6 address in.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -84,8 +86,9 @@ type Ipv6AddressBandwidthsResult struct {
 	// The ISP of the Ipv6AddressBandwidth.
 	Isp *string `pulumi:"isp"`
 	// The network type of the Ipv6AddressBandwidth.
-	NetworkType *string `pulumi:"networkType"`
-	OutputFile  *string `pulumi:"outputFile"`
+	NetworkType *string                    `pulumi:"networkType"`
+	OutputFile  *string                    `pulumi:"outputFile"`
+	Tags        []Ipv6AddressBandwidthsTag `pulumi:"tags"`
 	// The total count of Ipv6AddressBandwidth query.
 	TotalCount int     `pulumi:"totalCount"`
 	VpcId      *string `pulumi:"vpcId"`
@@ -120,6 +123,8 @@ type Ipv6AddressBandwidthsOutputArgs struct {
 	NetworkType pulumi.StringPtrInput `pulumi:"networkType"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags Ipv6AddressBandwidthsTagArrayInput `pulumi:"tags"`
 	// The ID of Vpc the ipv6 address in.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -183,6 +188,10 @@ func (o Ipv6AddressBandwidthsResultOutput) NetworkType() pulumi.StringPtrOutput 
 
 func (o Ipv6AddressBandwidthsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ipv6AddressBandwidthsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+func (o Ipv6AddressBandwidthsResultOutput) Tags() Ipv6AddressBandwidthsTagArrayOutput {
+	return o.ApplyT(func(v Ipv6AddressBandwidthsResult) []Ipv6AddressBandwidthsTag { return v.Tags }).(Ipv6AddressBandwidthsTagArrayOutput)
 }
 
 // The total count of Ipv6AddressBandwidth query.

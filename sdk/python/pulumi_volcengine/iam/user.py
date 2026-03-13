@@ -355,13 +355,19 @@ class User(pulumi.CustomResource):
         foo = volcengine.iam.User("foo",
             description="test",
             display_name="name",
-            email="test@example.com",
-            mobile_phone="+8618800000000",
-            tags=[volcengine.iam.UserTagArgs(
-                key="key1",
-                value="value1",
-            )],
-            user_name="jonny")
+            email="modify@example.com",
+            mobile_phone="17700000000",
+            tags=[
+                volcengine.iam.UserTagArgs(
+                    key="key1",
+                    value="value1",
+                ),
+                volcengine.iam.UserTagArgs(
+                    key="key2",
+                    value="value2",
+                ),
+            ],
+            user_name="jonny-g")
         ```
 
         ## Import
@@ -398,13 +404,19 @@ class User(pulumi.CustomResource):
         foo = volcengine.iam.User("foo",
             description="test",
             display_name="name",
-            email="test@example.com",
-            mobile_phone="+8618800000000",
-            tags=[volcengine.iam.UserTagArgs(
-                key="key1",
-                value="value1",
-            )],
-            user_name="jonny")
+            email="modify@example.com",
+            mobile_phone="17700000000",
+            tags=[
+                volcengine.iam.UserTagArgs(
+                    key="key1",
+                    value="value1",
+                ),
+                volcengine.iam.UserTagArgs(
+                    key="key2",
+                    value="value2",
+                ),
+            ],
+            user_name="jonny-g")
         ```
 
         ## Import

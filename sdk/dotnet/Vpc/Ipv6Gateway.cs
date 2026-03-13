@@ -66,10 +66,22 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the Ipv6Gateway.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The Status of the Ipv6Gateway.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.Ipv6GatewayTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Update time of the Ipv6Gateway.
@@ -143,6 +155,24 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The project name of the Ipv6Gateway.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.Ipv6GatewayTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.Ipv6GatewayTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.Ipv6GatewayTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// The ID of the VPC which the Ipv6Gateway belongs to.
         /// </summary>
         [Input("vpcId", required: true)]
@@ -181,10 +211,28 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The project name of the Ipv6Gateway.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The Status of the Ipv6Gateway.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.Ipv6GatewayTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.Ipv6GatewayTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.Ipv6GatewayTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Update time of the Ipv6Gateway.

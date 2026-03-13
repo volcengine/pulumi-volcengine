@@ -124,6 +124,8 @@ type GetSslVpnClientCertsArgs struct {
 	SslVpnClientCertName *string `pulumi:"sslVpnClientCertName"`
 	// The id of the ssl vpn server.
 	SslVpnServerId *string `pulumi:"sslVpnServerId"`
+	// Tags.
+	Tags []GetSslVpnClientCertsTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getSslVpnClientCerts.
@@ -138,7 +140,8 @@ type GetSslVpnClientCertsResult struct {
 	// The collection of of ssl vpn client certs.
 	SslVpnClientCerts []GetSslVpnClientCertsSslVpnClientCert `pulumi:"sslVpnClientCerts"`
 	// The id of the ssl vpn server.
-	SslVpnServerId *string `pulumi:"sslVpnServerId"`
+	SslVpnServerId *string                   `pulumi:"sslVpnServerId"`
+	Tags           []GetSslVpnClientCertsTag `pulumi:"tags"`
 	// The total count of ssl vpn client cert query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -168,6 +171,8 @@ type GetSslVpnClientCertsOutputArgs struct {
 	SslVpnClientCertName pulumi.StringPtrInput `pulumi:"sslVpnClientCertName"`
 	// The id of the ssl vpn server.
 	SslVpnServerId pulumi.StringPtrInput `pulumi:"sslVpnServerId"`
+	// Tags.
+	Tags GetSslVpnClientCertsTagArrayInput `pulumi:"tags"`
 }
 
 func (GetSslVpnClientCertsOutputArgs) ElementType() reflect.Type {
@@ -219,6 +224,10 @@ func (o GetSslVpnClientCertsResultOutput) SslVpnClientCerts() GetSslVpnClientCer
 // The id of the ssl vpn server.
 func (o GetSslVpnClientCertsResultOutput) SslVpnServerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSslVpnClientCertsResult) *string { return v.SslVpnServerId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetSslVpnClientCertsResultOutput) Tags() GetSslVpnClientCertsTagArrayOutput {
+	return o.ApplyT(func(v GetSslVpnClientCertsResult) []GetSslVpnClientCertsTag { return v.Tags }).(GetSslVpnClientCertsTagArrayOutput)
 }
 
 // The total count of ssl vpn client cert query.

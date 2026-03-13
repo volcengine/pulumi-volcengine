@@ -30,6 +30,13 @@ import (
 //			_, err := ecs.NewKeyPair(ctx, "foo", &ecs.KeyPairArgs{
 //				Description: pulumi.String("acc-test"),
 //				KeyPairName: pulumi.String("acc-test-key-name"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: ecs.KeyPairTagArray{
+//					&ecs.KeyPairTagArgs{
+//						Key:   pulumi.String("tfk1"),
+//						Value: pulumi.String("tfv1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -60,8 +67,12 @@ type KeyPair struct {
 	KeyPairId pulumi.StringOutput `pulumi:"keyPairId"`
 	// The name of key pair.
 	KeyPairName pulumi.StringOutput `pulumi:"keyPairName"`
+	// The project name of the key pair.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// Public key string.
 	PublicKey pulumi.StringPtrOutput `pulumi:"publicKey"`
+	// Tags.
+	Tags KeyPairTagArrayOutput `pulumi:"tags"`
 }
 
 // NewKeyPair registers a new resource with the given unique name, arguments, and options.
@@ -107,8 +118,12 @@ type keyPairState struct {
 	KeyPairId *string `pulumi:"keyPairId"`
 	// The name of key pair.
 	KeyPairName *string `pulumi:"keyPairName"`
+	// The project name of the key pair.
+	ProjectName *string `pulumi:"projectName"`
 	// Public key string.
 	PublicKey *string `pulumi:"publicKey"`
+	// Tags.
+	Tags []KeyPairTag `pulumi:"tags"`
 }
 
 type KeyPairState struct {
@@ -122,8 +137,12 @@ type KeyPairState struct {
 	KeyPairId pulumi.StringPtrInput
 	// The name of key pair.
 	KeyPairName pulumi.StringPtrInput
+	// The project name of the key pair.
+	ProjectName pulumi.StringPtrInput
 	// Public key string.
 	PublicKey pulumi.StringPtrInput
+	// Tags.
+	Tags KeyPairTagArrayInput
 }
 
 func (KeyPairState) ElementType() reflect.Type {
@@ -137,8 +156,12 @@ type keyPairArgs struct {
 	KeyFile *string `pulumi:"keyFile"`
 	// The name of key pair.
 	KeyPairName string `pulumi:"keyPairName"`
+	// The project name of the key pair.
+	ProjectName *string `pulumi:"projectName"`
 	// Public key string.
 	PublicKey *string `pulumi:"publicKey"`
+	// Tags.
+	Tags []KeyPairTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a KeyPair resource.
@@ -149,8 +172,12 @@ type KeyPairArgs struct {
 	KeyFile pulumi.StringPtrInput
 	// The name of key pair.
 	KeyPairName pulumi.StringInput
+	// The project name of the key pair.
+	ProjectName pulumi.StringPtrInput
 	// Public key string.
 	PublicKey pulumi.StringPtrInput
+	// Tags.
+	Tags KeyPairTagArrayInput
 }
 
 func (KeyPairArgs) ElementType() reflect.Type {
@@ -265,9 +292,19 @@ func (o KeyPairOutput) KeyPairName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyPair) pulumi.StringOutput { return v.KeyPairName }).(pulumi.StringOutput)
 }
 
+// The project name of the key pair.
+func (o KeyPairOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KeyPair) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // Public key string.
 func (o KeyPairOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KeyPair) pulumi.StringPtrOutput { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o KeyPairOutput) Tags() KeyPairTagArrayOutput {
+	return o.ApplyT(func(v *KeyPair) KeyPairTagArrayOutput { return v.Tags }).(KeyPairTagArrayOutput)
 }
 
 type KeyPairArrayOutput struct{ *pulumi.OutputState }

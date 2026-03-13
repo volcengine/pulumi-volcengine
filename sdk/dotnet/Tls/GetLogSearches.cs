@@ -25,10 +25,10 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetLogSearches.Invoke(new()
         ///     {
-        ///         EndTime = 1768450896000,
-        ///         Limit = 10,
+        ///         EndTime = 1773067877000,
+        ///         Limit = 100,
         ///         Query = "*",
-        ///         StartTime = 1768448896000,
+        ///         StartTime = 1773017877000,
         ///         TopicId = "3c57a110-399a-43b3-bc3c-5d60e065239a",
         ///     });
         /// 
@@ -52,10 +52,10 @@ namespace Pulumi.Volcengine.Tls
         /// {
         ///     var @default = Volcengine.Tls.GetLogSearches.Invoke(new()
         ///     {
-        ///         EndTime = 1768450896000,
-        ///         Limit = 10,
+        ///         EndTime = 1773067877000,
+        ///         Limit = 100,
         ///         Query = "*",
-        ///         StartTime = 1768448896000,
+        ///         StartTime = 1773017877000,
         ///         TopicId = "3c57a110-399a-43b3-bc3c-5d60e065239a",
         ///     });
         /// 

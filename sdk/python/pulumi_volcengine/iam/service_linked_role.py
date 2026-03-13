@@ -157,10 +157,10 @@ class ServiceLinkedRole(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.ServiceLinkedRole("foo",
-            service_name="ecs",
+            service_name="vpc",
             tags=[volcengine.iam.ServiceLinkedRoleTagArgs(
                 key="key-2",
-                value="value-3",
+                value="value-2",
             )])
         ```
 
@@ -192,10 +192,10 @@ class ServiceLinkedRole(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.ServiceLinkedRole("foo",
-            service_name="ecs",
+            service_name="vpc",
             tags=[volcengine.iam.ServiceLinkedRoleTagArgs(
                 key="key-2",
-                value="value-3",
+                value="value-2",
             )])
         ```
 

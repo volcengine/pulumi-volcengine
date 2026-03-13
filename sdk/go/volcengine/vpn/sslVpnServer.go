@@ -126,6 +126,8 @@ type SslVpnServer struct {
 	SslVpnServerId pulumi.StringOutput `pulumi:"sslVpnServerId"`
 	// The name of the SSL server.
 	SslVpnServerName pulumi.StringOutput `pulumi:"sslVpnServerName"`
+	// Tags.
+	Tags SslVpnServerTagArrayOutput `pulumi:"tags"`
 	// The vpn gateway id.
 	VpnGatewayId pulumi.StringOutput `pulumi:"vpnGatewayId"`
 }
@@ -200,6 +202,8 @@ type sslVpnServerState struct {
 	SslVpnServerId *string `pulumi:"sslVpnServerId"`
 	// The name of the SSL server.
 	SslVpnServerName *string `pulumi:"sslVpnServerName"`
+	// Tags.
+	Tags []SslVpnServerTag `pulumi:"tags"`
 	// The vpn gateway id.
 	VpnGatewayId *string `pulumi:"vpnGatewayId"`
 }
@@ -236,6 +240,8 @@ type SslVpnServerState struct {
 	SslVpnServerId pulumi.StringPtrInput
 	// The name of the SSL server.
 	SslVpnServerName pulumi.StringPtrInput
+	// Tags.
+	Tags SslVpnServerTagArrayInput
 	// The vpn gateway id.
 	VpnGatewayId pulumi.StringPtrInput
 }
@@ -274,6 +280,8 @@ type sslVpnServerArgs struct {
 	Protocol *string `pulumi:"protocol"`
 	// The name of the SSL server.
 	SslVpnServerName *string `pulumi:"sslVpnServerName"`
+	// Tags.
+	Tags []SslVpnServerTag `pulumi:"tags"`
 	// The vpn gateway id.
 	VpnGatewayId string `pulumi:"vpnGatewayId"`
 }
@@ -309,6 +317,8 @@ type SslVpnServerArgs struct {
 	Protocol pulumi.StringPtrInput
 	// The name of the SSL server.
 	SslVpnServerName pulumi.StringPtrInput
+	// Tags.
+	Tags SslVpnServerTagArrayInput
 	// The vpn gateway id.
 	VpnGatewayId pulumi.StringInput
 }
@@ -462,6 +472,11 @@ func (o SslVpnServerOutput) SslVpnServerId() pulumi.StringOutput {
 // The name of the SSL server.
 func (o SslVpnServerOutput) SslVpnServerName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SslVpnServer) pulumi.StringOutput { return v.SslVpnServerName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o SslVpnServerOutput) Tags() SslVpnServerTagArrayOutput {
+	return o.ApplyT(func(v *SslVpnServer) SslVpnServerTagArrayOutput { return v.Tags }).(SslVpnServerTagArrayOutput)
 }
 
 // The vpn gateway id.

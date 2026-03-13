@@ -98,11 +98,7 @@ def get_kafka_consumers(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_kafka_consumers(ids=[
-        "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
-        "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
-        "edf051ed-3c46-49ba-9339-bea628fedc15",
-    ])
+    default = volcengine.tls.get_kafka_consumers(ids=["3c57a110-399a-43b3-bc3c-5d60e065239a"])
     ```
 
 
@@ -135,11 +131,7 @@ def get_kafka_consumers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_kafka_consumers(ids=[
-        "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
-        "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
-        "edf051ed-3c46-49ba-9339-bea628fedc15",
-    ])
+    default = volcengine.tls.get_kafka_consumers(ids=["3c57a110-399a-43b3-bc3c-5d60e065239a"])
     ```
 
 

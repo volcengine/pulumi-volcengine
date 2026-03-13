@@ -32,10 +32,10 @@ import * as utilities from "../utilities";
  *             unMatchUpLoadSwitch: true,
  *         },
  *         logType: "json_log",
- *         region: "cn-beijing",
+ *         region: "cn-guilin-boe",
  *     },
  *     taskName: "tf-test-task-name-kafka",
- *     topicId: "b966e41a-d6a6-4999-bd75-39xxxxxxx",
+ *     topicId: "a0197686-1309-4c46-8003-4be3b278a838",
  * });
  * ```
  *

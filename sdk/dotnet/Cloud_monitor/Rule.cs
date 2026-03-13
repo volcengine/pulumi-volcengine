@@ -92,6 +92,14 @@ namespace Pulumi.Volcengine.Cloud_monitor
     ///         RuleName = "acc-test-rule",
     ///         SilenceTime = 5,
     ///         SubNamespace = "Storage",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Cloud_monitor.Inputs.RuleTagArgs
+    ///             {
+    ///                 Key = "tfk1",
+    ///                 Value = "tfv1",
+    ///             },
+    ///         },
     ///         WebhookIds = new[]
     ///         {
     ///             "187655704106731****",
@@ -232,6 +240,12 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// </summary>
         [Output("subNamespace")]
         public Output<string> SubNamespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.RuleTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The updated time of the cloud monitor rule.
@@ -436,6 +450,18 @@ namespace Pulumi.Volcengine.Cloud_monitor
         [Input("subNamespace", required: true)]
         public Input<string> SubNamespace { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.RuleTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RuleTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RuleTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `web_hook` and `webhook_ids` must be specified.
         /// </summary>
@@ -611,6 +637,18 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// </summary>
         [Input("subNamespace")]
         public Input<string>? SubNamespace { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.RuleTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.RuleTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.RuleTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The updated time of the cloud monitor rule.

@@ -239,6 +239,8 @@ type AlertingRule struct {
 	Query AlertingRuleQueryOutput `pulumi:"query"`
 	// The status of the vmp alerting rule.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags AlertingRuleTagArrayOutput `pulumi:"tags"`
 	// The update time of the vmp alerting rule.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 }
@@ -302,6 +304,8 @@ type alertingRuleState struct {
 	Query *AlertingRuleQuery `pulumi:"query"`
 	// The status of the vmp alerting rule.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []AlertingRuleTag `pulumi:"tags"`
 	// The update time of the vmp alerting rule.
 	UpdateTime *string `pulumi:"updateTime"`
 }
@@ -327,6 +331,8 @@ type AlertingRuleState struct {
 	Query AlertingRuleQueryPtrInput
 	// The status of the vmp alerting rule.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags AlertingRuleTagArrayInput
 	// The update time of the vmp alerting rule.
 	UpdateTime pulumi.StringPtrInput
 }
@@ -352,6 +358,8 @@ type alertingRuleArgs struct {
 	NotifyPolicyId *string `pulumi:"notifyPolicyId"`
 	// The alerting query of the vmp alerting rule.
 	Query AlertingRuleQuery `pulumi:"query"`
+	// Tags.
+	Tags []AlertingRuleTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a AlertingRule resource.
@@ -372,6 +380,8 @@ type AlertingRuleArgs struct {
 	NotifyPolicyId pulumi.StringPtrInput
 	// The alerting query of the vmp alerting rule.
 	Query AlertingRuleQueryInput
+	// Tags.
+	Tags AlertingRuleTagArrayInput
 }
 
 func (AlertingRuleArgs) ElementType() reflect.Type {
@@ -509,6 +519,11 @@ func (o AlertingRuleOutput) Query() AlertingRuleQueryOutput {
 // The status of the vmp alerting rule.
 func (o AlertingRuleOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlertingRule) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AlertingRuleOutput) Tags() AlertingRuleTagArrayOutput {
+	return o.ApplyT(func(v *AlertingRule) AlertingRuleTagArrayOutput { return v.Tags }).(AlertingRuleTagArrayOutput)
 }
 
 // The update time of the vmp alerting rule.

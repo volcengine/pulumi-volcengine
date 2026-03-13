@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -134,6 +136,10 @@ export class SslVpnClientCert extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpn.SslVpnClientCertTag[] | undefined>;
+    /**
      * The update time of the ssl vpn client cert.
      */
     public /*out*/ readonly updateTime!: pulumi.Output<string>;
@@ -162,6 +168,7 @@ export class SslVpnClientCert extends pulumi.CustomResource {
             resourceInputs["sslVpnClientCertName"] = state ? state.sslVpnClientCertName : undefined;
             resourceInputs["sslVpnServerId"] = state ? state.sslVpnServerId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
             const args = argsOrState as SslVpnClientCertArgs | undefined;
@@ -171,6 +178,7 @@ export class SslVpnClientCert extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["sslVpnClientCertName"] = args ? args.sslVpnClientCertName : undefined;
             resourceInputs["sslVpnServerId"] = args ? args.sslVpnServerId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["caCertificate"] = undefined /*out*/;
             resourceInputs["certificateStatus"] = undefined /*out*/;
             resourceInputs["clientCertificate"] = undefined /*out*/;
@@ -235,6 +243,10 @@ export interface SslVpnClientCertState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.SslVpnClientCertTag>[]>;
+    /**
      * The update time of the ssl vpn client cert.
      */
     updateTime?: pulumi.Input<string>;
@@ -256,4 +268,8 @@ export interface SslVpnClientCertArgs {
      * The id of the ssl vpn server.
      */
     sslVpnServerId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.SslVpnClientCertTag>[]>;
 }

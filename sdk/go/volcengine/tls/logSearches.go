@@ -27,10 +27,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetLogSearches(ctx, &tls.GetLogSearchesArgs{
-//				EndTime:   1768450896000,
-//				Limit:     pulumi.IntRef(10),
+//				EndTime:   1773067877000,
+//				Limit:     pulumi.IntRef(100),
 //				Query:     "*",
-//				StartTime: 1768448896000,
+//				StartTime: 1773017877000,
 //				TopicId:   "3c57a110-399a-43b3-bc3c-5d60e065239a",
 //			}, nil)
 //			if err != nil {

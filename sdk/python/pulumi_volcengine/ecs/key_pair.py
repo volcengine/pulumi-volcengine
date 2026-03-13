@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['KeyPairArgs', 'KeyPair']
 
@@ -17,21 +19,29 @@ class KeyPairArgs:
                  key_pair_name: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  key_file: Optional[pulumi.Input[str]] = None,
-                 public_key: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]]] = None):
         """
         The set of arguments for constructing a KeyPair resource.
         :param pulumi.Input[str] key_pair_name: The name of key pair.
         :param pulumi.Input[str] description: The description of key pair.
         :param pulumi.Input[str] key_file: Target file to save private key. It is recommended that the value not be empty. You only have one chance to download the private key, the volcengine will not save your private key, please keep it safe. In the TF import scenario, this field will not write the private key locally.
+        :param pulumi.Input[str] project_name: The project name of the key pair.
         :param pulumi.Input[str] public_key: Public key string.
+        :param pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "key_pair_name", key_pair_name)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if key_file is not None:
             pulumi.set(__self__, "key_file", key_file)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="keyPairName")
@@ -70,6 +80,18 @@ class KeyPairArgs:
         pulumi.set(self, "key_file", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the key pair.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -81,6 +103,18 @@ class KeyPairArgs:
     def public_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "public_key", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _KeyPairState:
@@ -90,7 +124,9 @@ class _KeyPairState:
                  key_file: Optional[pulumi.Input[str]] = None,
                  key_pair_id: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
-                 public_key: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering KeyPair resources.
         :param pulumi.Input[str] description: The description of key pair.
@@ -98,7 +134,9 @@ class _KeyPairState:
         :param pulumi.Input[str] key_file: Target file to save private key. It is recommended that the value not be empty. You only have one chance to download the private key, the volcengine will not save your private key, please keep it safe. In the TF import scenario, this field will not write the private key locally.
         :param pulumi.Input[str] key_pair_id: The id of key pair.
         :param pulumi.Input[str] key_pair_name: The name of key pair.
+        :param pulumi.Input[str] project_name: The project name of the key pair.
         :param pulumi.Input[str] public_key: Public key string.
+        :param pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]] tags: Tags.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -110,8 +148,12 @@ class _KeyPairState:
             pulumi.set(__self__, "key_pair_id", key_pair_id)
         if key_pair_name is not None:
             pulumi.set(__self__, "key_pair_name", key_pair_name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -174,6 +216,18 @@ class _KeyPairState:
         pulumi.set(self, "key_pair_name", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the key pair.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -185,6 +239,18 @@ class _KeyPairState:
     def public_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "public_key", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeyPairTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class KeyPair(pulumi.CustomResource):
     @overload
@@ -194,7 +260,9 @@ class KeyPair(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  key_file: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyPairTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage ecs key pair
@@ -206,7 +274,12 @@ class KeyPair(pulumi.CustomResource):
 
         foo = volcengine.ecs.KeyPair("foo",
             description="acc-test",
-            key_pair_name="acc-test-key-name")
+            key_pair_name="acc-test-key-name",
+            project_name="default",
+            tags=[volcengine.ecs.KeyPairTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )])
         ```
 
         ## Import
@@ -222,7 +295,9 @@ class KeyPair(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of key pair.
         :param pulumi.Input[str] key_file: Target file to save private key. It is recommended that the value not be empty. You only have one chance to download the private key, the volcengine will not save your private key, please keep it safe. In the TF import scenario, this field will not write the private key locally.
         :param pulumi.Input[str] key_pair_name: The name of key pair.
+        :param pulumi.Input[str] project_name: The project name of the key pair.
         :param pulumi.Input[str] public_key: Public key string.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyPairTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -240,7 +315,12 @@ class KeyPair(pulumi.CustomResource):
 
         foo = volcengine.ecs.KeyPair("foo",
             description="acc-test",
-            key_pair_name="acc-test-key-name")
+            key_pair_name="acc-test-key-name",
+            project_name="default",
+            tags=[volcengine.ecs.KeyPairTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )])
         ```
 
         ## Import
@@ -269,7 +349,9 @@ class KeyPair(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  key_file: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyPairTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -284,7 +366,9 @@ class KeyPair(pulumi.CustomResource):
             if key_pair_name is None and not opts.urn:
                 raise TypeError("Missing required property 'key_pair_name'")
             __props__.__dict__["key_pair_name"] = key_pair_name
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["public_key"] = public_key
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["finger_print"] = None
             __props__.__dict__["key_pair_id"] = None
         super(KeyPair, __self__).__init__(
@@ -302,7 +386,9 @@ class KeyPair(pulumi.CustomResource):
             key_file: Optional[pulumi.Input[str]] = None,
             key_pair_id: Optional[pulumi.Input[str]] = None,
             key_pair_name: Optional[pulumi.Input[str]] = None,
-            public_key: Optional[pulumi.Input[str]] = None) -> 'KeyPair':
+            project_name: Optional[pulumi.Input[str]] = None,
+            public_key: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyPairTagArgs']]]]] = None) -> 'KeyPair':
         """
         Get an existing KeyPair resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -315,7 +401,9 @@ class KeyPair(pulumi.CustomResource):
         :param pulumi.Input[str] key_file: Target file to save private key. It is recommended that the value not be empty. You only have one chance to download the private key, the volcengine will not save your private key, please keep it safe. In the TF import scenario, this field will not write the private key locally.
         :param pulumi.Input[str] key_pair_id: The id of key pair.
         :param pulumi.Input[str] key_pair_name: The name of key pair.
+        :param pulumi.Input[str] project_name: The project name of the key pair.
         :param pulumi.Input[str] public_key: Public key string.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeyPairTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -326,7 +414,9 @@ class KeyPair(pulumi.CustomResource):
         __props__.__dict__["key_file"] = key_file
         __props__.__dict__["key_pair_id"] = key_pair_id
         __props__.__dict__["key_pair_name"] = key_pair_name
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["public_key"] = public_key
+        __props__.__dict__["tags"] = tags
         return KeyPair(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -370,10 +460,26 @@ class KeyPair(pulumi.CustomResource):
         return pulumi.get(self, "key_pair_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The project name of the key pair.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[Optional[str]]:
         """
         Public key string.
         """
         return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.KeyPairTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

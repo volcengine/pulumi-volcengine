@@ -104,8 +104,12 @@ type GetSslVpnServersArgs struct {
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the ssl server.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of the ssl vpn server.
 	SslVpnServerName *string `pulumi:"sslVpnServerName"`
+	// Tags.
+	Tags []GetSslVpnServersTag `pulumi:"tags"`
 	// The id of the vpn gateway.
 	VpnGatewayId *string `pulumi:"vpnGatewayId"`
 }
@@ -116,10 +120,14 @@ type GetSslVpnServersResult struct {
 	Id         string   `pulumi:"id"`
 	Ids        []string `pulumi:"ids"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The project name of the ssl server.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of the SSL server.
 	SslVpnServerName *string `pulumi:"sslVpnServerName"`
 	// List of SSL VPN servers.
 	SslVpnServers []GetSslVpnServersSslVpnServer `pulumi:"sslVpnServers"`
+	// Tags.
+	Tags []GetSslVpnServersTag `pulumi:"tags"`
 	// The total count of SSL VPN server query.
 	TotalCount int `pulumi:"totalCount"`
 	// The vpn gateway id.
@@ -145,8 +153,12 @@ type GetSslVpnServersOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the ssl server.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The name of the ssl vpn server.
 	SslVpnServerName pulumi.StringPtrInput `pulumi:"sslVpnServerName"`
+	// Tags.
+	Tags GetSslVpnServersTagArrayInput `pulumi:"tags"`
 	// The id of the vpn gateway.
 	VpnGatewayId pulumi.StringPtrInput `pulumi:"vpnGatewayId"`
 }
@@ -183,6 +195,11 @@ func (o GetSslVpnServersResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSslVpnServersResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of the ssl server.
+func (o GetSslVpnServersResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSslVpnServersResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The name of the SSL server.
 func (o GetSslVpnServersResultOutput) SslVpnServerName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSslVpnServersResult) *string { return v.SslVpnServerName }).(pulumi.StringPtrOutput)
@@ -191,6 +208,11 @@ func (o GetSslVpnServersResultOutput) SslVpnServerName() pulumi.StringPtrOutput 
 // List of SSL VPN servers.
 func (o GetSslVpnServersResultOutput) SslVpnServers() GetSslVpnServersSslVpnServerArrayOutput {
 	return o.ApplyT(func(v GetSslVpnServersResult) []GetSslVpnServersSslVpnServer { return v.SslVpnServers }).(GetSslVpnServersSslVpnServerArrayOutput)
+}
+
+// Tags.
+func (o GetSslVpnServersResultOutput) Tags() GetSslVpnServersTagArrayOutput {
+	return o.ApplyT(func(v GetSslVpnServersResult) []GetSslVpnServersTag { return v.Tags }).(GetSslVpnServersTagArrayOutput)
 }
 
 // The total count of SSL VPN server query.

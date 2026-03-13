@@ -145,12 +145,12 @@ class Tag(pulumi.CustomResource):
             resource_type="User",
             tags=[
                 volcengine.iam.TagTagArgs(
-                    key="key4",
-                    value="value4",
+                    key="key1",
+                    value="value1",
                 ),
                 volcengine.iam.TagTagArgs(
-                    key="key3",
-                    value="value3",
+                    key="key2",
+                    value="value2",
                 ),
             ])
         ```
@@ -188,12 +188,12 @@ class Tag(pulumi.CustomResource):
             resource_type="User",
             tags=[
                 volcengine.iam.TagTagArgs(
-                    key="key4",
-                    value="value4",
+                    key="key1",
+                    value="value1",
                 ),
                 volcengine.iam.TagTagArgs(
-                    key="key3",
-                    value="value3",
+                    key="key2",
+                    value="value2",
                 ),
             ])
         ```
