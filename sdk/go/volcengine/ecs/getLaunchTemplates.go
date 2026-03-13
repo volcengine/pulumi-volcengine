@@ -69,6 +69,10 @@ type GetLaunchTemplatesArgs struct {
 	Ids []string `pulumi:"ids"`
 	// A list of launch template names.
 	LaunchTemplateNames []string `pulumi:"launchTemplateNames"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName *string `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags []GetLaunchTemplatesLaunchTemplateTag `pulumi:"launchTemplateTags"`
 	// A Name Regex of scaling policy.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
@@ -81,6 +85,10 @@ type GetLaunchTemplatesResult struct {
 	Id                  string   `pulumi:"id"`
 	Ids                 []string `pulumi:"ids"`
 	LaunchTemplateNames []string `pulumi:"launchTemplateNames"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName *string `pulumi:"launchTemplateProjectName"`
+	// Tags.
+	LaunchTemplateTags []GetLaunchTemplatesLaunchTemplateTag `pulumi:"launchTemplateTags"`
 	// The collection of launch templates.
 	LaunchTemplates []GetLaunchTemplatesLaunchTemplate `pulumi:"launchTemplates"`
 	NameRegex       *string                            `pulumi:"nameRegex"`
@@ -108,6 +116,10 @@ type GetLaunchTemplatesOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// A list of launch template names.
 	LaunchTemplateNames pulumi.StringArrayInput `pulumi:"launchTemplateNames"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName pulumi.StringPtrInput `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags GetLaunchTemplatesLaunchTemplateTagArrayInput `pulumi:"launchTemplateTags"`
 	// A Name Regex of scaling policy.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
@@ -144,6 +156,16 @@ func (o GetLaunchTemplatesResultOutput) Ids() pulumi.StringArrayOutput {
 
 func (o GetLaunchTemplatesResultOutput) LaunchTemplateNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLaunchTemplatesResult) []string { return v.LaunchTemplateNames }).(pulumi.StringArrayOutput)
+}
+
+// The project name of the launch template.
+func (o GetLaunchTemplatesResultOutput) LaunchTemplateProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesResult) *string { return v.LaunchTemplateProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetLaunchTemplatesResultOutput) LaunchTemplateTags() GetLaunchTemplatesLaunchTemplateTagArrayOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesResult) []GetLaunchTemplatesLaunchTemplateTag { return v.LaunchTemplateTags }).(GetLaunchTemplatesLaunchTemplateTagArrayOutput)
 }
 
 // The collection of launch templates.

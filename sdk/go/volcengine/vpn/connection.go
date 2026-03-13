@@ -176,6 +176,8 @@ type Connection struct {
 	RemoteSubnets pulumi.StringArrayOutput `pulumi:"remoteSubnets"`
 	// The status of the VPN connection.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags ConnectionTagArrayOutput `pulumi:"tags"`
 	// The id of transit router, valid when the attach type is 'TransitRouter'.
 	TransitRouterId pulumi.StringOutput `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
@@ -296,6 +298,8 @@ type connectionState struct {
 	RemoteSubnets []string `pulumi:"remoteSubnets"`
 	// The status of the VPN connection.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []ConnectionTag `pulumi:"tags"`
 	// The id of transit router, valid when the attach type is 'TransitRouter'.
 	TransitRouterId *string `pulumi:"transitRouterId"`
 	// The update time of VPN connection.
@@ -375,6 +379,8 @@ type ConnectionState struct {
 	RemoteSubnets pulumi.StringArrayInput
 	// The status of the VPN connection.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags ConnectionTagArrayInput
 	// The id of transit router, valid when the attach type is 'TransitRouter'.
 	TransitRouterId pulumi.StringPtrInput
 	// The update time of VPN connection.
@@ -440,6 +446,8 @@ type connectionArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The remote subnet of the VPN connection. Up to 5 network segments are supported.
 	RemoteSubnets []string `pulumi:"remoteSubnets"`
+	// Tags.
+	Tags []ConnectionTag `pulumi:"tags"`
 	// The name of the VPN connection.
 	VpnConnectionName *string `pulumi:"vpnConnectionName"`
 	// The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
@@ -494,6 +502,8 @@ type ConnectionArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The remote subnet of the VPN connection. Up to 5 network segments are supported.
 	RemoteSubnets pulumi.StringArrayInput
+	// Tags.
+	Tags ConnectionTagArrayInput
 	// The name of the VPN connection.
 	VpnConnectionName pulumi.StringPtrInput
 	// The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
@@ -745,6 +755,11 @@ func (o ConnectionOutput) RemoteSubnets() pulumi.StringArrayOutput {
 // The status of the VPN connection.
 func (o ConnectionOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ConnectionOutput) Tags() ConnectionTagArrayOutput {
+	return o.ApplyT(func(v *Connection) ConnectionTagArrayOutput { return v.Tags }).(ConnectionTagArrayOutput)
 }
 
 // The id of transit router, valid when the attach type is 'TransitRouter'.

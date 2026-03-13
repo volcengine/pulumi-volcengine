@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SslVpnServerArgs', 'SslVpnServer']
 
@@ -24,7 +26,8 @@ class SslVpnServerArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
-                 ssl_vpn_server_name: Optional[pulumi.Input[str]] = None):
+                 ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]]] = None):
         """
         The set of arguments for constructing a SslVpnServer resource.
         :param pulumi.Input[str] client_ip_pool: SSL client network segment.
@@ -47,6 +50,7 @@ class SslVpnServerArgs:
         :param pulumi.Input[str] project_name: The project name of the ssl server.
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
+        :param pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "client_ip_pool", client_ip_pool)
         pulumi.set(__self__, "local_subnets", local_subnets)
@@ -67,6 +71,8 @@ class SslVpnServerArgs:
             pulumi.set(__self__, "protocol", protocol)
         if ssl_vpn_server_name is not None:
             pulumi.set(__self__, "ssl_vpn_server_name", ssl_vpn_server_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="clientIpPool")
@@ -209,6 +215,18 @@ class SslVpnServerArgs:
     def ssl_vpn_server_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_vpn_server_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _SslVpnServerState:
@@ -224,6 +242,7 @@ class _SslVpnServerState:
                  protocol: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SslVpnServer resources.
@@ -247,6 +266,7 @@ class _SslVpnServerState:
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
+        :param pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpn_gateway_id: The vpn gateway id.
         """
         if auth is not None:
@@ -271,6 +291,8 @@ class _SslVpnServerState:
             pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         if ssl_vpn_server_name is not None:
             pulumi.set(__self__, "ssl_vpn_server_name", ssl_vpn_server_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpn_gateway_id is not None:
             pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
 
@@ -416,6 +438,18 @@ class _SslVpnServerState:
         pulumi.set(self, "ssl_vpn_server_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SslVpnServerTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="vpnGatewayId")
     def vpn_gateway_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -443,6 +477,7 @@ class SslVpnServer(pulumi.CustomResource):
                  project_name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnServerTagArgs']]]]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -513,6 +548,7 @@ class SslVpnServer(pulumi.CustomResource):
         :param pulumi.Input[str] project_name: The project name of the ssl server.
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnServerTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpn_gateway_id: The vpn gateway id.
         """
         ...
@@ -593,6 +629,7 @@ class SslVpnServer(pulumi.CustomResource):
                  project_name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnServerTagArgs']]]]] = None,
                  vpn_gateway_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -617,6 +654,7 @@ class SslVpnServer(pulumi.CustomResource):
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["ssl_vpn_server_name"] = ssl_vpn_server_name
+            __props__.__dict__["tags"] = tags
             if vpn_gateway_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpn_gateway_id'")
             __props__.__dict__["vpn_gateway_id"] = vpn_gateway_id
@@ -642,6 +680,7 @@ class SslVpnServer(pulumi.CustomResource):
             protocol: Optional[pulumi.Input[str]] = None,
             ssl_vpn_server_id: Optional[pulumi.Input[str]] = None,
             ssl_vpn_server_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnServerTagArgs']]]]] = None,
             vpn_gateway_id: Optional[pulumi.Input[str]] = None) -> 'SslVpnServer':
         """
         Get an existing SslVpnServer resource's state with the given name, id, and optional extra
@@ -670,6 +709,7 @@ class SslVpnServer(pulumi.CustomResource):
         :param pulumi.Input[str] protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param pulumi.Input[str] ssl_vpn_server_id: The id of the ssl vpn server.
         :param pulumi.Input[str] ssl_vpn_server_name: The name of the SSL server.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SslVpnServerTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpn_gateway_id: The vpn gateway id.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -687,6 +727,7 @@ class SslVpnServer(pulumi.CustomResource):
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["ssl_vpn_server_id"] = ssl_vpn_server_id
         __props__.__dict__["ssl_vpn_server_name"] = ssl_vpn_server_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["vpn_gateway_id"] = vpn_gateway_id
         return SslVpnServer(resource_name, opts=opts, __props__=__props__)
 
@@ -786,6 +827,14 @@ class SslVpnServer(pulumi.CustomResource):
         The name of the SSL server.
         """
         return pulumi.get(self, "ssl_vpn_server_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.SslVpnServerTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpnGatewayId")

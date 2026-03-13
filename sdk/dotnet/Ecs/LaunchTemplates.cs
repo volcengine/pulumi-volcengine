@@ -125,6 +125,24 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The project name of the launch template.
+        /// </summary>
+        [Input("launchTemplateProjectName")]
+        public string? LaunchTemplateProjectName { get; set; }
+
+        [Input("launchTemplateTags")]
+        private List<Inputs.LaunchTemplatesLaunchTemplateTagArgs>? _launchTemplateTags;
+
+        /// <summary>
+        /// The tags of the launch template.
+        /// </summary>
+        public List<Inputs.LaunchTemplatesLaunchTemplateTagArgs> LaunchTemplateTags
+        {
+            get => _launchTemplateTags ?? (_launchTemplateTags = new List<Inputs.LaunchTemplatesLaunchTemplateTagArgs>());
+            set => _launchTemplateTags = value;
+        }
+
+        /// <summary>
         /// A Name Regex of scaling policy.
         /// </summary>
         [Input("nameRegex")]
@@ -169,6 +187,24 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The project name of the launch template.
+        /// </summary>
+        [Input("launchTemplateProjectName")]
+        public Input<string>? LaunchTemplateProjectName { get; set; }
+
+        [Input("launchTemplateTags")]
+        private InputList<Inputs.LaunchTemplatesLaunchTemplateTagInputArgs>? _launchTemplateTags;
+
+        /// <summary>
+        /// The tags of the launch template.
+        /// </summary>
+        public InputList<Inputs.LaunchTemplatesLaunchTemplateTagInputArgs> LaunchTemplateTags
+        {
+            get => _launchTemplateTags ?? (_launchTemplateTags = new InputList<Inputs.LaunchTemplatesLaunchTemplateTagInputArgs>());
+            set => _launchTemplateTags = value;
+        }
+
+        /// <summary>
         /// A Name Regex of scaling policy.
         /// </summary>
         [Input("nameRegex")]
@@ -197,6 +233,14 @@ namespace Pulumi.Volcengine.Ecs
         public readonly ImmutableArray<string> Ids;
         public readonly ImmutableArray<string> LaunchTemplateNames;
         /// <summary>
+        /// The project name of the launch template.
+        /// </summary>
+        public readonly string? LaunchTemplateProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateTagResult> LaunchTemplateTags;
+        /// <summary>
         /// The collection of launch templates.
         /// </summary>
         public readonly ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateResult> LaunchTemplates;
@@ -215,6 +259,10 @@ namespace Pulumi.Volcengine.Ecs
 
             ImmutableArray<string> launchTemplateNames,
 
+            string? launchTemplateProjectName,
+
+            ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateTagResult> launchTemplateTags,
+
             ImmutableArray<Outputs.LaunchTemplatesLaunchTemplateResult> launchTemplates,
 
             string? nameRegex,
@@ -226,6 +274,8 @@ namespace Pulumi.Volcengine.Ecs
             Id = id;
             Ids = ids;
             LaunchTemplateNames = launchTemplateNames;
+            LaunchTemplateProjectName = launchTemplateProjectName;
+            LaunchTemplateTags = launchTemplateTags;
             LaunchTemplates = launchTemplates;
             NameRegex = nameRegex;
             OutputFile = outputFile;

@@ -356,7 +356,7 @@ class AlarmContentTemplate(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.AlarmContentTemplate("foo",
-            alarm_content_template_name="test-alarm-content-template",
+            alarm_content_template_name="test-alarm-content",
             ding_talks=[volcengine.tls.AlarmContentTemplateDingTalkArgs(
                 content=\"\"\"修改-尊敬的用户，您好！
         您的账号（主账户ID：{{AccountID}} ）的日志服务{%if NotifyType==1%}触发告警{%else%}告警恢复{%endif%}
@@ -396,7 +396,7 @@ class AlarmContentTemplate(pulumi.CustomResource):
                 locale="zh-CN",
                 title="修改-告警通知",
             )],
-            need_valid_content=True,
+            need_valid_content=False,
             sms=[volcengine.tls.AlarmContentTemplateSmArgs(
                 content="修改-告警策略{{Alarm}}， 告警日志项目：{{ProjectName}}， 告警日志主题：{{AlarmTopicName}}， 告警级别：{{Severity}}， 通知类型：{%if NotifyType==1%}触发告警{%else%}告警恢复{%endif%}，触发时间：{{StartTime}}， 触发条件：{{Condition}}， 当前查询结果：[{%-for x in TriggerParams-%}{{-x-}} {%-endfor-%}]， 通知内容：{{NotifyMsg}}",
                 locale="zh-CN",
@@ -438,7 +438,7 @@ class AlarmContentTemplate(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.AlarmContentTemplate("foo",
-            alarm_content_template_name="test-alarm-content-template",
+            alarm_content_template_name="test-alarm-content",
             ding_talks=[volcengine.tls.AlarmContentTemplateDingTalkArgs(
                 content=\"\"\"修改-尊敬的用户，您好！
         您的账号（主账户ID：{{AccountID}} ）的日志服务{%if NotifyType==1%}触发告警{%else%}告警恢复{%endif%}
@@ -478,7 +478,7 @@ class AlarmContentTemplate(pulumi.CustomResource):
                 locale="zh-CN",
                 title="修改-告警通知",
             )],
-            need_valid_content=True,
+            need_valid_content=False,
             sms=[volcengine.tls.AlarmContentTemplateSmArgs(
                 content="修改-告警策略{{Alarm}}， 告警日志项目：{{ProjectName}}， 告警日志主题：{{AlarmTopicName}}， 告警级别：{{Severity}}， 通知类型：{%if NotifyType==1%}触发告警{%else%}告警恢复{%endif%}，触发时间：{{StartTime}}， 触发条件：{{Condition}}， 当前查询结果：[{%-for x in TriggerParams-%}{{-x-}} {%-endfor-%}]， 通知内容：{{NotifyMsg}}",
                 locale="zh-CN",

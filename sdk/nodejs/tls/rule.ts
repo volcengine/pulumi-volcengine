@@ -30,8 +30,8 @@ import * as utilities from "../utilities";
  *     timeKey: "request_time",
  *     timeFormat: "%Y-%m-%dT%H:%M:%S,%f",
  *     tags: [{
- *         key: "k2",
- *         value: "v3",
+ *         key: "km",
+ *         value: "vm",
  *     }],
  *     logPublicIp: true,
  *     enableHotTtl: true,
@@ -115,24 +115,24 @@ import * as utilities from "../utilities";
  *         stream: "all",
  *         containerNameRegex: ".*test.*",
  *         includeContainerLabelRegex: {
- *             Key1: "Value122",
- *             Key2: "Value223",
+ *             Key1: "Value1221",
+ *             Key2: "Value223q",
  *         },
  *         excludeContainerLabelRegex: {
- *             Key1: "Value312",
- *             Key2: "Valu5e22",
+ *             Key1: "Value312q",
+ *             Key2: "Valu5e22q",
  *         },
  *         includeContainerEnvRegex: {
- *             Key1: "Val2ue1",
- *             Key2: "Val2ue2",
+ *             Key1: "Val2ue1q",
+ *             Key2: "Val2ue2q",
  *         },
  *         excludeContainerEnvRegex: {
- *             Key1: "Value1",
- *             Key2: "Value2",
+ *             Key1: "Value1q",
+ *             Key2: "Value2q",
  *         },
  *         envTag: {
- *             Key1: "Value1",
- *             Key2: "Value2",
+ *             Key1: "Value1q",
+ *             Key2: "Value2q",
  *         },
  *         kubernetesRule: {
  *             namespaceNameRegex: ".*test.*",
@@ -148,12 +148,12 @@ import * as utilities from "../utilities";
  *             },
  *             podNameRegex: ".*test.*",
  *             labelTag: {
- *                 Key1: "Value1",
- *                 Key2: "Value2",
+ *                 Key1: "Value1q",
+ *                 Key2: "Value2q",
  *             },
  *             annotationTag: {
- *                 Key1: "Value1",
- *                 Key2: "Value2",
+ *                 Key1: "Value1q",
+ *                 Key2: "Value2q",
  *             },
  *         },
  *     },

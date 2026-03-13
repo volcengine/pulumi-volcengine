@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Example: Add tags to a TLS topic
-//			foo, err := tls.NewTagResource(ctx, "foo", &tls.TagResourceArgs{
+//			_, err := tls.NewTagResource(ctx, "foo", &tls.TagResourceArgs{
 //				ResourceId:   pulumi.String("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
 //				ResourceType: pulumi.String("project"),
 //				Tags: tls.TagResourceTagArray{
@@ -45,10 +45,6 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("tlsTagId", foo.ID())
-//			ctx.Export("tlsTagResourceId", foo.ResourceId)
-//			ctx.Export("tlsTagResourceType", foo.ResourceType)
-//			ctx.Export("tlsTagTags", foo.Tags)
 //			return nil
 //		})
 //	}

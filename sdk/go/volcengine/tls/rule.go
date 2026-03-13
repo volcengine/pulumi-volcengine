@@ -49,8 +49,8 @@ import (
 //				TimeFormat:     pulumi.String("%Y-%m-%dT%H:%M:%S,%f"),
 //				Tags: tls.TopicTagArray{
 //					&tls.TopicTagArgs{
-//						Key:   pulumi.String("k2"),
-//						Value: pulumi.String("v3"),
+//						Key:   pulumi.String("km"),
+//						Value: pulumi.String("vm"),
 //					},
 //				},
 //				LogPublicIp:  pulumi.Bool(true),
@@ -147,24 +147,24 @@ import (
 //					Stream:             pulumi.String("all"),
 //					ContainerNameRegex: pulumi.String(".*test.*"),
 //					IncludeContainerLabelRegex: pulumi.StringMap{
-//						"Key1": pulumi.String("Value122"),
-//						"Key2": pulumi.String("Value223"),
+//						"Key1": pulumi.String("Value1221"),
+//						"Key2": pulumi.String("Value223q"),
 //					},
 //					ExcludeContainerLabelRegex: pulumi.StringMap{
-//						"Key1": pulumi.String("Value312"),
-//						"Key2": pulumi.String("Valu5e22"),
+//						"Key1": pulumi.String("Value312q"),
+//						"Key2": pulumi.String("Valu5e22q"),
 //					},
 //					IncludeContainerEnvRegex: pulumi.StringMap{
-//						"Key1": pulumi.String("Val2ue1"),
-//						"Key2": pulumi.String("Val2ue2"),
+//						"Key1": pulumi.String("Val2ue1q"),
+//						"Key2": pulumi.String("Val2ue2q"),
 //					},
 //					ExcludeContainerEnvRegex: pulumi.StringMap{
-//						"Key1": pulumi.String("Value1"),
-//						"Key2": pulumi.String("Value2"),
+//						"Key1": pulumi.String("Value1q"),
+//						"Key2": pulumi.String("Value2q"),
 //					},
 //					EnvTag: pulumi.StringMap{
-//						"Key1": pulumi.String("Value1"),
-//						"Key2": pulumi.String("Value2"),
+//						"Key1": pulumi.String("Value1q"),
+//						"Key2": pulumi.String("Value2q"),
 //					},
 //					KubernetesRule: &tls.RuleContainerRuleKubernetesRuleArgs{
 //						NamespaceNameRegex: pulumi.String(".*test.*"),
@@ -180,12 +180,12 @@ import (
 //						},
 //						PodNameRegex: pulumi.String(".*test.*"),
 //						LabelTag: pulumi.StringMap{
-//							"Key1": pulumi.String("Value1"),
-//							"Key2": pulumi.String("Value2"),
+//							"Key1": pulumi.String("Value1q"),
+//							"Key2": pulumi.String("Value2q"),
 //						},
 //						AnnotationTag: pulumi.StringMap{
-//							"Key1": pulumi.String("Value1"),
-//							"Key2": pulumi.String("Value2"),
+//							"Key1": pulumi.String("Value1q"),
+//							"Key2": pulumi.String("Value2q"),
 //						},
 //					},
 //				},

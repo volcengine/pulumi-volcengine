@@ -67,6 +67,10 @@ type KeyPairsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the key pair.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []KeyPairsTag `pulumi:"tags"`
 }
 
 // A collection of values returned by KeyPairs.
@@ -83,6 +87,10 @@ type KeyPairsResult struct {
 	KeyPairs   []KeyPairsKeyPair `pulumi:"keyPairs"`
 	NameRegex  *string           `pulumi:"nameRegex"`
 	OutputFile *string           `pulumi:"outputFile"`
+	// The project name of the key pair.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []KeyPairsTag `pulumi:"tags"`
 	// The total count of ECS key pair query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -114,6 +122,10 @@ type KeyPairsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the key pair.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags KeyPairsTagArrayInput `pulumi:"tags"`
 }
 
 func (KeyPairsOutputArgs) ElementType() reflect.Type {
@@ -169,6 +181,16 @@ func (o KeyPairsResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o KeyPairsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeyPairsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the key pair.
+func (o KeyPairsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeyPairsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o KeyPairsResultOutput) Tags() KeyPairsTagArrayOutput {
+	return o.ApplyT(func(v KeyPairsResult) []KeyPairsTag { return v.Tags }).(KeyPairsTagArrayOutput)
 }
 
 // The total count of ECS key pair query.

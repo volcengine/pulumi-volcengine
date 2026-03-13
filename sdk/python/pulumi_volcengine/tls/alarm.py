@@ -573,8 +573,8 @@ class Alarm(pulumi.CustomResource):
                 time=20,
                 type="Period",
             ),
-            send_resolved=True,
-            status=False,
+            send_resolved=False,
+            status=True,
             trigger_conditions=[volcengine.tls.AlarmTriggerConditionArgs(
                 condition="$1.errNum>0",
                 count_condition="__count__ > 0",
@@ -582,7 +582,7 @@ class Alarm(pulumi.CustomResource):
                 severity="critical",
             )],
             trigger_period=2,
-            user_define_msg="test for terraform")
+            user_define_msg="test for terraform-modify")
         ```
 
         ## Import
@@ -650,8 +650,8 @@ class Alarm(pulumi.CustomResource):
                 time=20,
                 type="Period",
             ),
-            send_resolved=True,
-            status=False,
+            send_resolved=False,
+            status=True,
             trigger_conditions=[volcengine.tls.AlarmTriggerConditionArgs(
                 condition="$1.errNum>0",
                 count_condition="__count__ > 0",
@@ -659,7 +659,7 @@ class Alarm(pulumi.CustomResource):
                 severity="critical",
             )],
             trigger_period=2,
-            user_define_msg="test for terraform")
+            user_define_msg="test for terraform-modify")
         ```
 
         ## Import

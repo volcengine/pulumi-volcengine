@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'VpcEndpointsResult',
@@ -24,7 +25,7 @@ class VpcEndpointsResult:
     """
     A collection of values returned by VpcEndpoints.
     """
-    def __init__(__self__, endpoint_name=None, id=None, ids=None, name_regex=None, output_file=None, service_name=None, status=None, total_count=None, vpc_endpoints=None, vpc_id=None):
+    def __init__(__self__, endpoint_name=None, id=None, ids=None, name_regex=None, output_file=None, project_name=None, service_name=None, status=None, tags=None, total_count=None, vpc_endpoints=None, vpc_id=None):
         if endpoint_name and not isinstance(endpoint_name, str):
             raise TypeError("Expected argument 'endpoint_name' to be a str")
         pulumi.set(__self__, "endpoint_name", endpoint_name)
@@ -40,12 +41,18 @@ class VpcEndpointsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if service_name and not isinstance(service_name, str):
             raise TypeError("Expected argument 'service_name' to be a str")
         pulumi.set(__self__, "service_name", service_name)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -88,6 +95,14 @@ class VpcEndpointsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of vpc endpoint.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[str]:
         """
@@ -102,6 +117,14 @@ class VpcEndpointsResult:
         The status of vpc endpoint.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.VpcEndpointsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -139,8 +162,10 @@ class AwaitableVpcEndpointsResult(VpcEndpointsResult):
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             service_name=self.service_name,
             status=self.status,
+            tags=self.tags,
             total_count=self.total_count,
             vpc_endpoints=self.vpc_endpoints,
             vpc_id=self.vpc_id)
@@ -150,8 +175,10 @@ def vpc_endpoints(endpoint_name: Optional[str] = None,
                   ids: Optional[Sequence[str]] = None,
                   name_regex: Optional[str] = None,
                   output_file: Optional[str] = None,
+                  project_name: Optional[str] = None,
                   service_name: Optional[str] = None,
                   status: Optional[str] = None,
+                  tags: Optional[Sequence[pulumi.InputType['VpcEndpointsTagArgs']]] = None,
                   vpc_id: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableVpcEndpointsResult:
     """
@@ -212,8 +239,10 @@ def vpc_endpoints(endpoint_name: Optional[str] = None,
     :param Sequence[str] ids: The IDs of vpc endpoint.
     :param str name_regex: A Name Regex of vpc endpoint.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of vpc endpoint.
     :param str service_name: The name of vpc endpoint service.
     :param str status: The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+    :param Sequence[pulumi.InputType['VpcEndpointsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id of vpc endpoint.
     """
     pulumi.log.warn("""vpc_endpoints is deprecated: volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints""")
@@ -222,8 +251,10 @@ def vpc_endpoints(endpoint_name: Optional[str] = None,
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['serviceName'] = service_name
     __args__['status'] = status
+    __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:privatelink/vpcEndpoints:VpcEndpoints', __args__, opts=opts, typ=VpcEndpointsResult).value
@@ -234,8 +265,10 @@ def vpc_endpoints(endpoint_name: Optional[str] = None,
         ids=pulumi.get(__ret__, 'ids'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         service_name=pulumi.get(__ret__, 'service_name'),
         status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_endpoints=pulumi.get(__ret__, 'vpc_endpoints'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
@@ -246,8 +279,10 @@ def vpc_endpoints_output(endpoint_name: Optional[pulumi.Input[Optional[str]]] = 
                          ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                          name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                          output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                         project_name: Optional[pulumi.Input[Optional[str]]] = None,
                          service_name: Optional[pulumi.Input[Optional[str]]] = None,
                          status: Optional[pulumi.Input[Optional[str]]] = None,
+                         tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['VpcEndpointsTagArgs']]]]] = None,
                          vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[VpcEndpointsResult]:
     """
@@ -308,8 +343,10 @@ def vpc_endpoints_output(endpoint_name: Optional[pulumi.Input[Optional[str]]] = 
     :param Sequence[str] ids: The IDs of vpc endpoint.
     :param str name_regex: A Name Regex of vpc endpoint.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of vpc endpoint.
     :param str service_name: The name of vpc endpoint service.
     :param str status: The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
+    :param Sequence[pulumi.InputType['VpcEndpointsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id of vpc endpoint.
     """
     pulumi.log.warn("""vpc_endpoints is deprecated: volcengine.privatelink.VpcEndpoints has been deprecated in favor of volcengine.privatelink.getVpcEndpoints""")

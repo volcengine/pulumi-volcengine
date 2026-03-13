@@ -30,15 +30,19 @@ import (
 //			_, err := iam.NewUser(ctx, "foo", &iam.UserArgs{
 //				Description: pulumi.String("test"),
 //				DisplayName: pulumi.String("name"),
-//				Email:       pulumi.String("test@example.com"),
-//				MobilePhone: pulumi.String("+8618800000000"),
+//				Email:       pulumi.String("modify@example.com"),
+//				MobilePhone: pulumi.String("17700000000"),
 //				Tags: iam.UserTagArray{
 //					&iam.UserTagArgs{
 //						Key:   pulumi.String("key1"),
 //						Value: pulumi.String("value1"),
 //					},
+//					&iam.UserTagArgs{
+//						Key:   pulumi.String("key2"),
+//						Value: pulumi.String("value2"),
+//					},
 //				},
-//				UserName: pulumi.String("jonny"),
+//				UserName: pulumi.String("jonny-g"),
 //			})
 //			if err != nil {
 //				return err

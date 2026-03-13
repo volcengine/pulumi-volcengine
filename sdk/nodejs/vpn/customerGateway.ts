@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -85,6 +87,10 @@ export class CustomerGateway extends pulumi.CustomResource {
      */
     public readonly ipAddress!: pulumi.Output<string>;
     /**
+     * The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+     */
+    public readonly ipVersion!: pulumi.Output<string | undefined>;
+    /**
      * The project name of the VPN customer gateway.
      */
     public readonly projectName!: pulumi.Output<string>;
@@ -92,6 +98,10 @@ export class CustomerGateway extends pulumi.CustomResource {
      * The status of the customer gateway.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpn.CustomerGatewayTag[] | undefined>;
     /**
      * The update time of customer gateway.
      */
@@ -117,8 +127,10 @@ export class CustomerGateway extends pulumi.CustomResource {
             resourceInputs["customerGatewayName"] = state ? state.customerGatewayName : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
+            resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
             const args = argsOrState as CustomerGatewayArgs | undefined;
@@ -128,7 +140,9 @@ export class CustomerGateway extends pulumi.CustomResource {
             resourceInputs["customerGatewayName"] = args ? args.customerGatewayName : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
+            resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["connectionCount"] = undefined /*out*/;
             resourceInputs["creationTime"] = undefined /*out*/;
@@ -174,6 +188,10 @@ export interface CustomerGatewayState {
      */
     ipAddress?: pulumi.Input<string>;
     /**
+     * The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+     */
+    ipVersion?: pulumi.Input<string>;
+    /**
      * The project name of the VPN customer gateway.
      */
     projectName?: pulumi.Input<string>;
@@ -181,6 +199,10 @@ export interface CustomerGatewayState {
      * The status of the customer gateway.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.CustomerGatewayTag>[]>;
     /**
      * The update time of customer gateway.
      */
@@ -204,7 +226,15 @@ export interface CustomerGatewayArgs {
      */
     ipAddress: pulumi.Input<string>;
     /**
+     * The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+     */
+    ipVersion?: pulumi.Input<string>;
+    /**
      * The project name of the VPN customer gateway.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.CustomerGatewayTag>[]>;
 }

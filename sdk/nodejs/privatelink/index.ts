@@ -30,6 +30,11 @@ export const getVpcEndpoints: typeof import("./getVpcEndpoints").getVpcEndpoints
 export const getVpcEndpointsOutput: typeof import("./getVpcEndpoints").getVpcEndpointsOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcEndpoints","getVpcEndpointsOutput"], () => require("./getVpcEndpoints"));
 
+export { GetVpcGatewayEndpointsArgs, GetVpcGatewayEndpointsResult, GetVpcGatewayEndpointsOutputArgs } from "./getVpcGatewayEndpoints";
+export const getVpcGatewayEndpoints: typeof import("./getVpcGatewayEndpoints").getVpcGatewayEndpoints = null as any;
+export const getVpcGatewayEndpointsOutput: typeof import("./getVpcGatewayEndpoints").getVpcGatewayEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcGatewayEndpoints","getVpcGatewayEndpointsOutput"], () => require("./getVpcGatewayEndpoints"));
+
 export { SecurityGroupArgs, SecurityGroupState } from "./securityGroup";
 export type SecurityGroup = import("./securityGroup").SecurityGroup;
 export const SecurityGroup: typeof import("./securityGroup").SecurityGroup = null as any;
@@ -90,6 +95,16 @@ export const vpcEndpoints: typeof import("./vpcEndpoints").vpcEndpoints = null a
 export const vpcEndpointsOutput: typeof import("./vpcEndpoints").vpcEndpointsOutput = null as any;
 utilities.lazyLoad(exports, ["vpcEndpoints","vpcEndpointsOutput"], () => require("./vpcEndpoints"));
 
+export { VpcGatewayEndpointArgs, VpcGatewayEndpointState } from "./vpcGatewayEndpoint";
+export type VpcGatewayEndpoint = import("./vpcGatewayEndpoint").VpcGatewayEndpoint;
+export const VpcGatewayEndpoint: typeof import("./vpcGatewayEndpoint").VpcGatewayEndpoint = null as any;
+utilities.lazyLoad(exports, ["VpcGatewayEndpoint"], () => require("./vpcGatewayEndpoint"));
+
+export { VpcGatewayEndpointsArgs, VpcGatewayEndpointsResult, VpcGatewayEndpointsOutputArgs } from "./vpcGatewayEndpoints";
+export const vpcGatewayEndpoints: typeof import("./vpcGatewayEndpoints").vpcGatewayEndpoints = null as any;
+export const vpcGatewayEndpointsOutput: typeof import("./vpcGatewayEndpoints").vpcGatewayEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["vpcGatewayEndpoints","vpcGatewayEndpointsOutput"], () => require("./vpcGatewayEndpoints"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -109,6 +124,8 @@ const _module = {
                 return new VpcEndpointServiceResource(name, <any>undefined, { urn })
             case "volcengine:privatelink/vpcEndpointZone:VpcEndpointZone":
                 return new VpcEndpointZone(name, <any>undefined, { urn })
+            case "volcengine:privatelink/vpcGatewayEndpoint:VpcGatewayEndpoint":
+                return new VpcGatewayEndpoint(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -121,3 +138,4 @@ pulumi.runtime.registerResourceModule("volcengine", "privatelink/vpcEndpointServ
 pulumi.runtime.registerResourceModule("volcengine", "privatelink/vpcEndpointServicePermission", _module)
 pulumi.runtime.registerResourceModule("volcengine", "privatelink/vpcEndpointServiceResource", _module)
 pulumi.runtime.registerResourceModule("volcengine", "privatelink/vpcEndpointZone", _module)
+pulumi.runtime.registerResourceModule("volcengine", "privatelink/vpcGatewayEndpoint", _module)

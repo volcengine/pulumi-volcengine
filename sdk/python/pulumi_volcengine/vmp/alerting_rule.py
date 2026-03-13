@@ -23,7 +23,8 @@ class AlertingRuleArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['AlertingRuleLabelArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 notify_policy_id: Optional[pulumi.Input[str]] = None):
+                 notify_policy_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]]] = None):
         """
         The set of arguments for constructing a AlertingRule resource.
         :param pulumi.Input[Sequence[pulumi.Input['AlertingRuleLevelArgs']]] levels: The alerting levels of the vmp alerting rule.
@@ -34,6 +35,7 @@ class AlertingRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input['AlertingRuleLabelArgs']]] labels: The labels of the vmp alerting rule.
         :param pulumi.Input[str] name: The name of the vmp alerting rule.
         :param pulumi.Input[str] notify_policy_id: The id of the notify policy.
+        :param pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "levels", levels)
         pulumi.set(__self__, "notify_group_policy_id", notify_group_policy_id)
@@ -48,6 +50,8 @@ class AlertingRuleArgs:
             pulumi.set(__self__, "name", name)
         if notify_policy_id is not None:
             pulumi.set(__self__, "notify_policy_id", notify_policy_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -145,6 +149,18 @@ class AlertingRuleArgs:
     def notify_policy_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "notify_policy_id", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _AlertingRuleState:
@@ -159,6 +175,7 @@ class _AlertingRuleState:
                  notify_policy_id: Optional[pulumi.Input[str]] = None,
                  query: Optional[pulumi.Input['AlertingRuleQueryArgs']] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AlertingRule resources.
@@ -172,6 +189,7 @@ class _AlertingRuleState:
         :param pulumi.Input[str] notify_policy_id: The id of the notify policy.
         :param pulumi.Input['AlertingRuleQueryArgs'] query: The alerting query of the vmp alerting rule.
         :param pulumi.Input[str] status: The status of the vmp alerting rule.
+        :param pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the vmp alerting rule.
         """
         if annotations is not None:
@@ -194,6 +212,8 @@ class _AlertingRuleState:
             pulumi.set(__self__, "query", query)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
 
@@ -318,6 +338,18 @@ class _AlertingRuleState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertingRuleTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -343,6 +375,7 @@ class AlertingRule(pulumi.CustomResource):
                  notify_group_policy_id: Optional[pulumi.Input[str]] = None,
                  notify_policy_id: Optional[pulumi.Input[str]] = None,
                  query: Optional[pulumi.Input[pulumi.InputType['AlertingRuleQueryArgs']]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertingRuleTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage vmp alerting rule
@@ -490,6 +523,7 @@ class AlertingRule(pulumi.CustomResource):
         :param pulumi.Input[str] notify_group_policy_id: The id of the notify group policy.
         :param pulumi.Input[str] notify_policy_id: The id of the notify policy.
         :param pulumi.Input[pulumi.InputType['AlertingRuleQueryArgs']] query: The alerting query of the vmp alerting rule.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertingRuleTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -656,6 +690,7 @@ class AlertingRule(pulumi.CustomResource):
                  notify_group_policy_id: Optional[pulumi.Input[str]] = None,
                  notify_policy_id: Optional[pulumi.Input[str]] = None,
                  query: Optional[pulumi.Input[pulumi.InputType['AlertingRuleQueryArgs']]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertingRuleTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -679,6 +714,7 @@ class AlertingRule(pulumi.CustomResource):
             if query is None and not opts.urn:
                 raise TypeError("Missing required property 'query'")
             __props__.__dict__["query"] = query
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["create_time"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["update_time"] = None
@@ -702,6 +738,7 @@ class AlertingRule(pulumi.CustomResource):
             notify_policy_id: Optional[pulumi.Input[str]] = None,
             query: Optional[pulumi.Input[pulumi.InputType['AlertingRuleQueryArgs']]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertingRuleTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'AlertingRule':
         """
         Get an existing AlertingRule resource's state with the given name, id, and optional extra
@@ -720,6 +757,7 @@ class AlertingRule(pulumi.CustomResource):
         :param pulumi.Input[str] notify_policy_id: The id of the notify policy.
         :param pulumi.Input[pulumi.InputType['AlertingRuleQueryArgs']] query: The alerting query of the vmp alerting rule.
         :param pulumi.Input[str] status: The status of the vmp alerting rule.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertingRuleTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the vmp alerting rule.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -736,6 +774,7 @@ class AlertingRule(pulumi.CustomResource):
         __props__.__dict__["notify_policy_id"] = notify_policy_id
         __props__.__dict__["query"] = query
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         return AlertingRule(resource_name, opts=opts, __props__=__props__)
 
@@ -818,6 +857,14 @@ class AlertingRule(pulumi.CustomResource):
         The status of the vmp alerting rule.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.AlertingRuleTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

@@ -62,6 +62,24 @@ namespace Pulumi.Volcengine.Ecs
 
     public sealed class HpcClustersArgs : global::Pulumi.InvokeArgs
     {
+        [Input("ids")]
+        private List<string>? _ids;
+
+        /// <summary>
+        /// A list of hpc cluster ids.
+        /// </summary>
+        public List<string> Ids
+        {
+            get => _ids ?? (_ids = new List<string>());
+            set => _ids = value;
+        }
+
+        /// <summary>
+        /// The name of the hpc cluster.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
+
         /// <summary>
         /// A Name Regex of Resource.
         /// </summary>
@@ -73,6 +91,24 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The project name of the hpc cluster.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.HpcClustersTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.HpcClustersTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.HpcClustersTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The zone id of the hpc cluster.
@@ -88,6 +124,24 @@ namespace Pulumi.Volcengine.Ecs
 
     public sealed class HpcClustersInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("ids")]
+        private InputList<string>? _ids;
+
+        /// <summary>
+        /// A list of hpc cluster ids.
+        /// </summary>
+        public InputList<string> Ids
+        {
+            get => _ids ?? (_ids = new InputList<string>());
+            set => _ids = value;
+        }
+
+        /// <summary>
+        /// The name of the hpc cluster.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
         /// <summary>
         /// A Name Regex of Resource.
         /// </summary>
@@ -99,6 +153,24 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The project name of the hpc cluster.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.HpcClustersTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HpcClustersTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HpcClustersTagInputArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The zone id of the hpc cluster.
@@ -124,8 +196,21 @@ namespace Pulumi.Volcengine.Ecs
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<string> Ids;
+        /// <summary>
+        /// The name of the hpc cluster.
+        /// </summary>
+        public readonly string? Name;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The project name of the hpc cluster.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.HpcClustersTagResult> Tags;
         /// <summary>
         /// The total count of query.
         /// </summary>
@@ -141,9 +226,17 @@ namespace Pulumi.Volcengine.Ecs
 
             string id,
 
+            ImmutableArray<string> ids,
+
+            string? name,
+
             string? nameRegex,
 
             string? outputFile,
+
+            string? projectName,
+
+            ImmutableArray<Outputs.HpcClustersTagResult> tags,
 
             int totalCount,
 
@@ -151,8 +244,12 @@ namespace Pulumi.Volcengine.Ecs
         {
             HpcClusters = hpcClusters;
             Id = id;
+            Ids = ids;
+            Name = name;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
             ZoneId = zoneId;
         }

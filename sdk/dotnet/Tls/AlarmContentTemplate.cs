@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.AlarmContentTemplate("foo", new()
     ///     {
-    ///         AlarmContentTemplateName = "test-alarm-content-template",
+    ///         AlarmContentTemplateName = "test-alarm-content",
     ///         DingTalks = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.AlarmContentTemplateDingTalkArgs
@@ -75,7 +75,7 @@ namespace Pulumi.Volcengine.Tls
     ///                 Title = "修改-告警通知",
     ///             },
     ///         },
-    ///         NeedValidContent = true,
+    ///         NeedValidContent = false,
     ///         Sms = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.AlarmContentTemplateSmArgs

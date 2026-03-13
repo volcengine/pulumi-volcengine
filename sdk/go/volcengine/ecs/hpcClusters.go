@@ -51,10 +51,18 @@ func HpcClusters(ctx *pulumi.Context, args *HpcClustersArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking HpcClusters.
 type HpcClustersArgs struct {
+	// A list of hpc cluster ids.
+	Ids []string `pulumi:"ids"`
+	// The name of the hpc cluster.
+	Name *string `pulumi:"name"`
 	// A Name Regex of Resource.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the hpc cluster.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HpcClustersTag `pulumi:"tags"`
 	// The zone id of the hpc cluster.
 	ZoneId *string `pulumi:"zoneId"`
 }
@@ -64,9 +72,16 @@ type HpcClustersResult struct {
 	// The collection of query.
 	HpcClusters []HpcClustersHpcCluster `pulumi:"hpcClusters"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
+	Id  string   `pulumi:"id"`
+	Ids []string `pulumi:"ids"`
+	// The name of the hpc cluster.
+	Name       *string `pulumi:"name"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the hpc cluster.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HpcClustersTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The zone id of the hpc cluster.
@@ -88,10 +103,18 @@ func HpcClustersOutput(ctx *pulumi.Context, args HpcClustersOutputArgs, opts ...
 
 // A collection of arguments for invoking HpcClusters.
 type HpcClustersOutputArgs struct {
+	// A list of hpc cluster ids.
+	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// The name of the hpc cluster.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 	// A Name Regex of Resource.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the hpc cluster.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags HpcClustersTagArrayInput `pulumi:"tags"`
 	// The zone id of the hpc cluster.
 	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
 }
@@ -125,12 +148,31 @@ func (o HpcClustersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v HpcClustersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o HpcClustersResultOutput) Ids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v HpcClustersResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+// The name of the hpc cluster.
+func (o HpcClustersResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v HpcClustersResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
 func (o HpcClustersResultOutput) NameRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HpcClustersResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
 }
 
 func (o HpcClustersResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HpcClustersResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The project name of the hpc cluster.
+func (o HpcClustersResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v HpcClustersResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o HpcClustersResultOutput) Tags() HpcClustersTagArrayOutput {
+	return o.ApplyT(func(v HpcClustersResult) []HpcClustersTag { return v.Tags }).(HpcClustersTagArrayOutput)
 }
 
 // The total count of query.

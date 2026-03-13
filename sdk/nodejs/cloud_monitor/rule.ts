@@ -68,6 +68,10 @@ import * as utilities from "../utilities";
  *     ruleName: "acc-test-rule",
  *     silenceTime: 5,
  *     subNamespace: "Storage",
+ *     tags: [{
+ *         key: "tfk1",
+ *         value: "tfv1",
+ *     }],
  *     webhookIds: [
  *         "187655704106731****",
  *         "187655712542447****",
@@ -192,6 +196,10 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly subNamespace!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.cloud_monitor.RuleTag[] | undefined>;
+    /**
      * The updated time of the cloud monitor rule.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
@@ -237,6 +245,7 @@ export class Rule extends pulumi.CustomResource {
             resourceInputs["ruleName"] = state ? state.ruleName : undefined;
             resourceInputs["silenceTime"] = state ? state.silenceTime : undefined;
             resourceInputs["subNamespace"] = state ? state.subNamespace : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["webHook"] = state ? state.webHook : undefined;
             resourceInputs["webhookIds"] = state ? state.webhookIds : undefined;
@@ -299,6 +308,7 @@ export class Rule extends pulumi.CustomResource {
             resourceInputs["ruleName"] = args ? args.ruleName : undefined;
             resourceInputs["silenceTime"] = args ? args.silenceTime : undefined;
             resourceInputs["subNamespace"] = args ? args.subNamespace : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["webHook"] = args ? args.webHook : undefined;
             resourceInputs["webhookIds"] = args ? args.webhookIds : undefined;
             resourceInputs["alertState"] = undefined /*out*/;
@@ -395,6 +405,10 @@ export interface RuleState {
      */
     subNamespace?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.cloud_monitor.RuleTag>[]>;
+    /**
      * The updated time of the cloud monitor rule.
      */
     updatedAt?: pulumi.Input<string>;
@@ -484,6 +498,10 @@ export interface RuleArgs {
      * The sub namespace of the cloud monitor rule.
      */
     subNamespace: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.cloud_monitor.RuleTag>[]>;
     /**
      * The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
      */

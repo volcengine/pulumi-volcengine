@@ -26,6 +26,11 @@ import * as utilities from "../utilities";
  *     instanceTypeId: "ecs.g1.large",
  *     keyPairName: "tf-key-pair",
  *     launchTemplateName: "tf-acc-template",
+ *     launchTemplateProjectName: "default",
+ *     launchTemplateTags: [{
+ *         key: "tfk1",
+ *         value: "tfv1",
+ *     }],
  * });
  * ```
  *
@@ -120,9 +125,21 @@ export class LaunchTemplate extends pulumi.CustomResource {
      */
     public readonly launchTemplateName!: pulumi.Output<string>;
     /**
+     * The project name of the launch template.
+     */
+    public readonly launchTemplateProjectName!: pulumi.Output<string | undefined>;
+    /**
+     * The tags of the launch template.
+     */
+    public readonly launchTemplateTags!: pulumi.Output<outputs.ecs.LaunchTemplateLaunchTemplateTag[] | undefined>;
+    /**
      * The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
      */
     public readonly networkInterfaces!: pulumi.Output<outputs.ecs.LaunchTemplateNetworkInterface[] | undefined>;
+    /**
+     * The project name of the instance.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * Whether to open the security reinforcement.
      */
@@ -131,6 +148,10 @@ export class LaunchTemplate extends pulumi.CustomResource {
      * The index of the ordered suffix.
      */
     public readonly suffixIndex!: pulumi.Output<number>;
+    /**
+     * The tags of the instance.
+     */
+    public readonly tags!: pulumi.Output<outputs.ecs.LaunchTemplateTag[] | undefined>;
     /**
      * Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
      */
@@ -182,9 +203,13 @@ export class LaunchTemplate extends pulumi.CustomResource {
             resourceInputs["keyPairName"] = state ? state.keyPairName : undefined;
             resourceInputs["launchTemplateId"] = state ? state.launchTemplateId : undefined;
             resourceInputs["launchTemplateName"] = state ? state.launchTemplateName : undefined;
+            resourceInputs["launchTemplateProjectName"] = state ? state.launchTemplateProjectName : undefined;
+            resourceInputs["launchTemplateTags"] = state ? state.launchTemplateTags : undefined;
             resourceInputs["networkInterfaces"] = state ? state.networkInterfaces : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["securityEnhancementStrategy"] = state ? state.securityEnhancementStrategy : undefined;
             resourceInputs["suffixIndex"] = state ? state.suffixIndex : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["uniqueSuffix"] = state ? state.uniqueSuffix : undefined;
             resourceInputs["userData"] = state ? state.userData : undefined;
             resourceInputs["versionDescription"] = state ? state.versionDescription : undefined;
@@ -208,9 +233,13 @@ export class LaunchTemplate extends pulumi.CustomResource {
             resourceInputs["instanceTypeId"] = args ? args.instanceTypeId : undefined;
             resourceInputs["keyPairName"] = args ? args.keyPairName : undefined;
             resourceInputs["launchTemplateName"] = args ? args.launchTemplateName : undefined;
+            resourceInputs["launchTemplateProjectName"] = args ? args.launchTemplateProjectName : undefined;
+            resourceInputs["launchTemplateTags"] = args ? args.launchTemplateTags : undefined;
             resourceInputs["networkInterfaces"] = args ? args.networkInterfaces : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["securityEnhancementStrategy"] = args ? args.securityEnhancementStrategy : undefined;
             resourceInputs["suffixIndex"] = args ? args.suffixIndex : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["uniqueSuffix"] = args ? args.uniqueSuffix : undefined;
             resourceInputs["userData"] = args ? args.userData : undefined;
             resourceInputs["versionDescription"] = args ? args.versionDescription : undefined;
@@ -281,9 +310,21 @@ export interface LaunchTemplateState {
      */
     launchTemplateName?: pulumi.Input<string>;
     /**
+     * The project name of the launch template.
+     */
+    launchTemplateProjectName?: pulumi.Input<string>;
+    /**
+     * The tags of the launch template.
+     */
+    launchTemplateTags?: pulumi.Input<pulumi.Input<inputs.ecs.LaunchTemplateLaunchTemplateTag>[]>;
+    /**
      * The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
      */
     networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ecs.LaunchTemplateNetworkInterface>[]>;
+    /**
+     * The project name of the instance.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * Whether to open the security reinforcement.
      */
@@ -292,6 +333,10 @@ export interface LaunchTemplateState {
      * The index of the ordered suffix.
      */
     suffixIndex?: pulumi.Input<number>;
+    /**
+     * The tags of the instance.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.LaunchTemplateTag>[]>;
     /**
      * Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
      */
@@ -371,9 +416,21 @@ export interface LaunchTemplateArgs {
      */
     launchTemplateName: pulumi.Input<string>;
     /**
+     * The project name of the launch template.
+     */
+    launchTemplateProjectName?: pulumi.Input<string>;
+    /**
+     * The tags of the launch template.
+     */
+    launchTemplateTags?: pulumi.Input<pulumi.Input<inputs.ecs.LaunchTemplateLaunchTemplateTag>[]>;
+    /**
      * The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
      */
     networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ecs.LaunchTemplateNetworkInterface>[]>;
+    /**
+     * The project name of the instance.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * Whether to open the security reinforcement.
      */
@@ -382,6 +439,10 @@ export interface LaunchTemplateArgs {
      * The index of the ordered suffix.
      */
     suffixIndex?: pulumi.Input<number>;
+    /**
+     * The tags of the instance.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.LaunchTemplateTag>[]>;
     /**
      * Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
      */

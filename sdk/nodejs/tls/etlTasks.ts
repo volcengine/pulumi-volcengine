@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.tls.getEtlTasks({});
+ * const foo = volcengine.tls.getEtlTasks({
+ *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.EtlTasks has been deprecated in favor of volcengine.tls.getEtlTasks */
@@ -133,7 +135,9 @@ export interface EtlTasksResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.tls.getEtlTasks({});
+ * const foo = volcengine.tls.getEtlTasks({
+ *     projectId: "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.EtlTasks has been deprecated in favor of volcengine.tls.getEtlTasks */

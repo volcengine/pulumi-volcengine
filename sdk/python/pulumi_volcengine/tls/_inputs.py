@@ -1546,14 +1546,17 @@ class DownloadTaskLogContextInfosArgs:
 class EtlTaskTargetResourceArgs:
     def __init__(__self__, *,
                  alias: pulumi.Input[str],
+                 region: pulumi.Input[str],
                  topic_id: pulumi.Input[str],
                  role_trn: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] alias: Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
+        :param pulumi.Input[str] region: The region where the log topic is located.
         :param pulumi.Input[str] topic_id: Log topics used for storing processed logs.
         :param pulumi.Input[str] role_trn: Cross-account authorized character names.
         """
         pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "topic_id", topic_id)
         if role_trn is not None:
             pulumi.set(__self__, "role_trn", role_trn)
@@ -1569,6 +1572,18 @@ class EtlTaskTargetResourceArgs:
     @alias.setter
     def alias(self, value: pulumi.Input[str]):
         pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        """
+        The region where the log topic is located.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter(name="topicId")

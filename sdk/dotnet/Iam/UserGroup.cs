@@ -23,8 +23,8 @@ namespace Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.UserGroup("foo", new()
     ///     {
-    ///         Description = "acc",
-    ///         DisplayName = "modify-xx",
+    ///         Description = "acc-modify",
+    ///         DisplayName = "modify",
     ///         UserGroupName = "acc-test1",
     ///     });
     /// 

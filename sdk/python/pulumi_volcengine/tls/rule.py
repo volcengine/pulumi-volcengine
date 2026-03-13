@@ -403,8 +403,8 @@ class Rule(pulumi.CustomResource):
             time_key="request_time",
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             tags=[volcengine.tls.TopicTagArgs(
-                key="k2",
-                value="v3",
+                key="km",
+                value="vm",
             )],
             log_public_ip=True,
             enable_hot_ttl=True,
@@ -487,24 +487,24 @@ class Rule(pulumi.CustomResource):
                 stream="all",
                 container_name_regex=".*test.*",
                 include_container_label_regex={
-                    "Key1": "Value122",
-                    "Key2": "Value223",
+                    "Key1": "Value1221",
+                    "Key2": "Value223q",
                 },
                 exclude_container_label_regex={
-                    "Key1": "Value312",
-                    "Key2": "Valu5e22",
+                    "Key1": "Value312q",
+                    "Key2": "Valu5e22q",
                 },
                 include_container_env_regex={
-                    "Key1": "Val2ue1",
-                    "Key2": "Val2ue2",
+                    "Key1": "Val2ue1q",
+                    "Key2": "Val2ue2q",
                 },
                 exclude_container_env_regex={
-                    "Key1": "Value1",
-                    "Key2": "Value2",
+                    "Key1": "Value1q",
+                    "Key2": "Value2q",
                 },
                 env_tag={
-                    "Key1": "Value1",
-                    "Key2": "Value2",
+                    "Key1": "Value1q",
+                    "Key2": "Value2q",
                 },
                 kubernetes_rule=volcengine.tls.RuleContainerRuleKubernetesRuleArgs(
                     namespace_name_regex=".*test.*",
@@ -520,12 +520,12 @@ class Rule(pulumi.CustomResource):
                     },
                     pod_name_regex=".*test.*",
                     label_tag={
-                        "Key1": "Value1",
-                        "Key2": "Value2",
+                        "Key1": "Value1q",
+                        "Key2": "Value2q",
                     },
                     annotation_tag={
-                        "Key1": "Value1",
-                        "Key2": "Value2",
+                        "Key1": "Value1q",
+                        "Key2": "Value2q",
                     },
                 ),
             ))
@@ -582,8 +582,8 @@ class Rule(pulumi.CustomResource):
             time_key="request_time",
             time_format="%Y-%m-%dT%H:%M:%S,%f",
             tags=[volcengine.tls.TopicTagArgs(
-                key="k2",
-                value="v3",
+                key="km",
+                value="vm",
             )],
             log_public_ip=True,
             enable_hot_ttl=True,
@@ -666,24 +666,24 @@ class Rule(pulumi.CustomResource):
                 stream="all",
                 container_name_regex=".*test.*",
                 include_container_label_regex={
-                    "Key1": "Value122",
-                    "Key2": "Value223",
+                    "Key1": "Value1221",
+                    "Key2": "Value223q",
                 },
                 exclude_container_label_regex={
-                    "Key1": "Value312",
-                    "Key2": "Valu5e22",
+                    "Key1": "Value312q",
+                    "Key2": "Valu5e22q",
                 },
                 include_container_env_regex={
-                    "Key1": "Val2ue1",
-                    "Key2": "Val2ue2",
+                    "Key1": "Val2ue1q",
+                    "Key2": "Val2ue2q",
                 },
                 exclude_container_env_regex={
-                    "Key1": "Value1",
-                    "Key2": "Value2",
+                    "Key1": "Value1q",
+                    "Key2": "Value2q",
                 },
                 env_tag={
-                    "Key1": "Value1",
-                    "Key2": "Value2",
+                    "Key1": "Value1q",
+                    "Key2": "Value2q",
                 },
                 kubernetes_rule=volcengine.tls.RuleContainerRuleKubernetesRuleArgs(
                     namespace_name_regex=".*test.*",
@@ -699,12 +699,12 @@ class Rule(pulumi.CustomResource):
                     },
                     pod_name_regex=".*test.*",
                     label_tag={
-                        "Key1": "Value1",
-                        "Key2": "Value2",
+                        "Key1": "Value1q",
+                        "Key2": "Value2q",
                     },
                     annotation_tag={
-                        "Key1": "Value1",
-                        "Key2": "Value2",
+                        "Key1": "Value1q",
+                        "Key2": "Value2q",
                     },
                 ),
             ))

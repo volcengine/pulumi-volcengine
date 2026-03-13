@@ -15,10 +15,10 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.ServiceLinkedRole("foo", {
- *     serviceName: "ecs",
+ *     serviceName: "vpc",
  *     tags: [{
  *         key: "key-2",
- *         value: "value-3",
+ *         value: "value-2",
  *     }],
  * });
  * ```

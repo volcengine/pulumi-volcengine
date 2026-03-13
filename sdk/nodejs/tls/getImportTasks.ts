@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.tls.getImportTasks({});
+ * const foo = volcengine.tls.getImportTasks({
+ *     taskName: "tf-test-task-name-kafka-mod",
+ * });
  * ```
  */
 export function getImportTasks(args?: GetImportTasksArgs, opts?: pulumi.InvokeOptions): Promise<GetImportTasksResult> {
@@ -143,7 +145,9 @@ export interface GetImportTasksResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.tls.getImportTasks({});
+ * const foo = volcengine.tls.getImportTasks({
+ *     taskName: "tf-test-task-name-kafka-mod",
+ * });
  * ```
  */
 export function getImportTasksOutput(args?: GetImportTasksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetImportTasksResult> {

@@ -2033,6 +2033,112 @@ func (o RuleRecoveryNotifyPtrOutput) Enable() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type RuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RuleTagInput is an input type that accepts RuleTagArgs and RuleTagOutput values.
+// You can construct a concrete instance of `RuleTagInput` via:
+//
+//	RuleTagArgs{...}
+type RuleTagInput interface {
+	pulumi.Input
+
+	ToRuleTagOutput() RuleTagOutput
+	ToRuleTagOutputWithContext(context.Context) RuleTagOutput
+}
+
+type RuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTag)(nil)).Elem()
+}
+
+func (i RuleTagArgs) ToRuleTagOutput() RuleTagOutput {
+	return i.ToRuleTagOutputWithContext(context.Background())
+}
+
+func (i RuleTagArgs) ToRuleTagOutputWithContext(ctx context.Context) RuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTagOutput)
+}
+
+// RuleTagArrayInput is an input type that accepts RuleTagArray and RuleTagArrayOutput values.
+// You can construct a concrete instance of `RuleTagArrayInput` via:
+//
+//	RuleTagArray{ RuleTagArgs{...} }
+type RuleTagArrayInput interface {
+	pulumi.Input
+
+	ToRuleTagArrayOutput() RuleTagArrayOutput
+	ToRuleTagArrayOutputWithContext(context.Context) RuleTagArrayOutput
+}
+
+type RuleTagArray []RuleTagInput
+
+func (RuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleTag)(nil)).Elem()
+}
+
+func (i RuleTagArray) ToRuleTagArrayOutput() RuleTagArrayOutput {
+	return i.ToRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i RuleTagArray) ToRuleTagArrayOutputWithContext(ctx context.Context) RuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RuleTagArrayOutput)
+}
+
+type RuleTagOutput struct{ *pulumi.OutputState }
+
+func (RuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RuleTag)(nil)).Elem()
+}
+
+func (o RuleTagOutput) ToRuleTagOutput() RuleTagOutput {
+	return o
+}
+
+func (o RuleTagOutput) ToRuleTagOutputWithContext(ctx context.Context) RuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RuleTag)(nil)).Elem()
+}
+
+func (o RuleTagArrayOutput) ToRuleTagArrayOutput() RuleTagArrayOutput {
+	return o
+}
+
+func (o RuleTagArrayOutput) ToRuleTagArrayOutputWithContext(ctx context.Context) RuleTagArrayOutput {
+	return o
+}
+
+func (o RuleTagArrayOutput) Index(i pulumi.IntInput) RuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RuleTag {
+		return vs[0].([]RuleTag)[vs[1].(int)]
+	}).(RuleTagOutput)
+}
+
 type RulesRule struct {
 	// The alert methods of the cloud monitor rule.
 	AlertMethods []string `pulumi:"alertMethods"`
@@ -2074,6 +2180,8 @@ type RulesRule struct {
 	SilenceTime int `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace string `pulumi:"subNamespace"`
+	// The tags of the cloud monitor rule.
+	Tags []RulesRuleTag `pulumi:"tags"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule.
@@ -2134,6 +2242,8 @@ type RulesRuleArgs struct {
 	SilenceTime pulumi.IntInput `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace pulumi.StringInput `pulumi:"subNamespace"`
+	// The tags of the cloud monitor rule.
+	Tags RulesRuleTagArrayInput `pulumi:"tags"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule.
@@ -2291,6 +2401,11 @@ func (o RulesRuleOutput) SilenceTime() pulumi.IntOutput {
 // The sub namespace of the cloud monitor rule.
 func (o RulesRuleOutput) SubNamespace() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRule) string { return v.SubNamespace }).(pulumi.StringOutput)
+}
+
+// The tags of the cloud monitor rule.
+func (o RulesRuleOutput) Tags() RulesRuleTagArrayOutput {
+	return o.ApplyT(func(v RulesRule) []RulesRuleTag { return v.Tags }).(RulesRuleTagArrayOutput)
 }
 
 // The updated time of the cloud monitor rule.
@@ -2471,9 +2586,9 @@ func (o RulesRuleConditionArrayOutput) Index(i pulumi.IntInput) RulesRuleConditi
 }
 
 type RulesRuleOriginalDimension struct {
-	// The key of the dimension.
+	// The Key of Tags.
 	Key string `pulumi:"key"`
-	// The value of the dimension.
+	// The Value of Tags.
 	Values []string `pulumi:"values"`
 }
 
@@ -2489,9 +2604,9 @@ type RulesRuleOriginalDimensionInput interface {
 }
 
 type RulesRuleOriginalDimensionArgs struct {
-	// The key of the dimension.
+	// The Key of Tags.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The value of the dimension.
+	// The Value of Tags.
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -2546,12 +2661,12 @@ func (o RulesRuleOriginalDimensionOutput) ToRulesRuleOriginalDimensionOutputWith
 	return o
 }
 
-// The key of the dimension.
+// The Key of Tags.
 func (o RulesRuleOriginalDimensionOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v RulesRuleOriginalDimension) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The value of the dimension.
+// The Value of Tags.
 func (o RulesRuleOriginalDimensionOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RulesRuleOriginalDimension) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -2574,6 +2689,218 @@ func (o RulesRuleOriginalDimensionArrayOutput) Index(i pulumi.IntInput) RulesRul
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleOriginalDimension {
 		return vs[0].([]RulesRuleOriginalDimension)[vs[1].(int)]
 	}).(RulesRuleOriginalDimensionOutput)
+}
+
+type RulesRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RulesRuleTagInput is an input type that accepts RulesRuleTagArgs and RulesRuleTagOutput values.
+// You can construct a concrete instance of `RulesRuleTagInput` via:
+//
+//	RulesRuleTagArgs{...}
+type RulesRuleTagInput interface {
+	pulumi.Input
+
+	ToRulesRuleTagOutput() RulesRuleTagOutput
+	ToRulesRuleTagOutputWithContext(context.Context) RulesRuleTagOutput
+}
+
+type RulesRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RulesRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleTag)(nil)).Elem()
+}
+
+func (i RulesRuleTagArgs) ToRulesRuleTagOutput() RulesRuleTagOutput {
+	return i.ToRulesRuleTagOutputWithContext(context.Background())
+}
+
+func (i RulesRuleTagArgs) ToRulesRuleTagOutputWithContext(ctx context.Context) RulesRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleTagOutput)
+}
+
+// RulesRuleTagArrayInput is an input type that accepts RulesRuleTagArray and RulesRuleTagArrayOutput values.
+// You can construct a concrete instance of `RulesRuleTagArrayInput` via:
+//
+//	RulesRuleTagArray{ RulesRuleTagArgs{...} }
+type RulesRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleTagArrayOutput() RulesRuleTagArrayOutput
+	ToRulesRuleTagArrayOutputWithContext(context.Context) RulesRuleTagArrayOutput
+}
+
+type RulesRuleTagArray []RulesRuleTagInput
+
+func (RulesRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleTag)(nil)).Elem()
+}
+
+func (i RulesRuleTagArray) ToRulesRuleTagArrayOutput() RulesRuleTagArrayOutput {
+	return i.ToRulesRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleTagArray) ToRulesRuleTagArrayOutputWithContext(ctx context.Context) RulesRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleTagArrayOutput)
+}
+
+type RulesRuleTagOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRuleTag)(nil)).Elem()
+}
+
+func (o RulesRuleTagOutput) ToRulesRuleTagOutput() RulesRuleTagOutput {
+	return o
+}
+
+func (o RulesRuleTagOutput) ToRulesRuleTagOutputWithContext(ctx context.Context) RulesRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RulesRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RulesRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RulesRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRuleTag)(nil)).Elem()
+}
+
+func (o RulesRuleTagArrayOutput) ToRulesRuleTagArrayOutput() RulesRuleTagArrayOutput {
+	return o
+}
+
+func (o RulesRuleTagArrayOutput) ToRulesRuleTagArrayOutputWithContext(ctx context.Context) RulesRuleTagArrayOutput {
+	return o
+}
+
+func (o RulesRuleTagArrayOutput) Index(i pulumi.IntInput) RulesRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRuleTag {
+		return vs[0].([]RulesRuleTag)[vs[1].(int)]
+	}).(RulesRuleTagOutput)
+}
+
+type RulesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Values []string `pulumi:"values"`
+}
+
+// RulesTagInput is an input type that accepts RulesTagArgs and RulesTagOutput values.
+// You can construct a concrete instance of `RulesTagInput` via:
+//
+//	RulesTagArgs{...}
+type RulesTagInput interface {
+	pulumi.Input
+
+	ToRulesTagOutput() RulesTagOutput
+	ToRulesTagOutputWithContext(context.Context) RulesTagOutput
+}
+
+type RulesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (RulesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesTag)(nil)).Elem()
+}
+
+func (i RulesTagArgs) ToRulesTagOutput() RulesTagOutput {
+	return i.ToRulesTagOutputWithContext(context.Background())
+}
+
+func (i RulesTagArgs) ToRulesTagOutputWithContext(ctx context.Context) RulesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesTagOutput)
+}
+
+// RulesTagArrayInput is an input type that accepts RulesTagArray and RulesTagArrayOutput values.
+// You can construct a concrete instance of `RulesTagArrayInput` via:
+//
+//	RulesTagArray{ RulesTagArgs{...} }
+type RulesTagArrayInput interface {
+	pulumi.Input
+
+	ToRulesTagArrayOutput() RulesTagArrayOutput
+	ToRulesTagArrayOutputWithContext(context.Context) RulesTagArrayOutput
+}
+
+type RulesTagArray []RulesTagInput
+
+func (RulesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesTag)(nil)).Elem()
+}
+
+func (i RulesTagArray) ToRulesTagArrayOutput() RulesTagArrayOutput {
+	return i.ToRulesTagArrayOutputWithContext(context.Background())
+}
+
+func (i RulesTagArray) ToRulesTagArrayOutputWithContext(ctx context.Context) RulesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesTagArrayOutput)
+}
+
+type RulesTagOutput struct{ *pulumi.OutputState }
+
+func (RulesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesTag)(nil)).Elem()
+}
+
+func (o RulesTagOutput) ToRulesTagOutput() RulesTagOutput {
+	return o
+}
+
+func (o RulesTagOutput) ToRulesTagOutputWithContext(ctx context.Context) RulesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RulesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RulesTagOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RulesTag) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type RulesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesTag)(nil)).Elem()
+}
+
+func (o RulesTagArrayOutput) ToRulesTagArrayOutput() RulesTagArrayOutput {
+	return o
+}
+
+func (o RulesTagArrayOutput) ToRulesTagArrayOutputWithContext(ctx context.Context) RulesTagArrayOutput {
+	return o
+}
+
+func (o RulesTagArrayOutput) Index(i pulumi.IntInput) RulesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesTag {
+		return vs[0].([]RulesTag)[vs[1].(int)]
+	}).(RulesTagOutput)
 }
 
 type GetContactGroupsGroup struct {
@@ -3674,6 +4001,8 @@ type GetRulesRule struct {
 	SilenceTime int `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace string `pulumi:"subNamespace"`
+	// The tags of the cloud monitor rule.
+	Tags []GetRulesRuleTag `pulumi:"tags"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule.
@@ -3734,6 +4063,8 @@ type GetRulesRuleArgs struct {
 	SilenceTime pulumi.IntInput `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace pulumi.StringInput `pulumi:"subNamespace"`
+	// The tags of the cloud monitor rule.
+	Tags GetRulesRuleTagArrayInput `pulumi:"tags"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule.
@@ -3891,6 +4222,11 @@ func (o GetRulesRuleOutput) SilenceTime() pulumi.IntOutput {
 // The sub namespace of the cloud monitor rule.
 func (o GetRulesRuleOutput) SubNamespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRule) string { return v.SubNamespace }).(pulumi.StringOutput)
+}
+
+// The tags of the cloud monitor rule.
+func (o GetRulesRuleOutput) Tags() GetRulesRuleTagArrayOutput {
+	return o.ApplyT(func(v GetRulesRule) []GetRulesRuleTag { return v.Tags }).(GetRulesRuleTagArrayOutput)
 }
 
 // The updated time of the cloud monitor rule.
@@ -4071,9 +4407,9 @@ func (o GetRulesRuleConditionArrayOutput) Index(i pulumi.IntInput) GetRulesRuleC
 }
 
 type GetRulesRuleOriginalDimension struct {
-	// The key of the dimension.
+	// The Key of Tags.
 	Key string `pulumi:"key"`
-	// The value of the dimension.
+	// The Value of Tags.
 	Values []string `pulumi:"values"`
 }
 
@@ -4089,9 +4425,9 @@ type GetRulesRuleOriginalDimensionInput interface {
 }
 
 type GetRulesRuleOriginalDimensionArgs struct {
-	// The key of the dimension.
+	// The Key of Tags.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The value of the dimension.
+	// The Value of Tags.
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -4146,12 +4482,12 @@ func (o GetRulesRuleOriginalDimensionOutput) ToGetRulesRuleOriginalDimensionOutp
 	return o
 }
 
-// The key of the dimension.
+// The Key of Tags.
 func (o GetRulesRuleOriginalDimensionOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRulesRuleOriginalDimension) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The value of the dimension.
+// The Value of Tags.
 func (o GetRulesRuleOriginalDimensionOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRulesRuleOriginalDimension) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -4174,6 +4510,218 @@ func (o GetRulesRuleOriginalDimensionArrayOutput) Index(i pulumi.IntInput) GetRu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleOriginalDimension {
 		return vs[0].([]GetRulesRuleOriginalDimension)[vs[1].(int)]
 	}).(GetRulesRuleOriginalDimensionOutput)
+}
+
+type GetRulesRuleTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetRulesRuleTagInput is an input type that accepts GetRulesRuleTagArgs and GetRulesRuleTagOutput values.
+// You can construct a concrete instance of `GetRulesRuleTagInput` via:
+//
+//	GetRulesRuleTagArgs{...}
+type GetRulesRuleTagInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleTagOutput() GetRulesRuleTagOutput
+	ToGetRulesRuleTagOutputWithContext(context.Context) GetRulesRuleTagOutput
+}
+
+type GetRulesRuleTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRulesRuleTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleTag)(nil)).Elem()
+}
+
+func (i GetRulesRuleTagArgs) ToGetRulesRuleTagOutput() GetRulesRuleTagOutput {
+	return i.ToGetRulesRuleTagOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleTagArgs) ToGetRulesRuleTagOutputWithContext(ctx context.Context) GetRulesRuleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleTagOutput)
+}
+
+// GetRulesRuleTagArrayInput is an input type that accepts GetRulesRuleTagArray and GetRulesRuleTagArrayOutput values.
+// You can construct a concrete instance of `GetRulesRuleTagArrayInput` via:
+//
+//	GetRulesRuleTagArray{ GetRulesRuleTagArgs{...} }
+type GetRulesRuleTagArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesRuleTagArrayOutput() GetRulesRuleTagArrayOutput
+	ToGetRulesRuleTagArrayOutputWithContext(context.Context) GetRulesRuleTagArrayOutput
+}
+
+type GetRulesRuleTagArray []GetRulesRuleTagInput
+
+func (GetRulesRuleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleTag)(nil)).Elem()
+}
+
+func (i GetRulesRuleTagArray) ToGetRulesRuleTagArrayOutput() GetRulesRuleTagArrayOutput {
+	return i.ToGetRulesRuleTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesRuleTagArray) ToGetRulesRuleTagArrayOutputWithContext(ctx context.Context) GetRulesRuleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesRuleTagArrayOutput)
+}
+
+type GetRulesRuleTagOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesRuleTag)(nil)).Elem()
+}
+
+func (o GetRulesRuleTagOutput) ToGetRulesRuleTagOutput() GetRulesRuleTagOutput {
+	return o
+}
+
+func (o GetRulesRuleTagOutput) ToGetRulesRuleTagOutputWithContext(ctx context.Context) GetRulesRuleTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetRulesRuleTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetRulesRuleTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesRuleTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRulesRuleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesRuleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesRuleTag)(nil)).Elem()
+}
+
+func (o GetRulesRuleTagArrayOutput) ToGetRulesRuleTagArrayOutput() GetRulesRuleTagArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleTagArrayOutput) ToGetRulesRuleTagArrayOutputWithContext(ctx context.Context) GetRulesRuleTagArrayOutput {
+	return o
+}
+
+func (o GetRulesRuleTagArrayOutput) Index(i pulumi.IntInput) GetRulesRuleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesRuleTag {
+		return vs[0].([]GetRulesRuleTag)[vs[1].(int)]
+	}).(GetRulesRuleTagOutput)
+}
+
+type GetRulesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Values []string `pulumi:"values"`
+}
+
+// GetRulesTagInput is an input type that accepts GetRulesTagArgs and GetRulesTagOutput values.
+// You can construct a concrete instance of `GetRulesTagInput` via:
+//
+//	GetRulesTagArgs{...}
+type GetRulesTagInput interface {
+	pulumi.Input
+
+	ToGetRulesTagOutput() GetRulesTagOutput
+	ToGetRulesTagOutputWithContext(context.Context) GetRulesTagOutput
+}
+
+type GetRulesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRulesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesTag)(nil)).Elem()
+}
+
+func (i GetRulesTagArgs) ToGetRulesTagOutput() GetRulesTagOutput {
+	return i.ToGetRulesTagOutputWithContext(context.Background())
+}
+
+func (i GetRulesTagArgs) ToGetRulesTagOutputWithContext(ctx context.Context) GetRulesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesTagOutput)
+}
+
+// GetRulesTagArrayInput is an input type that accepts GetRulesTagArray and GetRulesTagArrayOutput values.
+// You can construct a concrete instance of `GetRulesTagArrayInput` via:
+//
+//	GetRulesTagArray{ GetRulesTagArgs{...} }
+type GetRulesTagArrayInput interface {
+	pulumi.Input
+
+	ToGetRulesTagArrayOutput() GetRulesTagArrayOutput
+	ToGetRulesTagArrayOutputWithContext(context.Context) GetRulesTagArrayOutput
+}
+
+type GetRulesTagArray []GetRulesTagInput
+
+func (GetRulesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesTag)(nil)).Elem()
+}
+
+func (i GetRulesTagArray) ToGetRulesTagArrayOutput() GetRulesTagArrayOutput {
+	return i.ToGetRulesTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetRulesTagArray) ToGetRulesTagArrayOutputWithContext(ctx context.Context) GetRulesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRulesTagArrayOutput)
+}
+
+type GetRulesTagOutput struct{ *pulumi.OutputState }
+
+func (GetRulesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRulesTag)(nil)).Elem()
+}
+
+func (o GetRulesTagOutput) ToGetRulesTagOutput() GetRulesTagOutput {
+	return o
+}
+
+func (o GetRulesTagOutput) ToGetRulesTagOutputWithContext(ctx context.Context) GetRulesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetRulesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRulesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetRulesTagOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRulesTag) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRulesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRulesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRulesTag)(nil)).Elem()
+}
+
+func (o GetRulesTagArrayOutput) ToGetRulesTagArrayOutput() GetRulesTagArrayOutput {
+	return o
+}
+
+func (o GetRulesTagArrayOutput) ToGetRulesTagArrayOutputWithContext(ctx context.Context) GetRulesTagArrayOutput {
+	return o
+}
+
+func (o GetRulesTagArrayOutput) Index(i pulumi.IntInput) GetRulesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRulesTag {
+		return vs[0].([]GetRulesTag)[vs[1].(int)]
+	}).(GetRulesTagOutput)
 }
 
 func init() {
@@ -4205,12 +4753,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleOriginalDimensionArrayInput)(nil)).Elem(), RuleOriginalDimensionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleRecoveryNotifyInput)(nil)).Elem(), RuleRecoveryNotifyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleRecoveryNotifyPtrInput)(nil)).Elem(), RuleRecoveryNotifyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTagInput)(nil)).Elem(), RuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RuleTagArrayInput)(nil)).Elem(), RuleTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleInput)(nil)).Elem(), RulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleArrayInput)(nil)).Elem(), RulesRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleConditionInput)(nil)).Elem(), RulesRuleConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleConditionArrayInput)(nil)).Elem(), RulesRuleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleOriginalDimensionInput)(nil)).Elem(), RulesRuleOriginalDimensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleOriginalDimensionArrayInput)(nil)).Elem(), RulesRuleOriginalDimensionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleTagInput)(nil)).Elem(), RulesRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleTagArrayInput)(nil)).Elem(), RulesRuleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesTagInput)(nil)).Elem(), RulesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesTagArrayInput)(nil)).Elem(), RulesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContactGroupsGroupInput)(nil)).Elem(), GetContactGroupsGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContactGroupsGroupArrayInput)(nil)).Elem(), GetContactGroupsGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContactGroupsGroupContactInput)(nil)).Elem(), GetContactGroupsGroupContactArgs{})
@@ -4231,6 +4785,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleConditionArrayInput)(nil)).Elem(), GetRulesRuleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleOriginalDimensionInput)(nil)).Elem(), GetRulesRuleOriginalDimensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleOriginalDimensionArrayInput)(nil)).Elem(), GetRulesRuleOriginalDimensionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleTagInput)(nil)).Elem(), GetRulesRuleTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesRuleTagArrayInput)(nil)).Elem(), GetRulesRuleTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesTagInput)(nil)).Elem(), GetRulesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRulesTagArrayInput)(nil)).Elem(), GetRulesTagArray{})
 	pulumi.RegisterOutputType(ContactGroupsGroupOutput{})
 	pulumi.RegisterOutputType(ContactGroupsGroupArrayOutput{})
 	pulumi.RegisterOutputType(ContactGroupsGroupContactOutput{})
@@ -4259,12 +4817,18 @@ func init() {
 	pulumi.RegisterOutputType(RuleOriginalDimensionArrayOutput{})
 	pulumi.RegisterOutputType(RuleRecoveryNotifyOutput{})
 	pulumi.RegisterOutputType(RuleRecoveryNotifyPtrOutput{})
+	pulumi.RegisterOutputType(RuleTagOutput{})
+	pulumi.RegisterOutputType(RuleTagArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleOutput{})
 	pulumi.RegisterOutputType(RulesRuleArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleConditionOutput{})
 	pulumi.RegisterOutputType(RulesRuleConditionArrayOutput{})
 	pulumi.RegisterOutputType(RulesRuleOriginalDimensionOutput{})
 	pulumi.RegisterOutputType(RulesRuleOriginalDimensionArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleTagOutput{})
+	pulumi.RegisterOutputType(RulesRuleTagArrayOutput{})
+	pulumi.RegisterOutputType(RulesTagOutput{})
+	pulumi.RegisterOutputType(RulesTagArrayOutput{})
 	pulumi.RegisterOutputType(GetContactGroupsGroupOutput{})
 	pulumi.RegisterOutputType(GetContactGroupsGroupArrayOutput{})
 	pulumi.RegisterOutputType(GetContactGroupsGroupContactOutput{})
@@ -4285,4 +4849,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRulesRuleConditionArrayOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleOriginalDimensionOutput{})
 	pulumi.RegisterOutputType(GetRulesRuleOriginalDimensionArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleTagOutput{})
+	pulumi.RegisterOutputType(GetRulesRuleTagArrayOutput{})
+	pulumi.RegisterOutputType(GetRulesTagOutput{})
+	pulumi.RegisterOutputType(GetRulesTagArrayOutput{})
 }

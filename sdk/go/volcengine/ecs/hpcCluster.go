@@ -29,7 +29,14 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ecs.NewHpcCluster(ctx, "foo", &ecs.HpcClusterArgs{
 //				Description: pulumi.String("acc-test"),
-//				ZoneId:      pulumi.String("cn-beijing-b"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: ecs.HpcClusterTagArray{
+//					&ecs.HpcClusterTagArgs{
+//						Key:   pulumi.String("tfk1"),
+//						Value: pulumi.String("tfv1"),
+//					},
+//				},
+//				ZoneId: pulumi.String("cn-beijing-b"),
 //			})
 //			if err != nil {
 //				return err
@@ -54,6 +61,10 @@ type HpcCluster struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the hpc cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The project name of the hpc cluster.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	// Tags.
+	Tags HpcClusterTagArrayOutput `pulumi:"tags"`
 	// The zone id of the hpc cluster.
 	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
 }
@@ -95,6 +106,10 @@ type hpcClusterState struct {
 	Description *string `pulumi:"description"`
 	// The name of the hpc cluster.
 	Name *string `pulumi:"name"`
+	// The project name of the hpc cluster.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HpcClusterTag `pulumi:"tags"`
 	// The zone id of the hpc cluster.
 	ZoneId *string `pulumi:"zoneId"`
 }
@@ -104,6 +119,10 @@ type HpcClusterState struct {
 	Description pulumi.StringPtrInput
 	// The name of the hpc cluster.
 	Name pulumi.StringPtrInput
+	// The project name of the hpc cluster.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags HpcClusterTagArrayInput
 	// The zone id of the hpc cluster.
 	ZoneId pulumi.StringPtrInput
 }
@@ -117,6 +136,10 @@ type hpcClusterArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of the hpc cluster.
 	Name *string `pulumi:"name"`
+	// The project name of the hpc cluster.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []HpcClusterTag `pulumi:"tags"`
 	// The zone id of the hpc cluster.
 	ZoneId string `pulumi:"zoneId"`
 }
@@ -127,6 +150,10 @@ type HpcClusterArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of the hpc cluster.
 	Name pulumi.StringPtrInput
+	// The project name of the hpc cluster.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags HpcClusterTagArrayInput
 	// The zone id of the hpc cluster.
 	ZoneId pulumi.StringInput
 }
@@ -226,6 +253,16 @@ func (o HpcClusterOutput) Description() pulumi.StringPtrOutput {
 // The name of the hpc cluster.
 func (o HpcClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *HpcCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project name of the hpc cluster.
+func (o HpcClusterOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HpcCluster) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o HpcClusterOutput) Tags() HpcClusterTagArrayOutput {
+	return o.ApplyT(func(v *HpcCluster) HpcClusterTagArrayOutput { return v.Tags }).(HpcClusterTagArrayOutput)
 }
 
 // The zone id of the hpc cluster.

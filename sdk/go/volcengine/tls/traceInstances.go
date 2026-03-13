@@ -28,14 +28,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.GetTraceInstances(ctx, &tls.GetTraceInstancesArgs{
 //				ProjectId:         pulumi.StringRef("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
-//				TraceInstanceName: pulumi.StringRef("测试trace"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = tls.GetTraceInstances(ctx, &tls.GetTraceInstancesArgs{
-//				ProjectId: pulumi.StringRef("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
-//				Status:    pulumi.StringRef("CREATED"),
+//				TraceInstanceName: pulumi.StringRef("tf-trace-instance-nn"),
 //			}, nil)
 //			if err != nil {
 //				return err

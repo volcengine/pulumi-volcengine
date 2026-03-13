@@ -17,13 +17,19 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.iam.User("foo", {
  *     description: "test",
  *     displayName: "name",
- *     email: "test@example.com",
- *     mobilePhone: "+8618800000000",
- *     tags: [{
- *         key: "key1",
- *         value: "value1",
- *     }],
- *     userName: "jonny",
+ *     email: "modify@example.com",
+ *     mobilePhone: "17700000000",
+ *     tags: [
+ *         {
+ *             key: "key1",
+ *             value: "value1",
+ *         },
+ *         {
+ *             key: "key2",
+ *             value: "value2",
+ *         },
+ *     ],
+ *     userName: "jonny-g",
  * });
  * ```
  *

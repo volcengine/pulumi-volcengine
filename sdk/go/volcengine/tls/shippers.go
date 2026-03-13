@@ -26,7 +26,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetShippers(ctx, nil, nil)
+//			_, err := tls.GetShippers(ctx, &tls.GetShippersArgs{
+//				ShipperId: pulumi.StringRef("7f0ab81e-662d-4ee0-bd8f-3ccd44efc4fe"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}

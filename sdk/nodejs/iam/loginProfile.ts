@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  *     safeAuthExemptUnit: 1,
  *     safeAuthFlag: true,
  *     safeAuthType: "phone",
- *     userName: "jonny",
+ *     userName: "jonny-tt",
  * });
  * ```
  *

@@ -30,7 +30,7 @@ import (
 //			_, err := iam.NewUserGroupPolicyAttachment(ctx, "foo", &iam.UserGroupPolicyAttachmentArgs{
 //				PolicyName:    pulumi.String("test"),
 //				PolicyType:    pulumi.String("Custom"),
-//				UserGroupName: pulumi.String("tf-test"),
+//				UserGroupName: pulumi.String("xRqElT"),
 //			})
 //			if err != nil {
 //				return err

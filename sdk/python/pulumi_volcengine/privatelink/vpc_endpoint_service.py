@@ -18,18 +18,26 @@ class VpcEndpointServiceArgs:
     def __init__(__self__, *,
                  resources: pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]],
                  auto_accept_enabled: Optional[pulumi.Input[bool]] = None,
-                 description: Optional[pulumi.Input[str]] = None):
+                 description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]]] = None):
         """
         The set of arguments for constructing a VpcEndpointService resource.
         :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] description: The description of service.
+        :param pulumi.Input[str] project_name: The project name of service.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "resources", resources)
         if auto_accept_enabled is not None:
             pulumi.set(__self__, "auto_accept_enabled", auto_accept_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -67,6 +75,30 @@ class VpcEndpointServiceArgs:
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
 
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of service.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _VpcEndpointServiceState:
@@ -74,6 +106,7 @@ class _VpcEndpointServiceState:
                  auto_accept_enabled: Optional[pulumi.Input[bool]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]]] = None,
                  service_domain: Optional[pulumi.Input[str]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
@@ -81,6 +114,7 @@ class _VpcEndpointServiceState:
                  service_resource_type: Optional[pulumi.Input[str]] = None,
                  service_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
                  zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -88,6 +122,7 @@ class _VpcEndpointServiceState:
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] creation_time: The create time of service.
         :param pulumi.Input[str] description: The description of service.
+        :param pulumi.Input[str] project_name: The project name of service.
         :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         :param pulumi.Input[str] service_domain: The domain of service.
         :param pulumi.Input[str] service_id: The Id of service.
@@ -95,6 +130,7 @@ class _VpcEndpointServiceState:
         :param pulumi.Input[str] service_resource_type: The resource type of service.
         :param pulumi.Input[str] service_type: The type of service.
         :param pulumi.Input[str] status: The status of service.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of service.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The IDs of zones.
         """
@@ -104,6 +140,8 @@ class _VpcEndpointServiceState:
             pulumi.set(__self__, "creation_time", creation_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
         if service_domain is not None:
@@ -118,6 +156,8 @@ class _VpcEndpointServiceState:
             pulumi.set(__self__, "service_type", service_type)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
         if zone_ids is not None:
@@ -158,6 +198,18 @@ class _VpcEndpointServiceState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of service.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter
@@ -244,6 +296,18 @@ class _VpcEndpointServiceState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -275,7 +339,9 @@ class VpcEndpointService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_accept_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage privatelink vpc endpoint service
@@ -316,7 +382,12 @@ class VpcEndpointService(pulumi.CustomResource):
                 resource_type="CLB",
             )],
             description="acc-test",
-            auto_accept_enabled=True)
+            auto_accept_enabled=True,
+            project_name="default",
+            tags=[volcengine.privatelink.VpcEndpointServiceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -333,7 +404,9 @@ class VpcEndpointService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] description: The description of service.
+        :param pulumi.Input[str] project_name: The project name of service.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -380,7 +453,12 @@ class VpcEndpointService(pulumi.CustomResource):
                 resource_type="CLB",
             )],
             description="acc-test",
-            auto_accept_enabled=True)
+            auto_accept_enabled=True,
+            project_name="default",
+            tags=[volcengine.privatelink.VpcEndpointServiceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -410,7 +488,9 @@ class VpcEndpointService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_accept_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -422,9 +502,11 @@ class VpcEndpointService(pulumi.CustomResource):
 
             __props__.__dict__["auto_accept_enabled"] = auto_accept_enabled
             __props__.__dict__["description"] = description
+            __props__.__dict__["project_name"] = project_name
             if resources is None and not opts.urn:
                 raise TypeError("Missing required property 'resources'")
             __props__.__dict__["resources"] = resources
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["service_domain"] = None
             __props__.__dict__["service_id"] = None
@@ -447,6 +529,7 @@ class VpcEndpointService(pulumi.CustomResource):
             auto_accept_enabled: Optional[pulumi.Input[bool]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             resources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]]] = None,
             service_domain: Optional[pulumi.Input[str]] = None,
             service_id: Optional[pulumi.Input[str]] = None,
@@ -454,6 +537,7 @@ class VpcEndpointService(pulumi.CustomResource):
             service_resource_type: Optional[pulumi.Input[str]] = None,
             service_type: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
             zone_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'VpcEndpointService':
         """
@@ -466,6 +550,7 @@ class VpcEndpointService(pulumi.CustomResource):
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] creation_time: The create time of service.
         :param pulumi.Input[str] description: The description of service.
+        :param pulumi.Input[str] project_name: The project name of service.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         :param pulumi.Input[str] service_domain: The domain of service.
         :param pulumi.Input[str] service_id: The Id of service.
@@ -473,6 +558,7 @@ class VpcEndpointService(pulumi.CustomResource):
         :param pulumi.Input[str] service_resource_type: The resource type of service.
         :param pulumi.Input[str] service_type: The type of service.
         :param pulumi.Input[str] status: The status of service.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of service.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The IDs of zones.
         """
@@ -483,6 +569,7 @@ class VpcEndpointService(pulumi.CustomResource):
         __props__.__dict__["auto_accept_enabled"] = auto_accept_enabled
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["resources"] = resources
         __props__.__dict__["service_domain"] = service_domain
         __props__.__dict__["service_id"] = service_id
@@ -490,6 +577,7 @@ class VpcEndpointService(pulumi.CustomResource):
         __props__.__dict__["service_resource_type"] = service_resource_type
         __props__.__dict__["service_type"] = service_type
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         __props__.__dict__["zone_ids"] = zone_ids
         return VpcEndpointService(resource_name, opts=opts, __props__=__props__)
@@ -517,6 +605,14 @@ class VpcEndpointService(pulumi.CustomResource):
         The description of service.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The project name of service.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -573,6 +669,14 @@ class VpcEndpointService(pulumi.CustomResource):
         The status of service.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.VpcEndpointServiceTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

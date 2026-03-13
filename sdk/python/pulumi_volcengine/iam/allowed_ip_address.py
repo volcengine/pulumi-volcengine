@@ -112,11 +112,11 @@ class AllowedIpAddress(pulumi.CustomResource):
             ip_lists=[
                 volcengine.iam.AllowedIpAddressIpListArgs(
                     description="test1",
-                    ip="your ip",
+                    ip="your_ip",
                 ),
                 volcengine.iam.AllowedIpAddressIpListArgs(
                     description="test2",
-                    ip="your ip",
+                    ip="your_ip",
                 ),
             ])
         ```
@@ -149,11 +149,11 @@ class AllowedIpAddress(pulumi.CustomResource):
             ip_lists=[
                 volcengine.iam.AllowedIpAddressIpListArgs(
                     description="test1",
-                    ip="your ip",
+                    ip="your_ip",
                 ),
                 volcengine.iam.AllowedIpAddressIpListArgs(
                     description="test2",
-                    ip="your ip",
+                    ip="your_ip",
                 ),
             ])
         ```

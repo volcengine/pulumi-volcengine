@@ -67,6 +67,10 @@ import * as utilities from "../utilities";
  *     description: "tf-test",
  *     partitionNumber: 15,
  *     replicaNumber: 3,
+ *     cleanupPolicies: [
+ *         "delete",
+ *         "compact",
+ *     ],
  *     parameters: {
  *         minInsyncReplicaNumber: 2,
  *         messageMaxByte: 10,
@@ -76,6 +80,10 @@ import * as utilities from "../utilities";
  *     accessPolicies: [{
  *         userName: fooSaslUser.userName,
  *         accessPolicy: "Pub",
+ *     }],
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
  *     }],
  * });
  * ```
@@ -125,6 +133,10 @@ export class Topic extends pulumi.CustomResource {
      */
     public readonly allAuthority!: pulumi.Output<boolean | undefined>;
     /**
+     * The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+     */
+    public readonly cleanupPolicies!: pulumi.Output<string[] | undefined>;
+    /**
      * The description of the kafka topic.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -145,6 +157,10 @@ export class Topic extends pulumi.CustomResource {
      */
     public readonly replicaNumber!: pulumi.Output<number | undefined>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.kafka.TopicTag[] | undefined>;
+    /**
      * The name of the kafka topic.
      */
     public readonly topicName!: pulumi.Output<string>;
@@ -164,11 +180,13 @@ export class Topic extends pulumi.CustomResource {
             const state = argsOrState as TopicState | undefined;
             resourceInputs["accessPolicies"] = state ? state.accessPolicies : undefined;
             resourceInputs["allAuthority"] = state ? state.allAuthority : undefined;
+            resourceInputs["cleanupPolicies"] = state ? state.cleanupPolicies : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["parameters"] = state ? state.parameters : undefined;
             resourceInputs["partitionNumber"] = state ? state.partitionNumber : undefined;
             resourceInputs["replicaNumber"] = state ? state.replicaNumber : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["topicName"] = state ? state.topicName : undefined;
         } else {
             const args = argsOrState as TopicArgs | undefined;
@@ -183,11 +201,13 @@ export class Topic extends pulumi.CustomResource {
             }
             resourceInputs["accessPolicies"] = args ? args.accessPolicies : undefined;
             resourceInputs["allAuthority"] = args ? args.allAuthority : undefined;
+            resourceInputs["cleanupPolicies"] = args ? args.cleanupPolicies : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["partitionNumber"] = args ? args.partitionNumber : undefined;
             resourceInputs["replicaNumber"] = args ? args.replicaNumber : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["topicName"] = args ? args.topicName : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -207,6 +227,10 @@ export interface TopicState {
      * Whether the kafka topic is configured to be accessible by all users. Default: true.
      */
     allAuthority?: pulumi.Input<boolean>;
+    /**
+     * The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+     */
+    cleanupPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The description of the kafka topic.
      */
@@ -228,6 +252,10 @@ export interface TopicState {
      */
     replicaNumber?: pulumi.Input<number>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.kafka.TopicTag>[]>;
+    /**
      * The name of the kafka topic.
      */
     topicName?: pulumi.Input<string>;
@@ -245,6 +273,10 @@ export interface TopicArgs {
      * Whether the kafka topic is configured to be accessible by all users. Default: true.
      */
     allAuthority?: pulumi.Input<boolean>;
+    /**
+     * The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+     */
+    cleanupPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The description of the kafka topic.
      */
@@ -265,6 +297,10 @@ export interface TopicArgs {
      * The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
      */
     replicaNumber?: pulumi.Input<number>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.kafka.TopicTag>[]>;
     /**
      * The name of the kafka topic.
      */

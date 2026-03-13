@@ -78,6 +78,14 @@ namespace Pulumi.Volcengine.Kafka
     ///         InstanceId = fooInstance.Id,
     ///         GroupId = "acc-test-group",
     ///         Description = "tf-test",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Kafka.Inputs.GroupTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -117,6 +125,12 @@ namespace Pulumi.Volcengine.Kafka
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.GroupTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -183,6 +197,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.GroupTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GroupTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GroupTagArgs>());
+            set => _tags = value;
+        }
+
         public GroupArgs()
         {
         }
@@ -214,6 +240,18 @@ namespace Pulumi.Volcengine.Kafka
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GroupTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GroupTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GroupTagGetArgs>());
+            set => _tags = value;
+        }
 
         public GroupState()
         {

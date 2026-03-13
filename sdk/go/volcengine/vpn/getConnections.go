@@ -135,6 +135,8 @@ type GetConnectionsArgs struct {
 	Spec *string `pulumi:"spec"`
 	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []GetConnectionsTag `pulumi:"tags"`
 	// An ID of transit router.
 	TransitRouterId *string `pulumi:"transitRouterId"`
 	// A list of VPN connection names.
@@ -160,6 +162,8 @@ type GetConnectionsResult struct {
 	Spec        *string  `pulumi:"spec"`
 	// The status of the VPN connection.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []GetConnectionsTag `pulumi:"tags"`
 	// The total count of VPN connection query.
 	TotalCount int `pulumi:"totalCount"`
 	// The id of transit router, valid when the attach type is 'TransitRouter'.
@@ -204,6 +208,8 @@ type GetConnectionsOutputArgs struct {
 	Spec pulumi.StringPtrInput `pulumi:"spec"`
 	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Tags.
+	Tags GetConnectionsTagArrayInput `pulumi:"tags"`
 	// An ID of transit router.
 	TransitRouterId pulumi.StringPtrInput `pulumi:"transitRouterId"`
 	// A list of VPN connection names.
@@ -274,6 +280,11 @@ func (o GetConnectionsResultOutput) Spec() pulumi.StringPtrOutput {
 // The status of the VPN connection.
 func (o GetConnectionsResultOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetConnectionsResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetConnectionsResultOutput) Tags() GetConnectionsTagArrayOutput {
+	return o.ApplyT(func(v GetConnectionsResult) []GetConnectionsTag { return v.Tags }).(GetConnectionsTagArrayOutput)
 }
 
 // The total count of VPN connection query.

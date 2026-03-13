@@ -26,7 +26,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.GetAlarmNotifyGroups(ctx, nil, nil)
+//			_, err := tls.GetAlarmNotifyGroups(ctx, &tls.GetAlarmNotifyGroupsArgs{
+//				AlarmNotifyGroupId: pulumi.StringRef("807cc2d8-e92d-447d-b9d7-da70cb8e41bd"),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}

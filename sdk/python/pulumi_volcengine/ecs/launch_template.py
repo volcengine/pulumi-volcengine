@@ -28,9 +28,13 @@ class LaunchTemplateArgs:
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type_id: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_project_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_tags: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]]] = None,
                  network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  suffix_index: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]]] = None,
                  unique_suffix: Optional[pulumi.Input[bool]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  version_description: Optional[pulumi.Input[str]] = None,
@@ -51,9 +55,13 @@ class LaunchTemplateArgs:
         :param pulumi.Input[str] instance_name: The name of the instance.
         :param pulumi.Input[str] instance_type_id: The compute type of the instance.
         :param pulumi.Input[str] key_pair_name: When you log in to the instance using the SSH key pair, enter the name of the key pair.
+        :param pulumi.Input[str] launch_template_project_name: The project name of the launch template.
+        :param pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]] launch_template_tags: The tags of the launch template.
         :param pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]] network_interfaces: The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
+        :param pulumi.Input[str] project_name: The project name of the instance.
         :param pulumi.Input[str] security_enhancement_strategy: Whether to open the security reinforcement.
         :param pulumi.Input[int] suffix_index: The index of the ordered suffix.
+        :param pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]] tags: The tags of the instance.
         :param pulumi.Input[bool] unique_suffix: Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
         :param pulumi.Input[str] user_data: Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
         :param pulumi.Input[str] version_description: The latest version description of the launch template.
@@ -84,12 +92,20 @@ class LaunchTemplateArgs:
             pulumi.set(__self__, "instance_type_id", instance_type_id)
         if key_pair_name is not None:
             pulumi.set(__self__, "key_pair_name", key_pair_name)
+        if launch_template_project_name is not None:
+            pulumi.set(__self__, "launch_template_project_name", launch_template_project_name)
+        if launch_template_tags is not None:
+            pulumi.set(__self__, "launch_template_tags", launch_template_tags)
         if network_interfaces is not None:
             pulumi.set(__self__, "network_interfaces", network_interfaces)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if security_enhancement_strategy is not None:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         if suffix_index is not None:
             pulumi.set(__self__, "suffix_index", suffix_index)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if unique_suffix is not None:
             pulumi.set(__self__, "unique_suffix", unique_suffix)
         if user_data is not None:
@@ -248,6 +264,30 @@ class LaunchTemplateArgs:
         pulumi.set(self, "key_pair_name", value)
 
     @property
+    @pulumi.getter(name="launchTemplateProjectName")
+    def launch_template_project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the launch template.
+        """
+        return pulumi.get(self, "launch_template_project_name")
+
+    @launch_template_project_name.setter
+    def launch_template_project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "launch_template_project_name", value)
+
+    @property
+    @pulumi.getter(name="launchTemplateTags")
+    def launch_template_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]]]:
+        """
+        The tags of the launch template.
+        """
+        return pulumi.get(self, "launch_template_tags")
+
+    @launch_template_tags.setter
+    def launch_template_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]]]):
+        pulumi.set(self, "launch_template_tags", value)
+
+    @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]]]:
         """
@@ -258,6 +298,18 @@ class LaunchTemplateArgs:
     @network_interfaces.setter
     def network_interfaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]]]):
         pulumi.set(self, "network_interfaces", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="securityEnhancementStrategy")
@@ -282,6 +334,18 @@ class LaunchTemplateArgs:
     @suffix_index.setter
     def suffix_index(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "suffix_index", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]]]:
+        """
+        The tags of the instance.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="uniqueSuffix")
@@ -372,9 +436,13 @@ class _LaunchTemplateState:
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  launch_template_id: Optional[pulumi.Input[str]] = None,
                  launch_template_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_project_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_tags: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]]] = None,
                  network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  suffix_index: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]]] = None,
                  unique_suffix: Optional[pulumi.Input[bool]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  version_description: Optional[pulumi.Input[str]] = None,
@@ -396,9 +464,13 @@ class _LaunchTemplateState:
         :param pulumi.Input[str] key_pair_name: When you log in to the instance using the SSH key pair, enter the name of the key pair.
         :param pulumi.Input[str] launch_template_id: The launch template id.
         :param pulumi.Input[str] launch_template_name: The name of the launch template.
+        :param pulumi.Input[str] launch_template_project_name: The project name of the launch template.
+        :param pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]] launch_template_tags: The tags of the launch template.
         :param pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]] network_interfaces: The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
+        :param pulumi.Input[str] project_name: The project name of the instance.
         :param pulumi.Input[str] security_enhancement_strategy: Whether to open the security reinforcement.
         :param pulumi.Input[int] suffix_index: The index of the ordered suffix.
+        :param pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]] tags: The tags of the instance.
         :param pulumi.Input[bool] unique_suffix: Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
         :param pulumi.Input[str] user_data: Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
         :param pulumi.Input[str] version_description: The latest version description of the launch template.
@@ -432,12 +504,20 @@ class _LaunchTemplateState:
             pulumi.set(__self__, "launch_template_id", launch_template_id)
         if launch_template_name is not None:
             pulumi.set(__self__, "launch_template_name", launch_template_name)
+        if launch_template_project_name is not None:
+            pulumi.set(__self__, "launch_template_project_name", launch_template_project_name)
+        if launch_template_tags is not None:
+            pulumi.set(__self__, "launch_template_tags", launch_template_tags)
         if network_interfaces is not None:
             pulumi.set(__self__, "network_interfaces", network_interfaces)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if security_enhancement_strategy is not None:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         if suffix_index is not None:
             pulumi.set(__self__, "suffix_index", suffix_index)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if unique_suffix is not None:
             pulumi.set(__self__, "unique_suffix", unique_suffix)
         if user_data is not None:
@@ -608,6 +688,30 @@ class _LaunchTemplateState:
         pulumi.set(self, "launch_template_name", value)
 
     @property
+    @pulumi.getter(name="launchTemplateProjectName")
+    def launch_template_project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the launch template.
+        """
+        return pulumi.get(self, "launch_template_project_name")
+
+    @launch_template_project_name.setter
+    def launch_template_project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "launch_template_project_name", value)
+
+    @property
+    @pulumi.getter(name="launchTemplateTags")
+    def launch_template_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]]]:
+        """
+        The tags of the launch template.
+        """
+        return pulumi.get(self, "launch_template_tags")
+
+    @launch_template_tags.setter
+    def launch_template_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateLaunchTemplateTagArgs']]]]):
+        pulumi.set(self, "launch_template_tags", value)
+
+    @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]]]:
         """
@@ -618,6 +722,18 @@ class _LaunchTemplateState:
     @network_interfaces.setter
     def network_interfaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateNetworkInterfaceArgs']]]]):
         pulumi.set(self, "network_interfaces", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="securityEnhancementStrategy")
@@ -642,6 +758,18 @@ class _LaunchTemplateState:
     @suffix_index.setter
     def suffix_index(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "suffix_index", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]]]:
+        """
+        The tags of the instance.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LaunchTemplateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="uniqueSuffix")
@@ -733,9 +861,13 @@ class LaunchTemplate(pulumi.CustomResource):
                  instance_type_id: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  launch_template_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_project_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateLaunchTemplateTagArgs']]]]] = None,
                  network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateNetworkInterfaceArgs']]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  suffix_index: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateTagArgs']]]]] = None,
                  unique_suffix: Optional[pulumi.Input[bool]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  version_description: Optional[pulumi.Input[str]] = None,
@@ -762,7 +894,12 @@ class LaunchTemplate(pulumi.CustomResource):
             instance_name="tf-acc-name",
             instance_type_id="ecs.g1.large",
             key_pair_name="tf-key-pair",
-            launch_template_name="tf-acc-template")
+            launch_template_name="tf-acc-template",
+            launch_template_project_name="default",
+            launch_template_tags=[volcengine.ecs.LaunchTemplateLaunchTemplateTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )])
         ```
 
         ## Import
@@ -789,9 +926,13 @@ class LaunchTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] instance_type_id: The compute type of the instance.
         :param pulumi.Input[str] key_pair_name: When you log in to the instance using the SSH key pair, enter the name of the key pair.
         :param pulumi.Input[str] launch_template_name: The name of the launch template.
+        :param pulumi.Input[str] launch_template_project_name: The project name of the launch template.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateLaunchTemplateTagArgs']]]] launch_template_tags: The tags of the launch template.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateNetworkInterfaceArgs']]]] network_interfaces: The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
+        :param pulumi.Input[str] project_name: The project name of the instance.
         :param pulumi.Input[str] security_enhancement_strategy: Whether to open the security reinforcement.
         :param pulumi.Input[int] suffix_index: The index of the ordered suffix.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateTagArgs']]]] tags: The tags of the instance.
         :param pulumi.Input[bool] unique_suffix: Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
         :param pulumi.Input[str] user_data: Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
         :param pulumi.Input[str] version_description: The latest version description of the launch template.
@@ -824,7 +965,12 @@ class LaunchTemplate(pulumi.CustomResource):
             instance_name="tf-acc-name",
             instance_type_id="ecs.g1.large",
             key_pair_name="tf-key-pair",
-            launch_template_name="tf-acc-template")
+            launch_template_name="tf-acc-template",
+            launch_template_project_name="default",
+            launch_template_tags=[volcengine.ecs.LaunchTemplateLaunchTemplateTagArgs(
+                key="tfk1",
+                value="tfv1",
+            )])
         ```
 
         ## Import
@@ -864,9 +1010,13 @@ class LaunchTemplate(pulumi.CustomResource):
                  instance_type_id: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  launch_template_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_project_name: Optional[pulumi.Input[str]] = None,
+                 launch_template_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateLaunchTemplateTagArgs']]]]] = None,
                  network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateNetworkInterfaceArgs']]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  suffix_index: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateTagArgs']]]]] = None,
                  unique_suffix: Optional[pulumi.Input[bool]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  version_description: Optional[pulumi.Input[str]] = None,
@@ -896,9 +1046,13 @@ class LaunchTemplate(pulumi.CustomResource):
             if launch_template_name is None and not opts.urn:
                 raise TypeError("Missing required property 'launch_template_name'")
             __props__.__dict__["launch_template_name"] = launch_template_name
+            __props__.__dict__["launch_template_project_name"] = launch_template_project_name
+            __props__.__dict__["launch_template_tags"] = launch_template_tags
             __props__.__dict__["network_interfaces"] = network_interfaces
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["security_enhancement_strategy"] = security_enhancement_strategy
             __props__.__dict__["suffix_index"] = suffix_index
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["unique_suffix"] = unique_suffix
             __props__.__dict__["user_data"] = user_data
             __props__.__dict__["version_description"] = version_description
@@ -929,9 +1083,13 @@ class LaunchTemplate(pulumi.CustomResource):
             key_pair_name: Optional[pulumi.Input[str]] = None,
             launch_template_id: Optional[pulumi.Input[str]] = None,
             launch_template_name: Optional[pulumi.Input[str]] = None,
+            launch_template_project_name: Optional[pulumi.Input[str]] = None,
+            launch_template_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateLaunchTemplateTagArgs']]]]] = None,
             network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateNetworkInterfaceArgs']]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
             suffix_index: Optional[pulumi.Input[int]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateTagArgs']]]]] = None,
             unique_suffix: Optional[pulumi.Input[bool]] = None,
             user_data: Optional[pulumi.Input[str]] = None,
             version_description: Optional[pulumi.Input[str]] = None,
@@ -958,9 +1116,13 @@ class LaunchTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] key_pair_name: When you log in to the instance using the SSH key pair, enter the name of the key pair.
         :param pulumi.Input[str] launch_template_id: The launch template id.
         :param pulumi.Input[str] launch_template_name: The name of the launch template.
+        :param pulumi.Input[str] launch_template_project_name: The project name of the launch template.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateLaunchTemplateTagArgs']]]] launch_template_tags: The tags of the launch template.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateNetworkInterfaceArgs']]]] network_interfaces: The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
+        :param pulumi.Input[str] project_name: The project name of the instance.
         :param pulumi.Input[str] security_enhancement_strategy: Whether to open the security reinforcement.
         :param pulumi.Input[int] suffix_index: The index of the ordered suffix.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LaunchTemplateTagArgs']]]] tags: The tags of the instance.
         :param pulumi.Input[bool] unique_suffix: Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
         :param pulumi.Input[str] user_data: Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
         :param pulumi.Input[str] version_description: The latest version description of the launch template.
@@ -985,9 +1147,13 @@ class LaunchTemplate(pulumi.CustomResource):
         __props__.__dict__["key_pair_name"] = key_pair_name
         __props__.__dict__["launch_template_id"] = launch_template_id
         __props__.__dict__["launch_template_name"] = launch_template_name
+        __props__.__dict__["launch_template_project_name"] = launch_template_project_name
+        __props__.__dict__["launch_template_tags"] = launch_template_tags
         __props__.__dict__["network_interfaces"] = network_interfaces
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["security_enhancement_strategy"] = security_enhancement_strategy
         __props__.__dict__["suffix_index"] = suffix_index
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["unique_suffix"] = unique_suffix
         __props__.__dict__["user_data"] = user_data
         __props__.__dict__["version_description"] = version_description
@@ -1101,12 +1267,36 @@ class LaunchTemplate(pulumi.CustomResource):
         return pulumi.get(self, "launch_template_name")
 
     @property
+    @pulumi.getter(name="launchTemplateProjectName")
+    def launch_template_project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The project name of the launch template.
+        """
+        return pulumi.get(self, "launch_template_project_name")
+
+    @property
+    @pulumi.getter(name="launchTemplateTags")
+    def launch_template_tags(self) -> pulumi.Output[Optional[Sequence['outputs.LaunchTemplateLaunchTemplateTag']]]:
+        """
+        The tags of the launch template.
+        """
+        return pulumi.get(self, "launch_template_tags")
+
+    @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> pulumi.Output[Optional[Sequence['outputs.LaunchTemplateNetworkInterface']]]:
         """
         The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
         """
         return pulumi.get(self, "network_interfaces")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The project name of the instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="securityEnhancementStrategy")
@@ -1123,6 +1313,14 @@ class LaunchTemplate(pulumi.CustomResource):
         The index of the ordered suffix.
         """
         return pulumi.get(self, "suffix_index")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.LaunchTemplateTag']]]:
+        """
+        The tags of the instance.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="uniqueSuffix")

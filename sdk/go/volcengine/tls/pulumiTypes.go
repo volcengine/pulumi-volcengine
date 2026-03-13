@@ -8505,6 +8505,8 @@ func (o DownloadTasksDownloadTaskLogContextInfoArrayOutput) Index(i pulumi.IntIn
 type EtlTaskTargetResource struct {
 	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
 	Alias string `pulumi:"alias"`
+	// The region where the log topic is located.
+	Region string `pulumi:"region"`
 	// Cross-account authorized character names.
 	RoleTrn *string `pulumi:"roleTrn"`
 	// Log topics used for storing processed logs.
@@ -8525,6 +8527,8 @@ type EtlTaskTargetResourceInput interface {
 type EtlTaskTargetResourceArgs struct {
 	// Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
 	Alias pulumi.StringInput `pulumi:"alias"`
+	// The region where the log topic is located.
+	Region pulumi.StringInput `pulumi:"region"`
 	// Cross-account authorized character names.
 	RoleTrn pulumi.StringPtrInput `pulumi:"roleTrn"`
 	// Log topics used for storing processed logs.
@@ -8585,6 +8589,11 @@ func (o EtlTaskTargetResourceOutput) ToEtlTaskTargetResourceOutputWithContext(ct
 // Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
 func (o EtlTaskTargetResourceOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v EtlTaskTargetResource) string { return v.Alias }).(pulumi.StringOutput)
+}
+
+// The region where the log topic is located.
+func (o EtlTaskTargetResourceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v EtlTaskTargetResource) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // Cross-account authorized character names.
@@ -10615,6 +10624,8 @@ type HostGroupsInfoHostGroupInfo struct {
 	HostGroupType string `pulumi:"hostGroupType"`
 	// The identifier of host.
 	HostIdentifier string `pulumi:"hostIdentifier"`
+	// The ip list of host group.
+	HostIpLists []string `pulumi:"hostIpLists"`
 	// The project name of iam.
 	IamProjectName string `pulumi:"iamProjectName"`
 	// The modify time of host group.
@@ -10655,6 +10666,8 @@ type HostGroupsInfoHostGroupInfoArgs struct {
 	HostGroupType pulumi.StringInput `pulumi:"hostGroupType"`
 	// The identifier of host.
 	HostIdentifier pulumi.StringInput `pulumi:"hostIdentifier"`
+	// The ip list of host group.
+	HostIpLists pulumi.StringArrayInput `pulumi:"hostIpLists"`
 	// The project name of iam.
 	IamProjectName pulumi.StringInput `pulumi:"iamProjectName"`
 	// The modify time of host group.
@@ -10753,6 +10766,11 @@ func (o HostGroupsInfoHostGroupInfoOutput) HostGroupType() pulumi.StringOutput {
 // The identifier of host.
 func (o HostGroupsInfoHostGroupInfoOutput) HostIdentifier() pulumi.StringOutput {
 	return o.ApplyT(func(v HostGroupsInfoHostGroupInfo) string { return v.HostIdentifier }).(pulumi.StringOutput)
+}
+
+// The ip list of host group.
+func (o HostGroupsInfoHostGroupInfoOutput) HostIpLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v HostGroupsInfoHostGroupInfo) []string { return v.HostIpLists }).(pulumi.StringArrayOutput)
 }
 
 // The project name of iam.
@@ -33324,6 +33342,8 @@ type GetHostGroupsInfoHostGroupInfo struct {
 	HostGroupType string `pulumi:"hostGroupType"`
 	// The identifier of host.
 	HostIdentifier string `pulumi:"hostIdentifier"`
+	// The ip list of host group.
+	HostIpLists []string `pulumi:"hostIpLists"`
 	// The project name of iam.
 	IamProjectName string `pulumi:"iamProjectName"`
 	// The modify time of host group.
@@ -33364,6 +33384,8 @@ type GetHostGroupsInfoHostGroupInfoArgs struct {
 	HostGroupType pulumi.StringInput `pulumi:"hostGroupType"`
 	// The identifier of host.
 	HostIdentifier pulumi.StringInput `pulumi:"hostIdentifier"`
+	// The ip list of host group.
+	HostIpLists pulumi.StringArrayInput `pulumi:"hostIpLists"`
 	// The project name of iam.
 	IamProjectName pulumi.StringInput `pulumi:"iamProjectName"`
 	// The modify time of host group.
@@ -33462,6 +33484,11 @@ func (o GetHostGroupsInfoHostGroupInfoOutput) HostGroupType() pulumi.StringOutpu
 // The identifier of host.
 func (o GetHostGroupsInfoHostGroupInfoOutput) HostIdentifier() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostGroupsInfoHostGroupInfo) string { return v.HostIdentifier }).(pulumi.StringOutput)
+}
+
+// The ip list of host group.
+func (o GetHostGroupsInfoHostGroupInfoOutput) HostIpLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetHostGroupsInfoHostGroupInfo) []string { return v.HostIpLists }).(pulumi.StringArrayOutput)
 }
 
 // The project name of iam.

@@ -142,6 +142,10 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetConnectionsVpnConnectionTagResult> Tags;
+        /// <summary>
         /// An ID of transit router.
         /// </summary>
         public readonly string TransitRouterId;
@@ -232,6 +236,8 @@ namespace Pulumi.Volcengine.Vpn.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.GetConnectionsVpnConnectionTagResult> tags,
+
             string transitRouterId,
 
             string updateTime,
@@ -276,6 +282,7 @@ namespace Pulumi.Volcengine.Vpn.Outputs
             OverdueTime = overdueTime;
             RemoteSubnets = remoteSubnets;
             Status = status;
+            Tags = tags;
             TransitRouterId = transitRouterId;
             UpdateTime = updateTime;
             VpnConnectionId = vpnConnectionId;

@@ -25,6 +25,7 @@ __all__ = [
     'ScalingGroupsScalingGroupLaunchTemplateOverrideResult',
     'ScalingGroupsScalingGroupServerGroupAttributeResult',
     'ScalingGroupsScalingGroupTagResult',
+    'ScalingGroupsTagResult',
     'ScalingInstancesScalingInstanceResult',
     'ScalingLifecycleHookLifecycleCommand',
     'ScalingLifecycleHooksLifecycleHookResult',
@@ -39,6 +40,7 @@ __all__ = [
     'GetScalingGroupsScalingGroupLaunchTemplateOverrideResult',
     'GetScalingGroupsScalingGroupServerGroupAttributeResult',
     'GetScalingGroupsScalingGroupTagResult',
+    'GetScalingGroupsTagResult',
     'GetScalingInstancesScalingInstanceResult',
     'GetScalingLifecycleHooksLifecycleHookResult',
     'GetScalingLifecycleHooksLifecycleHookLifecycleCommandResult',
@@ -1244,6 +1246,35 @@ class ScalingGroupsScalingGroupServerGroupAttributeResult(dict):
 
 @pulumi.output_type
 class ScalingGroupsScalingGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ScalingGroupsTagResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):
@@ -2754,6 +2785,35 @@ class GetScalingGroupsScalingGroupServerGroupAttributeResult(dict):
 
 @pulumi.output_type
 class GetScalingGroupsScalingGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetScalingGroupsTagResult(dict):
     def __init__(__self__, *,
                  key: str,
                  value: str):

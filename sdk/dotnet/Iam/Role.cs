@@ -23,16 +23,16 @@ namespace Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.Role("foo", new()
     ///     {
-    ///         Description = "tf-test-modify",
+    ///         Description = "tf-test",
     ///         DisplayName = "tf-test-modify",
-    ///         MaxSessionDuration = 3600,
-    ///         RoleName = "tf-test-role",
+    ///         MaxSessionDuration = 4800,
+    ///         RoleName = "tf-test",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Iam.Inputs.RoleTagArgs
     ///             {
-    ///                 Key = "key-modify",
-    ///                 Value = "value-modify",
+    ///                 Key = "key-1",
+    ///                 Value = "value-1",
     ///             },
     ///         },
     ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",

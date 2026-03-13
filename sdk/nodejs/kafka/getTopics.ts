@@ -92,6 +92,7 @@ export function getTopics(args: GetTopicsArgs, opts?: pulumi.InvokeOptions): Pro
         "outputFile": args.outputFile,
         "partitionNumber": args.partitionNumber,
         "replicaNumber": args.replicaNumber,
+        "tags": args.tags,
         "topicName": args.topicName,
         "userName": args.userName,
     }, opts);
@@ -122,6 +123,10 @@ export interface GetTopicsArgs {
      */
     replicaNumber?: number;
     /**
+     * Tags.
+     */
+    tags?: inputs.kafka.GetTopicsTag[];
+    /**
      * The name of kafka topic. This field supports fuzzy query.
      */
     topicName?: string;
@@ -150,6 +155,10 @@ export interface GetTopicsResult {
      * The number of replica in the kafka topic.
      */
     readonly replicaNumber?: number;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.kafka.GetTopicsTag[];
     /**
      * The name of the kafka topic.
      */
@@ -272,6 +281,10 @@ export interface GetTopicsOutputArgs {
      * The number of replica in kafka topic.
      */
     replicaNumber?: pulumi.Input<number>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.kafka.GetTopicsTagArgs>[]>;
     /**
      * The name of kafka topic. This field supports fuzzy query.
      */

@@ -10,6 +10,7 @@ from .get_vpc_endpoint_service_permissions import *
 from .get_vpc_endpoint_services import *
 from .get_vpc_endpoint_zones import *
 from .get_vpc_endpoints import *
+from .get_vpc_gateway_endpoints import *
 from .security_group import *
 from .vpc_endpoint import *
 from .vpc_endpoint_connection import *
@@ -22,5 +23,7 @@ from .vpc_endpoint_services import *
 from .vpc_endpoint_zone import *
 from .vpc_endpoint_zones import *
 from .vpc_endpoints import *
+from .vpc_gateway_endpoint import *
+from .vpc_gateway_endpoints import *
 from ._inputs import *
 from . import outputs

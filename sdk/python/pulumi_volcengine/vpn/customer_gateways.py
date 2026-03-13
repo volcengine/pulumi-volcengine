@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'CustomerGatewaysResult',
@@ -24,7 +25,7 @@ class CustomerGatewaysResult:
     """
     A collection of values returned by CustomerGateways.
     """
-    def __init__(__self__, customer_gateway_names=None, customer_gateways=None, id=None, ids=None, ip_address=None, name_regex=None, output_file=None, project_name=None, total_count=None):
+    def __init__(__self__, customer_gateway_names=None, customer_gateways=None, id=None, ids=None, ip_address=None, ip_version=None, name_regex=None, output_file=None, project_name=None, status=None, tags=None, total_count=None):
         if customer_gateway_names and not isinstance(customer_gateway_names, list):
             raise TypeError("Expected argument 'customer_gateway_names' to be a list")
         pulumi.set(__self__, "customer_gateway_names", customer_gateway_names)
@@ -40,6 +41,9 @@ class CustomerGatewaysResult:
         if ip_address and not isinstance(ip_address, str):
             raise TypeError("Expected argument 'ip_address' to be a str")
         pulumi.set(__self__, "ip_address", ip_address)
+        if ip_version and not isinstance(ip_version, str):
+            raise TypeError("Expected argument 'ip_version' to be a str")
+        pulumi.set(__self__, "ip_version", ip_version)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
@@ -49,6 +53,12 @@ class CustomerGatewaysResult:
         if project_name and not isinstance(project_name, str):
             raise TypeError("Expected argument 'project_name' to be a str")
         pulumi.set(__self__, "project_name", project_name)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -88,6 +98,14 @@ class CustomerGatewaysResult:
         return pulumi.get(self, "ip_address")
 
     @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> Optional[str]:
+        """
+        The IP version of the customer gateway.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> Optional[str]:
         return pulumi.get(self, "name_regex")
@@ -100,7 +118,26 @@ class CustomerGatewaysResult:
     @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[str]:
+        """
+        The project name of the VPN customer gateway.
+        """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the customer gateway.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.CustomerGatewaysTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -122,18 +159,24 @@ class AwaitableCustomerGatewaysResult(CustomerGatewaysResult):
             id=self.id,
             ids=self.ids,
             ip_address=self.ip_address,
+            ip_version=self.ip_version,
             name_regex=self.name_regex,
             output_file=self.output_file,
             project_name=self.project_name,
+            status=self.status,
+            tags=self.tags,
             total_count=self.total_count)
 
 
 def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
                       ids: Optional[Sequence[str]] = None,
                       ip_address: Optional[str] = None,
+                      ip_version: Optional[str] = None,
                       name_regex: Optional[str] = None,
                       output_file: Optional[str] = None,
                       project_name: Optional[str] = None,
+                      status: Optional[str] = None,
+                      tags: Optional[Sequence[pulumi.InputType['CustomerGatewaysTagArgs']]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableCustomerGatewaysResult:
     """
     Use this data source to query detailed information of customer gateways
@@ -155,18 +198,24 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
     :param Sequence[str] customer_gateway_names: A list of customer gateway names.
     :param Sequence[str] ids: A list of customer gateway ids.
     :param str ip_address: A IP address of the customer gateway.
+    :param str ip_version: The IP version of the customer gateway. Valid value: ipv4, ipv6.
     :param str name_regex: A Name Regex of customer gateway.
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the VPN customer gateway.
+    :param str status: The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+    :param Sequence[pulumi.InputType['CustomerGatewaysTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""customer_gateways is deprecated: volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways""")
     __args__ = dict()
     __args__['customerGatewayNames'] = customer_gateway_names
     __args__['ids'] = ids
     __args__['ipAddress'] = ip_address
+    __args__['ipVersion'] = ip_version
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['projectName'] = project_name
+    __args__['status'] = status
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpn/customerGateways:CustomerGateways', __args__, opts=opts, typ=CustomerGatewaysResult).value
 
@@ -176,9 +225,12 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
+        ip_version=pulumi.get(__ret__, 'ip_version'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         project_name=pulumi.get(__ret__, 'project_name'),
+        status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -186,9 +238,12 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
 def customer_gateways_output(customer_gateway_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                              ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                              ip_address: Optional[pulumi.Input[Optional[str]]] = None,
+                             ip_version: Optional[pulumi.Input[Optional[str]]] = None,
                              name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                              output_file: Optional[pulumi.Input[Optional[str]]] = None,
                              project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                             status: Optional[pulumi.Input[Optional[str]]] = None,
+                             tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['CustomerGatewaysTagArgs']]]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[CustomerGatewaysResult]:
     """
     Use this data source to query detailed information of customer gateways
@@ -210,9 +265,12 @@ def customer_gateways_output(customer_gateway_names: Optional[pulumi.Input[Optio
     :param Sequence[str] customer_gateway_names: A list of customer gateway names.
     :param Sequence[str] ids: A list of customer gateway ids.
     :param str ip_address: A IP address of the customer gateway.
+    :param str ip_version: The IP version of the customer gateway. Valid value: ipv4, ipv6.
     :param str name_regex: A Name Regex of customer gateway.
     :param str output_file: File name where to save data source results.
     :param str project_name: The project name of the VPN customer gateway.
+    :param str status: The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+    :param Sequence[pulumi.InputType['CustomerGatewaysTagArgs']] tags: Tags.
     """
     pulumi.log.warn("""customer_gateways is deprecated: volcengine.vpn.CustomerGateways has been deprecated in favor of volcengine.vpn.getCustomerGateways""")
     ...

@@ -28,26 +28,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Example: Create a TLS trace instance
-//			foo, err := tls.NewTraceInstance(ctx, "foo", &tls.TraceInstanceArgs{
-//				ProjectId:         pulumi.String("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
-//				TraceInstanceName: pulumi.String("tf-trace-instance-df"),
-//				Description:       pulumi.String("This is an example trace instance"),
+//			_, err := tls.NewTraceInstance(ctx, "foo", &tls.TraceInstanceArgs{
 //				BackendConfig: &tls.TraceInstanceBackendConfigArgs{
-//					Ttl:                pulumi.Int(60),
-//					EnableHotTtl:       pulumi.Bool(true),
-//					HotTtl:             pulumi.Int(30),
-//					ColdTtl:            pulumi.Int(30),
 //					ArchiveTtl:         pulumi.Int(0),
 //					AutoSplit:          pulumi.Bool(true),
+//					ColdTtl:            pulumi.Int(30),
+//					EnableHotTtl:       pulumi.Bool(true),
+//					HotTtl:             pulumi.Int(60),
 //					MaxSplitPartitions: pulumi.Int(10),
+//					Ttl:                pulumi.Int(90),
 //				},
+//				Description:       pulumi.String("This is an instance-modify"),
+//				ProjectId:         pulumi.String("bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac"),
+//				TraceInstanceName: pulumi.String("tf-trace-instance-nn"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("tlsTraceInstanceId", foo.ID())
-//			ctx.Export("tlsTraceInstanceName", foo.TraceInstanceName)
-//			ctx.Export("tlsTraceInstanceDescription", foo.Description)
 //			return nil
 //		})
 //	}

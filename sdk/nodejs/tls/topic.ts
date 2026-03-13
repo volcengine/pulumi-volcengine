@@ -18,12 +18,17 @@ import * as utilities from "../utilities";
  *     archiveTtl: 0,
  *     autoSplit: true,
  *     coldTtl: 30,
- *     description: "test",
+ *     description: "test-modify",
  *     enableHotTtl: true,
  *     enableTracking: true,
  *     encryptConf: {
  *         enable: true,
  *         encryptType: "default",
+ *         userCmkInfo: {
+ *             regionId: "cn-guilin-boe",
+ *             trn: "trn:iam::2100xxxxx:role/ServiceRoleForTLS",
+ *             userCmkId: "m_cn-guilin-boe_441a350d-b21c-4760-bd8e-01ec2bc5e58a",
+ *         },
  *     },
  *     hotTtl: 30,
  *     logPublicIp: true,
@@ -36,7 +41,7 @@ import * as utilities from "../utilities";
  *     }],
  *     timeFormat: "%Y-%m-%dT%H:%M:%S,%f",
  *     timeKey: "request_time",
- *     topicName: "tf-topic-5",
+ *     topicName: "tf-topic-with-encrypt",
  *     ttl: 60,
  * });
  * ```

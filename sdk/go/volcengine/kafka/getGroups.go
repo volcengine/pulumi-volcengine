@@ -116,6 +116,8 @@ type GetGroupsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []GetGroupsTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getGroups.
@@ -129,6 +131,8 @@ type GetGroupsResult struct {
 	InstanceId string  `pulumi:"instanceId"`
 	NameRegex  *string `pulumi:"nameRegex"`
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []GetGroupsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -156,6 +160,8 @@ type GetGroupsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags GetGroupsTagArrayInput `pulumi:"tags"`
 }
 
 func (GetGroupsOutputArgs) ElementType() reflect.Type {
@@ -202,6 +208,11 @@ func (o GetGroupsResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o GetGroupsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetGroupsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetGroupsResultOutput) Tags() GetGroupsTagArrayOutput {
+	return o.ApplyT(func(v GetGroupsResult) []GetGroupsTag { return v.Tags }).(GetGroupsTagArrayOutput)
 }
 
 // The total count of query.

@@ -7598,6 +7598,17 @@ export namespace autoscaling {
         value: string;
     }
 
+    export interface GetScalingGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetScalingInstancesScalingInstance {
         /**
          * The time when the instance was added to the scaling group.
@@ -8189,6 +8200,17 @@ export namespace autoscaling {
     }
 
     export interface ScalingGroupsScalingGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ScalingGroupsTag {
         /**
          * The Key of Tags.
          */
@@ -14787,6 +14809,10 @@ export namespace cloud_monitor {
          */
         subNamespace: string;
         /**
+         * The tags of the cloud monitor rule.
+         */
+        tags: outputs.cloud_monitor.GetRulesRuleTag[];
+        /**
          * The updated time of the cloud monitor rule.
          */
         updatedAt: string;
@@ -14829,11 +14855,33 @@ export namespace cloud_monitor {
 
     export interface GetRulesRuleOriginalDimension {
         /**
-         * The key of the dimension.
+         * The Key of Tags.
          */
         key: string;
         /**
-         * The value of the dimension.
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetRulesRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
          */
         values: string[];
     }
@@ -14881,6 +14929,17 @@ export namespace cloud_monitor {
          * Whether to enable the recovery notify function.
          */
         enable?: boolean;
+    }
+
+    export interface RuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface RulesRule {
@@ -14965,6 +15024,10 @@ export namespace cloud_monitor {
          */
         subNamespace: string;
         /**
+         * The tags of the cloud monitor rule.
+         */
+        tags: outputs.cloud_monitor.RulesRuleTag[];
+        /**
          * The updated time of the cloud monitor rule.
          */
         updatedAt: string;
@@ -15007,11 +15070,33 @@ export namespace cloud_monitor {
 
     export interface RulesRuleOriginalDimension {
         /**
-         * The key of the dimension.
+         * The Key of Tags.
          */
         key: string;
         /**
-         * The value of the dimension.
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface RulesRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
          */
         values: string[];
     }
@@ -19036,6 +19121,14 @@ export namespace ecs {
          */
         name: string;
         /**
+         * The project name of the hpc cluster.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.GetHpcClustersHpcClusterTag[];
+        /**
          * The updated time of the hpc cluster.
          */
         updatedAt: string;
@@ -19047,6 +19140,28 @@ export namespace ecs {
          * The zone id of the hpc cluster.
          */
         zoneId: string;
+    }
+
+    export interface GetHpcClustersHpcClusterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetHpcClustersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetImageSharePermissionsAccount {
@@ -19758,9 +19873,39 @@ export namespace ecs {
          */
         keyPairName: string;
         /**
+         * The project name of the key pair.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.GetKeyPairsKeyPairTag[];
+        /**
          * The update time of key pair.
          */
         updatedAt: string;
+    }
+
+    export interface GetKeyPairsKeyPairTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetKeyPairsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetLaunchTemplatesLaunchTemplate {
@@ -19829,9 +19974,21 @@ export namespace ecs {
          */
         launchTemplateName: string;
         /**
+         * The project name of the launch template.
+         */
+        launchTemplateProjectName: string;
+        /**
+         * The tags of the launch template.
+         */
+        launchTemplateTags: outputs.ecs.GetLaunchTemplatesLaunchTemplateLaunchTemplateTag[];
+        /**
          * The list of network interfaces.
          */
         networkInterfaces: outputs.ecs.GetLaunchTemplatesLaunchTemplateNetworkInterface[];
+        /**
+         * The project name of the instance.
+         */
+        projectName: string;
         /**
          * Whether to open the security reinforcement.
          */
@@ -19840,6 +19997,10 @@ export namespace ecs {
          * The index of the ordered suffix.
          */
         suffixIndex: number;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.GetLaunchTemplatesLaunchTemplateTag[];
         /**
          * Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
          */
@@ -19866,6 +20027,17 @@ export namespace ecs {
         zoneId: string;
     }
 
+    export interface GetLaunchTemplatesLaunchTemplateLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetLaunchTemplatesLaunchTemplateNetworkInterface {
         /**
          * The security group ID associated with the NIC.
@@ -19875,6 +20047,17 @@ export namespace ecs {
          * The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
          */
         subnetId: string;
+    }
+
+    export interface GetLaunchTemplatesLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetLaunchTemplatesLaunchTemplateVolume {
@@ -19914,6 +20097,17 @@ export namespace ecs {
         zoneId: string;
     }
 
+    export interface HpcClusterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface HpcClustersHpcCluster {
         /**
          * The created time of the hpc cluster.
@@ -19936,6 +20130,14 @@ export namespace ecs {
          */
         name: string;
         /**
+         * The project name of the hpc cluster.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.HpcClustersHpcClusterTag[];
+        /**
          * The updated time of the hpc cluster.
          */
         updatedAt: string;
@@ -19947,6 +20149,28 @@ export namespace ecs {
          * The zone id of the hpc cluster.
          */
         zoneId: string;
+    }
+
+    export interface HpcClustersHpcClusterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface HpcClustersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ImageImportTag {
@@ -20766,6 +20990,17 @@ export namespace ecs {
         value: string;
     }
 
+    export interface KeyPairTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface KeyPairsKeyPair {
         /**
          * The creation time of key pair.
@@ -20792,9 +21027,50 @@ export namespace ecs {
          */
         keyPairName: string;
         /**
+         * The project name of the key pair.
+         */
+        projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.KeyPairsKeyPairTag[];
+        /**
          * The update time of key pair.
          */
         updatedAt: string;
+    }
+
+    export interface KeyPairsKeyPairTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface KeyPairsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface LaunchTemplateLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface LaunchTemplateNetworkInterface {
@@ -20806,6 +21082,17 @@ export namespace ecs {
          * The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
          */
         subnetId?: string;
+    }
+
+    export interface LaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface LaunchTemplateVolume {
@@ -20889,9 +21176,21 @@ export namespace ecs {
          */
         launchTemplateName: string;
         /**
+         * The project name of the launch template.
+         */
+        launchTemplateProjectName: string;
+        /**
+         * The tags of the launch template.
+         */
+        launchTemplateTags: outputs.ecs.LaunchTemplatesLaunchTemplateLaunchTemplateTag[];
+        /**
          * The list of network interfaces.
          */
         networkInterfaces: outputs.ecs.LaunchTemplatesLaunchTemplateNetworkInterface[];
+        /**
+         * The project name of the instance.
+         */
+        projectName: string;
         /**
          * Whether to open the security reinforcement.
          */
@@ -20900,6 +21199,10 @@ export namespace ecs {
          * The index of the ordered suffix.
          */
         suffixIndex: number;
+        /**
+         * Tags.
+         */
+        tags: outputs.ecs.LaunchTemplatesLaunchTemplateTag[];
         /**
          * Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
          */
@@ -20926,6 +21229,17 @@ export namespace ecs {
         zoneId: string;
     }
 
+    export interface LaunchTemplatesLaunchTemplateLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface LaunchTemplatesLaunchTemplateNetworkInterface {
         /**
          * The security group ID associated with the NIC.
@@ -20935,6 +21249,17 @@ export namespace ecs {
          * The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
          */
         subnetId: string;
+    }
+
+    export interface LaunchTemplatesLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface LaunchTemplatesLaunchTemplateVolume {
@@ -26495,13 +26820,47 @@ export namespace kafka {
 
     export interface GetGroupsGroup {
         /**
+         * The description of kafka group.
+         */
+        description: string;
+        /**
          * The id of kafka group, support fuzzy matching.
          */
         groupId: string;
         /**
+         * The protocol type of kafka group.
+         */
+        protocolType: string;
+        /**
          * The state of kafka group.
          */
         state: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.kafka.GetGroupsGroupTag[];
+    }
+
+    export interface GetGroupsGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetInstancesInstance {
@@ -26772,6 +27131,17 @@ export namespace kafka {
         underInsyncReplicas: number[];
     }
 
+    export interface GetTopicsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetTopicsTopic {
         /**
          * The access policies info of the kafka topic.
@@ -26782,6 +27152,10 @@ export namespace kafka {
          */
         allAuthority: boolean;
         /**
+         * The cleanup policy of the kafka topic.
+         */
+        cleanupPolicies: string[];
+        /**
          * The create time of the kafka topic.
          */
         createTime: string;
@@ -26789,6 +27163,10 @@ export namespace kafka {
          * The description of the kafka topic.
          */
         description: string;
+        /**
+         * The retention hours of log.
+         */
+        logRetentionHours: number;
         /**
          * The parameters of the kafka topic.
          */
@@ -26806,9 +27184,21 @@ export namespace kafka {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.kafka.GetTopicsTopicTag[];
+        /**
          * The name of kafka topic. This field supports fuzzy query.
          */
         topicName: string;
+        /**
+         * The used storage percentage in instance.
+         */
+        usedStoragePercentageInInstance: number;
+        /**
+         * The total storage space size already used by the current Topic.
+         */
+        usedStorageSpaceInBytes: number;
     }
 
     export interface GetTopicsTopicAccessPolicy {
@@ -26837,6 +27227,17 @@ export namespace kafka {
         minInsyncReplicaNumber: number;
     }
 
+    export interface GetTopicsTopicTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetZonesZone {
         /**
          * The description of the zone.
@@ -26860,15 +27261,60 @@ export namespace kafka {
         zoneName: string;
     }
 
+    export interface GroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GroupsGroup {
+        /**
+         * The description of kafka group.
+         */
+        description: string;
         /**
          * The id of kafka group, support fuzzy matching.
          */
         groupId: string;
         /**
+         * The protocol type of kafka group.
+         */
+        protocolType: string;
+        /**
          * The state of kafka group.
          */
         state: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.kafka.GroupsGroupTag[];
+    }
+
+    export interface GroupsGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface InstanceParameter {
@@ -27187,6 +27633,28 @@ export namespace kafka {
         underInsyncReplicas: number[];
     }
 
+    export interface TopicTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TopicsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface TopicsTopic {
         /**
          * The access policies info of the kafka topic.
@@ -27197,6 +27665,10 @@ export namespace kafka {
          */
         allAuthority: boolean;
         /**
+         * The cleanup policy of the kafka topic.
+         */
+        cleanupPolicies: string[];
+        /**
          * The create time of the kafka topic.
          */
         createTime: string;
@@ -27204,6 +27676,10 @@ export namespace kafka {
          * The description of the kafka topic.
          */
         description: string;
+        /**
+         * The retention hours of log.
+         */
+        logRetentionHours: number;
         /**
          * The parameters of the kafka topic.
          */
@@ -27221,9 +27697,21 @@ export namespace kafka {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.kafka.TopicsTopicTag[];
+        /**
          * The name of kafka topic. This field supports fuzzy query.
          */
         topicName: string;
+        /**
+         * The used storage percentage in instance.
+         */
+        usedStoragePercentageInInstance: number;
+        /**
+         * The total storage space size already used by the current Topic.
+         */
+        usedStorageSpaceInBytes: number;
     }
 
     export interface TopicsTopicAccessPolicy {
@@ -27250,6 +27738,17 @@ export namespace kafka {
          * The min number of sync replica.
          */
         minInsyncReplicaNumber: number;
+    }
+
+    export interface TopicsTopicTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ZonesZone {
@@ -31283,6 +31782,2350 @@ export namespace nat {
 
 }
 
+export namespace nlb {
+    export interface BackendServerBackendServer {
+        /**
+         * The description of the backend server.
+         */
+        description?: string;
+        /**
+         * The instance id of the backend server.
+         */
+        instanceId: string;
+        /**
+         * The ip of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The server id of the backend server.
+         */
+        serverId: string;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         */
+        type: string;
+        /**
+         * The weight of the backend server.
+         */
+        weight?: number;
+        /**
+         * The zone id of the backend server.
+         */
+        zoneId?: string;
+    }
+
+    export interface GetListenerHealthsListenerHealth {
+        /**
+         * The number of healthy backend servers.
+         */
+        healthyCount: number;
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The list of backend servers.
+         */
+        results: outputs.nlb.GetListenerHealthsListenerHealthResult[];
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The status of the server group. Valid values: `Active`, `NoTarget`, `Error`, `Disabled`.
+         * `NoTarget`: The server group does not have any backend servers added, or the server group has closed cross-zone forwarding and there are no backend servers in the zone where the access traffic originates.
+         * `Error`: There are unhealthy backend servers in the server group.
+         * `Active`: All backend servers in the server group are healthy.
+         * `Disabled`: The server group has closed health checks, or the NLB instance associated with the server group is in a stopped state.
+         */
+        status: string;
+        /**
+         * The number of unhealthy backend servers.
+         */
+        unhealthyCount: number;
+    }
+
+    export interface GetListenerHealthsListenerHealthResult {
+        /**
+         * The ID or IP address of the backend server.
+         */
+        instanceId: string;
+        /**
+         * The IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The ID of the backend server.
+         */
+        serverId: string;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         * `ecs`: ECS instance (primary network interface).
+         * `eni`: Secondary network interface.
+         * `ip`: IP address.
+         */
+        serverType: string;
+        /**
+         * The health status of the backend server. Valid values: `Up`, `Down`, `Unused`.
+         * `Up`: Normal.
+         * `Down`: Abnormal.
+         * `Unused`: Unused. The NLB instance has closed cross-zone forwarding, and there is no access traffic from the zone of the backend server.
+         */
+        status: string;
+        /**
+         * The zone ID that the backend server receives access traffic from.
+         */
+        zoneId: string;
+    }
+
+    export interface GetListenersListener {
+        /**
+         * The connection timeout of the listener.
+         */
+        connectionTimeout: number;
+        /**
+         * The creation time of the listener.
+         */
+        createTime: string;
+        /**
+         * The description of the listener.
+         */
+        description: string;
+        /**
+         * Whether to enable the listener. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: boolean;
+        /**
+         * The end port of the full port listening.
+         */
+        endPort: number;
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the listener.
+         */
+        listenerName: string;
+        /**
+         * The ID of the NLB instance.
+         */
+        loadBalancerId: string;
+        /**
+         * The port used by the listener. 0 indicates that full port listening is enabled.
+         */
+        port: number;
+        /**
+         * The protocol of the listener. Valid values: `TCP`, `UDP`, `TLS`.
+         */
+        protocol: string;
+        /**
+         * The ID of the server group associated with the listener.
+         */
+        serverGroupId: string;
+        /**
+         * The start port of the full port listening.
+         */
+        startPort: number;
+        /**
+         * The status of the listener. Valid values: `Creating`, `Active`, `Deleting`, `Disabled`.
+         * `Creating`: The listener is being created.
+         * `Active`: The listener is running.
+         * `Deleting`: The listener is being deleted.
+         * `Disabled`: The listener is disabled.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nlb.GetListenersListenerTag[];
+        /**
+         * The update time of the listener.
+         */
+        updateTime: string;
+    }
+
+    export interface GetListenersListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkLoadBalancerAttributesNetworkLoadBalancerAttribute {
+        /**
+         * The access log config of the NLB.
+         */
+        accessLogConfigs: outputs.nlb.GetNetworkLoadBalancerAttributesNetworkLoadBalancerAttributeAccessLogConfig[];
+        /**
+         * The account id of the NLB.
+         */
+        accountId: string;
+        /**
+         * The billing status of the NLB.
+         */
+        billingStatus: string;
+        /**
+         * The create time of the NLB.
+         */
+        createTime: string;
+        /**
+         * The cross zone enabled of the NLB.
+         */
+        crossZoneEnabled: boolean;
+        /**
+         * The description of the NLB.
+         */
+        description: string;
+        /**
+         * The dns name of the NLB.
+         */
+        dnsName: string;
+        /**
+         * The expected overdue time of the NLB.
+         */
+        expectedOverdueTime: string;
+        /**
+         * The ip address version of the NLB.
+         */
+        ipAddressVersion: string;
+        /**
+         * The ipv4 bandwidth package id of the NLB.
+         */
+        ipv4BandwidthPackageId: string;
+        /**
+         * The ipv4 network type of the NLB.
+         */
+        ipv4NetworkType: string;
+        /**
+         * The ipv6 bandwidth package id of the NLB.
+         */
+        ipv6BandwidthPackageId: string;
+        /**
+         * The ipv6 network type of the NLB.
+         */
+        ipv6NetworkType: string;
+        /**
+         * The id of the NLB.
+         */
+        loadBalancerId: string;
+        /**
+         * The name of the NLB.
+         */
+        loadBalancerName: string;
+        /**
+         * The managed security group id of the NLB.
+         */
+        managedSecurityGroupId: string;
+        /**
+         * The modification protection reason of the NLB.
+         */
+        modificationProtectionReason: string;
+        /**
+         * The modification protection status of the NLB.
+         */
+        modificationProtectionStatus: string;
+        /**
+         * The network type of the NLB.
+         */
+        networkType: string;
+        /**
+         * The overdue time of the NLB.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the NLB.
+         */
+        projectName: string;
+        /**
+         * The reclaimed time of the NLB.
+         */
+        reclaimedTime: string;
+        /**
+         * The region of the NLB.
+         */
+        region: string;
+        /**
+         * The security group ids of the NLB.
+         */
+        securityGroupIds: string[];
+        /**
+         * The status of the NLB.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags?: outputs.nlb.GetNetworkLoadBalancerAttributesNetworkLoadBalancerAttributeTag[];
+        /**
+         * The update time of the NLB.
+         */
+        updateTime: string;
+        /**
+         * The vpc id of the NLB.
+         */
+        vpcId: string;
+        /**
+         * The zone mappings of the NLB.
+         */
+        zoneMappings: outputs.nlb.GetNetworkLoadBalancerAttributesNetworkLoadBalancerAttributeZoneMapping[];
+    }
+
+    export interface GetNetworkLoadBalancerAttributesNetworkLoadBalancerAttributeAccessLogConfig {
+        /**
+         * The enabled of the access log config.
+         */
+        enabled: boolean;
+        /**
+         * The project name of the access log config.
+         */
+        projectName: string;
+        /**
+         * The topic id of the access log config.
+         */
+        topicId: string;
+        /**
+         * The topic name of the access log config.
+         */
+        topicName: string;
+    }
+
+    export interface GetNetworkLoadBalancerAttributesNetworkLoadBalancerAttributeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkLoadBalancerAttributesNetworkLoadBalancerAttributeZoneMapping {
+        /**
+         * The eni id of the NLB.
+         */
+        eniId: string;
+        /**
+         * The ipv4 address of the NLB.
+         */
+        ipv4Address: string;
+        /**
+         * The ipv4 eip address of the NLB.
+         */
+        ipv4EipAddress: string;
+        /**
+         * The ipv4 eip id of the NLB.
+         */
+        ipv4EipId: string;
+        /**
+         * The ipv4 hc status of the NLB.
+         */
+        ipv4HcStatus: string;
+        /**
+         * The ipv4 local addresses of the NLB.
+         */
+        ipv4LocalAddresses: string[];
+        /**
+         * The ipv6 address of the NLB.
+         */
+        ipv6Address: string;
+        /**
+         * The ipv6 eip id of the NLB.
+         */
+        ipv6EipId: string;
+        /**
+         * The ipv6 hc status of the NLB.
+         */
+        ipv6HcStatus: string;
+        /**
+         * The ipv6 local addresses of the NLB.
+         */
+        ipv6LocalAddresses: string[];
+        /**
+         * The subnet id of the NLB.
+         */
+        subnetId: string;
+        /**
+         * The zone id of the NLB.
+         */
+        zoneId: string;
+    }
+
+    export interface GetNetworkLoadBalancersNetworkLoadBalancer {
+        /**
+         * The access log configuration of the NLB instance.
+         */
+        accessLogConfigs: outputs.nlb.GetNetworkLoadBalancersNetworkLoadBalancerAccessLogConfig[];
+        /**
+         * The account ID of the NLB instance.
+         */
+        accountId: string;
+        /**
+         * The billing status of the NLB instance. Valid values: `Normal`, `FinancialLocked`.
+         */
+        billingStatus: string;
+        /**
+         * The creation time of the NLB instance.
+         */
+        createTime: string;
+        /**
+         * Whether to enable cross-zone load balancing for the NLB instance.
+         */
+        crossZoneEnabled: boolean;
+        /**
+         * The description of the NLB instance.
+         */
+        description: string;
+        /**
+         * The DNS name of the NLB instance.
+         */
+        dnsName: string;
+        /**
+         * The expected overdue time of the NLB instance.
+         */
+        expectedOverdueTime: string;
+        /**
+         * The IP address version of the NLB instance. Valid values: `ipv4`, `dualstack`.
+         * `ipv4`: The NLB instance supports IPv4.
+         * `dualstack`: The NLB instance supports both IPv4 and IPv6.
+         */
+        ipAddressVersion: string;
+        /**
+         * The ID of the IPv4 bandwidth package.
+         */
+        ipv4BandwidthPackageId: string;
+        /**
+         * The IPv4 network type of the NLB instance. Valid values: `internet`, `intranet`.
+         */
+        ipv4NetworkType: string;
+        /**
+         * The ID of the IPv6 bandwidth package.
+         */
+        ipv6BandwidthPackageId: string;
+        /**
+         * The IPv6 network type of the NLB instance. Valid values: `internet`, `intranet`.
+         */
+        ipv6NetworkType: string;
+        /**
+         * The ID of the NLB instance.
+         */
+        loadBalancerId: string;
+        /**
+         * The name of the NLB instance.
+         */
+        loadBalancerName: string;
+        /**
+         * The managed security group ID of the NLB instance.
+         */
+        managedSecurityGroupId: string;
+        /**
+         * The reason for modification protection.
+         */
+        modificationProtectionReason: string;
+        /**
+         * The modification protection status of the NLB instance. Valid values: `NonProtection`, `ConsoleProtection`.
+         * `NonProtection`: No protection.
+         * `ConsoleProtection`: Console protection.
+         */
+        modificationProtectionStatus: string;
+        /**
+         * The network type of the NLB instance. Valid values: `internet`, `intranet`.
+         * `internet`: The NLB instance is an internet-facing instance.
+         * `intranet`: The NLB instance is an internal-facing instance.
+         */
+        networkType: string;
+        /**
+         * The overdue time of the NLB instance.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the NLB instance.
+         */
+        projectName: string;
+        /**
+         * The reclaimed time of the NLB instance.
+         */
+        reclaimedTime: string;
+        /**
+         * The region of the NLB instance.
+         */
+        region: string;
+        /**
+         * The security group IDs of the NLB instance.
+         */
+        securityGroupIds: string[];
+        /**
+         * The status of the NLB instance. Valid values: `Inactive`, `Active`, `Creating`, `Provisioning`, `Configuring`, `Deleting`, `CreateFailed`.
+         * `Inactive`: The NLB instance is stopped.
+         * `Active`: The NLB instance is running.
+         * `Creating`: The NLB instance is being created.
+         * `Provisioning`: The NLB instance is being created. This status is only available when creating an NLB instance by calling the API.
+         * `Configuring`: The NLB instance is being configured.
+         * `Deleting`: The NLB instance is being deleted.
+         * `CreateFailed`: The NLB instance failed to create.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags?: outputs.nlb.GetNetworkLoadBalancersNetworkLoadBalancerTag[];
+        /**
+         * The update time of the NLB instance.
+         */
+        updateTime: string;
+        /**
+         * The ID of the VPC where the NLB instance is deployed.
+         */
+        vpcId: string;
+        /**
+         * The zone mappings of the NLB instance.
+         */
+        zoneMappings: outputs.nlb.GetNetworkLoadBalancersNetworkLoadBalancerZoneMapping[];
+    }
+
+    export interface GetNetworkLoadBalancersNetworkLoadBalancerAccessLogConfig {
+        /**
+         * Whether to enable access logging.
+         */
+        enabled: boolean;
+        /**
+         * The project name where the access log topic resides.
+         */
+        projectName: string;
+        /**
+         * The topic ID of the access log.
+         */
+        topicId: string;
+        /**
+         * The topic name of the access log.
+         */
+        topicName: string;
+    }
+
+    export interface GetNetworkLoadBalancersNetworkLoadBalancerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkLoadBalancersNetworkLoadBalancerZoneMapping {
+        /**
+         * The ID of the ENI.
+         */
+        eniId: string;
+        /**
+         * The IPv4 address of the NLB instance.
+         */
+        ipv4Address: string;
+        /**
+         * The public IPv4 address.
+         */
+        ipv4EipAddress: string;
+        /**
+         * The ID of the EIP.
+         */
+        ipv4EipId: string;
+        /**
+         * The IPv4 health check status. Valid values: `Healthy`, `Unhealthy`.
+         */
+        ipv4HcStatus: string;
+        /**
+         * The IPv6 address of the NLB instance.
+         */
+        ipv6Address: string;
+        /**
+         * The ID of the IPv6 EIP.
+         */
+        ipv6EipId: string;
+        /**
+         * The IPv6 health check status. Valid values: `Healthy`, `Unhealthy`.
+         */
+        ipv6HcStatus: string;
+        /**
+         * The ID of the subnet.
+         */
+        subnetId: string;
+        /**
+         * The ID of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface GetNetworkLoadBalancersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupAttributesServerGroupAttribute {
+        /**
+         * The account ID of the server group.
+         */
+        accountId: string;
+        /**
+         * Whether to enable full port forwarding. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        anyPortEnabled: boolean;
+        /**
+         * Whether to enable the function of passing through the backend security group. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        bypassSecurityGroupEnabled: boolean;
+        /**
+         * Whether to enable connection graceful interruption. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        connectionDrainEnabled: boolean;
+        /**
+         * The timeout period of connection graceful interruption.
+         */
+        connectionDrainTimeout: number;
+        /**
+         * The creation time of the server group.
+         */
+        createTime: string;
+        /**
+         * The description of the server group.
+         */
+        description: string;
+        /**
+         * The health check config of the server group.
+         */
+        healthChecks: outputs.nlb.GetServerGroupAttributesServerGroupAttributeHealthCheck[];
+        /**
+         * The IP address version of the server group. Valid values: `ipv4`.
+         */
+        ipAddressVersion: string;
+        /**
+         * Whether to enable source address retention. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        preserveClientIpEnabled: boolean;
+        /**
+         * The project name of the server group.
+         */
+        projectName: string;
+        /**
+         * The protocol of the server group. Valid values: `TCP`, `UDP`.
+         */
+        protocol: string;
+        /**
+         * Whether to enable Proxy-Protocol. Valid values: `off`, `standard`.
+         * `off`: Disable.
+         * `standard`: Enable. NLB will forward the client source IP address to the server via Proxy-Protocol, and Proxy-Protocol needs to be configured on the server.
+         */
+        proxyProtocolType: string;
+        /**
+         * The ID of the NLB instance associated with the server group.
+         */
+        relatedLoadBalancerIds: string[];
+        /**
+         * The scheduler of the server group. Valid values: `wrr`, `wlc`, `sh`.
+         */
+        scheduler: string;
+        /**
+         * The number of backend servers in the server group.
+         */
+        serverCount: number;
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the server group.
+         */
+        serverGroupName: string;
+        /**
+         * The collection of backend servers.
+         */
+        servers: outputs.nlb.GetServerGroupAttributesServerGroupAttributeServer[];
+        /**
+         * Whether to enable session persistence. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        sessionPersistenceEnabled: boolean;
+        /**
+         * The timeout period of session persistence.
+         */
+        sessionPersistenceTimeout: number;
+        /**
+         * The status of the server group.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nlb.GetServerGroupAttributesServerGroupAttributeTag[];
+        /**
+         * Whether to enable the function of removing the TCP/HTTP/HTTPS packet timestamp. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        timestampRemoveEnabled: boolean;
+        /**
+         * The type of the server group. Valid values: `instance`, `ip`.
+         * `instance`: Server type. Supports adding ECS instances and secondary ENIs bound to ECS instances.
+         * `ip`: IP address type. Supports adding any network-reachable servers in VPC or IDC.
+         */
+        type: string;
+        /**
+         * The update time of the server group.
+         */
+        updateTime: string;
+        /**
+         * The ID of the VPC to which the server group belongs.
+         */
+        vpcId: string;
+    }
+
+    export interface GetServerGroupAttributesServerGroupAttributeHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain: string;
+        /**
+         * Whether to enable health check. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: boolean;
+        /**
+         * The healthy threshold of health check.
+         */
+        healthyThreshold: number;
+        /**
+         * The normal HTTP status code for health check.
+         */
+        httpCode: string;
+        /**
+         * The interval of health check.
+         */
+        interval: number;
+        /**
+         * The method of health check. Valid values: `GET`, `HEAD`.
+         */
+        method: string;
+        /**
+         * The port of health check. 0 indicates the port of the backend server.
+         */
+        port: number;
+        /**
+         * The timeout period of health check response.
+         */
+        timeout: number;
+        /**
+         * The type of health check. Valid values: `TCP`, `HTTP`, `UDP`.
+         * `TCP`: Send SYN handshake packets to detect the port status of the backend server.
+         * `HTTP`: Send HEAD or GET requests to simulate browsing access behavior to detect whether the backend application is normal.
+         * `UDP`: Send ICMP or UDP detection packets to detect whether the backend server is normal.
+         */
+        type: string;
+        /**
+         * The expected response string for UDP health check.
+         */
+        udpExpect: string;
+        /**
+         * The request string for UDP health check.
+         */
+        udpRequest: string;
+        /**
+         * The unhealthy threshold of health check.
+         */
+        unhealthyThreshold: number;
+        /**
+         * The uri of health check.
+         */
+        uri: string;
+    }
+
+    export interface GetServerGroupAttributesServerGroupAttributeServer {
+        /**
+         * The description of the backend server.
+         */
+        description: string;
+        /**
+         * The private IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The ID of the backend server.
+         */
+        serverId: string;
+        /**
+         * The status of the backend server.
+         */
+        status: string;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         * `ecs`: ECS instance (primary network interface).
+         * `eni`: Secondary network interface.
+         * `ip`: IP address.
+         */
+        type: string;
+        /**
+         * The weight of the backend server. Value range: 0 ~ 100. 0 means no request will be forwarded to this server.
+         */
+        weight: number;
+    }
+
+    export interface GetServerGroupAttributesServerGroupAttributeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupsServerGroup {
+        /**
+         * The account ID of the server group.
+         */
+        accountId: string;
+        /**
+         * Whether to enable full port forwarding. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        anyPortEnabled: boolean;
+        /**
+         * Whether to enable the function of passing through the backend security group. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        bypassSecurityGroupEnabled: boolean;
+        /**
+         * Whether to enable connection graceful interruption. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        connectionDrainEnabled: boolean;
+        /**
+         * The timeout period of connection graceful interruption.
+         */
+        connectionDrainTimeout: number;
+        /**
+         * The creation time of the server group.
+         */
+        createTime: string;
+        /**
+         * The description of the server group.
+         */
+        description: string;
+        /**
+         * The health check config of the server group.
+         */
+        healthChecks: outputs.nlb.GetServerGroupsServerGroupHealthCheck[];
+        /**
+         * The IP address version of the server group. Valid values: `ipv4`, `ipv6`.
+         */
+        ipAddressVersion: string;
+        /**
+         * Whether to enable source address retention. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        preserveClientIpEnabled: boolean;
+        /**
+         * The project name of the server group.
+         */
+        projectName: string;
+        /**
+         * The protocol of the server group. Valid values: `TCP`, `UDP`, `TCP_SSL`.
+         */
+        protocol: string;
+        /**
+         * Whether to enable Proxy-Protocol. Valid values: `off`, `standard`.
+         * `off`: Disable.
+         * `standard`: Enable. NLB will forward the client source IP address to the server via Proxy-Protocol, and Proxy-Protocol needs to be configured on the server.
+         */
+        proxyProtocolType: string;
+        /**
+         * The ID of the NLB instance associated with the server group.
+         */
+        relatedLoadBalancerIds: string[];
+        /**
+         * The scheduling algorithm. Valid values: `wrr`, `wlc`, `sh`.
+         */
+        scheduler: string;
+        /**
+         * The number of backend servers in the server group.
+         */
+        serverCount: number;
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the server group.
+         */
+        serverGroupName: string;
+        /**
+         * Whether to enable session persistence. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        sessionPersistenceEnabled: boolean;
+        /**
+         * The timeout period of session persistence.
+         */
+        sessionPersistenceTimeout: number;
+        /**
+         * The status of the server group.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nlb.GetServerGroupsServerGroupTag[];
+        /**
+         * Whether to enable the function of removing the TCP/HTTP/HTTPS packet timestamp. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        timestampRemoveEnabled: boolean;
+        /**
+         * The type of the server group. Valid values: `instance`, `ip`.
+         * `instance`: Server type. Supports adding ECS instances and secondary ENIs bound to ECS instances.
+         * `ip`: IP address type. Supports adding any network-reachable servers in VPC or IDC.
+         */
+        type: string;
+        /**
+         * The update time of the server group.
+         */
+        updateTime: string;
+        /**
+         * The ID of the VPC to which the server group belongs.
+         */
+        vpcId: string;
+    }
+
+    export interface GetServerGroupsServerGroupHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain: string;
+        /**
+         * Whether to enable health check. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: boolean;
+        /**
+         * The healthy threshold of health check.
+         */
+        healthyThreshold: number;
+        /**
+         * The normal HTTP status code for health check.
+         */
+        httpCode: string;
+        /**
+         * The interval of health check.
+         */
+        interval: number;
+        /**
+         * The method of health check. Valid values: `GET`, `HEAD`.
+         */
+        method: string;
+        /**
+         * The port of health check. 0 indicates the port of the backend server.
+         */
+        port: number;
+        /**
+         * The timeout period of health check response.
+         */
+        timeout: number;
+        /**
+         * The type of health check. Valid values: `TCP`, `HTTP`, `UDP`.
+         * `TCP`: Send SYN handshake packets to detect the port status of the backend server.
+         * `HTTP`: Send HEAD or GET requests to simulate browsing access behavior to detect whether the backend application is normal.
+         * `UDP`: Send ICMP or UDP detection packets to detect whether the backend server is normal.
+         */
+        type: string;
+        /**
+         * The udp connect timeout of the health check.
+         */
+        udpConnectTimeout: number;
+        /**
+         * The expected response string for UDP health check.
+         */
+        udpExpect: string;
+        /**
+         * The request string for UDP health check.
+         */
+        udpRequest: string;
+        /**
+         * The unhealthy threshold of health check.
+         */
+        unhealthyThreshold: number;
+        /**
+         * The uri of health check.
+         */
+        uri: string;
+    }
+
+    export interface GetServerGroupsServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTagsTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The id of the resource.
+         */
+        resourceId: string;
+        /**
+         * The type of the resource.
+         */
+        resourceType: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface GetTagsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface GetZonesZone {
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface ListenerHealthsListenerHealth {
+        /**
+         * The number of healthy backend servers.
+         */
+        healthyCount: number;
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The list of backend servers.
+         */
+        results: outputs.nlb.ListenerHealthsListenerHealthResult[];
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The status of the server group. Valid values: `Active`, `NoTarget`, `Error`, `Disabled`.
+         * `NoTarget`: The server group does not have any backend servers added, or the server group has closed cross-zone forwarding and there are no backend servers in the zone where the access traffic originates.
+         * `Error`: There are unhealthy backend servers in the server group.
+         * `Active`: All backend servers in the server group are healthy.
+         * `Disabled`: The server group has closed health checks, or the NLB instance associated with the server group is in a stopped state.
+         */
+        status: string;
+        /**
+         * The number of unhealthy backend servers.
+         */
+        unhealthyCount: number;
+    }
+
+    export interface ListenerHealthsListenerHealthResult {
+        /**
+         * The ID or IP address of the backend server.
+         */
+        instanceId: string;
+        /**
+         * The IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The ID of the backend server.
+         */
+        serverId: string;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         * `ecs`: ECS instance (primary network interface).
+         * `eni`: Secondary network interface.
+         * `ip`: IP address.
+         */
+        serverType: string;
+        /**
+         * The health status of the backend server. Valid values: `Up`, `Down`, `Unused`.
+         * `Up`: Normal.
+         * `Down`: Abnormal.
+         * `Unused`: Unused. The NLB instance has closed cross-zone forwarding, and there is no access traffic from the zone of the backend server.
+         */
+        status: string;
+        /**
+         * The zone ID that the backend server receives access traffic from.
+         */
+        zoneId: string;
+    }
+
+    export interface ListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenersListener {
+        /**
+         * The connection timeout of the listener.
+         */
+        connectionTimeout: number;
+        /**
+         * The creation time of the listener.
+         */
+        createTime: string;
+        /**
+         * The description of the listener.
+         */
+        description: string;
+        /**
+         * Whether to enable the listener. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: boolean;
+        /**
+         * The end port of the full port listening.
+         */
+        endPort: number;
+        /**
+         * The ID of the listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the listener.
+         */
+        listenerName: string;
+        /**
+         * The ID of the NLB instance.
+         */
+        loadBalancerId: string;
+        /**
+         * The port used by the listener. 0 indicates that full port listening is enabled.
+         */
+        port: number;
+        /**
+         * The protocol of the listener. Valid values: `TCP`, `UDP`, `TLS`.
+         */
+        protocol: string;
+        /**
+         * The ID of the server group associated with the listener.
+         */
+        serverGroupId: string;
+        /**
+         * The start port of the full port listening.
+         */
+        startPort: number;
+        /**
+         * The status of the listener. Valid values: `Creating`, `Active`, `Deleting`, `Disabled`.
+         * `Creating`: The listener is being created.
+         * `Active`: The listener is running.
+         * `Deleting`: The listener is being deleted.
+         * `Disabled`: The listener is disabled.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nlb.ListenersListenerTag[];
+        /**
+         * The update time of the listener.
+         */
+        updateTime: string;
+    }
+
+    export interface ListenersListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NetworkLoadBalancerAccessLogConfig {
+        /**
+         * Whether to enable access logging. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: boolean;
+        /**
+         * The project name where the access log topic resides.
+         */
+        projectName?: string;
+        /**
+         * The topic ID of the access log.
+         */
+        topicId?: string;
+        /**
+         * The topic name of the access log.
+         */
+        topicName?: string;
+    }
+
+    export interface NetworkLoadBalancerAttributesNetworkLoadBalancerAttribute {
+        /**
+         * The access log config of the NLB.
+         */
+        accessLogConfigs: outputs.nlb.NetworkLoadBalancerAttributesNetworkLoadBalancerAttributeAccessLogConfig[];
+        /**
+         * The account id of the NLB.
+         */
+        accountId: string;
+        /**
+         * The billing status of the NLB.
+         */
+        billingStatus: string;
+        /**
+         * The create time of the NLB.
+         */
+        createTime: string;
+        /**
+         * The cross zone enabled of the NLB.
+         */
+        crossZoneEnabled: boolean;
+        /**
+         * The description of the NLB.
+         */
+        description: string;
+        /**
+         * The dns name of the NLB.
+         */
+        dnsName: string;
+        /**
+         * The expected overdue time of the NLB.
+         */
+        expectedOverdueTime: string;
+        /**
+         * The ip address version of the NLB.
+         */
+        ipAddressVersion: string;
+        /**
+         * The ipv4 bandwidth package id of the NLB.
+         */
+        ipv4BandwidthPackageId: string;
+        /**
+         * The ipv4 network type of the NLB.
+         */
+        ipv4NetworkType: string;
+        /**
+         * The ipv6 bandwidth package id of the NLB.
+         */
+        ipv6BandwidthPackageId: string;
+        /**
+         * The ipv6 network type of the NLB.
+         */
+        ipv6NetworkType: string;
+        /**
+         * The id of the NLB.
+         */
+        loadBalancerId: string;
+        /**
+         * The name of the NLB.
+         */
+        loadBalancerName: string;
+        /**
+         * The managed security group id of the NLB.
+         */
+        managedSecurityGroupId: string;
+        /**
+         * The modification protection reason of the NLB.
+         */
+        modificationProtectionReason: string;
+        /**
+         * The modification protection status of the NLB.
+         */
+        modificationProtectionStatus: string;
+        /**
+         * The network type of the NLB.
+         */
+        networkType: string;
+        /**
+         * The overdue time of the NLB.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the NLB.
+         */
+        projectName: string;
+        /**
+         * The reclaimed time of the NLB.
+         */
+        reclaimedTime: string;
+        /**
+         * The region of the NLB.
+         */
+        region: string;
+        /**
+         * The security group ids of the NLB.
+         */
+        securityGroupIds: string[];
+        /**
+         * The status of the NLB.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags?: outputs.nlb.NetworkLoadBalancerAttributesNetworkLoadBalancerAttributeTag[];
+        /**
+         * The update time of the NLB.
+         */
+        updateTime: string;
+        /**
+         * The vpc id of the NLB.
+         */
+        vpcId: string;
+        /**
+         * The zone mappings of the NLB.
+         */
+        zoneMappings: outputs.nlb.NetworkLoadBalancerAttributesNetworkLoadBalancerAttributeZoneMapping[];
+    }
+
+    export interface NetworkLoadBalancerAttributesNetworkLoadBalancerAttributeAccessLogConfig {
+        /**
+         * The enabled of the access log config.
+         */
+        enabled: boolean;
+        /**
+         * The project name of the access log config.
+         */
+        projectName: string;
+        /**
+         * The topic id of the access log config.
+         */
+        topicId: string;
+        /**
+         * The topic name of the access log config.
+         */
+        topicName: string;
+    }
+
+    export interface NetworkLoadBalancerAttributesNetworkLoadBalancerAttributeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NetworkLoadBalancerAttributesNetworkLoadBalancerAttributeZoneMapping {
+        /**
+         * The eni id of the NLB.
+         */
+        eniId: string;
+        /**
+         * The ipv4 address of the NLB.
+         */
+        ipv4Address: string;
+        /**
+         * The ipv4 eip address of the NLB.
+         */
+        ipv4EipAddress: string;
+        /**
+         * The ipv4 eip id of the NLB.
+         */
+        ipv4EipId: string;
+        /**
+         * The ipv4 hc status of the NLB.
+         */
+        ipv4HcStatus: string;
+        /**
+         * The ipv4 local addresses of the NLB.
+         */
+        ipv4LocalAddresses: string[];
+        /**
+         * The ipv6 address of the NLB.
+         */
+        ipv6Address: string;
+        /**
+         * The ipv6 eip id of the NLB.
+         */
+        ipv6EipId: string;
+        /**
+         * The ipv6 hc status of the NLB.
+         */
+        ipv6HcStatus: string;
+        /**
+         * The ipv6 local addresses of the NLB.
+         */
+        ipv6LocalAddresses: string[];
+        /**
+         * The subnet id of the NLB.
+         */
+        subnetId: string;
+        /**
+         * The zone id of the NLB.
+         */
+        zoneId: string;
+    }
+
+    export interface NetworkLoadBalancerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NetworkLoadBalancerZoneMapping {
+        /**
+         * The ID of the EIP.
+         */
+        eipId: string;
+        /**
+         * The ID of the ENI.
+         */
+        eniId: string;
+        /**
+         * The IPv4 address of the NLB instance.
+         */
+        ipv4Address: string;
+        /**
+         * The public IPv4 address.
+         */
+        ipv4EipAddress: string;
+        /**
+         * The ID of the EIP.
+         */
+        ipv4EipId: string;
+        /**
+         * The IPv4 health check status.
+         */
+        ipv4HcStatus: string;
+        /**
+         * The IPv6 address of the NLB instance.
+         */
+        ipv6Address: string;
+        /**
+         * The ID of the IPv6 EIP.
+         */
+        ipv6EipId: string;
+        /**
+         * The IPv6 health check status.
+         */
+        ipv6HcStatus: string;
+        /**
+         * The ID of the subnet.
+         */
+        subnetId: string;
+        /**
+         * The ID of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface NetworkLoadBalancersNetworkLoadBalancer {
+        /**
+         * The access log configuration of the NLB instance.
+         */
+        accessLogConfigs: outputs.nlb.NetworkLoadBalancersNetworkLoadBalancerAccessLogConfig[];
+        /**
+         * The account ID of the NLB instance.
+         */
+        accountId: string;
+        /**
+         * The billing status of the NLB instance. Valid values: `Normal`, `FinancialLocked`.
+         */
+        billingStatus: string;
+        /**
+         * The creation time of the NLB instance.
+         */
+        createTime: string;
+        /**
+         * Whether to enable cross-zone load balancing for the NLB instance.
+         */
+        crossZoneEnabled: boolean;
+        /**
+         * The description of the NLB instance.
+         */
+        description: string;
+        /**
+         * The DNS name of the NLB instance.
+         */
+        dnsName: string;
+        /**
+         * The expected overdue time of the NLB instance.
+         */
+        expectedOverdueTime: string;
+        /**
+         * The IP address version of the NLB instance. Valid values: `ipv4`, `dualstack`.
+         * `ipv4`: The NLB instance supports IPv4.
+         * `dualstack`: The NLB instance supports both IPv4 and IPv6.
+         */
+        ipAddressVersion: string;
+        /**
+         * The ID of the IPv4 bandwidth package.
+         */
+        ipv4BandwidthPackageId: string;
+        /**
+         * The IPv4 network type of the NLB instance. Valid values: `internet`, `intranet`.
+         */
+        ipv4NetworkType: string;
+        /**
+         * The ID of the IPv6 bandwidth package.
+         */
+        ipv6BandwidthPackageId: string;
+        /**
+         * The IPv6 network type of the NLB instance. Valid values: `internet`, `intranet`.
+         */
+        ipv6NetworkType: string;
+        /**
+         * The ID of the NLB instance.
+         */
+        loadBalancerId: string;
+        /**
+         * The name of the NLB instance.
+         */
+        loadBalancerName: string;
+        /**
+         * The managed security group ID of the NLB instance.
+         */
+        managedSecurityGroupId: string;
+        /**
+         * The reason for modification protection.
+         */
+        modificationProtectionReason: string;
+        /**
+         * The modification protection status of the NLB instance. Valid values: `NonProtection`, `ConsoleProtection`.
+         * `NonProtection`: No protection.
+         * `ConsoleProtection`: Console protection.
+         */
+        modificationProtectionStatus: string;
+        /**
+         * The network type of the NLB instance. Valid values: `internet`, `intranet`.
+         * `internet`: The NLB instance is an internet-facing instance.
+         * `intranet`: The NLB instance is an internal-facing instance.
+         */
+        networkType: string;
+        /**
+         * The overdue time of the NLB instance.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the NLB instance.
+         */
+        projectName: string;
+        /**
+         * The reclaimed time of the NLB instance.
+         */
+        reclaimedTime: string;
+        /**
+         * The region of the NLB instance.
+         */
+        region: string;
+        /**
+         * The security group IDs of the NLB instance.
+         */
+        securityGroupIds: string[];
+        /**
+         * The status of the NLB instance. Valid values: `Inactive`, `Active`, `Creating`, `Provisioning`, `Configuring`, `Deleting`, `CreateFailed`.
+         * `Inactive`: The NLB instance is stopped.
+         * `Active`: The NLB instance is running.
+         * `Creating`: The NLB instance is being created.
+         * `Provisioning`: The NLB instance is being created. This status is only available when creating an NLB instance by calling the API.
+         * `Configuring`: The NLB instance is being configured.
+         * `Deleting`: The NLB instance is being deleted.
+         * `CreateFailed`: The NLB instance failed to create.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags?: outputs.nlb.NetworkLoadBalancersNetworkLoadBalancerTag[];
+        /**
+         * The update time of the NLB instance.
+         */
+        updateTime: string;
+        /**
+         * The ID of the VPC where the NLB instance is deployed.
+         */
+        vpcId: string;
+        /**
+         * The zone mappings of the NLB instance.
+         */
+        zoneMappings: outputs.nlb.NetworkLoadBalancersNetworkLoadBalancerZoneMapping[];
+    }
+
+    export interface NetworkLoadBalancersNetworkLoadBalancerAccessLogConfig {
+        /**
+         * Whether to enable access logging.
+         */
+        enabled: boolean;
+        /**
+         * The project name where the access log topic resides.
+         */
+        projectName: string;
+        /**
+         * The topic ID of the access log.
+         */
+        topicId: string;
+        /**
+         * The topic name of the access log.
+         */
+        topicName: string;
+    }
+
+    export interface NetworkLoadBalancersNetworkLoadBalancerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NetworkLoadBalancersNetworkLoadBalancerZoneMapping {
+        /**
+         * The ID of the ENI.
+         */
+        eniId: string;
+        /**
+         * The IPv4 address of the NLB instance.
+         */
+        ipv4Address: string;
+        /**
+         * The public IPv4 address.
+         */
+        ipv4EipAddress: string;
+        /**
+         * The ID of the EIP.
+         */
+        ipv4EipId: string;
+        /**
+         * The IPv4 health check status. Valid values: `Healthy`, `Unhealthy`.
+         */
+        ipv4HcStatus: string;
+        /**
+         * The IPv6 address of the NLB instance.
+         */
+        ipv6Address: string;
+        /**
+         * The ID of the IPv6 EIP.
+         */
+        ipv6EipId: string;
+        /**
+         * The IPv6 health check status. Valid values: `Healthy`, `Unhealthy`.
+         */
+        ipv6HcStatus: string;
+        /**
+         * The ID of the subnet.
+         */
+        subnetId: string;
+        /**
+         * The ID of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface NetworkLoadBalancersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupAttributesServerGroupAttribute {
+        /**
+         * The account ID of the server group.
+         */
+        accountId: string;
+        /**
+         * Whether to enable full port forwarding. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        anyPortEnabled: boolean;
+        /**
+         * Whether to enable the function of passing through the backend security group. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        bypassSecurityGroupEnabled: boolean;
+        /**
+         * Whether to enable connection graceful interruption. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        connectionDrainEnabled: boolean;
+        /**
+         * The timeout period of connection graceful interruption.
+         */
+        connectionDrainTimeout: number;
+        /**
+         * The creation time of the server group.
+         */
+        createTime: string;
+        /**
+         * The description of the server group.
+         */
+        description: string;
+        /**
+         * The health check config of the server group.
+         */
+        healthChecks: outputs.nlb.ServerGroupAttributesServerGroupAttributeHealthCheck[];
+        /**
+         * The IP address version of the server group. Valid values: `ipv4`.
+         */
+        ipAddressVersion: string;
+        /**
+         * Whether to enable source address retention. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        preserveClientIpEnabled: boolean;
+        /**
+         * The project name of the server group.
+         */
+        projectName: string;
+        /**
+         * The protocol of the server group. Valid values: `TCP`, `UDP`.
+         */
+        protocol: string;
+        /**
+         * Whether to enable Proxy-Protocol. Valid values: `off`, `standard`.
+         * `off`: Disable.
+         * `standard`: Enable. NLB will forward the client source IP address to the server via Proxy-Protocol, and Proxy-Protocol needs to be configured on the server.
+         */
+        proxyProtocolType: string;
+        /**
+         * The ID of the NLB instance associated with the server group.
+         */
+        relatedLoadBalancerIds: string[];
+        /**
+         * The scheduler of the server group. Valid values: `wrr`, `wlc`, `sh`.
+         */
+        scheduler: string;
+        /**
+         * The number of backend servers in the server group.
+         */
+        serverCount: number;
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the server group.
+         */
+        serverGroupName: string;
+        /**
+         * The collection of backend servers.
+         */
+        servers: outputs.nlb.ServerGroupAttributesServerGroupAttributeServer[];
+        /**
+         * Whether to enable session persistence. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        sessionPersistenceEnabled: boolean;
+        /**
+         * The timeout period of session persistence.
+         */
+        sessionPersistenceTimeout: number;
+        /**
+         * The status of the server group.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nlb.ServerGroupAttributesServerGroupAttributeTag[];
+        /**
+         * Whether to enable the function of removing the TCP/HTTP/HTTPS packet timestamp. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        timestampRemoveEnabled: boolean;
+        /**
+         * The type of the server group. Valid values: `instance`, `ip`.
+         * `instance`: Server type. Supports adding ECS instances and secondary ENIs bound to ECS instances.
+         * `ip`: IP address type. Supports adding any network-reachable servers in VPC or IDC.
+         */
+        type: string;
+        /**
+         * The update time of the server group.
+         */
+        updateTime: string;
+        /**
+         * The ID of the VPC to which the server group belongs.
+         */
+        vpcId: string;
+    }
+
+    export interface ServerGroupAttributesServerGroupAttributeHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain: string;
+        /**
+         * Whether to enable health check. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: boolean;
+        /**
+         * The healthy threshold of health check.
+         */
+        healthyThreshold: number;
+        /**
+         * The normal HTTP status code for health check.
+         */
+        httpCode: string;
+        /**
+         * The interval of health check.
+         */
+        interval: number;
+        /**
+         * The method of health check. Valid values: `GET`, `HEAD`.
+         */
+        method: string;
+        /**
+         * The port of health check. 0 indicates the port of the backend server.
+         */
+        port: number;
+        /**
+         * The timeout period of health check response.
+         */
+        timeout: number;
+        /**
+         * The type of health check. Valid values: `TCP`, `HTTP`, `UDP`.
+         * `TCP`: Send SYN handshake packets to detect the port status of the backend server.
+         * `HTTP`: Send HEAD or GET requests to simulate browsing access behavior to detect whether the backend application is normal.
+         * `UDP`: Send ICMP or UDP detection packets to detect whether the backend server is normal.
+         */
+        type: string;
+        /**
+         * The expected response string for UDP health check.
+         */
+        udpExpect: string;
+        /**
+         * The request string for UDP health check.
+         */
+        udpRequest: string;
+        /**
+         * The unhealthy threshold of health check.
+         */
+        unhealthyThreshold: number;
+        /**
+         * The uri of health check.
+         */
+        uri: string;
+    }
+
+    export interface ServerGroupAttributesServerGroupAttributeServer {
+        /**
+         * The description of the backend server.
+         */
+        description: string;
+        /**
+         * The private IP address of the backend server.
+         */
+        ip: string;
+        /**
+         * The port of the backend server.
+         */
+        port: number;
+        /**
+         * The ID of the backend server.
+         */
+        serverId: string;
+        /**
+         * The status of the backend server.
+         */
+        status: string;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         * `ecs`: ECS instance (primary network interface).
+         * `eni`: Secondary network interface.
+         * `ip`: IP address.
+         */
+        type: string;
+        /**
+         * The weight of the backend server. Value range: 0 ~ 100. 0 means no request will be forwarded to this server.
+         */
+        weight: number;
+    }
+
+    export interface ServerGroupAttributesServerGroupAttributeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupHealthCheck {
+        /**
+         * The domain of health check. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        domain?: string;
+        /**
+         * Whether to enable health check. Valid values: `true` (default), `false`.
+         */
+        enabled?: boolean;
+        /**
+         * The healthy threshold of health check. Value range: 2 ~ 10. Default is 3.
+         */
+        healthyThreshold?: number;
+        /**
+         * The http code of health check. Valid values: `http2xx`, `http3xx`, `http4xx`, `http5xx`. Default is `http_2xx,http_3xx`. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        httpCode: string;
+        /**
+         * The interval of health check. Unit: second. Value range: 1 ~ 300. Default is 2.
+         */
+        interval?: number;
+        /**
+         * The method of health check. Valid values: `GET` (default), `HEAD`. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        method: string;
+        /**
+         * The port of health check. Value range: 1 ~ 65535. Default is 0, which means using the port of the backend server.
+         */
+        port?: number;
+        /**
+         * The response timeout of health check. Unit: second. Value range: 1 ~ 60. Default is 2.
+         */
+        timeout?: number;
+        /**
+         * The type of the health check. Valid values: `TCP` (default), `HTTP`, `UDP`.
+         */
+        type?: string;
+        /**
+         * The udp connect timeout of health check. Unit: second. Value range: 1 ~ 60. Default is 3. Only available when `HealthCheck.Type` is `UDP`.
+         */
+        udpConnectTimeout: number;
+        /**
+         * The udp expect of health check. Only available when `HealthCheck.Type` is `UDP`.
+         */
+        udpExpect?: string;
+        /**
+         * The udp request of health check. Only available when `HealthCheck.Type` is `UDP`.
+         */
+        udpRequest?: string;
+        /**
+         * The unhealthy threshold of health check. Value range: 2 ~ 10. Default is 3.
+         */
+        unhealthyThreshold?: number;
+        /**
+         * The uri of health check. Must start with `/`. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        uri: string;
+    }
+
+    export interface ServerGroupServer {
+        /**
+         * The description of the backend server.
+         */
+        description?: string;
+        /**
+         * The instance ID of the backend server.
+         */
+        instanceId?: string;
+        /**
+         * The IP address of the backend server.
+         */
+        ip?: string;
+        /**
+         * The port of the backend server.
+         */
+        port?: number;
+        /**
+         * The ID of the backend server.
+         */
+        serverId: string;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         */
+        type?: string;
+        /**
+         * The weight of the backend server. Value range: 0 ~ 100. Default is 100.
+         */
+        weight?: number;
+        /**
+         * The zone ID of the backend server.
+         */
+        zoneId?: string;
+    }
+
+    export interface ServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupsServerGroup {
+        /**
+         * The account ID of the server group.
+         */
+        accountId: string;
+        /**
+         * Whether to enable full port forwarding. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        anyPortEnabled: boolean;
+        /**
+         * Whether to enable the function of passing through the backend security group. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        bypassSecurityGroupEnabled: boolean;
+        /**
+         * Whether to enable connection graceful interruption. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        connectionDrainEnabled: boolean;
+        /**
+         * The timeout period of connection graceful interruption.
+         */
+        connectionDrainTimeout: number;
+        /**
+         * The creation time of the server group.
+         */
+        createTime: string;
+        /**
+         * The description of the server group.
+         */
+        description: string;
+        /**
+         * The health check config of the server group.
+         */
+        healthChecks: outputs.nlb.ServerGroupsServerGroupHealthCheck[];
+        /**
+         * The IP address version of the server group. Valid values: `ipv4`, `ipv6`.
+         */
+        ipAddressVersion: string;
+        /**
+         * Whether to enable source address retention. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        preserveClientIpEnabled: boolean;
+        /**
+         * The project name of the server group.
+         */
+        projectName: string;
+        /**
+         * The protocol of the server group. Valid values: `TCP`, `UDP`, `TCP_SSL`.
+         */
+        protocol: string;
+        /**
+         * Whether to enable Proxy-Protocol. Valid values: `off`, `standard`.
+         * `off`: Disable.
+         * `standard`: Enable. NLB will forward the client source IP address to the server via Proxy-Protocol, and Proxy-Protocol needs to be configured on the server.
+         */
+        proxyProtocolType: string;
+        /**
+         * The ID of the NLB instance associated with the server group.
+         */
+        relatedLoadBalancerIds: string[];
+        /**
+         * The scheduling algorithm. Valid values: `wrr`, `wlc`, `sh`.
+         */
+        scheduler: string;
+        /**
+         * The number of backend servers in the server group.
+         */
+        serverCount: number;
+        /**
+         * The ID of the server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the server group.
+         */
+        serverGroupName: string;
+        /**
+         * Whether to enable session persistence. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        sessionPersistenceEnabled: boolean;
+        /**
+         * The timeout period of session persistence.
+         */
+        sessionPersistenceTimeout: number;
+        /**
+         * The status of the server group.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nlb.ServerGroupsServerGroupTag[];
+        /**
+         * Whether to enable the function of removing the TCP/HTTP/HTTPS packet timestamp. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        timestampRemoveEnabled: boolean;
+        /**
+         * The type of the server group. Valid values: `instance`, `ip`.
+         * `instance`: Server type. Supports adding ECS instances and secondary ENIs bound to ECS instances.
+         * `ip`: IP address type. Supports adding any network-reachable servers in VPC or IDC.
+         */
+        type: string;
+        /**
+         * The update time of the server group.
+         */
+        updateTime: string;
+        /**
+         * The ID of the VPC to which the server group belongs.
+         */
+        vpcId: string;
+    }
+
+    export interface ServerGroupsServerGroupHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain: string;
+        /**
+         * Whether to enable health check. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: boolean;
+        /**
+         * The healthy threshold of health check.
+         */
+        healthyThreshold: number;
+        /**
+         * The normal HTTP status code for health check.
+         */
+        httpCode: string;
+        /**
+         * The interval of health check.
+         */
+        interval: number;
+        /**
+         * The method of health check. Valid values: `GET`, `HEAD`.
+         */
+        method: string;
+        /**
+         * The port of health check. 0 indicates the port of the backend server.
+         */
+        port: number;
+        /**
+         * The timeout period of health check response.
+         */
+        timeout: number;
+        /**
+         * The type of health check. Valid values: `TCP`, `HTTP`, `UDP`.
+         * `TCP`: Send SYN handshake packets to detect the port status of the backend server.
+         * `HTTP`: Send HEAD or GET requests to simulate browsing access behavior to detect whether the backend application is normal.
+         * `UDP`: Send ICMP or UDP detection packets to detect whether the backend server is normal.
+         */
+        type: string;
+        /**
+         * The udp connect timeout of the health check.
+         */
+        udpConnectTimeout: number;
+        /**
+         * The expected response string for UDP health check.
+         */
+        udpExpect: string;
+        /**
+         * The request string for UDP health check.
+         */
+        udpRequest: string;
+        /**
+         * The unhealthy threshold of health check.
+         */
+        unhealthyThreshold: number;
+        /**
+         * The uri of health check.
+         */
+        uri: string;
+    }
+
+    export interface ServerGroupsServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TagTag {
+        key: string;
+        value: string;
+    }
+
+    export interface TagsTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The id of the resource.
+         */
+        resourceId: string;
+        /**
+         * The type of the resource.
+         */
+        resourceType: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface TagsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface ZonesZone {
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
+}
+
 export namespace organization {
     export interface AccountTag {
         /**
@@ -32699,6 +35542,10 @@ export namespace privatelink {
          */
         id: string;
         /**
+         * The project name of vpc endpoint service.
+         */
+        projectName: string;
+        /**
          * The resources info.
          */
         resources: outputs.privatelink.GetVpcEndpointServicesServiceResource[];
@@ -32727,6 +35574,10 @@ export namespace privatelink {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.privatelink.GetVpcEndpointServicesServiceTag[];
+        /**
          * The update time of service.
          */
         updateTime: string;
@@ -32749,6 +35600,28 @@ export namespace privatelink {
          * The zone id of resource.
          */
         zoneId: string;
+    }
+
+    export interface GetVpcEndpointServicesServiceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcEndpointServicesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetVpcEndpointZonesVpcEndpointZone {
@@ -32784,6 +35657,17 @@ export namespace privatelink {
          * The status of vpc endpoint zone.
          */
         zoneStatus: string;
+    }
+
+    export interface GetVpcEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetVpcEndpointsVpcEndpoint {
@@ -32836,6 +35720,10 @@ export namespace privatelink {
          */
         privateDnsName: string;
         /**
+         * The project name of vpc endpoint.
+         */
+        projectName: string;
+        /**
          * The Id of vpc endpoint service.
          */
         serviceId: string;
@@ -32848,6 +35736,10 @@ export namespace privatelink {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.privatelink.GetVpcEndpointsVpcEndpointTag[];
+        /**
          * The update time of vpc endpoint.
          */
         updateTime: string;
@@ -32855,6 +35747,94 @@ export namespace privatelink {
          * The vpc id of vpc endpoint.
          */
         vpcId: string;
+    }
+
+    export interface GetVpcEndpointsVpcEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcGatewayEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcGatewayEndpointsVpcGatewayEndpoint {
+        /**
+         * The create time of the gateway endpoint.
+         */
+        creationTime: string;
+        /**
+         * The description of the gateway endpoint.
+         */
+        description: string;
+        /**
+         * The id of the gateway endpoint.
+         */
+        endpointId: string;
+        /**
+         * The name of the gateway endpoint.
+         */
+        endpointName: string;
+        /**
+         * The id of the gateway endpoint.
+         */
+        id: string;
+        /**
+         * The project name of the gateway endpoint.
+         */
+        projectName: string;
+        /**
+         * The id of the gateway endpoint service.
+         */
+        serviceId: string;
+        /**
+         * The name of the gateway endpoint service.
+         */
+        serviceName: string;
+        /**
+         * The status of the gateway endpoint.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.privatelink.GetVpcGatewayEndpointsVpcGatewayEndpointTag[];
+        /**
+         * The update time of the gateway endpoint.
+         */
+        updateTime: string;
+        /**
+         * The id of the vpc.
+         */
+        vpcId: string;
+        /**
+         * The vpc policy of the gateway endpoint.
+         */
+        vpcPolicy: string;
+    }
+
+    export interface GetVpcGatewayEndpointsVpcGatewayEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface VpcEndpointConnectionZone {
@@ -32972,6 +35952,17 @@ export namespace privatelink {
         resourceType: string;
     }
 
+    export interface VpcEndpointServiceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface VpcEndpointServicesService {
         /**
          * Whether auto accept node connect.
@@ -32989,6 +35980,10 @@ export namespace privatelink {
          * The Id of service.
          */
         id: string;
+        /**
+         * The project name of vpc endpoint service.
+         */
+        projectName: string;
         /**
          * The resources info.
          */
@@ -33018,6 +36013,10 @@ export namespace privatelink {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.privatelink.VpcEndpointServicesServiceTag[];
+        /**
          * The update time of service.
          */
         updateTime: string;
@@ -33040,6 +36039,39 @@ export namespace privatelink {
          * The zone id of resource.
          */
         zoneId: string;
+    }
+
+    export interface VpcEndpointServicesServiceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcEndpointServicesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface VpcEndpointZonesVpcEndpointZone {
@@ -33075,6 +36107,17 @@ export namespace privatelink {
          * The status of vpc endpoint zone.
          */
         zoneStatus: string;
+    }
+
+    export interface VpcEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface VpcEndpointsVpcEndpoint {
@@ -33127,6 +36170,10 @@ export namespace privatelink {
          */
         privateDnsName: string;
         /**
+         * The project name of vpc endpoint.
+         */
+        projectName: string;
+        /**
          * The Id of vpc endpoint service.
          */
         serviceId: string;
@@ -33139,6 +36186,10 @@ export namespace privatelink {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.privatelink.VpcEndpointsVpcEndpointTag[];
+        /**
          * The update time of vpc endpoint.
          */
         updateTime: string;
@@ -33146,6 +36197,105 @@ export namespace privatelink {
          * The vpc id of vpc endpoint.
          */
         vpcId: string;
+    }
+
+    export interface VpcEndpointsVpcEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcGatewayEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcGatewayEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcGatewayEndpointsVpcGatewayEndpoint {
+        /**
+         * The create time of the gateway endpoint.
+         */
+        creationTime: string;
+        /**
+         * The description of the gateway endpoint.
+         */
+        description: string;
+        /**
+         * The id of the gateway endpoint.
+         */
+        endpointId: string;
+        /**
+         * The name of the gateway endpoint.
+         */
+        endpointName: string;
+        /**
+         * The id of the gateway endpoint.
+         */
+        id: string;
+        /**
+         * The project name of the gateway endpoint.
+         */
+        projectName: string;
+        /**
+         * The id of the gateway endpoint service.
+         */
+        serviceId: string;
+        /**
+         * The name of the gateway endpoint service.
+         */
+        serviceName: string;
+        /**
+         * The status of the gateway endpoint.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.privatelink.VpcGatewayEndpointsVpcGatewayEndpointTag[];
+        /**
+         * The update time of the gateway endpoint.
+         */
+        updateTime: string;
+        /**
+         * The id of the vpc.
+         */
+        vpcId: string;
+        /**
+         * The vpc policy of the gateway endpoint.
+         */
+        vpcPolicy: string;
+    }
+
+    export interface VpcGatewayEndpointsVpcGatewayEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }
@@ -47327,6 +50477,10 @@ export namespace tls {
          */
         alias: string;
         /**
+         * The region where the log topic is located.
+         */
+        region: string;
+        /**
          * Cross-account authorized character names.
          */
         roleTrn?: string;
@@ -48691,6 +51845,10 @@ export namespace tls {
          * The identifier of host.
          */
         hostIdentifier: string;
+        /**
+         * The ip list of host group.
+         */
+        hostIpLists: string[];
         /**
          * The project name of iam.
          */
@@ -50645,6 +53803,10 @@ export namespace tls {
          * The identifier of host.
          */
         hostIdentifier: string;
+        /**
+         * The ip list of host group.
+         */
+        hostIpLists: string[];
         /**
          * The project name of iam.
          */
@@ -66157,6 +69319,17 @@ export namespace vmp {
         workspaceId: string;
     }
 
+    export interface AlertingRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface AlertingRulesAlertingRule {
         /**
          * The annotations of the vmp alerting rule.
@@ -66203,6 +69376,10 @@ export namespace vmp {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vmp.AlertingRulesAlertingRuleTag[];
+        /**
          * The type of vmp alerting rule. Valid values: `vmp/PromQL`.
          */
         type: string;
@@ -66218,18 +69395,18 @@ export namespace vmp {
          */
         name: string;
         /**
-         * The value of the label.
+         * The Value of Tags.
          */
         value: string;
     }
 
     export interface AlertingRulesAlertingRuleLabel {
         /**
-         * The name of the label.
+         * The Key of Tags.
          */
         key: string;
         /**
-         * The value of the label.
+         * The Value of Tags.
          */
         value: string;
     }
@@ -66262,6 +69439,28 @@ export namespace vmp {
          * The workspace id of vmp alerting rule.
          */
         workspaceId: string;
+    }
+
+    export interface AlertingRulesAlertingRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AlertingRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface AlertsAlert {
@@ -66624,6 +69823,10 @@ export namespace vmp {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vmp.GetAlertingRulesAlertingRuleTag[];
+        /**
          * The type of vmp alerting rule. Valid values: `vmp/PromQL`.
          */
         type: string;
@@ -66639,18 +69842,18 @@ export namespace vmp {
          */
         name: string;
         /**
-         * The value of the label.
+         * The Value of Tags.
          */
         value: string;
     }
 
     export interface GetAlertingRulesAlertingRuleLabel {
         /**
-         * The name of the label.
+         * The Key of Tags.
          */
         key: string;
         /**
-         * The value of the label.
+         * The Value of Tags.
          */
         value: string;
     }
@@ -66683,6 +69886,28 @@ export namespace vmp {
          * The workspace id of vmp alerting rule.
          */
         workspaceId: string;
+    }
+
+    export interface GetAlertingRulesAlertingRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAlertingRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetAlertsAlert {
@@ -68366,6 +71591,17 @@ export namespace vpc {
         updateTime: string;
     }
 
+    export interface GetIpv6AddressBandwidthsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetIpv6AddressesIpv6Address {
         /**
          * The IPv6 address.
@@ -68395,9 +71631,17 @@ export namespace vpc {
          */
         name: string;
         /**
+         * The project name of the Ipv6Gateway.
+         */
+        projectName: string;
+        /**
          * The Status of the Ipv6Gateway.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.GetIpv6GatewaysIpv6GatewayTag[];
         /**
          * Update time of the Ipv6Gateway.
          */
@@ -68406,6 +71650,28 @@ export namespace vpc {
          * The id of the VPC which the Ipv6Gateway belongs to.
          */
         vpcId: string;
+    }
+
+    export interface GetIpv6GatewaysIpv6GatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetIpv6GatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetNetworkAclsNetworkAcl {
@@ -69816,6 +73082,17 @@ export namespace vpc {
         value: string;
     }
 
+    export interface Ipv6AddressBandwidthTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface Ipv6AddressBandwidthsIpv6AddressBandwidth {
         /**
          * The ID of the Ipv6AddressBandwidth.
@@ -69883,11 +73160,33 @@ export namespace vpc {
         updateTime: string;
     }
 
+    export interface Ipv6AddressBandwidthsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface Ipv6AddressesIpv6Address {
         /**
          * The IPv6 address.
          */
         ipv6Address: string;
+    }
+
+    export interface Ipv6GatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface Ipv6GatewaysIpv6Gateway {
@@ -69912,9 +73211,17 @@ export namespace vpc {
          */
         name: string;
         /**
+         * The project name of the Ipv6Gateway.
+         */
+        projectName: string;
+        /**
          * The Status of the Ipv6Gateway.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.Ipv6GatewaysIpv6GatewayTag[];
         /**
          * Update time of the Ipv6Gateway.
          */
@@ -69923,6 +73230,28 @@ export namespace vpc {
          * The id of the VPC which the Ipv6Gateway belongs to.
          */
         vpcId: string;
+    }
+
+    export interface Ipv6GatewaysIpv6GatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface Ipv6GatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface NetworkAclEgressAclEntry {
@@ -71445,6 +74774,28 @@ export namespace vpc {
 }
 
 export namespace vpn {
+    export interface ConnectionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ConnectionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ConnectionsVpnConnection {
         /**
          * The account ID of the VPN connection.
@@ -71575,6 +74926,10 @@ export namespace vpn {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vpn.ConnectionsVpnConnectionTag[];
+        /**
          * An ID of transit router.
          */
         transitRouterId: string;
@@ -71598,6 +74953,28 @@ export namespace vpn {
          * The zone id of transit router, valid when the attach type is 'TransitRouter'.
          */
         zoneId: string;
+    }
+
+    export interface ConnectionsVpnConnectionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CustomerGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface CustomerGatewaysCustomerGateway {
@@ -71634,13 +75011,47 @@ export namespace vpn {
          */
         ipAddress: string;
         /**
-         * The status of the customer gateway.
+         * The IP version of the customer gateway. Valid value: ipv4, ipv6.
+         */
+        ipVersion: string;
+        /**
+         * The project name of the VPN customer gateway.
+         */
+        projectName: string;
+        /**
+         * The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpn.CustomerGatewaysCustomerGatewayTag[];
         /**
          * The update time of customer gateway.
          */
         updateTime: string;
+    }
+
+    export interface CustomerGatewaysCustomerGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CustomerGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GatewayRoutesVpnGatewayRoute {
@@ -71810,6 +75221,17 @@ export namespace vpn {
         value: string;
     }
 
+    export interface GetConnectionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface GetConnectionsVpnConnection {
         /**
          * The account ID of the VPN connection.
@@ -71940,6 +75362,10 @@ export namespace vpn {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vpn.GetConnectionsVpnConnectionTag[];
+        /**
          * An ID of transit router.
          */
         transitRouterId: string;
@@ -71963,6 +75389,17 @@ export namespace vpn {
          * The zone id of transit router, valid when the attach type is 'TransitRouter'.
          */
         zoneId: string;
+    }
+
+    export interface GetConnectionsVpnConnectionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetCustomerGatewaysCustomerGateway {
@@ -71999,13 +75436,47 @@ export namespace vpn {
          */
         ipAddress: string;
         /**
-         * The status of the customer gateway.
+         * The IP version of the customer gateway. Valid value: ipv4, ipv6.
+         */
+        ipVersion: string;
+        /**
+         * The project name of the VPN customer gateway.
+         */
+        projectName: string;
+        /**
+         * The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpn.GetCustomerGatewaysCustomerGatewayTag[];
         /**
          * The update time of customer gateway.
          */
         updateTime: string;
+    }
+
+    export interface GetCustomerGatewaysCustomerGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCustomerGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetGatewayRoutesVpnGatewayRoute {
@@ -72218,9 +75689,35 @@ export namespace vpn {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags?: outputs.vpn.GetSslVpnClientCertsSslVpnClientCertTag[];
+        /**
          * The update time of the ssl vpn client cert.
          */
         updateTime: string;
+    }
+
+    export interface GetSslVpnClientCertsSslVpnClientCertTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSslVpnClientCertsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GetSslVpnServersSslVpnServer {
@@ -72290,6 +75787,10 @@ export namespace vpn {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vpn.GetSslVpnServersSslVpnServerTag[];
+        /**
          * The update time.
          */
         updateTime: string;
@@ -72297,6 +75798,39 @@ export namespace vpn {
          * The id of the vpn gateway.
          */
         vpnGatewayId: string;
+    }
+
+    export interface GetSslVpnServersSslVpnServerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSslVpnServersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SslVpnClientCertTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface SslVpnClientCertsSslVpnClientCert {
@@ -72353,9 +75887,46 @@ export namespace vpn {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags?: outputs.vpn.SslVpnClientCertsSslVpnClientCertTag[];
+        /**
          * The update time of the ssl vpn client cert.
          */
         updateTime: string;
+    }
+
+    export interface SslVpnClientCertsSslVpnClientCertTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SslVpnClientCertsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SslVpnServerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface SslVpnServersSslVpnServer {
@@ -72425,6 +75996,10 @@ export namespace vpn {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vpn.SslVpnServersSslVpnServerTag[];
+        /**
          * The update time.
          */
         updateTime: string;
@@ -72432,6 +76007,28 @@ export namespace vpn {
          * The id of the vpn gateway.
          */
         vpnGatewayId: string;
+    }
+
+    export interface SslVpnServersSslVpnServerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SslVpnServersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }

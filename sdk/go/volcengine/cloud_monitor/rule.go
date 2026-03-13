@@ -85,6 +85,12 @@ import (
 //				RuleName:     pulumi.String("acc-test-rule"),
 //				SilenceTime:  pulumi.Int(5),
 //				SubNamespace: pulumi.String("Storage"),
+//				Tags: cloud_monitor.RuleTagArray{
+//					&cloud_monitor.RuleTagArgs{
+//						Key:   pulumi.String("tfk1"),
+//						Value: pulumi.String("tfv1"),
+//					},
+//				},
 //				WebhookIds: pulumi.StringArray{
 //					pulumi.String("187655704106731****"),
 //					pulumi.String("187655712542447****"),
@@ -149,6 +155,8 @@ type Rule struct {
 	SilenceTime pulumi.IntOutput `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace pulumi.StringOutput `pulumi:"subNamespace"`
+	// Tags.
+	Tags RuleTagArrayOutput `pulumi:"tags"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
@@ -266,6 +274,8 @@ type ruleState struct {
 	SilenceTime *int `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace *string `pulumi:"subNamespace"`
+	// Tags.
+	Tags []RuleTag `pulumi:"tags"`
 	// The updated time of the cloud monitor rule.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
@@ -315,6 +325,8 @@ type RuleState struct {
 	SilenceTime pulumi.IntPtrInput
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace pulumi.StringPtrInput
+	// Tags.
+	Tags RuleTagArrayInput
 	// The updated time of the cloud monitor rule.
 	UpdatedAt pulumi.StringPtrInput
 	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
@@ -364,6 +376,8 @@ type ruleArgs struct {
 	SilenceTime int `pulumi:"silenceTime"`
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace string `pulumi:"subNamespace"`
+	// Tags.
+	Tags []RuleTag `pulumi:"tags"`
 	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 	WebHook *string `pulumi:"webHook"`
 	// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
@@ -408,6 +422,8 @@ type RuleArgs struct {
 	SilenceTime pulumi.IntInput
 	// The sub namespace of the cloud monitor rule.
 	SubNamespace pulumi.StringInput
+	// Tags.
+	Tags RuleTagArrayInput
 	// The web hook of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
 	WebHook pulumi.StringPtrInput
 	// The web hook id list of the cloud monitor rule. When the alert method is `Webhook`, one of `webHook` and `webhookIds` must be specified.
@@ -599,6 +615,11 @@ func (o RuleOutput) SilenceTime() pulumi.IntOutput {
 // The sub namespace of the cloud monitor rule.
 func (o RuleOutput) SubNamespace() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.SubNamespace }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o RuleOutput) Tags() RuleTagArrayOutput {
+	return o.ApplyT(func(v *Rule) RuleTagArrayOutput { return v.Tags }).(RuleTagArrayOutput)
 }
 
 // The updated time of the cloud monitor rule.

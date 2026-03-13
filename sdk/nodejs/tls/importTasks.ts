@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.tls.getImportTasks({});
+ * const foo = volcengine.tls.getImportTasks({
+ *     taskName: "tf-test-task-name-kafka-mod",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.ImportTasks has been deprecated in favor of volcengine.tls.getImportTasks */
@@ -145,7 +147,9 @@ export interface ImportTasksResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = volcengine.tls.getImportTasks({});
+ * const foo = volcengine.tls.getImportTasks({
+ *     taskName: "tf-test-task-name-kafka-mod",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.ImportTasks has been deprecated in favor of volcengine.tls.getImportTasks */

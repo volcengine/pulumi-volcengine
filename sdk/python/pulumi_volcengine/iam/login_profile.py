@@ -473,7 +473,7 @@ class LoginProfile(pulumi.CustomResource):
             safe_auth_exempt_unit=1,
             safe_auth_flag=True,
             safe_auth_type="phone",
-            user_name="jonny")
+            user_name="jonny-tt")
         ```
 
         ## Import
@@ -519,7 +519,7 @@ class LoginProfile(pulumi.CustomResource):
             safe_auth_exempt_unit=1,
             safe_auth_flag=True,
             safe_auth_type="phone",
-            user_name="jonny")
+            user_name="jonny-tt")
         ```
 
         ## Import

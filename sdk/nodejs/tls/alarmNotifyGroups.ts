@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getAlarmNotifyGroups({});
+ * const default = volcengine.tls.getAlarmNotifyGroups({
+ *     alarmNotifyGroupId: "807cc2d8-e92d-447d-b9d7-da70cb8e41bd",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups */
@@ -97,7 +99,9 @@ export interface AlarmNotifyGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getAlarmNotifyGroups({});
+ * const default = volcengine.tls.getAlarmNotifyGroups({
+ *     alarmNotifyGroupId: "807cc2d8-e92d-447d-b9d7-da70cb8e41bd",
+ * });
  * ```
  */
 /** @deprecated volcengine.tls.AlarmNotifyGroups has been deprecated in favor of volcengine.tls.getAlarmNotifyGroups */

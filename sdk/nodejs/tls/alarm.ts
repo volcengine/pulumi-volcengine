@@ -39,8 +39,8 @@ import * as utilities from "../utilities";
  *         time: 20,
  *         type: "Period",
  *     },
- *     sendResolved: true,
- *     status: false,
+ *     sendResolved: false,
+ *     status: true,
  *     triggerConditions: [{
  *         condition: "$1.errNum>0",
  *         countCondition: "__count__ > 0",
@@ -48,7 +48,7 @@ import * as utilities from "../utilities";
  *         severity: "critical",
  *     }],
  *     triggerPeriod: 2,
- *     userDefineMsg: "test for terraform",
+ *     userDefineMsg: "test for terraform-modify",
  * });
  * ```
  *

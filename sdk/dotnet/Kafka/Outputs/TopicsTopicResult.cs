@@ -22,6 +22,10 @@ namespace Pulumi.Volcengine.Kafka.Outputs
         /// </summary>
         public readonly bool AllAuthority;
         /// <summary>
+        /// The cleanup policy of the kafka topic.
+        /// </summary>
+        public readonly ImmutableArray<string> CleanupPolicies;
+        /// <summary>
         /// The create time of the kafka topic.
         /// </summary>
         public readonly string CreateTime;
@@ -29,6 +33,10 @@ namespace Pulumi.Volcengine.Kafka.Outputs
         /// The description of the kafka topic.
         /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// The retention hours of log.
+        /// </summary>
+        public readonly int LogRetentionHours;
         /// <summary>
         /// The parameters of the kafka topic.
         /// </summary>
@@ -46,9 +54,21 @@ namespace Pulumi.Volcengine.Kafka.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.TopicsTopicTagResult> Tags;
+        /// <summary>
         /// The name of kafka topic. This field supports fuzzy query.
         /// </summary>
         public readonly string TopicName;
+        /// <summary>
+        /// The used storage percentage in instance.
+        /// </summary>
+        public readonly int UsedStoragePercentageInInstance;
+        /// <summary>
+        /// The total storage space size already used by the current Topic.
+        /// </summary>
+        public readonly int UsedStorageSpaceInBytes;
 
         [OutputConstructor]
         private TopicsTopicResult(
@@ -56,9 +76,13 @@ namespace Pulumi.Volcengine.Kafka.Outputs
 
             bool allAuthority,
 
+            ImmutableArray<string> cleanupPolicies,
+
             string createTime,
 
             string description,
+
+            int logRetentionHours,
 
             Outputs.TopicsTopicParametersResult parameters,
 
@@ -68,17 +92,28 @@ namespace Pulumi.Volcengine.Kafka.Outputs
 
             string status,
 
-            string topicName)
+            ImmutableArray<Outputs.TopicsTopicTagResult> tags,
+
+            string topicName,
+
+            int usedStoragePercentageInInstance,
+
+            int usedStorageSpaceInBytes)
         {
             AccessPolicies = accessPolicies;
             AllAuthority = allAuthority;
+            CleanupPolicies = cleanupPolicies;
             CreateTime = createTime;
             Description = description;
+            LogRetentionHours = logRetentionHours;
             Parameters = parameters;
             PartitionNumber = partitionNumber;
             ReplicaNumber = replicaNumber;
             Status = status;
+            Tags = tags;
             TopicName = topicName;
+            UsedStoragePercentageInInstance = usedStoragePercentageInInstance;
+            UsedStorageSpaceInBytes = usedStorageSpaceInBytes;
         }
     }
 }

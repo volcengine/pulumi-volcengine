@@ -16,11 +16,14 @@ __all__ = [
     'AlertingRuleLabel',
     'AlertingRuleLevel',
     'AlertingRuleQuery',
+    'AlertingRuleTag',
     'AlertingRulesAlertingRuleResult',
     'AlertingRulesAlertingRuleAnnotationResult',
     'AlertingRulesAlertingRuleLabelResult',
     'AlertingRulesAlertingRuleLevelResult',
     'AlertingRulesAlertingRuleQueryResult',
+    'AlertingRulesAlertingRuleTagResult',
+    'AlertingRulesTagResult',
     'AlertsAlertResult',
     'AlertsAlertAlertingRuleQueryResult',
     'AlertsAlertLevelResult',
@@ -72,6 +75,8 @@ __all__ = [
     'GetAlertingRulesAlertingRuleLabelResult',
     'GetAlertingRulesAlertingRuleLevelResult',
     'GetAlertingRulesAlertingRuleQueryResult',
+    'GetAlertingRulesAlertingRuleTagResult',
+    'GetAlertingRulesTagResult',
     'GetAlertsAlertResult',
     'GetAlertsAlertAlertingRuleQueryResult',
     'GetAlertsAlertLevelResult',
@@ -342,6 +347,35 @@ class AlertingRuleQuery(dict):
 
 
 @pulumi.output_type
+class AlertingRuleTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class AlertingRulesAlertingRuleResult(dict):
     def __init__(__self__, *,
                  annotations: Sequence['outputs.AlertingRulesAlertingRuleAnnotationResult'],
@@ -355,6 +389,7 @@ class AlertingRulesAlertingRuleResult(dict):
                  notify_policy_id: str,
                  queries: Sequence['outputs.AlertingRulesAlertingRuleQueryResult'],
                  status: str,
+                 tags: Sequence['outputs.AlertingRulesAlertingRuleTagResult'],
                  type: str,
                  update_time: str):
         """
@@ -369,6 +404,7 @@ class AlertingRulesAlertingRuleResult(dict):
         :param str notify_policy_id: The notify policy id of the vmp alerting rule.
         :param Sequence['AlertingRulesAlertingRuleQueryArgs'] queries: The alerting query of the vmp alerting rule.
         :param str status: The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
+        :param Sequence['AlertingRulesAlertingRuleTagArgs'] tags: Tags.
         :param str type: The type of vmp alerting rule. Valid values: `vmp/PromQL`.
         :param str update_time: The update time of the vmp alerting rule.
         """
@@ -383,6 +419,7 @@ class AlertingRulesAlertingRuleResult(dict):
         pulumi.set(__self__, "notify_policy_id", notify_policy_id)
         pulumi.set(__self__, "queries", queries)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "update_time", update_time)
 
@@ -476,6 +513,14 @@ class AlertingRulesAlertingRuleResult(dict):
 
     @property
     @pulumi.getter
+    def tags(self) -> Sequence['outputs.AlertingRulesAlertingRuleTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def type(self) -> str:
         """
         The type of vmp alerting rule. Valid values: `vmp/PromQL`.
@@ -498,7 +543,7 @@ class AlertingRulesAlertingRuleAnnotationResult(dict):
                  value: str):
         """
         :param str name: The name of vmp alerting rule. This field support fuzzy query.
-        :param str value: The value of the label.
+        :param str value: The Value of Tags.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
@@ -515,7 +560,7 @@ class AlertingRulesAlertingRuleAnnotationResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The value of the label.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -526,8 +571,8 @@ class AlertingRulesAlertingRuleLabelResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The name of the label.
-        :param str value: The value of the label.
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -536,7 +581,7 @@ class AlertingRulesAlertingRuleLabelResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The name of the label.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -544,7 +589,7 @@ class AlertingRulesAlertingRuleLabelResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The value of the label.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -627,6 +672,64 @@ class AlertingRulesAlertingRuleQueryResult(dict):
         The workspace id of vmp alerting rule.
         """
         return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class AlertingRulesAlertingRuleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AlertingRulesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -3271,6 +3374,7 @@ class GetAlertingRulesAlertingRuleResult(dict):
                  notify_policy_id: str,
                  queries: Sequence['outputs.GetAlertingRulesAlertingRuleQueryResult'],
                  status: str,
+                 tags: Sequence['outputs.GetAlertingRulesAlertingRuleTagResult'],
                  type: str,
                  update_time: str):
         """
@@ -3285,6 +3389,7 @@ class GetAlertingRulesAlertingRuleResult(dict):
         :param str notify_policy_id: The notify policy id of the vmp alerting rule.
         :param Sequence['GetAlertingRulesAlertingRuleQueryArgs'] queries: The alerting query of the vmp alerting rule.
         :param str status: The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
+        :param Sequence['GetAlertingRulesAlertingRuleTagArgs'] tags: Tags.
         :param str type: The type of vmp alerting rule. Valid values: `vmp/PromQL`.
         :param str update_time: The update time of the vmp alerting rule.
         """
@@ -3299,6 +3404,7 @@ class GetAlertingRulesAlertingRuleResult(dict):
         pulumi.set(__self__, "notify_policy_id", notify_policy_id)
         pulumi.set(__self__, "queries", queries)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "update_time", update_time)
 
@@ -3392,6 +3498,14 @@ class GetAlertingRulesAlertingRuleResult(dict):
 
     @property
     @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetAlertingRulesAlertingRuleTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def type(self) -> str:
         """
         The type of vmp alerting rule. Valid values: `vmp/PromQL`.
@@ -3414,7 +3528,7 @@ class GetAlertingRulesAlertingRuleAnnotationResult(dict):
                  value: str):
         """
         :param str name: The name of vmp alerting rule. This field support fuzzy query.
-        :param str value: The value of the label.
+        :param str value: The Value of Tags.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
@@ -3431,7 +3545,7 @@ class GetAlertingRulesAlertingRuleAnnotationResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The value of the label.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -3442,8 +3556,8 @@ class GetAlertingRulesAlertingRuleLabelResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The name of the label.
-        :param str value: The value of the label.
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -3452,7 +3566,7 @@ class GetAlertingRulesAlertingRuleLabelResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The name of the label.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -3460,7 +3574,7 @@ class GetAlertingRulesAlertingRuleLabelResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The value of the label.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -3543,6 +3657,64 @@ class GetAlertingRulesAlertingRuleQueryResult(dict):
         The workspace id of vmp alerting rule.
         """
         return pulumi.get(self, "workspace_id")
+
+
+@pulumi.output_type
+class GetAlertingRulesAlertingRuleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAlertingRulesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

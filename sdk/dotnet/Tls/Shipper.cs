@@ -21,7 +21,7 @@ namespace Pulumi.Volcengine.Tls
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Tls.Shipper("foo", new()
+    ///     var tosFoo = new Volcengine.Tls.Shipper("tosFoo", new()
     ///     {
     ///         ContentInfo = new Volcengine.Tls.Inputs.ShipperContentInfoArgs
     ///         {
@@ -38,7 +38,7 @@ namespace Pulumi.Volcengine.Tls
     ///         },
     ///         RoleTrn = "",
     ///         ShipperEndTime = 1751255700021,
-    ///         ShipperName = "tf-test",
+    ///         ShipperName = "tf-test-tos-1",
     ///         ShipperStartTime = 1750737324521,
     ///         ShipperType = "tos",
     ///         TopicId = "8ba48bd7-2493-4300-b1d0-cb760b89e51b",

@@ -29,10 +29,6 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  * });
- * export const tlsTagId = foo.id;
- * export const tlsTagResourceId = foo.resourceId;
- * export const tlsTagResourceType = foo.resourceType;
- * export const tlsTagTags = foo.tags;
  * ```
  *
  * ## Import

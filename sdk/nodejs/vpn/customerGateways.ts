@@ -36,9 +36,12 @@ export function customerGateways(args?: CustomerGatewaysArgs, opts?: pulumi.Invo
         "customerGatewayNames": args.customerGatewayNames,
         "ids": args.ids,
         "ipAddress": args.ipAddress,
+        "ipVersion": args.ipVersion,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "projectName": args.projectName,
+        "status": args.status,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -59,6 +62,10 @@ export interface CustomerGatewaysArgs {
      */
     ipAddress?: string;
     /**
+     * The IP version of the customer gateway. Valid value: ipv4, ipv6.
+     */
+    ipVersion?: string;
+    /**
      * A Name Regex of customer gateway.
      */
     nameRegex?: string;
@@ -70,6 +77,14 @@ export interface CustomerGatewaysArgs {
      * The project name of the VPN customer gateway.
      */
     projectName?: string;
+    /**
+     * The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+     */
+    status?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpn.CustomerGatewaysTag[];
 }
 
 /**
@@ -90,9 +105,24 @@ export interface CustomerGatewaysResult {
      * The IP address of the customer gateway.
      */
     readonly ipAddress?: string;
+    /**
+     * The IP version of the customer gateway.
+     */
+    readonly ipVersion?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The project name of the VPN customer gateway.
+     */
     readonly projectName?: string;
+    /**
+     * The status of the customer gateway.
+     */
+    readonly status?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpn.CustomerGatewaysTag[];
     /**
      * The total count of customer gateway query.
      */
@@ -140,6 +170,10 @@ export interface CustomerGatewaysOutputArgs {
      */
     ipAddress?: pulumi.Input<string>;
     /**
+     * The IP version of the customer gateway. Valid value: ipv4, ipv6.
+     */
+    ipVersion?: pulumi.Input<string>;
+    /**
      * A Name Regex of customer gateway.
      */
     nameRegex?: pulumi.Input<string>;
@@ -151,4 +185,12 @@ export interface CustomerGatewaysOutputArgs {
      * The project name of the VPN customer gateway.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.CustomerGatewaysTagArgs>[]>;
 }

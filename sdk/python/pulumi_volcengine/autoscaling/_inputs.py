@@ -15,7 +15,9 @@ __all__ = [
     'ScalingGroupLaunchTemplateOverrideArgs',
     'ScalingGroupServerGroupAttributeArgs',
     'ScalingGroupTagArgs',
+    'ScalingGroupsTagArgs',
     'ScalingLifecycleHookLifecycleCommandArgs',
+    'GetScalingGroupsTagArgs',
 ]
 
 @pulumi.input_type
@@ -236,6 +238,43 @@ class ScalingGroupTagArgs:
 
 
 @pulumi.input_type
+class ScalingGroupsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class ScalingLifecycleHookLifecycleCommandArgs:
     def __init__(__self__, *,
                  command_id: pulumi.Input[str],
@@ -273,5 +312,42 @@ class ScalingLifecycleHookLifecycleCommandArgs:
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class GetScalingGroupsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
 
 

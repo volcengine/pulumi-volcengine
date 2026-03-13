@@ -264,6 +264,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("replicaNumber")]
         public int? ReplicaNumber { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.TopicsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.TopicsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.TopicsTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The name of kafka topic. This field supports fuzzy query.
         /// </summary>
@@ -314,6 +326,18 @@ namespace Pulumi.Volcengine.Kafka
         [Input("replicaNumber")]
         public Input<int>? ReplicaNumber { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.TopicsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.TopicsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.TopicsTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The name of kafka topic. This field supports fuzzy query.
         /// </summary>
@@ -352,6 +376,10 @@ namespace Pulumi.Volcengine.Kafka
         /// </summary>
         public readonly int? ReplicaNumber;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.TopicsTagResult> Tags;
+        /// <summary>
         /// The name of the kafka topic.
         /// </summary>
         public readonly string? TopicName;
@@ -382,6 +410,8 @@ namespace Pulumi.Volcengine.Kafka
 
             int? replicaNumber,
 
+            ImmutableArray<Outputs.TopicsTagResult> tags,
+
             string? topicName,
 
             ImmutableArray<Outputs.TopicsTopicResult> topics,
@@ -396,6 +426,7 @@ namespace Pulumi.Volcengine.Kafka
             OutputFile = outputFile;
             PartitionNumber = partitionNumber;
             ReplicaNumber = replicaNumber;
+            Tags = tags;
             TopicName = topicName;
             Topics = topics;
             TotalCount = totalCount;

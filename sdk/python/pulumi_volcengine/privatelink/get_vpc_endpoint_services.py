@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetVpcEndpointServicesResult',
@@ -22,7 +23,7 @@ class GetVpcEndpointServicesResult:
     """
     A collection of values returned by getVpcEndpointServices.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, service_name=None, services=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, service_name=None, services=None, tags=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -35,12 +36,18 @@ class GetVpcEndpointServicesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if service_name and not isinstance(service_name, str):
             raise TypeError("Expected argument 'service_name' to be a str")
         pulumi.set(__self__, "service_name", service_name)
         if services and not isinstance(services, list):
             raise TypeError("Expected argument 'services' to be a list")
         pulumi.set(__self__, "services", services)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -69,6 +76,14 @@ class GetVpcEndpointServicesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of service.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[str]:
         """
@@ -83,6 +98,14 @@ class GetVpcEndpointServicesResult:
         The collection of query.
         """
         return pulumi.get(self, "services")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetVpcEndpointServicesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -103,15 +126,19 @@ class AwaitableGetVpcEndpointServicesResult(GetVpcEndpointServicesResult):
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             service_name=self.service_name,
             services=self.services,
+            tags=self.tags,
             total_count=self.total_count)
 
 
 def get_vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
                               name_regex: Optional[str] = None,
                               output_file: Optional[str] = None,
+                              project_name: Optional[str] = None,
                               service_name: Optional[str] = None,
+                              tags: Optional[Sequence[pulumi.InputType['GetVpcEndpointServicesTagArgs']]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcEndpointServicesResult:
     """
     Use this data source to query detailed information of privatelink vpc endpoint services
@@ -162,13 +189,17 @@ def get_vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] ids: The IDs of vpc endpoint service.
     :param str name_regex: A Name Regex of vpc endpoint service.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of vpc endpoint service.
     :param str service_name: The name of vpc endpoint service.
+    :param Sequence[pulumi.InputType['GetVpcEndpointServicesTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['serviceName'] = service_name
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:privatelink/getVpcEndpointServices:getVpcEndpointServices', __args__, opts=opts, typ=GetVpcEndpointServicesResult).value
 
@@ -177,8 +208,10 @@ def get_vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
         ids=pulumi.get(__ret__, 'ids'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         service_name=pulumi.get(__ret__, 'service_name'),
         services=pulumi.get(__ret__, 'services'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -186,7 +219,9 @@ def get_vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
 def get_vpc_endpoint_services_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
                                      service_name: Optional[pulumi.Input[Optional[str]]] = None,
+                                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetVpcEndpointServicesTagArgs']]]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcEndpointServicesResult]:
     """
     Use this data source to query detailed information of privatelink vpc endpoint services
@@ -237,6 +272,8 @@ def get_vpc_endpoint_services_output(ids: Optional[pulumi.Input[Optional[Sequenc
     :param Sequence[str] ids: The IDs of vpc endpoint service.
     :param str name_regex: A Name Regex of vpc endpoint service.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of vpc endpoint service.
     :param str service_name: The name of vpc endpoint service.
+    :param Sequence[pulumi.InputType['GetVpcEndpointServicesTagArgs']] tags: Tags.
     """
     ...

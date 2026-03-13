@@ -25,9 +25,12 @@ __all__ = [
     'RuleCondition',
     'RuleOriginalDimension',
     'RuleRecoveryNotify',
+    'RuleTag',
     'RulesRuleResult',
     'RulesRuleConditionResult',
     'RulesRuleOriginalDimensionResult',
+    'RulesRuleTagResult',
+    'RulesTagResult',
     'GetContactGroupsGroupResult',
     'GetContactGroupsGroupContactResult',
     'GetContactsContactResult',
@@ -38,6 +41,8 @@ __all__ = [
     'GetRulesRuleResult',
     'GetRulesRuleConditionResult',
     'GetRulesRuleOriginalDimensionResult',
+    'GetRulesRuleTagResult',
+    'GetRulesTagResult',
 ]
 
 @pulumi.output_type
@@ -1017,6 +1022,35 @@ class RuleRecoveryNotify(dict):
 
 
 @pulumi.output_type
+class RuleTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class RulesRuleResult(dict):
     def __init__(__self__, *,
                  alert_methods: Sequence[str],
@@ -1039,6 +1073,7 @@ class RulesRuleResult(dict):
                  rule_name: str,
                  silence_time: int,
                  sub_namespace: str,
+                 tags: Sequence['outputs.RulesRuleTagResult'],
                  updated_at: str,
                  web_hook: str,
                  webhook_ids: Sequence[str]):
@@ -1063,6 +1098,7 @@ class RulesRuleResult(dict):
         :param str rule_name: The name of the cloud monitor rule. This field support fuzzy query.
         :param int silence_time: The silence time of the cloud monitor rule. Unit in minutes.
         :param str sub_namespace: The sub namespace of the cloud monitor rule.
+        :param Sequence['RulesRuleTagArgs'] tags: The tags of the cloud monitor rule.
         :param str updated_at: The updated time of the cloud monitor rule.
         :param str web_hook: The web hook of the cloud monitor rule.
         :param Sequence[str] webhook_ids: The webhook id list of the cloud monitor rule.
@@ -1087,6 +1123,7 @@ class RulesRuleResult(dict):
         pulumi.set(__self__, "rule_name", rule_name)
         pulumi.set(__self__, "silence_time", silence_time)
         pulumi.set(__self__, "sub_namespace", sub_namespace)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "web_hook", web_hook)
         pulumi.set(__self__, "webhook_ids", webhook_ids)
@@ -1252,6 +1289,14 @@ class RulesRuleResult(dict):
         return pulumi.get(self, "sub_namespace")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.RulesRuleTagResult']:
+        """
+        The tags of the cloud monitor rule.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
@@ -1355,8 +1400,8 @@ class RulesRuleOriginalDimensionResult(dict):
                  key: str,
                  values: Sequence[str]):
         """
-        :param str key: The key of the dimension.
-        :param Sequence[str] values: The value of the dimension.
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
@@ -1365,7 +1410,7 @@ class RulesRuleOriginalDimensionResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The key of the dimension.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -1373,7 +1418,65 @@ class RulesRuleOriginalDimensionResult(dict):
     @pulumi.getter
     def values(self) -> Sequence[str]:
         """
-        The value of the dimension.
+        The Value of Tags.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class RulesRuleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class RulesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The Value of Tags.
         """
         return pulumi.get(self, "values")
 
@@ -1989,6 +2092,7 @@ class GetRulesRuleResult(dict):
                  rule_name: str,
                  silence_time: int,
                  sub_namespace: str,
+                 tags: Sequence['outputs.GetRulesRuleTagResult'],
                  updated_at: str,
                  web_hook: str,
                  webhook_ids: Sequence[str]):
@@ -2013,6 +2117,7 @@ class GetRulesRuleResult(dict):
         :param str rule_name: The name of the cloud monitor rule. This field support fuzzy query.
         :param int silence_time: The silence time of the cloud monitor rule. Unit in minutes.
         :param str sub_namespace: The sub namespace of the cloud monitor rule.
+        :param Sequence['GetRulesRuleTagArgs'] tags: The tags of the cloud monitor rule.
         :param str updated_at: The updated time of the cloud monitor rule.
         :param str web_hook: The web hook of the cloud monitor rule.
         :param Sequence[str] webhook_ids: The webhook id list of the cloud monitor rule.
@@ -2037,6 +2142,7 @@ class GetRulesRuleResult(dict):
         pulumi.set(__self__, "rule_name", rule_name)
         pulumi.set(__self__, "silence_time", silence_time)
         pulumi.set(__self__, "sub_namespace", sub_namespace)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "web_hook", web_hook)
         pulumi.set(__self__, "webhook_ids", webhook_ids)
@@ -2202,6 +2308,14 @@ class GetRulesRuleResult(dict):
         return pulumi.get(self, "sub_namespace")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetRulesRuleTagResult']:
+        """
+        The tags of the cloud monitor rule.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
@@ -2305,8 +2419,8 @@ class GetRulesRuleOriginalDimensionResult(dict):
                  key: str,
                  values: Sequence[str]):
         """
-        :param str key: The key of the dimension.
-        :param Sequence[str] values: The value of the dimension.
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
@@ -2315,7 +2429,7 @@ class GetRulesRuleOriginalDimensionResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The key of the dimension.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -2323,7 +2437,65 @@ class GetRulesRuleOriginalDimensionResult(dict):
     @pulumi.getter
     def values(self) -> Sequence[str]:
         """
-        The value of the dimension.
+        The Value of Tags.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetRulesRuleTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetRulesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: The Key of Tags.
+        :param Sequence[str] values: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        The Value of Tags.
         """
         return pulumi.get(self, "values")
 

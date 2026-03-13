@@ -15,13 +15,13 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.Role("foo", {
- *     description: "tf-test-modify",
+ *     description: "tf-test",
  *     displayName: "tf-test-modify",
- *     maxSessionDuration: 3600,
- *     roleName: "tf-test-role",
+ *     maxSessionDuration: 4800,
+ *     roleName: "tf-test",
  *     tags: [{
- *         key: "key-modify",
- *         value: "value-modify",
+ *         key: "key-1",
+ *         value: "value-1",
  *     }],
  *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
  * });

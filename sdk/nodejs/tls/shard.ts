@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.tls.Shard("foo", {
  *     number: 2,
- *     shardId: 1,
+ *     shardId: 2,
  *     topicId: "176b62c7-c482-4a6e-b983-4697fda9294a",
  * });
  * ```

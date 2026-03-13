@@ -36,36 +36,32 @@ import (
 //				},
 //				KeyValues: tls.IndexKeyValueArray{
 //					&tls.IndexKeyValueArgs{
-//						AutoIndexFlag:  pulumi.Bool(false),
 //						CaseSensitive:  pulumi.Bool(true),
 //						Delimiter:      pulumi.String("!"),
 //						IncludeChinese: pulumi.Bool(false),
 //						IndexAll:       pulumi.Bool(true),
-//						IndexSqlAll:    pulumi.Bool(true),
 //						JsonKeys: tls.IndexKeyValueJsonKeyArray{
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("name-2"),
+//								Key:       pulumi.String("name"),
 //								ValueType: pulumi.String("text"),
 //							},
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("key-2"),
+//								Key:       pulumi.String("key"),
 //								ValueType: pulumi.String("long"),
 //							},
 //						},
-//						Key:       pulumi.String("k21"),
+//						Key:       pulumi.String("k1"),
 //						SqlFlag:   pulumi.Bool(true),
 //						ValueType: pulumi.String("json"),
 //					},
 //				},
 //				MaxTextLen: pulumi.Int(2048),
-//				TopicId:    pulumi.String("c36ed436-84f1-467a-b00e-ba504db753ca"),
+//				TopicId:    pulumi.String("a0197686-1309-4c46-8003-4be3b278a838"),
 //				UserInnerKeyValues: tls.IndexUserInnerKeyValueArray{
 //					&tls.IndexUserInnerKeyValueArgs{
-//						AutoIndexFlag:  pulumi.Bool(false),
+//						CaseSensitive:  pulumi.Bool(false),
 //						Delimiter:      pulumi.String(",:-/ "),
 //						IncludeChinese: pulumi.Bool(false),
-//						IndexAll:       pulumi.Bool(true),
-//						IndexSqlAll:    pulumi.Bool(true),
 //						JsonKeys: tls.IndexUserInnerKeyValueJsonKeyArray{
 //							&tls.IndexUserInnerKeyValueJsonKeyArgs{
 //								Key:       pulumi.String("app"),
@@ -77,7 +73,7 @@ import (
 //							},
 //						},
 //						Key:       pulumi.String("__content__"),
-//						SqlFlag:   pulumi.Bool(true),
+//						SqlFlag:   pulumi.Bool(false),
 //						ValueType: pulumi.String("json"),
 //					},
 //				},

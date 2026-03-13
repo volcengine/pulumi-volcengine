@@ -41,14 +41,6 @@ namespace Pulumi.Volcengine.Tls
     ///         },
     ///     });
     /// 
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["tlsTagId"] = foo.Id,
-    ///         ["tlsTagResourceId"] = foo.ResourceId,
-    ///         ["tlsTagResourceType"] = foo.ResourceType,
-    ///         ["tlsTagTags"] = foo.Tags,
-    ///         ["tlsTagResourceNewId"] = foo.Id,
-    ///     };
     /// });
     /// ```
     /// 

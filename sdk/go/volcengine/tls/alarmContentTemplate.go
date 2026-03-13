@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewAlarmContentTemplate(ctx, "foo", &tls.AlarmContentTemplateArgs{
-//				AlarmContentTemplateName: pulumi.String("test-alarm-content-template"),
+//				AlarmContentTemplateName: pulumi.String("test-alarm-content"),
 //				DingTalks: tls.AlarmContentTemplateDingTalkArray{
 //					&tls.AlarmContentTemplateDingTalkArgs{
 //						Content: pulumi.String(`修改-尊敬的用户，您好！
@@ -78,7 +78,7 @@ import (
 //						Title:  pulumi.String("修改-告警通知"),
 //					},
 //				},
-//				NeedValidContent: pulumi.Bool(true),
+//				NeedValidContent: pulumi.Bool(false),
 //				Sms: tls.AlarmContentTemplateSmArray{
 //					&tls.AlarmContentTemplateSmArgs{
 //						Content: pulumi.String("修改-告警策略{{Alarm}}， 告警日志项目：{{ProjectName}}， 告警日志主题：{{AlarmTopicName}}， 告警级别：{{Severity}}， 通知类型：{%if NotifyType==1%}触发告警{%else%}告警恢复{%endif%}，触发时间：{{StartTime}}， 触发条件：{{Condition}}， 当前查询结果：[{%-for x in TriggerParams-%}{{-x-}} {%-endfor-%}]， 通知内容：{{NotifyMsg}}"),

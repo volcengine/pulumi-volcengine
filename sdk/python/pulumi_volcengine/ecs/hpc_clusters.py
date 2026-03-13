@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'HpcClustersResult',
@@ -24,19 +25,31 @@ class HpcClustersResult:
     """
     A collection of values returned by HpcClusters.
     """
-    def __init__(__self__, hpc_clusters=None, id=None, name_regex=None, output_file=None, total_count=None, zone_id=None):
+    def __init__(__self__, hpc_clusters=None, id=None, ids=None, name=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None, zone_id=None):
         if hpc_clusters and not isinstance(hpc_clusters, list):
             raise TypeError("Expected argument 'hpc_clusters' to be a list")
         pulumi.set(__self__, "hpc_clusters", hpc_clusters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -61,6 +74,19 @@ class HpcClustersResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter
+    def ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "ids")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the hpc cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> Optional[str]:
         return pulumi.get(self, "name_regex")
@@ -69,6 +95,22 @@ class HpcClustersResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the hpc cluster.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.HpcClustersTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -95,14 +137,22 @@ class AwaitableHpcClustersResult(HpcClustersResult):
         return HpcClustersResult(
             hpc_clusters=self.hpc_clusters,
             id=self.id,
+            ids=self.ids,
+            name=self.name,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count,
             zone_id=self.zone_id)
 
 
-def hpc_clusters(name_regex: Optional[str] = None,
+def hpc_clusters(ids: Optional[Sequence[str]] = None,
+                 name: Optional[str] = None,
+                 name_regex: Optional[str] = None,
                  output_file: Optional[str] = None,
+                 project_name: Optional[str] = None,
+                 tags: Optional[Sequence[pulumi.InputType['HpcClustersTagArgs']]] = None,
                  zone_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableHpcClustersResult:
     """
@@ -117,14 +167,22 @@ def hpc_clusters(name_regex: Optional[str] = None,
     ```
 
 
+    :param Sequence[str] ids: A list of hpc cluster ids.
+    :param str name: The name of the hpc cluster.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the hpc cluster.
+    :param Sequence[pulumi.InputType['HpcClustersTagArgs']] tags: Tags.
     :param str zone_id: The zone id of the hpc cluster.
     """
     pulumi.log.warn("""hpc_clusters is deprecated: volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters""")
     __args__ = dict()
+    __args__['ids'] = ids
+    __args__['name'] = name
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tags'] = tags
     __args__['zoneId'] = zone_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:ecs/hpcClusters:HpcClusters', __args__, opts=opts, typ=HpcClustersResult).value
@@ -132,15 +190,23 @@ def hpc_clusters(name_regex: Optional[str] = None,
     return AwaitableHpcClustersResult(
         hpc_clusters=pulumi.get(__ret__, 'hpc_clusters'),
         id=pulumi.get(__ret__, 'id'),
+        ids=pulumi.get(__ret__, 'ids'),
+        name=pulumi.get(__ret__, 'name'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         zone_id=pulumi.get(__ret__, 'zone_id'))
 
 
 @_utilities.lift_output_func(hpc_clusters)
-def hpc_clusters_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
+def hpc_clusters_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                        name: Optional[pulumi.Input[Optional[str]]] = None,
+                        name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                         output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                        project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                        tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['HpcClustersTagArgs']]]]] = None,
                         zone_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[HpcClustersResult]:
     """
@@ -155,8 +221,12 @@ def hpc_clusters_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None
     ```
 
 
+    :param Sequence[str] ids: A list of hpc cluster ids.
+    :param str name: The name of the hpc cluster.
     :param str name_regex: A Name Regex of Resource.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the hpc cluster.
+    :param Sequence[pulumi.InputType['HpcClustersTagArgs']] tags: Tags.
     :param str zone_id: The zone id of the hpc cluster.
     """
     pulumi.log.warn("""hpc_clusters is deprecated: volcengine.ecs.HpcClusters has been deprecated in favor of volcengine.ecs.getHpcClusters""")

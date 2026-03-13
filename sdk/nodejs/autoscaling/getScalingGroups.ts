@@ -64,6 +64,7 @@ export function getScalingGroups(args?: GetScalingGroupsArgs, opts?: pulumi.Invo
         "outputFile": args.outputFile,
         "projectName": args.projectName,
         "scalingGroupNames": args.scalingGroupNames,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -91,6 +92,10 @@ export interface GetScalingGroupsArgs {
      * A list of scaling group names.
      */
     scalingGroupNames?: string[];
+    /**
+     * Tags.
+     */
+    tags?: inputs.autoscaling.GetScalingGroupsTag[];
 }
 
 /**
@@ -113,6 +118,10 @@ export interface GetScalingGroupsResult {
      * The collection of scaling group query.
      */
     readonly scalingGroups: outputs.autoscaling.GetScalingGroupsScalingGroup[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.autoscaling.GetScalingGroupsTag[];
     /**
      * The total count of scaling group query.
      */
@@ -194,4 +203,8 @@ export interface GetScalingGroupsOutputArgs {
      * A list of scaling group names.
      */
     scalingGroupNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.autoscaling.GetScalingGroupsTagArgs>[]>;
 }

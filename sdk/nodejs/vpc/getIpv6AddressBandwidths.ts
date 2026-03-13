@@ -31,6 +31,7 @@ export function getIpv6AddressBandwidths(args?: GetIpv6AddressBandwidthsArgs, op
         "isp": args.isp,
         "networkType": args.networkType,
         "outputFile": args.outputFile,
+        "tags": args.tags,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -68,6 +69,10 @@ export interface GetIpv6AddressBandwidthsArgs {
      */
     outputFile?: string;
     /**
+     * Tags.
+     */
+    tags?: inputs.vpc.GetIpv6AddressBandwidthsTag[];
+    /**
      * The ID of Vpc the ipv6 address in.
      */
     vpcId?: string;
@@ -98,6 +103,7 @@ export interface GetIpv6AddressBandwidthsResult {
      */
     readonly networkType?: string;
     readonly outputFile?: string;
+    readonly tags?: outputs.vpc.GetIpv6AddressBandwidthsTag[];
     /**
      * The total count of Ipv6AddressBandwidth query.
      */
@@ -153,6 +159,10 @@ export interface GetIpv6AddressBandwidthsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.GetIpv6AddressBandwidthsTagArgs>[]>;
     /**
      * The ID of Vpc the ipv6 address in.
      */

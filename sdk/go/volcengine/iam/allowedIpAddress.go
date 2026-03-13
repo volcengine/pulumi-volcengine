@@ -32,11 +32,11 @@ import (
 //				IpLists: iam.AllowedIpAddressIpListArray{
 //					&iam.AllowedIpAddressIpListArgs{
 //						Description: pulumi.String("test1"),
-//						Ip:          pulumi.String("your ip"),
+//						Ip:          pulumi.String("your_ip"),
 //					},
 //					&iam.AllowedIpAddressIpListArgs{
 //						Description: pulumi.String("test2"),
-//						Ip:          pulumi.String("your ip"),
+//						Ip:          pulumi.String("your_ip"),
 //					},
 //				},
 //			})

@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcEndpointServiceResource{}
 	case "volcengine:privatelink/vpcEndpointZone:VpcEndpointZone":
 		r = &VpcEndpointZone{}
+	case "volcengine:privatelink/vpcGatewayEndpoint:VpcGatewayEndpoint":
+		r = &VpcGatewayEndpoint{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -81,6 +83,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"privatelink/vpcEndpointZone",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"privatelink/vpcGatewayEndpoint",
 		&module{version},
 	)
 }

@@ -24,8 +24,12 @@ export function getHpcClusters(args?: GetHpcClustersArgs, opts?: pulumi.InvokeOp
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/getHpcClusters:getHpcClusters", {
+        "ids": args.ids,
+        "name": args.name,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
         "zoneId": args.zoneId,
     }, opts);
 }
@@ -35,6 +39,14 @@ export function getHpcClusters(args?: GetHpcClustersArgs, opts?: pulumi.InvokeOp
  */
 export interface GetHpcClustersArgs {
     /**
+     * A list of hpc cluster ids.
+     */
+    ids?: string[];
+    /**
+     * The name of the hpc cluster.
+     */
+    name?: string;
+    /**
      * A Name Regex of Resource.
      */
     nameRegex?: string;
@@ -42,6 +54,14 @@ export interface GetHpcClustersArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name of the hpc cluster.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.ecs.GetHpcClustersTag[];
     /**
      * The zone id of the hpc cluster.
      */
@@ -60,8 +80,21 @@ export interface GetHpcClustersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly ids?: string[];
+    /**
+     * The name of the hpc cluster.
+     */
+    readonly name?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The project name of the hpc cluster.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.ecs.GetHpcClustersTag[];
     /**
      * The total count of query.
      */
@@ -93,6 +126,14 @@ export function getHpcClustersOutput(args?: GetHpcClustersOutputArgs, opts?: pul
  */
 export interface GetHpcClustersOutputArgs {
     /**
+     * A list of hpc cluster ids.
+     */
+    ids?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The name of the hpc cluster.
+     */
+    name?: pulumi.Input<string>;
+    /**
      * A Name Regex of Resource.
      */
     nameRegex?: pulumi.Input<string>;
@@ -100,6 +141,14 @@ export interface GetHpcClustersOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the hpc cluster.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.GetHpcClustersTagArgs>[]>;
     /**
      * The zone id of the hpc cluster.
      */

@@ -23,7 +23,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Tls.GetEtlTasks.Invoke();
+        ///     var foo = Volcengine.Tls.GetEtlTasks.Invoke(new()
+        ///     {
+        ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+        ///     });
         /// 
         /// });
         /// ```
@@ -43,7 +46,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Tls.GetEtlTasks.Invoke();
+        ///     var foo = Volcengine.Tls.GetEtlTasks.Invoke(new()
+        ///     {
+        ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+        ///     });
         /// 
         /// });
         /// ```

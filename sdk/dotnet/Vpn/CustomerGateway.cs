@@ -86,6 +86,12 @@ namespace Pulumi.Volcengine.Vpn
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
+        /// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+        /// </summary>
+        [Output("ipVersion")]
+        public Output<string?> IpVersion { get; private set; } = null!;
+
+        /// <summary>
         /// The project name of the VPN customer gateway.
         /// </summary>
         [Output("projectName")]
@@ -96,6 +102,12 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.CustomerGatewayTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The update time of customer gateway.
@@ -169,10 +181,28 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string> IpAddress { get; set; } = null!;
 
         /// <summary>
+        /// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+        /// </summary>
+        [Input("ipVersion")]
+        public Input<string>? IpVersion { get; set; }
+
+        /// <summary>
         /// The project name of the VPN customer gateway.
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CustomerGatewayTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CustomerGatewayTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CustomerGatewayTagArgs>());
+            set => _tags = value;
+        }
 
         public CustomerGatewayArgs()
         {
@@ -225,6 +255,12 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
+        /// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+        /// </summary>
+        [Input("ipVersion")]
+        public Input<string>? IpVersion { get; set; }
+
+        /// <summary>
         /// The project name of the VPN customer gateway.
         /// </summary>
         [Input("projectName")]
@@ -235,6 +271,18 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.CustomerGatewayTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.CustomerGatewayTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.CustomerGatewayTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of customer gateway.

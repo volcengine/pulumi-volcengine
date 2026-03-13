@@ -24,6 +24,15 @@ namespace Pulumi.Volcengine.Ecs
     ///     var foo = new Volcengine.Ecs.HpcCluster("foo", new()
     ///     {
     ///         Description = "acc-test",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.HpcClusterTagArgs
+    ///             {
+    ///                 Key = "tfk1",
+    ///                 Value = "tfv1",
+    ///             },
+    ///         },
     ///         ZoneId = "cn-beijing-b",
     ///     });
     /// 
@@ -52,6 +61,18 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name of the hpc cluster.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.HpcClusterTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The zone id of the hpc cluster.
@@ -119,6 +140,24 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The project name of the hpc cluster.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.HpcClusterTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HpcClusterTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HpcClusterTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// The zone id of the hpc cluster.
         /// </summary>
         [Input("zoneId", required: true)]
@@ -143,6 +182,24 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The project name of the hpc cluster.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.HpcClusterTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.HpcClusterTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.HpcClusterTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The zone id of the hpc cluster.

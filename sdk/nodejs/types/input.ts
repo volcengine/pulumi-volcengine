@@ -1796,6 +1796,28 @@ export namespace apig {
 }
 
 export namespace autoscaling {
+    export interface GetScalingGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetScalingGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface ScalingConfigurationTag {
         /**
          * The Key of Tags.
@@ -1849,6 +1871,28 @@ export namespace autoscaling {
     }
 
     export interface ScalingGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ScalingGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ScalingGroupsTagArgs {
         /**
          * The Key of Tags.
          */
@@ -2764,6 +2808,28 @@ export namespace cloud_monitor {
         topicId: pulumi.Input<string>;
     }
 
+    export interface GetRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface GetRulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface RuleCondition {
         /**
          * The comparison operation of the cloud monitor rule. Valid values: `>`, `>=`, `<`, `<=`, `!=`, `=`.
@@ -2809,6 +2875,38 @@ export namespace cloud_monitor {
         enable?: pulumi.Input<boolean>;
     }
 
+    export interface RuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        values: string[];
+    }
+
+    export interface RulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
 }
 
 export namespace cloudfs {
@@ -3535,6 +3633,28 @@ export namespace ecs {
         value: pulumi.Input<string>;
     }
 
+    export interface GetHpcClustersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetHpcClustersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface GetImagesTag {
         /**
          * The Key of Tags.
@@ -3591,6 +3711,83 @@ export namespace ecs {
     }
 
     export interface GetInvocationsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetKeyPairsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetKeyPairsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetLaunchTemplatesLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetLaunchTemplatesLaunchTemplateTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface HpcClusterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface HpcClustersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface HpcClustersTagArgs {
         /**
          * The Key of Tags.
          */
@@ -3801,6 +3998,50 @@ export namespace ecs {
         value: pulumi.Input<string>;
     }
 
+    export interface KeyPairTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface KeyPairsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface KeyPairsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface LaunchTemplateLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface LaunchTemplateNetworkInterface {
         /**
          * The security group ID associated with the NIC.
@@ -3810,6 +4051,17 @@ export namespace ecs {
          * The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
          */
         subnetId?: pulumi.Input<string>;
+    }
+
+    export interface LaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface LaunchTemplateVolume {
@@ -3825,6 +4077,28 @@ export namespace ecs {
          * The type of volume.
          */
         volumeType?: pulumi.Input<string>;
+    }
+
+    export interface LaunchTemplatesLaunchTemplateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface LaunchTemplatesLaunchTemplateTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }
@@ -4157,6 +4431,28 @@ export namespace iam {
 }
 
 export namespace kafka {
+    export interface GetGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface GetInstancesTag {
         /**
          * The key of tag.
@@ -4175,6 +4471,61 @@ export namespace kafka {
         key: pulumi.Input<string>;
         /**
          * The value of tag.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTopicsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetTopicsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
          */
         value: pulumi.Input<string>;
     }
@@ -4247,6 +4598,39 @@ export namespace kafka {
          * The min number of sync replica. The default value is the replica number minus 1.
          */
         minInsyncReplicaNumber?: pulumi.Input<number>;
+    }
+
+    export interface TopicTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TopicsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TopicsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }
@@ -4661,6 +5045,420 @@ export namespace nat {
 
 }
 
+export namespace nlb {
+    export interface BackendServerBackendServer {
+        /**
+         * The description of the backend server.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The instance id of the backend server.
+         */
+        instanceId: pulumi.Input<string>;
+        /**
+         * The ip of the backend server.
+         */
+        ip: pulumi.Input<string>;
+        /**
+         * The port of the backend server.
+         */
+        port: pulumi.Input<number>;
+        /**
+         * The server id of the backend server.
+         */
+        serverId?: pulumi.Input<string>;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         */
+        type: pulumi.Input<string>;
+        /**
+         * The weight of the backend server.
+         */
+        weight?: pulumi.Input<number>;
+        /**
+         * The zone id of the backend server.
+         */
+        zoneId?: pulumi.Input<string>;
+    }
+
+    export interface GetListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetListenersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetNetworkLoadBalancersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetNetworkLoadBalancersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetServerGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetTagsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface GetTagsTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface ListenerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ListenersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ListenersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface NetworkLoadBalancerAccessLogConfig {
+        /**
+         * Whether to enable access logging. Valid values: `true`, `false`.
+         * `true`: Enable.
+         * `false`: Disable.
+         */
+        enabled: pulumi.Input<boolean>;
+        /**
+         * The project name where the access log topic resides.
+         */
+        projectName?: pulumi.Input<string>;
+        /**
+         * The topic ID of the access log.
+         */
+        topicId?: pulumi.Input<string>;
+        /**
+         * The topic name of the access log.
+         */
+        topicName?: pulumi.Input<string>;
+    }
+
+    export interface NetworkLoadBalancerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface NetworkLoadBalancerZoneMapping {
+        /**
+         * The ID of the EIP.
+         */
+        eipId?: pulumi.Input<string>;
+        /**
+         * The ID of the ENI.
+         */
+        eniId?: pulumi.Input<string>;
+        /**
+         * The IPv4 address of the NLB instance.
+         */
+        ipv4Address?: pulumi.Input<string>;
+        /**
+         * The public IPv4 address.
+         */
+        ipv4EipAddress?: pulumi.Input<string>;
+        /**
+         * The ID of the EIP.
+         */
+        ipv4EipId?: pulumi.Input<string>;
+        /**
+         * The IPv4 health check status.
+         */
+        ipv4HcStatus?: pulumi.Input<string>;
+        /**
+         * The IPv6 address of the NLB instance.
+         */
+        ipv6Address?: pulumi.Input<string>;
+        /**
+         * The ID of the IPv6 EIP.
+         */
+        ipv6EipId?: pulumi.Input<string>;
+        /**
+         * The IPv6 health check status.
+         */
+        ipv6HcStatus?: pulumi.Input<string>;
+        /**
+         * The ID of the subnet.
+         */
+        subnetId: pulumi.Input<string>;
+        /**
+         * The ID of the zone.
+         */
+        zoneId: pulumi.Input<string>;
+    }
+
+    export interface NetworkLoadBalancersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NetworkLoadBalancersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupHealthCheck {
+        /**
+         * The domain of health check. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        domain?: pulumi.Input<string>;
+        /**
+         * Whether to enable health check. Valid values: `true` (default), `false`.
+         */
+        enabled?: pulumi.Input<boolean>;
+        /**
+         * The healthy threshold of health check. Value range: 2 ~ 10. Default is 3.
+         */
+        healthyThreshold?: pulumi.Input<number>;
+        /**
+         * The http code of health check. Valid values: `http2xx`, `http3xx`, `http4xx`, `http5xx`. Default is `http_2xx,http_3xx`. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        httpCode?: pulumi.Input<string>;
+        /**
+         * The interval of health check. Unit: second. Value range: 1 ~ 300. Default is 2.
+         */
+        interval?: pulumi.Input<number>;
+        /**
+         * The method of health check. Valid values: `GET` (default), `HEAD`. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        method?: pulumi.Input<string>;
+        /**
+         * The port of health check. Value range: 1 ~ 65535. Default is 0, which means using the port of the backend server.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * The response timeout of health check. Unit: second. Value range: 1 ~ 60. Default is 2.
+         */
+        timeout?: pulumi.Input<number>;
+        /**
+         * The type of the health check. Valid values: `TCP` (default), `HTTP`, `UDP`.
+         */
+        type?: pulumi.Input<string>;
+        /**
+         * The udp connect timeout of health check. Unit: second. Value range: 1 ~ 60. Default is 3. Only available when `HealthCheck.Type` is `UDP`.
+         */
+        udpConnectTimeout?: pulumi.Input<number>;
+        /**
+         * The udp expect of health check. Only available when `HealthCheck.Type` is `UDP`.
+         */
+        udpExpect?: pulumi.Input<string>;
+        /**
+         * The udp request of health check. Only available when `HealthCheck.Type` is `UDP`.
+         */
+        udpRequest?: pulumi.Input<string>;
+        /**
+         * The unhealthy threshold of health check. Value range: 2 ~ 10. Default is 3.
+         */
+        unhealthyThreshold?: pulumi.Input<number>;
+        /**
+         * The uri of health check. Must start with `/`. Only available when `HealthCheck.Type` is `HTTP`.
+         */
+        uri?: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupServer {
+        /**
+         * The description of the backend server.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The instance ID of the backend server.
+         */
+        instanceId?: pulumi.Input<string>;
+        /**
+         * The IP address of the backend server.
+         */
+        ip?: pulumi.Input<string>;
+        /**
+         * The port of the backend server.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * The ID of the backend server.
+         */
+        serverId?: pulumi.Input<string>;
+        /**
+         * The type of the backend server. Valid values: `ecs`, `eni`, `ip`.
+         */
+        type?: pulumi.Input<string>;
+        /**
+         * The weight of the backend server. Value range: 0 ~ 100. Default is 100.
+         */
+        weight?: pulumi.Input<number>;
+        /**
+         * The zone ID of the backend server.
+         */
+        zoneId?: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ServerGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TagTag {
+        key: pulumi.Input<string>;
+        value: pulumi.Input<string>;
+    }
+
+    export interface TagsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface TagsTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+}
+
 export namespace organization {
     export interface AccountTag {
         /**
@@ -4891,6 +5689,72 @@ export namespace private_zone {
 }
 
 export namespace privatelink {
+    export interface GetVpcEndpointServicesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcEndpointServicesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetVpcEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcEndpointsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetVpcGatewayEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetVpcGatewayEndpointsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface VpcEndpointConnectionZone {
         /**
          * The id of the network interface.
@@ -4931,6 +5795,105 @@ export namespace privatelink {
          * The type of resource.
          */
         resourceType: pulumi.Input<string>;
+    }
+
+    export interface VpcEndpointServiceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpcEndpointServicesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcEndpointServicesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpcEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpcEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcEndpointsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpcGatewayEndpointTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpcGatewayEndpointsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcGatewayEndpointsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }
@@ -7401,6 +8364,10 @@ export namespace tls {
          * Customize the name of the output target, which needs to be used to refer to the output target in the data processing rules.
          */
         alias: pulumi.Input<string>;
+        /**
+         * The region where the log topic is located.
+         */
+        region: pulumi.Input<string>;
         /**
          * Cross-account authorized character names.
          */
@@ -12217,6 +13184,39 @@ export namespace vmp {
         workspaceId: pulumi.Input<string>;
     }
 
+    export interface AlertingRuleTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface AlertingRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AlertingRulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface ContactDingTalkBotWebhook {
         /**
          * The address of webhook.
@@ -12278,6 +13278,28 @@ export namespace vmp {
          * The token of webhook.
          */
         token?: pulumi.Input<string>;
+    }
+
+    export interface GetAlertingRulesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetAlertingRulesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface GetWorkspacesTag {
@@ -12521,6 +13543,50 @@ export namespace vpc {
     }
 
     export interface GetHaVipsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetIpv6AddressBandwidthsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetIpv6AddressBandwidthsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetIpv6GatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetIpv6GatewaysTagArgs {
         /**
          * The Key of Tags.
          */
@@ -12796,6 +13862,72 @@ export namespace vpc {
     }
 
     export interface HaVipsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface Ipv6AddressBandwidthTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface Ipv6AddressBandwidthsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface Ipv6AddressBandwidthsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface Ipv6GatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface Ipv6GatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface Ipv6GatewaysTagArgs {
         /**
          * The Key of Tags.
          */
@@ -13268,6 +14400,72 @@ export namespace vpc {
 }
 
 export namespace vpn {
+    export interface ConnectionTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ConnectionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ConnectionsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CustomerGatewayTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CustomerGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CustomerGatewaysTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface GatewayTag {
         /**
          * The Key of Tags.
@@ -13301,6 +14499,50 @@ export namespace vpn {
         value: pulumi.Input<string>;
     }
 
+    export interface GetConnectionsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetConnectionsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetCustomerGatewaysTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetCustomerGatewaysTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface GetGatewaysTag {
         /**
          * The Key of Tags.
@@ -13323,6 +14565,115 @@ export namespace vpn {
         value: pulumi.Input<string>;
     }
 
+    export interface GetSslVpnClientCertsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSslVpnClientCertsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface GetSslVpnServersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface GetSslVpnServersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SslVpnClientCertTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SslVpnClientCertsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SslVpnClientCertsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SslVpnServerTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SslVpnServersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SslVpnServersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
 }
 
 export namespace waf {

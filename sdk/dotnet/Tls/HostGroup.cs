@@ -21,18 +21,6 @@ namespace Pulumi.Volcengine.Tls
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Tls.HostGroup("foo", new()
-    ///     {
-    ///         AutoUpdate = true,
-    ///         HostGroupName = "tfgroup-test-x",
-    ///         HostGroupType = "Label",
-    ///         HostIdentifier = "hostlable",
-    ///         IamProjectName = "default",
-    ///         ServiceLogging = false,
-    ///         UpdateEndTime = "02:00",
-    ///         UpdateStartTime = "00:00",
-    ///     });
-    /// 
     ///     var fooIp = new Volcengine.Tls.HostGroup("fooIp", new()
     ///     {
     ///         AutoUpdate = true,

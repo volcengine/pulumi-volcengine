@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetSslVpnServersResult',
@@ -22,7 +23,7 @@ class GetSslVpnServersResult:
     """
     A collection of values returned by getSslVpnServers.
     """
-    def __init__(__self__, id=None, ids=None, output_file=None, ssl_vpn_server_name=None, ssl_vpn_servers=None, total_count=None, vpn_gateway_id=None):
+    def __init__(__self__, id=None, ids=None, output_file=None, project_name=None, ssl_vpn_server_name=None, ssl_vpn_servers=None, tags=None, total_count=None, vpn_gateway_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -32,12 +33,18 @@ class GetSslVpnServersResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if ssl_vpn_server_name and not isinstance(ssl_vpn_server_name, str):
             raise TypeError("Expected argument 'ssl_vpn_server_name' to be a str")
         pulumi.set(__self__, "ssl_vpn_server_name", ssl_vpn_server_name)
         if ssl_vpn_servers and not isinstance(ssl_vpn_servers, list):
             raise TypeError("Expected argument 'ssl_vpn_servers' to be a list")
         pulumi.set(__self__, "ssl_vpn_servers", ssl_vpn_servers)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -64,6 +71,14 @@ class GetSslVpnServersResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the ssl server.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="sslVpnServerName")
     def ssl_vpn_server_name(self) -> Optional[str]:
         """
@@ -78,6 +93,14 @@ class GetSslVpnServersResult:
         List of SSL VPN servers.
         """
         return pulumi.get(self, "ssl_vpn_servers")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetSslVpnServersTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -105,15 +128,19 @@ class AwaitableGetSslVpnServersResult(GetSslVpnServersResult):
             id=self.id,
             ids=self.ids,
             output_file=self.output_file,
+            project_name=self.project_name,
             ssl_vpn_server_name=self.ssl_vpn_server_name,
             ssl_vpn_servers=self.ssl_vpn_servers,
+            tags=self.tags,
             total_count=self.total_count,
             vpn_gateway_id=self.vpn_gateway_id)
 
 
 def get_ssl_vpn_servers(ids: Optional[Sequence[str]] = None,
                         output_file: Optional[str] = None,
+                        project_name: Optional[str] = None,
                         ssl_vpn_server_name: Optional[str] = None,
+                        tags: Optional[Sequence[pulumi.InputType['GetSslVpnServersTagArgs']]] = None,
                         vpn_gateway_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSslVpnServersResult:
     """
@@ -159,13 +186,17 @@ def get_ssl_vpn_servers(ids: Optional[Sequence[str]] = None,
 
     :param Sequence[str] ids: The ids list.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the ssl server.
     :param str ssl_vpn_server_name: The name of the ssl vpn server.
+    :param Sequence[pulumi.InputType['GetSslVpnServersTagArgs']] tags: Tags.
     :param str vpn_gateway_id: The id of the vpn gateway.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['sslVpnServerName'] = ssl_vpn_server_name
+    __args__['tags'] = tags
     __args__['vpnGatewayId'] = vpn_gateway_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpn/getSslVpnServers:getSslVpnServers', __args__, opts=opts, typ=GetSslVpnServersResult).value
@@ -174,8 +205,10 @@ def get_ssl_vpn_servers(ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         ssl_vpn_server_name=pulumi.get(__ret__, 'ssl_vpn_server_name'),
         ssl_vpn_servers=pulumi.get(__ret__, 'ssl_vpn_servers'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpn_gateway_id=pulumi.get(__ret__, 'vpn_gateway_id'))
 
@@ -183,7 +216,9 @@ def get_ssl_vpn_servers(ids: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(get_ssl_vpn_servers)
 def get_ssl_vpn_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                               project_name: Optional[pulumi.Input[Optional[str]]] = None,
                                ssl_vpn_server_name: Optional[pulumi.Input[Optional[str]]] = None,
+                               tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetSslVpnServersTagArgs']]]]] = None,
                                vpn_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSslVpnServersResult]:
     """
@@ -229,7 +264,9 @@ def get_ssl_vpn_servers_output(ids: Optional[pulumi.Input[Optional[Sequence[str]
 
     :param Sequence[str] ids: The ids list.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the ssl server.
     :param str ssl_vpn_server_name: The name of the ssl vpn server.
+    :param Sequence[pulumi.InputType['GetSslVpnServersTagArgs']] tags: Tags.
     :param str vpn_gateway_id: The id of the vpn gateway.
     """
     ...

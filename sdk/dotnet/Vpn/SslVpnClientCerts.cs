@@ -210,6 +210,18 @@ namespace Pulumi.Volcengine.Vpn
         [Input("sslVpnServerId")]
         public string? SslVpnServerId { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.SslVpnClientCertsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.SslVpnClientCertsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.SslVpnClientCertsTagArgs>());
+            set => _tags = value;
+        }
+
         public SslVpnClientCertsArgs()
         {
         }
@@ -254,6 +266,18 @@ namespace Pulumi.Volcengine.Vpn
         [Input("sslVpnServerId")]
         public Input<string>? SslVpnServerId { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.SslVpnClientCertsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SslVpnClientCertsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SslVpnClientCertsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public SslVpnClientCertsInvokeArgs()
         {
         }
@@ -283,6 +307,7 @@ namespace Pulumi.Volcengine.Vpn
         /// The id of the ssl vpn server.
         /// </summary>
         public readonly string? SslVpnServerId;
+        public readonly ImmutableArray<Outputs.SslVpnClientCertsTagResult> Tags;
         /// <summary>
         /// The total count of ssl vpn client cert query.
         /// </summary>
@@ -304,6 +329,8 @@ namespace Pulumi.Volcengine.Vpn
 
             string? sslVpnServerId,
 
+            ImmutableArray<Outputs.SslVpnClientCertsTagResult> tags,
+
             int totalCount)
         {
             Id = id;
@@ -313,6 +340,7 @@ namespace Pulumi.Volcengine.Vpn
             SslVpnClientCertName = sslVpnClientCertName;
             SslVpnClientCerts = sslVpnClientCerts;
             SslVpnServerId = sslVpnServerId;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

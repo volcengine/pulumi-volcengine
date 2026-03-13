@@ -69,6 +69,8 @@ type RulesArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The name of the cloud monitor rule. This field support fuzzy query.
 	RuleName *string `pulumi:"ruleName"`
+	// The tags of the cloud monitor rule.
+	Tags []RulesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by Rules.
@@ -90,6 +92,8 @@ type RulesResult struct {
 	RuleName *string `pulumi:"ruleName"`
 	// The collection of query.
 	Rules []RulesRule `pulumi:"rules"`
+	// Tags.
+	Tags []RulesTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -125,6 +129,8 @@ type RulesOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The name of the cloud monitor rule. This field support fuzzy query.
 	RuleName pulumi.StringPtrInput `pulumi:"ruleName"`
+	// The tags of the cloud monitor rule.
+	Tags RulesTagArrayInput `pulumi:"tags"`
 }
 
 func (RulesOutputArgs) ElementType() reflect.Type {
@@ -191,6 +197,11 @@ func (o RulesResultOutput) RuleName() pulumi.StringPtrOutput {
 // The collection of query.
 func (o RulesResultOutput) Rules() RulesRuleArrayOutput {
 	return o.ApplyT(func(v RulesResult) []RulesRule { return v.Rules }).(RulesRuleArrayOutput)
+}
+
+// Tags.
+func (o RulesResultOutput) Tags() RulesTagArrayOutput {
+	return o.ApplyT(func(v RulesResult) []RulesTag { return v.Tags }).(RulesTagArrayOutput)
 }
 
 // The total count of query.

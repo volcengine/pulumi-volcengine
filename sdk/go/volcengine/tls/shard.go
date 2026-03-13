@@ -29,7 +29,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewShard(ctx, "foo", &tls.ShardArgs{
 //				Number:  pulumi.Int(2),
-//				ShardId: pulumi.Int(1),
+//				ShardId: pulumi.Int(2),
 //				TopicId: pulumi.String("176b62c7-c482-4a6e-b983-4697fda9294a"),
 //			})
 //			if err != nil {

@@ -368,24 +368,26 @@ class EtlTask(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.EtlTask("foo",
-            description="for-tf-test",
+            description="for-t-test",
             dsl_type="NORMAL",
             enable=False,
-            from_time=1750649545,
+            from_time=1750649546,
             script="",
             source_topic_id="9b756385-1dfb-4306-a094-0c88e04b34a5",
             target_resources=[
                 volcengine.tls.EtlTaskTargetResourceArgs(
-                    alias="tf-test-1",
+                    alias="tf-test-1-modify",
+                    region="cn-guilin-boe",
                     topic_id="a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
                 ),
                 volcengine.tls.EtlTaskTargetResourceArgs(
                     alias="tf-test-2-modify",
+                    region="cn-guilin-boe",
                     topic_id="bdf4f23b-a889-456c-ac5f-09d727427557",
                 ),
             ],
             task_type="Resident",
-            to_time=1750735958)
+            to_time=1750735959)
         ```
 
         ## Import
@@ -424,24 +426,26 @@ class EtlTask(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.tls.EtlTask("foo",
-            description="for-tf-test",
+            description="for-t-test",
             dsl_type="NORMAL",
             enable=False,
-            from_time=1750649545,
+            from_time=1750649546,
             script="",
             source_topic_id="9b756385-1dfb-4306-a094-0c88e04b34a5",
             target_resources=[
                 volcengine.tls.EtlTaskTargetResourceArgs(
-                    alias="tf-test-1",
+                    alias="tf-test-1-modify",
+                    region="cn-guilin-boe",
                     topic_id="a690a9b8-72c1-40a3-b8c6-f89a81d3748e",
                 ),
                 volcengine.tls.EtlTaskTargetResourceArgs(
                     alias="tf-test-2-modify",
+                    region="cn-guilin-boe",
                     topic_id="bdf4f23b-a889-456c-ac5f-09d727427557",
                 ),
             ],
             task_type="Resident",
-            to_time=1750735958)
+            to_time=1750735959)
         ```
 
         ## Import

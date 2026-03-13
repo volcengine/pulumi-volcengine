@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -138,6 +140,10 @@ export class SslVpnServer extends pulumi.CustomResource {
      */
     public readonly sslVpnServerName!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpn.SslVpnServerTag[] | undefined>;
+    /**
      * The vpn gateway id.
      */
     public readonly vpnGatewayId!: pulumi.Output<string>;
@@ -166,6 +172,7 @@ export class SslVpnServer extends pulumi.CustomResource {
             resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["sslVpnServerId"] = state ? state.sslVpnServerId : undefined;
             resourceInputs["sslVpnServerName"] = state ? state.sslVpnServerName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vpnGatewayId"] = state ? state.vpnGatewayId : undefined;
         } else {
             const args = argsOrState as SslVpnServerArgs | undefined;
@@ -188,6 +195,7 @@ export class SslVpnServer extends pulumi.CustomResource {
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["sslVpnServerName"] = args ? args.sslVpnServerName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpnGatewayId"] = args ? args.vpnGatewayId : undefined;
             resourceInputs["sslVpnServerId"] = undefined /*out*/;
         }
@@ -254,6 +262,10 @@ export interface SslVpnServerState {
      */
     sslVpnServerName?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.SslVpnServerTag>[]>;
+    /**
      * The vpn gateway id.
      */
     vpnGatewayId?: pulumi.Input<string>;
@@ -312,6 +324,10 @@ export interface SslVpnServerArgs {
      * The name of the SSL server.
      */
     sslVpnServerName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.SslVpnServerTag>[]>;
     /**
      * The vpn gateway id.
      */

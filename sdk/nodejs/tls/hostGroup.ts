@@ -12,16 +12,6 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.tls.HostGroup("foo", {
- *     autoUpdate: true,
- *     hostGroupName: "tfgroup-test-x",
- *     hostGroupType: "Label",
- *     hostIdentifier: "hostlable",
- *     iamProjectName: "default",
- *     serviceLogging: false,
- *     updateEndTime: "02:00",
- *     updateStartTime: "00:00",
- * });
  * const fooIp = new volcengine.tls.HostGroup("fooIp", {
  *     autoUpdate: true,
  *     hostGroupName: "tfgroup-ip-x",

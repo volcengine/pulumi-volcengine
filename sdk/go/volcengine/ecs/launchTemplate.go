@@ -27,18 +27,25 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ecs.NewLaunchTemplate(ctx, "foo", &ecs.LaunchTemplateArgs{
-//				Description:        pulumi.String("acc-test-desc"),
-//				EipBandwidth:       pulumi.Int(1),
-//				EipBillingType:     pulumi.String("PostPaidByBandwidth"),
-//				EipIsp:             pulumi.String("ChinaMobile"),
-//				HostName:           pulumi.String("tf-host-name"),
-//				HpcClusterId:       pulumi.String("hpcCluster-l8u24ovdmoab6opf"),
-//				ImageId:            pulumi.String("image-ycjwwciuzy5pkh54xx8f"),
-//				InstanceChargeType: pulumi.String("PostPaid"),
-//				InstanceName:       pulumi.String("tf-acc-name"),
-//				InstanceTypeId:     pulumi.String("ecs.g1.large"),
-//				KeyPairName:        pulumi.String("tf-key-pair"),
-//				LaunchTemplateName: pulumi.String("tf-acc-template"),
+//				Description:               pulumi.String("acc-test-desc"),
+//				EipBandwidth:              pulumi.Int(1),
+//				EipBillingType:            pulumi.String("PostPaidByBandwidth"),
+//				EipIsp:                    pulumi.String("ChinaMobile"),
+//				HostName:                  pulumi.String("tf-host-name"),
+//				HpcClusterId:              pulumi.String("hpcCluster-l8u24ovdmoab6opf"),
+//				ImageId:                   pulumi.String("image-ycjwwciuzy5pkh54xx8f"),
+//				InstanceChargeType:        pulumi.String("PostPaid"),
+//				InstanceName:              pulumi.String("tf-acc-name"),
+//				InstanceTypeId:            pulumi.String("ecs.g1.large"),
+//				KeyPairName:               pulumi.String("tf-key-pair"),
+//				LaunchTemplateName:        pulumi.String("tf-acc-template"),
+//				LaunchTemplateProjectName: pulumi.String("default"),
+//				LaunchTemplateTags: ecs.LaunchTemplateLaunchTemplateTagArray{
+//					&ecs.LaunchTemplateLaunchTemplateTagArgs{
+//						Key:   pulumi.String("tfk1"),
+//						Value: pulumi.String("tfv1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -87,12 +94,20 @@ type LaunchTemplate struct {
 	LaunchTemplateId pulumi.StringOutput `pulumi:"launchTemplateId"`
 	// The name of the launch template.
 	LaunchTemplateName pulumi.StringOutput `pulumi:"launchTemplateName"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName pulumi.StringPtrOutput `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags LaunchTemplateLaunchTemplateTagArrayOutput `pulumi:"launchTemplateTags"`
 	// The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
 	NetworkInterfaces LaunchTemplateNetworkInterfaceArrayOutput `pulumi:"networkInterfaces"`
+	// The project name of the instance.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy pulumi.StringPtrOutput `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
 	SuffixIndex pulumi.IntOutput `pulumi:"suffixIndex"`
+	// The tags of the instance.
+	Tags LaunchTemplateTagArrayOutput `pulumi:"tags"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix pulumi.BoolPtrOutput `pulumi:"uniqueSuffix"`
 	// Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
@@ -166,12 +181,20 @@ type launchTemplateState struct {
 	LaunchTemplateId *string `pulumi:"launchTemplateId"`
 	// The name of the launch template.
 	LaunchTemplateName *string `pulumi:"launchTemplateName"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName *string `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags []LaunchTemplateLaunchTemplateTag `pulumi:"launchTemplateTags"`
 	// The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
 	NetworkInterfaces []LaunchTemplateNetworkInterface `pulumi:"networkInterfaces"`
+	// The project name of the instance.
+	ProjectName *string `pulumi:"projectName"`
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy *string `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
 	SuffixIndex *int `pulumi:"suffixIndex"`
+	// The tags of the instance.
+	Tags []LaunchTemplateTag `pulumi:"tags"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix *bool `pulumi:"uniqueSuffix"`
 	// Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
@@ -213,12 +236,20 @@ type LaunchTemplateState struct {
 	LaunchTemplateId pulumi.StringPtrInput
 	// The name of the launch template.
 	LaunchTemplateName pulumi.StringPtrInput
+	// The project name of the launch template.
+	LaunchTemplateProjectName pulumi.StringPtrInput
+	// The tags of the launch template.
+	LaunchTemplateTags LaunchTemplateLaunchTemplateTagArrayInput
 	// The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
 	NetworkInterfaces LaunchTemplateNetworkInterfaceArrayInput
+	// The project name of the instance.
+	ProjectName pulumi.StringPtrInput
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy pulumi.StringPtrInput
 	// The index of the ordered suffix.
 	SuffixIndex pulumi.IntPtrInput
+	// The tags of the instance.
+	Tags LaunchTemplateTagArrayInput
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix pulumi.BoolPtrInput
 	// Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
@@ -262,12 +293,20 @@ type launchTemplateArgs struct {
 	KeyPairName *string `pulumi:"keyPairName"`
 	// The name of the launch template.
 	LaunchTemplateName string `pulumi:"launchTemplateName"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName *string `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags []LaunchTemplateLaunchTemplateTag `pulumi:"launchTemplateTags"`
 	// The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
 	NetworkInterfaces []LaunchTemplateNetworkInterface `pulumi:"networkInterfaces"`
+	// The project name of the instance.
+	ProjectName *string `pulumi:"projectName"`
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy *string `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
 	SuffixIndex *int `pulumi:"suffixIndex"`
+	// The tags of the instance.
+	Tags []LaunchTemplateTag `pulumi:"tags"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix *bool `pulumi:"uniqueSuffix"`
 	// Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
@@ -308,12 +347,20 @@ type LaunchTemplateArgs struct {
 	KeyPairName pulumi.StringPtrInput
 	// The name of the launch template.
 	LaunchTemplateName pulumi.StringInput
+	// The project name of the launch template.
+	LaunchTemplateProjectName pulumi.StringPtrInput
+	// The tags of the launch template.
+	LaunchTemplateTags LaunchTemplateLaunchTemplateTagArrayInput
 	// The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
 	NetworkInterfaces LaunchTemplateNetworkInterfaceArrayInput
+	// The project name of the instance.
+	ProjectName pulumi.StringPtrInput
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy pulumi.StringPtrInput
 	// The index of the ordered suffix.
 	SuffixIndex pulumi.IntPtrInput
+	// The tags of the instance.
+	Tags LaunchTemplateTagArrayInput
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix pulumi.BoolPtrInput
 	// Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
@@ -480,9 +527,24 @@ func (o LaunchTemplateOutput) LaunchTemplateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *LaunchTemplate) pulumi.StringOutput { return v.LaunchTemplateName }).(pulumi.StringOutput)
 }
 
+// The project name of the launch template.
+func (o LaunchTemplateOutput) LaunchTemplateProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LaunchTemplate) pulumi.StringPtrOutput { return v.LaunchTemplateProjectName }).(pulumi.StringPtrOutput)
+}
+
+// The tags of the launch template.
+func (o LaunchTemplateOutput) LaunchTemplateTags() LaunchTemplateLaunchTemplateTagArrayOutput {
+	return o.ApplyT(func(v *LaunchTemplate) LaunchTemplateLaunchTemplateTagArrayOutput { return v.LaunchTemplateTags }).(LaunchTemplateLaunchTemplateTagArrayOutput)
+}
+
 // The list of network interfaces. When creating an instance, it is supported to bind auxiliary network cards at the same time. The first one is the primary network card, and the others are secondary network cards.
 func (o LaunchTemplateOutput) NetworkInterfaces() LaunchTemplateNetworkInterfaceArrayOutput {
 	return o.ApplyT(func(v *LaunchTemplate) LaunchTemplateNetworkInterfaceArrayOutput { return v.NetworkInterfaces }).(LaunchTemplateNetworkInterfaceArrayOutput)
+}
+
+// The project name of the instance.
+func (o LaunchTemplateOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LaunchTemplate) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // Whether to open the security reinforcement.
@@ -493,6 +555,11 @@ func (o LaunchTemplateOutput) SecurityEnhancementStrategy() pulumi.StringPtrOutp
 // The index of the ordered suffix.
 func (o LaunchTemplateOutput) SuffixIndex() pulumi.IntOutput {
 	return o.ApplyT(func(v *LaunchTemplate) pulumi.IntOutput { return v.SuffixIndex }).(pulumi.IntOutput)
+}
+
+// The tags of the instance.
+func (o LaunchTemplateOutput) Tags() LaunchTemplateTagArrayOutput {
+	return o.ApplyT(func(v *LaunchTemplate) LaunchTemplateTagArrayOutput { return v.Tags }).(LaunchTemplateTagArrayOutput)
 }
 
 // Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.

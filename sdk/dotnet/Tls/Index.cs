@@ -36,41 +36,37 @@ namespace Pulumi.Volcengine.Tls
     ///         {
     ///             new Volcengine.Tls.Inputs.IndexKeyValueArgs
     ///             {
-    ///                 AutoIndexFlag = false,
     ///                 CaseSensitive = true,
     ///                 Delimiter = "!",
     ///                 IncludeChinese = false,
     ///                 IndexAll = true,
-    ///                 IndexSqlAll = true,
     ///                 JsonKeys = new[]
     ///                 {
     ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "name-2",
+    ///                         Key = "name",
     ///                         ValueType = "text",
     ///                     },
     ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "key-2",
+    ///                         Key = "key",
     ///                         ValueType = "long",
     ///                     },
     ///                 },
-    ///                 Key = "k21",
+    ///                 Key = "k1",
     ///                 SqlFlag = true,
     ///                 ValueType = "json",
     ///             },
     ///         },
     ///         MaxTextLen = 2048,
-    ///         TopicId = "c36ed436-84f1-467a-b00e-ba504db753ca",
+    ///         TopicId = "a0197686-1309-4c46-8003-4be3b278a838",
     ///         UserInnerKeyValues = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.IndexUserInnerKeyValueArgs
     ///             {
-    ///                 AutoIndexFlag = false,
+    ///                 CaseSensitive = false,
     ///                 Delimiter = ",:-/ ",
     ///                 IncludeChinese = false,
-    ///                 IndexAll = true,
-    ///                 IndexSqlAll = true,
     ///                 JsonKeys = new[]
     ///                 {
     ///                     new Volcengine.Tls.Inputs.IndexUserInnerKeyValueJsonKeyArgs
@@ -85,7 +81,7 @@ namespace Pulumi.Volcengine.Tls
     ///                     },
     ///                 },
     ///                 Key = "__content__",
-    ///                 SqlFlag = true,
+    ///                 SqlFlag = false,
     ///                 ValueType = "json",
     ///             },
     ///         },

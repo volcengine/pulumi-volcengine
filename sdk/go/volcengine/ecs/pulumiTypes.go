@@ -1392,6 +1392,112 @@ func (o DeploymentSetsDeploymentSetArrayOutput) Index(i pulumi.IntInput) Deploym
 	}).(DeploymentSetsDeploymentSetOutput)
 }
 
+type HpcClusterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HpcClusterTagInput is an input type that accepts HpcClusterTagArgs and HpcClusterTagOutput values.
+// You can construct a concrete instance of `HpcClusterTagInput` via:
+//
+//	HpcClusterTagArgs{...}
+type HpcClusterTagInput interface {
+	pulumi.Input
+
+	ToHpcClusterTagOutput() HpcClusterTagOutput
+	ToHpcClusterTagOutputWithContext(context.Context) HpcClusterTagOutput
+}
+
+type HpcClusterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HpcClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClusterTag)(nil)).Elem()
+}
+
+func (i HpcClusterTagArgs) ToHpcClusterTagOutput() HpcClusterTagOutput {
+	return i.ToHpcClusterTagOutputWithContext(context.Background())
+}
+
+func (i HpcClusterTagArgs) ToHpcClusterTagOutputWithContext(ctx context.Context) HpcClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClusterTagOutput)
+}
+
+// HpcClusterTagArrayInput is an input type that accepts HpcClusterTagArray and HpcClusterTagArrayOutput values.
+// You can construct a concrete instance of `HpcClusterTagArrayInput` via:
+//
+//	HpcClusterTagArray{ HpcClusterTagArgs{...} }
+type HpcClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToHpcClusterTagArrayOutput() HpcClusterTagArrayOutput
+	ToHpcClusterTagArrayOutputWithContext(context.Context) HpcClusterTagArrayOutput
+}
+
+type HpcClusterTagArray []HpcClusterTagInput
+
+func (HpcClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClusterTag)(nil)).Elem()
+}
+
+func (i HpcClusterTagArray) ToHpcClusterTagArrayOutput() HpcClusterTagArrayOutput {
+	return i.ToHpcClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i HpcClusterTagArray) ToHpcClusterTagArrayOutputWithContext(ctx context.Context) HpcClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClusterTagArrayOutput)
+}
+
+type HpcClusterTagOutput struct{ *pulumi.OutputState }
+
+func (HpcClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClusterTag)(nil)).Elem()
+}
+
+func (o HpcClusterTagOutput) ToHpcClusterTagOutput() HpcClusterTagOutput {
+	return o
+}
+
+func (o HpcClusterTagOutput) ToHpcClusterTagOutputWithContext(ctx context.Context) HpcClusterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HpcClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HpcClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HpcClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HpcClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClusterTag)(nil)).Elem()
+}
+
+func (o HpcClusterTagArrayOutput) ToHpcClusterTagArrayOutput() HpcClusterTagArrayOutput {
+	return o
+}
+
+func (o HpcClusterTagArrayOutput) ToHpcClusterTagArrayOutputWithContext(ctx context.Context) HpcClusterTagArrayOutput {
+	return o
+}
+
+func (o HpcClusterTagArrayOutput) Index(i pulumi.IntInput) HpcClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HpcClusterTag {
+		return vs[0].([]HpcClusterTag)[vs[1].(int)]
+	}).(HpcClusterTagOutput)
+}
+
 type HpcClustersHpcCluster struct {
 	// The created time of the hpc cluster.
 	CreatedAt string `pulumi:"createdAt"`
@@ -1403,6 +1509,10 @@ type HpcClustersHpcCluster struct {
 	Id string `pulumi:"id"`
 	// The name of the hpc cluster.
 	Name string `pulumi:"name"`
+	// The project name of the hpc cluster.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []HpcClustersHpcClusterTag `pulumi:"tags"`
 	// The updated time of the hpc cluster.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The vpc id of the hpc cluster.
@@ -1433,6 +1543,10 @@ type HpcClustersHpcClusterArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the hpc cluster.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the hpc cluster.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags HpcClustersHpcClusterTagArrayInput `pulumi:"tags"`
 	// The updated time of the hpc cluster.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The vpc id of the hpc cluster.
@@ -1517,6 +1631,16 @@ func (o HpcClustersHpcClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o HpcClustersHpcClusterOutput) Tags() HpcClustersHpcClusterTagArrayOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) []HpcClustersHpcClusterTag { return v.Tags }).(HpcClustersHpcClusterTagArrayOutput)
+}
+
 // The updated time of the hpc cluster.
 func (o HpcClustersHpcClusterOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -1550,6 +1674,218 @@ func (o HpcClustersHpcClusterArrayOutput) Index(i pulumi.IntInput) HpcClustersHp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HpcClustersHpcCluster {
 		return vs[0].([]HpcClustersHpcCluster)[vs[1].(int)]
 	}).(HpcClustersHpcClusterOutput)
+}
+
+type HpcClustersHpcClusterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HpcClustersHpcClusterTagInput is an input type that accepts HpcClustersHpcClusterTagArgs and HpcClustersHpcClusterTagOutput values.
+// You can construct a concrete instance of `HpcClustersHpcClusterTagInput` via:
+//
+//	HpcClustersHpcClusterTagArgs{...}
+type HpcClustersHpcClusterTagInput interface {
+	pulumi.Input
+
+	ToHpcClustersHpcClusterTagOutput() HpcClustersHpcClusterTagOutput
+	ToHpcClustersHpcClusterTagOutputWithContext(context.Context) HpcClustersHpcClusterTagOutput
+}
+
+type HpcClustersHpcClusterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HpcClustersHpcClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (i HpcClustersHpcClusterTagArgs) ToHpcClustersHpcClusterTagOutput() HpcClustersHpcClusterTagOutput {
+	return i.ToHpcClustersHpcClusterTagOutputWithContext(context.Background())
+}
+
+func (i HpcClustersHpcClusterTagArgs) ToHpcClustersHpcClusterTagOutputWithContext(ctx context.Context) HpcClustersHpcClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClustersHpcClusterTagOutput)
+}
+
+// HpcClustersHpcClusterTagArrayInput is an input type that accepts HpcClustersHpcClusterTagArray and HpcClustersHpcClusterTagArrayOutput values.
+// You can construct a concrete instance of `HpcClustersHpcClusterTagArrayInput` via:
+//
+//	HpcClustersHpcClusterTagArray{ HpcClustersHpcClusterTagArgs{...} }
+type HpcClustersHpcClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToHpcClustersHpcClusterTagArrayOutput() HpcClustersHpcClusterTagArrayOutput
+	ToHpcClustersHpcClusterTagArrayOutputWithContext(context.Context) HpcClustersHpcClusterTagArrayOutput
+}
+
+type HpcClustersHpcClusterTagArray []HpcClustersHpcClusterTagInput
+
+func (HpcClustersHpcClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (i HpcClustersHpcClusterTagArray) ToHpcClustersHpcClusterTagArrayOutput() HpcClustersHpcClusterTagArrayOutput {
+	return i.ToHpcClustersHpcClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i HpcClustersHpcClusterTagArray) ToHpcClustersHpcClusterTagArrayOutputWithContext(ctx context.Context) HpcClustersHpcClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClustersHpcClusterTagArrayOutput)
+}
+
+type HpcClustersHpcClusterTagOutput struct{ *pulumi.OutputState }
+
+func (HpcClustersHpcClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (o HpcClustersHpcClusterTagOutput) ToHpcClustersHpcClusterTagOutput() HpcClustersHpcClusterTagOutput {
+	return o
+}
+
+func (o HpcClustersHpcClusterTagOutput) ToHpcClustersHpcClusterTagOutputWithContext(ctx context.Context) HpcClustersHpcClusterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HpcClustersHpcClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HpcClustersHpcClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HpcClustersHpcClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HpcClustersHpcClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (o HpcClustersHpcClusterTagArrayOutput) ToHpcClustersHpcClusterTagArrayOutput() HpcClustersHpcClusterTagArrayOutput {
+	return o
+}
+
+func (o HpcClustersHpcClusterTagArrayOutput) ToHpcClustersHpcClusterTagArrayOutputWithContext(ctx context.Context) HpcClustersHpcClusterTagArrayOutput {
+	return o
+}
+
+func (o HpcClustersHpcClusterTagArrayOutput) Index(i pulumi.IntInput) HpcClustersHpcClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HpcClustersHpcClusterTag {
+		return vs[0].([]HpcClustersHpcClusterTag)[vs[1].(int)]
+	}).(HpcClustersHpcClusterTagOutput)
+}
+
+type HpcClustersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// HpcClustersTagInput is an input type that accepts HpcClustersTagArgs and HpcClustersTagOutput values.
+// You can construct a concrete instance of `HpcClustersTagInput` via:
+//
+//	HpcClustersTagArgs{...}
+type HpcClustersTagInput interface {
+	pulumi.Input
+
+	ToHpcClustersTagOutput() HpcClustersTagOutput
+	ToHpcClustersTagOutputWithContext(context.Context) HpcClustersTagOutput
+}
+
+type HpcClustersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (HpcClustersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClustersTag)(nil)).Elem()
+}
+
+func (i HpcClustersTagArgs) ToHpcClustersTagOutput() HpcClustersTagOutput {
+	return i.ToHpcClustersTagOutputWithContext(context.Background())
+}
+
+func (i HpcClustersTagArgs) ToHpcClustersTagOutputWithContext(ctx context.Context) HpcClustersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClustersTagOutput)
+}
+
+// HpcClustersTagArrayInput is an input type that accepts HpcClustersTagArray and HpcClustersTagArrayOutput values.
+// You can construct a concrete instance of `HpcClustersTagArrayInput` via:
+//
+//	HpcClustersTagArray{ HpcClustersTagArgs{...} }
+type HpcClustersTagArrayInput interface {
+	pulumi.Input
+
+	ToHpcClustersTagArrayOutput() HpcClustersTagArrayOutput
+	ToHpcClustersTagArrayOutputWithContext(context.Context) HpcClustersTagArrayOutput
+}
+
+type HpcClustersTagArray []HpcClustersTagInput
+
+func (HpcClustersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClustersTag)(nil)).Elem()
+}
+
+func (i HpcClustersTagArray) ToHpcClustersTagArrayOutput() HpcClustersTagArrayOutput {
+	return i.ToHpcClustersTagArrayOutputWithContext(context.Background())
+}
+
+func (i HpcClustersTagArray) ToHpcClustersTagArrayOutputWithContext(ctx context.Context) HpcClustersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClustersTagArrayOutput)
+}
+
+type HpcClustersTagOutput struct{ *pulumi.OutputState }
+
+func (HpcClustersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClustersTag)(nil)).Elem()
+}
+
+func (o HpcClustersTagOutput) ToHpcClustersTagOutput() HpcClustersTagOutput {
+	return o
+}
+
+func (o HpcClustersTagOutput) ToHpcClustersTagOutputWithContext(ctx context.Context) HpcClustersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o HpcClustersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o HpcClustersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type HpcClustersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (HpcClustersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClustersTag)(nil)).Elem()
+}
+
+func (o HpcClustersTagArrayOutput) ToHpcClustersTagArrayOutput() HpcClustersTagArrayOutput {
+	return o
+}
+
+func (o HpcClustersTagArrayOutput) ToHpcClustersTagArrayOutputWithContext(ctx context.Context) HpcClustersTagArrayOutput {
+	return o
+}
+
+func (o HpcClustersTagArrayOutput) Index(i pulumi.IntInput) HpcClustersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HpcClustersTag {
+		return vs[0].([]HpcClustersTag)[vs[1].(int)]
+	}).(HpcClustersTagOutput)
 }
 
 type ImageImportTag struct {
@@ -6356,6 +6692,112 @@ func (o InvocationsTagArrayOutput) Index(i pulumi.IntInput) InvocationsTagOutput
 	}).(InvocationsTagOutput)
 }
 
+type KeyPairTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// KeyPairTagInput is an input type that accepts KeyPairTagArgs and KeyPairTagOutput values.
+// You can construct a concrete instance of `KeyPairTagInput` via:
+//
+//	KeyPairTagArgs{...}
+type KeyPairTagInput interface {
+	pulumi.Input
+
+	ToKeyPairTagOutput() KeyPairTagOutput
+	ToKeyPairTagOutputWithContext(context.Context) KeyPairTagOutput
+}
+
+type KeyPairTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (KeyPairTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyPairTag)(nil)).Elem()
+}
+
+func (i KeyPairTagArgs) ToKeyPairTagOutput() KeyPairTagOutput {
+	return i.ToKeyPairTagOutputWithContext(context.Background())
+}
+
+func (i KeyPairTagArgs) ToKeyPairTagOutputWithContext(ctx context.Context) KeyPairTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyPairTagOutput)
+}
+
+// KeyPairTagArrayInput is an input type that accepts KeyPairTagArray and KeyPairTagArrayOutput values.
+// You can construct a concrete instance of `KeyPairTagArrayInput` via:
+//
+//	KeyPairTagArray{ KeyPairTagArgs{...} }
+type KeyPairTagArrayInput interface {
+	pulumi.Input
+
+	ToKeyPairTagArrayOutput() KeyPairTagArrayOutput
+	ToKeyPairTagArrayOutputWithContext(context.Context) KeyPairTagArrayOutput
+}
+
+type KeyPairTagArray []KeyPairTagInput
+
+func (KeyPairTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyPairTag)(nil)).Elem()
+}
+
+func (i KeyPairTagArray) ToKeyPairTagArrayOutput() KeyPairTagArrayOutput {
+	return i.ToKeyPairTagArrayOutputWithContext(context.Background())
+}
+
+func (i KeyPairTagArray) ToKeyPairTagArrayOutputWithContext(ctx context.Context) KeyPairTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyPairTagArrayOutput)
+}
+
+type KeyPairTagOutput struct{ *pulumi.OutputState }
+
+func (KeyPairTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyPairTag)(nil)).Elem()
+}
+
+func (o KeyPairTagOutput) ToKeyPairTagOutput() KeyPairTagOutput {
+	return o
+}
+
+func (o KeyPairTagOutput) ToKeyPairTagOutputWithContext(ctx context.Context) KeyPairTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o KeyPairTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyPairTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o KeyPairTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyPairTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type KeyPairTagArrayOutput struct{ *pulumi.OutputState }
+
+func (KeyPairTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyPairTag)(nil)).Elem()
+}
+
+func (o KeyPairTagArrayOutput) ToKeyPairTagArrayOutput() KeyPairTagArrayOutput {
+	return o
+}
+
+func (o KeyPairTagArrayOutput) ToKeyPairTagArrayOutputWithContext(ctx context.Context) KeyPairTagArrayOutput {
+	return o
+}
+
+func (o KeyPairTagArrayOutput) Index(i pulumi.IntInput) KeyPairTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeyPairTag {
+		return vs[0].([]KeyPairTag)[vs[1].(int)]
+	}).(KeyPairTagOutput)
+}
+
 type KeyPairsKeyPair struct {
 	// The creation time of key pair.
 	CreatedAt string `pulumi:"createdAt"`
@@ -6369,6 +6811,10 @@ type KeyPairsKeyPair struct {
 	KeyPairId string `pulumi:"keyPairId"`
 	// Name of key pair.
 	KeyPairName string `pulumi:"keyPairName"`
+	// The project name of the key pair.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []KeyPairsKeyPairTag `pulumi:"tags"`
 	// The update time of key pair.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -6397,6 +6843,10 @@ type KeyPairsKeyPairArgs struct {
 	KeyPairId pulumi.StringInput `pulumi:"keyPairId"`
 	// Name of key pair.
 	KeyPairName pulumi.StringInput `pulumi:"keyPairName"`
+	// The project name of the key pair.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags KeyPairsKeyPairTagArrayInput `pulumi:"tags"`
 	// The update time of key pair.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
@@ -6482,6 +6932,16 @@ func (o KeyPairsKeyPairOutput) KeyPairName() pulumi.StringOutput {
 	return o.ApplyT(func(v KeyPairsKeyPair) string { return v.KeyPairName }).(pulumi.StringOutput)
 }
 
+// The project name of the key pair.
+func (o KeyPairsKeyPairOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyPairsKeyPair) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o KeyPairsKeyPairOutput) Tags() KeyPairsKeyPairTagArrayOutput {
+	return o.ApplyT(func(v KeyPairsKeyPair) []KeyPairsKeyPairTag { return v.Tags }).(KeyPairsKeyPairTagArrayOutput)
+}
+
 // The update time of key pair.
 func (o KeyPairsKeyPairOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v KeyPairsKeyPair) string { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -6505,6 +6965,324 @@ func (o KeyPairsKeyPairArrayOutput) Index(i pulumi.IntInput) KeyPairsKeyPairOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeyPairsKeyPair {
 		return vs[0].([]KeyPairsKeyPair)[vs[1].(int)]
 	}).(KeyPairsKeyPairOutput)
+}
+
+type KeyPairsKeyPairTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// KeyPairsKeyPairTagInput is an input type that accepts KeyPairsKeyPairTagArgs and KeyPairsKeyPairTagOutput values.
+// You can construct a concrete instance of `KeyPairsKeyPairTagInput` via:
+//
+//	KeyPairsKeyPairTagArgs{...}
+type KeyPairsKeyPairTagInput interface {
+	pulumi.Input
+
+	ToKeyPairsKeyPairTagOutput() KeyPairsKeyPairTagOutput
+	ToKeyPairsKeyPairTagOutputWithContext(context.Context) KeyPairsKeyPairTagOutput
+}
+
+type KeyPairsKeyPairTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (KeyPairsKeyPairTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (i KeyPairsKeyPairTagArgs) ToKeyPairsKeyPairTagOutput() KeyPairsKeyPairTagOutput {
+	return i.ToKeyPairsKeyPairTagOutputWithContext(context.Background())
+}
+
+func (i KeyPairsKeyPairTagArgs) ToKeyPairsKeyPairTagOutputWithContext(ctx context.Context) KeyPairsKeyPairTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyPairsKeyPairTagOutput)
+}
+
+// KeyPairsKeyPairTagArrayInput is an input type that accepts KeyPairsKeyPairTagArray and KeyPairsKeyPairTagArrayOutput values.
+// You can construct a concrete instance of `KeyPairsKeyPairTagArrayInput` via:
+//
+//	KeyPairsKeyPairTagArray{ KeyPairsKeyPairTagArgs{...} }
+type KeyPairsKeyPairTagArrayInput interface {
+	pulumi.Input
+
+	ToKeyPairsKeyPairTagArrayOutput() KeyPairsKeyPairTagArrayOutput
+	ToKeyPairsKeyPairTagArrayOutputWithContext(context.Context) KeyPairsKeyPairTagArrayOutput
+}
+
+type KeyPairsKeyPairTagArray []KeyPairsKeyPairTagInput
+
+func (KeyPairsKeyPairTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (i KeyPairsKeyPairTagArray) ToKeyPairsKeyPairTagArrayOutput() KeyPairsKeyPairTagArrayOutput {
+	return i.ToKeyPairsKeyPairTagArrayOutputWithContext(context.Background())
+}
+
+func (i KeyPairsKeyPairTagArray) ToKeyPairsKeyPairTagArrayOutputWithContext(ctx context.Context) KeyPairsKeyPairTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyPairsKeyPairTagArrayOutput)
+}
+
+type KeyPairsKeyPairTagOutput struct{ *pulumi.OutputState }
+
+func (KeyPairsKeyPairTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (o KeyPairsKeyPairTagOutput) ToKeyPairsKeyPairTagOutput() KeyPairsKeyPairTagOutput {
+	return o
+}
+
+func (o KeyPairsKeyPairTagOutput) ToKeyPairsKeyPairTagOutputWithContext(ctx context.Context) KeyPairsKeyPairTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o KeyPairsKeyPairTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyPairsKeyPairTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o KeyPairsKeyPairTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyPairsKeyPairTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type KeyPairsKeyPairTagArrayOutput struct{ *pulumi.OutputState }
+
+func (KeyPairsKeyPairTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (o KeyPairsKeyPairTagArrayOutput) ToKeyPairsKeyPairTagArrayOutput() KeyPairsKeyPairTagArrayOutput {
+	return o
+}
+
+func (o KeyPairsKeyPairTagArrayOutput) ToKeyPairsKeyPairTagArrayOutputWithContext(ctx context.Context) KeyPairsKeyPairTagArrayOutput {
+	return o
+}
+
+func (o KeyPairsKeyPairTagArrayOutput) Index(i pulumi.IntInput) KeyPairsKeyPairTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeyPairsKeyPairTag {
+		return vs[0].([]KeyPairsKeyPairTag)[vs[1].(int)]
+	}).(KeyPairsKeyPairTagOutput)
+}
+
+type KeyPairsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// KeyPairsTagInput is an input type that accepts KeyPairsTagArgs and KeyPairsTagOutput values.
+// You can construct a concrete instance of `KeyPairsTagInput` via:
+//
+//	KeyPairsTagArgs{...}
+type KeyPairsTagInput interface {
+	pulumi.Input
+
+	ToKeyPairsTagOutput() KeyPairsTagOutput
+	ToKeyPairsTagOutputWithContext(context.Context) KeyPairsTagOutput
+}
+
+type KeyPairsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (KeyPairsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyPairsTag)(nil)).Elem()
+}
+
+func (i KeyPairsTagArgs) ToKeyPairsTagOutput() KeyPairsTagOutput {
+	return i.ToKeyPairsTagOutputWithContext(context.Background())
+}
+
+func (i KeyPairsTagArgs) ToKeyPairsTagOutputWithContext(ctx context.Context) KeyPairsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyPairsTagOutput)
+}
+
+// KeyPairsTagArrayInput is an input type that accepts KeyPairsTagArray and KeyPairsTagArrayOutput values.
+// You can construct a concrete instance of `KeyPairsTagArrayInput` via:
+//
+//	KeyPairsTagArray{ KeyPairsTagArgs{...} }
+type KeyPairsTagArrayInput interface {
+	pulumi.Input
+
+	ToKeyPairsTagArrayOutput() KeyPairsTagArrayOutput
+	ToKeyPairsTagArrayOutputWithContext(context.Context) KeyPairsTagArrayOutput
+}
+
+type KeyPairsTagArray []KeyPairsTagInput
+
+func (KeyPairsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyPairsTag)(nil)).Elem()
+}
+
+func (i KeyPairsTagArray) ToKeyPairsTagArrayOutput() KeyPairsTagArrayOutput {
+	return i.ToKeyPairsTagArrayOutputWithContext(context.Background())
+}
+
+func (i KeyPairsTagArray) ToKeyPairsTagArrayOutputWithContext(ctx context.Context) KeyPairsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyPairsTagArrayOutput)
+}
+
+type KeyPairsTagOutput struct{ *pulumi.OutputState }
+
+func (KeyPairsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyPairsTag)(nil)).Elem()
+}
+
+func (o KeyPairsTagOutput) ToKeyPairsTagOutput() KeyPairsTagOutput {
+	return o
+}
+
+func (o KeyPairsTagOutput) ToKeyPairsTagOutputWithContext(ctx context.Context) KeyPairsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o KeyPairsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyPairsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o KeyPairsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyPairsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type KeyPairsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (KeyPairsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeyPairsTag)(nil)).Elem()
+}
+
+func (o KeyPairsTagArrayOutput) ToKeyPairsTagArrayOutput() KeyPairsTagArrayOutput {
+	return o
+}
+
+func (o KeyPairsTagArrayOutput) ToKeyPairsTagArrayOutputWithContext(ctx context.Context) KeyPairsTagArrayOutput {
+	return o
+}
+
+func (o KeyPairsTagArrayOutput) Index(i pulumi.IntInput) KeyPairsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeyPairsTag {
+		return vs[0].([]KeyPairsTag)[vs[1].(int)]
+	}).(KeyPairsTagOutput)
+}
+
+type LaunchTemplateLaunchTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// LaunchTemplateLaunchTemplateTagInput is an input type that accepts LaunchTemplateLaunchTemplateTagArgs and LaunchTemplateLaunchTemplateTagOutput values.
+// You can construct a concrete instance of `LaunchTemplateLaunchTemplateTagInput` via:
+//
+//	LaunchTemplateLaunchTemplateTagArgs{...}
+type LaunchTemplateLaunchTemplateTagInput interface {
+	pulumi.Input
+
+	ToLaunchTemplateLaunchTemplateTagOutput() LaunchTemplateLaunchTemplateTagOutput
+	ToLaunchTemplateLaunchTemplateTagOutputWithContext(context.Context) LaunchTemplateLaunchTemplateTagOutput
+}
+
+type LaunchTemplateLaunchTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (LaunchTemplateLaunchTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplateLaunchTemplateTagArgs) ToLaunchTemplateLaunchTemplateTagOutput() LaunchTemplateLaunchTemplateTagOutput {
+	return i.ToLaunchTemplateLaunchTemplateTagOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplateLaunchTemplateTagArgs) ToLaunchTemplateLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplateLaunchTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplateLaunchTemplateTagOutput)
+}
+
+// LaunchTemplateLaunchTemplateTagArrayInput is an input type that accepts LaunchTemplateLaunchTemplateTagArray and LaunchTemplateLaunchTemplateTagArrayOutput values.
+// You can construct a concrete instance of `LaunchTemplateLaunchTemplateTagArrayInput` via:
+//
+//	LaunchTemplateLaunchTemplateTagArray{ LaunchTemplateLaunchTemplateTagArgs{...} }
+type LaunchTemplateLaunchTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToLaunchTemplateLaunchTemplateTagArrayOutput() LaunchTemplateLaunchTemplateTagArrayOutput
+	ToLaunchTemplateLaunchTemplateTagArrayOutputWithContext(context.Context) LaunchTemplateLaunchTemplateTagArrayOutput
+}
+
+type LaunchTemplateLaunchTemplateTagArray []LaunchTemplateLaunchTemplateTagInput
+
+func (LaunchTemplateLaunchTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplateLaunchTemplateTagArray) ToLaunchTemplateLaunchTemplateTagArrayOutput() LaunchTemplateLaunchTemplateTagArrayOutput {
+	return i.ToLaunchTemplateLaunchTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplateLaunchTemplateTagArray) ToLaunchTemplateLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplateLaunchTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplateLaunchTemplateTagArrayOutput)
+}
+
+type LaunchTemplateLaunchTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplateLaunchTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplateLaunchTemplateTagOutput) ToLaunchTemplateLaunchTemplateTagOutput() LaunchTemplateLaunchTemplateTagOutput {
+	return o
+}
+
+func (o LaunchTemplateLaunchTemplateTagOutput) ToLaunchTemplateLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplateLaunchTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o LaunchTemplateLaunchTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplateLaunchTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o LaunchTemplateLaunchTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplateLaunchTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type LaunchTemplateLaunchTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplateLaunchTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplateLaunchTemplateTagArrayOutput) ToLaunchTemplateLaunchTemplateTagArrayOutput() LaunchTemplateLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplateLaunchTemplateTagArrayOutput) ToLaunchTemplateLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplateLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplateLaunchTemplateTagArrayOutput) Index(i pulumi.IntInput) LaunchTemplateLaunchTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LaunchTemplateLaunchTemplateTag {
+		return vs[0].([]LaunchTemplateLaunchTemplateTag)[vs[1].(int)]
+	}).(LaunchTemplateLaunchTemplateTagOutput)
 }
 
 type LaunchTemplateNetworkInterface struct {
@@ -6611,6 +7389,112 @@ func (o LaunchTemplateNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) Laun
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LaunchTemplateNetworkInterface {
 		return vs[0].([]LaunchTemplateNetworkInterface)[vs[1].(int)]
 	}).(LaunchTemplateNetworkInterfaceOutput)
+}
+
+type LaunchTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// LaunchTemplateTagInput is an input type that accepts LaunchTemplateTagArgs and LaunchTemplateTagOutput values.
+// You can construct a concrete instance of `LaunchTemplateTagInput` via:
+//
+//	LaunchTemplateTagArgs{...}
+type LaunchTemplateTagInput interface {
+	pulumi.Input
+
+	ToLaunchTemplateTagOutput() LaunchTemplateTagOutput
+	ToLaunchTemplateTagOutputWithContext(context.Context) LaunchTemplateTagOutput
+}
+
+type LaunchTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (LaunchTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplateTagArgs) ToLaunchTemplateTagOutput() LaunchTemplateTagOutput {
+	return i.ToLaunchTemplateTagOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplateTagArgs) ToLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplateTagOutput)
+}
+
+// LaunchTemplateTagArrayInput is an input type that accepts LaunchTemplateTagArray and LaunchTemplateTagArrayOutput values.
+// You can construct a concrete instance of `LaunchTemplateTagArrayInput` via:
+//
+//	LaunchTemplateTagArray{ LaunchTemplateTagArgs{...} }
+type LaunchTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToLaunchTemplateTagArrayOutput() LaunchTemplateTagArrayOutput
+	ToLaunchTemplateTagArrayOutputWithContext(context.Context) LaunchTemplateTagArrayOutput
+}
+
+type LaunchTemplateTagArray []LaunchTemplateTagInput
+
+func (LaunchTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplateTagArray) ToLaunchTemplateTagArrayOutput() LaunchTemplateTagArrayOutput {
+	return i.ToLaunchTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplateTagArray) ToLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplateTagArrayOutput)
+}
+
+type LaunchTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplateTagOutput) ToLaunchTemplateTagOutput() LaunchTemplateTagOutput {
+	return o
+}
+
+func (o LaunchTemplateTagOutput) ToLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o LaunchTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o LaunchTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type LaunchTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplateTagArrayOutput) ToLaunchTemplateTagArrayOutput() LaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplateTagArrayOutput) ToLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplateTagArrayOutput) Index(i pulumi.IntInput) LaunchTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LaunchTemplateTag {
+		return vs[0].([]LaunchTemplateTag)[vs[1].(int)]
+	}).(LaunchTemplateTagOutput)
 }
 
 type LaunchTemplateVolume struct {
@@ -6761,12 +7645,20 @@ type LaunchTemplatesLaunchTemplate struct {
 	LaunchTemplateId string `pulumi:"launchTemplateId"`
 	// The name of the launch template.
 	LaunchTemplateName string `pulumi:"launchTemplateName"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName string `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags []LaunchTemplatesLaunchTemplateLaunchTemplateTag `pulumi:"launchTemplateTags"`
 	// The list of network interfaces.
 	NetworkInterfaces []LaunchTemplatesLaunchTemplateNetworkInterface `pulumi:"networkInterfaces"`
+	// The project name of the instance.
+	ProjectName string `pulumi:"projectName"`
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy string `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
 	SuffixIndex int `pulumi:"suffixIndex"`
+	// Tags.
+	Tags []LaunchTemplatesLaunchTemplateTag `pulumi:"tags"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix bool `pulumi:"uniqueSuffix"`
 	// The updated time of the launch template.
@@ -6825,12 +7717,20 @@ type LaunchTemplatesLaunchTemplateArgs struct {
 	LaunchTemplateId pulumi.StringInput `pulumi:"launchTemplateId"`
 	// The name of the launch template.
 	LaunchTemplateName pulumi.StringInput `pulumi:"launchTemplateName"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName pulumi.StringInput `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput `pulumi:"launchTemplateTags"`
 	// The list of network interfaces.
 	NetworkInterfaces LaunchTemplatesLaunchTemplateNetworkInterfaceArrayInput `pulumi:"networkInterfaces"`
+	// The project name of the instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy pulumi.StringInput `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
 	SuffixIndex pulumi.IntInput `pulumi:"suffixIndex"`
+	// Tags.
+	Tags LaunchTemplatesLaunchTemplateTagArrayInput `pulumi:"tags"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix pulumi.BoolInput `pulumi:"uniqueSuffix"`
 	// The updated time of the launch template.
@@ -6976,11 +7876,28 @@ func (o LaunchTemplatesLaunchTemplateOutput) LaunchTemplateName() pulumi.StringO
 	return o.ApplyT(func(v LaunchTemplatesLaunchTemplate) string { return v.LaunchTemplateName }).(pulumi.StringOutput)
 }
 
+// The project name of the launch template.
+func (o LaunchTemplatesLaunchTemplateOutput) LaunchTemplateProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplate) string { return v.LaunchTemplateProjectName }).(pulumi.StringOutput)
+}
+
+// The tags of the launch template.
+func (o LaunchTemplatesLaunchTemplateOutput) LaunchTemplateTags() LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplate) []LaunchTemplatesLaunchTemplateLaunchTemplateTag {
+		return v.LaunchTemplateTags
+	}).(LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput)
+}
+
 // The list of network interfaces.
 func (o LaunchTemplatesLaunchTemplateOutput) NetworkInterfaces() LaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput {
 	return o.ApplyT(func(v LaunchTemplatesLaunchTemplate) []LaunchTemplatesLaunchTemplateNetworkInterface {
 		return v.NetworkInterfaces
 	}).(LaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput)
+}
+
+// The project name of the instance.
+func (o LaunchTemplatesLaunchTemplateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplate) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // Whether to open the security reinforcement.
@@ -6991,6 +7908,11 @@ func (o LaunchTemplatesLaunchTemplateOutput) SecurityEnhancementStrategy() pulum
 // The index of the ordered suffix.
 func (o LaunchTemplatesLaunchTemplateOutput) SuffixIndex() pulumi.IntOutput {
 	return o.ApplyT(func(v LaunchTemplatesLaunchTemplate) int { return v.SuffixIndex }).(pulumi.IntOutput)
+}
+
+// Tags.
+func (o LaunchTemplatesLaunchTemplateOutput) Tags() LaunchTemplatesLaunchTemplateTagArrayOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplate) []LaunchTemplatesLaunchTemplateTag { return v.Tags }).(LaunchTemplatesLaunchTemplateTagArrayOutput)
 }
 
 // Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
@@ -7041,6 +7963,112 @@ func (o LaunchTemplatesLaunchTemplateArrayOutput) Index(i pulumi.IntInput) Launc
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LaunchTemplatesLaunchTemplate {
 		return vs[0].([]LaunchTemplatesLaunchTemplate)[vs[1].(int)]
 	}).(LaunchTemplatesLaunchTemplateOutput)
+}
+
+type LaunchTemplatesLaunchTemplateLaunchTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// LaunchTemplatesLaunchTemplateLaunchTemplateTagInput is an input type that accepts LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs and LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput values.
+// You can construct a concrete instance of `LaunchTemplatesLaunchTemplateLaunchTemplateTagInput` via:
+//
+//	LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs{...}
+type LaunchTemplatesLaunchTemplateLaunchTemplateTagInput interface {
+	pulumi.Input
+
+	ToLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput() LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput
+	ToLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(context.Context) LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput
+}
+
+type LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput() LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return i.ToLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput)
+}
+
+// LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput is an input type that accepts LaunchTemplatesLaunchTemplateLaunchTemplateTagArray and LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput values.
+// You can construct a concrete instance of `LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput` via:
+//
+//	LaunchTemplatesLaunchTemplateLaunchTemplateTagArray{ LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs{...} }
+type LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput() LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput
+	ToLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(context.Context) LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput
+}
+
+type LaunchTemplatesLaunchTemplateLaunchTemplateTagArray []LaunchTemplatesLaunchTemplateLaunchTemplateTagInput
+
+func (LaunchTemplatesLaunchTemplateLaunchTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplatesLaunchTemplateLaunchTemplateTagArray) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput() LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return i.ToLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplatesLaunchTemplateLaunchTemplateTagArray) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput)
+}
+
+type LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput() LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return o
+}
+
+func (o LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplateLaunchTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplateLaunchTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput() LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) ToLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) Index(i pulumi.IntInput) LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LaunchTemplatesLaunchTemplateLaunchTemplateTag {
+		return vs[0].([]LaunchTemplatesLaunchTemplateLaunchTemplateTag)[vs[1].(int)]
+	}).(LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput)
 }
 
 type LaunchTemplatesLaunchTemplateNetworkInterface struct {
@@ -7147,6 +8175,112 @@ func (o LaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput) Index(i pulumi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LaunchTemplatesLaunchTemplateNetworkInterface {
 		return vs[0].([]LaunchTemplatesLaunchTemplateNetworkInterface)[vs[1].(int)]
 	}).(LaunchTemplatesLaunchTemplateNetworkInterfaceOutput)
+}
+
+type LaunchTemplatesLaunchTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// LaunchTemplatesLaunchTemplateTagInput is an input type that accepts LaunchTemplatesLaunchTemplateTagArgs and LaunchTemplatesLaunchTemplateTagOutput values.
+// You can construct a concrete instance of `LaunchTemplatesLaunchTemplateTagInput` via:
+//
+//	LaunchTemplatesLaunchTemplateTagArgs{...}
+type LaunchTemplatesLaunchTemplateTagInput interface {
+	pulumi.Input
+
+	ToLaunchTemplatesLaunchTemplateTagOutput() LaunchTemplatesLaunchTemplateTagOutput
+	ToLaunchTemplatesLaunchTemplateTagOutputWithContext(context.Context) LaunchTemplatesLaunchTemplateTagOutput
+}
+
+type LaunchTemplatesLaunchTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (LaunchTemplatesLaunchTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplatesLaunchTemplateTagArgs) ToLaunchTemplatesLaunchTemplateTagOutput() LaunchTemplatesLaunchTemplateTagOutput {
+	return i.ToLaunchTemplatesLaunchTemplateTagOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplatesLaunchTemplateTagArgs) ToLaunchTemplatesLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplatesLaunchTemplateTagOutput)
+}
+
+// LaunchTemplatesLaunchTemplateTagArrayInput is an input type that accepts LaunchTemplatesLaunchTemplateTagArray and LaunchTemplatesLaunchTemplateTagArrayOutput values.
+// You can construct a concrete instance of `LaunchTemplatesLaunchTemplateTagArrayInput` via:
+//
+//	LaunchTemplatesLaunchTemplateTagArray{ LaunchTemplatesLaunchTemplateTagArgs{...} }
+type LaunchTemplatesLaunchTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToLaunchTemplatesLaunchTemplateTagArrayOutput() LaunchTemplatesLaunchTemplateTagArrayOutput
+	ToLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(context.Context) LaunchTemplatesLaunchTemplateTagArrayOutput
+}
+
+type LaunchTemplatesLaunchTemplateTagArray []LaunchTemplatesLaunchTemplateTagInput
+
+func (LaunchTemplatesLaunchTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i LaunchTemplatesLaunchTemplateTagArray) ToLaunchTemplatesLaunchTemplateTagArrayOutput() LaunchTemplatesLaunchTemplateTagArrayOutput {
+	return i.ToLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i LaunchTemplatesLaunchTemplateTagArray) ToLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LaunchTemplatesLaunchTemplateTagArrayOutput)
+}
+
+type LaunchTemplatesLaunchTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplatesLaunchTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplatesLaunchTemplateTagOutput) ToLaunchTemplatesLaunchTemplateTagOutput() LaunchTemplatesLaunchTemplateTagOutput {
+	return o
+}
+
+func (o LaunchTemplatesLaunchTemplateTagOutput) ToLaunchTemplatesLaunchTemplateTagOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o LaunchTemplatesLaunchTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o LaunchTemplatesLaunchTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LaunchTemplatesLaunchTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type LaunchTemplatesLaunchTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (LaunchTemplatesLaunchTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o LaunchTemplatesLaunchTemplateTagArrayOutput) ToLaunchTemplatesLaunchTemplateTagArrayOutput() LaunchTemplatesLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplatesLaunchTemplateTagArrayOutput) ToLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(ctx context.Context) LaunchTemplatesLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o LaunchTemplatesLaunchTemplateTagArrayOutput) Index(i pulumi.IntInput) LaunchTemplatesLaunchTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LaunchTemplatesLaunchTemplateTag {
+		return vs[0].([]LaunchTemplatesLaunchTemplateTag)[vs[1].(int)]
+	}).(LaunchTemplatesLaunchTemplateTagOutput)
 }
 
 type LaunchTemplatesLaunchTemplateVolume struct {
@@ -8591,6 +9725,10 @@ type GetHpcClustersHpcCluster struct {
 	Id string `pulumi:"id"`
 	// The name of the hpc cluster.
 	Name string `pulumi:"name"`
+	// The project name of the hpc cluster.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetHpcClustersHpcClusterTag `pulumi:"tags"`
 	// The updated time of the hpc cluster.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The vpc id of the hpc cluster.
@@ -8621,6 +9759,10 @@ type GetHpcClustersHpcClusterArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the hpc cluster.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The project name of the hpc cluster.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetHpcClustersHpcClusterTagArrayInput `pulumi:"tags"`
 	// The updated time of the hpc cluster.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The vpc id of the hpc cluster.
@@ -8705,6 +9847,16 @@ func (o GetHpcClustersHpcClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHpcClustersHpcCluster) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The project name of the hpc cluster.
+func (o GetHpcClustersHpcClusterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHpcClustersHpcCluster) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetHpcClustersHpcClusterOutput) Tags() GetHpcClustersHpcClusterTagArrayOutput {
+	return o.ApplyT(func(v GetHpcClustersHpcCluster) []GetHpcClustersHpcClusterTag { return v.Tags }).(GetHpcClustersHpcClusterTagArrayOutput)
+}
+
 // The updated time of the hpc cluster.
 func (o GetHpcClustersHpcClusterOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHpcClustersHpcCluster) string { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -8738,6 +9890,218 @@ func (o GetHpcClustersHpcClusterArrayOutput) Index(i pulumi.IntInput) GetHpcClus
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHpcClustersHpcCluster {
 		return vs[0].([]GetHpcClustersHpcCluster)[vs[1].(int)]
 	}).(GetHpcClustersHpcClusterOutput)
+}
+
+type GetHpcClustersHpcClusterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetHpcClustersHpcClusterTagInput is an input type that accepts GetHpcClustersHpcClusterTagArgs and GetHpcClustersHpcClusterTagOutput values.
+// You can construct a concrete instance of `GetHpcClustersHpcClusterTagInput` via:
+//
+//	GetHpcClustersHpcClusterTagArgs{...}
+type GetHpcClustersHpcClusterTagInput interface {
+	pulumi.Input
+
+	ToGetHpcClustersHpcClusterTagOutput() GetHpcClustersHpcClusterTagOutput
+	ToGetHpcClustersHpcClusterTagOutputWithContext(context.Context) GetHpcClustersHpcClusterTagOutput
+}
+
+type GetHpcClustersHpcClusterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetHpcClustersHpcClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (i GetHpcClustersHpcClusterTagArgs) ToGetHpcClustersHpcClusterTagOutput() GetHpcClustersHpcClusterTagOutput {
+	return i.ToGetHpcClustersHpcClusterTagOutputWithContext(context.Background())
+}
+
+func (i GetHpcClustersHpcClusterTagArgs) ToGetHpcClustersHpcClusterTagOutputWithContext(ctx context.Context) GetHpcClustersHpcClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHpcClustersHpcClusterTagOutput)
+}
+
+// GetHpcClustersHpcClusterTagArrayInput is an input type that accepts GetHpcClustersHpcClusterTagArray and GetHpcClustersHpcClusterTagArrayOutput values.
+// You can construct a concrete instance of `GetHpcClustersHpcClusterTagArrayInput` via:
+//
+//	GetHpcClustersHpcClusterTagArray{ GetHpcClustersHpcClusterTagArgs{...} }
+type GetHpcClustersHpcClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToGetHpcClustersHpcClusterTagArrayOutput() GetHpcClustersHpcClusterTagArrayOutput
+	ToGetHpcClustersHpcClusterTagArrayOutputWithContext(context.Context) GetHpcClustersHpcClusterTagArrayOutput
+}
+
+type GetHpcClustersHpcClusterTagArray []GetHpcClustersHpcClusterTagInput
+
+func (GetHpcClustersHpcClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (i GetHpcClustersHpcClusterTagArray) ToGetHpcClustersHpcClusterTagArrayOutput() GetHpcClustersHpcClusterTagArrayOutput {
+	return i.ToGetHpcClustersHpcClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetHpcClustersHpcClusterTagArray) ToGetHpcClustersHpcClusterTagArrayOutputWithContext(ctx context.Context) GetHpcClustersHpcClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHpcClustersHpcClusterTagArrayOutput)
+}
+
+type GetHpcClustersHpcClusterTagOutput struct{ *pulumi.OutputState }
+
+func (GetHpcClustersHpcClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (o GetHpcClustersHpcClusterTagOutput) ToGetHpcClustersHpcClusterTagOutput() GetHpcClustersHpcClusterTagOutput {
+	return o
+}
+
+func (o GetHpcClustersHpcClusterTagOutput) ToGetHpcClustersHpcClusterTagOutputWithContext(ctx context.Context) GetHpcClustersHpcClusterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetHpcClustersHpcClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHpcClustersHpcClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetHpcClustersHpcClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHpcClustersHpcClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetHpcClustersHpcClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHpcClustersHpcClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHpcClustersHpcClusterTag)(nil)).Elem()
+}
+
+func (o GetHpcClustersHpcClusterTagArrayOutput) ToGetHpcClustersHpcClusterTagArrayOutput() GetHpcClustersHpcClusterTagArrayOutput {
+	return o
+}
+
+func (o GetHpcClustersHpcClusterTagArrayOutput) ToGetHpcClustersHpcClusterTagArrayOutputWithContext(ctx context.Context) GetHpcClustersHpcClusterTagArrayOutput {
+	return o
+}
+
+func (o GetHpcClustersHpcClusterTagArrayOutput) Index(i pulumi.IntInput) GetHpcClustersHpcClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHpcClustersHpcClusterTag {
+		return vs[0].([]GetHpcClustersHpcClusterTag)[vs[1].(int)]
+	}).(GetHpcClustersHpcClusterTagOutput)
+}
+
+type GetHpcClustersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetHpcClustersTagInput is an input type that accepts GetHpcClustersTagArgs and GetHpcClustersTagOutput values.
+// You can construct a concrete instance of `GetHpcClustersTagInput` via:
+//
+//	GetHpcClustersTagArgs{...}
+type GetHpcClustersTagInput interface {
+	pulumi.Input
+
+	ToGetHpcClustersTagOutput() GetHpcClustersTagOutput
+	ToGetHpcClustersTagOutputWithContext(context.Context) GetHpcClustersTagOutput
+}
+
+type GetHpcClustersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetHpcClustersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHpcClustersTag)(nil)).Elem()
+}
+
+func (i GetHpcClustersTagArgs) ToGetHpcClustersTagOutput() GetHpcClustersTagOutput {
+	return i.ToGetHpcClustersTagOutputWithContext(context.Background())
+}
+
+func (i GetHpcClustersTagArgs) ToGetHpcClustersTagOutputWithContext(ctx context.Context) GetHpcClustersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHpcClustersTagOutput)
+}
+
+// GetHpcClustersTagArrayInput is an input type that accepts GetHpcClustersTagArray and GetHpcClustersTagArrayOutput values.
+// You can construct a concrete instance of `GetHpcClustersTagArrayInput` via:
+//
+//	GetHpcClustersTagArray{ GetHpcClustersTagArgs{...} }
+type GetHpcClustersTagArrayInput interface {
+	pulumi.Input
+
+	ToGetHpcClustersTagArrayOutput() GetHpcClustersTagArrayOutput
+	ToGetHpcClustersTagArrayOutputWithContext(context.Context) GetHpcClustersTagArrayOutput
+}
+
+type GetHpcClustersTagArray []GetHpcClustersTagInput
+
+func (GetHpcClustersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHpcClustersTag)(nil)).Elem()
+}
+
+func (i GetHpcClustersTagArray) ToGetHpcClustersTagArrayOutput() GetHpcClustersTagArrayOutput {
+	return i.ToGetHpcClustersTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetHpcClustersTagArray) ToGetHpcClustersTagArrayOutputWithContext(ctx context.Context) GetHpcClustersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHpcClustersTagArrayOutput)
+}
+
+type GetHpcClustersTagOutput struct{ *pulumi.OutputState }
+
+func (GetHpcClustersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHpcClustersTag)(nil)).Elem()
+}
+
+func (o GetHpcClustersTagOutput) ToGetHpcClustersTagOutput() GetHpcClustersTagOutput {
+	return o
+}
+
+func (o GetHpcClustersTagOutput) ToGetHpcClustersTagOutputWithContext(ctx context.Context) GetHpcClustersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetHpcClustersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHpcClustersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetHpcClustersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHpcClustersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetHpcClustersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHpcClustersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHpcClustersTag)(nil)).Elem()
+}
+
+func (o GetHpcClustersTagArrayOutput) ToGetHpcClustersTagArrayOutput() GetHpcClustersTagArrayOutput {
+	return o
+}
+
+func (o GetHpcClustersTagArrayOutput) ToGetHpcClustersTagArrayOutputWithContext(ctx context.Context) GetHpcClustersTagArrayOutput {
+	return o
+}
+
+func (o GetHpcClustersTagArrayOutput) Index(i pulumi.IntInput) GetHpcClustersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHpcClustersTag {
+		return vs[0].([]GetHpcClustersTag)[vs[1].(int)]
+	}).(GetHpcClustersTagOutput)
 }
 
 type GetImageSharePermissionsAccount struct {
@@ -12327,6 +13691,10 @@ type GetKeyPairsKeyPair struct {
 	KeyPairId string `pulumi:"keyPairId"`
 	// Name of key pair.
 	KeyPairName string `pulumi:"keyPairName"`
+	// The project name of the key pair.
+	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []GetKeyPairsKeyPairTag `pulumi:"tags"`
 	// The update time of key pair.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -12355,6 +13723,10 @@ type GetKeyPairsKeyPairArgs struct {
 	KeyPairId pulumi.StringInput `pulumi:"keyPairId"`
 	// Name of key pair.
 	KeyPairName pulumi.StringInput `pulumi:"keyPairName"`
+	// The project name of the key pair.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags GetKeyPairsKeyPairTagArrayInput `pulumi:"tags"`
 	// The update time of key pair.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
@@ -12440,6 +13812,16 @@ func (o GetKeyPairsKeyPairOutput) KeyPairName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeyPairsKeyPair) string { return v.KeyPairName }).(pulumi.StringOutput)
 }
 
+// The project name of the key pair.
+func (o GetKeyPairsKeyPairOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyPairsKeyPair) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GetKeyPairsKeyPairOutput) Tags() GetKeyPairsKeyPairTagArrayOutput {
+	return o.ApplyT(func(v GetKeyPairsKeyPair) []GetKeyPairsKeyPairTag { return v.Tags }).(GetKeyPairsKeyPairTagArrayOutput)
+}
+
 // The update time of key pair.
 func (o GetKeyPairsKeyPairOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKeyPairsKeyPair) string { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -12463,6 +13845,218 @@ func (o GetKeyPairsKeyPairArrayOutput) Index(i pulumi.IntInput) GetKeyPairsKeyPa
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKeyPairsKeyPair {
 		return vs[0].([]GetKeyPairsKeyPair)[vs[1].(int)]
 	}).(GetKeyPairsKeyPairOutput)
+}
+
+type GetKeyPairsKeyPairTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetKeyPairsKeyPairTagInput is an input type that accepts GetKeyPairsKeyPairTagArgs and GetKeyPairsKeyPairTagOutput values.
+// You can construct a concrete instance of `GetKeyPairsKeyPairTagInput` via:
+//
+//	GetKeyPairsKeyPairTagArgs{...}
+type GetKeyPairsKeyPairTagInput interface {
+	pulumi.Input
+
+	ToGetKeyPairsKeyPairTagOutput() GetKeyPairsKeyPairTagOutput
+	ToGetKeyPairsKeyPairTagOutputWithContext(context.Context) GetKeyPairsKeyPairTagOutput
+}
+
+type GetKeyPairsKeyPairTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetKeyPairsKeyPairTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (i GetKeyPairsKeyPairTagArgs) ToGetKeyPairsKeyPairTagOutput() GetKeyPairsKeyPairTagOutput {
+	return i.ToGetKeyPairsKeyPairTagOutputWithContext(context.Background())
+}
+
+func (i GetKeyPairsKeyPairTagArgs) ToGetKeyPairsKeyPairTagOutputWithContext(ctx context.Context) GetKeyPairsKeyPairTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyPairsKeyPairTagOutput)
+}
+
+// GetKeyPairsKeyPairTagArrayInput is an input type that accepts GetKeyPairsKeyPairTagArray and GetKeyPairsKeyPairTagArrayOutput values.
+// You can construct a concrete instance of `GetKeyPairsKeyPairTagArrayInput` via:
+//
+//	GetKeyPairsKeyPairTagArray{ GetKeyPairsKeyPairTagArgs{...} }
+type GetKeyPairsKeyPairTagArrayInput interface {
+	pulumi.Input
+
+	ToGetKeyPairsKeyPairTagArrayOutput() GetKeyPairsKeyPairTagArrayOutput
+	ToGetKeyPairsKeyPairTagArrayOutputWithContext(context.Context) GetKeyPairsKeyPairTagArrayOutput
+}
+
+type GetKeyPairsKeyPairTagArray []GetKeyPairsKeyPairTagInput
+
+func (GetKeyPairsKeyPairTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (i GetKeyPairsKeyPairTagArray) ToGetKeyPairsKeyPairTagArrayOutput() GetKeyPairsKeyPairTagArrayOutput {
+	return i.ToGetKeyPairsKeyPairTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetKeyPairsKeyPairTagArray) ToGetKeyPairsKeyPairTagArrayOutputWithContext(ctx context.Context) GetKeyPairsKeyPairTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyPairsKeyPairTagArrayOutput)
+}
+
+type GetKeyPairsKeyPairTagOutput struct{ *pulumi.OutputState }
+
+func (GetKeyPairsKeyPairTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (o GetKeyPairsKeyPairTagOutput) ToGetKeyPairsKeyPairTagOutput() GetKeyPairsKeyPairTagOutput {
+	return o
+}
+
+func (o GetKeyPairsKeyPairTagOutput) ToGetKeyPairsKeyPairTagOutputWithContext(ctx context.Context) GetKeyPairsKeyPairTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetKeyPairsKeyPairTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyPairsKeyPairTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetKeyPairsKeyPairTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyPairsKeyPairTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetKeyPairsKeyPairTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKeyPairsKeyPairTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyPairsKeyPairTag)(nil)).Elem()
+}
+
+func (o GetKeyPairsKeyPairTagArrayOutput) ToGetKeyPairsKeyPairTagArrayOutput() GetKeyPairsKeyPairTagArrayOutput {
+	return o
+}
+
+func (o GetKeyPairsKeyPairTagArrayOutput) ToGetKeyPairsKeyPairTagArrayOutputWithContext(ctx context.Context) GetKeyPairsKeyPairTagArrayOutput {
+	return o
+}
+
+func (o GetKeyPairsKeyPairTagArrayOutput) Index(i pulumi.IntInput) GetKeyPairsKeyPairTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKeyPairsKeyPairTag {
+		return vs[0].([]GetKeyPairsKeyPairTag)[vs[1].(int)]
+	}).(GetKeyPairsKeyPairTagOutput)
+}
+
+type GetKeyPairsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetKeyPairsTagInput is an input type that accepts GetKeyPairsTagArgs and GetKeyPairsTagOutput values.
+// You can construct a concrete instance of `GetKeyPairsTagInput` via:
+//
+//	GetKeyPairsTagArgs{...}
+type GetKeyPairsTagInput interface {
+	pulumi.Input
+
+	ToGetKeyPairsTagOutput() GetKeyPairsTagOutput
+	ToGetKeyPairsTagOutputWithContext(context.Context) GetKeyPairsTagOutput
+}
+
+type GetKeyPairsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetKeyPairsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyPairsTag)(nil)).Elem()
+}
+
+func (i GetKeyPairsTagArgs) ToGetKeyPairsTagOutput() GetKeyPairsTagOutput {
+	return i.ToGetKeyPairsTagOutputWithContext(context.Background())
+}
+
+func (i GetKeyPairsTagArgs) ToGetKeyPairsTagOutputWithContext(ctx context.Context) GetKeyPairsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyPairsTagOutput)
+}
+
+// GetKeyPairsTagArrayInput is an input type that accepts GetKeyPairsTagArray and GetKeyPairsTagArrayOutput values.
+// You can construct a concrete instance of `GetKeyPairsTagArrayInput` via:
+//
+//	GetKeyPairsTagArray{ GetKeyPairsTagArgs{...} }
+type GetKeyPairsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetKeyPairsTagArrayOutput() GetKeyPairsTagArrayOutput
+	ToGetKeyPairsTagArrayOutputWithContext(context.Context) GetKeyPairsTagArrayOutput
+}
+
+type GetKeyPairsTagArray []GetKeyPairsTagInput
+
+func (GetKeyPairsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyPairsTag)(nil)).Elem()
+}
+
+func (i GetKeyPairsTagArray) ToGetKeyPairsTagArrayOutput() GetKeyPairsTagArrayOutput {
+	return i.ToGetKeyPairsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetKeyPairsTagArray) ToGetKeyPairsTagArrayOutputWithContext(ctx context.Context) GetKeyPairsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyPairsTagArrayOutput)
+}
+
+type GetKeyPairsTagOutput struct{ *pulumi.OutputState }
+
+func (GetKeyPairsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyPairsTag)(nil)).Elem()
+}
+
+func (o GetKeyPairsTagOutput) ToGetKeyPairsTagOutput() GetKeyPairsTagOutput {
+	return o
+}
+
+func (o GetKeyPairsTagOutput) ToGetKeyPairsTagOutputWithContext(ctx context.Context) GetKeyPairsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetKeyPairsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyPairsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetKeyPairsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyPairsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetKeyPairsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKeyPairsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyPairsTag)(nil)).Elem()
+}
+
+func (o GetKeyPairsTagArrayOutput) ToGetKeyPairsTagArrayOutput() GetKeyPairsTagArrayOutput {
+	return o
+}
+
+func (o GetKeyPairsTagArrayOutput) ToGetKeyPairsTagArrayOutputWithContext(ctx context.Context) GetKeyPairsTagArrayOutput {
+	return o
+}
+
+func (o GetKeyPairsTagArrayOutput) Index(i pulumi.IntInput) GetKeyPairsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKeyPairsTag {
+		return vs[0].([]GetKeyPairsTag)[vs[1].(int)]
+	}).(GetKeyPairsTagOutput)
 }
 
 type GetLaunchTemplatesLaunchTemplate struct {
@@ -12498,12 +14092,20 @@ type GetLaunchTemplatesLaunchTemplate struct {
 	LaunchTemplateId string `pulumi:"launchTemplateId"`
 	// The name of the launch template.
 	LaunchTemplateName string `pulumi:"launchTemplateName"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName string `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags []GetLaunchTemplatesLaunchTemplateLaunchTemplateTag `pulumi:"launchTemplateTags"`
 	// The list of network interfaces.
 	NetworkInterfaces []GetLaunchTemplatesLaunchTemplateNetworkInterface `pulumi:"networkInterfaces"`
+	// The project name of the instance.
+	ProjectName string `pulumi:"projectName"`
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy string `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
 	SuffixIndex int `pulumi:"suffixIndex"`
+	// Tags.
+	Tags []GetLaunchTemplatesLaunchTemplateTag `pulumi:"tags"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix bool `pulumi:"uniqueSuffix"`
 	// The updated time of the launch template.
@@ -12562,12 +14164,20 @@ type GetLaunchTemplatesLaunchTemplateArgs struct {
 	LaunchTemplateId pulumi.StringInput `pulumi:"launchTemplateId"`
 	// The name of the launch template.
 	LaunchTemplateName pulumi.StringInput `pulumi:"launchTemplateName"`
+	// The project name of the launch template.
+	LaunchTemplateProjectName pulumi.StringInput `pulumi:"launchTemplateProjectName"`
+	// The tags of the launch template.
+	LaunchTemplateTags GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput `pulumi:"launchTemplateTags"`
 	// The list of network interfaces.
 	NetworkInterfaces GetLaunchTemplatesLaunchTemplateNetworkInterfaceArrayInput `pulumi:"networkInterfaces"`
+	// The project name of the instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy pulumi.StringInput `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
 	SuffixIndex pulumi.IntInput `pulumi:"suffixIndex"`
+	// Tags.
+	Tags GetLaunchTemplatesLaunchTemplateTagArrayInput `pulumi:"tags"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix pulumi.BoolInput `pulumi:"uniqueSuffix"`
 	// The updated time of the launch template.
@@ -12713,11 +14323,28 @@ func (o GetLaunchTemplatesLaunchTemplateOutput) LaunchTemplateName() pulumi.Stri
 	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplate) string { return v.LaunchTemplateName }).(pulumi.StringOutput)
 }
 
+// The project name of the launch template.
+func (o GetLaunchTemplatesLaunchTemplateOutput) LaunchTemplateProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplate) string { return v.LaunchTemplateProjectName }).(pulumi.StringOutput)
+}
+
+// The tags of the launch template.
+func (o GetLaunchTemplatesLaunchTemplateOutput) LaunchTemplateTags() GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplate) []GetLaunchTemplatesLaunchTemplateLaunchTemplateTag {
+		return v.LaunchTemplateTags
+	}).(GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput)
+}
+
 // The list of network interfaces.
 func (o GetLaunchTemplatesLaunchTemplateOutput) NetworkInterfaces() GetLaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput {
 	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplate) []GetLaunchTemplatesLaunchTemplateNetworkInterface {
 		return v.NetworkInterfaces
 	}).(GetLaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput)
+}
+
+// The project name of the instance.
+func (o GetLaunchTemplatesLaunchTemplateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplate) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // Whether to open the security reinforcement.
@@ -12728,6 +14355,11 @@ func (o GetLaunchTemplatesLaunchTemplateOutput) SecurityEnhancementStrategy() pu
 // The index of the ordered suffix.
 func (o GetLaunchTemplatesLaunchTemplateOutput) SuffixIndex() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplate) int { return v.SuffixIndex }).(pulumi.IntOutput)
+}
+
+// Tags.
+func (o GetLaunchTemplatesLaunchTemplateOutput) Tags() GetLaunchTemplatesLaunchTemplateTagArrayOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplate) []GetLaunchTemplatesLaunchTemplateTag { return v.Tags }).(GetLaunchTemplatesLaunchTemplateTagArrayOutput)
 }
 
 // Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
@@ -12778,6 +14410,112 @@ func (o GetLaunchTemplatesLaunchTemplateArrayOutput) Index(i pulumi.IntInput) Ge
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLaunchTemplatesLaunchTemplate {
 		return vs[0].([]GetLaunchTemplatesLaunchTemplate)[vs[1].(int)]
 	}).(GetLaunchTemplatesLaunchTemplateOutput)
+}
+
+type GetLaunchTemplatesLaunchTemplateLaunchTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetLaunchTemplatesLaunchTemplateLaunchTemplateTagInput is an input type that accepts GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs and GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput values.
+// You can construct a concrete instance of `GetLaunchTemplatesLaunchTemplateLaunchTemplateTagInput` via:
+//
+//	GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs{...}
+type GetLaunchTemplatesLaunchTemplateLaunchTemplateTagInput interface {
+	pulumi.Input
+
+	ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput() GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput
+	ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(context.Context) GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput
+}
+
+type GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput() GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return i.ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(context.Background())
+}
+
+func (i GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput)
+}
+
+// GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput is an input type that accepts GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArray and GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput values.
+// You can construct a concrete instance of `GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput` via:
+//
+//	GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArray{ GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs{...} }
+type GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput() GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput
+	ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(context.Context) GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput
+}
+
+type GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArray []GetLaunchTemplatesLaunchTemplateLaunchTemplateTagInput
+
+func (GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArray) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput() GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return i.ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArray) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput)
+}
+
+type GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput() GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return o
+}
+
+func (o GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplateLaunchTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplateLaunchTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLaunchTemplatesLaunchTemplateLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput() GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) ToGetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput) Index(i pulumi.IntInput) GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLaunchTemplatesLaunchTemplateLaunchTemplateTag {
+		return vs[0].([]GetLaunchTemplatesLaunchTemplateLaunchTemplateTag)[vs[1].(int)]
+	}).(GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput)
 }
 
 type GetLaunchTemplatesLaunchTemplateNetworkInterface struct {
@@ -12884,6 +14622,112 @@ func (o GetLaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput) Index(i pul
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLaunchTemplatesLaunchTemplateNetworkInterface {
 		return vs[0].([]GetLaunchTemplatesLaunchTemplateNetworkInterface)[vs[1].(int)]
 	}).(GetLaunchTemplatesLaunchTemplateNetworkInterfaceOutput)
+}
+
+type GetLaunchTemplatesLaunchTemplateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetLaunchTemplatesLaunchTemplateTagInput is an input type that accepts GetLaunchTemplatesLaunchTemplateTagArgs and GetLaunchTemplatesLaunchTemplateTagOutput values.
+// You can construct a concrete instance of `GetLaunchTemplatesLaunchTemplateTagInput` via:
+//
+//	GetLaunchTemplatesLaunchTemplateTagArgs{...}
+type GetLaunchTemplatesLaunchTemplateTagInput interface {
+	pulumi.Input
+
+	ToGetLaunchTemplatesLaunchTemplateTagOutput() GetLaunchTemplatesLaunchTemplateTagOutput
+	ToGetLaunchTemplatesLaunchTemplateTagOutputWithContext(context.Context) GetLaunchTemplatesLaunchTemplateTagOutput
+}
+
+type GetLaunchTemplatesLaunchTemplateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetLaunchTemplatesLaunchTemplateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i GetLaunchTemplatesLaunchTemplateTagArgs) ToGetLaunchTemplatesLaunchTemplateTagOutput() GetLaunchTemplatesLaunchTemplateTagOutput {
+	return i.ToGetLaunchTemplatesLaunchTemplateTagOutputWithContext(context.Background())
+}
+
+func (i GetLaunchTemplatesLaunchTemplateTagArgs) ToGetLaunchTemplatesLaunchTemplateTagOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLaunchTemplatesLaunchTemplateTagOutput)
+}
+
+// GetLaunchTemplatesLaunchTemplateTagArrayInput is an input type that accepts GetLaunchTemplatesLaunchTemplateTagArray and GetLaunchTemplatesLaunchTemplateTagArrayOutput values.
+// You can construct a concrete instance of `GetLaunchTemplatesLaunchTemplateTagArrayInput` via:
+//
+//	GetLaunchTemplatesLaunchTemplateTagArray{ GetLaunchTemplatesLaunchTemplateTagArgs{...} }
+type GetLaunchTemplatesLaunchTemplateTagArrayInput interface {
+	pulumi.Input
+
+	ToGetLaunchTemplatesLaunchTemplateTagArrayOutput() GetLaunchTemplatesLaunchTemplateTagArrayOutput
+	ToGetLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(context.Context) GetLaunchTemplatesLaunchTemplateTagArrayOutput
+}
+
+type GetLaunchTemplatesLaunchTemplateTagArray []GetLaunchTemplatesLaunchTemplateTagInput
+
+func (GetLaunchTemplatesLaunchTemplateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (i GetLaunchTemplatesLaunchTemplateTagArray) ToGetLaunchTemplatesLaunchTemplateTagArrayOutput() GetLaunchTemplatesLaunchTemplateTagArrayOutput {
+	return i.ToGetLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetLaunchTemplatesLaunchTemplateTagArray) ToGetLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLaunchTemplatesLaunchTemplateTagArrayOutput)
+}
+
+type GetLaunchTemplatesLaunchTemplateTagOutput struct{ *pulumi.OutputState }
+
+func (GetLaunchTemplatesLaunchTemplateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o GetLaunchTemplatesLaunchTemplateTagOutput) ToGetLaunchTemplatesLaunchTemplateTagOutput() GetLaunchTemplatesLaunchTemplateTagOutput {
+	return o
+}
+
+func (o GetLaunchTemplatesLaunchTemplateTagOutput) ToGetLaunchTemplatesLaunchTemplateTagOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetLaunchTemplatesLaunchTemplateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetLaunchTemplatesLaunchTemplateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLaunchTemplatesLaunchTemplateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetLaunchTemplatesLaunchTemplateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLaunchTemplatesLaunchTemplateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLaunchTemplatesLaunchTemplateTag)(nil)).Elem()
+}
+
+func (o GetLaunchTemplatesLaunchTemplateTagArrayOutput) ToGetLaunchTemplatesLaunchTemplateTagArrayOutput() GetLaunchTemplatesLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o GetLaunchTemplatesLaunchTemplateTagArrayOutput) ToGetLaunchTemplatesLaunchTemplateTagArrayOutputWithContext(ctx context.Context) GetLaunchTemplatesLaunchTemplateTagArrayOutput {
+	return o
+}
+
+func (o GetLaunchTemplatesLaunchTemplateTagArrayOutput) Index(i pulumi.IntInput) GetLaunchTemplatesLaunchTemplateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLaunchTemplatesLaunchTemplateTag {
+		return vs[0].([]GetLaunchTemplatesLaunchTemplateTag)[vs[1].(int)]
+	}).(GetLaunchTemplatesLaunchTemplateTagOutput)
 }
 
 type GetLaunchTemplatesLaunchTemplateVolume struct {
@@ -13234,8 +15078,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CommandsTagArrayInput)(nil)).Elem(), CommandsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetInput)(nil)).Elem(), DeploymentSetsDeploymentSetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetArrayInput)(nil)).Elem(), DeploymentSetsDeploymentSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClusterTagInput)(nil)).Elem(), HpcClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClusterTagArrayInput)(nil)).Elem(), HpcClusterTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersHpcClusterInput)(nil)).Elem(), HpcClustersHpcClusterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersHpcClusterArrayInput)(nil)).Elem(), HpcClustersHpcClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersHpcClusterTagInput)(nil)).Elem(), HpcClustersHpcClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersHpcClusterTagArrayInput)(nil)).Elem(), HpcClustersHpcClusterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersTagInput)(nil)).Elem(), HpcClustersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersTagArrayInput)(nil)).Elem(), HpcClustersTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageImportTagInput)(nil)).Elem(), ImageImportTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageImportTagArrayInput)(nil)).Elem(), ImageImportTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageSharePermissionsAccountInput)(nil)).Elem(), ImageSharePermissionsAccountArgs{})
@@ -13306,16 +15156,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsInvocationTagArrayInput)(nil)).Elem(), InvocationsInvocationTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsTagInput)(nil)).Elem(), InvocationsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsTagArrayInput)(nil)).Elem(), InvocationsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairTagInput)(nil)).Elem(), KeyPairTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairTagArrayInput)(nil)).Elem(), KeyPairTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairInput)(nil)).Elem(), KeyPairsKeyPairArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairArrayInput)(nil)).Elem(), KeyPairsKeyPairArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairTagInput)(nil)).Elem(), KeyPairsKeyPairTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairTagArrayInput)(nil)).Elem(), KeyPairsKeyPairTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsTagInput)(nil)).Elem(), KeyPairsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsTagArrayInput)(nil)).Elem(), KeyPairsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateLaunchTemplateTagInput)(nil)).Elem(), LaunchTemplateLaunchTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateLaunchTemplateTagArrayInput)(nil)).Elem(), LaunchTemplateLaunchTemplateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateNetworkInterfaceInput)(nil)).Elem(), LaunchTemplateNetworkInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateNetworkInterfaceArrayInput)(nil)).Elem(), LaunchTemplateNetworkInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateTagInput)(nil)).Elem(), LaunchTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateTagArrayInput)(nil)).Elem(), LaunchTemplateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateVolumeInput)(nil)).Elem(), LaunchTemplateVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateVolumeArrayInput)(nil)).Elem(), LaunchTemplateVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateArrayInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateLaunchTemplateTagInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateLaunchTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateLaunchTemplateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateNetworkInterfaceInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateNetworkInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateNetworkInterfaceArrayInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateNetworkInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateTagInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateTagArrayInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateVolumeInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateVolumeArrayInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionInput)(nil)).Elem(), RegionsRegionArgs{})
@@ -13340,6 +15204,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentSetsDeploymentSetArrayInput)(nil)).Elem(), GetDeploymentSetsDeploymentSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHpcClustersHpcClusterInput)(nil)).Elem(), GetHpcClustersHpcClusterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHpcClustersHpcClusterArrayInput)(nil)).Elem(), GetHpcClustersHpcClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHpcClustersHpcClusterTagInput)(nil)).Elem(), GetHpcClustersHpcClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHpcClustersHpcClusterTagArrayInput)(nil)).Elem(), GetHpcClustersHpcClusterTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHpcClustersTagInput)(nil)).Elem(), GetHpcClustersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHpcClustersTagArrayInput)(nil)).Elem(), GetHpcClustersTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetImageSharePermissionsAccountInput)(nil)).Elem(), GetImageSharePermissionsAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetImageSharePermissionsAccountArrayInput)(nil)).Elem(), GetImageSharePermissionsAccountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetImagesImageInput)(nil)).Elem(), GetImagesImageArgs{})
@@ -13392,10 +15260,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInvocationsTagArrayInput)(nil)).Elem(), GetInvocationsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsKeyPairInput)(nil)).Elem(), GetKeyPairsKeyPairArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsKeyPairArrayInput)(nil)).Elem(), GetKeyPairsKeyPairArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsKeyPairTagInput)(nil)).Elem(), GetKeyPairsKeyPairTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsKeyPairTagArrayInput)(nil)).Elem(), GetKeyPairsKeyPairTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsTagInput)(nil)).Elem(), GetKeyPairsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyPairsTagArrayInput)(nil)).Elem(), GetKeyPairsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateArrayInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateLaunchTemplateTagInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateNetworkInterfaceInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateNetworkInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateNetworkInterfaceArrayInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateNetworkInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateTagInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateTagArrayInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateVolumeInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLaunchTemplatesLaunchTemplateVolumeArrayInput)(nil)).Elem(), GetLaunchTemplatesLaunchTemplateVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionsRegionInput)(nil)).Elem(), GetRegionsRegionArgs{})
@@ -13422,8 +15298,14 @@ func init() {
 	pulumi.RegisterOutputType(CommandsTagArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetArrayOutput{})
+	pulumi.RegisterOutputType(HpcClusterTagOutput{})
+	pulumi.RegisterOutputType(HpcClusterTagArrayOutput{})
 	pulumi.RegisterOutputType(HpcClustersHpcClusterOutput{})
 	pulumi.RegisterOutputType(HpcClustersHpcClusterArrayOutput{})
+	pulumi.RegisterOutputType(HpcClustersHpcClusterTagOutput{})
+	pulumi.RegisterOutputType(HpcClustersHpcClusterTagArrayOutput{})
+	pulumi.RegisterOutputType(HpcClustersTagOutput{})
+	pulumi.RegisterOutputType(HpcClustersTagArrayOutput{})
 	pulumi.RegisterOutputType(ImageImportTagOutput{})
 	pulumi.RegisterOutputType(ImageImportTagArrayOutput{})
 	pulumi.RegisterOutputType(ImageSharePermissionsAccountOutput{})
@@ -13494,16 +15376,30 @@ func init() {
 	pulumi.RegisterOutputType(InvocationsInvocationTagArrayOutput{})
 	pulumi.RegisterOutputType(InvocationsTagOutput{})
 	pulumi.RegisterOutputType(InvocationsTagArrayOutput{})
+	pulumi.RegisterOutputType(KeyPairTagOutput{})
+	pulumi.RegisterOutputType(KeyPairTagArrayOutput{})
 	pulumi.RegisterOutputType(KeyPairsKeyPairOutput{})
 	pulumi.RegisterOutputType(KeyPairsKeyPairArrayOutput{})
+	pulumi.RegisterOutputType(KeyPairsKeyPairTagOutput{})
+	pulumi.RegisterOutputType(KeyPairsKeyPairTagArrayOutput{})
+	pulumi.RegisterOutputType(KeyPairsTagOutput{})
+	pulumi.RegisterOutputType(KeyPairsTagArrayOutput{})
+	pulumi.RegisterOutputType(LaunchTemplateLaunchTemplateTagOutput{})
+	pulumi.RegisterOutputType(LaunchTemplateLaunchTemplateTagArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplateNetworkInterfaceOutput{})
 	pulumi.RegisterOutputType(LaunchTemplateNetworkInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(LaunchTemplateTagOutput{})
+	pulumi.RegisterOutputType(LaunchTemplateTagArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplateVolumeOutput{})
 	pulumi.RegisterOutputType(LaunchTemplateVolumeArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateArrayOutput{})
+	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateLaunchTemplateTagOutput{})
+	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateNetworkInterfaceOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateTagOutput{})
+	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateTagArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateVolumeOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateVolumeArrayOutput{})
 	pulumi.RegisterOutputType(RegionsRegionOutput{})
@@ -13528,6 +15424,10 @@ func init() {
 	pulumi.RegisterOutputType(GetDeploymentSetsDeploymentSetArrayOutput{})
 	pulumi.RegisterOutputType(GetHpcClustersHpcClusterOutput{})
 	pulumi.RegisterOutputType(GetHpcClustersHpcClusterArrayOutput{})
+	pulumi.RegisterOutputType(GetHpcClustersHpcClusterTagOutput{})
+	pulumi.RegisterOutputType(GetHpcClustersHpcClusterTagArrayOutput{})
+	pulumi.RegisterOutputType(GetHpcClustersTagOutput{})
+	pulumi.RegisterOutputType(GetHpcClustersTagArrayOutput{})
 	pulumi.RegisterOutputType(GetImageSharePermissionsAccountOutput{})
 	pulumi.RegisterOutputType(GetImageSharePermissionsAccountArrayOutput{})
 	pulumi.RegisterOutputType(GetImagesImageOutput{})
@@ -13580,10 +15480,18 @@ func init() {
 	pulumi.RegisterOutputType(GetInvocationsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetKeyPairsKeyPairOutput{})
 	pulumi.RegisterOutputType(GetKeyPairsKeyPairArrayOutput{})
+	pulumi.RegisterOutputType(GetKeyPairsKeyPairTagOutput{})
+	pulumi.RegisterOutputType(GetKeyPairsKeyPairTagArrayOutput{})
+	pulumi.RegisterOutputType(GetKeyPairsTagOutput{})
+	pulumi.RegisterOutputType(GetKeyPairsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateOutput{})
 	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateArrayOutput{})
+	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateLaunchTemplateTagOutput{})
+	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateLaunchTemplateTagArrayOutput{})
 	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateNetworkInterfaceOutput{})
 	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateTagOutput{})
+	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateTagArrayOutput{})
 	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateVolumeOutput{})
 	pulumi.RegisterOutputType(GetLaunchTemplatesLaunchTemplateVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetRegionsRegionOutput{})

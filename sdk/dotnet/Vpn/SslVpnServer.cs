@@ -156,6 +156,12 @@ namespace Pulumi.Volcengine.Vpn
         public Output<string> SslVpnServerName { get; private set; } = null!;
 
         /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.SslVpnServerTag>> Tags { get; private set; } = null!;
+
+        /// <summary>
         /// The vpn gateway id.
         /// </summary>
         [Output("vpnGatewayId")]
@@ -283,6 +289,18 @@ namespace Pulumi.Volcengine.Vpn
         [Input("sslVpnServerName")]
         public Input<string>? SslVpnServerName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.SslVpnServerTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SslVpnServerTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SslVpnServerTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The vpn gateway id.
         /// </summary>
@@ -377,6 +395,18 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("sslVpnServerName")]
         public Input<string>? SslVpnServerName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.SslVpnServerTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SslVpnServerTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SslVpnServerTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The vpn gateway id.

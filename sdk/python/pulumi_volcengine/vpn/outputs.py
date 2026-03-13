@@ -11,24 +11,102 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'ConnectionTag',
+    'ConnectionsTagResult',
     'ConnectionsVpnConnectionResult',
+    'ConnectionsVpnConnectionTagResult',
+    'CustomerGatewayTag',
     'CustomerGatewaysCustomerGatewayResult',
+    'CustomerGatewaysCustomerGatewayTagResult',
+    'CustomerGatewaysTagResult',
     'GatewayRoutesVpnGatewayRouteResult',
     'GatewayTag',
     'GatewaysTagResult',
     'GatewaysVpnGatewayResult',
     'GatewaysVpnGatewayTagResult',
+    'SslVpnClientCertTag',
     'SslVpnClientCertsSslVpnClientCertResult',
+    'SslVpnClientCertsSslVpnClientCertTagResult',
+    'SslVpnClientCertsTagResult',
+    'SslVpnServerTag',
     'SslVpnServersSslVpnServerResult',
+    'SslVpnServersSslVpnServerTagResult',
+    'SslVpnServersTagResult',
+    'GetConnectionsTagResult',
     'GetConnectionsVpnConnectionResult',
+    'GetConnectionsVpnConnectionTagResult',
     'GetCustomerGatewaysCustomerGatewayResult',
+    'GetCustomerGatewaysCustomerGatewayTagResult',
+    'GetCustomerGatewaysTagResult',
     'GetGatewayRoutesVpnGatewayRouteResult',
     'GetGatewaysTagResult',
     'GetGatewaysVpnGatewayResult',
     'GetGatewaysVpnGatewayTagResult',
     'GetSslVpnClientCertsSslVpnClientCertResult',
+    'GetSslVpnClientCertsSslVpnClientCertTagResult',
+    'GetSslVpnClientCertsTagResult',
     'GetSslVpnServersSslVpnServerResult',
+    'GetSslVpnServersSslVpnServerTagResult',
+    'GetSslVpnServersTagResult',
 ]
+
+@pulumi.output_type
+class ConnectionTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ConnectionsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class ConnectionsVpnConnectionResult(dict):
@@ -65,6 +143,7 @@ class ConnectionsVpnConnectionResult(dict):
                  overdue_time: str,
                  remote_subnets: Sequence[str],
                  status: str,
+                 tags: Sequence['outputs.ConnectionsVpnConnectionTagResult'],
                  transit_router_id: str,
                  update_time: str,
                  vpn_connection_id: str,
@@ -104,6 +183,7 @@ class ConnectionsVpnConnectionResult(dict):
         :param str overdue_time: The overdue time of resource, valid when the attach type is 'TransitRouter'.
         :param Sequence[str] remote_subnets: The remote subnet of the VPN connection.
         :param str status: The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+        :param Sequence['ConnectionsVpnConnectionTagArgs'] tags: Tags.
         :param str transit_router_id: An ID of transit router.
         :param str update_time: The update time of VPN connection.
         :param str vpn_connection_id: The ID of the VPN connection.
@@ -143,6 +223,7 @@ class ConnectionsVpnConnectionResult(dict):
         pulumi.set(__self__, "overdue_time", overdue_time)
         pulumi.set(__self__, "remote_subnets", remote_subnets)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpn_connection_id", vpn_connection_id)
@@ -407,6 +488,14 @@ class ConnectionsVpnConnectionResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.ConnectionsVpnConnectionTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="transitRouterId")
     def transit_router_id(self) -> str:
         """
@@ -456,6 +545,64 @@ class ConnectionsVpnConnectionResult(dict):
 
 
 @pulumi.output_type
+class ConnectionsVpnConnectionTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class CustomerGatewayTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class CustomerGatewaysCustomerGatewayResult(dict):
     def __init__(__self__, *,
                  account_id: str,
@@ -466,7 +613,10 @@ class CustomerGatewaysCustomerGatewayResult(dict):
                  description: str,
                  id: str,
                  ip_address: str,
+                 ip_version: str,
+                 project_name: str,
                  status: str,
+                 tags: Sequence['outputs.CustomerGatewaysCustomerGatewayTagResult'],
                  update_time: str):
         """
         :param str account_id: The account ID of the customer gateway.
@@ -477,7 +627,10 @@ class CustomerGatewaysCustomerGatewayResult(dict):
         :param str description: The description of the customer gateway.
         :param str id: The ID of the customer gateway.
         :param str ip_address: A IP address of the customer gateway.
-        :param str status: The status of the customer gateway.
+        :param str ip_version: The IP version of the customer gateway. Valid value: ipv4, ipv6.
+        :param str project_name: The project name of the VPN customer gateway.
+        :param str status: The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+        :param Sequence['CustomerGatewaysCustomerGatewayTagArgs'] tags: Tags.
         :param str update_time: The update time of customer gateway.
         """
         pulumi.set(__self__, "account_id", account_id)
@@ -488,7 +641,10 @@ class CustomerGatewaysCustomerGatewayResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
 
     @property
@@ -556,12 +712,36 @@ class CustomerGatewaysCustomerGatewayResult(dict):
         return pulumi.get(self, "ip_address")
 
     @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> str:
+        """
+        The IP version of the customer gateway. Valid value: ipv4, ipv6.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the VPN customer gateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
-        The status of the customer gateway.
+        The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.CustomerGatewaysCustomerGatewayTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")
@@ -570,6 +750,64 @@ class CustomerGatewaysCustomerGatewayResult(dict):
         The update time of customer gateway.
         """
         return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class CustomerGatewaysCustomerGatewayTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class CustomerGatewaysTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1027,6 +1265,35 @@ class GatewaysVpnGatewayTagResult(dict):
 
 
 @pulumi.output_type
+class SslVpnClientCertTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class SslVpnClientCertsSslVpnClientCertResult(dict):
     def __init__(__self__, *,
                  ca_certificate: str,
@@ -1042,7 +1309,8 @@ class SslVpnClientCertsSslVpnClientCertResult(dict):
                  ssl_vpn_client_cert_name: str,
                  ssl_vpn_server_id: str,
                  status: str,
-                 update_time: str):
+                 update_time: str,
+                 tags: Optional[Sequence['outputs.SslVpnClientCertsSslVpnClientCertTagResult']] = None):
         """
         :param str ca_certificate: The CA certificate.
         :param str certificate_status: The status of the ssl vpn client cert.
@@ -1058,6 +1326,7 @@ class SslVpnClientCertsSslVpnClientCertResult(dict):
         :param str ssl_vpn_server_id: The id of the ssl vpn server.
         :param str status: The status of the ssl vpn client.
         :param str update_time: The update time of the ssl vpn client cert.
+        :param Sequence['SslVpnClientCertsSslVpnClientCertTagArgs'] tags: Tags.
         """
         pulumi.set(__self__, "ca_certificate", ca_certificate)
         pulumi.set(__self__, "certificate_status", certificate_status)
@@ -1073,6 +1342,8 @@ class SslVpnClientCertsSslVpnClientCertResult(dict):
         pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "update_time", update_time)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="caCertificate")
@@ -1186,6 +1457,101 @@ class SslVpnClientCertsSslVpnClientCertResult(dict):
         """
         return pulumi.get(self, "update_time")
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.SslVpnClientCertsSslVpnClientCertTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class SslVpnClientCertsSslVpnClientCertTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SslVpnClientCertsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SslVpnServerTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class SslVpnServersSslVpnServerResult(dict):
@@ -1204,6 +1570,7 @@ class SslVpnServersSslVpnServerResult(dict):
                  ssl_vpn_server_id: str,
                  ssl_vpn_server_name: str,
                  status: str,
+                 tags: Sequence['outputs.SslVpnServersSslVpnServerTagResult'],
                  update_time: str,
                  vpn_gateway_id: str):
         """
@@ -1230,6 +1597,7 @@ class SslVpnServersSslVpnServerResult(dict):
         :param str ssl_vpn_server_id: The id of the ssl vpn server.
         :param str ssl_vpn_server_name: The name of the ssl vpn server.
         :param str status: The status of the ssl vpn server.
+        :param Sequence['SslVpnServersSslVpnServerTagArgs'] tags: Tags.
         :param str update_time: The update time.
         :param str vpn_gateway_id: The id of the vpn gateway.
         """
@@ -1247,6 +1615,7 @@ class SslVpnServersSslVpnServerResult(dict):
         pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         pulumi.set(__self__, "ssl_vpn_server_name", ssl_vpn_server_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
 
@@ -1372,6 +1741,14 @@ class SslVpnServersSslVpnServerResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.SslVpnServersSslVpnServerTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> str:
         """
@@ -1386,6 +1763,93 @@ class SslVpnServersSslVpnServerResult(dict):
         The id of the vpn gateway.
         """
         return pulumi.get(self, "vpn_gateway_id")
+
+
+@pulumi.output_type
+class SslVpnServersSslVpnServerTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SslVpnServersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetConnectionsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1423,6 +1887,7 @@ class GetConnectionsVpnConnectionResult(dict):
                  overdue_time: str,
                  remote_subnets: Sequence[str],
                  status: str,
+                 tags: Sequence['outputs.GetConnectionsVpnConnectionTagResult'],
                  transit_router_id: str,
                  update_time: str,
                  vpn_connection_id: str,
@@ -1462,6 +1927,7 @@ class GetConnectionsVpnConnectionResult(dict):
         :param str overdue_time: The overdue time of resource, valid when the attach type is 'TransitRouter'.
         :param Sequence[str] remote_subnets: The remote subnet of the VPN connection.
         :param str status: The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+        :param Sequence['GetConnectionsVpnConnectionTagArgs'] tags: Tags.
         :param str transit_router_id: An ID of transit router.
         :param str update_time: The update time of VPN connection.
         :param str vpn_connection_id: The ID of the VPN connection.
@@ -1501,6 +1967,7 @@ class GetConnectionsVpnConnectionResult(dict):
         pulumi.set(__self__, "overdue_time", overdue_time)
         pulumi.set(__self__, "remote_subnets", remote_subnets)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpn_connection_id", vpn_connection_id)
@@ -1765,6 +2232,14 @@ class GetConnectionsVpnConnectionResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetConnectionsVpnConnectionTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="transitRouterId")
     def transit_router_id(self) -> str:
         """
@@ -1814,6 +2289,35 @@ class GetConnectionsVpnConnectionResult(dict):
 
 
 @pulumi.output_type
+class GetConnectionsVpnConnectionTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetCustomerGatewaysCustomerGatewayResult(dict):
     def __init__(__self__, *,
                  account_id: str,
@@ -1824,7 +2328,10 @@ class GetCustomerGatewaysCustomerGatewayResult(dict):
                  description: str,
                  id: str,
                  ip_address: str,
+                 ip_version: str,
+                 project_name: str,
                  status: str,
+                 tags: Sequence['outputs.GetCustomerGatewaysCustomerGatewayTagResult'],
                  update_time: str):
         """
         :param str account_id: The account ID of the customer gateway.
@@ -1835,7 +2342,10 @@ class GetCustomerGatewaysCustomerGatewayResult(dict):
         :param str description: The description of the customer gateway.
         :param str id: The ID of the customer gateway.
         :param str ip_address: A IP address of the customer gateway.
-        :param str status: The status of the customer gateway.
+        :param str ip_version: The IP version of the customer gateway. Valid value: ipv4, ipv6.
+        :param str project_name: The project name of the VPN customer gateway.
+        :param str status: The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+        :param Sequence['GetCustomerGatewaysCustomerGatewayTagArgs'] tags: Tags.
         :param str update_time: The update time of customer gateway.
         """
         pulumi.set(__self__, "account_id", account_id)
@@ -1846,7 +2356,10 @@ class GetCustomerGatewaysCustomerGatewayResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
 
     @property
@@ -1914,12 +2427,36 @@ class GetCustomerGatewaysCustomerGatewayResult(dict):
         return pulumi.get(self, "ip_address")
 
     @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> str:
+        """
+        The IP version of the customer gateway. Valid value: ipv4, ipv6.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the VPN customer gateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
-        The status of the customer gateway.
+        The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetCustomerGatewaysCustomerGatewayTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")
@@ -1928,6 +2465,64 @@ class GetCustomerGatewaysCustomerGatewayResult(dict):
         The update time of customer gateway.
         """
         return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class GetCustomerGatewaysCustomerGatewayTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCustomerGatewaysTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -2371,7 +2966,8 @@ class GetSslVpnClientCertsSslVpnClientCertResult(dict):
                  ssl_vpn_client_cert_name: str,
                  ssl_vpn_server_id: str,
                  status: str,
-                 update_time: str):
+                 update_time: str,
+                 tags: Optional[Sequence['outputs.GetSslVpnClientCertsSslVpnClientCertTagResult']] = None):
         """
         :param str ca_certificate: The CA certificate.
         :param str certificate_status: The status of the ssl vpn client cert.
@@ -2387,6 +2983,7 @@ class GetSslVpnClientCertsSslVpnClientCertResult(dict):
         :param str ssl_vpn_server_id: The id of the ssl vpn server.
         :param str status: The status of the ssl vpn client.
         :param str update_time: The update time of the ssl vpn client cert.
+        :param Sequence['GetSslVpnClientCertsSslVpnClientCertTagArgs'] tags: Tags.
         """
         pulumi.set(__self__, "ca_certificate", ca_certificate)
         pulumi.set(__self__, "certificate_status", certificate_status)
@@ -2402,6 +2999,8 @@ class GetSslVpnClientCertsSslVpnClientCertResult(dict):
         pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "update_time", update_time)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="caCertificate")
@@ -2515,6 +3114,72 @@ class GetSslVpnClientCertsSslVpnClientCertResult(dict):
         """
         return pulumi.get(self, "update_time")
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetSslVpnClientCertsSslVpnClientCertTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class GetSslVpnClientCertsSslVpnClientCertTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSslVpnClientCertsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class GetSslVpnServersSslVpnServerResult(dict):
@@ -2533,6 +3198,7 @@ class GetSslVpnServersSslVpnServerResult(dict):
                  ssl_vpn_server_id: str,
                  ssl_vpn_server_name: str,
                  status: str,
+                 tags: Sequence['outputs.GetSslVpnServersSslVpnServerTagResult'],
                  update_time: str,
                  vpn_gateway_id: str):
         """
@@ -2559,6 +3225,7 @@ class GetSslVpnServersSslVpnServerResult(dict):
         :param str ssl_vpn_server_id: The id of the ssl vpn server.
         :param str ssl_vpn_server_name: The name of the ssl vpn server.
         :param str status: The status of the ssl vpn server.
+        :param Sequence['GetSslVpnServersSslVpnServerTagArgs'] tags: Tags.
         :param str update_time: The update time.
         :param str vpn_gateway_id: The id of the vpn gateway.
         """
@@ -2576,6 +3243,7 @@ class GetSslVpnServersSslVpnServerResult(dict):
         pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         pulumi.set(__self__, "ssl_vpn_server_name", ssl_vpn_server_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
 
@@ -2701,6 +3369,14 @@ class GetSslVpnServersSslVpnServerResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.GetSslVpnServersSslVpnServerTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> str:
         """
@@ -2715,5 +3391,63 @@ class GetSslVpnServersSslVpnServerResult(dict):
         The id of the vpn gateway.
         """
         return pulumi.get(self, "vpn_gateway_id")
+
+
+@pulumi.output_type
+class GetSslVpnServersSslVpnServerTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSslVpnServersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 

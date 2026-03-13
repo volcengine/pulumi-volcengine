@@ -289,13 +289,13 @@ class Role(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Role("foo",
-            description="tf-test-modify",
+            description="tf-test",
             display_name="tf-test-modify",
-            max_session_duration=3600,
-            role_name="tf-test-role",
+            max_session_duration=4800,
+            role_name="tf-test",
             tags=[volcengine.iam.RoleTagArgs(
-                key="key-modify",
-                value="value-modify",
+                key="key-1",
+                value="value-1",
             )],
             trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
         ```
@@ -332,13 +332,13 @@ class Role(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Role("foo",
-            description="tf-test-modify",
+            description="tf-test",
             display_name="tf-test-modify",
-            max_session_duration=3600,
-            role_name="tf-test-role",
+            max_session_duration=4800,
+            role_name="tf-test",
             tags=[volcengine.iam.RoleTagArgs(
-                key="key-modify",
-                value="value-modify",
+                key="key-1",
+                value="value-1",
             )],
             trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
         ```

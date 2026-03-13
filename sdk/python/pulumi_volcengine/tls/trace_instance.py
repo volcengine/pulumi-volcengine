@@ -175,21 +175,18 @@ class TraceInstance(pulumi.CustomResource):
 
         # Example: Create a TLS trace instance
         foo = volcengine.tls.TraceInstance("foo",
-            project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-            trace_instance_name="tf-trace-instance-df",
-            description="This is an example trace instance",
             backend_config=volcengine.tls.TraceInstanceBackendConfigArgs(
-                ttl=60,
-                enable_hot_ttl=True,
-                hot_ttl=30,
-                cold_ttl=30,
                 archive_ttl=0,
                 auto_split=True,
+                cold_ttl=30,
+                enable_hot_ttl=True,
+                hot_ttl=60,
                 max_split_partitions=10,
-            ))
-        pulumi.export("tlsTraceInstanceId", foo.id)
-        pulumi.export("tlsTraceInstanceName", foo.trace_instance_name)
-        pulumi.export("tlsTraceInstanceDescription", foo.description)
+                ttl=90,
+            ),
+            description="This is an instance-modify",
+            project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+            trace_instance_name="tf-trace-instance-nn")
         ```
 
         ## Import
@@ -223,21 +220,18 @@ class TraceInstance(pulumi.CustomResource):
 
         # Example: Create a TLS trace instance
         foo = volcengine.tls.TraceInstance("foo",
-            project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-            trace_instance_name="tf-trace-instance-df",
-            description="This is an example trace instance",
             backend_config=volcengine.tls.TraceInstanceBackendConfigArgs(
-                ttl=60,
-                enable_hot_ttl=True,
-                hot_ttl=30,
-                cold_ttl=30,
                 archive_ttl=0,
                 auto_split=True,
+                cold_ttl=30,
+                enable_hot_ttl=True,
+                hot_ttl=60,
                 max_split_partitions=10,
-            ))
-        pulumi.export("tlsTraceInstanceId", foo.id)
-        pulumi.export("tlsTraceInstanceName", foo.trace_instance_name)
-        pulumi.export("tlsTraceInstanceDescription", foo.description)
+                ttl=90,
+            ),
+            description="This is an instance-modify",
+            project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+            trace_instance_name="tf-trace-instance-nn")
         ```
 
         ## Import

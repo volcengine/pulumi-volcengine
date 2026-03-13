@@ -21,9 +21,11 @@ class TopicArgs:
                  topic_name: pulumi.Input[str],
                  access_policies: Optional[pulumi.Input[Sequence[pulumi.Input['TopicAccessPolicyArgs']]]] = None,
                  all_authority: Optional[pulumi.Input[bool]] = None,
+                 cleanup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input['TopicParametersArgs']] = None,
-                 replica_number: Optional[pulumi.Input[int]] = None):
+                 replica_number: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]]] = None):
         """
         The set of arguments for constructing a Topic resource.
         :param pulumi.Input[str] instance_id: The instance id of the kafka topic.
@@ -31,9 +33,11 @@ class TopicArgs:
         :param pulumi.Input[str] topic_name: The name of the kafka topic.
         :param pulumi.Input[Sequence[pulumi.Input['TopicAccessPolicyArgs']]] access_policies: The access policies info of the kafka topic. This field only valid when the value of the AllAuthority is false.
         :param pulumi.Input[bool] all_authority: Whether the kafka topic is configured to be accessible by all users. Default: true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cleanup_policies: The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
         :param pulumi.Input[str] description: The description of the kafka topic.
         :param pulumi.Input['TopicParametersArgs'] parameters: The parameters of the kafka topic.
         :param pulumi.Input[int] replica_number: The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
+        :param pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "partition_number", partition_number)
@@ -42,12 +46,16 @@ class TopicArgs:
             pulumi.set(__self__, "access_policies", access_policies)
         if all_authority is not None:
             pulumi.set(__self__, "all_authority", all_authority)
+        if cleanup_policies is not None:
+            pulumi.set(__self__, "cleanup_policies", cleanup_policies)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
         if replica_number is not None:
             pulumi.set(__self__, "replica_number", replica_number)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -110,6 +118,18 @@ class TopicArgs:
         pulumi.set(self, "all_authority", value)
 
     @property
+    @pulumi.getter(name="cleanupPolicies")
+    def cleanup_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+        """
+        return pulumi.get(self, "cleanup_policies")
+
+    @cleanup_policies.setter
+    def cleanup_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "cleanup_policies", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -145,33 +165,51 @@ class TopicArgs:
     def replica_number(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "replica_number", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _TopicState:
     def __init__(__self__, *,
                  access_policies: Optional[pulumi.Input[Sequence[pulumi.Input['TopicAccessPolicyArgs']]]] = None,
                  all_authority: Optional[pulumi.Input[bool]] = None,
+                 cleanup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input['TopicParametersArgs']] = None,
                  partition_number: Optional[pulumi.Input[int]] = None,
                  replica_number: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]]] = None,
                  topic_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Topic resources.
         :param pulumi.Input[Sequence[pulumi.Input['TopicAccessPolicyArgs']]] access_policies: The access policies info of the kafka topic. This field only valid when the value of the AllAuthority is false.
         :param pulumi.Input[bool] all_authority: Whether the kafka topic is configured to be accessible by all users. Default: true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cleanup_policies: The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
         :param pulumi.Input[str] description: The description of the kafka topic.
         :param pulumi.Input[str] instance_id: The instance id of the kafka topic.
         :param pulumi.Input['TopicParametersArgs'] parameters: The parameters of the kafka topic.
         :param pulumi.Input[int] partition_number: The number of partition in kafka topic. The value range in 1-300. This field can only be adjusted up but not down.
         :param pulumi.Input[int] replica_number: The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
+        :param pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]] tags: Tags.
         :param pulumi.Input[str] topic_name: The name of the kafka topic.
         """
         if access_policies is not None:
             pulumi.set(__self__, "access_policies", access_policies)
         if all_authority is not None:
             pulumi.set(__self__, "all_authority", all_authority)
+        if cleanup_policies is not None:
+            pulumi.set(__self__, "cleanup_policies", cleanup_policies)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if instance_id is not None:
@@ -182,6 +220,8 @@ class _TopicState:
             pulumi.set(__self__, "partition_number", partition_number)
         if replica_number is not None:
             pulumi.set(__self__, "replica_number", replica_number)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if topic_name is not None:
             pulumi.set(__self__, "topic_name", topic_name)
 
@@ -208,6 +248,18 @@ class _TopicState:
     @all_authority.setter
     def all_authority(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "all_authority", value)
+
+    @property
+    @pulumi.getter(name="cleanupPolicies")
+    def cleanup_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+        """
+        return pulumi.get(self, "cleanup_policies")
+
+    @cleanup_policies.setter
+    def cleanup_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "cleanup_policies", value)
 
     @property
     @pulumi.getter
@@ -270,6 +322,18 @@ class _TopicState:
         pulumi.set(self, "replica_number", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="topicName")
     def topic_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -289,11 +353,13 @@ class Topic(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicAccessPolicyArgs']]]]] = None,
                  all_authority: Optional[pulumi.Input[bool]] = None,
+                 cleanup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[pulumi.InputType['TopicParametersArgs']]] = None,
                  partition_number: Optional[pulumi.Input[int]] = None,
                  replica_number: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]]] = None,
                  topic_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -352,6 +418,10 @@ class Topic(pulumi.CustomResource):
             description="tf-test",
             partition_number=15,
             replica_number=3,
+            cleanup_policies=[
+                "delete",
+                "compact",
+            ],
             parameters=volcengine.kafka.TopicParametersArgs(
                 min_insync_replica_number=2,
                 message_max_byte=10,
@@ -361,6 +431,10 @@ class Topic(pulumi.CustomResource):
             access_policies=[volcengine.kafka.TopicAccessPolicyArgs(
                 user_name=foo_sasl_user.user_name,
                 access_policy="Pub",
+            )],
+            tags=[volcengine.kafka.TopicTagArgs(
+                key="k1",
+                value="v1",
             )])
         ```
 
@@ -376,11 +450,13 @@ class Topic(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicAccessPolicyArgs']]]] access_policies: The access policies info of the kafka topic. This field only valid when the value of the AllAuthority is false.
         :param pulumi.Input[bool] all_authority: Whether the kafka topic is configured to be accessible by all users. Default: true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cleanup_policies: The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
         :param pulumi.Input[str] description: The description of the kafka topic.
         :param pulumi.Input[str] instance_id: The instance id of the kafka topic.
         :param pulumi.Input[pulumi.InputType['TopicParametersArgs']] parameters: The parameters of the kafka topic.
         :param pulumi.Input[int] partition_number: The number of partition in kafka topic. The value range in 1-300. This field can only be adjusted up but not down.
         :param pulumi.Input[int] replica_number: The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] topic_name: The name of the kafka topic.
         """
         ...
@@ -445,6 +521,10 @@ class Topic(pulumi.CustomResource):
             description="tf-test",
             partition_number=15,
             replica_number=3,
+            cleanup_policies=[
+                "delete",
+                "compact",
+            ],
             parameters=volcengine.kafka.TopicParametersArgs(
                 min_insync_replica_number=2,
                 message_max_byte=10,
@@ -454,6 +534,10 @@ class Topic(pulumi.CustomResource):
             access_policies=[volcengine.kafka.TopicAccessPolicyArgs(
                 user_name=foo_sasl_user.user_name,
                 access_policy="Pub",
+            )],
+            tags=[volcengine.kafka.TopicTagArgs(
+                key="k1",
+                value="v1",
             )])
         ```
 
@@ -482,11 +566,13 @@ class Topic(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicAccessPolicyArgs']]]]] = None,
                  all_authority: Optional[pulumi.Input[bool]] = None,
+                 cleanup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[pulumi.InputType['TopicParametersArgs']]] = None,
                  partition_number: Optional[pulumi.Input[int]] = None,
                  replica_number: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]]] = None,
                  topic_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -499,6 +585,7 @@ class Topic(pulumi.CustomResource):
 
             __props__.__dict__["access_policies"] = access_policies
             __props__.__dict__["all_authority"] = all_authority
+            __props__.__dict__["cleanup_policies"] = cleanup_policies
             __props__.__dict__["description"] = description
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
@@ -508,6 +595,7 @@ class Topic(pulumi.CustomResource):
                 raise TypeError("Missing required property 'partition_number'")
             __props__.__dict__["partition_number"] = partition_number
             __props__.__dict__["replica_number"] = replica_number
+            __props__.__dict__["tags"] = tags
             if topic_name is None and not opts.urn:
                 raise TypeError("Missing required property 'topic_name'")
             __props__.__dict__["topic_name"] = topic_name
@@ -523,11 +611,13 @@ class Topic(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicAccessPolicyArgs']]]]] = None,
             all_authority: Optional[pulumi.Input[bool]] = None,
+            cleanup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             parameters: Optional[pulumi.Input[pulumi.InputType['TopicParametersArgs']]] = None,
             partition_number: Optional[pulumi.Input[int]] = None,
             replica_number: Optional[pulumi.Input[int]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]]] = None,
             topic_name: Optional[pulumi.Input[str]] = None) -> 'Topic':
         """
         Get an existing Topic resource's state with the given name, id, and optional extra
@@ -538,11 +628,13 @@ class Topic(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicAccessPolicyArgs']]]] access_policies: The access policies info of the kafka topic. This field only valid when the value of the AllAuthority is false.
         :param pulumi.Input[bool] all_authority: Whether the kafka topic is configured to be accessible by all users. Default: true.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cleanup_policies: The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
         :param pulumi.Input[str] description: The description of the kafka topic.
         :param pulumi.Input[str] instance_id: The instance id of the kafka topic.
         :param pulumi.Input[pulumi.InputType['TopicParametersArgs']] parameters: The parameters of the kafka topic.
         :param pulumi.Input[int] partition_number: The number of partition in kafka topic. The value range in 1-300. This field can only be adjusted up but not down.
         :param pulumi.Input[int] replica_number: The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] topic_name: The name of the kafka topic.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -551,11 +643,13 @@ class Topic(pulumi.CustomResource):
 
         __props__.__dict__["access_policies"] = access_policies
         __props__.__dict__["all_authority"] = all_authority
+        __props__.__dict__["cleanup_policies"] = cleanup_policies
         __props__.__dict__["description"] = description
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["parameters"] = parameters
         __props__.__dict__["partition_number"] = partition_number
         __props__.__dict__["replica_number"] = replica_number
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["topic_name"] = topic_name
         return Topic(resource_name, opts=opts, __props__=__props__)
 
@@ -574,6 +668,14 @@ class Topic(pulumi.CustomResource):
         Whether the kafka topic is configured to be accessible by all users. Default: true.
         """
         return pulumi.get(self, "all_authority")
+
+    @property
+    @pulumi.getter(name="cleanupPolicies")
+    def cleanup_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The cleanup policy of the kafka topic. Valid values: "delete", "compact" or "delete","compact".
+        """
+        return pulumi.get(self, "cleanup_policies")
 
     @property
     @pulumi.getter
@@ -614,6 +716,14 @@ class Topic(pulumi.CustomResource):
         The number of replica in kafka topic. The value can be 2 or 3. Default is 3.
         """
         return pulumi.get(self, "replica_number")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.TopicTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="topicName")

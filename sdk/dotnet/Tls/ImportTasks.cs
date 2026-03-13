@@ -24,7 +24,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Tls.GetImportTasks.Invoke();
+        ///     var foo = Volcengine.Tls.GetImportTasks.Invoke(new()
+        ///     {
+        ///         TaskName = "tf-test-task-name-kafka-mod",
+        ///     });
         /// 
         /// });
         /// ```
@@ -44,7 +47,10 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Tls.GetImportTasks.Invoke();
+        ///     var foo = Volcengine.Tls.GetImportTasks.Invoke(new()
+        ///     {
+        ///         TaskName = "tf-test-task-name-kafka-mod",
+        ///     });
         /// 
         /// });
         /// ```

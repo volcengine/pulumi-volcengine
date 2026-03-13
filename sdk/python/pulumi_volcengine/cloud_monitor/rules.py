@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'RulesResult',
@@ -24,7 +25,7 @@ class RulesResult:
     """
     A collection of values returned by Rules.
     """
-    def __init__(__self__, alert_states=None, enable_states=None, id=None, ids=None, levels=None, name_regex=None, namespaces=None, output_file=None, rule_name=None, rules=None, total_count=None):
+    def __init__(__self__, alert_states=None, enable_states=None, id=None, ids=None, levels=None, name_regex=None, namespaces=None, output_file=None, rule_name=None, rules=None, tags=None, total_count=None):
         if alert_states and not isinstance(alert_states, list):
             raise TypeError("Expected argument 'alert_states' to be a list")
         pulumi.set(__self__, "alert_states", alert_states)
@@ -55,6 +56,9 @@ class RulesResult:
         if rules and not isinstance(rules, list):
             raise TypeError("Expected argument 'rules' to be a list")
         pulumi.set(__self__, "rules", rules)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -131,6 +135,14 @@ class RulesResult:
         return pulumi.get(self, "rules")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.RulesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -155,6 +167,7 @@ class AwaitableRulesResult(RulesResult):
             output_file=self.output_file,
             rule_name=self.rule_name,
             rules=self.rules,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -166,6 +179,7 @@ def rules(alert_states: Optional[Sequence[str]] = None,
           namespaces: Optional[Sequence[str]] = None,
           output_file: Optional[str] = None,
           rule_name: Optional[str] = None,
+          tags: Optional[Sequence[pulumi.InputType['RulesTagArgs']]] = None,
           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRulesResult:
     """
     Use this data source to query detailed information of cloud monitor rules
@@ -187,6 +201,7 @@ def rules(alert_states: Optional[Sequence[str]] = None,
     :param Sequence[str] namespaces: The namespace of the cloud monitor rule.
     :param str output_file: File name where to save data source results.
     :param str rule_name: The name of the cloud monitor rule. This field support fuzzy query.
+    :param Sequence[pulumi.InputType['RulesTagArgs']] tags: The tags of the cloud monitor rule.
     """
     pulumi.log.warn("""rules is deprecated: volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules""")
     __args__ = dict()
@@ -198,6 +213,7 @@ def rules(alert_states: Optional[Sequence[str]] = None,
     __args__['namespaces'] = namespaces
     __args__['outputFile'] = output_file
     __args__['ruleName'] = rule_name
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:cloud_monitor/rules:Rules', __args__, opts=opts, typ=RulesResult).value
 
@@ -212,6 +228,7 @@ def rules(alert_states: Optional[Sequence[str]] = None,
         output_file=pulumi.get(__ret__, 'output_file'),
         rule_name=pulumi.get(__ret__, 'rule_name'),
         rules=pulumi.get(__ret__, 'rules'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -224,6 +241,7 @@ def rules_output(alert_states: Optional[pulumi.Input[Optional[Sequence[str]]]] =
                  namespaces: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                  output_file: Optional[pulumi.Input[Optional[str]]] = None,
                  rule_name: Optional[pulumi.Input[Optional[str]]] = None,
+                 tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['RulesTagArgs']]]]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RulesResult]:
     """
     Use this data source to query detailed information of cloud monitor rules
@@ -245,6 +263,7 @@ def rules_output(alert_states: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param Sequence[str] namespaces: The namespace of the cloud monitor rule.
     :param str output_file: File name where to save data source results.
     :param str rule_name: The name of the cloud monitor rule. This field support fuzzy query.
+    :param Sequence[pulumi.InputType['RulesTagArgs']] tags: The tags of the cloud monitor rule.
     """
     pulumi.log.warn("""rules is deprecated: volcengine.cloud_monitor.Rules has been deprecated in favor of volcengine.cloud_monitor.getRules""")
     ...

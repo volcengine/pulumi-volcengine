@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetTopicsResult',
@@ -22,7 +23,7 @@ class GetTopicsResult:
     """
     A collection of values returned by getTopics.
     """
-    def __init__(__self__, id=None, instance_id=None, name_regex=None, output_file=None, partition_number=None, replica_number=None, topic_name=None, topics=None, total_count=None, user_name=None):
+    def __init__(__self__, id=None, instance_id=None, name_regex=None, output_file=None, partition_number=None, replica_number=None, tags=None, topic_name=None, topics=None, total_count=None, user_name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -41,6 +42,9 @@ class GetTopicsResult:
         if replica_number and not isinstance(replica_number, int):
             raise TypeError("Expected argument 'replica_number' to be a int")
         pulumi.set(__self__, "replica_number", replica_number)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if topic_name and not isinstance(topic_name, str):
             raise TypeError("Expected argument 'topic_name' to be a str")
         pulumi.set(__self__, "topic_name", topic_name)
@@ -94,6 +98,14 @@ class GetTopicsResult:
         return pulumi.get(self, "replica_number")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetTopicsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="topicName")
     def topic_name(self) -> Optional[str]:
         """
@@ -138,6 +150,7 @@ class AwaitableGetTopicsResult(GetTopicsResult):
             output_file=self.output_file,
             partition_number=self.partition_number,
             replica_number=self.replica_number,
+            tags=self.tags,
             topic_name=self.topic_name,
             topics=self.topics,
             total_count=self.total_count,
@@ -149,6 +162,7 @@ def get_topics(instance_id: Optional[str] = None,
                output_file: Optional[str] = None,
                partition_number: Optional[int] = None,
                replica_number: Optional[int] = None,
+               tags: Optional[Sequence[pulumi.InputType['GetTopicsTagArgs']]] = None,
                topic_name: Optional[str] = None,
                user_name: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTopicsResult:
@@ -227,6 +241,7 @@ def get_topics(instance_id: Optional[str] = None,
     :param str output_file: File name where to save data source results.
     :param int partition_number: The number of partition in kafka topic.
     :param int replica_number: The number of replica in kafka topic.
+    :param Sequence[pulumi.InputType['GetTopicsTagArgs']] tags: Tags.
     :param str topic_name: The name of kafka topic. This field supports fuzzy query.
     :param str user_name: When a user name is specified, only the access policy of the specified user for this Topic will be returned.
     """
@@ -236,6 +251,7 @@ def get_topics(instance_id: Optional[str] = None,
     __args__['outputFile'] = output_file
     __args__['partitionNumber'] = partition_number
     __args__['replicaNumber'] = replica_number
+    __args__['tags'] = tags
     __args__['topicName'] = topic_name
     __args__['userName'] = user_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -248,6 +264,7 @@ def get_topics(instance_id: Optional[str] = None,
         output_file=pulumi.get(__ret__, 'output_file'),
         partition_number=pulumi.get(__ret__, 'partition_number'),
         replica_number=pulumi.get(__ret__, 'replica_number'),
+        tags=pulumi.get(__ret__, 'tags'),
         topic_name=pulumi.get(__ret__, 'topic_name'),
         topics=pulumi.get(__ret__, 'topics'),
         total_count=pulumi.get(__ret__, 'total_count'),
@@ -260,6 +277,7 @@ def get_topics_output(instance_id: Optional[pulumi.Input[str]] = None,
                       output_file: Optional[pulumi.Input[Optional[str]]] = None,
                       partition_number: Optional[pulumi.Input[Optional[int]]] = None,
                       replica_number: Optional[pulumi.Input[Optional[int]]] = None,
+                      tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetTopicsTagArgs']]]]] = None,
                       topic_name: Optional[pulumi.Input[Optional[str]]] = None,
                       user_name: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTopicsResult]:
@@ -338,6 +356,7 @@ def get_topics_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str output_file: File name where to save data source results.
     :param int partition_number: The number of partition in kafka topic.
     :param int replica_number: The number of replica in kafka topic.
+    :param Sequence[pulumi.InputType['GetTopicsTagArgs']] tags: Tags.
     :param str topic_name: The name of kafka topic. This field supports fuzzy query.
     :param str user_name: When a user name is specified, only the access policy of the specified user for this Topic will be returned.
     """

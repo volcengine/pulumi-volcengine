@@ -24,18 +24,18 @@ namespace Pulumi.Volcengine.Iam
     ///     var foo = new Volcengine.Iam.OauthProvider("foo", new()
     ///     {
     ///         AuthorizeTemplate = "${authEndpoint}?client_id=${clientId}&amp;scope=${scope}&amp;response_type=code&amp;state=12345",
-    ///         AuthorizeUrl = "https://example.com/authorize_modify",
-    ///         ClientId = "test_client_id_modify",
+    ///         AuthorizeUrl = "https://example.com/authorize",
+    ///         ClientId = "test_client_id",
     ///         ClientSecret = "",
-    ///         Description = "acc-test-modify",
+    ///         Description = "acc-test",
     ///         IdentityMapType = 1,
-    ///         IdpIdentityKey = "username_modify",
+    ///         IdpIdentityKey = "username",
     ///         OauthProviderName = "acc-test-oauth",
     ///         Scope = "openid",
     ///         SsoType = 2,
     ///         Status = 1,
-    ///         TokenUrl = "https://example.com/access_token_modify",
-    ///         UserInfoUrl = "https://example.com/user_info_modify",
+    ///         TokenUrl = "https://example.com/access_token",
+    ///         UserInfoUrl = "https://example.com/user_info",
     ///     });
     /// 
     /// });

@@ -28,17 +28,17 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewProject(ctx, "foo", &tls.ProjectArgs{
-//				Description:    pulumi.String("tf-desc-modify"),
+//				Description:    pulumi.String("tf-desc"),
 //				IamProjectName: pulumi.String("default"),
 //				ProjectName:    pulumi.String("tf-project-m"),
 //				Region:         pulumi.String("cn-guilin-boe"),
 //				Tags: tls.ProjectTagArray{
 //					&tls.ProjectTagArgs{
-//						Key:   pulumi.String("k1"),
+//						Key:   pulumi.String("k2m"),
 //						Value: pulumi.String("v1"),
 //					},
 //					&tls.ProjectTagArgs{
-//						Key:   pulumi.String("k2"),
+//						Key:   pulumi.String("kt3"),
 //						Value: pulumi.String("v3"),
 //					},
 //				},

@@ -2134,6 +2134,112 @@ func (o ScalingGroupsScalingGroupTagArrayOutput) Index(i pulumi.IntInput) Scalin
 	}).(ScalingGroupsScalingGroupTagOutput)
 }
 
+type ScalingGroupsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ScalingGroupsTagInput is an input type that accepts ScalingGroupsTagArgs and ScalingGroupsTagOutput values.
+// You can construct a concrete instance of `ScalingGroupsTagInput` via:
+//
+//	ScalingGroupsTagArgs{...}
+type ScalingGroupsTagInput interface {
+	pulumi.Input
+
+	ToScalingGroupsTagOutput() ScalingGroupsTagOutput
+	ToScalingGroupsTagOutputWithContext(context.Context) ScalingGroupsTagOutput
+}
+
+type ScalingGroupsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ScalingGroupsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingGroupsTag)(nil)).Elem()
+}
+
+func (i ScalingGroupsTagArgs) ToScalingGroupsTagOutput() ScalingGroupsTagOutput {
+	return i.ToScalingGroupsTagOutputWithContext(context.Background())
+}
+
+func (i ScalingGroupsTagArgs) ToScalingGroupsTagOutputWithContext(ctx context.Context) ScalingGroupsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingGroupsTagOutput)
+}
+
+// ScalingGroupsTagArrayInput is an input type that accepts ScalingGroupsTagArray and ScalingGroupsTagArrayOutput values.
+// You can construct a concrete instance of `ScalingGroupsTagArrayInput` via:
+//
+//	ScalingGroupsTagArray{ ScalingGroupsTagArgs{...} }
+type ScalingGroupsTagArrayInput interface {
+	pulumi.Input
+
+	ToScalingGroupsTagArrayOutput() ScalingGroupsTagArrayOutput
+	ToScalingGroupsTagArrayOutputWithContext(context.Context) ScalingGroupsTagArrayOutput
+}
+
+type ScalingGroupsTagArray []ScalingGroupsTagInput
+
+func (ScalingGroupsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingGroupsTag)(nil)).Elem()
+}
+
+func (i ScalingGroupsTagArray) ToScalingGroupsTagArrayOutput() ScalingGroupsTagArrayOutput {
+	return i.ToScalingGroupsTagArrayOutputWithContext(context.Background())
+}
+
+func (i ScalingGroupsTagArray) ToScalingGroupsTagArrayOutputWithContext(ctx context.Context) ScalingGroupsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingGroupsTagArrayOutput)
+}
+
+type ScalingGroupsTagOutput struct{ *pulumi.OutputState }
+
+func (ScalingGroupsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingGroupsTag)(nil)).Elem()
+}
+
+func (o ScalingGroupsTagOutput) ToScalingGroupsTagOutput() ScalingGroupsTagOutput {
+	return o
+}
+
+func (o ScalingGroupsTagOutput) ToScalingGroupsTagOutputWithContext(ctx context.Context) ScalingGroupsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ScalingGroupsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingGroupsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ScalingGroupsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingGroupsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ScalingGroupsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ScalingGroupsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingGroupsTag)(nil)).Elem()
+}
+
+func (o ScalingGroupsTagArrayOutput) ToScalingGroupsTagArrayOutput() ScalingGroupsTagArrayOutput {
+	return o
+}
+
+func (o ScalingGroupsTagArrayOutput) ToScalingGroupsTagArrayOutputWithContext(ctx context.Context) ScalingGroupsTagArrayOutput {
+	return o
+}
+
+func (o ScalingGroupsTagArrayOutput) Index(i pulumi.IntInput) ScalingGroupsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScalingGroupsTag {
+		return vs[0].([]ScalingGroupsTag)[vs[1].(int)]
+	}).(ScalingGroupsTagOutput)
+}
+
 type ScalingInstancesScalingInstance struct {
 	// The time when the instance was added to the scaling group.
 	CreatedTime string `pulumi:"createdTime"`
@@ -4575,6 +4681,112 @@ func (o GetScalingGroupsScalingGroupTagArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetScalingGroupsScalingGroupTagOutput)
 }
 
+type GetScalingGroupsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// GetScalingGroupsTagInput is an input type that accepts GetScalingGroupsTagArgs and GetScalingGroupsTagOutput values.
+// You can construct a concrete instance of `GetScalingGroupsTagInput` via:
+//
+//	GetScalingGroupsTagArgs{...}
+type GetScalingGroupsTagInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsTagOutput() GetScalingGroupsTagOutput
+	ToGetScalingGroupsTagOutputWithContext(context.Context) GetScalingGroupsTagOutput
+}
+
+type GetScalingGroupsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetScalingGroupsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsTag)(nil)).Elem()
+}
+
+func (i GetScalingGroupsTagArgs) ToGetScalingGroupsTagOutput() GetScalingGroupsTagOutput {
+	return i.ToGetScalingGroupsTagOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsTagArgs) ToGetScalingGroupsTagOutputWithContext(ctx context.Context) GetScalingGroupsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsTagOutput)
+}
+
+// GetScalingGroupsTagArrayInput is an input type that accepts GetScalingGroupsTagArray and GetScalingGroupsTagArrayOutput values.
+// You can construct a concrete instance of `GetScalingGroupsTagArrayInput` via:
+//
+//	GetScalingGroupsTagArray{ GetScalingGroupsTagArgs{...} }
+type GetScalingGroupsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetScalingGroupsTagArrayOutput() GetScalingGroupsTagArrayOutput
+	ToGetScalingGroupsTagArrayOutputWithContext(context.Context) GetScalingGroupsTagArrayOutput
+}
+
+type GetScalingGroupsTagArray []GetScalingGroupsTagInput
+
+func (GetScalingGroupsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsTag)(nil)).Elem()
+}
+
+func (i GetScalingGroupsTagArray) ToGetScalingGroupsTagArrayOutput() GetScalingGroupsTagArrayOutput {
+	return i.ToGetScalingGroupsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetScalingGroupsTagArray) ToGetScalingGroupsTagArrayOutputWithContext(ctx context.Context) GetScalingGroupsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetScalingGroupsTagArrayOutput)
+}
+
+type GetScalingGroupsTagOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingGroupsTag)(nil)).Elem()
+}
+
+func (o GetScalingGroupsTagOutput) ToGetScalingGroupsTagOutput() GetScalingGroupsTagOutput {
+	return o
+}
+
+func (o GetScalingGroupsTagOutput) ToGetScalingGroupsTagOutputWithContext(ctx context.Context) GetScalingGroupsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o GetScalingGroupsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o GetScalingGroupsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingGroupsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetScalingGroupsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetScalingGroupsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetScalingGroupsTag)(nil)).Elem()
+}
+
+func (o GetScalingGroupsTagArrayOutput) ToGetScalingGroupsTagArrayOutput() GetScalingGroupsTagArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsTagArrayOutput) ToGetScalingGroupsTagArrayOutputWithContext(ctx context.Context) GetScalingGroupsTagArrayOutput {
+	return o
+}
+
+func (o GetScalingGroupsTagArrayOutput) Index(i pulumi.IntInput) GetScalingGroupsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingGroupsTag {
+		return vs[0].([]GetScalingGroupsTag)[vs[1].(int)]
+	}).(GetScalingGroupsTagOutput)
+}
+
 type GetScalingInstancesScalingInstance struct {
 	// The time when the instance was added to the scaling group.
 	CreatedTime string `pulumi:"createdTime"`
@@ -5312,6 +5524,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupServerGroupAttributeArrayInput)(nil)).Elem(), ScalingGroupsScalingGroupServerGroupAttributeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupTagInput)(nil)).Elem(), ScalingGroupsScalingGroupTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupTagArrayInput)(nil)).Elem(), ScalingGroupsScalingGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsTagInput)(nil)).Elem(), ScalingGroupsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsTagArrayInput)(nil)).Elem(), ScalingGroupsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingInstancesScalingInstanceInput)(nil)).Elem(), ScalingInstancesScalingInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingInstancesScalingInstanceArrayInput)(nil)).Elem(), ScalingInstancesScalingInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHookLifecycleCommandInput)(nil)).Elem(), ScalingLifecycleHookLifecycleCommandArgs{})
@@ -5340,6 +5554,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupServerGroupAttributeArrayInput)(nil)).Elem(), GetScalingGroupsScalingGroupServerGroupAttributeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupTagInput)(nil)).Elem(), GetScalingGroupsScalingGroupTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsScalingGroupTagArrayInput)(nil)).Elem(), GetScalingGroupsScalingGroupTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsTagInput)(nil)).Elem(), GetScalingGroupsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingGroupsTagArrayInput)(nil)).Elem(), GetScalingGroupsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingInstancesScalingInstanceInput)(nil)).Elem(), GetScalingInstancesScalingInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingInstancesScalingInstanceArrayInput)(nil)).Elem(), GetScalingInstancesScalingInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingLifecycleHooksLifecycleHookInput)(nil)).Elem(), GetScalingLifecycleHooksLifecycleHookArgs{})
@@ -5376,6 +5592,8 @@ func init() {
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupServerGroupAttributeArrayOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupTagOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(ScalingGroupsTagOutput{})
+	pulumi.RegisterOutputType(ScalingGroupsTagArrayOutput{})
 	pulumi.RegisterOutputType(ScalingInstancesScalingInstanceOutput{})
 	pulumi.RegisterOutputType(ScalingInstancesScalingInstanceArrayOutput{})
 	pulumi.RegisterOutputType(ScalingLifecycleHookLifecycleCommandOutput{})
@@ -5404,6 +5622,8 @@ func init() {
 	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupServerGroupAttributeArrayOutput{})
 	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupTagOutput{})
 	pulumi.RegisterOutputType(GetScalingGroupsScalingGroupTagArrayOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsTagOutput{})
+	pulumi.RegisterOutputType(GetScalingGroupsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetScalingInstancesScalingInstanceOutput{})
 	pulumi.RegisterOutputType(GetScalingInstancesScalingInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetScalingLifecycleHooksLifecycleHookOutput{})

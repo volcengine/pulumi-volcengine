@@ -79,6 +79,10 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.SslVpnServersSslVpnServerTagResult> Tags;
+        /// <summary>
         /// The update time.
         /// </summary>
         public readonly string UpdateTime;
@@ -117,6 +121,8 @@ namespace Pulumi.Volcengine.Vpn.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.SslVpnServersSslVpnServerTagResult> tags,
+
             string updateTime,
 
             string vpnGatewayId)
@@ -135,6 +141,7 @@ namespace Pulumi.Volcengine.Vpn.Outputs
             SslVpnServerId = sslVpnServerId;
             SslVpnServerName = sslVpnServerName;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
             VpnGatewayId = vpnGatewayId;
         }

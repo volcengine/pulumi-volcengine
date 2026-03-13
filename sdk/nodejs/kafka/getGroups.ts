@@ -71,6 +71,7 @@ export function getGroups(args: GetGroupsArgs, opts?: pulumi.InvokeOptions): Pro
         "instanceId": args.instanceId,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -94,6 +95,10 @@ export interface GetGroupsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.kafka.GetGroupsTag[];
 }
 
 /**
@@ -115,6 +120,10 @@ export interface GetGroupsResult {
     readonly instanceId: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.kafka.GetGroupsTag[];
     /**
      * The total count of query.
      */
@@ -201,4 +210,8 @@ export interface GetGroupsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.kafka.GetGroupsTagArgs>[]>;
 }

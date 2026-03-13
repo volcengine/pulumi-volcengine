@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -228,6 +230,10 @@ export class Connection extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpn.ConnectionTag[] | undefined>;
+    /**
      * The id of transit router, valid when the attach type is 'TransitRouter'.
      */
     public /*out*/ readonly transitRouterId!: pulumi.Output<string>;
@@ -297,6 +303,7 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["remoteSubnets"] = state ? state.remoteSubnets : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["transitRouterId"] = state ? state.transitRouterId : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["vpnConnectionId"] = state ? state.vpnConnectionId : undefined;
@@ -340,6 +347,7 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["negotiateInstantly"] = args ? args.negotiateInstantly : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["remoteSubnets"] = args ? args.remoteSubnets : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpnConnectionName"] = args ? args.vpnConnectionName : undefined;
             resourceInputs["vpnGatewayId"] = args ? args.vpnGatewayId : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
@@ -494,6 +502,10 @@ export interface ConnectionState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.ConnectionTag>[]>;
+    /**
      * The id of transit router, valid when the attach type is 'TransitRouter'.
      */
     transitRouterId?: pulumi.Input<string>;
@@ -615,6 +627,10 @@ export interface ConnectionArgs {
      * The remote subnet of the VPN connection. Up to 5 network segments are supported.
      */
     remoteSubnets: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.ConnectionTag>[]>;
     /**
      * The name of the VPN connection.
      */

@@ -30,6 +30,10 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The project name of vpc endpoint service.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The resources info.
         /// </summary>
         public readonly ImmutableArray<Outputs.VpcEndpointServicesServiceResourceResult> Resources;
@@ -58,6 +62,10 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.VpcEndpointServicesServiceTagResult> Tags;
+        /// <summary>
         /// The update time of service.
         /// </summary>
         public readonly string UpdateTime;
@@ -76,6 +84,8 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
 
             string id,
 
+            string projectName,
+
             ImmutableArray<Outputs.VpcEndpointServicesServiceResourceResult> resources,
 
             string serviceDomain,
@@ -90,6 +100,8 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.VpcEndpointServicesServiceTagResult> tags,
+
             string updateTime,
 
             ImmutableArray<string> zoneIds)
@@ -98,6 +110,7 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
             CreationTime = creationTime;
             Description = description;
             Id = id;
+            ProjectName = projectName;
             Resources = resources;
             ServiceDomain = serviceDomain;
             ServiceId = serviceId;
@@ -105,6 +118,7 @@ namespace Pulumi.Volcengine.Privatelink.Outputs
             ServiceResourceType = serviceResourceType;
             ServiceType = serviceType;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
             ZoneIds = zoneIds;
         }

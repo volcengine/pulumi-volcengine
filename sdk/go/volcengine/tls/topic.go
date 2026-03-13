@@ -31,12 +31,17 @@ import (
 //				ArchiveTtl:     pulumi.Int(0),
 //				AutoSplit:      pulumi.Bool(true),
 //				ColdTtl:        pulumi.Int(30),
-//				Description:    pulumi.String("test"),
+//				Description:    pulumi.String("test-modify"),
 //				EnableHotTtl:   pulumi.Bool(true),
 //				EnableTracking: pulumi.Bool(true),
 //				EncryptConf: &tls.TopicEncryptConfArgs{
 //					Enable:      pulumi.Bool(true),
 //					EncryptType: pulumi.String("default"),
+//					UserCmkInfo: &tls.TopicEncryptConfUserCmkInfoArgs{
+//						RegionId:  pulumi.String("cn-guilin-boe"),
+//						Trn:       pulumi.String("trn:iam::2100xxxxx:role/ServiceRoleForTLS"),
+//						UserCmkId: pulumi.String("m_cn-guilin-boe_441a350d-b21c-4760-bd8e-01ec2bc5e58a"),
+//					},
 //				},
 //				HotTtl:        pulumi.Int(30),
 //				LogPublicIp:   pulumi.Bool(true),
@@ -51,7 +56,7 @@ import (
 //				},
 //				TimeFormat: pulumi.String("%Y-%m-%dT%H:%M:%S,%f"),
 //				TimeKey:    pulumi.String("request_time"),
-//				TopicName:  pulumi.String("tf-topic-5"),
+//				TopicName:  pulumi.String("tf-topic-with-encrypt"),
 //				Ttl:        pulumi.Int(60),
 //			})
 //			if err != nil {

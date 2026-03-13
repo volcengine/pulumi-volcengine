@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -52,12 +54,22 @@ import * as utilities from "../utilities";
  *     }],
  *     description: "acc-test",
  *     autoAcceptEnabled: true,
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * const fooVpcEndpoint = new volcengine.privatelink.VpcEndpoint("fooVpcEndpoint", {
  *     securityGroupIds: [fooSecurityGroup.id],
  *     serviceId: fooVpcEndpointService.id,
  *     endpointName: "acc-test-ep",
  *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -138,6 +150,10 @@ export class VpcEndpoint extends pulumi.CustomResource {
      */
     public /*out*/ readonly privateDnsName!: pulumi.Output<string>;
     /**
+     * The project name of vpc endpoint.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
      * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
@@ -154,6 +170,10 @@ export class VpcEndpoint extends pulumi.CustomResource {
      * The status of vpc endpoint.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.privatelink.VpcEndpointTag[] | undefined>;
     /**
      * The update time of vpc endpoint.
      */
@@ -186,10 +206,12 @@ export class VpcEndpoint extends pulumi.CustomResource {
             resourceInputs["endpointType"] = state ? state.endpointType : undefined;
             resourceInputs["privateDnsEnabled"] = state ? state.privateDnsEnabled : undefined;
             resourceInputs["privateDnsName"] = state ? state.privateDnsName : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["serviceId"] = state ? state.serviceId : undefined;
             resourceInputs["serviceName"] = state ? state.serviceName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
@@ -203,9 +225,11 @@ export class VpcEndpoint extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["endpointName"] = args ? args.endpointName : undefined;
             resourceInputs["privateDnsEnabled"] = args ? args.privateDnsEnabled : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
             resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["serviceName"] = args ? args.serviceName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["businessStatus"] = undefined /*out*/;
             resourceInputs["connectionStatus"] = undefined /*out*/;
             resourceInputs["creationTime"] = undefined /*out*/;
@@ -267,6 +291,10 @@ export interface VpcEndpointState {
      */
     privateDnsName?: pulumi.Input<string>;
     /**
+     * The project name of vpc endpoint.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
      * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
@@ -283,6 +311,10 @@ export interface VpcEndpointState {
      * The status of vpc endpoint.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointTag>[]>;
     /**
      * The update time of vpc endpoint.
      */
@@ -310,6 +342,10 @@ export interface VpcEndpointArgs {
      */
     privateDnsEnabled?: pulumi.Input<boolean>;
     /**
+     * The project name of vpc endpoint.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
      * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
@@ -322,4 +358,8 @@ export interface VpcEndpointArgs {
      * The name of vpc endpoint service.
      */
     serviceName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointTag>[]>;
 }

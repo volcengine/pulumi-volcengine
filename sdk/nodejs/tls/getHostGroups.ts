@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getHostGroups({});
+ * const default = volcengine.tls.getHostGroups({
+ *     hostGroupId: "97cadc9f-4415-450d-9727-ea877d8bf993",
+ * });
  * ```
  */
 export function getHostGroups(args?: GetHostGroupsArgs, opts?: pulumi.InvokeOptions): Promise<GetHostGroupsResult> {
@@ -122,7 +124,9 @@ export interface GetHostGroupsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.getHostGroups({});
+ * const default = volcengine.tls.getHostGroups({
+ *     hostGroupId: "97cadc9f-4415-450d-9727-ea877d8bf993",
+ * });
  * ```
  */
 export function getHostGroupsOutput(args?: GetHostGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHostGroupsResult> {

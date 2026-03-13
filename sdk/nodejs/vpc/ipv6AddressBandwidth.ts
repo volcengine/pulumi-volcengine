@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -118,6 +120,10 @@ export class Ipv6AddressBandwidth extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.Ipv6AddressBandwidthTag[] | undefined>;
+    /**
      * Update time of the Ipv6AddressBandwidth.
      */
     public /*out*/ readonly updateTime!: pulumi.Output<string>;
@@ -149,6 +155,7 @@ export class Ipv6AddressBandwidth extends pulumi.CustomResource {
             resourceInputs["networkType"] = state ? state.networkType : undefined;
             resourceInputs["overdueTime"] = state ? state.overdueTime : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
             const args = argsOrState as Ipv6AddressBandwidthArgs | undefined;
@@ -161,6 +168,7 @@ export class Ipv6AddressBandwidth extends pulumi.CustomResource {
             resourceInputs["bandwidth"] = args ? args.bandwidth : undefined;
             resourceInputs["billingType"] = args ? args.billingType : undefined;
             resourceInputs["ipv6Address"] = args ? args.ipv6Address : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["allocationId"] = undefined /*out*/;
             resourceInputs["businessStatus"] = undefined /*out*/;
             resourceInputs["creationTime"] = undefined /*out*/;
@@ -240,6 +248,10 @@ export interface Ipv6AddressBandwidthState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.Ipv6AddressBandwidthTag>[]>;
+    /**
      * Update time of the Ipv6AddressBandwidth.
      */
     updateTime?: pulumi.Input<string>;
@@ -261,4 +273,8 @@ export interface Ipv6AddressBandwidthArgs {
      * Ipv6 address.
      */
     ipv6Address: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.Ipv6AddressBandwidthTag>[]>;
 }

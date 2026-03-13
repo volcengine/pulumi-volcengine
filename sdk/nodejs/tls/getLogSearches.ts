@@ -15,10 +15,10 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getLogSearches({
- *     endTime: 1768450896000,
- *     limit: 10,
+ *     endTime: 1773067877000,
+ *     limit: 100,
  *     query: "*",
- *     startTime: 1768448896000,
+ *     startTime: 1773017877000,
  *     topicId: "3c57a110-399a-43b3-bc3c-5d60e065239a",
  * });
  * ```
@@ -131,10 +131,10 @@ export interface GetLogSearchesResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.getLogSearches({
- *     endTime: 1768450896000,
- *     limit: 10,
+ *     endTime: 1773067877000,
+ *     limit: 100,
  *     query: "*",
- *     startTime: 1768448896000,
+ *     startTime: 1773017877000,
  *     topicId: "3c57a110-399a-43b3-bc3c-5d60e065239a",
  * });
  * ```

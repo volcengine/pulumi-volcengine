@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -15,6 +17,11 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.ecs.KeyPair("foo", {
  *     description: "acc-test",
  *     keyPairName: "acc-test-key-name",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "tfk1",
+ *         value: "tfv1",
+ *     }],
  * });
  * ```
  *
@@ -75,9 +82,17 @@ export class KeyPair extends pulumi.CustomResource {
      */
     public readonly keyPairName!: pulumi.Output<string>;
     /**
+     * The project name of the key pair.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * Public key string.
      */
     public readonly publicKey!: pulumi.Output<string | undefined>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.ecs.KeyPairTag[] | undefined>;
 
     /**
      * Create a KeyPair resource with the given unique name, arguments, and options.
@@ -97,7 +112,9 @@ export class KeyPair extends pulumi.CustomResource {
             resourceInputs["keyFile"] = state ? state.keyFile : undefined;
             resourceInputs["keyPairId"] = state ? state.keyPairId : undefined;
             resourceInputs["keyPairName"] = state ? state.keyPairName : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as KeyPairArgs | undefined;
             if ((!args || args.keyPairName === undefined) && !opts.urn) {
@@ -106,7 +123,9 @@ export class KeyPair extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["keyFile"] = args ? args.keyFile : undefined;
             resourceInputs["keyPairName"] = args ? args.keyPairName : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["fingerPrint"] = undefined /*out*/;
             resourceInputs["keyPairId"] = undefined /*out*/;
         }
@@ -140,9 +159,17 @@ export interface KeyPairState {
      */
     keyPairName?: pulumi.Input<string>;
     /**
+     * The project name of the key pair.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * Public key string.
      */
     publicKey?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.KeyPairTag>[]>;
 }
 
 /**
@@ -162,7 +189,15 @@ export interface KeyPairArgs {
      */
     keyPairName: pulumi.Input<string>;
     /**
+     * The project name of the key pair.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * Public key string.
      */
     publicKey?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.KeyPairTag>[]>;
 }

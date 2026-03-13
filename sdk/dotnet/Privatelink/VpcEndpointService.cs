@@ -73,6 +73,15 @@ namespace Pulumi.Volcengine.Privatelink
     ///         },
     ///         Description = "acc-test",
     ///         AutoAcceptEnabled = true,
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Privatelink.Inputs.VpcEndpointServiceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -108,6 +117,12 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name of service.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
@@ -150,6 +165,12 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.VpcEndpointServiceTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The update time of service.
@@ -222,6 +243,12 @@ namespace Pulumi.Volcengine.Privatelink
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The project name of service.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("resources", required: true)]
         private InputList<Inputs.VpcEndpointServiceResourceArgs>? _resources;
 
@@ -232,6 +259,18 @@ namespace Pulumi.Volcengine.Privatelink
         {
             get => _resources ?? (_resources = new InputList<Inputs.VpcEndpointServiceResourceArgs>());
             set => _resources = value;
+        }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcEndpointServiceTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcEndpointServiceTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcEndpointServiceTagArgs>());
+            set => _tags = value;
         }
 
         public VpcEndpointServiceArgs()
@@ -259,6 +298,12 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The project name of service.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         [Input("resources")]
         private InputList<Inputs.VpcEndpointServiceResourceGetArgs>? _resources;
@@ -307,6 +352,18 @@ namespace Pulumi.Volcengine.Privatelink
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcEndpointServiceTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcEndpointServiceTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcEndpointServiceTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of service.

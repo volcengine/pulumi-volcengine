@@ -121,6 +121,24 @@ namespace Pulumi.Volcengine.Ecs
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the key pair.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.GetKeyPairsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.GetKeyPairsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.GetKeyPairsTagArgs>());
+            set => _tags = value;
+        }
+
         public GetKeyPairsArgs()
         {
         }
@@ -177,6 +195,24 @@ namespace Pulumi.Volcengine.Ecs
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the key pair.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GetKeyPairsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GetKeyPairsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GetKeyPairsTagInputArgs>());
+            set => _tags = value;
+        }
+
         public GetKeyPairsInvokeArgs()
         {
         }
@@ -208,6 +244,14 @@ namespace Pulumi.Volcengine.Ecs
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The project name of the key pair.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKeyPairsTagResult> Tags;
+        /// <summary>
         /// The total count of ECS key pair query.
         /// </summary>
         public readonly int TotalCount;
@@ -230,6 +274,10 @@ namespace Pulumi.Volcengine.Ecs
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<Outputs.GetKeyPairsTagResult> tags,
+
             int totalCount)
         {
             FingerPrint = fingerPrint;
@@ -240,6 +288,8 @@ namespace Pulumi.Volcengine.Ecs
             KeyPairs = keyPairs;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

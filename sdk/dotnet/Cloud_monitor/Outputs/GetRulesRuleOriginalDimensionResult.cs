@@ -14,11 +14,11 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
     public sealed class GetRulesRuleOriginalDimensionResult
     {
         /// <summary>
-        /// The key of the dimension.
+        /// The Key of Tags.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The value of the dimension.
+        /// The Value of Tags.
         /// </summary>
         public readonly ImmutableArray<string> Values;
 

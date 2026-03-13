@@ -60,7 +60,9 @@ export function getSslVpnServers(args?: GetSslVpnServersArgs, opts?: pulumi.Invo
     return pulumi.runtime.invoke("volcengine:vpn/getSslVpnServers:getSslVpnServers", {
         "ids": args.ids,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "sslVpnServerName": args.sslVpnServerName,
+        "tags": args.tags,
         "vpnGatewayId": args.vpnGatewayId,
     }, opts);
 }
@@ -78,9 +80,17 @@ export interface GetSslVpnServersArgs {
      */
     outputFile?: string;
     /**
+     * The project name of the ssl server.
+     */
+    projectName?: string;
+    /**
      * The name of the ssl vpn server.
      */
     sslVpnServerName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpn.GetSslVpnServersTag[];
     /**
      * The id of the vpn gateway.
      */
@@ -98,6 +108,10 @@ export interface GetSslVpnServersResult {
     readonly ids?: string[];
     readonly outputFile?: string;
     /**
+     * The project name of the ssl server.
+     */
+    readonly projectName?: string;
+    /**
      * The name of the SSL server.
      */
     readonly sslVpnServerName?: string;
@@ -105,6 +119,10 @@ export interface GetSslVpnServersResult {
      * List of SSL VPN servers.
      */
     readonly sslVpnServers: outputs.vpn.GetSslVpnServersSslVpnServer[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpn.GetSslVpnServersTag[];
     /**
      * The total count of SSL VPN server query.
      */
@@ -178,9 +196,17 @@ export interface GetSslVpnServersOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The project name of the ssl server.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The name of the ssl vpn server.
      */
     sslVpnServerName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.GetSslVpnServersTagArgs>[]>;
     /**
      * The id of the vpn gateway.
      */

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetSslVpnClientCertsResult',
@@ -22,7 +23,7 @@ class GetSslVpnClientCertsResult:
     """
     A collection of values returned by getSslVpnClientCerts.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, ssl_vpn_client_cert_name=None, ssl_vpn_client_certs=None, ssl_vpn_server_id=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, ssl_vpn_client_cert_name=None, ssl_vpn_client_certs=None, ssl_vpn_server_id=None, tags=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -44,6 +45,9 @@ class GetSslVpnClientCertsResult:
         if ssl_vpn_server_id and not isinstance(ssl_vpn_server_id, str):
             raise TypeError("Expected argument 'ssl_vpn_server_id' to be a str")
         pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -96,6 +100,11 @@ class GetSslVpnClientCertsResult:
         return pulumi.get(self, "ssl_vpn_server_id")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetSslVpnClientCertsTagResult']]:
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -117,6 +126,7 @@ class AwaitableGetSslVpnClientCertsResult(GetSslVpnClientCertsResult):
             ssl_vpn_client_cert_name=self.ssl_vpn_client_cert_name,
             ssl_vpn_client_certs=self.ssl_vpn_client_certs,
             ssl_vpn_server_id=self.ssl_vpn_server_id,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -125,6 +135,7 @@ def get_ssl_vpn_client_certs(ids: Optional[Sequence[str]] = None,
                              output_file: Optional[str] = None,
                              ssl_vpn_client_cert_name: Optional[str] = None,
                              ssl_vpn_server_id: Optional[str] = None,
+                             tags: Optional[Sequence[pulumi.InputType['GetSslVpnClientCertsTagArgs']]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSslVpnClientCertsResult:
     """
     Use this data source to query detailed information of ssl vpn client certs
@@ -178,6 +189,7 @@ def get_ssl_vpn_client_certs(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
     :param str ssl_vpn_server_id: The id of the ssl vpn server.
+    :param Sequence[pulumi.InputType['GetSslVpnClientCertsTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['ids'] = ids
@@ -185,6 +197,7 @@ def get_ssl_vpn_client_certs(ids: Optional[Sequence[str]] = None,
     __args__['outputFile'] = output_file
     __args__['sslVpnClientCertName'] = ssl_vpn_client_cert_name
     __args__['sslVpnServerId'] = ssl_vpn_server_id
+    __args__['tags'] = tags
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpn/getSslVpnClientCerts:getSslVpnClientCerts', __args__, opts=opts, typ=GetSslVpnClientCertsResult).value
 
@@ -196,6 +209,7 @@ def get_ssl_vpn_client_certs(ids: Optional[Sequence[str]] = None,
         ssl_vpn_client_cert_name=pulumi.get(__ret__, 'ssl_vpn_client_cert_name'),
         ssl_vpn_client_certs=pulumi.get(__ret__, 'ssl_vpn_client_certs'),
         ssl_vpn_server_id=pulumi.get(__ret__, 'ssl_vpn_server_id'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'))
 
 
@@ -205,6 +219,7 @@ def get_ssl_vpn_client_certs_output(ids: Optional[pulumi.Input[Optional[Sequence
                                     output_file: Optional[pulumi.Input[Optional[str]]] = None,
                                     ssl_vpn_client_cert_name: Optional[pulumi.Input[Optional[str]]] = None,
                                     ssl_vpn_server_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                    tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetSslVpnClientCertsTagArgs']]]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSslVpnClientCertsResult]:
     """
     Use this data source to query detailed information of ssl vpn client certs
@@ -258,5 +273,6 @@ def get_ssl_vpn_client_certs_output(ids: Optional[pulumi.Input[Optional[Sequence
     :param str output_file: File name where to save data source results.
     :param str ssl_vpn_client_cert_name: The name of the ssl vpn client cert.
     :param str ssl_vpn_server_id: The id of the ssl vpn server.
+    :param Sequence[pulumi.InputType['GetSslVpnClientCertsTagArgs']] tags: Tags.
     """
     ...

@@ -24,27 +24,21 @@ namespace Pulumi.Volcengine.Tls
     ///     // Example: Create a TLS trace instance
     ///     var foo = new Volcengine.Tls.TraceInstance("foo", new()
     ///     {
-    ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-    ///         TraceInstanceName = "tf-trace-instance-df",
-    ///         Description = "This is an example trace instance",
     ///         BackendConfig = new Volcengine.Tls.Inputs.TraceInstanceBackendConfigArgs
     ///         {
-    ///             Ttl = 60,
-    ///             EnableHotTtl = true,
-    ///             HotTtl = 30,
-    ///             ColdTtl = 30,
     ///             ArchiveTtl = 0,
     ///             AutoSplit = true,
+    ///             ColdTtl = 30,
+    ///             EnableHotTtl = true,
+    ///             HotTtl = 60,
     ///             MaxSplitPartitions = 10,
+    ///             Ttl = 90,
     ///         },
+    ///         Description = "This is an instance-modify",
+    ///         ProjectId = "bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
+    ///         TraceInstanceName = "tf-trace-instance-nn",
     ///     });
     /// 
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["tlsTraceInstanceId"] = foo.Id,
-    ///         ["tlsTraceInstanceName"] = foo.TraceInstanceName,
-    ///         ["tlsTraceInstanceDescription"] = foo.Description,
-    ///     };
     /// });
     /// ```
     /// 

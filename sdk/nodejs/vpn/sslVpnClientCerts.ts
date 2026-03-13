@@ -73,6 +73,7 @@ export function sslVpnClientCerts(args?: SslVpnClientCertsArgs, opts?: pulumi.In
         "outputFile": args.outputFile,
         "sslVpnClientCertName": args.sslVpnClientCertName,
         "sslVpnServerId": args.sslVpnServerId,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -100,6 +101,10 @@ export interface SslVpnClientCertsArgs {
      * The id of the ssl vpn server.
      */
     sslVpnServerId?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpn.SslVpnClientCertsTag[];
 }
 
 /**
@@ -125,6 +130,7 @@ export interface SslVpnClientCertsResult {
      * The id of the ssl vpn server.
      */
     readonly sslVpnServerId?: string;
+    readonly tags?: outputs.vpn.SslVpnClientCertsTag[];
     /**
      * The total count of ssl vpn client cert query.
      */
@@ -214,4 +220,8 @@ export interface SslVpnClientCertsOutputArgs {
      * The id of the ssl vpn server.
      */
     sslVpnServerId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpn.SslVpnClientCertsTagArgs>[]>;
 }

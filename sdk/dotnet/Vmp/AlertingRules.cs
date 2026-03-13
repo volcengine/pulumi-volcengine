@@ -502,6 +502,18 @@ namespace Pulumi.Volcengine.Vmp
         [Input("status")]
         public string? Status { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.AlertingRulesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.AlertingRulesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.AlertingRulesTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
         /// </summary>
@@ -582,6 +594,18 @@ namespace Pulumi.Volcengine.Vmp
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.AlertingRulesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AlertingRulesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AlertingRulesTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The type of vmp alerting rule. Valid values: `vmp/PromQL`.
         /// </summary>
@@ -626,6 +650,10 @@ namespace Pulumi.Volcengine.Vmp
         /// </summary>
         public readonly string? Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AlertingRulesTagResult> Tags;
+        /// <summary>
         /// The total count of query.
         /// </summary>
         public readonly int TotalCount;
@@ -658,6 +686,8 @@ namespace Pulumi.Volcengine.Vmp
 
             string? status,
 
+            ImmutableArray<Outputs.AlertingRulesTagResult> tags,
+
             int totalCount,
 
             string? type,
@@ -673,6 +703,7 @@ namespace Pulumi.Volcengine.Vmp
             NotifyPolicyIds = notifyPolicyIds;
             OutputFile = outputFile;
             Status = status;
+            Tags = tags;
             TotalCount = totalCount;
             Type = type;
             WorkspaceId = workspaceId;

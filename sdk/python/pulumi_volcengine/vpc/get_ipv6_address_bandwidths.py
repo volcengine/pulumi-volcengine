@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetIpv6AddressBandwidthsResult',
@@ -22,7 +23,7 @@ class GetIpv6AddressBandwidthsResult:
     """
     A collection of values returned by getIpv6AddressBandwidths.
     """
-    def __init__(__self__, associated_instance_id=None, associated_instance_type=None, id=None, ids=None, ipv6_address_bandwidths=None, ipv6_addresses=None, isp=None, network_type=None, output_file=None, total_count=None, vpc_id=None):
+    def __init__(__self__, associated_instance_id=None, associated_instance_type=None, id=None, ids=None, ipv6_address_bandwidths=None, ipv6_addresses=None, isp=None, network_type=None, output_file=None, tags=None, total_count=None, vpc_id=None):
         if associated_instance_id and not isinstance(associated_instance_id, str):
             raise TypeError("Expected argument 'associated_instance_id' to be a str")
         pulumi.set(__self__, "associated_instance_id", associated_instance_id)
@@ -50,6 +51,9 @@ class GetIpv6AddressBandwidthsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -115,6 +119,11 @@ class GetIpv6AddressBandwidthsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.GetIpv6AddressBandwidthsTagResult']]:
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -143,6 +152,7 @@ class AwaitableGetIpv6AddressBandwidthsResult(GetIpv6AddressBandwidthsResult):
             isp=self.isp,
             network_type=self.network_type,
             output_file=self.output_file,
+            tags=self.tags,
             total_count=self.total_count,
             vpc_id=self.vpc_id)
 
@@ -154,6 +164,7 @@ def get_ipv6_address_bandwidths(associated_instance_id: Optional[str] = None,
                                 isp: Optional[str] = None,
                                 network_type: Optional[str] = None,
                                 output_file: Optional[str] = None,
+                                tags: Optional[Sequence[pulumi.InputType['GetIpv6AddressBandwidthsTagArgs']]] = None,
                                 vpc_id: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpv6AddressBandwidthsResult:
     """
@@ -175,6 +186,7 @@ def get_ipv6_address_bandwidths(associated_instance_id: Optional[str] = None,
     :param str isp: ISP of the ipv6 address.
     :param str network_type: The network type of the ipv6 address.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['GetIpv6AddressBandwidthsTagArgs']] tags: Tags.
     :param str vpc_id: The ID of Vpc the ipv6 address in.
     """
     __args__ = dict()
@@ -185,6 +197,7 @@ def get_ipv6_address_bandwidths(associated_instance_id: Optional[str] = None,
     __args__['isp'] = isp
     __args__['networkType'] = network_type
     __args__['outputFile'] = output_file
+    __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpc/getIpv6AddressBandwidths:getIpv6AddressBandwidths', __args__, opts=opts, typ=GetIpv6AddressBandwidthsResult).value
@@ -199,6 +212,7 @@ def get_ipv6_address_bandwidths(associated_instance_id: Optional[str] = None,
         isp=pulumi.get(__ret__, 'isp'),
         network_type=pulumi.get(__ret__, 'network_type'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
@@ -211,6 +225,7 @@ def get_ipv6_address_bandwidths_output(associated_instance_id: Optional[pulumi.I
                                        isp: Optional[pulumi.Input[Optional[str]]] = None,
                                        network_type: Optional[pulumi.Input[Optional[str]]] = None,
                                        output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                                       tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetIpv6AddressBandwidthsTagArgs']]]]] = None,
                                        vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpv6AddressBandwidthsResult]:
     """
@@ -232,6 +247,7 @@ def get_ipv6_address_bandwidths_output(associated_instance_id: Optional[pulumi.I
     :param str isp: ISP of the ipv6 address.
     :param str network_type: The network type of the ipv6 address.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['GetIpv6AddressBandwidthsTagArgs']] tags: Tags.
     :param str vpc_id: The ID of Vpc the ipv6 address in.
     """
     ...

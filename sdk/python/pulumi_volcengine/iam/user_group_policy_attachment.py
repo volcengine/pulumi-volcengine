@@ -140,7 +140,7 @@ class UserGroupPolicyAttachment(pulumi.CustomResource):
         foo = volcengine.iam.UserGroupPolicyAttachment("foo",
             policy_name="test",
             policy_type="Custom",
-            user_group_name="tf-test")
+            user_group_name="xRqElT")
         ```
 
         ## Import
@@ -174,7 +174,7 @@ class UserGroupPolicyAttachment(pulumi.CustomResource):
         foo = volcengine.iam.UserGroupPolicyAttachment("foo",
             policy_name="test",
             policy_type="Custom",
-            user_group_name="tf-test")
+            user_group_name="xRqElT")
         ```
 
         ## Import

@@ -66,10 +66,14 @@ type CustomerGateway struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The IP address of the customer gateway.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
+	// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+	IpVersion pulumi.StringPtrOutput `pulumi:"ipVersion"`
 	// The project name of the VPN customer gateway.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The status of the customer gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags CustomerGatewayTagArrayOutput `pulumi:"tags"`
 	// The update time of customer gateway.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 }
@@ -121,10 +125,14 @@ type customerGatewayState struct {
 	Description *string `pulumi:"description"`
 	// The IP address of the customer gateway.
 	IpAddress *string `pulumi:"ipAddress"`
+	// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+	IpVersion *string `pulumi:"ipVersion"`
 	// The project name of the VPN customer gateway.
 	ProjectName *string `pulumi:"projectName"`
 	// The status of the customer gateway.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []CustomerGatewayTag `pulumi:"tags"`
 	// The update time of customer gateway.
 	UpdateTime *string `pulumi:"updateTime"`
 }
@@ -144,10 +152,14 @@ type CustomerGatewayState struct {
 	Description pulumi.StringPtrInput
 	// The IP address of the customer gateway.
 	IpAddress pulumi.StringPtrInput
+	// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+	IpVersion pulumi.StringPtrInput
 	// The project name of the VPN customer gateway.
 	ProjectName pulumi.StringPtrInput
 	// The status of the customer gateway.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags CustomerGatewayTagArrayInput
 	// The update time of customer gateway.
 	UpdateTime pulumi.StringPtrInput
 }
@@ -163,8 +175,12 @@ type customerGatewayArgs struct {
 	Description *string `pulumi:"description"`
 	// The IP address of the customer gateway.
 	IpAddress string `pulumi:"ipAddress"`
+	// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+	IpVersion *string `pulumi:"ipVersion"`
 	// The project name of the VPN customer gateway.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CustomerGatewayTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a CustomerGateway resource.
@@ -175,8 +191,12 @@ type CustomerGatewayArgs struct {
 	Description pulumi.StringPtrInput
 	// The IP address of the customer gateway.
 	IpAddress pulumi.StringInput
+	// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+	IpVersion pulumi.StringPtrInput
 	// The project name of the VPN customer gateway.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags CustomerGatewayTagArrayInput
 }
 
 func (CustomerGatewayArgs) ElementType() reflect.Type {
@@ -301,6 +321,11 @@ func (o CustomerGatewayOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomerGateway) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// The IP version of the customer gateway. Default value is ipv4. Valid value: ipv4, ipv6.
+func (o CustomerGatewayOutput) IpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomerGateway) pulumi.StringPtrOutput { return v.IpVersion }).(pulumi.StringPtrOutput)
+}
+
 // The project name of the VPN customer gateway.
 func (o CustomerGatewayOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomerGateway) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
@@ -309,6 +334,11 @@ func (o CustomerGatewayOutput) ProjectName() pulumi.StringOutput {
 // The status of the customer gateway.
 func (o CustomerGatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomerGateway) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CustomerGatewayOutput) Tags() CustomerGatewayTagArrayOutput {
+	return o.ApplyT(func(v *CustomerGateway) CustomerGatewayTagArrayOutput { return v.Tags }).(CustomerGatewayTagArrayOutput)
 }
 
 // The update time of customer gateway.

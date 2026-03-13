@@ -176,9 +176,7 @@ def trace_instances(cs_account_channel: Optional[str] = None,
     import pulumi_volcengine as volcengine
 
     by_name = volcengine.tls.get_trace_instances(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        trace_instance_name="测试trace")
-    by_status = volcengine.tls.get_trace_instances(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        status="CREATED")
+        trace_instance_name="tf-trace-instance-nn")
     ```
 
 
@@ -237,9 +235,7 @@ def trace_instances_output(cs_account_channel: Optional[pulumi.Input[Optional[st
     import pulumi_volcengine as volcengine
 
     by_name = volcengine.tls.get_trace_instances(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        trace_instance_name="测试trace")
-    by_status = volcengine.tls.get_trace_instances(project_id="bdb87e4d-7dad-4b96-ac43-e1b09e9dc8ac",
-        status="CREATED")
+        trace_instance_name="tf-trace-instance-nn")
     ```
 
 

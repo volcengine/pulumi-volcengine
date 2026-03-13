@@ -178,7 +178,7 @@ def host_groups(auto_update: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_host_groups()
+    default = volcengine.tls.get_host_groups(host_group_id="97cadc9f-4415-450d-9727-ea877d8bf993")
     ```
 
 
@@ -236,7 +236,7 @@ def host_groups_output(auto_update: Optional[pulumi.Input[Optional[bool]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.get_host_groups()
+    default = volcengine.tls.get_host_groups(host_group_id="97cadc9f-4415-450d-9727-ea877d8bf993")
     ```
 
 

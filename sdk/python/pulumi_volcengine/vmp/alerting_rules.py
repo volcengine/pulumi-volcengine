@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'AlertingRulesResult',
@@ -24,7 +25,7 @@ class AlertingRulesResult:
     """
     A collection of values returned by AlertingRules.
     """
-    def __init__(__self__, alerting_rules=None, id=None, ids=None, name=None, name_regex=None, notify_group_policy_ids=None, notify_policy_ids=None, output_file=None, status=None, total_count=None, type=None, workspace_id=None):
+    def __init__(__self__, alerting_rules=None, id=None, ids=None, name=None, name_regex=None, notify_group_policy_ids=None, notify_policy_ids=None, output_file=None, status=None, tags=None, total_count=None, type=None, workspace_id=None):
         if alerting_rules and not isinstance(alerting_rules, list):
             raise TypeError("Expected argument 'alerting_rules' to be a list")
         pulumi.set(__self__, "alerting_rules", alerting_rules)
@@ -52,6 +53,9 @@ class AlertingRulesResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -120,6 +124,14 @@ class AlertingRulesResult:
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.AlertingRulesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -159,6 +171,7 @@ class AwaitableAlertingRulesResult(AlertingRulesResult):
             notify_policy_ids=self.notify_policy_ids,
             output_file=self.output_file,
             status=self.status,
+            tags=self.tags,
             total_count=self.total_count,
             type=self.type,
             workspace_id=self.workspace_id)
@@ -171,6 +184,7 @@ def alerting_rules(ids: Optional[Sequence[str]] = None,
                    notify_policy_ids: Optional[Sequence[str]] = None,
                    output_file: Optional[str] = None,
                    status: Optional[str] = None,
+                   tags: Optional[Sequence[pulumi.InputType['AlertingRulesTagArgs']]] = None,
                    type: Optional[str] = None,
                    workspace_id: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableAlertingRulesResult:
@@ -303,6 +317,7 @@ def alerting_rules(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] notify_policy_ids: A list of notify policy IDs.
     :param str output_file: File name where to save data source results.
     :param str status: The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
+    :param Sequence[pulumi.InputType['AlertingRulesTagArgs']] tags: Tags.
     :param str type: The type of vmp alerting rule. Valid values: `vmp/PromQL`.
     :param str workspace_id: The workspace id of vmp alerting rule.
     """
@@ -315,6 +330,7 @@ def alerting_rules(ids: Optional[Sequence[str]] = None,
     __args__['notifyPolicyIds'] = notify_policy_ids
     __args__['outputFile'] = output_file
     __args__['status'] = status
+    __args__['tags'] = tags
     __args__['type'] = type
     __args__['workspaceId'] = workspace_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -330,6 +346,7 @@ def alerting_rules(ids: Optional[Sequence[str]] = None,
         notify_policy_ids=pulumi.get(__ret__, 'notify_policy_ids'),
         output_file=pulumi.get(__ret__, 'output_file'),
         status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         type=pulumi.get(__ret__, 'type'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
@@ -343,6 +360,7 @@ def alerting_rules_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
                           notify_policy_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
                           status: Optional[pulumi.Input[Optional[str]]] = None,
+                          tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['AlertingRulesTagArgs']]]]] = None,
                           type: Optional[pulumi.Input[Optional[str]]] = None,
                           workspace_id: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[AlertingRulesResult]:
@@ -475,6 +493,7 @@ def alerting_rules_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param Sequence[str] notify_policy_ids: A list of notify policy IDs.
     :param str output_file: File name where to save data source results.
     :param str status: The status of vmp alerting rule. Valid values: `Running`, `Disabled`.
+    :param Sequence[pulumi.InputType['AlertingRulesTagArgs']] tags: Tags.
     :param str type: The type of vmp alerting rule. Valid values: `vmp/PromQL`.
     :param str workspace_id: The workspace id of vmp alerting rule.
     """

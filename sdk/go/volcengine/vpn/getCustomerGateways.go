@@ -63,12 +63,18 @@ type GetCustomerGatewaysArgs struct {
 	Ids []string `pulumi:"ids"`
 	// A IP address of the customer gateway.
 	IpAddress *string `pulumi:"ipAddress"`
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion *string `pulumi:"ipVersion"`
 	// A Name Regex of customer gateway.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
 	// The project name of the VPN customer gateway.
 	ProjectName *string `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []GetCustomerGatewaysTag `pulumi:"tags"`
 }
 
 // A collection of values returned by getCustomerGateways.
@@ -80,10 +86,17 @@ type GetCustomerGatewaysResult struct {
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
 	// The IP address of the customer gateway.
-	IpAddress   *string `pulumi:"ipAddress"`
-	NameRegex   *string `pulumi:"nameRegex"`
-	OutputFile  *string `pulumi:"outputFile"`
+	IpAddress *string `pulumi:"ipAddress"`
+	// The IP version of the customer gateway.
+	IpVersion  *string `pulumi:"ipVersion"`
+	NameRegex  *string `pulumi:"nameRegex"`
+	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the VPN customer gateway.
 	ProjectName *string `pulumi:"projectName"`
+	// The status of the customer gateway.
+	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []GetCustomerGatewaysTag `pulumi:"tags"`
 	// The total count of customer gateway query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -109,12 +122,18 @@ type GetCustomerGatewaysOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// A IP address of the customer gateway.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
 	// A Name Regex of customer gateway.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The project name of the VPN customer gateway.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Tags.
+	Tags GetCustomerGatewaysTagArrayInput `pulumi:"tags"`
 }
 
 func (GetCustomerGatewaysOutputArgs) ElementType() reflect.Type {
@@ -159,6 +178,11 @@ func (o GetCustomerGatewaysResultOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCustomerGatewaysResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
+// The IP version of the customer gateway.
+func (o GetCustomerGatewaysResultOutput) IpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysResult) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
+}
+
 func (o GetCustomerGatewaysResultOutput) NameRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCustomerGatewaysResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
 }
@@ -167,8 +191,19 @@ func (o GetCustomerGatewaysResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCustomerGatewaysResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of the VPN customer gateway.
 func (o GetCustomerGatewaysResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCustomerGatewaysResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// The status of the customer gateway.
+func (o GetCustomerGatewaysResultOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o GetCustomerGatewaysResultOutput) Tags() GetCustomerGatewaysTagArrayOutput {
+	return o.ApplyT(func(v GetCustomerGatewaysResult) []GetCustomerGatewaysTag { return v.Tags }).(GetCustomerGatewaysTagArrayOutput)
 }
 
 // The total count of customer gateway query.

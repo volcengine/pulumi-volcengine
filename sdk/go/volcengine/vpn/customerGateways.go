@@ -65,12 +65,18 @@ type CustomerGatewaysArgs struct {
 	Ids []string `pulumi:"ids"`
 	// A IP address of the customer gateway.
 	IpAddress *string `pulumi:"ipAddress"`
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion *string `pulumi:"ipVersion"`
 	// A Name Regex of customer gateway.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
 	// The project name of the VPN customer gateway.
 	ProjectName *string `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []CustomerGatewaysTag `pulumi:"tags"`
 }
 
 // A collection of values returned by CustomerGateways.
@@ -82,10 +88,17 @@ type CustomerGatewaysResult struct {
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
 	// The IP address of the customer gateway.
-	IpAddress   *string `pulumi:"ipAddress"`
-	NameRegex   *string `pulumi:"nameRegex"`
-	OutputFile  *string `pulumi:"outputFile"`
+	IpAddress *string `pulumi:"ipAddress"`
+	// The IP version of the customer gateway.
+	IpVersion  *string `pulumi:"ipVersion"`
+	NameRegex  *string `pulumi:"nameRegex"`
+	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the VPN customer gateway.
 	ProjectName *string `pulumi:"projectName"`
+	// The status of the customer gateway.
+	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []CustomerGatewaysTag `pulumi:"tags"`
 	// The total count of customer gateway query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -111,12 +124,18 @@ type CustomerGatewaysOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// A IP address of the customer gateway.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+	// The IP version of the customer gateway. Valid value: ipv4, ipv6.
+	IpVersion pulumi.StringPtrInput `pulumi:"ipVersion"`
 	// A Name Regex of customer gateway.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The project name of the VPN customer gateway.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The status of the customer gateway. Valid value: Creating, Deleting, Pending, Available.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Tags.
+	Tags CustomerGatewaysTagArrayInput `pulumi:"tags"`
 }
 
 func (CustomerGatewaysOutputArgs) ElementType() reflect.Type {
@@ -161,6 +180,11 @@ func (o CustomerGatewaysResultOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
+// The IP version of the customer gateway.
+func (o CustomerGatewaysResultOutput) IpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.IpVersion }).(pulumi.StringPtrOutput)
+}
+
 func (o CustomerGatewaysResultOutput) NameRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
 }
@@ -169,8 +193,19 @@ func (o CustomerGatewaysResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of the VPN customer gateway.
 func (o CustomerGatewaysResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// The status of the customer gateway.
+func (o CustomerGatewaysResultOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o CustomerGatewaysResultOutput) Tags() CustomerGatewaysTagArrayOutput {
+	return o.ApplyT(func(v CustomerGatewaysResult) []CustomerGatewaysTag { return v.Tags }).(CustomerGatewaysTagArrayOutput)
 }
 
 // The total count of customer gateway query.

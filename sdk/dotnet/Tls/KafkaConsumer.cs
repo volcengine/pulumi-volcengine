@@ -23,7 +23,7 @@ namespace Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.KafkaConsumer("foo", new()
     ///     {
-    ///         TopicId = "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
+    ///         TopicId = "a0197686-1309-4c46-8003-4be3b278a838",
     ///     });
     /// 
     /// });

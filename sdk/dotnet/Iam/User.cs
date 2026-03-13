@@ -25,8 +25,8 @@ namespace Pulumi.Volcengine.Iam
     ///     {
     ///         Description = "test",
     ///         DisplayName = "name",
-    ///         Email = "test@example.com",
-    ///         MobilePhone = "+8618800000000",
+    ///         Email = "modify@example.com",
+    ///         MobilePhone = "17700000000",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Iam.Inputs.UserTagArgs
@@ -34,8 +34,13 @@ namespace Pulumi.Volcengine.Iam
     ///                 Key = "key1",
     ///                 Value = "value1",
     ///             },
+    ///             new Volcengine.Iam.Inputs.UserTagArgs
+    ///             {
+    ///                 Key = "key2",
+    ///                 Value = "value2",
+    ///             },
     ///         },
-    ///         UserName = "jonny",
+    ///         UserName = "jonny-g",
     ///     });
     /// 
     /// });

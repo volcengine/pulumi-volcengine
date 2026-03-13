@@ -13,8 +13,8 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.UserGroup("foo", {
- *     description: "acc",
- *     displayName: "modify-xx",
+ *     description: "acc-modify",
+ *     displayName: "modify",
  *     userGroupName: "acc-test1",
  * });
  * ```

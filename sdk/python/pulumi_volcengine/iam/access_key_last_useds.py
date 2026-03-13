@@ -110,7 +110,7 @@ def access_key_last_useds(access_key_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.get_access_key_last_useds(access_key_id="AKLxxxxxxxxxxxxxxxxxxxxxxxxx")
+    default = volcengine.iam.get_access_key_last_useds(access_key_id="your access_key_id")
     ```
 
 
@@ -148,7 +148,7 @@ def access_key_last_useds_output(access_key_id: Optional[pulumi.Input[str]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.get_access_key_last_useds(access_key_id="AKLxxxxxxxxxxxxxxxxxxxxxxxxx")
+    default = volcengine.iam.get_access_key_last_useds(access_key_id="your access_key_id")
     ```
 
 

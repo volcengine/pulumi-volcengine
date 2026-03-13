@@ -80,8 +80,10 @@ export function vpcEndpoints(args?: VpcEndpointsArgs, opts?: pulumi.InvokeOption
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "serviceName": args.serviceName,
         "status": args.status,
+        "tags": args.tags,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -107,6 +109,10 @@ export interface VpcEndpointsArgs {
      */
     outputFile?: string;
     /**
+     * The project name of vpc endpoint.
+     */
+    projectName?: string;
+    /**
      * The name of vpc endpoint service.
      */
     serviceName?: string;
@@ -114,6 +120,10 @@ export interface VpcEndpointsArgs {
      * The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
      */
     status?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.privatelink.VpcEndpointsTag[];
     /**
      * The vpc id of vpc endpoint.
      */
@@ -136,6 +146,10 @@ export interface VpcEndpointsResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The project name of vpc endpoint.
+     */
+    readonly projectName?: string;
+    /**
      * The name of vpc endpoint service.
      */
     readonly serviceName?: string;
@@ -143,6 +157,10 @@ export interface VpcEndpointsResult {
      * The status of vpc endpoint.
      */
     readonly status?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.privatelink.VpcEndpointsTag[];
     /**
      * Returns the total amount of the data list.
      */
@@ -245,6 +263,10 @@ export interface VpcEndpointsOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The project name of vpc endpoint.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The name of vpc endpoint service.
      */
     serviceName?: pulumi.Input<string>;
@@ -252,6 +274,10 @@ export interface VpcEndpointsOutputArgs {
      * The status of vpc endpoint. Valid values: `Creating`, `Pending`, `Available`, `Deleting`, `Inactive`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointsTagArgs>[]>;
     /**
      * The vpc id of vpc endpoint.
      */

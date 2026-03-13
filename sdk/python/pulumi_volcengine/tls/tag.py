@@ -153,11 +153,6 @@ class Tag(pulumi.CustomResource):
                     value="value2",
                 ),
             ])
-        pulumi.export("tlsTagId", foo.id)
-        pulumi.export("tlsTagResourceId", foo.resource_id)
-        pulumi.export("tlsTagResourceType", foo.resource_type)
-        pulumi.export("tlsTagTags", foo.tags)
-        pulumi.export("tlsTagResourceNewId", foo.id)
         ```
 
         ## Import
@@ -202,11 +197,6 @@ class Tag(pulumi.CustomResource):
                     value="value2",
                 ),
             ])
-        pulumi.export("tlsTagId", foo.id)
-        pulumi.export("tlsTagResourceId", foo.resource_id)
-        pulumi.export("tlsTagResourceType", foo.resource_type)
-        pulumi.export("tlsTagTags", foo.tags)
-        pulumi.export("tlsTagResourceNewId", foo.id)
         ```
 
         ## Import

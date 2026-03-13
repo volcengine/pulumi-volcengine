@@ -56,8 +56,8 @@ import (
 //					Time: pulumi.Int(20),
 //					Type: pulumi.String("Period"),
 //				},
-//				SendResolved: pulumi.Bool(true),
-//				Status:       pulumi.Bool(false),
+//				SendResolved: pulumi.Bool(false),
+//				Status:       pulumi.Bool(true),
 //				TriggerConditions: tls.AlarmTriggerConditionArray{
 //					&tls.AlarmTriggerConditionArgs{
 //						Condition:      pulumi.String("$1.errNum>0"),
@@ -67,7 +67,7 @@ import (
 //					},
 //				},
 //				TriggerPeriod: pulumi.Int(2),
-//				UserDefineMsg: pulumi.String("test for terraform"),
+//				UserDefineMsg: pulumi.String("test for terraform-modify"),
 //			})
 //			if err != nil {
 //				return err
